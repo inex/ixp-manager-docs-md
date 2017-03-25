@@ -21,3 +21,9 @@ pages:
     - 'Route Server': 'features/routers.md'
     - 'Routers': 'features/routers.md'
     - 'Skinning': 'features/skinning.md'
+- Development:
+    - 'API': 'dev/api.md'
+    - 'Documentation': 'dev/docs.md'
+    - 'Grapher': 'dev/grapher.md'
+    - 'Helpers': 'dev/helpders.md'
+    - 'Vagrant': 'dev/vagrant.md'
