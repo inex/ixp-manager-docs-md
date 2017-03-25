@@ -1,0 +1,23 @@
+site_name: IXP Manager
+theme: readthedocs
+repo_name: GitHub
+copyright: '&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX)'
+pages:
+- Home: 'index.md'
+- Installation:
+    - 'Introduction': 'install/index.md'
+    - 'Automated Script': 'install/automated-script.md'
+    - 'Maintenance Mode': 'install/maint-mode.md'
+    - 'Manual Installation': 'install/manually.md'
+    - 'Upgrade From v3': 'install/upgrade-v3.md'
+- Features:
+    - 'AS112': 'features/routers.md'
+    - 'Contact Groups': 'features/contact-groups.md'
+    - 'Grapher': 'features/grapher.md'
+    - 'Helpdesk Integration': 'features/helpdesk.md'
+    - 'IRRDB': 'features/routers.md'
+    - 'Looking Glass': 'features/looking-glass.md'
+    - 'Route Collector': 'features/routers.md'
+    - 'Route Server': 'features/routers.md'
+    - 'Routers': 'features/routers.md'
+    - 'Skinning': 'features/skinning.md'
