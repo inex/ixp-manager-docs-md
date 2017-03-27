@@ -224,36 +224,62 @@
 </code></pre>
 
 <p>The general process is:</p>
-<ol>
+<ul>
+<li>(1) Enable maintenance mode:</li>
+</ul>
+<pre><code>cd $IXPROOT
+./artisan down
+</code></pre>
+
+<ul>
+<li>(2) Using Git, checkout the next version up from yours. For IXP Manager v4, this essentially means pulling from <code>master</code>.</li>
+</ul>
+<pre><code># move to the directory where you have installed IXP Manager
+cd $IXPROOT
+# you should be in the master branch (if not: git checkout master)
+# pull the latest code
+git pull
+</code></pre>
+
+<ul>
+<li>(3) Install latest required libraries from composer:</li>
+</ul>
+<pre><code>composer install
+</code></pre>
+
+<ul>
+<li>(4) Install latest frontend dependencies:</li>
+</ul>
+<pre><code># if asked to chose a jquery version, chose the latest / highest version offered
+bower install
+</code></pre>
+
+<ul>
 <li>
-<p>Enable maintenance mode:
-    <code>cd $IXPROOT
-    ./artisan down</code></p>
+<p>(5) Restart Memcached. Do not forget / skip this step!</p>
 </li>
 <li>
-<p>Using Git, checkout the next version up from yours. For IXP Manager v4, this essentially means pulling from <code>master</code>.
-    <code># move to the directory where you have installed IXP Manager
-    cd $IXPROOT
-    # you should be in the master branch (if not: git checkout master)
-    # pull the latest code
-    git pull</code></p>
+<p>(6) Update the database schema:</p>
 </li>
-<li>Install latest required libraries from composer:
-    <code>composer install</code></li>
-<li>Install latest frontend dependencies:
-    <code># if asked to chose a jquery version, chose the latest / highest version offered
-    bower install</code></li>
-<li>Restart Memcached. Do not forget / skip this step!</li>
-<li>Update the database schema:
-    <code># review / sanity check first:
-    ./artisan doctrine:schema:update --sql
-    # If in doubt, take a mysqldump of your database first.
-    # migrate:
-    ./artisan doctrine:schema:update --force</code></li>
-<li>Restart Memcached (yes, again). Do not forget / skip this step!</li>
-<li>Disable maintenance mode:
-    <code>./artisan up</code></li>
-</ol>
+</ul>
+<pre><code># review / sanity check first:
+./artisan doctrine:schema:update --sql
+# If in doubt, take a mysqldump of your database first.
+# migrate:
+./artisan doctrine:schema:update --force
+</code></pre>
+
+<ul>
+<li>
+<p>(7) Restart Memcached (yes, again). Do not forget / skip this step!</p>
+</li>
+<li>
+<p>(8) Disable maintenance mode:</p>
+</li>
+</ul>
+<pre><code>./artisan up
+</code></pre>
+
 <h2 id="correcting-database-issues-verifying-your-schema">Correcting Database Issues / Verifying Your Schema</h2>
 <p>Because of the manual process of database updates, it is possible your database schema may fall out of sync.</p>
 <p>If you are having issues, first and foremost, restart Memcached. Doctrine2 caches entities and schema information in Memcached so, after an upgrade, you must restart Memcached.</p>
