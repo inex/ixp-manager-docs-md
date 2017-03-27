@@ -158,6 +158,8 @@ The four email templates available are:
   * public files as attachments.
 * **Email - LoA**: Email a LoA to the customer as attached as a PDF. This is similar to *Email - Connect* but it is more reflective of a typical response to a second request for a LoA.
 
+All email templates can be [skinned](skinning.md) for your own needs. See INEX's example skins [here](https://github.com/inex/IXP-Manager/tree/master/resources/skins/inex/patch-panel-port/emails).
+
 ## Viewing Patch Panel Details and Archives
 
 Each patch panel port row has the following button:
