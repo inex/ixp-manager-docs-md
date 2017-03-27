@@ -15,13 +15,15 @@ IXPROOT=/srv/ixpmanager
 
 The general process is:
 
-1. Enable maintenance mode:
+* (1) Enable maintenance mode:
+
 ```
 cd $IXPROOT
 ./artisan down
 ```
 
-2. Using Git, checkout the next version up from yours. For IXP Manager v4, this essentially means pulling from `master`.
+* (2) Using Git, checkout the next version up from yours. For IXP Manager v4, this essentially means pulling from `master`.
+
 ```
 # move to the directory where you have installed IXP Manager
 cd $IXPROOT
@@ -30,20 +32,23 @@ cd $IXPROOT
 git pull
 ```
 
-3. Install latest required libraries from composer:
+* (3) Install latest required libraries from composer:
+
 ```
 composer install
 ```
 
-4. Install latest frontend dependencies:
+* (4) Install latest frontend dependencies:
+
 ```
 # if asked to chose a jquery version, chose the latest / highest version offered
 bower install
 ```
 
-5. Restart Memcached. Do not forget / skip this step!
+* (5) Restart Memcached. Do not forget / skip this step!
 
-6. Update the database schema:
+* (6) Update the database schema:
+
 ```
 # review / sanity check first:
 ./artisan doctrine:schema:update --sql
@@ -52,9 +57,10 @@ bower install
 ./artisan doctrine:schema:update --force
 ```
 
-7. Restart Memcached (yes, again). Do not forget / skip this step!
+* (7) Restart Memcached (yes, again). Do not forget / skip this step!
 
-8. Disable maintenance mode:
+* (8) Disable maintenance mode:
+
 ```
 ./artisan up
 ```
