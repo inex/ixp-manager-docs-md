@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Patch Panels - IXP Manager</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Patch Panels";
+    var mkdocs_page_input_path = "features/patch-panels.md";
+    var mkdocs_page_url = "/features/patch-panels/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../routers/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="./">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../looking-glass/">Looking Glass</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Patch Panels</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#patch-panels-cross-connects">Patch Panels / Cross Connects</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#features">Features</a></li>
+        
+            <li><a class="toctree-l4" href="#adding-a-patch-panel">Adding a Patch Panel</a></li>
+        
+            <li><a class="toctree-l4" href="#patch-panel-port-states">Patch Panel Port States</a></li>
+        
+            <li><a class="toctree-l4" href="#patch-panel-port-lifecycle">Patch Panel Port Lifecycle</a></li>
+        
+            <li><a class="toctree-l4" href="#file-attachments">File Attachments</a></li>
+        
+            <li><a class="toctree-l4" href="#loa-generation">LoA Generation</a></li>
+        
+            <li><a class="toctree-l4" href="#email-generation">Email Generation</a></li>
+        
+            <li><a class="toctree-l4" href="#viewing-patch-panel-details-and-archives">Viewing Patch Panel Details and Archives</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Route Collector</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Route Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Routers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../skinning/">Skinning</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Features &raquo;</li>
+        
+      
+    
+    <li>Patch Panels</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="patch-panels-cross-connects">Patch Panels / Cross Connects</h1>
+<p>One of the more difficult things for an IXP to manage is the sheer volume of patch panels / cross connects they need to manage. We have approached the issue a number of times in IXP Manger but abandoned the attempt every time. Typically our original solutions were over-engineered where all we really needed was something which could replace a spreadsheet per panel.</p>
+<p>We believe we have now developed a feature complete and useful means of managing patch panels and associated cross connects.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Add / edit patch panels  (which includes cable and connector types).</li>
+<li>List associated patch panel ports which includes:</li>
+<li>their state (such as available / prewired, awaiting cross connect, connected, awaiting cease, reserved, broken).</li>
+<li>associated customer and/or switchport.</li>
+<li>co-location provider's circuit reference.</li>
+<li>internal ticket references.</li>
+<li>Transition ports from available / prewired to awaiting x-connect to connected to awaiting cease to ceased and then available again.</li>
+<li>Customer view of their cross connects.</li>
+<li>Public (visible to customers) and private notes per cross connect.</li>
+<li>Attach public and private files to cross connects (such as test results, completion documents, order forms, etc).</li>
+<li>Maintain complete history of a patch panel port.</li>
+<li>Generate and email LoAs (as PDF) with a URL verification function for co-location providers.</li>
+<li>Generate emails for connection and cease requests as well as an email providing full customer view of a cross connect.</li>
+<li>Typically fibre ports are <em>duplex</em> ports but there is a growing use of BiDi optics meaning simplex ports. Our implementation treats all ports as simplex but you can mark it as duplex and set its partner port.</li>
+</ul>
+<h2 id="adding-a-patch-panel">Adding a Patch Panel</h2>
+<p>The following image shows a typical <em>add a new patch panel</em> form (as of v4.3). You'll note that clicking <em>Help</em> provides detailed context aware help messages.</p>
+<p><img alt="Adding a Patch Panel" src="../img/pp-add.png" /></p>
+<p>Most of this is self-explanatory but:</p>
+<ul>
+<li>By default, we set the <em>Colocation Reference</em> to the <em>Patch Panel Name</em>. We are not sure it's a good idea for IXPs to create a second name different to the co-location provider's but this option is available to you.</li>
+<li>When setting the <em>Number of Ports</em>, ensure you count duplex fibre ports as <em>two ports</em>. So 12 duplex fibre ports would be entered as 24. When editing a patch panel, this input field represents the number of additional ports you want to add to a patch panel and thus defaults to 0 in that situation.</li>
+<li><strong>Port Name Prefix</strong>: This is an optional field intended for use on fibre patch panels. As an example, you may was to prefix individual fibre strands in a duplex port with F which would mean the name of a duplex port would be displayed as F1/F2.</li>
+<li><strong>Chargeable</strong>: Usually IXPs request their members to come to them and bear the costs of that. However, sometimes a co-location facility may charge the IXP for a half circuit or the IXP may need order and pay for the connection. Setting this only sets the default option when allocating ports to members later. The options are Yes / No / Half / Other.</li>
+</ul>
+<h2 id="patch-panel-port-states">Patch Panel Port States</h2>
+<p>A patch panel port can have the following states:</p>
+<ul>
+<li><strong>Available</strong>: The port is free and available for use.</li>
+<li><strong>Prewired</strong>: This is equivalent to available but it means the port is prewired to a given switchport (you set the port when setting the prewired status). This is useful for IXPs that prewire a bunch of ports to avoid remote hands costs / data centre visits.</li>
+<li><strong>Awaiting Xconnect</strong>: Port has been assigned to a member and we are awaiting the co-location provider to install the cross connect. In this state, context aware actions such as emailing connection requests, LoA generation and <em>Set Connected</em> are all available.</li>
+<li><strong>Connected</strong>: Connected and in use.</li>
+<li><strong>Awaiting Cease</strong>: This connection is no longer required and we are awaiting the end user / co-location provider to cease the connection.</li>
+<li><strong>Ceased</strong>: You will never see a ceased state. When a cross connect is marked as ceased, it's current state is archived (for history, include files) and the port is reset to <em>Available</em>. We do not revert to <em>Prewired</em> but an information message is shown to the user to hint this.</li>
+<li><strong>Reserved</strong>: Useful to mark particular ports as <em>off limits</em> for whatever reason.</li>
+<li><strong>Broken</strong></li>
+<li><strong>Other</strong></li>
+</ul>
+<h2 id="patch-panel-port-lifecycle">Patch Panel Port Lifecycle</h2>
+<p>Patch panel ports start as either <em>available</em> or <em>prewired</em>. The context menu in these states is:</p>
+<p><img alt="Adding a Patch Panel" src="../img/ppp-available.png" /></p>
+<ul>
+<li><strong>Unset Prewired</strong> is available as this port has a <em>Prewired</em> status. Clicking this reverts it to plain <em>Available</em> and disassociates it from the prewired port.</li>
+<li><strong>Edit Note...</strong> is always available and provides a pop up to edit public and private notes associated with the port (current lifecycle - ceased ports have their notes at that time archived and cleared).</li>
+</ul>
+<p>The main lifecycle option here is <strong>Allocate</strong>:</p>
+<p><img alt="Form - Add/Edit Patch Panel Port" src="../img/ppp-allocate.png" /></p>
+<ul>
+<li><strong>Colocation Circuit Reference</strong>: this is the reference provided by the colocation provider to uniquely reference this cross connect.</li>
+<li><strong>Ticket Reference(s)</strong>: This is a free text field to be used by IXPs as they wish. The intended use is to enter helpdesk ticket references that relate to this cross connect order.</li>
+<li><strong>Duplex connection?</strong>: Clicking this allows you to select the slave port for duplex connections.</li>
+<li><strong>Switch / Switch Port</strong> / <strong>Customer</strong>: You have a number of options when allocating a port:</li>
+<li>If the port is pre-wired then the switch / switch port will be set here.</li>
+<li>If you chose a switch port which has been allocated to a customer, then this patch panel port will also be allocated to that customer. The backend logic will detect if this is the case and update the customer field.</li>
+<li>Conversely, if you chose a customer first, the switch / switch port dropdowns will be populated with only that customer's assigned ports.</li>
+<li>Sometimes you will get cross connects that are not intended to be connected to peering switches (e.g. connections to co-located customer equipment, IXP metro connections, etc.). In these cases, just select the customer (and if it's the IXP itself, select the IXP customer) and leave switch / switch port unselected.</li>
+<li>If you need to reset these fields, just click either of the Reset button.</li>
+<li><strong>Patch Panel Port Status</strong>: when allocating a port, this will allow you to set the state to <em>Awaiting Xconnect</em> or <em>Connected</em>.</li>
+<li><strong>Physical Interface Status</strong>: this is not depicted above. If the selected switch port has already been assigned to a customer by way of a physical interface, you will have the option to update this here also.</li>
+<li><strong>Public</strong> and <strong>Private Notes</strong>: Public notes are available to the customer. Both fields are interpreted as Markdown.</li>
+<li><strong>Chargeable</strong>: Usually IXPs request their members to come to them and bear the costs of that. However, sometimes a co-location facility may charge the IXP for a half circuit or the IXP may need order and pay for the connection. The options are Yes / No / Half / Other. How individual IXPs use this is up to them.</li>
+<li><strong>Internal Use</strong>: Marks the port as used by the IXP itself. E.g. metro connections.</li>
+<li><strong>Owned By</strong>: Useful indication for billing and cease requests. Should represent the contractural owner of the cross connect. One of: Customer, IXP, Service Provider, Data Centre, Other. <em>Service Provider</em> might be a metro provider where they ordered the cross connect.</li>
+</ul>
+<p>Once a port is allocated, it enters the <strong>Awaiting XConnect</strong> / <strong>Connected</strong> state and there are additional context menu options available:</p>
+<p><img alt="Context Menu - Awaiting X-Connect" src="../img/ppp-awaiting-x.png" /></p>
+<p>The three lifecycle actions are:</p>
+<ol>
+<li><strong>Set Connected</strong>: updates the status (and allows you to add public/private notes). You next action after this should be <em>Email - Connect</em>.</li>
+<li><strong>Set Awaiting Cease</strong>: mark the port and pending disconnection. Your next action after this should be <em>Email - Cease</em>.</li>
+<li><strong>Set Ceased</strong>: this is a <em>transitive state</em> in that it doesn't <em>stick</em>. When you mark a patch panel as ceased, the existing details (including files and notes) are archived as part of the port's history and then port is then cleared and made available again.</li>
+</ol>
+<h2 id="file-attachments">File Attachments</h2>
+<p>Over the lifetime of a cross connect - and particularly when it is being ordered, there may be files exchanges between you and your customers or the colocation provider. These can be added to the patch panel port via the <em>Attach File...</em> option.</p>
+<p>The dialog will dynamically determine the maximum file upload size based on your PHP settings. To alter this, change the following in your server's appropriate <code>php.ini</code>:</p>
+<pre><code>; Maximum allowed size for uploaded files.
+upload_max_filesize = 40M
+
+; Must be greater than or equal to upload_max_filesize
+post_max_size = 40M
+</code></pre>
+
+<p>Please search the internet for further help as this is outside the scope of IXP Manager documentation.</p>
+<p>The following features apply to file attachments:</p>
+<ul>
+<li>they are archived along with the port history when a cross connect is ceased.</li>
+<li>they are stored under <code>$IXPROOT/storage/files/ppp</code>.</li>
+<li>two files of the same name cannot be uploaded for a single patch panel port.</li>
+<li>they can be marked as public or private:</li>
+<li>public files are accessible to the customer through their own dashboard.</li>
+<li>public files are attached to the <em>Email - Information</em> email.</li>
+</ul>
+<h2 id="loa-generation">LoA Generation</h2>
+<p>Many co-location providers will not accept a cross connect order without a LoA <em>(Letter of Agency/Authority)</em> from the party to whom the cross connect is to be delivered (typically the IXP).</p>
+<p>IXP Manager will generate a PDF LoA to download or include in the emails it generates for you. Here is an example:</p>
+<p><img alt="LoA Example" src="../img/ppp-loa.png" /></p>
+<p>You will need to <a href="../skinning/">skin</a> this yourself to change the legalese, address and contact details and potentially add a logo. See the version INEX uses <a href="https://github.com/inex/IXP-Manager/blob/master/resources/skins/inex/patch-panel-port/loa.foil.php">here</a> (which includes and embedded PNG logo).</p>
+<p>Note that <a href="https://github.com/dompdf/dompdf">Dompdf</a> is used to turn the HTML template into a PDF and it has some restrictions.</p>
+<p>You have two options for generating LoAs (without having IXP Manager email them):</p>
+<ul>
+<li><strong>Download PDF</strong>: downloads the PDF via your browser.</li>
+<li><strong>View PDF</strong>: displays the PDF LoA in your browser (where browser supports it).</li>
+</ul>
+<h3 id="loa-verification">LoA Verification</h3>
+<p>The stock LoA template (and INEX's version) includes a link that allows co-location browsers to click on to verify its veracity.</p>
+<p>On successful verification, the end user sees:</p>
+<p><img alt="LoA Verification Example" src="../img/ppp-loa-verify.png" /></p>
+<h2 id="email-generation">Email Generation</h2>
+<p>IXP Manager allows you to send four emails related to patch panels / cross connects (port status dependent). These are listed below. The Email editor looks as follows:</p>
+<p><img alt="Email Editor" src="../img/ppp-email.png" /></p>
+<p>Note that:</p>
+<ul>
+<li>the option to attach a PDF LoA is a checkbox.</li>
+<li>the email is written in Markdown with a preview available. The email is send as both HTML (from the Markdown) and the plaintext version.</li>
+</ul>
+<p>The four email templates available are:</p>
+<ul>
+<li><strong>Email - Connect</strong>: Email the customer a request to order a cross connect to the given demarcation points. A LoA is attached as a PDF by default unless you uncheck the box in the email editor.</li>
+<li><strong>Email - Cease</strong>: Email the customer a request to cease a cross connect.</li>
+<li><strong>Email - Information</strong>: Email the customer all details on file about an email. We often get requests for this at INEX and this simplifies the process. The generated email includes:</li>
+<li>the standard details regarding port and co-location reference;</li>
+<li>public notes;</li>
+<li>public files as attachments.</li>
+<li><strong>Email - LoA</strong>: Email a LoA to the customer as attached as a PDF. This is similar to <em>Email - Connect</em> but it is more reflective of a typical response to a second request for a LoA.</li>
+</ul>
+<h2 id="viewing-patch-panel-details-and-archives">Viewing Patch Panel Details and Archives</h2>
+<p>Each patch panel port row has the following button:</p>
+<p><img alt="PPP View" src="../img/ppp-view.png" /></p>
+<p>The number in the badge indicates how many historical records are available.</p>
+<p>Clicking on the button yields the following view screen:</p>
+<p><img alt="PPP View" src="../img/ppp-view-page.png" /></p>
+<h3 id="development-history">Development History</h3>
+<p>The Patch Panels functionality was developed during Q1 2017 and added in March 2017. This was made possible from sponsorship which enabled us to hire a new full time developer. We are especially grateful to our sponsors - <a href="https://www.ixpmanager.org/sponsors.php">please see them here</a>.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../routers/" class="btn btn-neutral float-right" title="Route Collector">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../looking-glass/" class="btn btn-neutral" title="Looking Glass"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX)</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../looking-glass/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../routers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>

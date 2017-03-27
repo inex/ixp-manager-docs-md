@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Maintenance Mode - IXP Manager</title>
+  <title>Upgrading - IXP Manager</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Maintenance Mode";
-    var mkdocs_page_input_path = "install/maint-mode.md";
-    var mkdocs_page_url = "/install/maint-mode/";
+    var mkdocs_page_name = "Upgrading";
+    var mkdocs_page_input_path = "install/upgrading.md";
+    var mkdocs_page_url = "/install/upgrading/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -64,23 +64,29 @@
                     
     <a class="" href="../automated-script/">Automated Script</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Maintenance Mode</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#maintenance-mode">Maintenance Mode</a></li>
-    
-
-    </ul>
+    <a class="" href="../maint-mode/">Maintenance Mode</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../manually/">Manual Installation</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../upgrading/">Upgrading</a>
+    <a class="current" href="./">Upgrading</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#upgrading-ixp-manager">Upgrading IXP Manager</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#correcting-database-issues-verifying-your-schema">Correcting Database Issues / Verifying Your Schema</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
@@ -197,7 +203,7 @@
         
       
     
-    <li>Maintenance Mode</li>
+    <li>Upgrading</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -207,20 +213,72 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="maintenance-mode">Maintenance Mode</h1>
-<p>While most updates of <strong>IXP Manager</strong> are quick, some may be more involved with schema updates or complicated migration steps. In these cases it's useful and advisable to put <strong>IXP Manager</strong> in maintenance mode.</p>
-<p>Maintenance mode is now handled by Laravel's built in tool for this. You can review <a href="https://laravel.com/docs/5.3/configuration#maintenance-mode">their own documentation for this</a> which us copied here.</p>
-<p>When your application is in maintenance mode, a custom view will be displayed for all requests into your application. This makes it easy to "disable" your application while it is updating or when you are performing maintenance. A maintenance mode check is included in the default middleware stack for your application. If the application is in maintenance mode, a <code>MaintenanceModeException</code> will be thrown with a status code of 503.</p>
-<p>To enable maintenance mode, simply execute the down Artisan command:</p>
-<pre><code>php artisan down
+                <h1 id="upgrading-ixp-manager">Upgrading IXP Manager</h1>
+<blockquote>
+<p>These upgrade instructions relate to upgrading when you are already using IXP Manager v4.x.</p>
+</blockquote>
+<p>The upgrade process for IXP Manager is currently a manual task. Especially database schema updates.</p>
+<p>The release notes for each version may contain specific upgrade instructions including schema changes.</p>
+<p>In the below, we assume the following installation directory - alter this to suit your own situation:</p>
+<pre><code>IXPROOT=/srv/ixpmanager
 </code></pre>
 
-<p>You may also provide message and retry options to the down command. The message value may be used to display or log a custom message, while the retry value will be set as the Retry-After HTTP header's value::</p>
-<pre><code>php artisan down --message='Upgrading Database' --retry=60
+<p>The general process is:</p>
+<ol>
+<li>
+<p>Enable maintenance mode:
+    <code>cd $IXPROOT
+    ./artisan down</code></p>
+</li>
+<li>
+<p>Using Git, checkout the next version up from yours. For IXP Manager v4, this essentially means pulling from <code>master</code>.
+    <code># move to the directory where you have installed IXP Manager
+    cd $IXPROOT
+    # you should be in the master branch (if not: git checkout master)
+    # pull the latest code
+    git pull</code></p>
+</li>
+<li>Install latest required libraries from composer:
+    <code>composer install</code></li>
+<li>Install latest frontend dependencies:
+    <code># if asked to chose a jquery version, chose the latest / highest version offered
+    bower install</code></li>
+<li>Restart Memcached. Do not forget / skip this step!</li>
+<li>Update the database schema:
+    <code># review / sanity check first:
+    ./artisan doctrine:schema:update --sql
+    # If in doubt, take a mysqldump of your database first.
+    # migrate:
+    ./artisan doctrine:schema:update --force</code></li>
+<li>Restart Memcached (yes, again). Do not forget / skip this step!</li>
+<li>Disable maintenance mode:
+    <code>./artisan up</code></li>
+</ol>
+<h2 id="correcting-database-issues-verifying-your-schema">Correcting Database Issues / Verifying Your Schema</h2>
+<p>Because of the manual process of database updates, it is possible your database schema may fall out of sync.</p>
+<p>If you are having issues, first and foremost, restart Memcached. Doctrine2 caches entities and schema information in Memcached so, after an upgrade, you must restart Memcached.</p>
+<p>You can verify and update your schema using the <code>artisan</code> script. The first action should be validation - here is a working example with no database issues:</p>
+<pre><code>./artisan doctrine:schema:validate
+
+Validating for default entity manager...
+[Mapping]  OK - The mapping files are correct.
+[Database] OK - The database schema is in sync with the mapping files.
 </code></pre>
 
-<p>To disable maintenance mode, use the up command::</p>
-<pre><code>php artisan up
+<p>If there are issues, you can use the following to show what SQL commands are required to bring your schema into line:</p>
+<pre><code>./artisan doctrine:schema:update --sql
+</code></pre>
+
+<p>And you can let Doctrine make the changes for you via:</p>
+<pre><code>./artisan doctrine:schema:update --force
+</code></pre>
+
+<p>Doctrine2 maintains the entities, proxies and repository classes. Ideally you should never need to do the following on a production installation - as we maintain these files with Git - but if you're developing / testing IXP Manager, you may need to.</p>
+<p>The process for updating these files with schema changes / updates is:</p>
+<pre><code>cd $IXPROOT
+/etc/init.d/memcached restart    # (or as appropriate for your system)
+./artisan doctrine:generate:entities database
+./artisan doctrine:generate:proxies
 </code></pre>
               
             </div>
@@ -229,10 +287,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../manually/" class="btn btn-neutral float-right" title="Manual Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../upgrade-v3/" class="btn btn-neutral float-right" title="Upgrade From v3">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../automated-script/" class="btn btn-neutral" title="Automated Script"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../manually/" class="btn btn-neutral" title="Manual Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -262,10 +320,10 @@
           <a href="" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../automated-script/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../manually/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../manually/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../upgrade-v3/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

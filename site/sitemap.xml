@@ -4,7 +4,7 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,31 +13,37 @@
         
     <url>
      <loc>/install/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/install/automated-script/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/install/maint-mode/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/install/manually/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/install/upgrading/</loc>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/install/upgrade-v3/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -47,61 +53,107 @@
         
     <url>
      <loc>/features/routers/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/features/contact-groups/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/features/patch-panels/</loc>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/features/grapher/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/features/helpdesk/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/features/routers/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/features/looking-glass/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/features/patch-panels/</loc>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/features/routers/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/features/routers/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/features/routers/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/features/skinning/</loc>
-     <lastmod>2017-03-25</lastmod>
+     <lastmod>2017-03-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/dev/api/</loc>
+     <lastmod>2017-03-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/dev/docs/</loc>
+     <lastmod>2017-03-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/dev/grapher/</loc>
+     <lastmod>2017-03-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/dev/helpders/</loc>
+     <lastmod>2017-03-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/dev/vagrant/</loc>
+     <lastmod>2017-03-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
