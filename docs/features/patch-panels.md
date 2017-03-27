@@ -31,7 +31,7 @@ Most of this is self-explanatory but:
 
 * By default, we set the *Colocation Reference* to the *Patch Panel Name*. We are not sure it's a good idea for IXPs to create a second name different to the co-location provider's but this option is available to you.
 * When setting the *Number of Ports*, ensure you count duplex fibre ports as *two ports*. So 12 duplex fibre ports would be entered as 24. When editing a patch panel, this input field represents the number of additional ports you want to add to a patch panel and thus defaults to 0 in that situation.
-* **Port Name Prefix**: This is an optional field intended for use on fibre patch panels. As an example, you may was to prefix individual fibre strands in a duplex port with F which would mean the name of a duplex port would be displayed as F1/F2.
+* **Port Name Prefix**: This is an optional field intended for use on fibre patch panels. As an example, you may wish to prefix individual fibre strands in a duplex port with F which would mean the name of a duplex port would be displayed as F1/F2.
 * **Chargeable**: Usually IXPs request their members to come to them and bear the costs of that. However, sometimes a co-location facility may charge the IXP for a half circuit or the IXP may need order and pay for the connection. Setting this only sets the default option when allocating ports to members later. The options are Yes / No / Half / Other.
 
 ## Patch Panel Port States
@@ -146,13 +146,13 @@ IXP Manager allows you to send four emails related to patch panels / cross conne
 Note that:
 
 * the option to attach a PDF LoA is a checkbox.
-* the email is written in Markdown with a preview available. The email is send as both HTML (from the Markdown) and the plaintext version.
+* the email is written in Markdown with a preview available. The email is sent as both HTML (from the Markdown) and the plaintext version.
 
 The four email templates available are:
 
 * **Email - Connect**: Email the customer a request to order a cross connect to the given demarcation points. A LoA is attached as a PDF by default unless you uncheck the box in the email editor.
 * **Email - Cease**: Email the customer a request to cease a cross connect.
-* **Email - Information**: Email the customer all details on file about an email. We often get requests for this at INEX and this simplifies the process. The generated email includes:
+* **Email - Information**: Email the customer all details on file about a cross connect. We often get requests for this at INEX and this simplifies the process. The generated email includes:
   * the standard details regarding port and co-location reference;
   * public notes;
   * public files as attachments.
