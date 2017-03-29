@@ -32,13 +32,13 @@ cd $IXPROOT
 git pull
 ```
 
-* (3) Install latest required libraries from composer:
+* (3) Install latest required libraries from composer (see notes below):
 
 ```
 composer install
 ```
 
-* (4) Install latest frontend dependencies:
+* (4) Install latest frontend dependencies (see notes below):
 
 ```
 # if asked to chose a jquery version, chose the latest / highest version offered
@@ -64,6 +64,42 @@ bower install
 ```
 ./artisan up
 ```
+
+## Updating Bower Dependancies
+
+It is not advisable to run bower are root but how you run it will depend on your own installation.
+
+If you installed IXP Manager via the [installation scripts](automated-scripts.md), then it will have changed ownership on directories that the web server does not need to write to to root.
+
+The following options would work on Ubuntu (as root):
+
+```sh
+# set this to your IXP Manager installation directory
+IXPHOME=/srv/ixpmanager
+
+# update bower
+sudo -u www-data bash -c "HOME=${IXPHOME}/storage && cd ${IXPHOME} && bower --config.interactive=false -f update"
+```
+
+The above command is structured as it is because typically the `www-data` user has a nologin shell specified.
+
+Your mileage may vary on this and we're happy to accept pull requests with other options.
+
+## Updating Composer Dependancies
+
+This is similar to the bower section above so please read that if you have not already.
+
+The following options would work on Ubuntu (as root):
+
+```sh
+# set this to your IXP Manager installation directory
+IXPHOME=/srv/ixpmanager
+
+# update bower
+sudo -u www-data bash -c "HOME=${IXPHOME}/storage && cd ${IXPHOME} && composer install"
+```
+
+
 
 ## Correcting Database Issues / Verifying Your Schema
 
