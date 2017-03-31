@@ -81,6 +81,10 @@
     
         <ul>
         
+            <li><a class="toctree-l4" href="#updating-bower-dependancies">Updating Bower Dependancies</a></li>
+        
+            <li><a class="toctree-l4" href="#updating-composer-dependancies">Updating Composer Dependancies</a></li>
+        
             <li><a class="toctree-l4" href="#correcting-database-issues-verifying-your-schema">Correcting Database Issues / Verifying Your Schema</a></li>
         
         </ul>
@@ -242,13 +246,13 @@ git pull
 </code></pre>
 
 <ul>
-<li>(3) Install latest required libraries from composer:</li>
+<li>(3) Install latest required libraries from composer (see notes below):</li>
 </ul>
 <pre><code>composer install
 </code></pre>
 
 <ul>
-<li>(4) Install latest frontend dependencies:</li>
+<li>(4) Install latest frontend dependencies (see notes below):</li>
 </ul>
 <pre><code># if asked to chose a jquery version, chose the latest / highest version offered
 bower install
@@ -278,6 +282,29 @@ bower install
 </li>
 </ul>
 <pre><code>./artisan up
+</code></pre>
+
+<h2 id="updating-bower-dependancies">Updating Bower Dependancies</h2>
+<p>It is not advisable to run bower are root but how you run it will depend on your own installation.</p>
+<p>If you installed IXP Manager via the <a href="automated-scripts.md">installation scripts</a>, then it will have changed ownership on directories that the web server does not need to write to to root.</p>
+<p>The following options would work on Ubuntu (as root):</p>
+<pre><code class="sh"># set this to your IXP Manager installation directory
+IXPHOME=/srv/ixpmanager
+
+# update bower
+sudo -u www-data bash -c &quot;HOME=${IXPHOME}/storage &amp;&amp; cd ${IXPHOME} &amp;&amp; bower --config.interactive=false -f update&quot;
+</code></pre>
+
+<p>The above command is structured as it is because typically the <code>www-data</code> user has a nologin shell specified.</p>
+<p>Your mileage may vary on this and we're happy to accept pull requests with other options.</p>
+<h2 id="updating-composer-dependancies">Updating Composer Dependancies</h2>
+<p>This is similar to the bower section above so please read that if you have not already.</p>
+<p>The following options would work on Ubuntu (as root):</p>
+<pre><code class="sh"># set this to your IXP Manager installation directory
+IXPHOME=/srv/ixpmanager
+
+# update bower
+sudo -u www-data bash -c &quot;HOME=${IXPHOME}/storage &amp;&amp; cd ${IXPHOME} &amp;&amp; composer install&quot;
 </code></pre>
 
 <h2 id="correcting-database-issues-verifying-your-schema">Correcting Database Issues / Verifying Your Schema</h2>
