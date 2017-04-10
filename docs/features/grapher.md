@@ -160,7 +160,7 @@ Remember to disable the default cron job for MRTG on Ubuntu!
 
 #### Customising the Configuration
 
-An example of hour to customise the MRTG configuration [can be found in the skinning documenation](skinning.md).
+An example of how to customise the MRTG configuration [can be found in the skinning documenation](skinning.md).
 
 
 #### Inserting Traffic Data Into the Database / Reporting Emails
