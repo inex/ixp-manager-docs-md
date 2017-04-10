@@ -94,9 +94,7 @@ The main lifecycle option here is **Allocate**:
 
 ![Form - Add/Edit Patch Panel Port](img/ppp-allocate2.png)
 
-* **Description**: A one line short description to be shown in the list of patch panel ports. Just enough to help explain the ports purpose. Detailed information should be placed in the notes section. Can also be used to explain a reserved / broken / other port. Note that this is parsed as Markdown.
-
-  **NB:** A description is discouraged for customer ports connected to a switch. The customer name and switch port are the description.
+* **Description**: A one line short description to be shown in the list of patch panel ports. Just enough to help explain the ports purpose. Detailed information should be placed in the notes section. Can also be used to explain a reserved / broken / other port. Note that this is parsed as Markdown. **NB:** A description is discouraged for customer ports connected to a switch. The customer name and switch port are the description.
 * **Colocation Circuit Reference**: this is the reference provided by the colocation provider to uniquely reference this cross connect.
 * **Ticket Reference(s)**: This is a free text field to be used by IXPs as they wish. The intended use is to enter helpdesk ticket references that relate to this cross connect order.
 * **Duplex connection?**: Clicking this allows you to select the slave port for duplex connections.
