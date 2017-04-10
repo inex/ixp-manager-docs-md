@@ -95,20 +95,31 @@ The main lifecycle option here is **Allocate**:
 ![Form - Add/Edit Patch Panel Port](img/ppp-allocate2.png)
 
 * **Description**: A one line short description to be shown in the list of patch panel ports. Just enough to help explain the ports purpose. Detailed information should be placed in the notes section. Can also be used to explain a reserved / broken / other port. Note that this is parsed as Markdown. **NB:** A description is discouraged for customer ports connected to a switch. The customer name and switch port are the description.
+
 * **Colocation Circuit Reference**: this is the reference provided by the colocation provider to uniquely reference this cross connect.
+
 * **Ticket Reference(s)**: This is a free text field to be used by IXPs as they wish. The intended use is to enter helpdesk ticket references that relate to this cross connect order.
+
 * **Duplex connection?**: Clicking this allows you to select the slave port for duplex connections.
+
 * **Switch / Switch Port** / **Customer**: You have a number of options when allocating a port:
+
   * If the port is pre-wired then the switch / switch port will be set here.
   * If you chose a switch port which has been allocated to a customer, then this patch panel port will also be allocated to that customer. The backend logic will detect if this is the case and update the customer field.
   * Conversely, if you chose a customer first, the switch / switch port dropdowns will be populated with only that customer's assigned ports.
   * Sometimes you will get cross connects that are not intended to be connected to peering switches (e.g. connections to co-located customer equipment, IXP metro connections, etc.). In these cases, just select the customer (and if it's the IXP itself, select the IXP customer) and leave switch / switch port unselected.
   * If you need to reset these fields, just click either of the Reset button.
+
 * **Patch Panel Port Status**: when allocating a port, this will allow you to set the state to *Awaiting Xconnect* or *Connected*.
+
 * **Physical Interface Status**: this is not depicted above. If the selected switch port has already been assigned to a customer by way of a physical interface, you will have the option to update this here also.
+
 * **Public** and **Private Notes**: Public notes are available to the customer. Both fields are interpreted as Markdown.
+
 * **Chargeable**: Usually IXPs request their members to come to them and bear the costs of that. However, sometimes a co-location facility may charge the IXP for a half circuit or the IXP may need order and pay for the connection. The options are Yes / No / Half / Other. How individual IXPs use this is up to them.
+
 * **Internal Use**: Marks the port as used by the IXP itself. E.g. metro connections.
+
 * **Owned By**: Useful indication for billing and cease requests. Should represent the contractural owner of the cross connect. One of: Customer, IXP, Service Provider, Data Centre, Other. *Service Provider* might be a metro provider where they ordered the cross connect.
 
 Once a port is allocated, it enters the **Awaiting XConnect** / **Connected** state and there are additional context menu options available:

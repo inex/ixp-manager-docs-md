@@ -302,22 +302,48 @@
 <p>The main lifecycle option here is <strong>Allocate</strong>:</p>
 <p><img alt="Form - Add/Edit Patch Panel Port" src="../img/ppp-allocate2.png" /></p>
 <ul>
-<li><strong>Description</strong>: A one line short description to be shown in the list of patch panel ports. Just enough to help explain the ports purpose. Detailed information should be placed in the notes section. Can also be used to explain a reserved / broken / other port. Note that this is parsed as Markdown. <strong>NB:</strong> A description is discouraged for customer ports connected to a switch. The customer name and switch port are the description.</li>
-<li><strong>Colocation Circuit Reference</strong>: this is the reference provided by the colocation provider to uniquely reference this cross connect.</li>
-<li><strong>Ticket Reference(s)</strong>: This is a free text field to be used by IXPs as they wish. The intended use is to enter helpdesk ticket references that relate to this cross connect order.</li>
-<li><strong>Duplex connection?</strong>: Clicking this allows you to select the slave port for duplex connections.</li>
-<li><strong>Switch / Switch Port</strong> / <strong>Customer</strong>: You have a number of options when allocating a port:</li>
-<li>If the port is pre-wired then the switch / switch port will be set here.</li>
+<li>
+<p><strong>Description</strong>: A one line short description to be shown in the list of patch panel ports. Just enough to help explain the ports purpose. Detailed information should be placed in the notes section. Can also be used to explain a reserved / broken / other port. Note that this is parsed as Markdown. <strong>NB:</strong> A description is discouraged for customer ports connected to a switch. The customer name and switch port are the description.</p>
+</li>
+<li>
+<p><strong>Colocation Circuit Reference</strong>: this is the reference provided by the colocation provider to uniquely reference this cross connect.</p>
+</li>
+<li>
+<p><strong>Ticket Reference(s)</strong>: This is a free text field to be used by IXPs as they wish. The intended use is to enter helpdesk ticket references that relate to this cross connect order.</p>
+</li>
+<li>
+<p><strong>Duplex connection?</strong>: Clicking this allows you to select the slave port for duplex connections.</p>
+</li>
+<li>
+<p><strong>Switch / Switch Port</strong> / <strong>Customer</strong>: You have a number of options when allocating a port:</p>
+</li>
+<li>
+<p>If the port is pre-wired then the switch / switch port will be set here.</p>
+</li>
 <li>If you chose a switch port which has been allocated to a customer, then this patch panel port will also be allocated to that customer. The backend logic will detect if this is the case and update the customer field.</li>
 <li>Conversely, if you chose a customer first, the switch / switch port dropdowns will be populated with only that customer's assigned ports.</li>
 <li>Sometimes you will get cross connects that are not intended to be connected to peering switches (e.g. connections to co-located customer equipment, IXP metro connections, etc.). In these cases, just select the customer (and if it's the IXP itself, select the IXP customer) and leave switch / switch port unselected.</li>
-<li>If you need to reset these fields, just click either of the Reset button.</li>
-<li><strong>Patch Panel Port Status</strong>: when allocating a port, this will allow you to set the state to <em>Awaiting Xconnect</em> or <em>Connected</em>.</li>
-<li><strong>Physical Interface Status</strong>: this is not depicted above. If the selected switch port has already been assigned to a customer by way of a physical interface, you will have the option to update this here also.</li>
-<li><strong>Public</strong> and <strong>Private Notes</strong>: Public notes are available to the customer. Both fields are interpreted as Markdown.</li>
-<li><strong>Chargeable</strong>: Usually IXPs request their members to come to them and bear the costs of that. However, sometimes a co-location facility may charge the IXP for a half circuit or the IXP may need order and pay for the connection. The options are Yes / No / Half / Other. How individual IXPs use this is up to them.</li>
-<li><strong>Internal Use</strong>: Marks the port as used by the IXP itself. E.g. metro connections.</li>
-<li><strong>Owned By</strong>: Useful indication for billing and cease requests. Should represent the contractural owner of the cross connect. One of: Customer, IXP, Service Provider, Data Centre, Other. <em>Service Provider</em> might be a metro provider where they ordered the cross connect.</li>
+<li>
+<p>If you need to reset these fields, just click either of the Reset button.</p>
+</li>
+<li>
+<p><strong>Patch Panel Port Status</strong>: when allocating a port, this will allow you to set the state to <em>Awaiting Xconnect</em> or <em>Connected</em>.</p>
+</li>
+<li>
+<p><strong>Physical Interface Status</strong>: this is not depicted above. If the selected switch port has already been assigned to a customer by way of a physical interface, you will have the option to update this here also.</p>
+</li>
+<li>
+<p><strong>Public</strong> and <strong>Private Notes</strong>: Public notes are available to the customer. Both fields are interpreted as Markdown.</p>
+</li>
+<li>
+<p><strong>Chargeable</strong>: Usually IXPs request their members to come to them and bear the costs of that. However, sometimes a co-location facility may charge the IXP for a half circuit or the IXP may need order and pay for the connection. The options are Yes / No / Half / Other. How individual IXPs use this is up to them.</p>
+</li>
+<li>
+<p><strong>Internal Use</strong>: Marks the port as used by the IXP itself. E.g. metro connections.</p>
+</li>
+<li>
+<p><strong>Owned By</strong>: Useful indication for billing and cease requests. Should represent the contractural owner of the cross connect. One of: Customer, IXP, Service Provider, Data Centre, Other. <em>Service Provider</em> might be a metro provider where they ordered the cross connect.</p>
+</li>
 </ul>
 <p>Once a port is allocated, it enters the <strong>Awaiting XConnect</strong> / <strong>Connected</strong> state and there are additional context menu options available:</p>
 <p><img alt="Context Menu - Awaiting X-Connect" src="../img/ppp-awaiting-x.png" /></p>
