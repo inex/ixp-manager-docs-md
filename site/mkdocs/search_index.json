@@ -747,17 +747,17 @@
         }, 
         {
             "location": "/dev/docs/", 
-            "text": "Documentation\n\n\nFrom v4 onwards, we use  \nRead the Docs\n with \nMkDocs\n to build the documentation and host it on\n\nGitHub\n.\n\n\nBuilding Locally\n\n\nIf you haven't already, install MkDocs:\n\n\npip install mkdocs\n\n\n\n\nThe documentation can then be built locally as follows:\n\n\ngit clone https://github.com/inex/ixp-manager-docs-md.git\ncd ixp-manager-docs-md\nmkdocs build\nmkdocs serve", 
+            "text": "Documentation\n\n\nFrom v4 onwards, we use \nGitHub Pages\n with \nMkDocs\n to build the documentation.\n\n\nBoth the site and the content are hosted on \nGitHub\n.\n\n\nBuilding Locally\n\n\nIf you haven't already, install MkDocs:\n\n\npip install mkdocs\n\n\n\n\nThe documentation can then be built locally as follows:\n\n\ngit clone https://github.com/inex/ixp-manager-docs-md.git\ncd ixp-manager-docs-md\nmkdocs build\n\n\n\n\nYou can \nserve\n them locally with the following and then access them via http://127.0.0.1:8000 -\n\n\nmkdocs serve\n\n\n\n\nTo automatically deploy to GitHub and make live:\n\n\nmkdocs gh-deploy\n\n\n\n\nYou must be an authorised user for this but we \nwelcome pull requests against the documentation repository!\n.", 
             "title": "Documentation"
         }, 
         {
             "location": "/dev/docs/#documentation", 
-            "text": "From v4 onwards, we use   Read the Docs  with  MkDocs  to build the documentation and host it on GitHub .", 
+            "text": "From v4 onwards, we use  GitHub Pages  with  MkDocs  to build the documentation.  Both the site and the content are hosted on  GitHub .", 
             "title": "Documentation"
         }, 
         {
             "location": "/dev/docs/#building-locally", 
-            "text": "If you haven't already, install MkDocs:  pip install mkdocs  The documentation can then be built locally as follows:  git clone https://github.com/inex/ixp-manager-docs-md.git\ncd ixp-manager-docs-md\nmkdocs build\nmkdocs serve", 
+            "text": "If you haven't already, install MkDocs:  pip install mkdocs  The documentation can then be built locally as follows:  git clone https://github.com/inex/ixp-manager-docs-md.git\ncd ixp-manager-docs-md\nmkdocs build  You can  serve  them locally with the following and then access them via http://127.0.0.1:8000 -  mkdocs serve  To automatically deploy to GitHub and make live:  mkdocs gh-deploy  You must be an authorised user for this but we  welcome pull requests against the documentation repository! .", 
             "title": "Building Locally"
         }, 
         {

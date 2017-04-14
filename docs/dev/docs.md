@@ -1,8 +1,8 @@
 # Documentation
 
-From v4 onwards, we use  [Read the Docs](https://docs.readthedocs.org/en/latest/index.html) with [MkDocs](http://www.mkdocs.org/) to build the documentation and host it on
-[GitHub](https://github.com/inex/ixp-manager-docs-md).
+From v4 onwards, we use [GitHub Pages](http://docs.ixpmanager.org/) with [MkDocs](http://www.mkdocs.org/) to build the documentation.
 
+Both the site and the content are hosted on [GitHub](https://github.com/inex/ixp-manager-docs-md).
 
 
 Building Locally
@@ -10,15 +10,28 @@ Building Locally
 
 If you haven't already, install MkDocs:
 
-```
+```sh
 pip install mkdocs
 ```
 
 The documentation can then be built locally as follows:
 
-```
+```sh
 git clone https://github.com/inex/ixp-manager-docs-md.git
 cd ixp-manager-docs-md
 mkdocs build
+```
+
+You can *serve* them locally with the following and then access them via http://127.0.0.1:8000 -
+
+```sh
 mkdocs serve
 ```
+
+To automatically deploy to GitHub and make live:
+
+```sh
+mkdocs gh-deploy
+```
+
+You must be an authorised user for this but we **welcome pull requests against the documentation repository!**.
