@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Grapher - IXP Manager</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Grapher";
+    var mkdocs_page_input_path = "features/grapher.md";
+    var mkdocs_page_url = "/features/grapher/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../routers/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Cross Connects</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Grapher</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#grapher">Grapher</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#grapher-backends">Grapher Backends</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">Layer2 Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Route Collector</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Route Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Routers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../skinning/">Skinning</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Features &raquo;</li>
+        
+      
+    
+    <li>Grapher</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="grapher">Grapher</h1>
+<p>The biggest new feature available at launch in IXP Manager v4 is a new graphing system called <em>Grapher</em>.</p>
+<p><em>Grapher</em> is a complete rewrite of all previous graphing code and includes:</p>
+<ul>
+<li>API access to graphs and graph statistics</li>
+<li>multiple backends (such as MRTG, sflow) with dynamic resolution of appropriate backend</li>
+<li>configuration generation where required</li>
+<li>consistent and flexible OOP design</li>
+</ul>
+<p>To date, we've developed three reference backend implementations:</p>
+<ol>
+<li><code>dummy</code> - a dummy grapher that just provides a placeholder graph for all possible graph types;</li>
+<li><code>mrtg</code> - MRTG graphing using either the log or rrd backend. Use cases for MRTG are L2 interface statistics for bits / packets / errors / discards / broadcasts per second. Aggregate graphs for customer LAGs, overall customer traffic, all traffic over a switch / infrastructure / the entire IXP are all supported.</li>
+<li><code>sflow</code> - while the MRTG backend looks at layer 2 statistics, sflow is used to provide layer 3 statistics such as per protocol (IPv4/6) graphs and peer to peer graphs.</li>
+</ol>
+<p>In a typical production environment, you'd implement both MRTG and sflow to provide the complete set of features.</p>
+<h2 id="configuration">Configuration</h2>
+<p>There is only a handful of configuration options required and these can be seen with documentation in <a href="https://github.com/inex/IXP-Manager/blob/master/config/grapher.php"><code>config/grapher.php</code></a> (remember to put your own local changes in <code>.env</code> rather than editing this file directly).</p>
+<p>The only global (non-backend specific) options are:</p>
+<ul>
+<li><code>backend</code> - in a typical production environment this would be <code>"mrtg|sflow"</code> which means try the MRTG backend first and then sflow. We ship with this set as <code>"dummy"</code> so you can see sample graphs working out of the box.</li>
+<li><code>cache</code> - as the industry standard is to graph at 5min intervals, the cache settings do not regenerate / reload / reprocess log / rrd / image files if we have cached them and they are less than 5mins old. This is enabled by default which is the recommended setting.</li>
+</ul>
+<p>Backend specific configuration and set-up instructions can be found in their own sections.</p>
+<h2 id="grapher-backends">Grapher Backends</h2>
+<h3 id="mrtg">Mrtg</h3>
+<p>MRTG is a particularly efficient SNMP poller as, irrespective of how many times an interface is referenced for different graphs, it is only polled once per run.</p>
+<p>Per-second graphs are generated for bits, packets, errors, discards and broadcasts at 5min intervals. IXP Manager's Grapher system can use MRTG to poll switches and create traffic graphs for:</p>
+<ul>
+<li><strong>Aggregate IXP and Infrastructure Graphs</strong></li>
+</ul>
+<p>The MRTG script creates aggregate graphs for the entire IXP as well as per-infrastructure graphs. These graphs are available from the <em>Statistics</em> menu under <em>Overall Peering Graphs</em>. Also, the graphs on the admin dashboard are the monthly versions of these and will appear on the dashboard when configured as above.</p>
+<ul>
+<li><strong>Switch Aggregate Graphs</strong></li>
+</ul>
+<p>These are defined and built automatically from the switches you have defined. These graphs are the aggregate of all peering ports. These graphs are available from the <em>Statistics</em> menu under <em>Switch Aggregate Graphs</em>.</p>
+<ul>
+<li><strong>Inter-Switch / Trunk Graphs</strong></li>
+</ul>
+<p>IXP Manager does not currently support a frontend means of creating these definitions (but, as of March 2017, it is being worked on). For now, we do it manually via the <a href="https://github.com/inex/IXP-Manager/wiki/MRTG---Traffic-Graphs#inter-switch--trunk-graphs">IXP Manager v3 way</a>.</p>
+<p>These graphs will be available in the <em>Statistics</em> menu under <em>Inter-Switch / PoP Graphs</em>.</p>
+<ul>
+<li><strong>Customer Graphs</strong></li>
+</ul>
+<p>MRTG creates per port, per LAG and aggregate graphs for each member / customer.</p>
+<h4 id="mrtg-setup-and-configuration">MRTG Setup and Configuration</h4>
+<p>You need to install some basic packages for MRTG to work - on Ubuntu for example, install:</p>
+<pre><code class="sh">apt-get install libconfig-general-perl libnetaddr-ip-perl mrtg
+</code></pre>
+
+<p>You also need a folder to store all MRTG files. For example:</p>
+<pre><code class="sh">mkdir -p /srv/mrtg
+</code></pre>
+
+<p>In your `.env, you need to set the following options:</p>
+<pre><code># the database type to use - either log or rrd
+GRAPHER_BACKEND_MRTG_DBTYPE=&quot;rrd&quot;
+# where to store log/rrd/png files as created above. This is from the perspective
+# of the mrtg daemon so should also be local
+GRAPHER_BACKEND_MRTG_WORKDIR=&quot;/tmp&quot;
+# where to find the WORKDIR above from IXP Manager's perspective. This can be a
+# local directory or a URL to remote web server
+GRAPHER_BACKEND_MRTG_LOGDIR=&quot;http://collector.example.com/mrtg&quot;
+</code></pre>
+
+<p>You can now generate a MRTG configuration by executing a command such as:</p>
+<pre><code class="sh"># output to stdout:
+./artisan grapher:generate-configuration -B mrtg
+# output to a named file
+./artisan grapher:generate-configuration -B mrtg -O /tmp/mrtg.cfg.candidate
+</code></pre>
+
+<p>You could also combine a syntax check before putting the resultant file live. Here's a complete example that could be run via cron:</p>
+<pre><code class="sh">#! /bin/sh
+
+APPLICATION_PATH=/srv/ixp
+
+# Synchronise configuration files
+${APPLICATION_PATH}/artisan grapher:generate-configuration -B mrtg -O /tmp/mrtg.cfg.candidate
+
+/usr/bin/mrtg --check /tmp/mrtg.cfg.candidate                 \
+    &amp;&amp; /bin/mv /tmp/mrtg.cfg.candidate /etc/mrtg/mrtg.cfg
+</code></pre>
+
+<p>If your MRTG collector is on a different server, you could use a script such as the following to safely update MRTG:</p>
+<pre><code class="bash">#! /bin/bash
+
+curl --fail -s -H &quot;X-IXP-Manager-API-Key: your_api_key&quot; \
+    https://ixp.example.com/api/v4/grapher/mrtg-config &gt;/etc/mrtg/mrtg.cfg.$$
+
+if [[ $? -ne 0 ]]; then
+    echo &quot;WARNING: COULD NOT FETCH UP TO DATE MRTG CONFIGURATION!&quot;
+    exit -1
+fi
+
+cd /etc/mrtg
+
+cat mrtg.cfg    | egrep -v '^#.*$' | egrep -v '^[ ]+Based on configuration last generated by.*$' &gt;mrtg.cfg.filtered
+cat mrtg.cfg.$$ | egrep -v '^#.*$' | egrep -v '^[ ]+Based on configuration last generated by.*$' &gt;mrtg.cfg.$$.filtered
+diff mrtg.cfg.filtered mrtg.cfg.$$.filtered &gt;/dev/null
+DIFF=$?
+
+rm mrtg.cfg.filtered
+rm mrtg.cfg.$$.filtered
+
+if [[ $DIFF -eq 0 ]]; then
+    rm mrtg.cfg.$$
+    exit 0
+fi
+
+/usr/local/bin/mrtg --check /etc/mrtg/mrtg.cfg.$$                 \
+    &amp;&amp; /bin/mv /etc/mrtg/mrtg.cfg.$$ /etc/mrtg/mrtg.cfg \
+    &amp;&amp; /etc/rc.d/mrtg_daemon restart &gt; /dev/null 2&gt;&amp;1
+</code></pre>
+
+<p>Note that our header template starts MRTG as a daemon. On FreeBSD, MRTG comes with an initd script by default and you can kick it off on boot with something like the following in rc.conf:</p>
+<pre><code>mrtg_daemon_enable=&quot;YES&quot;
+mrtg_daemon_config=&quot;/etc/mrtg/mrtg.cfg&quot;
+</code></pre>
+
+<p>However, on Ubuntu it does not but it comes with a /etc/cron.d/mrtg file which kicks it off every five minutes (it will daemonise the first time and further cron jobs will have no effect). If you use this method, you will need to have your periodic update script restart / stop the daemon when the configuration changes (as demonstrated in the above script).</p>
+<p>To start and stop it via standard initd scripts on Ubuntu, use <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/mrtg/ubuntu-mrtg-initd">an initd script such as this</a>  (<a href="http://www.iceflatline.com/2009/08/how-to-install-and-configure-mrtg-on-ubuntu-server/">source</a>:</p>
+<pre><code>cp $APPLICATION_PATH/tools/runtime/mrtg/ubuntu-mrtg-initd /etc/init.d/mrtg
+chmod +x /etc/init.d/mrtg
+update-rc.d mrtg defaults
+/etc/init.d/mrtg start
+</code></pre>
+
+<p>Remember to disable the default cron job for MRTG on Ubuntu!</p>
+<h4 id="customising-the-configuration">Customising the Configuration</h4>
+<p>An example of how to customise the MRTG configuration <a href="../skinning/">can be found in the skinning documenation</a>.</p>
+<h4 id="inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails</h4>
+<p>The MRTG backend inserts daily summaries into MySQL for reporting. An example crontab for this is:</p>
+<pre><code>
+0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
+
+0 4   * * *   www-data        /srv/ixpmanager/artisan grapher:email-traffic-deltas --stddev=1.5 -v user1@example.com,user2@example.com
+
+30 10 * * tue www-data        /srv/ixpmanager/artisan grapher:email-port-utilisations --threshold=80 ops@inex.ie,barry.rhodes@inex.ie,eileen@inex.ie
+
+31 10 * * *   www-data        /srv/ixpmanager/artisan grapher:email-ports-with-counts --discards ops@inex.ie
+
+32 10 * * *   www-data        /srv/ixpmanager/artisan grapher:email-ports-with-counts --errors ops@inex.ie
+</code></pre>
+
+<p>which, in the order above, do:</p>
+<ol>
+<li>Once per day, upload <em>yesterday's</em> summary of MRTG statistics into the database.</li>
+<li>Email a report of members whose average traffic has changed by more than 1.5 times their standard deviation to <code>user1@example.com</code> and <code>user2@example.com</code>.</li>
+<li>Email a report of all ports with &gt;=80% utilisation yesterday.</li>
+<li>Email a report of all ports with a non-zero discard count yesterday.</li>
+<li>Email a report of all ports with a non-zero error count yesterday.</li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../helpdesk/" class="btn btn-neutral float-right" title="Helpdesk Integration">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../patch-panels/" class="btn btn-neutral" title="Cross Connects"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX)</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../patch-panels/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../helpdesk/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>

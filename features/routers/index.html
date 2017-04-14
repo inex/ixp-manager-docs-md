@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Routers - IXP Manager</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Routers";
+    var mkdocs_page_input_path = "features/routers.md";
+    var mkdocs_page_url = "/features/routers/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="./">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="./">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">Layer2 Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="./">Route Collector</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="./">Route Server</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Routers</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#routers">Routers</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#configuration-overview">Configuration Overview</a></li>
+        
+            <li><a class="toctree-l4" href="#generation-overview">Generation Overview</a></li>
+        
+            <li><a class="toctree-l4" href="#route-servers">Route Servers</a></li>
+        
+            <li><a class="toctree-l4" href="#irrdb-prefixes-and-asn-filtering">IRRDB Prefixes and ASN Filtering</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../skinning/">Skinning</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Features &raquo;</li>
+        
+      
+    
+    <li>Routers</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="routers">Routers</h1>
+<p><strong>Note that a number of pages redirect here where we have collated documentation on route collectors, route servers, AS112 servcies and IRRDB filtering.</strong></p>
+<p>IXP Manager can generate router configuration for typical IXP services such as route collectors, route servers and AS112 services. How this is done has been changed significantly from v3 to v4.</p>
+<blockquote>
+<p>Note that until officially deprecated, the older v3 methods still work and the <a href="https://github.com/inex/IXP-Manager/wiki">official v3 documentation</a> should be referenced for that.</p>
+</blockquote>
+<h2 id="configuration-overview">Configuration Overview</h2>
+<p>The basic elements of <em>a router</em> are configured in <code>configs/routers.php</code>. This is an optional file that is not included in version control so the best way to start it is to copy from the template:</p>
+<pre><code>cp config/routers.php.dist config/routers.php
+</code></pre>
+
+<p>A typical entry of a sample router (in standard PHP associative array syntax) is:</p>
+<pre><code class="php">&lt;?php
+    'rc1-lan1-ipv4' =&gt; [
+        'vlan_id'    =&gt; 1,
+        'protocol'   =&gt; 4,
+        'type'       =&gt; 'RC',   // RC|RS|AS112?
+        'name'       =&gt; 'INEX LAN1 - Route Collector - IPv4',
+        'shortname'  =&gt; 'RC1 - LAN1 - IPv4',
+        'router_id'  =&gt; '192.0.2.8',
+        'peering_ip' =&gt; '192.0.2.8',
+        'asn'        =&gt; 65500,
+        'software'   =&gt; 'bird',
+        'mgmt_ip'    =&gt; '203.0.113.8',
+        'api'        =&gt; 'http://rc1-lan1-ipv4.mgmt.example.com/api',
+        'api_type'   =&gt; 'birdseye',
+        'lg_access'  =&gt; Entities\User::AUTH_PUBLIC,
+        'quarantine' =&gt; false,
+        'bgp_lc'     =&gt; false,
+        'template'   =&gt; 'api/v4/router/collector/bird/standard',
+    ],
+</code></pre>
+
+<p>where:</p>
+<ul>
+<li><code>rc1-lan1-ipv4</code> is the <strong>handle</strong> for this router to be used in API calls later (it's the key of the PHP associative array).</li>
+<li><code>vlan_id</code> is not the VLAN 802.1q tag number but the <code>vlan.id</code> database column. You can get this, for example, by hovering over the edit action in the VLAN listing in IXP Manager and finding the number in the URL.</li>
+<li><code>protocol</code> is either <code>4</code> (IPv4) or <code>6</code> (IPv6). Any other value will lead to a runtime exception.</li>
+<li>we have currently defined three types which are used for grouping routers in the UI and for other selection purposes:</li>
+<li><code>RC</code> - route collector;</li>
+<li><code>RS</code> - route server;</li>
+<li><code>AS112</code> - an AS112 BGP peer (see <a href="https://www.inex.ie/technical/as112-service/">INEX's AS112 documentation</a> as an example).</li>
+<li><code>name</code> - name / description of the router's purpose.</li>
+<li><code>shortname</code> - used in dropdowns or other space constrained areas where <code>name</code> may be too long.</li>
+<li><code>router_id</code> - the router's BGP ID (e.g. <code>192.0.2.8</code>).</li>
+<li><code>peering_ip</code> - the IPv4/6 address that this router initiates BGP peering sessions from.</li>
+<li><code>asn</code> - the router's AS number.</li>
+<li><code>software</code> - there is no specific use for this as yet.</li>
+<li><code>mgmt_ip</code> - the IP to address this server / router at for management functions such as Nagios monitoring.</li>
+<li><code>api</code> and <code>api_type</code> - the API end point for this server/router. The only use case for this so far is for the built-in <a href="../looking-glass/">looking glass</a> functionality via <a href="https://github.com/inex/birdseye">Birdseye</a>.</li>
+<li><code>lg_access</code> - who should be allow access the looking glass. One of:</li>
+<li><code>AUTH_PUBLIC</code> - publicly available to all;</li>
+<li><code>AUTH_CUSTUSER</code> - must be logged into IXP Manager as any user;</li>
+<li><code>AUTH_SUPERUSER</code> - must be logged into IXP Manager as an administrator (no customer access).</li>
+<li><code>quarantine</code> - a flag to indicate if this router is part of the IXP's quarantine / test infrastructure. For example, INEX runs two parallel route collectors: one quarantine and one production. When customers have issues or are being provisioned, they are placed in the quarantine LAN and we can examine BGP announcements safely on the non-production quarantine devices. When a router is marked as quarantine, it is only visible in looking glass dropdowns to customers who also have a port in quarantine (physical interface status).</li>
+<li><code>bgp_lc</code> - a flag to indicate if the router supports <a href="https://tools.ietf.org/html/rfc8092">RFC8092</a> / <a href="http://largebgpcommunities.net/">large BGP communities</a>.</li>
+<li><code>template</code> - the template to use to generate the configuration. See stock examples <a href="https://github.com/inex/IXP-Manager/tree/master/resources/views/api/v4/router">here</a> (and note that <a href="../skinning/">skinning</a> is supported).</li>
+</ul>
+<p>Typically your <code>routers.php</code> file would hold multiple such entries. It is our intention to move this into the UI and database.</p>
+<h2 id="generation-overview">Generation Overview</h2>
+<p>The simplest configuration to generate is the route collector configuration. A route collector is an IXP router which serves only to <em>accept all routes and export no routes</em>. It is used for problem diagnosis, to aid customer monitoring and for looking glasses (see <a href="https://www.inex.ie/ixp/lg/rc1-lan1-ipv4">INEX's here</a>.</p>
+<p>The <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird/standard.foil.php">standard configuration</a> simply pulls in a fairly standard header (sets up router ID, listening address and - for the collector at least - some unused filters) and creates a session for all customer routers on the given VLAN (see <code>vlan_id</code> above).</p>
+<p>In the above example, the route handle is the array's associative key (<code>rc1-lan1-ipv4</code>) and - for the given router handle - the configuration can be generated via:</p>
+<pre><code># The key is generated in IXP Manager via the top right menu: *My Account -&gt; API Keys*
+KEY=&quot;your-admin-ixp-manager-api-key&quot;
+# The base URL of your IXP Manager install plus: 'api/v4/router/gen_config'
+URL=&quot;https://ixp.example.com/api/v4/router/gen_config&quot;
+# The handle is the PHP associative key from `config/routers.php` as described above
+HANDLE=&quot;rc1-lan1-ipv4&quot;
+# Then the complete URL is formed as:
+curl --fail -s -H &quot;X-IXP-Manager-API-Key: ${KEY}&quot; ${URL}/${HANDLE} &gt;${HANDLE}.conf
+</code></pre>
+
+<p>Configurations for the route server and AS112 templates can be configured just as easily. The stock templates for both are secure and well tested and can be used by setting the <code>template</code> element of the router configuration above to the following:</p>
+<ul>
+<li>AS112: <code>'api/v4/router/as112/bird/standard'</code></li>
+<li>Route Server: <code>'api/v4/router/server/bird/standard'</code></li>
+</ul>
+<p>We also provide sample scripts for automating the re-configuration of these services by cron. See the <code>-v4</code> scripts <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-servers">in this directory</a>. These are quite robust and have been in production for ~3 years at INEX (as of Jan 2017).</p>
+<h2 id="route-servers">Route Servers</h2>
+<p>Normally on a peering exchange, all connected parties will establish bilateral peering relationships with each other customer connected to the exchange. As the number of connected parties increases, it becomes increasingly more difficult to manage peering relationships with customers of the exchange.</p>
+<p>However, by using a route servers for peering relationships, the number of BGP sessions per router stays at two: one for each route server (assuming a resilient set up). Clearly this is a more sustainable way of maintaining IXP peering relationships with a large number of participants.</p>
+<p>You will have learnt above how to automatically generate route server configurations. This section goes into a bit more specific detail on INEX's route server configuration (shipped with IXP Manager) and why it's safe to use.</p>
+<p>The features of the route server configurations that we generate include:</p>
+<ul>
+<li>full prefix filtering based on IRRDB entries (can be disabled on a per member basis if required);</li>
+<li>full origin ASN filtering based on IRRDB entries (can be disabled on a per member basis if required);</li>
+<li>in all cases, prefix filtering for IPv4 and v6 based on the IANA special purpose registries (also known as bogon lists);</li>
+<li>ensuring next hop is the neighbor address to ensure no next hop hijacking;</li>
+<li>max prefix limits;</li>
+<li>multiple VLAN interfaces for a single member supported;</li>
+<li>large BGP communities supported;</li>
+<li>a decade of production use and experience.</li>
+</ul>
+<p>There are <a href="https://github.com/inex/IXP-Manager/wiki/Route-Server-Testing">some old notes on route server testing here</a> which may also be useful.</p>
+<h2 id="irrdb-prefixes-and-asn-filtering">IRRDB Prefixes and ASN Filtering</h2>
+<p>IXP Manager can maintain a list of member route:/route6: prefixes and origin ASNs as registered in IRRDBs in its database and then use these to, for example, generate strict inbound filters on route servers.</p>
+<p><strong>Prerequisite:</strong> you need to have set up some IRRDB sources (e.g. RIPE's whois service) under the <em>IXP Admin Actions / IRRDB Configuration</em> on the left hand side menu. There is a database seeder to install some to start you off via the following (but thius is typically done during installation):</p>
+<pre><code>./artisan db:seed --class=IRRDBs
+</code></pre>
+
+<p>BGPQ3 is a very easy and fast way of querying IRRDBs. You first need to install this on your system. Then configure the path to it in <code>config/ixp_tools.php</code>. If you have not used this file before, you'll need to create your own local copy as follows:</p>
+<pre><code>cp config/config/ixp_tools.php.dist config/config/ixp_tools.php
+</code></pre>
+
+<p>Then set the full call path for <code>bgpq3</code> in this file:</p>
+<pre><code class="php">&lt;?php
+
+  'irrdb' =&gt; [
+        'bgpq' =&gt; [
+            'path' =&gt; '/path/to/bgpq3',
+        ],
+    ],
+</code></pre>
+
+<p>To populate (and update) your local IRRDB, run the following commands (changing the path as appropriate):</p>
+<pre><code>/srv/ixpmanager/artisan irrdb:update-prefix-db
+/srv/ixpmanager/artisan irrdb:update-asn-db
+</code></pre>
+
+<p>These should be added to cron to run ~once per day (using the --quiet flag).</p>
+<p>There are four levels of verbosity:</p>
+<ol>
+<li><code>-quiet</code>: no output unless there's an error / issue.</li>
+<li>no option: simple stats on each customer's update results.</li>
+<li><code>-vv</code>: include per customer and overall timings (database, processing and network).</li>
+<li><code>-vvv</code> (debug): show prefixes/ASNs added remove also.</li>
+</ol>
+<p>You can also specify a specific customer to update (rather than all) with an additional free form parameter. The database is searched for a matching customer in the order: customer ASN; customer ID (database primary key); and customer shortname. E.g.:</p>
+<pre><code>/srv/ixpmanager/artisan irrdb:update-prefix-db 64511
+</code></pre>
+
+<p>The IRRDB update commands will:</p>
+<ul>
+<li>iterate over all route server client customers for IPv4 and IPv6 (unless a specific customer is specified);</li>
+<li>use the appropriate AS macro or ASN;</li>
+<li>query the RADB against the appropriate source set for that customer;</li>
+<li>compare prefixes(/ASNs) in the database already (if any) against RADB and insert / delete as appropriate;</li>
+<li>validate the prefix for proper CIDR notation before database inserts;</li>
+<li>update the last_seen time for all prefixes(/ASNs) for that customer;</li>
+</ul>
+<p><strong>We use transactions to update the database so, even in the middle of a refresh, a full set of prefixes for all customers will still be available.</strong></p>
+<p><em>Note that our current implementation only queries RADB as BGPQ3 does not support the RIPE whois protocol.</em> Our version will however set the RADB source database according to the member's stated IRRDB database as set on the customer add / edit page - so, for customer's registered with the RIPE IRRDB, the RIPE database of RADB is queried.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../skinning/" class="btn btn-neutral float-right" title="Skinning">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="./" class="btn btn-neutral" title="Route Server"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX)</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="./" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../skinning/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>

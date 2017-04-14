@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Skinning - IXP Manager</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Skinning";
+    var mkdocs_page_input_path = "features/skinning.md";
+    var mkdocs_page_url = "/features/skinning/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../routers/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">Layer2 Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Route Collector</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Route Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Routers</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Skinning</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#templates-skinning">Templates &amp; Skinning</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#skinning-in-version-4">Skinning in Version 4+</a></li>
+        
+            <li><a class="toctree-l4" href="#skinning-old-templates">Skinning Old Templates</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Features &raquo;</li>
+        
+      
+    
+    <li>Skinning</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="templates-skinning">Templates &amp; Skinning</h1>
+<blockquote>
+<p>Remember that v4 is a transition version of <strong>IXP Manager</strong> from Zend Framework / Smarty to Laravel and so much of the frontend / templating still uses v3 templates and code. As such, how to skin a page will depend on whether the template is found in <code>resources/views</code> (v4) or <code>application/[modules/xxx/]views</code> (v3). Both are covered here.</p>
+</blockquote>
+<p><strong>IXP Manager</strong> supports template/view skinning allowing users to substitute any of their own templates in place of the default ones shipped with IXP Manager.</p>
+<h2 id="skinning-in-version-4">Skinning in Version 4+</h2>
+<p>First, set the following parameter in <code>.env</code>:</p>
+<pre><code>VIEW_SKIN=&quot;example&quot;
+</code></pre>
+
+<p>Skins should then be placed in the <code>resources/skins/example</code> directory (<code>example</code> should be substituted for whatever you want to call your own skin). The default templates can be found in <code>resources/views</code> directory. INEX bundles its own skinned templates in <code>resources/skins/inex</code> as an example.</p>
+<p>Once a skin is enabled from <code>.env</code>, then any templates found in the skin directory <em>(using the same directory structure as found under <code>resouces/views</code>)</em> will take precedence over the default template file. This means you do not need to recreate / copy all the default files - just replace the ones you want.</p>
+<p>In previous versions of <strong>IXP Manager</strong>, we used Smarty as the templating engine. This meant that if someone wanted to help improve <strong>IXP Manager</strong> then they would need to become familiar with PHP <em>and</em> Smarty. In v4 we dropped Smarty and, rather than using another compiled templating engine, we have decided to go with native PHP templates.</p>
+<p>For this, we are using <a href="http://www.foilphp.it/">Foil</a> - <em>Foil brings all the flexibility and power of modern template engines to native PHP templates. Write simple, clean and concise templates with nothing more than PHP.</em> Also, simulaneously supported are Lavael's own <a href="https://laravel.com/docs/5.4/blade">Blade templates</a> which we sometimes use for simple pages.</p>
+<h3 id="example">Example</h3>
+<p>The <a href="../grapher/">graphing</a> MRTG configuration generator allows for custom configuration content at the top and bottom of the file. In order to have your custom configuration enabled, you need to skin two files.</p>
+<p>Here's an example:</p>
+<pre><code># position ourselves in the IXP Manager root directory
+cd /path/to/ixp4
+
+# make the skin directory
+mkdir resources/skins/example
+
+# create the full path required for the MRTG configuration files:
+mkdir -p resources/skins/example/services/grapher/mrtg
+
+# copy over the customisation files:
+cp views/services/grapher/mrtg/custom-header.foil.php resources/skins/example/services/grapher/mrtg
+cp views/services/grapher/mrtg/custom-footer.foil.php resources/skins/example/services/grapher/mrtg
+
+# edit the above files as required
+vi resources/skins/example/services/grapher/mrtg/custom-header.plates.php
+vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
+</code></pre>
+
+<p>Then, finally, edit <code>.env</code> and set the skin to use:</p>
+<pre><code>VIEW_SKINS=&quot;example&quot;
+</code></pre>
+
+<p>You can of course skin any file including the non-custom MRTG files as suits your needs.</p>
+<h3 id="custom-variables-configuration-options">Custom Variables / Configuration Options</h3>
+<p>When you are skinning your own templates, you may find you need to create custom configuration options for values you do not want to store directly in your own templates. For this, we have a configuration file which is excluded from Git. Initiate it via::</p>
+<pre><code>cp config/custom.php.dist config/custom.php
+</code></pre>
+
+<p>This is <a href="https://laravel.com/docs/5.3/configuration">Laravel's standard configuration file format</a> (which is an associative PHP array). You can also use Laravel's dotenv variables here too.</p>
+<p>As an example, if you were to create a configuration option:</p>
+<pre><code class="php">&lt;?php
+'example' =&gt; [
+    'key' =&gt; 'my own config value',
+],
+</code></pre>
+
+<p>then in code this would be accessible as:</p>
+<pre><code class="php">&lt;?php
+config( &quot;custom.example.key&quot;, &quot;default value if not set|null&quot; )
+</code></pre>
+
+<p>where the second parameter is a default option if the requested configuration setting has not been defined (which defaults to <code>null</code>). In templates, this can be accessed the same way or rendered in the template with::</p>
+<pre><code class="php">&lt;?= config( &quot;custom.example.key&quot;, &quot;default&quot; ) ?&gt;
+</code></pre>
+
+<h2 id="skinning-old-templates">Skinning Old Templates</h2>
+<p>This is still important as <strong>IXP Manager</strong> v4 still uses most of the previous templates.</p>
+<p>To skin files found under <code>application/[modules/xxx/]views</code>, proceed as follows:</p>
+<ol>
+<li>
+<p>set a skin name in <code>.env</code>:
+   <code>VIEW_SMARTY_SKIN="myskin"</code></p>
+</li>
+<li>
+<p>create a directory with a matching name: <code>application/views/_skins/myskin</code>.</p>
+</li>
+</ol>
+<p>Once the above <code>.env</code> option is set, then any pages in its skin directory (using the same directory structure as <code>application/views</code> will take precedence over the default template files. This means you do not need to recreate / copy all the default files - just replace the ones you want.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../dev/api/" class="btn btn-neutral float-right" title="API">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../routers/" class="btn btn-neutral" title="Routers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX)</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../routers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../dev/api/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>

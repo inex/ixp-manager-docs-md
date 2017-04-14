@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Upgrade From v3 - IXP Manager</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Upgrade From v3";
+    var mkdocs_page_input_path = "install/upgrade-v3.md";
+    var mkdocs_page_url = "/install/upgrade-v3/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../upgrading/">Upgrading</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Upgrade From v3</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#upgrade-from-v3">Upgrade From v3</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#duplicating-the-database">Duplicating the Database</a></li>
+        
+            <li><a class="toctree-l4" href="#install-ixp-manager">Install IXP Manager</a></li>
+        
+            <li><a class="toctree-l4" href="#initial-configuration-tasks">Initial Configuration Tasks</a></li>
+        
+            <li><a class="toctree-l4" href="#mrtg-graphing-migration">MRTG Graphing Migration</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">Layer2 Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">Route Collector</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">Route Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">Routers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/skinning/">Skinning</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Installation &raquo;</li>
+        
+      
+    
+    <li>Upgrade From v3</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="upgrade-from-v3">Upgrade From v3</h1>
+<p>Due to the significant changes between IXP Manager v3 and v4, there is no in place upgrade process. The advised way to handle this is to install v4 in parallel and then switch over (by adjusting your DNS or Apache configuration for example) to the new v4 directory/server.</p>
+<p>This documenation was compiled while performing an upgrade on three separate IXP Manager installations.</p>
+<p><strong>Before you proceed, please check the requirement listed in <a href="../manually/">the official installation instructions</a>.</strong></p>
+<h2 id="duplicating-the-database">Duplicating the Database</h2>
+<p>As we're installing in parallel, we want to duplicate the database.</p>
+<p>When granting permissions on the new database, use your existing IXP Manager database credentials for ease of configuration.</p>
+<pre><code class="sh">mysql -u root -pXXX -e 'CREATE DATABASE ixp4 CHARACTER SET = &quot;utf8mb4&quot; COLLATE = &quot;utf8mb4_unicode_ci&quot;;'
+
+mysqldump -u root -pXXX ixp | mysql -u root -pXXX ixp4
+
+mysql -u root -pXXX -e 'GRANT ALL ON ixp4.* TO `ixp`@`localhost` IDENTIFIED BY &quot;YYY&quot;;'
+
+# and test:
+mysql -u ixp -pYYY -h localhost ixp4
+</code></pre>
+
+<h2 id="install-ixp-manager">Install IXP Manager</h2>
+<p>This is very much a tl;dr version of <a href="../manually/">the official installation instructions</a> which you should review if you need additional help.</p>
+<p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
+<p>Log into the server where you wish to install IXP Manager and move to the directory where you wish to install (we use <code>/srv/ixpmanager</code> here as an example and which will be referred to as <code>$IXPROOT</code> below).</p>
+<p>Note that it should not be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>).</p>
+<pre><code class="sh">IXPROOT=/srv/ixpmanager
+
+# get the source / application
+git clone https://github.com/inex/IXP-Manager.git $IXPROOT
+cd $IXPROOT
+
+# Using https://getcomposer.org/
+composer.phar install
+
+# Using https://bower.io/
+bower install
+
+# Start with the example configuration and edit.
+# Read the official documentation for help.
+# Ensure you configure the database.
+# More notes on this follow below.
+cp .env.example .env
+php artisan key:generate
+joe .env
+
+# File system permissions
+chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
+</code></pre>
+
+<h2 id="initial-configuration-tasks">Initial Configuration Tasks</h2>
+<h3 id="new-local-settings-configuration-laravel">New Local Settings / Configuration (Laravel)</h3>
+<p>IXP Manager v4 uses a new PHP framework (Zend Framework swapped for Laravel). As such, all the older configuration options (from <code>application/configs/application.ini</code>) need to be moved to <code>.env</code>.</p>
+<p>The <a href="https://github.com/vlucas/phpdotenv">php dotenv</a> file (<code>.env</code>) is where all the new configuration options go. These in turn are used by the configuration files under <code>config/</code>.</p>
+<p><strong>NB: Where possible, place local changes into <code>.env</code> rather than changing the config files as these files are under version control. See <a href="http://laravel.com/docs/5.4/installation#configuration">Laravel's documentation on this</a> and email the mailing list for help.</strong></p>
+<h3 id="update-the-database-schema">Update the Database Schema</h3>
+<p>There's about 50 schema changed between the end of v3 and v4.4.</p>
+<p>View the required changes with:</p>
+<pre><code>./artisan doctrine:schema:update --sql
+</code></pre>
+
+<p>And apply with:</p>
+<pre><code>./artisan doctrine:schema:update --force
+</code></pre>
+
+<p>Note that this may take a few minutes if you have a lot of data such as BGP session data.</p>
+<h2 id="mrtg-graphing-migration">MRTG Graphing Migration</h2>
+<p>We've implemented a new graphing backend called :ref:<code>features-graphing</code>. One of the changes is that the graphing directory structure and filenaming conventions have changed. Primarily, we've replaced non-static handles (such as database fields like <code>customer.shortname</code> or <code>physicalinterface.minitorindex</code> or <code>switcher.name</code> with immutable primary keys).</p>
+<p>As such, you need to both rename the statistics structure and regenerate the configuration. <strong>It is strongly recommended you copy your existing files and do this in parallel or, at least keep a backup.</strong> Also, stop the MRTG daemon before starting.</p>
+<h3 id="example">Example</h3>
+<p>First, you'll need to update your local configuration in <code>.env</code> by setting something like:</p>
+<pre><code>GRAPHER_BACKENDS=&quot;mrtg&quot;
+GRAPHER_BACKEND_MRTG_LOGDIR=&quot;/path/to/mrtg/data&quot;
+GRAPHER_BACKEND_MRTG_WORKDIR=&quot;/path/to/mrtg/data&quot;
+GRAPHER_CACHE_ENABLED=true
+</code></pre>
+
+<p>See the <em>Grapher</em> documentation for full details.</p>
+<p>You'll then need to migrate all your MRTG files to the new naming scheme:</p>
+<pre><code class="sh"># set a variable for what will become the 'old' files for convenience
+OLDMRTG=/home/old
+
+# v3 MRTG directory is /home/mrtg. let's move it out of the way
+mv /home/mrtg $OLDMRTG
+
+# position ourselves in the IXP Manager root directory
+cd /path/to/ixp4
+
+# stop mrtg
+service mrtg stop  # or as appropriate for your platform
+
+# migrate IXP graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -X | sh
+
+# migrate infrastructure graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -I | sh
+
+# migrate switch graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -S | sh
+
+# migrate trunk graphs and configuration
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -T | sh
+php artisan grapher:backend:mrtg:upgrade migrate-trunk-config --no-backup
+
+# create member directories
+php artisan grapher:backend:mrtg:upgrade mkdir -L $OLDMRTG -M | sh
+
+# migrate member physical interface graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -P | sh
+
+# migrate member LAG graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -Q | sh
+
+# migrate member aggregate graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -C | sh
+
+# regenerate mrtg configuration
+php artisan grapher:generate-configuration -B mrtg &gt; path/to/mrtg.conf
+
+# start mrtg
+service mrtg start  # or as appropriate for your platform
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../features/routers/" class="btn btn-neutral float-right" title="AS112">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../upgrading/" class="btn btn-neutral" title="Upgrading"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX)</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../upgrading/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../features/routers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Manual Installation - IXP Manager</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Manual Installation";
+    var mkdocs_page_input_path = "install/manually.md";
+    var mkdocs_page_url = "/install/manually/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Manual Installation</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#requirements">Requirements</a></li>
+    
+
+    <li class="toctree-l3"><a href="#install-composer-and-bower">Install Composer and Bower</a></li>
+    
+
+    <li class="toctree-l3"><a href="#get-the-ixp-manager-source">Get the IXP Manager Source</a></li>
+    
+
+    <li class="toctree-l3"><a href="#initial-setup-and-dependancies">Initial Setup and Dependancies</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#dependencies">Dependencies</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#database-setup">Database Setup</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#initial-database-objects">Initial Database Objects</a></li>
+        
+            <li><a class="toctree-l4" href="#file-permissions">File Permissions</a></li>
+        
+            <li><a class="toctree-l4" href="#setting-up-apache">Setting Up Apache</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#congratulations">Congratulations!</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../upgrade-v3/">Upgrade From v3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">Layer2 Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">Route Collector</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">Route Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">Routers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/skinning/">Skinning</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Installation &raquo;</li>
+        
+      
+    
+    <li>Manual Installation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="requirements">Requirements</h1>
+<p>IXP Manager tries to stay current in terms of technology. Typically, this means some element of framework refresh(es) every couple of years and other more incremental package upgrades with minor version upgrades. As well as the obvious reasons for this, there is also the requirement to prevent developer apathy - insisting on legacy frameworks and packages that have been EOL'd provides a major stumbling block for bringing on new developers and contributors.</p>
+<p>The current requirements for the web application are:</p>
+<ul>
+<li>a Linux / BSD host.</li>
+<li>MariaDB / MySQL version 5.5.4 or later.</li>
+<li>Apache / Nginx / etc.</li>
+<li>PHP &gt;= 7.0. <strong>Note that IXP Manager will not run on older versions of PHP.</strong></li>
+<li>Memcached - optional but highly recommended.</li>
+</ul>
+<p>To complete the installation using the included config/scripts, you will also need to have installed:</p>
+<ul>
+<li>git - distributed revision control system (e.g.: <code>apt-get install git</code>)</li>
+<li>memcache extension module for PHP (e.g.: <code>apt-get install php-memcached</code>)</li>
+<li>SNMP extension module for PHP (e.g.: <code>apt-get install php7.0-snmp</code>)</li>
+<li>php7.0-mbstring - may be built into the PHP core</li>
+<li>php7.0-xml</li>
+<li>php7.0-intl</li>
+<li>php7.0-mysql</li>
+<li>php7.0-mcrypt</li>
+<li>php-rrd</li>
+</ul>
+<p>For completeness, the IXP Manager installation script for Ubuntu 16.04 LTS installs:</p>
+<p><code>sh
+apt-get install apache2 php7.0 php7.0-intl php7.0-mysql php-rrd php7.0-cgi php7.0-cli  \
+    php7.0-snmp php7.0-curl php7.0-mcrypt php-memcached libapache2-mod-php7.0          \
+    mysql-server mysql-client php-mysql memcached snmp nodejs nodejs-legacy npm        \
+    php7.0-mbstring php7.0-xml php-gettext bgpq3 php-memcache unzip php-zip git</code></p>
+<h1 id="install-composer-and-bower">Install Composer and Bower</h1>
+<p>IXP Manager uses <a href="http://getcomposer.org/">Composer</a> to manage its PHP dependencies. First, download a copy of the composer.phar. Once you have the PHAR archive, you can either keep it in your local project directory or move to <code>/usr/local/bin</code> to use it globally on your system.</p>
+<p>The installation script for Ubuntu 16.04 LTS installs these via:</p>
+<pre><code class="sh">IXPROOT=/srv/ixpmanager
+# ...
+cd $IXPROOT
+EXPECTED_SIGNATURE=$(wget https://composer.github.io/installer.sig -O - -q)
+php -r &quot;copy('https://getcomposer.org/installer', 'composer-setup.php');&quot;
+ACTUAL_SIGNATURE=$(php -r &quot;echo hash_file('SHA384', 'composer-setup.php');&quot;)
+
+if [ &quot;$EXPECTED_SIGNATURE&quot; = &quot;$ACTUAL_SIGNATURE&quot; ]; then
+    sudo -u www-data bash -c &quot;HOME=$IXPROOT &amp;&amp; cd $IXPROOT &amp;&amp; php composer-setup.php --quiet&quot;
+    rm $IXPROOT/composer-setup.php
+    # optional:
+    mv composer.phar /usr/local/bin/composer
+else
+    echo -e &quot;\n\nERROR: Invalid installer signature for composer installation&quot;
+    rm $IXPROOT/composer-setup.php
+    exit 1
+fi
+</code></pre>
+
+<p>and:</p>
+<pre><code class="sh">npm install -g bower
+</code></pre>
+
+<h1 id="get-the-ixp-manager-source">Get the IXP Manager Source</h1>
+<p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
+<p>Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source (our examples use <code>/srv/ixpmanager</code> which we refer to as <code>$IXPROOT</code>). Note that it <strong>should not</strong> be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>).</p>
+<pre><code class="sh">cd /srv
+git clone https://github.com/inex/IXP-Manager.git ixpmanager
+cd $IXPROOT   # /srv/ixpmanager
+git checkout master
+</code></pre>
+
+<h1 id="initial-setup-and-dependancies">Initial Setup and Dependancies</h1>
+<h2 id="dependencies">Dependencies</h2>
+<p>Install the required PHP libraries and frontend CSS/JS packages:</p>
+<pre><code class="sh">cd $IXPROOT
+composer install
+bower install
+cp .env.example .env
+php artisan key:generate
+</code></pre>
+
+<h1 id="database-setup">Database Setup</h1>
+<p>Use whatever means you like to create a database and user for IXP Manager. For example:</p>
+<pre><code class="mysql">CREATE DATABASE `ixp` CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci';
+GRANT ALL ON `ixp`.* TO `ixp`@`localhost` IDENTIFIED BY '&lt;pick a password!&gt;';
+FLUSH PRIVILEGES;
+</code></pre>
+
+<p>Then edit <code>$IXPROOT/.env</code> and set the database options:</p>
+<pre><code class="dotenv">DB_HOST=localhost
+DB_DATABASE=ixp
+DB_USERNAME=ixp
+DB_PASSWORD=password
+</code></pre>
+
+<p>Now create the database schema:</p>
+<pre><code class="sh">php artisan doctrine:schema:create
+</code></pre>
+
+<h3 id="configuration">Configuration</h3>
+<p>Edit <code>$IXPROOT/.env</code> and review and set/change all parameters. Hopefully this is mostly documented or clear but please start a discussion on the mailing list if you have difficultly and we'll update this and the example file's documentation as appropriate.</p>
+<h3 id="initial-database-objects">Initial Database Objects</h3>
+<p>Using the settings you edited in <code>.env</code> we'll create some database objects. [Yes, a setup wizard needs to be built!].</p>
+<p>First let's create the password for the admin user. The following will create a secure random password and hash it with bcrypt:</p>
+<pre><code class="sh">USERNAME=admin
+USEREMAIL=your@email.address
+IXPM_ADMIN_PW=&quot;$( openssl rand -base64 12 )&quot;
+ADMIN_PW_SALT=&quot;$( openssl rand -base64 16 )&quot;
+HASH_PW=$( php -r &quot;echo escapeshellarg( crypt( '${IXPM_ADMIN_PW}', sprintf( '\$2a\$%02d\$%s', 10, substr( '${ADMIN_PW_SALT}', 0, 22 ) ) ) );&quot; )
+echo Your password is: $IXPM_ADMIN_PW
+</code></pre>
+
+<p>The following is taken from the IXP Manager installation script:</p>
+<pre><code class="mysql">mysql -u root &quot;-p${MYSQL_ROOT_PW}&quot; $DBNAME &lt;&lt;END_SQL
+INSERT INTO ixp ( name, shortname, address1, country )
+    VALUES ( '${IXPNAME}', '${IXPSNAME}', '${IXPCITY}', '${IXPCOUNTRY}' );
+SET @ixpid = LAST_INSERT_ID();
+
+INSERT INTO infrastructure ( ixp_id, name, shortname, isPrimary )
+    VALUES ( @ixpid, 'Infrastructure #1', '#1', 1 );
+SET @infraid = LAST_INSERT_ID();
+
+INSERT INTO company_registration_detail ( registeredName ) VALUES ( '${IXPNAME}' );
+SET @crdid = LAST_INSERT_ID();
+
+INSERT INTO company_billing_detail ( billingContactName, invoiceMethod, billingFrequency )
+    VALUES ( '${NAME}', 'EMAIL', 'NOBILLING' );
+SET @cbdid = LAST_INSERT_ID();
+
+INSERT INTO cust ( name, shortname, type, abbreviatedName, autsys, maxprefixes, peeringemail, nocphone, noc24hphone,
+        nocemail, nochours, nocwww, peeringpolicy, corpwww, datejoin, status, activepeeringmatrix, isReseller,
+        company_registered_detail_id, company_billing_details_id )
+    VALUES ( '${IXPNAME}', '${IXPSNAME}', 3, '${IXPSNAME}', '${IXPASN}', 100, '${IXPPEEREMAIL}', '${IXPNOCPHONE}',
+        '${IXPNOCPHONE}', '${IXPNOCEMAIL}', '24x7', '', 'mandatory', '${IXPWWW}', NOW(), 1, 1, 0, @crdid, @cbdid );
+SET @custid = LAST_INSERT_ID();
+
+INSERT INTO customer_to_ixp ( customer_id, ixp_id ) VALUES ( @custid, @ixpid );
+
+INSERT INTO user ( custid, username, password, email, privs, disabled, created )
+    VALUES ( @custid, '${USERNAME}', ${HASH_PW}, '${USEREMAIL}', 3, 0, NOW() );
+SET @userid = LAST_INSERT_ID();
+
+INSERT INTO contact ( custid, name, email, created, user_id ) VALUES ( @custid, '${NAME}', '${USEREMAIL}', NOW(), @userid );
+END_SQL
+</code></pre>
+
+<p>And finally seed the database:</p>
+<pre><code class="sh">cd $IXPROOT
+php artisan db:seed --class=IRRDBs
+php artisan db:seed --class=Vendors
+php artisan db:seed --class=ContactGroups
+</code></pre>
+
+<h2 id="file-permissions">File Permissions</h2>
+<p>The web server needs write access to some directories:</p>
+<pre><code class="sh">cd $IXPROOT
+chown -R www-data: var/ storage/ bootstrap/cache/ database/Proxies/
+chmod -R u+rwX var/ storage/ bootstrap/cache/ database/Proxies/
+</code></pre>
+
+<h2 id="setting-up-apache">Setting Up Apache</h2>
+<p>Here is a sample virtual hosts file for IXP Manager (replace <code>{$IXPROOT}</code> as appropriate!):</p>
+<pre><code class="apache">&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@localhost
+    DocumentRoot ${IXPROOT}/public
+    &lt;Directory ${IXPROOT}/public&gt;
+        Options FollowSymLinks
+        AllowOverride None
+        Require all granted
+        RewriteEngine On
+        RewriteCond %{REQUEST_FILENAME} -s [OR]
+        RewriteCond %{REQUEST_FILENAME} -l [OR]
+        RewriteCond %{REQUEST_FILENAME} -d
+        RewriteRule ^.*$ - [NC,L]
+        RewriteRule ^.*$ /index.php [NC,L]
+    &lt;/Directory&gt;
+    ErrorLog \${APACHE_LOG_DIR}/error.log
+    CustomLog \${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>You also need to enable rewrite:</p>
+<pre><code class="sh">a2enmod rewrite
+service apache2 restart
+</code></pre>
+
+<h1 id="congratulations">Congratulations!</h1>
+<p>Your new IXP Manager installation should be accessible via your server's IP address using the username (<code>$USERNAME</code>) and password (<code>$IXPM_ADMIN_PW</code>) you set above.</p>
+<p>If you plan to use this in production, you should:</p>
+<ul>
+<li>secure your server with an iptables firewall</li>
+<li>install an SSL certificate and redirect HTTP access to HTTPS</li>
+<li>complete the installation of the many features of IXP Manager such as route server generation, member stats, peer to peer graphs, etc.</li>
+<li>PLEASE TELL US! We'd like to add you to the users list at http://www.ixpmanager.org/users.php - just drop us an email to <code>operations &lt;at&gt; inex &lt;dot&gt; ie</code>.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../upgrading/" class="btn btn-neutral float-right" title="Upgrading">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../maint-mode/" class="btn btn-neutral" title="Maintenance Mode"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX)</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../maint-mode/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../upgrading/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
