@@ -34,4 +34,4 @@ To automatically deploy to GitHub and make live:
 mkdocs gh-deploy
 ```
 
-You must be an authorised user for this but we **welcome pull requests against the documentation repository!**.
+You must be an authorised user for this but we **welcome pull requests against the documentation repository!**
