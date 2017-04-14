@@ -87,13 +87,9 @@
         
             <li><a class="toctree-l4" href="#duplicating-the-database">Duplicating the Database</a></li>
         
-            <li><a class="toctree-l4" href="#get-the-ixp-manager-source">Get the IXP Manager Source</a></li>
+            <li><a class="toctree-l4" href="#install-ixp-manager">Install IXP Manager</a></li>
         
             <li><a class="toctree-l4" href="#initial-configuration-tasks">Initial Configuration Tasks</a></li>
-        
-            <li><a class="toctree-l4" href="#apache">Apache</a></li>
-        
-            <li><a class="toctree-l4" href="#file-system-permissions">File System Permissions</a></li>
         
             <li><a class="toctree-l4" href="#mrtg-graphing-migration">MRTG Graphing Migration</a></li>
         
@@ -135,7 +131,15 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../features/layer2-addresses/">Layer2 Addresses</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../features/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
                 </li>
                 <li class="">
                     
@@ -224,103 +228,58 @@
             <div class="section">
               
                 <h1 id="upgrade-from-v3">Upgrade From v3</h1>
-<p>To upgrade from IXP Manager v3, you must install v4 in parallel and then switch over by adjusting your Apache configuration to the new v4 directory (or just move v3 out of the way and replace it with v4).</p>
-<p><strong>THESE ARE DRAFT NOTES FROM A TEST UPGRADE. THESE WILL BE FLESHED OUT SOON.</strong></p>
+<p>Due to the significant changes between IXP Manager v3 and v4, there is no in place upgrade process. The advised way to handle this is to install v4 in parallel and then switch over (by adjusting your DNS or Apache configuration for example) to the new v4 directory/server.</p>
+<p>This documenation was compiled while performing an upgrade on three separate IXP Manager installations.</p>
+<p><strong>Before you proceed, please check the requirement listed in <a href="../manually/">the official installation instructions</a>.</strong></p>
 <h2 id="duplicating-the-database">Duplicating the Database</h2>
-<p>As we're installing in parallel, we want to duplicate the database as follows. When granting permissions on the new database, use your existing IXP Manager database credentials for ease of configuration.</p>
+<p>As we're installing in parallel, we want to duplicate the database.</p>
+<p>When granting permissions on the new database, use your existing IXP Manager database credentials for ease of configuration.</p>
 <pre><code class="sh">mysql -u root -pXXX -e 'CREATE DATABASE ixp4 CHARACTER SET = &quot;utf8mb4&quot; COLLATE = &quot;utf8mb4_unicode_ci&quot;;'
+
 mysqldump -u root -pXXX ixp | mysql -u root -pXXX ixp4
+
 mysql -u root -pXXX -e 'GRANT ALL ON ixp4.* TO `ixp`@`localhost` IDENTIFIED BY &quot;YYY&quot;;'
+
 # and test:
 mysql -u ixp -pYYY -h localhost ixp4
 </code></pre>
 
-<h2 id="get-the-ixp-manager-source">Get the IXP Manager Source</h2>
+<h2 id="install-ixp-manager">Install IXP Manager</h2>
+<p>This is very much a tl;dr version of <a href="../manually/">the official installation instructions</a> which you should review if you need additional help.</p>
 <p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
-<p>Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source. Note that it should not be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>). In my case, I'm going to use <code>/srv/ixp</code> which will be referred to as <code>$IXPROOT</code> below. So I:</p>
-<pre><code class="sh">cd /usr/local
-git clone https://github.com/inex/IXP-Manager.git ixp4
-</code></pre>
+<p>Log into the server where you wish to install IXP Manager and move to the directory where you wish to install (we use <code>/srv/ixpmanager</code> here as an example and which will be referred to as <code>$IXPROOT</code> below).</p>
+<p>Note that it should not be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>).</p>
+<pre><code class="sh">IXPROOT=/srv/ixpmanager
 
-<p>You now need to create the text file <code>$IXPROOT/.env</code> containing database details from above:</p>
-<pre><code class="dotenv">DB_HOST=localhost
-DB_DATABASE=ixp4
-DB_USERNAME=ixp
-DB_PASSWORD=XXX
-</code></pre>
+# get the source / application
+git clone https://github.com/inex/IXP-Manager.git $IXPROOT
+cd $IXPROOT
 
-<p>And then run:</p>
-<pre><code class="sh">composer update
-bower update
+# Using https://getcomposer.org/
+composer.phar install
+
+# Using https://bower.io/
+bower install
+
+# Start with the example configuration and edit.
+# Read the official documentation for help.
+# Ensure you configure the database.
+# More notes on this follow below.
+cp .env.example .env
+php artisan key:generate
+joe .env
+
+# File system permissions
+chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
 </code></pre>
 
 <h2 id="initial-configuration-tasks">Initial Configuration Tasks</h2>
 <h3 id="new-local-settings-configuration-laravel">New Local Settings / Configuration (Laravel)</h3>
-<p>As v4 is a version in migration from older libraries like Zend Framework to Laravel, we need to do a bit of setup for both frameworks. First Laravel: we'll essentially set defaults in <code>$IXPROOT/.env</code> which will be used by files in <code>$IXPROOT/config</code>. Feel free to look at those files and add <code>.env</code> parameters to suit your own environment.</p>
-<p>First, the application key needs to be set and unique. Execute the following command and you should see a similar output (but a different key):</p>
-<pre><code>php artisan key:generate
-Application key [XjWtsiPl_CHANGE_ME_CHANGE_ME] set successfully.
-</code></pre>
-
-<p>Add the APP_KEY to the <code>.env</code> file by copying the key above:</p>
-<pre><code>APP_KEY=XjWtsiPl_CHANGE_ME_CHANGE_ME
-</code></pre>
-
-<p><strong>NB: Where possible, place local changes into <code>.env</code> rather than changing the config files as these files are under version control. See <a href="http://laravel.com/docs/5.1/installation#configuration">Laravel's documentation on this</a> and email the mailing list for help.</strong></p>
-<p>Here are some hints on what you might want to set:</p>
-<ul>
-<li><code>config/app.php</code></li>
-<li>Set: <code>APP_URL</code> in <code>$IXPROOT/.env</code>.</li>
-<li><code>config/cache.php</code></li>
-<li>Either leave <code>CACHE_DRIVER</code> as <code>file</code> or set otherwise in <code>$IXPROOT/.env</code>.</li>
-<li><code>config/identity.php</code></li>
-<li>Copy <code>config/identity.php.dist</code> to <code>config/identity.php</code> and edit for your IXP <em>(essentially copy from your v3 application/configs/application.ini)</em>.</li>
-<li><code>config/mail.php</code></li>
-<li>Set appropriate options for mail relay. Specifically <code>MAIL_DRIVER</code>, <code>MAIL_HOST</code> and <code>MAIL_PORT</code>.</li>
-</ul>
-<h3 id="migrate-old-zend-framework-settings">Migrate Old Zend Framework Settings</h3>
-<p>Copy your IXP v3 <code>application/configs/application.ini</code> file to your new v4 <code>application/configs</code> and edit as follows:</p>
-<ol>
-<li>
-<p>Change the database name:</p>
-<p><code>-resources.doctrine2.connection.options.dbname   = 'ixp'
-+resources.doctrine2.connection.options.dbname   = 'ixp4'</code></p>
-</li>
-<li>
-<p>Change paths as follows:</p>
-<p>```
--includePaths.osssnmp    = APPLICATION_PATH "/../library/OSS_SNMP.git"
--includePaths.osslibrary = APPLICATION_PATH "/../library/OSS-Framework.git"
-+includePaths.osslibrary = APPLICATION_PATH "/../vendor/opensolutions/oss-framework/src/"</p>
-<p>-pluginPaths.OSS_Resource = APPLICATION_PATH "/../library/OSS-Framework.git/OSS/Resource"
-+pluginPaths.OSS_Resource = APPLICATION_PATH "/../vendor/opensolutions/oss-framework/src/OSS/Resource"</p>
-<p>-resources.smarty.plugins[] = APPLICATION_PATH "/../library/OSS-Framework.git/OSS/Smarty/functions"
--resources.smarty.plugins[] = APPLICATION_PATH "/../library/Smarty/plugins"
--resources.smarty.plugins[] = APPLICATION_PATH "/../library/Smarty/sysplugins"
-+resources.smarty.plugins[] = APPLICATION_PATH "/../vendor/opensolutions/oss-framework/src/OSS/Smarty/functions"
-+resources.smarty.plugins[] = APPLICATION_PATH "/../vendor/smarty/smarty/libs/plugins"
-+resources.smarty.plugins[] = APPLICATION_PATH "/../vendor/smarty/smarty/libs/sysplugins"
-```</p>
-</li>
-<li>
-<p>Change Doctrine2 options as follows:</p>
-<p>```
--resources.doctrine2cache.path               = "/usr/share/php/Doctrine/ORM"
--resources.doctrine2cache.autoload_method    = "pear"
-+resources.doctrine2cache.autoload_method    = "composer"
-+resources.doctrine2cache.namespace          = 'ixp4'</p>
-<p>-resources.doctrine2.models_path        = APPLICATION_PATH
--resources.doctrine2.proxies_path       = APPLICATION_PATH "/Proxies"
--resources.doctrine2.repositories_path  = APPLICATION_PATH
--resources.doctrine2.xml_schema_path    = APPLICATION_PATH "/../doctrine/schema"
-+resources.doctrine2.models_path        = APPLICATION_PATH "/../database"
-+resources.doctrine2.proxies_path       = APPLICATION_PATH "/../database/Proxies"
-+resources.doctrine2.repositories_path  = APPLICATION_PATH "/../database"
-+resources.doctrine2.xml_schema_path    = APPLICATION_PATH "/../database/xml"
-```</p>
-</li>
-</ol>
+<p>IXP Manager v4 uses a new PHP framework (Zend Framework swapped for Laravel). As such, all the older configuration options (from <code>application/configs/application.ini</code>) need to be moved to <code>.env</code>.</p>
+<p>The <a href="https://github.com/vlucas/phpdotenv">php dotenv</a> file (<code>.env</code>) is where all the new configuration options go. These in turn are used by the configuration files under <code>config/</code>.</p>
+<p><strong>NB: Where possible, place local changes into <code>.env</code> rather than changing the config files as these files are under version control. See <a href="http://laravel.com/docs/5.4/installation#configuration">Laravel's documentation on this</a> and email the mailing list for help.</strong></p>
 <h3 id="update-the-database-schema">Update the Database Schema</h3>
+<p>There's about 50 schema changed between the end of v3 and v4.4.</p>
 <p>View the required changes with:</p>
 <pre><code>./artisan doctrine:schema:update --sql
 </code></pre>
@@ -329,28 +288,7 @@ Application key [XjWtsiPl_CHANGE_ME_CHANGE_ME] set successfully.
 <pre><code>./artisan doctrine:schema:update --force
 </code></pre>
 
-<h2 id="apache">Apache</h2>
-<pre><code>Alias /ixp4 /srv/ixp4/public
-&lt;Directory /srv/ixp4/public&gt;
-    Options FollowSymLinks
-    AllowOverride None
-    Require all granted
-
-    SetEnv APPLICATION_ENV production
-
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} -s [OR]
-    RewriteCond %{REQUEST_FILENAME} -l [OR]
-    RewriteCond %{REQUEST_FILENAME} -d
-    RewriteRule ^.*$ - [NC,L]
-    RewriteRule ^.*$ /ixp4/index.php [NC,L]
-&lt;/Directory&gt;
-</code></pre>
-
-<h2 id="file-system-permissions">File System Permissions</h2>
-<pre><code>chown -R www-data: var/ storage/ bootstrap/cache
-</code></pre>
-
+<p>Note that this may take a few minutes if you have a lot of data such as BGP session data.</p>
 <h2 id="mrtg-graphing-migration">MRTG Graphing Migration</h2>
 <p>We've implemented a new graphing backend called :ref:<code>features-graphing</code>. One of the changes is that the graphing directory structure and filenaming conventions have changed. Primarily, we've replaced non-static handles (such as database fields like <code>customer.shortname</code> or <code>physicalinterface.minitorindex</code> or <code>switcher.name</code> with immutable primary keys).</p>
 <p>As such, you need to both rename the statistics structure and regenerate the configuration. <strong>It is strongly recommended you copy your existing files and do this in parallel or, at least keep a backup.</strong> Also, stop the MRTG daemon before starting.</p>

@@ -69,7 +69,7 @@ bower install
 
 It is not advisable to run bower are root but how you run it will depend on your own installation.
 
-If you installed IXP Manager via the [installation scripts](automated-scripts.md), then it will have changed ownership on directories that the web server does not need to write to to root.
+If you installed IXP Manager via the [installation scripts](automated-script.md), then it will have changed ownership on directories that the web server does not need to write to to root.
 
 The following options would work on Ubuntu (as root):
 

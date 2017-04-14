@@ -58,7 +58,7 @@ php artisan key:generate
 joe .env
 
 # File system permissions
-chown -R www-data: var/ storage/ bootstrap/cache
+chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
 ```
 
 
