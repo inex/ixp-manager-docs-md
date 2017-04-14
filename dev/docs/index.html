@@ -222,19 +222,28 @@
             <div class="section">
               
                 <h1 id="documentation">Documentation</h1>
-<p>From v4 onwards, we use  <a href="https://docs.readthedocs.org/en/latest/index.html">Read the Docs</a> with <a href="http://www.mkdocs.org/">MkDocs</a> to build the documentation and host it on
-<a href="https://github.com/inex/ixp-manager-docs-md">GitHub</a>.</p>
+<p>From v4 onwards, we use <a href="http://docs.ixpmanager.org/">GitHub Pages</a> with <a href="http://www.mkdocs.org/">MkDocs</a> to build the documentation.</p>
+<p>Both the site and the content are hosted on <a href="https://github.com/inex/ixp-manager-docs-md">GitHub</a>.</p>
 <h2 id="building-locally">Building Locally</h2>
 <p>If you haven't already, install MkDocs:</p>
-<pre><code>pip install mkdocs
+<pre><code class="sh">pip install mkdocs
 </code></pre>
 
 <p>The documentation can then be built locally as follows:</p>
-<pre><code>git clone https://github.com/inex/ixp-manager-docs-md.git
+<pre><code class="sh">git clone https://github.com/inex/ixp-manager-docs-md.git
 cd ixp-manager-docs-md
 mkdocs build
-mkdocs serve
 </code></pre>
+
+<p>You can <em>serve</em> them locally with the following and then access them via http://127.0.0.1:8000 -</p>
+<pre><code class="sh">mkdocs serve
+</code></pre>
+
+<p>To automatically deploy to GitHub and make live:</p>
+<pre><code class="sh">mkdocs gh-deploy
+</code></pre>
+
+<p>You must be an authorised user for this but we <strong>welcome pull requests against the documentation repository!</strong>.</p>
               
             </div>
           </div>
