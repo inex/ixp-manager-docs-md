@@ -21,6 +21,7 @@ pages:
     - 'Layer2 Addresses': 'features/layer2-addresses.md'
     - 'Looking Glass': 'features/looking-glass.md'
     - 'MAC Addresses': 'features/layer2-addresses.md'
+    - 'Mailing List Management': 'features/mailing-lists.md'
     - 'Patch Panels': 'features/patch-panels.md'
     - 'Reseller Functionality': 'features/reseller.md'
     - 'Route Collector': 'features/routers.md'

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Mailing List Management - IXP Manager</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Mailing List Management";
+    var mkdocs_page_input_path = "features/mailing-lists.md";
+    var mkdocs_page_url = "/features/mailing-lists/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../routers/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">Layer2 Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Mailing List Management</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#mailing-list-management">Mailing List Management</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#configuring-available-mailing-lists">Configuring Available Mailing Lists</a></li>
+        
+            <li><a class="toctree-l4" href="#explanation-of-usage">Explanation of Usage</a></li>
+        
+            <li><a class="toctree-l4" href="#how-to-implement">How to Implement</a></li>
+        
+            <li><a class="toctree-l4" href="#password-synchronisation">Password Synchronisation</a></li>
+        
+            <li><a class="toctree-l4" href="#todo">Todo</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../reseller/">Reseller Functionality</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Route Collector</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Route Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Routers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../skinning/">Skinning</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Features &raquo;</li>
+        
+      
+    
+    <li>Mailing List Management</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="mailing-list-management">Mailing List Management</h1>
+<p><strong>IXP Manager</strong> has the ability to allow users to subscribe / unsubscribe from Mailman mailing lists (it should be relatively easy to expand this to other mailing list managers as the functionality is based on Mailman but not Mailman specific).</p>
+<p>The following sections explain the steps in how this is set up.</p>
+<p><strong>NB:</strong> This facility does not perform a 100% synchronisation. Any mailing list members that are added separately without a matching user in IXP Manager are not interfered with.</p>
+<h2 id="configuring-available-mailing-lists">Configuring Available Mailing Lists</h2>
+<p>There is a sample configuration file which you need to copy as follows:</p>
+<pre><code class="sh">cd $IXPROOT
+cp config/mailinglists.php.dist config.mailinglists.php
+</code></pre>
+
+<p>You then need to edit this file as follows:</p>
+<ol>
+<li>
+<p>Enable the mailing list functionality by setting this to true:</p>
+<p><code>php
+// Set the following to 'true' to enable mailing list functionality:
+'enabled' =&gt; true,</code></p>
+<p>If this is not set to true, the user will not be offered subscription options and the CLI commands will not execute.</p>
+</li>
+<li>
+<p>Configure the available mailing list(s) in the <code>lists</code> array. Here is an example:</p>
+<p>```php
+'lists' =&gt; [
+    'members' =&gt; [
+        'name'    =&gt; "Members' Mailing List",
+        'desc'    =&gt; "A longer description as presented in IXP Manager.",
+        'email'   =&gt; "members@example.com",
+        'archive' =&gt; "https://www.example.com/mailman/private/members/",
+        'syncpws' =&gt; false,
+    ],
+    'tech' =&gt; [
+        'name'    =&gt; "Tech/Operations Mailing List",
+        'desc'    =&gt; "A longer description as presented in IXP Manager.",
+        'email'   =&gt; "tech@example.com",
+        'archive' =&gt; "https://www.example.com/mailman/private/tech/"
+        'syncpws' =&gt; false,
+    ],
+],</p>
+<p>```</p>
+<p>Note that the <code>members</code> and <code>tech</code> array keys above are the list handles that will be used by the API interfaces later. It is also important that they match the Mailman list key.</p>
+<p>Historically, mailing list passwords were also sync'd from the IXP Manager user database <em>unless</em> <code>syncpws</code> is both defined and false for the given list. As we are now recommending <em>bcrypt</em> as the standard password hashing mechanism, we not longer recommend this and suggest allowing Mailman to manage its own passwords.</p>
+</li>
+<li>
+<p>Paths to Mailman commands. These will be used in the API/CLI elements later:</p>
+<p><code>php
+'mailman' =&gt; [
+    'cmds' =&gt; [
+        'list_members'   =&gt; "/usr/local/mailman/bin/list_members",
+        'add_members'    =&gt; "/usr/local/mailman/bin/add_members -r - -w n -a n",
+        'remove_members' =&gt; "/usr/local/mailman/bin/remove_members -f - -n -N",
+        'changepw'       =&gt; "/usr/local/mailman/bin/withlist -q -l -r changepw"
+    ]
+]</code></p>
+</li>
+</ol>
+<h2 id="explanation-of-usage">Explanation of Usage</h2>
+<p>This mailing list synchronisation / integration code was written for existing Mailman lists we have at INEX where some lists are public with subscribers that will never have an account on INEX's IXP Manager. As such, these scripts are written so that email addresses in common between IXP Manager and Mailman can manage their subscriptions in IXP Manager but those other subscribers will be unaffected.</p>
+<p>Users in IXP Manager will either be marked as being subscribed to a list, not subscribed to a list or neither (i.e. a new user). Subscriptions are managed by user preferences (in the database) of the format:</p>
+<pre><code>mailinglist.listname1.subscribed = 0/1
+</code></pre>
+
+<p>There are four steps to performing the synchronisation <strong>for each list</strong> which are done by either using the IXP Manager CLI script <code>$IXPROOT/bin/ixptool.php</code> or the older <a href="https://github.com/inex/IXP-Manager/wiki/API-V1">API V1</a> interface.</p>
+<h3 id="cli-interface-overview">CLI Interface Overview</h3>
+<ol>
+<li>
+<p>The execution of the <code>mailing-list-cli.list-init</code> script which is really for new IXP Manager users (or initial set up of the mailing list feature). This script is piped the full subscribers list from Mailman (via <code>list_members</code>). This function will iterate through all users and, if they have no preference set for subscription to this list, will either add a "not subscribed" preference if their email address is not in the provided list of subscribers or a "subscribed" preference if it is.</p>
+</li>
+<li>
+<p>The execution of the <code>mailing-list-cli.get-subscribed</code> action which lists all users who are subscribed to the given mailing list based on their user preferences. This is piped to the <code>add_members</code> Mailman script.</p>
+</li>
+<li>
+<p>The execution of the <code>mailing-list-cli.get-unsubscribed</code> action which lists all users who are unsubscribed to the given mailing list based on their user preferences. This is piped to the <code>remove_members</code> Mailman script.</p>
+</li>
+<li>
+<p>The execution of the <code>mailing-list-cli.password-sync</code> action which sets the mailing list password for  all users who are unsubscribed to the given mailing list based on their IXP Manager user password. This action <code>exec()</code>'s' the change password command directly. <strong>See Password Synchronisation below.</strong> Unlike the above three operations, the password sync executes a command directly (via PHP <code>exec()</code>). If you just want to print the commands to stdout, add the parameters <code>-v -p noexec=1</code>.</p>
+</li>
+</ol>
+<h3 id="api-v1-interface-overview">API V1 Interface Overview</h3>
+<p>The CLI version of mailing list management was presented above. If you wish to use the API version, proceed as follows where:</p>
+<ul>
+<li><code>$MyKey</code> is one of your SUPERUSER API keys;</li>
+<li><code>https://www.example.com/ixp/</code> is your IXP Manager web interface;</li>
+<li><code>members</code> is an example mailing list handle as defined above in <code>$IXPROOT/config/mailinglists.php</code>.</li>
+</ul>
+<p>Use the initialisation function for new IXP Manager users (or initial set up of the mailing list feature) which updates IXP Manager with all currently subscribed mailing list members:</p>
+<pre><code class="sh">/path/to/mailman/bin/list_members members &gt;/tmp/ml-listname1.txt
+curl -f --data-urlencode addresses@/tmp/ml-listname1.txt \
+    &quot;https://www.example.com/ixp/apiv1/mailing-list/init/key/$MyKey/list/members&quot;
+rm /tmp/ml-listname1.txt
+</code></pre>
+
+<p>Pipe all subscribed users to the <code>add_members</code> Mailman script:</p>
+<pre><code class="sh">curl -f &quot;https://www.example.com/ixp/apiv1/mailing-list/get-subscribed/key/$MyKey/list/members&quot; | \
+    /path/to/mailman/bin/add_members -r - -w n -a n members &gt;/dev/null
+</code></pre>
+
+<p>Pipe all users who are unsubscribed to the <code>remove_members</code> Mailman script:</p>
+<pre><code class="sh">curl -f &quot;https://www.example.com/ixp/apiv1/mailing-list/get-unsubscribed/key/$MyKey/list/members&quot; | \
+    /path/to/mailman/bin/remove_members -f - -n -N members &gt;/dev/null
+</code></pre>
+
+<p>Sync the passwords from IXP Manager to Mailman with something like:</p>
+<pre><code class="sh">curl -f &quot;https://www.example.com/ixp/apiv1/mailing-list/password-sync/key/MyKey/list/listname1&quot; | \
+    egrep &quot;^/path/to/mailman/bin/withlist -q -l -r changepw '.+' '.+' '.+'$&quot; | /bin/sh &gt;/dev/null
+</code></pre>
+
+<p><em>(Feel free to make the above regexp more secure and update this document).</em>        </p>
+<h2 id="how-to-implement">How to Implement</h2>
+<p>You can implement mailing list management by configuring IXP Manager as above.</p>
+<p>IXP Manager will then generate shell scripts to manage all of the above.</p>
+<p>Execute the following command for the CLI version:</p>
+<pre><code class="sh">bin/ixptool.php -a mailing-list-cli.sync-script &gt;bin/mailing-list-sync.sh
+</code></pre>
+
+<p>Or the following for the API V1 version <strong>(and make sure to update the assignments at the top of the script)</strong>:</p>
+<pre><code class="sh">bin/ixptool.php -a mailing-list-cli.sync-script --p1=apiv1 &gt;bin/mailing-list-sync-apiv1.sh
+</code></pre>
+
+<p>This generates a script called <code>mailing-list-sync[-apiv1].sh</code> which performs each of the above four steps for each configured mailing list. If your mailing list configuration does not change, you will not need to rerun this.</p>
+<p>You should now put this script into crontab on the appropriate server (same server for CLI!) and run as often as you feel is necessary. The current <em>success</em> message for a user updating their subscriptions says <em>within 12 hours</em> so we'd recommend at least running twice a day.</p>
+<h2 id="password-synchronisation">Password Synchronisation</h2>
+<p><strong>We now recommend against this <a href="https://github.com/inex/IXP-Manager/wiki/Password-Hashing">for the reasons explained here</a>. We have not investigated if Mailman can support Bcrypt as of yet.</strong></p>
+<p>By default, passwords from IXP Manager users with mailing list subscriptions will be sync'd to Mailman.</p>
+<p>This is done via the Mailman <code>withlist</code> script and it requires a <code>changepw.py</code> script to be in the same directory as <code>withlist</code> and this script is not supplied by default (although it is documented). Create the following <code>changepw.py</code> in the same directory as <code>withlist</code>:</p>
+<pre><code class="py">from Mailman.Errors import NotAMemberError
+
+def changepw(mlist, addr, newpasswd):
+    try:
+        mlist.setMemberPassword(addr, newpasswd)
+        mlist.Save()
+    except NotAMemberError:
+        print 'No address matched:', addr
+</code></pre>
+
+<h2 id="todo">Todo</h2>
+<ul>
+<li>better handling of multiple users with the same email address and documentation of same</li>
+<li>user changes email address</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../patch-panels/" class="btn btn-neutral float-right" title="Patch Panels">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../layer2-addresses/" class="btn btn-neutral" title="MAC Addresses"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX)</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../layer2-addresses/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../patch-panels/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
