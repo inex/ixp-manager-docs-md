@@ -106,6 +106,12 @@
     </url>
         
     <url>
+     <loc>/features/mailing-lists/</loc>
+     <lastmod>2017-04-15</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>/features/patch-panels/</loc>
      <lastmod>2017-04-15</lastmod>
      <changefreq>daily</changefreq>
