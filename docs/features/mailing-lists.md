@@ -12,7 +12,7 @@ There is a sample configuration file which you need to copy as follows:
 
 ```sh
 cd $IXPROOT
-cp config/mailinglists.php.dist config.mailinglists.php
+cp config/mailinglists.php.dist config/mailinglists.php
 ```
 
 You then need to edit this file as follows:
@@ -50,7 +50,7 @@ You then need to edit this file as follows:
 
     Note that the `members` and `tech` array keys above are the list handles that will be used by the API interfaces later. It is also important that they match the Mailman list key.
 
-    Historically, mailing list passwords were also sync'd from the IXP Manager user database *unless* `syncpws` is both defined and false for the given list. As we are now recommending *bcrypt* as the standard password hashing mechanism, we not longer recommend this and suggest allowing Mailman to manage its own passwords.
+    Historically, mailing list passwords were also sync'd from the IXP Manager user database *unless* `syncpws` is both defined and false for the given list. As we are now recommending *bcrypt* as the standard password hashing mechanism, we no longer recommend this and suggest allowing Mailman to manage its own passwords.
 
 3. Paths to Mailman commands. These will be used in the API/CLI elements later:
 
