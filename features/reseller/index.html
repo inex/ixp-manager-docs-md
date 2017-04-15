@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Contact Groups - IXP Manager</title>
+  <title>Reseller Functionality - IXP Manager</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Contact Groups";
-    var mkdocs_page_input_path = "features/contact-groups.md";
-    var mkdocs_page_url = "/features/contact-groups/";
+    var mkdocs_page_name = "Reseller Functionality";
+    var mkdocs_page_input_path = "features/reseller.md";
+    var mkdocs_page_url = "/features/reseller/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -91,29 +91,9 @@
                     
     <a class="" href="../routers/">AS112</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Contact Groups</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#contact-groups">Contact Groups</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#activating-the-configuration">Activating the Configuration</a></li>
-        
-            <li><a class="toctree-l4" href="#creating-editing-deleting-groups">Creating / Editing / Deleting Groups</a></li>
-        
-            <li><a class="toctree-l4" href="#assigning-contacts-to-groups">Assigning Contacts to Groups</a></li>
-        
-            <li><a class="toctree-l4" href="#exporting-contact-groups">Exporting Contact Groups</a></li>
-        
-            <li><a class="toctree-l4" href="#special-group-roles">Special Group: Roles</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../contact-groups/">Contact Groups</a>
                 </li>
                 <li class="">
                     
@@ -147,9 +127,27 @@
                     
     <a class="" href="../patch-panels/">Patch Panels</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../reseller/">Reseller Functionality</a>
+    <a class="current" href="./">Reseller Functionality</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#reseller-functionality">Reseller Functionality</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#introduction">Introduction</a></li>
+        
+            <li><a class="toctree-l4" href="#features">Features</a></li>
+        
+            <li><a class="toctree-l4" href="#options">Options</a></li>
+        
+            <li><a class="toctree-l4" href="#coding-hints">Coding Hints</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
@@ -223,7 +221,7 @@
         
       
     
-    <li>Contact Groups</li>
+    <li>Reseller Functionality</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -233,46 +231,82 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="contact-groups">Contact Groups</h1>
-<p>Contacts can now be assigned to multiple arbitrary groups.</p>
-<h2 id="activating-the-configuration">Activating the Configuration</h2>
-<p>Your database will already be set-up via the database seeds during installation.</p>
-<p>To activate this feature, you just need to create the configuration file. From the root directory of IXP Manager just::</p>
-<pre><code>cp config/contact_group.php.dist config/contact_group.php
+                <h1 id="reseller-functionality">Reseller Functionality</h1>
+<p>Reseller mode must be explicitly enabled with a <code>.env</code> option:</p>
+<pre><code>IXP_RESELLER_ENABLED=true
 </code></pre>
 
-<h2 id="creating-editing-deleting-groups">Creating / Editing / Deleting Groups</h2>
-<p>A group is defined by:</p>
+<h2 id="introduction">Introduction</h2>
+<p>In our model, a <em>resold</em> member is still a fully fledged member, they just happen to reach the exchange via someone else's network. You / we would still have a relationship with the member independent of the reseller and would still be required to carry out the standard turn up (for us, this includes IP assignment, quarantine procedures, route collector session, route server sessions if appropriate, etc.).</p>
+<p>IXP Manager's functionality is simply to:</p>
 <ul>
-<li>a name (e.g. beer);</li>
-<li>a type (e.g. Likes); and</li>
-<li>a description (e.g. Contacts in this group like to drink beer).</li>
+<li>record that a reseller relationship exists</li>
+<li>allow you to manage reseller and fanout ports</li>
 </ul>
-<p>You define the group types in <code>config/contact_group.php</code>.</p>
-<p>In these examples, <code>ROLE</code> will be entered in the database column and <em>Role</em> will be displayed in the interface.</p>
-<p>Groups can then be added / edited / deleted via <code>https://www.example/com/ixp-manager/contact-group</code>. This can be reached by clicking <em>Contacts</em> and then <em>Contact Groups</em> in the left menu.</p>
-<h2 id="assigning-contacts-to-groups">Assigning Contacts to Groups</h2>
-<p>Assigning contacts to groups is done in the contact add / edit page.</p>
-<h2 id="exporting-contact-groups">Exporting Contact Groups</h2>
-<p>Contact groups can be exported using the <code>ixptool.php</code> command, for example::</p>
-<pre><code>bin/ixptool.php -a cli.cli-export-group -p type=ROLE,format=csv,cid=1
+<h2 id="features">Features</h2>
+<ul>
+<li>A customer / member can now also be a reseller. If you have a non-customer reseller, create them as an associate or internal member as appropriate. This is a boolean switch available in the add / edit customer page.</li>
+<li>Any customer can be marked as a <em>resold customer of a named reseller</em>. This is set in the add / edit customer page.</li>
+<li>If a customer is a reseller or a resold customer, this is clearly visible in the customer overview page.</li>
+<li>A reseller cannot be <em>demoted</em> from reseller status while there are resold customers assigned to it.</li>
+<li>In the reseller customer overview page, there is a new tab listing all the customers they have resold to the IXP.</li>
+<li>In the reseller customer overview page, the ports are separated into reseller uplink ports, the reseller's own peering ports and the fanout ports used to deliver the reseller's customers' traffic.</li>
+</ul>
+<h3 id="reseller-and-fanout-ports">Reseller and Fanout Ports.</h3>
+<p>For resellers, we need to enforce the <strong>one port - one mac - one address</strong> rule on the peering LAN.</p>
+<p>Depending on switch technology, this can be done using</p>
+<ul>
+<li>a virtual ethernet port; or</li>
+<li>a dedicated fanout switch / port.</li>
+</ul>
+<blockquote>
+<p>Currently the schema cannot adequately handle a virtual ethernet port.</p>
+</blockquote>
+<p>Typically, we'd assign a dedicated switch (or bunch of switch ports) as a <em>fanout</em> switch with a <em>reseller uplink port</em> (or LAG). The reseller delivers their customer traffic in dedicated VLANs over this uplink port. We then break each individual customer's traffic into dedicated <em>fanout ports</em>. These physical fanout ports have a one to one relationship with peering ports for that customer (these can be single physical ports or LAGs).</p>
+<p>The reseller functionality includes:</p>
+<ul>
+<li>new switch port types for <em>reseller</em> (reseller uplink ports) and <em>fanout</em>;</li>
+<li>a clear 1:1 relationship between peering ports that come via fanout ports;</li>
+<li>a reseller has all their peering, reseller uplink and associated fanout ports listed in their overview and portal page;</li>
+<li>the add physical interface form and the add interface wizard support linking a peering port to a new fanout port as part of the process.</li>
+</ul>
+<h2 id="options">Options</h2>
+<p>The following are set in <code>.env</code>:</p>
+<p>To enable reseller functionality, set the following to <code>true</code>:</p>
+<pre><code>IXP_RESELLER_ENABLED=false
 </code></pre>
 
-<p>where the possible comma separated parameters are:</p>
-<ul>
-<li><code>type=XXX</code>: Contact group type (e.g. ROLE); or</li>
-<li>
-<p><code>name=XXX</code>: Contact group name (e.g. beer).</p>
-</li>
-<li>
-<p><code>format=XXX</code>: Output format - one of json (default) or csv</p>
-</li>
-<li><code>sn</code>: Customer shortname to limit results to; or</li>
-<li><code>cid</code>: Customer id to limit results to.</li>
-</ul>
-<h2 id="special-group-roles">Special Group: <em>Roles</em></h2>
-<p>The default sample configuration file (<code>config/contact_group.php</code>) and the database seeds create a <code>ROLE</code> group type populated with groups <em>Admin</em>, <em>Billing</em>, <em>Technical</em> and <em>Marketing</em>. There is a dedicated form element when editing contacts for any groups defined in the Role type.</p>
-<p>If the role type is removed from the configuration, the form element for the contact's roles will not be shown.</p>
+<p>If your resold customers are billed directly by the reseller and not the IXP, set this to true to remove billing details from their admin and member areas.</p>
+<pre><code>IXP_RESELLER_RESOLD_BILLING=false
+</code></pre>
+
+<h2 id="coding-hints">Coding Hints</h2>
+<p>In the (older Zend Framework) controllers, you can execute reseller code via:</p>
+<pre><code class="php">if( $this-&gt;resellerMode() ) {
+    // your reseller specific code here
+}
+</code></pre>
+
+<p>And in (the older Zend Framework) Smarty templates, you can add reseller only content via:</p>
+<pre><code>{if $resellerMode}
+    &lt;!-- Your reseller content --&gt;
+{/if}
+</code></pre>
+
+<p>If you have a <code>$customer</code> entity, you can see if it is a reseller via:</p>
+<pre><code class="php">if( $customer-&gt;isReseller() ) {}
+</code></pre>
+
+<p>To see if a customer is a resold customer or get the reseller customer entity:</p>
+<pre><code class="php">if( $customer-&gt;getReseller() ) {} // returns false if not a resold customer
+</code></pre>
+
+<p>Finally, to get all resold customer entities of a reseller:</p>
+<pre><code class="php">$customer-&gt;getResoldCustomers()
+</code></pre>
+
+<hr />
+<p>Reseller functionality was added jointly by <a href="https://www.inex.ie/">INEX</a> and <a href="http://www.lonap.net/">LONAP</a> in June 2013.</p>
               
             </div>
           </div>
@@ -280,10 +314,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../patch-panels/" class="btn btn-neutral float-right" title="Cross Connects">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../routers/" class="btn btn-neutral float-right" title="Route Collector">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../routers/" class="btn btn-neutral" title="AS112"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../patch-panels/" class="btn btn-neutral" title="Patch Panels"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -313,10 +347,10 @@
           <a href="" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../routers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../patch-panels/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../patch-panels/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../routers/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
