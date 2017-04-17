@@ -297,10 +297,12 @@ chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
 </code></pre>
 
 <p>Note that this may take a few minutes if you have a lot of data such as BGP session data.</p>
+<h3 id="stage-one-complete">Stage One Complete</h3>
+<p>You should be able to point Apache / your web server at the new IXP Manager installation and log in.</p>
 <h2 id="mrtg-graphing-migration">MRTG Graphing Migration</h2>
-<p>We've implemented a new graphing backend called :ref:<code>features-graphing</code>. One of the changes is that the graphing directory structure and filenaming conventions have changed. Primarily, we've replaced non-static handles (such as database fields like <code>customer.shortname</code> or <code>physicalinterface.minitorindex</code> or <code>switcher.name</code> with immutable primary keys).</p>
-<p>As such, you need to both rename the statistics structure and regenerate the configuration. <strong>It is strongly recommended you copy your existing files and do this in parallel or, at least keep a backup.</strong> Also, stop the MRTG daemon before starting.</p>
-<h3 id="example">Example</h3>
+<p>We've implemented a new graphing backend called <a href="../../features/grapher/">Grapher</a>. One of the changes is that the graphing directory structure and filenaming conventions have changed. Primarily, we've replaced non-static handles (such as database fields like <code>customer.shortname</code>, <code>physicalinterface.minitorindex</code> and <code>switcher.name</code> with immutable primary keys).</p>
+<p>As such, you need to both rename the statistics directory structure and regenerate the configuration. <strong>It is strongly recommended you copy your existing files and do this in parallel or, at least keep a backup.</strong> Also, stop the MRTG daemon before starting.</p>
+<h3 id="performing-the-migration">Performing the Migration</h3>
 <p>First, you'll need to update your local configuration in <code>.env</code> by setting something like:</p>
 <pre><code>GRAPHER_BACKENDS=&quot;mrtg&quot;
 GRAPHER_BACKEND_MRTG_LOGDIR=&quot;/path/to/mrtg/data&quot;
@@ -308,7 +310,7 @@ GRAPHER_BACKEND_MRTG_WORKDIR=&quot;/path/to/mrtg/data&quot;
 GRAPHER_CACHE_ENABLED=true
 </code></pre>
 
-<p>See the <em>Grapher</em> documentation for full details.</p>
+<p>See the <a href="../../features/grapher/">Grapher</a> documentation for full details of what these mean.</p>
 <p>You'll then need to migrate all your MRTG files to the new naming scheme:</p>
 <pre><code class="sh"># set a variable for what will become the 'old' files for convenience
 OLDMRTG=/home/old
@@ -317,7 +319,7 @@ OLDMRTG=/home/old
 mv /home/mrtg $OLDMRTG
 
 # position ourselves in the IXP Manager root directory
-cd /path/to/ixp4
+cd $IXPROOT
 
 # stop mrtg
 service mrtg stop  # or as appropriate for your platform
