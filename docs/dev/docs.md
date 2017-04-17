@@ -4,9 +4,15 @@ From v4 onwards, we use [GitHub Pages](http://docs.ixpmanager.org/) with [MkDocs
 
 Both the site and the content are hosted on [GitHub](https://github.com/inex/ixp-manager-docs-md).
 
+## Contributing / Suggesting Errata
 
-Building Locally
-----------------
+We welcome contributions or errata that improve the quality of our documenation. Please use one of the following two channels:
+
+1. Via the standard GitHub workflow of forking [our documentation repository](https://github.com/inex/ixp-manager-docs-md), making your edits in your fork and them opening a pull request.
+2. If you are not familiar with GitHub, then please [open an issue on the documentation repository](https://github.com/inex/ixp-manager-docs-md/issues) with your suggestions.
+
+
+## Building Locally
 
 If you haven't already, install MkDocs:
 

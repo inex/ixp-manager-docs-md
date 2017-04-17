@@ -93,15 +93,19 @@ And apply with:
  Note that this may take a few minutes if you have a lot of data such as BGP session data.
 
 
+### Stage One Complete
+
+You should be able to point Apache / your web server at the new IXP Manager installation and log in.
+
 
 ## MRTG Graphing Migration
 
-We've implemented a new graphing backend called :ref:`features-graphing`. One of the changes is that the graphing directory structure and filenaming conventions have changed. Primarily, we've replaced non-static handles (such as database fields like `customer.shortname` or `physicalinterface.minitorindex` or `switcher.name` with immutable primary keys).
+We've implemented a new graphing backend called [Grapher](../features/grapher.md). One of the changes is that the graphing directory structure and filenaming conventions have changed. Primarily, we've replaced non-static handles (such as database fields like `customer.shortname`, `physicalinterface.minitorindex` and `switcher.name` with immutable primary keys).
 
-As such, you need to both rename the statistics structure and regenerate the configuration. **It is strongly recommended you copy your existing files and do this in parallel or, at least keep a backup.** Also, stop the MRTG daemon before starting.
+As such, you need to both rename the statistics directory structure and regenerate the configuration. **It is strongly recommended you copy your existing files and do this in parallel or, at least keep a backup.** Also, stop the MRTG daemon before starting.
 
 
-### Example
+### Performing the Migration
 
 First, you'll need to update your local configuration in `.env` by setting something like:
 
@@ -112,7 +116,7 @@ GRAPHER_BACKEND_MRTG_WORKDIR="/path/to/mrtg/data"
 GRAPHER_CACHE_ENABLED=true
 ```
 
-See the *Grapher* documentation for full details.
+See the [Grapher](../features/grapher.md) documentation for full details of what these mean.
 
 You'll then need to migrate all your MRTG files to the new naming scheme:
 
@@ -124,7 +128,7 @@ OLDMRTG=/home/old
 mv /home/mrtg $OLDMRTG
 
 # position ourselves in the IXP Manager root directory
-cd /path/to/ixp4
+cd $IXPROOT
 
 # stop mrtg
 service mrtg stop  # or as appropriate for your platform
