@@ -15,11 +15,11 @@ Additional information: [http://www.ixpmanager.org/](http://www.ixpmanager.org/)
 
 * [IXP Manager Website](https://www.ixpmanager.org)
 * [Documentation](http://docs.ixpmanager.org) (this site!) including:
-  * Installation [overview](http://docs.ixpmanager.org/install/),
+    * Installation [overview](http://docs.ixpmanager.org/install/),
     [by automated script](http://docs.ixpmanager.org/install/automated-script/),
     [manually](http://docs.ixpmanager.org/install/manually/),
     and [upgrading from v3](http://docs.ixpmanager.org/install/upgrade-v3/).
-  * [Upgrade Instructions](http://docs.ixpmanager.org/install/upgrading/)
+    * [Upgrade Instructions](http://docs.ixpmanager.org/install/upgrading/)
 * [Releases](https://github.com/inex/IXP-Manager/releases)
 * [List of Users](https://www.ixpmanager.org/users.php) (contact us if you are missing!)
 * [How to Get Help](https://www.ixpmanager.org/support.php)
