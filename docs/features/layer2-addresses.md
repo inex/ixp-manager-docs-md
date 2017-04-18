@@ -32,7 +32,7 @@ There is a new menu option (left hand side menu) under *MAC/L2 Addresses* called
 
 ### Adding / Removing Layer2 Addresses to/from a VLAN Interface
 
-When editing a customer's interface in the usual manner (customer overview -> Ports -> edit button), you will no see a layer2 address under *VLAN Interfaces*:
+When editing a customer's interface in the usual manner (customer overview -> Ports -> edit button), you will now see a layer2 address under *VLAN Interfaces*:
 
 ![MAC Address per VLAN Interface](img/l2a-vlint1.png)
 
@@ -40,7 +40,7 @@ In the event that there is no or more than one layer2 address, the layer2 addres
 
 Clicking on the layer2 address (or note when none  / multiple) will bring you to the layer2 address management page for this VLAN interface. Addresses can be added / removed on this page. Layer2 addresses can be entered in either upper or lower cases and can optionally include characters such as `.`, `:`, `-`. These are all stripped before validation and insertion.
 
-### Extracting Addressess
+### Extracting Addresses
 
 As automation features are still a work in progress, not all methods are listed here. Please [open an issue on GitHub](https://github.com/inex/IXP-Manager/issues) or start a discussion on the [mailing list](https://www.ixpmanager.org/support.php) for whatever methods you would like.
 
@@ -52,7 +52,7 @@ Currently implemented:
 
 ### Migrating Read-Only to Read/Write
 
-INEX's use case was to switch from the read only *MAC Addresses* table to this table without the need to data fill all preexisting ~200 MACs. As such we have created a Artisan migration script which can be run with:
+INEX's use case was to switch from the read only *MAC Addresses* table to this table without the need to data fill all preexisting ~200 MACs. As such we have created an Artisan migration script which can be run with:
 
 ```sh
 php $IXPROOT/artisan l2addresses:populate
