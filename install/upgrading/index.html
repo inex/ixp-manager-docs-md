@@ -79,27 +79,6 @@
             
     <li class="toctree-l3"><a href="#upgrading-ixp-manager">Upgrading IXP Manager</a></li>
     
-
-    <li class="toctree-l3"><a href="#move-to-the-directory-where-you-have-installed-ixp-manager">move to the directory where you have installed IXP Manager</a></li>
-    
-
-    <li class="toctree-l3"><a href="#you-should-be-in-the-master-branch-if-not-git-checkout-master">you should be in the master branch (if not: git checkout master)</a></li>
-    
-
-    <li class="toctree-l3"><a href="#pull-the-latest-code">pull the latest code</a></li>
-    
-
-    <li class="toctree-l3"><a href="#if-asked-to-chose-a-jquery-version-chose-the-latest-highest-version-offered">if asked to chose a jquery version, chose the latest / highest version offered</a></li>
-    
-
-    <li class="toctree-l3"><a href="#review-sanity-check-first">review / sanity check first:</a></li>
-    
-
-    <li class="toctree-l3"><a href="#if-in-doubt-take-a-mysqldump-of-your-database-first">If in doubt, take a mysqldump of your database first.</a></li>
-    
-
-    <li class="toctree-l3"><a href="#migrate">migrate:</a></li>
-    
         <ul>
         
             <li><a class="toctree-l4" href="#updating-bower-dependancies">Updating Bower Dependancies</a></li>
@@ -260,67 +239,67 @@
 </blockquote>
 <p>The upgrade process for IXP Manager is currently a manual task. Especially database schema updates.</p>
 <p>The release notes for each version may contain specific upgrade instructions including schema changes.</p>
-<p><strong>NB:</strong> the below instructs you to use the master branch. That's fine in development / before an official v4 release. However, when upgrading to a specific release, please checkout the appropriate tag (<code>v4.x.y</code>).</p>
 <p>In the below, we assume the following installation directory - alter this to suit your own situation:</p>
 <pre><code>IXPROOT=/srv/ixpmanager
 </code></pre>
 
 <p>The general process is:</p>
-<ol>
-<li>
-<p>Enable maintenance mode:</p>
-<p><code>sh
+<ul>
+<li>(1) Enable maintenance mode:</li>
+</ul>
+<pre><code>cd $IXPROOT
+./artisan down
+</code></pre>
+
+<ul>
+<li>(2) Using Git, checkout the next version up from yours. For IXP Manager v4, this essentially means pulling from <code>master</code>.</li>
+</ul>
+<pre><code># move to the directory where you have installed IXP Manager
 cd $IXPROOT
-./artisan down</code></p>
+# you should be in the master branch (if not: git checkout master)
+# pull the latest code
+git pull
+</code></pre>
+
+<ul>
+<li>(3) Install latest required libraries from composer (see notes below):</li>
+</ul>
+<pre><code>composer install
+</code></pre>
+
+<ul>
+<li>(4) Install latest frontend dependencies (see notes below):</li>
+</ul>
+<pre><code># if asked to chose a jquery version, chose the latest / highest version offered
+bower install
+</code></pre>
+
+<ul>
+<li>
+<p>(5) Restart Memcached. Do not forget / skip this step!</p>
 </li>
 <li>
-<p>Using Git, checkout the next version up from yours. For IXP Manager v4, this essentially means pulling from <code>master</code>.</p>
-<p>```sh</p>
-<h1 id="move-to-the-directory-where-you-have-installed-ixp-manager">move to the directory where you have installed IXP Manager</h1>
-<p>cd $IXPROOT</p>
-<h1 id="you-should-be-in-the-master-branch-if-not-git-checkout-master">you should be in the master branch (if not: git checkout master)</h1>
-<h1 id="pull-the-latest-code">pull the latest code</h1>
-<p>git pull
-```</p>
+<p>(6) Update the database schema:</p>
+</li>
+</ul>
+<pre><code># review / sanity check first:
+./artisan doctrine:schema:update --sql
+# If in doubt, take a mysqldump of your database first.
+# migrate:
+./artisan doctrine:schema:update --force
+</code></pre>
+
+<ul>
+<li>
+<p>(7) Restart Memcached (yes, again). Do not forget / skip this step!</p>
 </li>
 <li>
-<p>Install latest required libraries from composer (see notes below):</p>
-<p><code>sh
-composer install</code></p>
+<p>(8) Disable maintenance mode:</p>
 </li>
-<li>
-<p>Install latest frontend dependencies (see notes below):</p>
-<p>```sh</p>
-<h1 id="if-asked-to-chose-a-jquery-version-chose-the-latest-highest-version-offered">if asked to chose a jquery version, chose the latest / highest version offered</h1>
-<p>bower install
-```</p>
-</li>
-<li>
-<p>Restart Memcached. Do not forget / skip this step!</p>
-<p><code>sh
-systemctl restart memcached.service</code></p>
-</li>
-<li>
-<p>Update the database schema:</p>
-<p>```sh</p>
-<h1 id="review-sanity-check-first">review / sanity check first:</h1>
-<p>./artisan doctrine:schema:update --sql</p>
-<h1 id="if-in-doubt-take-a-mysqldump-of-your-database-first">If in doubt, take a mysqldump of your database first.</h1>
-<h1 id="migrate">migrate:</h1>
-<p>./artisan doctrine:schema:update --force
-```</p>
-</li>
-<li>
-<p>Restart Memcached (yes, again). Do not forget / skip this step!</p>
-<p><code>sh
-systemctl restart memcached.service</code></p>
-</li>
-<li>
-<p>Disable maintenance mode:</p>
-<p><code>sh
-./artisan up</code></p>
-</li>
-</ol>
+</ul>
+<pre><code>./artisan up
+</code></pre>
+
 <h2 id="updating-bower-dependancies">Updating Bower Dependancies</h2>
 <p>It is not advisable to run bower are root but how you run it will depend on your own installation.</p>
 <p>If you installed IXP Manager via the <a href="../automated-script/">installation scripts</a>, then it will have changed ownership on directories that the web server does not need to write to to root.</p>
