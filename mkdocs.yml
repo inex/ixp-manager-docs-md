@@ -34,3 +34,5 @@ pages:
     - 'Grapher': 'dev/grapher.md'
     - 'Helpers': 'dev/helpders.md'
     - 'Vagrant': 'dev/vagrant.md'
+markdown_extensions:
+  - pymdownx.superfences

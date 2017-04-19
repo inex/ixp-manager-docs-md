@@ -252,16 +252,16 @@
 <h3 id="listing-and-searching-existing-layer2-addresses">Listing and Searching Existing Layer2 Addresses</h3>
 <p>There is a new menu option (left hand side menu) under <em>MAC/L2 Addresses</em> called <em>Layer2 Addresses</em>. This lists all configured layer2 addresses including the OUI manufacturer (see below), associated switch / switch port(s), customer name, IPv4 and v6 addresses. You can also:</p>
 <ul>
-<li>as you type search from the datatable search box (lowercased and filtered to a normalised MAC address);</li>
+<li>as-you-type search from the datatable search box (lowercased and filtered to a normalised MAC address);</li>
 <li>restrict the view to a single VLAN;</li>
-<li>action to move to layer 2 address add / edit / delete for a given VLAN interface;</li>
-<li>clicking on a MAC also brings up a pop-up allowing you to copy in different formats:</li>
+<li>action-to-move to layer 2 address add / edit / delete for a given VLAN interface;</li>
+<li>click on a MAC to bring up a pop-up, allowing you to copy in different formats:</li>
 </ul>
 <p><img alt="MAC Address Formats" src="../img/l2a-formats.png" /></p>
 <h3 id="adding-removing-layer2-addresses-tofrom-a-vlan-interface">Adding / Removing Layer2 Addresses to/from a VLAN Interface</h3>
 <p>When editing a customer's interface in the usual manner (customer overview -&gt; Ports -&gt; edit button), you will now see a layer2 address under <em>VLAN Interfaces</em>:</p>
 <p><img alt="MAC Address per VLAN Interface" src="../img/l2a-vlint1.png" /></p>
-<p>In the event that there is no or more than one layer2 address, the layer2 address demonstrated above will be replaced with an appropriate note to indicate this.</p>
+<p>In the event that there is zero or more than one layer2 address, the layer2 address demonstrated above will be replaced with an appropriate note to indicate this.</p>
 <p>Clicking on the layer2 address (or note when none  / multiple) will bring you to the layer2 address management page for this VLAN interface. Addresses can be added / removed on this page. Layer2 addresses can be entered in either upper or lower cases and can optionally include characters such as <code>.</code>, <code>:</code>, <code>-</code>. These are all stripped before validation and insertion.</p>
 <h3 id="extracting-addresses">Extracting Addresses</h3>
 <p>As automation features are still a work in progress, not all methods are listed here. Please <a href="https://github.com/inex/IXP-Manager/issues">open an issue on GitHub</a> or start a discussion on the <a href="https://www.ixpmanager.org/support.php">mailing list</a> for whatever methods you would like.</p>
@@ -273,8 +273,9 @@
 </ol>
 <h3 id="migrating-read-only-to-readwrite">Migrating Read-Only to Read/Write</h3>
 <p>INEX's use case was to switch from the read only <em>MAC Addresses</em> table to this table without the need to data fill all preexisting ~200 MACs. As such we have created an Artisan migration script which can be run with:</p>
-<pre><code class="sh">php $IXPROOT/artisan l2addresses:populate
-</code></pre>
+<div class="highlight"><pre><span></span>php <span class="nv">$IXPROOT</span>/artisan l2addresses:populate
+</pre></div>
+
 
 <p>You will be prompted as follows:</p>
 <blockquote>
@@ -291,37 +292,40 @@
 <p>Could not add additional instance of 001122334455 for [Customer]] with virtual interface: https://www.example.com/ixp/virtual-interface/edit/id/265 as it already exists in this Vlan [VLAN name]</p>
 </blockquote>
 <p>These should all be checked manually.</p>
-<p>A useful SQL command to double checked the results for me was:</p>
-<pre><code class="sql">SELECT mac, COUNT(mac) AS c FROM l2address GROUP BY mac HAVING COUNT(mac) &gt; 1;
-</code></pre>
+<p>A useful SQL command to double check the results for me was:</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">mac</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">mac</span><span class="p">)</span> <span class="k">AS</span> <span class="k">c</span> <span class="k">FROM</span> <span class="n">l2address</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">mac</span> <span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">mac</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+
 
 <h2 id="mac-addresses">MAC Addresses</h2>
 <p>This was the original functionality - a read-only table via an admin menu option called <em>MAC Addresses</em> which lists entries from a database of MAC addresses which are sourced via a script from the IXP's switches directly.</p>
 <p>At an IXP, it can be extremely useful to have a quick look up table to see what member owns what MAC address - especially when they start injecting illegal packets into the exchange fabric.</p>
 <p>We have a script, <a href="https://github.com/islandbridgenetworks/IXP-Manager/blob/master/tools/runtime/l2database/update-l2database.pl">update-l2database.pl</a>, for this. To set it up (using Ubuntu as an example=), proceed as below. We are in the process of trying to reduce the reliance on the perl library and direct database access. But for now, this script still requires it.</p>
-<pre><code class="sh"># If you haven't already, install the Perl library for IXP Manager:
+<div class="highlight"><pre><span></span><span class="c1"># If you haven&#39;t already, install the Perl library for IXP Manager:</span>
 apt-get install libnet-snmp-perl libconfig-general-perl libnetaddr-ip-perl
-cd $IXPROOT/tools/perl-lib/IXPManager
+<span class="nb">cd</span> <span class="nv">$IXPROOT</span>/tools/perl-lib/IXPManager
 perl Makefile.PL
 make install
 
-# Then copy and edit the configuration file to set the database connection settings:
-cp $IXPROOT/tools/perl-lib/IXPManager/ixpmanager.conf /usr/local/etc/
-joe /usr/local/etc/ixpmanager.conf #and set database settings
+<span class="c1"># Then copy and edit the configuration file to set the database connection settings:</span>
+cp <span class="nv">$IXPROOT</span>/tools/perl-lib/IXPManager/ixpmanager.conf /usr/local/etc/
+joe /usr/local/etc/ixpmanager.conf <span class="c1">#and set database settings</span>
 
-# Now copy the script:
-cp $IXPROOT/tools/runtime/l2database/update-l2database.pl /usr/local/bin
+<span class="c1"># Now copy the script:</span>
+cp <span class="nv">$IXPROOT</span>/tools/runtime/l2database/update-l2database.pl /usr/local/bin
 
-# and then add it to your periodic cron job with:
+<span class="c1"># and then add it to your periodic cron job with:</span>
 /usr/local/bin/update-l2database.pl
-</code></pre>
+</pre></div>
+
 
 <h2 id="oui-database">OUI Database</h2>
 <p>IXP Manager can store the IEEE OUI database and reference it to show the manufacturer behind a MAC address.</p>
 <h3 id="populating-and-updating-the-oui-database">Populating and Updating the OUI Database</h3>
 <p>You would typically set a weekly cron job to call:</p>
-<pre><code class="sh">php $IXPROOT/artisan utils:oui-update
-</code></pre>
+<div class="highlight"><pre><span></span>php <span class="nv">$IXPROOT</span>/artisan utils:oui-update
+</pre></div>
+
 
 <p>which will populate / update the OUI database directly from the latest IEEE file from their website.</p>
 <p>A specific file can be passed via the <code>file</code> parameter. You can also force a database reset (drop all OUI entries and re-populate) via the <code>--refresh</code> option.</p>

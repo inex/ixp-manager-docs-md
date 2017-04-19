@@ -15,55 +15,63 @@ IXPROOT=/srv/ixpmanager
 
 The general process is:
 
-* (1) Enable maintenance mode:
+1. Enable maintenance mode:
 
-```
-cd $IXPROOT
-./artisan down
-```
+    ```sh
+    cd $IXPROOT
+    ./artisan down
+    ```
 
-* (2) Using Git, checkout the next version up from yours. For IXP Manager v4, this essentially means pulling from `master`.
+2. Using Git, checkout the next version up from yours. For IXP Manager v4, this essentially means pulling from `master`.
 
-```
-# move to the directory where you have installed IXP Manager
-cd $IXPROOT
-# you should be in the master branch (if not: git checkout master)
-# pull the latest code
-git pull
-```
+    ```sh
+    # move to the directory where you have installed IXP Manager
+    cd $IXPROOT
+    # you should be in the master branch (if not: git checkout master)
+    # pull the latest code
+    git pull
+    ```
 
-* (3) Install latest required libraries from composer (see notes below):
+3. Install latest required libraries from composer (see notes below):
 
-```
-composer install
-```
+    ```sh
+    composer install
+    ```
 
-* (4) Install latest frontend dependencies (see notes below):
+4. Install latest frontend dependencies (see notes below):
 
-```
-# if asked to chose a jquery version, chose the latest / highest version offered
-bower install
-```
+    ```sh
+    # if asked to chose a jquery version, chose the latest / highest version offered
+    bower install
+    ```
 
-* (5) Restart Memcached. Do not forget / skip this step!
+5. Restart Memcached. Do not forget / skip this step!
 
-* (6) Update the database schema:
+    ```sh
+    systemctl restart memcached.service
+    ```
 
-```
-# review / sanity check first:
-./artisan doctrine:schema:update --sql
-# If in doubt, take a mysqldump of your database first.
-# migrate:
-./artisan doctrine:schema:update --force
-```
+6. Update the database schema:
 
-* (7) Restart Memcached (yes, again). Do not forget / skip this step!
+    ```sh
+    # review / sanity check first:
+    ./artisan doctrine:schema:update --sql
+    # If in doubt, take a mysqldump of your database first.
+    # migrate:
+    ./artisan doctrine:schema:update --force
+    ```
 
-* (8) Disable maintenance mode:
+7. Restart Memcached (yes, again). Do not forget / skip this step!
 
-```
-./artisan up
-```
+    ```sh
+    systemctl restart memcached.service
+    ```
+
+8. Disable maintenance mode:
+
+    ```sh
+    ./artisan up
+    ```
 
 ## Updating Bower Dependancies
 
