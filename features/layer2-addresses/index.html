@@ -252,16 +252,16 @@
 <h3 id="listing-and-searching-existing-layer2-addresses">Listing and Searching Existing Layer2 Addresses</h3>
 <p>There is a new menu option (left hand side menu) under <em>MAC/L2 Addresses</em> called <em>Layer2 Addresses</em>. This lists all configured layer2 addresses including the OUI manufacturer (see below), associated switch / switch port(s), customer name, IPv4 and v6 addresses. You can also:</p>
 <ul>
-<li>as you type search from the datatable search box (lowercased and filtered to a normalised MAC address);</li>
+<li>as-you-type search from the datatable search box (lowercased and filtered to a normalised MAC address);</li>
 <li>restrict the view to a single VLAN;</li>
-<li>action to move to layer 2 address add / edit / delete for a given VLAN interface;</li>
-<li>clicking on a MAC also brings up a pop-up allowing you to copy in different formats:</li>
+<li>action-to-move to layer 2 address add / edit / delete for a given VLAN interface;</li>
+<li>click on a MAC to bring up a pop-up, allowing you to copy in different formats:</li>
 </ul>
 <p><img alt="MAC Address Formats" src="../img/l2a-formats.png" /></p>
 <h3 id="adding-removing-layer2-addresses-tofrom-a-vlan-interface">Adding / Removing Layer2 Addresses to/from a VLAN Interface</h3>
 <p>When editing a customer's interface in the usual manner (customer overview -&gt; Ports -&gt; edit button), you will now see a layer2 address under <em>VLAN Interfaces</em>:</p>
 <p><img alt="MAC Address per VLAN Interface" src="../img/l2a-vlint1.png" /></p>
-<p>In the event that there is no or more than one layer2 address, the layer2 address demonstrated above will be replaced with an appropriate note to indicate this.</p>
+<p>In the event that there is zero or more than one layer2 address, the layer2 address demonstrated above will be replaced with an appropriate note to indicate this.</p>
 <p>Clicking on the layer2 address (or note when none  / multiple) will bring you to the layer2 address management page for this VLAN interface. Addresses can be added / removed on this page. Layer2 addresses can be entered in either upper or lower cases and can optionally include characters such as <code>.</code>, <code>:</code>, <code>-</code>. These are all stripped before validation and insertion.</p>
 <h3 id="extracting-addresses">Extracting Addresses</h3>
 <p>As automation features are still a work in progress, not all methods are listed here. Please <a href="https://github.com/inex/IXP-Manager/issues">open an issue on GitHub</a> or start a discussion on the <a href="https://www.ixpmanager.org/support.php">mailing list</a> for whatever methods you would like.</p>
@@ -291,7 +291,7 @@
 <p>Could not add additional instance of 001122334455 for [Customer]] with virtual interface: https://www.example.com/ixp/virtual-interface/edit/id/265 as it already exists in this Vlan [VLAN name]</p>
 </blockquote>
 <p>These should all be checked manually.</p>
-<p>A useful SQL command to double checked the results for me was:</p>
+<p>A useful SQL command to double check the results for me was:</p>
 <pre><code class="sql">SELECT mac, COUNT(mac) AS c FROM l2address GROUP BY mac HAVING COUNT(mac) &gt; 1;
 </code></pre>
 
