@@ -259,11 +259,11 @@
 </ul>
 <p><img alt="MAC Address Formats" src="../img/l2a-formats.png" /></p>
 <h3 id="adding-removing-layer2-addresses-tofrom-a-vlan-interface">Adding / Removing Layer2 Addresses to/from a VLAN Interface</h3>
-<p>When editing a customer's interface in the usual manner (customer overview -&gt; Ports -&gt; edit button), you will no see a layer2 address under <em>VLAN Interfaces</em>:</p>
+<p>When editing a customer's interface in the usual manner (customer overview -&gt; Ports -&gt; edit button), you will now see a layer2 address under <em>VLAN Interfaces</em>:</p>
 <p><img alt="MAC Address per VLAN Interface" src="../img/l2a-vlint1.png" /></p>
 <p>In the event that there is no or more than one layer2 address, the layer2 address demonstrated above will be replaced with an appropriate note to indicate this.</p>
 <p>Clicking on the layer2 address (or note when none  / multiple) will bring you to the layer2 address management page for this VLAN interface. Addresses can be added / removed on this page. Layer2 addresses can be entered in either upper or lower cases and can optionally include characters such as <code>.</code>, <code>:</code>, <code>-</code>. These are all stripped before validation and insertion.</p>
-<h3 id="extracting-addressess">Extracting Addressess</h3>
+<h3 id="extracting-addresses">Extracting Addresses</h3>
 <p>As automation features are still a work in progress, not all methods are listed here. Please <a href="https://github.com/inex/IXP-Manager/issues">open an issue on GitHub</a> or start a discussion on the <a href="https://www.ixpmanager.org/support.php">mailing list</a> for whatever methods you would like.</p>
 <p>Currently implemented:</p>
 <ol>
@@ -272,7 +272,7 @@
 <li>Querying the database directly. <em>Not usually recommended as the schema may change.</em></li>
 </ol>
 <h3 id="migrating-read-only-to-readwrite">Migrating Read-Only to Read/Write</h3>
-<p>INEX's use case was to switch from the read only <em>MAC Addresses</em> table to this table without the need to data fill all preexisting ~200 MACs. As such we have created a Artisan migration script which can be run with:</p>
+<p>INEX's use case was to switch from the read only <em>MAC Addresses</em> table to this table without the need to data fill all preexisting ~200 MACs. As such we have created an Artisan migration script which can be run with:</p>
 <pre><code class="sh">php $IXPROOT/artisan l2addresses:populate
 </code></pre>
 
