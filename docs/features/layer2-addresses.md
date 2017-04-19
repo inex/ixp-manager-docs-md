@@ -23,10 +23,10 @@ The features of this system are listed below.
 
 There is a new menu option (left hand side menu) under *MAC/L2 Addresses* called *Layer2 Addresses*. This lists all configured layer2 addresses including the OUI manufacturer (see below), associated switch / switch port(s), customer name, IPv4 and v6 addresses. You can also:
 
-* as you type search from the datatable search box (lowercased and filtered to a normalised MAC address);
+* as-you-type search from the datatable search box (lowercased and filtered to a normalised MAC address);
 * restrict the view to a single VLAN;
-* action to move to layer 2 address add / edit / delete for a given VLAN interface;
-* clicking on a MAC also brings up a pop-up allowing you to copy in different formats:
+* action-to-move to layer 2 address add / edit / delete for a given VLAN interface;
+* click on a MAC to bring up a pop-up, allowing you to copy in different formats:
 
 ![MAC Address Formats](img/l2a-formats.png)
 
@@ -36,7 +36,7 @@ When editing a customer's interface in the usual manner (customer overview -> Po
 
 ![MAC Address per VLAN Interface](img/l2a-vlint1.png)
 
-In the event that there is no or more than one layer2 address, the layer2 address demonstrated above will be replaced with an appropriate note to indicate this.
+In the event that there is zero or more than one layer2 address, the layer2 address demonstrated above will be replaced with an appropriate note to indicate this.
 
 Clicking on the layer2 address (or note when none  / multiple) will bring you to the layer2 address management page for this VLAN interface. Addresses can be added / removed on this page. Layer2 addresses can be entered in either upper or lower cases and can optionally include characters such as `.`, `:`, `-`. These are all stripped before validation and insertion.
 
@@ -76,7 +76,7 @@ For obvious reasons, we only allow a single / unique layer2 address per VLAN. In
 
 These should all be checked manually.
 
-A useful SQL command to double checked the results for me was:
+A useful SQL command to double check the results for me was:
 
 ```sql
 SELECT mac, COUNT(mac) AS c FROM l2address GROUP BY mac HAVING COUNT(mac) > 1;
