@@ -278,17 +278,17 @@
 <p>MRTG creates per port, per LAG and aggregate graphs for each member / customer.</p>
 <h4 id="mrtg-setup-and-configuration">MRTG Setup and Configuration</h4>
 <p>You need to install some basic packages for MRTG to work - on Ubuntu for example, install:</p>
-<div class="highlight"><pre><span></span>apt-get install libconfig-general-perl libnetaddr-ip-perl mrtg
+<div class="highlight"><pre>apt-get install libconfig-general-perl libnetaddr-ip-perl mrtg
 </pre></div>
 
 
 <p>You also need a folder to store all MRTG files. For example:</p>
-<div class="highlight"><pre><span></span>mkdir -p /srv/mrtg
+<div class="highlight"><pre>mkdir -p /srv/mrtg
 </pre></div>
 
 
 <p>In your `.env, you need to set the following options:</p>
-<div class="highlight"><pre><span></span># the database type to use - either log or rrd
+<div class="highlight"><pre># the database type to use - either log or rrd
 GRAPHER_BACKEND_MRTG_DBTYPE=&quot;rrd&quot;
 # where to store log/rrd/png files as created above. This is from the perspective
 # of the mrtg daemon so should also be local
@@ -300,19 +300,19 @@ GRAPHER_BACKEND_MRTG_LOGDIR=&quot;http://collector.example.com/mrtg&quot;
 
 
 <p>You can now generate a MRTG configuration by executing a command such as:</p>
-<div class="highlight"><pre><span></span><span class="c1"># output to stdout:</span>
+<div class="highlight"><pre><span class="c"># output to stdout:</span>
 ./artisan grapher:generate-configuration -B mrtg
-<span class="c1"># output to a named file</span>
+<span class="c"># output to a named file</span>
 ./artisan grapher:generate-configuration -B mrtg -O /tmp/mrtg.cfg.candidate
 </pre></div>
 
 
 <p>You could also combine a syntax check before putting the resultant file live. Here's a complete example that could be run via cron:</p>
-<div class="highlight"><pre><span></span><span class="ch">#! /bin/sh</span>
+<div class="highlight"><pre><span class="c">#! /bin/sh</span>
 
 <span class="nv">APPLICATION_PATH</span><span class="o">=</span>/srv/ixp
 
-<span class="c1"># Synchronise configuration files</span>
+<span class="c"># Synchronise configuration files</span>
 <span class="si">${</span><span class="nv">APPLICATION_PATH</span><span class="si">}</span>/artisan grapher:generate-configuration -B mrtg -O /tmp/mrtg.cfg.candidate
 
 /usr/bin/mrtg --check /tmp/mrtg.cfg.candidate                 <span class="se">\</span>
@@ -321,7 +321,7 @@ GRAPHER_BACKEND_MRTG_LOGDIR=&quot;http://collector.example.com/mrtg&quot;
 
 
 <p>If your MRTG collector is on a different server, you could use a script such as the following to safely update MRTG:</p>
-<div class="highlight"><pre><span></span><span class="ch">#! /bin/bash</span>
+<div class="highlight"><pre><span class="c">#! /bin/bash</span>
 
 curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: your_api_key&quot;</span> <span class="se">\</span>
     https://ixp.example.com/api/v4/grapher/mrtg-config &gt;/etc/mrtg/mrtg.cfg.<span class="nv">$$</span>
@@ -343,7 +343,7 @@ rm mrtg.cfg.<span class="nv">$$</span>.filtered
 
 <span class="k">if</span> <span class="o">[[</span> <span class="nv">$DIFF</span> -eq <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
     rm mrtg.cfg.<span class="nv">$$</span>
-    <span class="nb">exit</span> 0
+    <span class="nb">exit </span>0
 <span class="k">fi</span>
 
 /usr/local/bin/mrtg --check /etc/mrtg/mrtg.cfg.<span class="nv">$$</span>                 <span class="se">\</span>
@@ -353,14 +353,14 @@ rm mrtg.cfg.<span class="nv">$$</span>.filtered
 
 
 <p>Note that our header template starts MRTG as a daemon. On FreeBSD, MRTG comes with an initd script by default and you can kick it off on boot with something like the following in rc.conf:</p>
-<div class="highlight"><pre><span></span>mrtg_daemon_enable=&quot;YES&quot;
+<div class="highlight"><pre>mrtg_daemon_enable=&quot;YES&quot;
 mrtg_daemon_config=&quot;/etc/mrtg/mrtg.cfg&quot;
 </pre></div>
 
 
 <p>However, on Ubuntu it does not but it comes with a /etc/cron.d/mrtg file which kicks it off every five minutes (it will daemonise the first time and further cron jobs will have no effect). If you use this method, you will need to have your periodic update script restart / stop the daemon when the configuration changes (as demonstrated in the above script).</p>
 <p>To start and stop it via standard initd scripts on Ubuntu, use <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/mrtg/ubuntu-mrtg-initd">an initd script such as this</a>  (<a href="http://www.iceflatline.com/2009/08/how-to-install-and-configure-mrtg-on-ubuntu-server/">source</a>:</p>
-<div class="highlight"><pre><span></span>cp $APPLICATION_PATH/tools/runtime/mrtg/ubuntu-mrtg-initd /etc/init.d/mrtg
+<div class="highlight"><pre>cp $APPLICATION_PATH/tools/runtime/mrtg/ubuntu-mrtg-initd /etc/init.d/mrtg
 chmod +x /etc/init.d/mrtg
 update-rc.d mrtg defaults
 /etc/init.d/mrtg start
@@ -372,7 +372,7 @@ update-rc.d mrtg defaults
 <p>An example of how to customise the MRTG configuration <a href="../skinning/">can be found in the skinning documenation</a>.</p>
 <h4 id="inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails</h4>
 <p>The MRTG backend inserts daily summaries into MySQL for reporting. An example crontab for this is:</p>
-<div class="highlight"><pre><span></span>0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
+<div class="highlight"><pre>0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
 
 0 4   * * *   www-data        /srv/ixpmanager/artisan grapher:email-traffic-deltas --stddev=1.5 -v user1@example.com,user2@example.com
 

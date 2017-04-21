@@ -242,7 +242,7 @@
 <h2 id="activating-the-configuration">Activating the Configuration</h2>
 <p>Your database will already be set-up via the database seeds during installation.</p>
 <p>To activate this feature, you just need to create the configuration file. From the root directory of IXP Manager just::</p>
-<div class="highlight"><pre><span></span>cp config/contact_group.php.dist config/contact_group.php
+<div class="highlight"><pre>cp config/contact_group.php.dist config/contact_group.php
 </pre></div>
 
 
@@ -260,7 +260,7 @@
 <p>Assigning contacts to groups is done in the contact add / edit page.</p>
 <h2 id="exporting-contact-groups">Exporting Contact Groups</h2>
 <p>Contact groups can be exported using the <code>ixptool.php</code> command, for example::
-<div class="highlight"><pre><span></span>bin/ixptool.php -a cli.cli-export-group -p type=ROLE,format=csv,cid=1
+<div class="highlight"><pre>bin/ixptool.php -a cli.cli-export-group -p type=ROLE,format=csv,cid=1
 </pre></div>
 </p>
 <p>where the possible comma separated parameters are:</p>
