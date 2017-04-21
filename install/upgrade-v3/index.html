@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Upgrade From v3 - IXP Manager</title>
+  <title>Upgrade From v3 - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -35,7 +35,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> IXP Manager</a>
+        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -209,7 +209,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">IXP Manager</a>
+        <a href="../..">IXP Manager Documentation</a>
       </nav>
 
       
@@ -228,6 +228,9 @@
     <li>Upgrade From v3</li>
     <li class="wy-breadcrumbs-aside">
       
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/install/upgrade-v3.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
     </li>
   </ul>
   <hr/>
@@ -242,13 +245,13 @@
 <h2 id="duplicating-the-database">Duplicating the Database</h2>
 <p>As we're installing in parallel, we want to duplicate the database.</p>
 <p>When granting permissions on the new database, use your existing IXP Manager database credentials for ease of configuration.</p>
-<div class="highlight"><pre>mysql -u root -pXXX -e <span class="s1">&#39;CREATE DATABASE ixp4 CHARACTER SET = &quot;utf8mb4&quot; COLLATE = &quot;utf8mb4_unicode_ci&quot;;&#39;</span>
+<div class="highlight"><pre><span></span>mysql -u root -pXXX -e <span class="s1">&#39;CREATE DATABASE ixp4 CHARACTER SET = &quot;utf8mb4&quot; COLLATE = &quot;utf8mb4_unicode_ci&quot;;&#39;</span>
 
 mysqldump -u root -pXXX ixp <span class="p">|</span> mysql -u root -pXXX ixp4
 
 mysql -u root -pXXX -e <span class="s1">&#39;GRANT ALL ON ixp4.* TO `ixp`@`localhost` IDENTIFIED BY &quot;YYY&quot;;&#39;</span>
 
-<span class="c"># and test:</span>
+<span class="c1"># and test:</span>
 mysql -u ixp -pYYY -h localhost ixp4
 </pre></div>
 
@@ -258,27 +261,27 @@ mysql -u ixp -pYYY -h localhost ixp4
 <p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
 <p>Log into the server where you wish to install IXP Manager and move to the directory where you wish to install (we use <code>/srv/ixpmanager</code> here as an example and which will be referred to as <code>$IXPROOT</code> below).</p>
 <p>Note that it should not be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>).</p>
-<div class="highlight"><pre><span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+<div class="highlight"><pre><span></span><span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
 
-<span class="c"># get the source / application</span>
+<span class="c1"># get the source / application</span>
 git clone https://github.com/inex/IXP-Manager.git <span class="nv">$IXPROOT</span>
 <span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 
-<span class="c"># Using https://getcomposer.org/</span>
+<span class="c1"># Using https://getcomposer.org/</span>
 composer.phar install
 
-<span class="c"># Using https://bower.io/</span>
+<span class="c1"># Using https://bower.io/</span>
 bower install
 
-<span class="c"># Start with the example configuration and edit.</span>
-<span class="c"># Read the official documentation for help.</span>
-<span class="c"># Ensure you configure the database.</span>
-<span class="c"># More notes on this follow below.</span>
+<span class="c1"># Start with the example configuration and edit.</span>
+<span class="c1"># Read the official documentation for help.</span>
+<span class="c1"># Ensure you configure the database.</span>
+<span class="c1"># More notes on this follow below.</span>
 cp .env.example .env
 php artisan key:generate
 joe .env
 
-<span class="c"># File system permissions</span>
+<span class="c1"># File system permissions</span>
 chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
 </pre></div>
 
@@ -291,12 +294,12 @@ chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
 <h3 id="update-the-database-schema">Update the Database Schema</h3>
 <p>There's about 50 schema changed between the end of v3 and v4.4.</p>
 <p>View the required changes with:</p>
-<div class="highlight"><pre>./artisan doctrine:schema:update --sql
+<div class="highlight"><pre><span></span>./artisan doctrine:schema:update --sql
 </pre></div>
 
 
 <p>And apply with:</p>
-<p><div class="highlight"><pre>./artisan doctrine:schema:update --force
+<p><div class="highlight"><pre><span></span>./artisan doctrine:schema:update --force
 </pre></div>
 
  Note that this may take a few minutes if you have a lot of data such as BGP session data.</p>
@@ -308,7 +311,7 @@ chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
 <p><strong>It is strongly recommended you copy your existing files and do this in parallel or, at least keep a backup.</strong> Also, stop the MRTG daemon before starting.</p>
 <h3 id="performing-the-migration">Performing the Migration</h3>
 <p>First, you'll need to update your local configuration in <code>.env</code> by setting something like:</p>
-<div class="highlight"><pre>GRAPHER_BACKENDS=&quot;mrtg&quot;
+<div class="highlight"><pre><span></span>GRAPHER_BACKENDS=&quot;mrtg&quot;
 GRAPHER_BACKEND_MRTG_LOGDIR=&quot;/path/to/new/mrtg/data&quot;
 GRAPHER_BACKEND_MRTG_WORKDIR=&quot;/path/to/new/mrtg/data&quot;
 GRAPHER_CACHE_ENABLED=true
@@ -317,60 +320,60 @@ GRAPHER_CACHE_ENABLED=true
 
 <p>See the <a href="../../features/grapher/">Grapher</a> documentation for full details of what these mean.</p>
 <p>You'll then need to migrate all your MRTG files to the new naming scheme. Run the commands below twice. Once to verify the output and a second time piped to sh (<code>| sh</code>) to actually execute the commands.</p>
-<div class="highlight"><pre><span class="c"># set a variable for what will become the &#39;old&#39; files for convenience</span>
+<div class="highlight"><pre><span></span><span class="c1"># set a variable for what will become the &#39;old&#39; files for convenience</span>
 <span class="nv">OLDMRTG</span><span class="o">=</span>/srv/old-mrtg
 
-<span class="c"># position ourselves in the IXP Manager root directory</span>
+<span class="c1"># position ourselves in the IXP Manager root directory</span>
 <span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 
-<span class="c"># stop mrtg</span>
-service mrtg stop  <span class="c"># or as appropriate for your platform</span>
+<span class="c1"># stop mrtg</span>
+service mrtg stop  <span class="c1"># or as appropriate for your platform</span>
 
-<span class="c"># Migrate IXP graphs. The naming convention here uses the</span>
-<span class="c"># &#39;Aggregate Graph Name&#39; from the IXP configuration in the</span>
-<span class="c"># database. Usually accessed via `https://{IXP MANAGER URL}/ixp/edit/id/1`</span>
+<span class="c1"># Migrate IXP graphs. The naming convention here uses the</span>
+<span class="c1"># &#39;Aggregate Graph Name&#39; from the IXP configuration in the</span>
+<span class="c1"># database. Usually accessed via `https://{IXP MANAGER URL}/ixp/edit/id/1`</span>
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -X
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -X <span class="p">|</span> sh
 
-<span class="c"># Migrate infrastructure graphs. The naming convention here uses the</span>
-<span class="c"># &#39;Aggregate Graph Name&#39; from the infrastructure configuration in the</span>
-<span class="c"># database. Usually accessed via `https://{IXP MANAGER URL}/infrastructure/list`</span>
+<span class="c1"># Migrate infrastructure graphs. The naming convention here uses the</span>
+<span class="c1"># &#39;Aggregate Graph Name&#39; from the infrastructure configuration in the</span>
+<span class="c1"># database. Usually accessed via `https://{IXP MANAGER URL}/infrastructure/list`</span>
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -I
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -I <span class="p">|</span> sh
 
-<span class="c"># Migrate switch graphs</span>
+<span class="c1"># Migrate switch graphs</span>
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -S
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -S <span class="p">|</span> sh
 
-<span class="c"># Migrate trunk graphs and configuration.</span>
-<span class="c"># If you had not configured trunk graphs you can skip this. We are</span>
-<span class="c"># planning to (very soon - Q2/3 2017) fully integrate this into IXP</span>
-<span class="c"># Manager.</span>
+<span class="c1"># Migrate trunk graphs and configuration.</span>
+<span class="c1"># If you had not configured trunk graphs you can skip this. We are</span>
+<span class="c1"># planning to (very soon - Q2/3 2017) fully integrate this into IXP</span>
+<span class="c1"># Manager.</span>
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -T
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -T <span class="p">|</span> sh
 php artisan grapher:backend:mrtg:upgrade migrate-trunk-config
 
-<span class="c"># Create member directories</span>
+<span class="c1"># Create member directories</span>
 php artisan grapher:backend:mrtg:upgrade mkdir -L <span class="nv">$OLDMRTG</span> -M
 php artisan grapher:backend:mrtg:upgrade mkdir -L <span class="nv">$OLDMRTG</span> -M <span class="p">|</span> sh
 
-<span class="c"># Migrate member physical interface graphs</span>
+<span class="c1"># Migrate member physical interface graphs</span>
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -P
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -P <span class="p">|</span> sh
 
-<span class="c"># Migrate member LAG graphs</span>
+<span class="c1"># Migrate member LAG graphs</span>
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -Q
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -Q <span class="p">|</span> sh
 
-<span class="c"># Migrate member aggregate graphs</span>
+<span class="c1"># Migrate member aggregate graphs</span>
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -C
 php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -C <span class="p">|</span> sh
 
-<span class="c"># Regenerate mrtg configuration</span>
+<span class="c1"># Regenerate mrtg configuration</span>
 php artisan grapher:generate-configuration -B mrtg &gt; path/to/mrtg.conf
 
-<span class="c"># Start mrtg</span>
-service mrtg start  <span class="c"># or as appropriate for your platform</span>
+<span class="c1"># Start mrtg</span>
+service mrtg start  <span class="c1"># or as appropriate for your platform</span>
 </pre></div>
               
             </div>
@@ -392,7 +395,7 @@ service mrtg start  <span class="c"># or as appropriate for your platform</span>
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX)</p>
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
@@ -409,7 +412,7 @@ service mrtg start  <span class="c"># or as appropriate for your platform</span>
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../upgrading/" style="color: #fcfcfc;">&laquo; Previous</a></span>

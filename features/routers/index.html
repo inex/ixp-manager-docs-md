@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Routers - IXP Manager</title>
+  <title>Routers - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -35,7 +35,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> IXP Manager</a>
+        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -209,7 +209,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">IXP Manager</a>
+        <a href="../..">IXP Manager Documentation</a>
       </nav>
 
       
@@ -228,6 +228,9 @@
     <li>Routers</li>
     <li class="wy-breadcrumbs-aside">
       
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/routers.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
     </li>
   </ul>
   <hr/>
@@ -243,12 +246,12 @@
 </blockquote>
 <h2 id="configuration-overview">Configuration Overview</h2>
 <p>The basic elements of <em>a router</em> are configured in <code>configs/routers.php</code>. This is an optional file that is not included in version control so the best way to start it is to copy from the template:</p>
-<div class="highlight"><pre>cp config/routers.php.dist config/routers.php
+<div class="highlight"><pre><span></span>cp config/routers.php.dist config/routers.php
 </pre></div>
 
 
 <p>A typical entry of a sample router (in standard PHP associative array syntax) is:</p>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
     <span class="s1">&#39;rc1-lan1-ipv4&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
         <span class="s1">&#39;vlan_id&#39;</span>    <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
         <span class="s1">&#39;protocol&#39;</span>   <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span>
@@ -300,7 +303,7 @@
 <p>The simplest configuration to generate is the route collector configuration. A route collector is an IXP router which serves only to <em>accept all routes and export no routes</em>. It is used for problem diagnosis, to aid customer monitoring and for looking glasses (see <a href="https://www.inex.ie/ixp/lg/rc1-lan1-ipv4">INEX's here</a>.</p>
 <p>The <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird/standard.foil.php">standard configuration</a> simply pulls in a fairly standard header (sets up router ID, listening address and - for the collector at least - some unused filters) and creates a session for all customer routers on the given VLAN (see <code>vlan_id</code> above).</p>
 <p>In the above example, the route handle is the array's associative key (<code>rc1-lan1-ipv4</code>) and - for the given router handle - the configuration can be generated via:</p>
-<div class="highlight"><pre># The key is generated in IXP Manager via the top right menu: *My Account -&gt; API Keys*
+<div class="highlight"><pre><span></span># The key is generated in IXP Manager via the top right menu: *My Account -&gt; API Keys*
 KEY=&quot;your-admin-ixp-manager-api-key&quot;
 # The base URL of your IXP Manager install plus: &#39;api/v4/router/gen_config&#39;
 URL=&quot;https://ixp.example.com/api/v4/router/gen_config&quot;
@@ -336,17 +339,17 @@ curl --fail -s -H &quot;X-IXP-Manager-API-Key: ${KEY}&quot; ${URL}/${HANDLE} &gt
 <h2 id="irrdb-prefixes-and-asn-filtering">IRRDB Prefixes and ASN Filtering</h2>
 <p>IXP Manager can maintain a list of member route:/route6: prefixes and origin ASNs as registered in IRRDBs in its database and then use these to, for example, generate strict inbound filters on route servers.</p>
 <p><strong>Prerequisite:</strong> you need to have set up some IRRDB sources (e.g. RIPE's whois service) under the <em>IXP Admin Actions / IRRDB Configuration</em> on the left hand side menu. There is a database seeder to install some to start you off via the following (but thius is typically done during installation):</p>
-<div class="highlight"><pre>./artisan db:seed --class=IRRDBs
+<div class="highlight"><pre><span></span>./artisan db:seed --class=IRRDBs
 </pre></div>
 
 
 <p>BGPQ3 is a very easy and fast way of querying IRRDBs. You first need to install this on your system. Then configure the path to it in <code>config/ixp_tools.php</code>. If you have not used this file before, you'll need to create your own local copy as follows:</p>
-<div class="highlight"><pre>cp config/config/ixp_tools.php.dist config/config/ixp_tools.php
+<div class="highlight"><pre><span></span>cp config/config/ixp_tools.php.dist config/config/ixp_tools.php
 </pre></div>
 
 
 <p>Then set the full call path for <code>bgpq3</code> in this file:</p>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 
   <span class="s1">&#39;irrdb&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
         <span class="s1">&#39;bgpq&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
@@ -357,7 +360,7 @@ curl --fail -s -H &quot;X-IXP-Manager-API-Key: ${KEY}&quot; ${URL}/${HANDLE} &gt
 
 
 <p>To populate (and update) your local IRRDB, run the following commands (changing the path as appropriate):</p>
-<div class="highlight"><pre>/srv/ixpmanager/artisan irrdb:update-prefix-db
+<div class="highlight"><pre><span></span>/srv/ixpmanager/artisan irrdb:update-prefix-db
 /srv/ixpmanager/artisan irrdb:update-asn-db
 </pre></div>
 
@@ -371,7 +374,7 @@ curl --fail -s -H &quot;X-IXP-Manager-API-Key: ${KEY}&quot; ${URL}/${HANDLE} &gt
 <li><code>-vvv</code> (debug): show prefixes/ASNs added remove also.</li>
 </ol>
 <p>You can also specify a specific customer to update (rather than all) with an additional free form parameter. The database is searched for a matching customer in the order: customer ASN; customer ID (database primary key); and customer shortname. E.g.:</p>
-<div class="highlight"><pre>/srv/ixpmanager/artisan irrdb:update-prefix-db 64511
+<div class="highlight"><pre><span></span>/srv/ixpmanager/artisan irrdb:update-prefix-db 64511
 </pre></div>
 
 
@@ -406,7 +409,7 @@ curl --fail -s -H &quot;X-IXP-Manager-API-Key: ${KEY}&quot; ${URL}/${HANDLE} &gt
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX)</p>
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
@@ -423,7 +426,7 @@ curl --fail -s -H &quot;X-IXP-Manager-API-Key: ${KEY}&quot; ${URL}/${HANDLE} &gt
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="./" style="color: #fcfcfc;">&laquo; Previous</a></span>
