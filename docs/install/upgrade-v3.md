@@ -100,9 +100,11 @@ You should be able to point Apache / your web server at the new IXP Manager inst
 
 ## MRTG Graphing Migration
 
-We've implemented a new graphing backend called [Grapher](../features/grapher.md). One of the changes is that the graphing directory structure and filenaming conventions have changed. Primarily, we've replaced non-static handles (such as database fields like `customer.shortname`, `physicalinterface.minitorindex` and `switcher.name` with immutable primary keys).
+We've implemented a new graphing backend called [Grapher](../features/grapher.md). One of the changes is that the graphing directory structure and file-naming conventions have changed. Primarily, we've replaced non-static handles (such as database fields like `customer.shortname`, `physicalinterface.monitorindex` and `switcher.name` with immutable primary keys).
 
-As such, you need to both rename the statistics directory structure and regenerate the configuration. **It is strongly recommended you copy your existing files and do this in parallel or, at least keep a backup.** Also, stop the MRTG daemon before starting.
+As such, you need to both rename the statistics directory structure and regenerate the configuration.
+
+**It is strongly recommended you copy your existing files and do this in parallel or, at least keep a backup.** Also, stop the MRTG daemon before starting.
 
 
 ### Performing the Migration
@@ -111,21 +113,18 @@ First, you'll need to update your local configuration in `.env` by setting somet
 
 ```
 GRAPHER_BACKENDS="mrtg"
-GRAPHER_BACKEND_MRTG_LOGDIR="/path/to/mrtg/data"
-GRAPHER_BACKEND_MRTG_WORKDIR="/path/to/mrtg/data"
+GRAPHER_BACKEND_MRTG_LOGDIR="/path/to/new/mrtg/data"
+GRAPHER_BACKEND_MRTG_WORKDIR="/path/to/new/mrtg/data"
 GRAPHER_CACHE_ENABLED=true
 ```
 
 See the [Grapher](../features/grapher.md) documentation for full details of what these mean.
 
-You'll then need to migrate all your MRTG files to the new naming scheme:
+You'll then need to migrate all your MRTG files to the new naming scheme. Run the commands below twice. Once to verify the output and a second time piped to sh (` | sh`) to actually execute the commands.
 
 ```sh
 # set a variable for what will become the 'old' files for convenience
-OLDMRTG=/home/old
-
-# v3 MRTG directory is /home/mrtg. let's move it out of the way
-mv /home/mrtg $OLDMRTG
+OLDMRTG=/srv/old-mrtg
 
 # position ourselves in the IXP Manager root directory
 cd $IXPROOT
@@ -133,34 +132,49 @@ cd $IXPROOT
 # stop mrtg
 service mrtg stop  # or as appropriate for your platform
 
-# migrate IXP graphs
+# Migrate IXP graphs. The naming convention here uses the
+# 'Aggregate Graph Name' from the IXP configuration in the
+# database. Usually accessed via `https://{IXP MANAGER URL}/ixp/edit/id/1`
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -X
 php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -X | sh
 
-# migrate infrastructure graphs
+# Migrate infrastructure graphs. The naming convention here uses the
+# 'Aggregate Graph Name' from the infrastructure configuration in the
+# database. Usually accessed via `https://{IXP MANAGER URL}/infrastructure/list`
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -I
 php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -I | sh
 
-# migrate switch graphs
+# Migrate switch graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -S
 php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -S | sh
 
-# migrate trunk graphs and configuration
+# Migrate trunk graphs and configuration.
+# If you had not configured trunk graphs you can skip this. We are
+# planning to (very soon - Q2/3 2017) fully integrate this into IXP
+# Manager.
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -T
 php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -T | sh
-php artisan grapher:backend:mrtg:upgrade migrate-trunk-config --no-backup
+php artisan grapher:backend:mrtg:upgrade migrate-trunk-config
 
-# create member directories
+# Create member directories
+php artisan grapher:backend:mrtg:upgrade mkdir -L $OLDMRTG -M
 php artisan grapher:backend:mrtg:upgrade mkdir -L $OLDMRTG -M | sh
 
-# migrate member physical interface graphs
+# Migrate member physical interface graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -P
 php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -P | sh
 
-# migrate member LAG graphs
+# Migrate member LAG graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -Q
 php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -Q | sh
 
-# migrate member aggregate graphs
+# Migrate member aggregate graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -C
 php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -C | sh
 
-# regenerate mrtg configuration
+# Regenerate mrtg configuration
 php artisan grapher:generate-configuration -B mrtg > path/to/mrtg.conf
 
-# start mrtg
+# Start mrtg
 service mrtg start  # or as appropriate for your platform
 ```
