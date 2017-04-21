@@ -73,4 +73,8 @@ IXP Manager is distributed in the hope that it will be useful, but WITHOUT ANY W
 
 You should have received a copy of the GNU General Public License v2.0 along with IXP Manager.  If not, see:
 
-http://www.gnu.org/licenses/gpl-2.0.html
+[http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
+
+### Documentation License
+
+This documentation is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).

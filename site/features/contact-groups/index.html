@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Contact Groups - IXP Manager</title>
+  <title>Contact Groups - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -35,7 +35,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> IXP Manager</a>
+        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -211,7 +211,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">IXP Manager</a>
+        <a href="../..">IXP Manager Documentation</a>
       </nav>
 
       
@@ -230,6 +230,9 @@
     <li>Contact Groups</li>
     <li class="wy-breadcrumbs-aside">
       
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/contact-groups.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
     </li>
   </ul>
   <hr/>
@@ -242,7 +245,7 @@
 <h2 id="activating-the-configuration">Activating the Configuration</h2>
 <p>Your database will already be set-up via the database seeds during installation.</p>
 <p>To activate this feature, you just need to create the configuration file. From the root directory of IXP Manager just::</p>
-<div class="highlight"><pre>cp config/contact_group.php.dist config/contact_group.php
+<div class="highlight"><pre><span></span>cp config/contact_group.php.dist config/contact_group.php
 </pre></div>
 
 
@@ -260,7 +263,7 @@
 <p>Assigning contacts to groups is done in the contact add / edit page.</p>
 <h2 id="exporting-contact-groups">Exporting Contact Groups</h2>
 <p>Contact groups can be exported using the <code>ixptool.php</code> command, for example::
-<div class="highlight"><pre>bin/ixptool.php -a cli.cli-export-group -p type=ROLE,format=csv,cid=1
+<div class="highlight"><pre><span></span>bin/ixptool.php -a cli.cli-export-group -p type=ROLE,format=csv,cid=1
 </pre></div>
 </p>
 <p>where the possible comma separated parameters are:</p>
@@ -298,7 +301,7 @@
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX)</p>
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
@@ -315,7 +318,7 @@
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../routers/" style="color: #fcfcfc;">&laquo; Previous</a></span>

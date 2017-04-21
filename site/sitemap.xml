@@ -3,7 +3,7 @@
 
     
     <url>
-     <loc>/</loc>
+     <loc>http://docs.ixpmanager.org/</loc>
      <lastmod>2017-04-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -12,137 +12,37 @@
     
         
     <url>
-     <loc>/install/</loc>
+     <loc>http://docs.ixpmanager.org/install/</loc>
      <lastmod>2017-04-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/install/automated-script/</loc>
+     <loc>http://docs.ixpmanager.org/install/automated-script/</loc>
      <lastmod>2017-04-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/install/maint-mode/</loc>
+     <loc>http://docs.ixpmanager.org/install/maint-mode/</loc>
      <lastmod>2017-04-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/install/manually/</loc>
+     <loc>http://docs.ixpmanager.org/install/manually/</loc>
      <lastmod>2017-04-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/install/upgrading/</loc>
+     <loc>http://docs.ixpmanager.org/install/upgrading/</loc>
      <lastmod>2017-04-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/install/upgrade-v3/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>/features/routers/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/contact-groups/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/patch-panels/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/grapher/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/helpdesk/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/routers/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/layer2-addresses/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/looking-glass/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/layer2-addresses/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/mailing-lists/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/patch-panels/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/reseller/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/routers/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/routers/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/routers/</loc>
-     <lastmod>2017-04-21</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/features/skinning/</loc>
+     <loc>http://docs.ixpmanager.org/install/upgrade-v3/</loc>
      <lastmod>2017-04-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -152,31 +52,131 @@
     
         
     <url>
-     <loc>/dev/api/</loc>
+     <loc>http://docs.ixpmanager.org/features/routers/</loc>
      <lastmod>2017-04-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/dev/docs/</loc>
+     <loc>http://docs.ixpmanager.org/features/contact-groups/</loc>
      <lastmod>2017-04-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/dev/grapher/</loc>
+     <loc>http://docs.ixpmanager.org/features/patch-panels/</loc>
      <lastmod>2017-04-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/dev/helpders/</loc>
+     <loc>http://docs.ixpmanager.org/features/grapher/</loc>
      <lastmod>2017-04-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/dev/vagrant/</loc>
+     <loc>http://docs.ixpmanager.org/features/helpdesk/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/features/routers/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/features/layer2-addresses/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/features/looking-glass/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/features/layer2-addresses/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/features/mailing-lists/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/features/patch-panels/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/features/reseller/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/features/routers/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/features/routers/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/features/routers/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/features/skinning/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/dev/api/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/dev/docs/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/dev/grapher/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/dev/helpders/</loc>
+     <lastmod>2017-04-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://docs.ixpmanager.org/dev/vagrant/</loc>
      <lastmod>2017-04-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
