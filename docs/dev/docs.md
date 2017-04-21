@@ -18,6 +18,7 @@ If you haven't already, install MkDocs:
 
 ```sh
 pip install mkdocs
+pip install pymdown-extensions
 ```
 
 The documentation can then be built locally as follows:
