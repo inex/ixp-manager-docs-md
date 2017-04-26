@@ -178,3 +178,34 @@ php artisan grapher:generate-configuration -B mrtg > path/to/mrtg.conf
 # Start mrtg
 service mrtg start  # or as appropriate for your platform
 ```
+
+## Peer to Peer / sflow Changes
+
+The previous version of IXP Manager used a script called `sflow-grapoh.php` which was installed on the sflow server to create graphs on demand. IXP Manager v4 does not use this but pulls the required RRD files directly.
+
+If you have this on the same server or can expose it using NFS for example, then set the path accordingly in `.env`:
+
+```
+GRAPHER_BACKEND_SFLOW_ROOT="/srv/ixpmatrix"
+```
+
+If you have typically done this via a web server on the sflow server (as we typically do at INEX), then you need to expose the RRD data directory to IXP Manager using an Apache config such as:
+
+```
+Alias /grapher-sflow /srv/ixpmatrix
+
+<Directory "/srv/ixpmatrix">
+	Options None
+	AllowOverride None
+	<RequireAny>
+        	Require ip 192.0.2.0/24
+            Require ip 2001:db8::/32
+	</RequireAny>
+</Directory>
+```
+
+and update `.env` for this with something like:
+
+```
+GRAPHER_BACKEND_SFLOW_ROOT="http://www./grapher-sflow"
+```
