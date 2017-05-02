@@ -152,11 +152,11 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#configuration-overview">Configuration Overview</a></li>
+            <li><a class="toctree-l4" href="#managing-routers">Managing Routers</a></li>
+        
+            <li><a class="toctree-l4" href="#configuration-generation-overview">Configuration Generation Overview</a></li>
         
             <li><a class="toctree-l4" href="#examples">Examples</a></li>
-        
-            <li><a class="toctree-l4" href="#generation-overview">Generation Overview</a></li>
         
             <li><a class="toctree-l4" href="#route-servers">Route Servers</a></li>
         
@@ -245,96 +245,58 @@
             <div class="section">
               
                 <h1 id="routers">Routers</h1>
-<p><strong>Note that a number of pages redirect here where we have collated documentation on route collectors, route servers, AS112 servcies and IRRDB filtering.</strong></p>
+<p><strong>Note that a number of pages redirect here where we have collated documentation on route collectors, route servers, AS112 services and IRRDB filtering.</strong></p>
 <p>IXP Manager can generate router configuration for typical IXP services such as route collectors, route servers and AS112 services. How this is done has been changed significantly from v3 to v4.</p>
 <blockquote>
 <p>Note that until officially deprecated, the older v3 methods still work and the <a href="https://github.com/inex/IXP-Manager/wiki">official v3 documentation</a> should be referenced for that.</p>
 </blockquote>
-<h2 id="configuration-overview">Configuration Overview</h2>
-<p>The basic elements of <em>a router</em> are configured in <code>configs/routers.php</code>. This is an optional file that is not included in version control so the best way to start it is to copy from the template:</p>
-<div class="highlight"><pre><span></span>cp config/routers.php.dist config/routers.php
-</pre></div>
-
-
-<p>A typical entry of a sample router (in standard PHP associative array syntax) is:</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-    <span class="s1">&#39;rc1-lan1-ipv4&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">&#39;vlan_id&#39;</span>    <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s1">&#39;protocol&#39;</span>   <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="s1">&#39;type&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;RC&#39;</span><span class="p">,</span>   <span class="c1">// RC|RS|AS112?</span>
-        <span class="s1">&#39;name&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;INEX LAN1 - Route Collector - IPv4&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;shortname&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;RC1 - LAN1 - IPv4&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;router_id&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;192.0.2.8&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;peering_ip&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;192.0.2.8&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;asn&#39;</span>        <span class="o">=&gt;</span> <span class="mi">65500</span><span class="p">,</span>
-        <span class="s1">&#39;software&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;bird&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;mgmt_ip&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;203.0.113.8&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;api&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;http://rc1-lan1-ipv4.mgmt.example.com/api&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;api_type&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;birdseye&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;lg_access&#39;</span>  <span class="o">=&gt;</span> <span class="nx">Entities\User</span><span class="o">::</span><span class="na">AUTH_PUBLIC</span><span class="p">,</span>
-        <span class="s1">&#39;quarantine&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
-        <span class="s1">&#39;bgp_lc&#39;</span>     <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
-        <span class="s1">&#39;template&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;api/v4/router/collector/bird/standard&#39;</span><span class="p">,</span>
-    <span class="p">],</span>
-</pre></div>
-
-
-<p>where:</p>
+<h2 id="managing-routers">Managing Routers</h2>
+<p>The basic elements of <em>a router</em> are configured in <strong>IXP Manager</strong> under the <em>IXP Admin Actions - Routers</em> option on the left hand menu.</p>
+<p>When you goto add / edit a router, the green help button willl provide explanatory details on each field of information required:</p>
+<p><img alt="Routers - Add/Edit" src="../img/routers.png" /></p>
+<p>From the router management page, you can:</p>
 <ul>
-<li><code>rc1-lan1-ipv4</code> is the <strong>handle</strong> for this router to be used in API calls later (it's the key of the PHP associative array).</li>
-<li><code>vlan_id</code> is not the VLAN 802.1q tag number but the <code>vlan.id</code> database column. You can get this, for example, by hovering over the edit action in the VLAN listing in IXP Manager and finding the number in the URL.</li>
-<li><code>protocol</code> is either <code>4</code> (IPv4) or <code>6</code> (IPv6). Any other value will lead to a runtime exception.</li>
-<li>we have currently defined three types which are used for grouping routers in the UI and for other selection purposes:</li>
-<li><code>RC</code> - route collector;</li>
-<li><code>RS</code> - route server;</li>
-<li><code>AS112</code> - an AS112 BGP peer (see <a href="https://www.inex.ie/technical/as112-service/">INEX's AS112 documentation</a> as an example).</li>
-<li><code>name</code> - name / description of the router's purpose.</li>
-<li><code>shortname</code> - used in dropdowns or other space constrained areas where <code>name</code> may be too long.</li>
-<li><code>router_id</code> - the router's BGP ID (e.g. <code>192.0.2.8</code>).</li>
-<li><code>peering_ip</code> - the IPv4/6 address that this router initiates BGP peering sessions from.</li>
-<li><code>asn</code> - the router's AS number.</li>
-<li><code>software</code> - there is no specific use for this as yet.</li>
-<li><code>mgmt_ip</code> - the IP to address this server / router at for management functions such as Nagios monitoring.</li>
-<li><code>api</code> and <code>api_type</code> - the API end point for this server/router. The only use case for this so far is for the built-in <a href="../looking-glass/">looking glass</a> functionality via <a href="https://github.com/inex/birdseye">Birdseye</a>.</li>
-<li><code>lg_access</code> - who should be allow access the looking glass. One of:</li>
-<li><code>AUTH_PUBLIC</code> - publicly available to all;</li>
-<li><code>AUTH_CUSTUSER</code> - must be logged into IXP Manager as any user;</li>
-<li><code>AUTH_SUPERUSER</code> - must be logged into IXP Manager as an administrator (no customer access).</li>
-<li><code>quarantine</code> - a flag to indicate if this router is part of the IXP's quarantine / test infrastructure. For example, INEX runs two parallel route collectors: one quarantine and one production. When customers have issues or are being provisioned, they are placed in the quarantine LAN and we can examine BGP announcements safely on the non-production quarantine devices. When a router is marked as quarantine, it is only visible in looking glass dropdowns to customers who also have a port in quarantine (physical interface status).</li>
-<li><code>bgp_lc</code> - a flag to indicate if the router supports <a href="https://tools.ietf.org/html/rfc8092">RFC8092</a> / <a href="http://largebgpcommunities.net/">large BGP communities</a>.</li>
-<li><code>template</code> - the template to use to generate the configuration. See stock examples <a href="https://github.com/inex/IXP-Manager/tree/master/resources/views/api/v4/router">here</a> (and note that <a href="../skinning/">skinning</a> is supported).</li>
+<li>add / edit / delete a router;</li>
+<li>view all the details of a router;</li>
+<li>generate and view a router's configuration.</li>
 </ul>
-<p>Typically your <code>routers.php</code> file would hold multiple such entries. It is our intention to move this into the UI and database.</p>
+<h2 id="configuration-generation-overview">Configuration Generation Overview</h2>
+<p>The simplest configuration to generate is the route collector configuration. A route collector is an IXP router which serves only to <em>accept all routes and export no routes</em>. It is used for problem diagnosis, to aid customer monitoring and for looking glasses (see <a href="https://www.inex.ie/ixp/lg/rc1-lan1-ipv4">INEX's here</a>).</p>
+<p>The <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird/standard.foil.php">standard configuration</a> simply pulls in a fairly standard header (sets up router ID, listening address and - for the collector at least - some unused filters) and creates a session for all customer routers on the given VLAN.</p>
+<p>When adding a router, you give it a <em>handle</em>. For example: <code>rc1-lan1-ipv4</code> which, for INEX, would mean a route collector on peering LAN1 using IPv4. Then - for the given router handle - the configuration can be generated and pulled using the API as follows:</p>
+<div class="highlight"><pre><span></span><span class="ch">#! /bin/sh</span>
+
+<span class="c1"># The API Key.</span>
+<span class="c1"># This is generated in IXP Manager via the top right menu: *My Account -&gt; API Keys*</span>
+<span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;your-admin-ixp-manager-api-key&quot;</span>
+
+<span class="c1"># The base URL of your IXP Manager install plus: &#39;api/v4/router/gen_config&#39;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://ixp.example.com/api/v4/router/gen_config&quot;</span>
+
+<span class="c1"># The handle is as described above:</span>
+<span class="nv">HANDLE</span><span class="o">=</span><span class="s2">&quot;rc1-lan1-ipv4&quot;</span>
+
+<span class="c1"># Then the configuration can be pulled as follows:</span>
+curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span class="si">${</span><span class="nv">KEY</span><span class="si">}</span><span class="s2">&quot;</span> <span class="si">${</span><span class="nv">URL</span><span class="si">}</span>/<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span> &gt;<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span>.conf
+</pre></div>
+
+
+<p>Configurations for the route server and AS112 templates can be configured just as easily.</p>
+<p>The stock templates for both are secure and well tested and can be used by setting the <code>template</code> element of the router to one of the following:</p>
+<ul>
+<li>AS112: <code>'api/v4/router/as112/bird/standard'</code></li>
+<li>Route Server: <code>'api/v4/router/server/bird/standard'</code></li>
+</ul>
+<p>We also provide sample scripts for automating the re-configuration of these services by cron. See the <code>-v4</code> scripts <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-servers">in this directory</a>. These are quite robust and have been in production for ~3 years at INEX (as of Jan 2017).</p>
 <h2 id="examples">Examples</h2>
-<p>We use Travis CI to test IXP Manager before making new releases. The primary purpose of this is to ensure that the configuration for routers generated matches known good configurations from the same sample database.</p>
-<p>These know good configurations also serve as useful examples of what the standard IXP Manager configuration generates.</p>
+<p>We use <a href="../../dev/ci/">Travis CI</a> to test IXP Manager before pushing new releases. The primary purpose of this is to ensure that the configuration for routers generated matches known good configurations from the same sample database.</p>
+<p>These known good configurations also serve as useful examples of what the standard IXP Manager configuration generates.</p>
 <p>See <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci/known-good">these known good configurations here</a> with the prefix <code>ci-apiv4-</code> and:</p>
 <ul>
 <li><code>as112</code>: AS112 router configurations conforming to <a href="https://tools.ietf.org/html/rfc7534">rfc7534</a> (AS112 Nameserver Operations) and implementing <a href="https://tools.ietf.org/html/rfc7535">rfc7535</a> (AS112 Redirection Using DNAME). There are configs to serve queries over both IPv4 and IPv6.</li>
 <li><code>rc1</code>: route collector configurations. Peering with the route collector is mandatory at many IXPs including INEX. These are incredably useful for monitoring, diagnosing issues and providing looking glasses. We also use the quarantine version of these for turning up new member connections.</li>
 <li><code>rs1</code>: route collector configurations. See below for full details of what these implement. Note also that the <code>ci-apiv4-rs1-lan2-ipv4.conf</code> file includes BGP large communities (<a href="https://tools.ietf.org/html/rfc8092">rfc8092</a>).</li>
 </ul>
-<h2 id="generation-overview">Generation Overview</h2>
-<p>The simplest configuration to generate is the route collector configuration. A route collector is an IXP router which serves only to <em>accept all routes and export no routes</em>. It is used for problem diagnosis, to aid customer monitoring and for looking glasses (see <a href="https://www.inex.ie/ixp/lg/rc1-lan1-ipv4">INEX's here</a>.</p>
-<p>The <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird/standard.foil.php">standard configuration</a> simply pulls in a fairly standard header (sets up router ID, listening address and - for the collector at least - some unused filters) and creates a session for all customer routers on the given VLAN (see <code>vlan_id</code> above).</p>
-<p>In the above example, the route handle is the array's associative key (<code>rc1-lan1-ipv4</code>) and - for the given router handle - the configuration can be generated via:</p>
-<div class="highlight"><pre><span></span># The key is generated in IXP Manager via the top right menu: *My Account -&gt; API Keys*
-KEY=&quot;your-admin-ixp-manager-api-key&quot;
-# The base URL of your IXP Manager install plus: &#39;api/v4/router/gen_config&#39;
-URL=&quot;https://ixp.example.com/api/v4/router/gen_config&quot;
-# The handle is the PHP associative key from `config/routers.php` as described above
-HANDLE=&quot;rc1-lan1-ipv4&quot;
-# Then the complete URL is formed as:
-curl --fail -s -H &quot;X-IXP-Manager-API-Key: ${KEY}&quot; ${URL}/${HANDLE} &gt;${HANDLE}.conf
-</pre></div>
-
-
-<p>Configurations for the route server and AS112 templates can be configured just as easily. The stock templates for both are secure and well tested and can be used by setting the <code>template</code> element of the router configuration above to the following:</p>
-<ul>
-<li>AS112: <code>'api/v4/router/as112/bird/standard'</code></li>
-<li>Route Server: <code>'api/v4/router/server/bird/standard'</code></li>
-</ul>
-<p>We also provide sample scripts for automating the re-configuration of these services by cron. See the <code>-v4</code> scripts <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-servers">in this directory</a>. These are quite robust and have been in production for ~3 years at INEX (as of Jan 2017).</p>
 <h2 id="route-servers">Route Servers</h2>
 <p>Normally on a peering exchange, all connected parties will establish bilateral peering relationships with each other customer connected to the exchange. As the number of connected parties increases, it becomes increasingly more difficult to manage peering relationships with customers of the exchange.</p>
 <p>However, by using a route servers for peering relationships, the number of BGP sessions per router stays at two: one for each route server (assuming a resilient set up). Clearly this is a more sustainable way of maintaining IXP peering relationships with a large number of participants.</p>
