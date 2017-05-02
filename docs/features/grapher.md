@@ -31,7 +31,7 @@ Backend specific configuration and set-up instructions can be found in their own
 
 ## Grapher Backends
 
-### Mrtg
+## Backend: MRTG
 
 MRTG is a particularly efficient SNMP poller as, irrespective of how many times an interface is referenced for different graphs, it is only polled once per run.
 
@@ -55,7 +55,7 @@ Per-second graphs are generated for bits, packets, errors, discards and broadcas
 
   MRTG creates per port, per LAG and aggregate graphs for each member / customer.
 
-#### MRTG Setup and Configuration
+### MRTG Setup and Configuration
 
 You need to install some basic packages for MRTG to work - on Ubuntu for example, install:
 
@@ -158,12 +158,12 @@ update-rc.d mrtg defaults
 
 Remember to disable the default cron job for MRTG on Ubuntu!
 
-#### Customising the Configuration
+### Customising the Configuration
 
 An example of how to customise the MRTG configuration [can be found in the skinning documenation](skinning.md).
 
 
-#### Inserting Traffic Data Into the Database / Reporting Emails
+### Inserting Traffic Data Into the Database / Reporting Emails
 
 The MRTG backend inserts daily summaries into MySQL for reporting. An example crontab for this is:
 
@@ -187,3 +187,36 @@ which, in the order above, do:
 3. Email a report of all ports with >=80% utilisation yesterday.
 4. Email a report of all ports with a non-zero discard count yesterday.
 5. Email a report of all ports with a non-zero error count yesterday.
+
+## Backend: sflow
+
+Documentation on sflow is being prepared for v4 but the [v4 documentation is stail available here](https://github.com/inex/IXP-Manager/wiki/Installing-Sflow-Support).
+
+The previous version of IXP Manager (<4) used a script called `sflow-graph.php` which was installed on the sflow server to create graphs on demand. IXP Manager v4 does not use this but pulls the required RRD files directly.
+
+If you have these on the same server (not typically recommended), then set the path accordingly in `.env`:
+
+```
+GRAPHER_BACKEND_SFLOW_ROOT="/srv/ixpmatrix"
+```
+
+If you have implemented this via a web server on the sflow server (as we typically do at INEX), then you need to expose the RRD data directory to IXP Manager using an Apache config such as:
+
+```
+Alias /grapher-sflow /srv/ixpmatrix
+
+<Directory "/srv/ixpmatrix">
+	Options None
+	AllowOverride None
+	<RequireAny>
+        	Require ip 192.0.2.0/24
+            Require ip 2001:db8::/32
+	</RequireAny>
+</Directory>
+```
+
+and update `.env` for this with something like:
+
+```
+GRAPHER_BACKEND_SFLOW_ROOT="http://www.example.com/grapher-sflow"
+```
