@@ -154,6 +154,8 @@
         
             <li><a class="toctree-l4" href="#configuration-overview">Configuration Overview</a></li>
         
+            <li><a class="toctree-l4" href="#examples">Examples</a></li>
+        
             <li><a class="toctree-l4" href="#generation-overview">Generation Overview</a></li>
         
             <li><a class="toctree-l4" href="#route-servers">Route Servers</a></li>
@@ -299,6 +301,15 @@
 <li><code>template</code> - the template to use to generate the configuration. See stock examples <a href="https://github.com/inex/IXP-Manager/tree/master/resources/views/api/v4/router">here</a> (and note that <a href="../skinning/">skinning</a> is supported).</li>
 </ul>
 <p>Typically your <code>routers.php</code> file would hold multiple such entries. It is our intention to move this into the UI and database.</p>
+<h2 id="examples">Examples</h2>
+<p>We use Travis CI to test IXP Manager before making new releases. The primary purpose of this is to ensure that the configuration for routers generated matches known good configurations from the same sample database.</p>
+<p>These know good configurations also serve as useful examples of what the standard IXP Manager configuration generates.</p>
+<p>See <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci/known-good">these known good configurations here</a> with the prefix <code>ci-apiv4-</code> and:</p>
+<ul>
+<li><code>as112</code>: AS112 router configurations conforming to <a href="https://tools.ietf.org/html/rfc7534">rfc7534</a> (AS112 Nameserver Operations) and implementing <a href="https://tools.ietf.org/html/rfc7535">rfc7535</a> (AS112 Redirection Using DNAME). There are configs to serve queries over both IPv4 and IPv6.</li>
+<li><code>rc1</code>: route collector configurations. Peering with the route collector is mandatory at many IXPs including INEX. These are incredably useful for monitoring, diagnosing issues and providing looking glasses. We also use the quarantine version of these for turning up new member connections.</li>
+<li><code>rs1</code>: route collector configurations. See below for full details of what these implement. Note also that the <code>ci-apiv4-rs1-lan2-ipv4.conf</code> file includes BGP large communities (<a href="https://tools.ietf.org/html/rfc8092">rfc8092</a>).</li>
+</ul>
 <h2 id="generation-overview">Generation Overview</h2>
 <p>The simplest configuration to generate is the route collector configuration. A route collector is an IXP router which serves only to <em>accept all routes and export no routes</em>. It is used for problem diagnosis, to aid customer monitoring and for looking glasses (see <a href="https://www.inex.ie/ixp/lg/rc1-lan1-ipv4">INEX's here</a>.</p>
 <p>The <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird/standard.foil.php">standard configuration</a> simply pulls in a fairly standard header (sets up router ID, listening address and - for the collector at least - some unused filters) and creates a session for all customer routers on the given VLAN (see <code>vlan_id</code> above).</p>

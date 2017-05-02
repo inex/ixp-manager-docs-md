@@ -112,6 +112,10 @@
         
             <li><a class="toctree-l4" href="#grapher-backends">Grapher Backends</a></li>
         
+            <li><a class="toctree-l4" href="#backend-mrtg">Backend: MRTG</a></li>
+        
+            <li><a class="toctree-l4" href="#backend-sflow">Backend: sflow</a></li>
+        
         </ul>
     
 
@@ -259,7 +263,7 @@
 </ul>
 <p>Backend specific configuration and set-up instructions can be found in their own sections.</p>
 <h2 id="grapher-backends">Grapher Backends</h2>
-<h3 id="mrtg">Mrtg</h3>
+<h2 id="backend-mrtg">Backend: MRTG</h2>
 <p>MRTG is a particularly efficient SNMP poller as, irrespective of how many times an interface is referenced for different graphs, it is only polled once per run.</p>
 <p>Per-second graphs are generated for bits, packets, errors, discards and broadcasts at 5min intervals. IXP Manager's Grapher system can use MRTG to poll switches and create traffic graphs for:</p>
 <ul>
@@ -279,7 +283,7 @@
 <li><strong>Customer Graphs</strong></li>
 </ul>
 <p>MRTG creates per port, per LAG and aggregate graphs for each member / customer.</p>
-<h4 id="mrtg-setup-and-configuration">MRTG Setup and Configuration</h4>
+<h3 id="mrtg-setup-and-configuration">MRTG Setup and Configuration</h3>
 <p>You need to install some basic packages for MRTG to work - on Ubuntu for example, install:</p>
 <div class="highlight"><pre><span></span>apt-get install libconfig-general-perl libnetaddr-ip-perl mrtg
 </pre></div>
@@ -371,9 +375,9 @@ update-rc.d mrtg defaults
 
 
 <p>Remember to disable the default cron job for MRTG on Ubuntu!</p>
-<h4 id="customising-the-configuration">Customising the Configuration</h4>
+<h3 id="customising-the-configuration">Customising the Configuration</h3>
 <p>An example of how to customise the MRTG configuration <a href="../skinning/">can be found in the skinning documenation</a>.</p>
-<h4 id="inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails</h4>
+<h3 id="inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails</h3>
 <p>The MRTG backend inserts daily summaries into MySQL for reporting. An example crontab for this is:</p>
 <div class="highlight"><pre><span></span>0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
 
@@ -395,6 +399,31 @@ update-rc.d mrtg defaults
 <li>Email a report of all ports with a non-zero discard count yesterday.</li>
 <li>Email a report of all ports with a non-zero error count yesterday.</li>
 </ol>
+<h2 id="backend-sflow">Backend: sflow</h2>
+<p>Documentation on sflow is being prepared for v4 but the <a href="https://github.com/inex/IXP-Manager/wiki/Installing-Sflow-Support">v4 documentation is stail available here</a>.</p>
+<p>The previous version of IXP Manager (&lt;4) used a script called <code>sflow-graph.php</code> which was installed on the sflow server to create graphs on demand. IXP Manager v4 does not use this but pulls the required RRD files directly.</p>
+<p>If you have these on the same server (not typically recommended), then set the path accordingly in <code>.env</code>:</p>
+<div class="highlight"><pre><span></span>GRAPHER_BACKEND_SFLOW_ROOT=&quot;/srv/ixpmatrix&quot;
+</pre></div>
+
+
+<p>If you have implemented this via a web server on the sflow server (as we typically do at INEX), then you need to expose the RRD data directory to IXP Manager using an Apache config such as:</p>
+<div class="highlight"><pre><span></span>Alias /grapher-sflow /srv/ixpmatrix
+
+&lt;Directory &quot;/srv/ixpmatrix&quot;&gt;
+    Options None
+    AllowOverride None
+    &lt;RequireAny&gt;
+            Require ip 192.0.2.0/24
+            Require ip 2001:db8::/32
+    &lt;/RequireAny&gt;
+&lt;/Directory&gt;
+</pre></div>
+
+
+<p>and update <code>.env</code> for this with something like:</p>
+<div class="highlight"><pre><span></span>GRAPHER_BACKEND_SFLOW_ROOT=&quot;http://www.example.com/grapher-sflow&quot;
+</pre></div>
               
             </div>
           </div>
