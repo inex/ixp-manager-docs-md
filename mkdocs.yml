@@ -33,6 +33,7 @@ pages:
     - 'Skinning': 'features/skinning.md'
 - Development:
     - 'API': 'dev/api.md'
+    - 'Continuous Integration': 'dev/ci.md'
     - 'Documentation': 'dev/docs.md'
     - 'Grapher': 'dev/grapher.md'
     - 'Helpers': 'dev/helpders.md'
