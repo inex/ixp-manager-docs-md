@@ -158,6 +158,12 @@
     </url>
         
     <url>
+     <loc>http://docs.ixpmanager.org/dev/ci/</loc>
+     <lastmod>2017-05-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://docs.ixpmanager.org/dev/docs/</loc>
      <lastmod>2017-05-02</lastmod>
      <changefreq>daily</changefreq>
