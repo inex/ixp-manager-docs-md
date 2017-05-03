@@ -101,4 +101,37 @@ To skin files found under `application/[modules/xxx/]views`, proceed as follows:
 2. create a directory with a matching name: `application/views/_skins/myskin`.
 
 Once the above `.env` option is set, then any pages in its skin directory (using the same directory structure as `application/views` will take precedence over the default template files. This means you do not need to recreate / copy all the default files - just replace the ones you want.
-  
+
+## Finding Templates
+
+Usually there is one of two places to find a template:
+
+* New pages in >=v4: `resources/views/$controller/$action`
+* Old pages from <v4: `application/views/$controller/$action`
+
+If you're skinning, then there's an extra two places:
+
+* New pages in >=v4: `resources/skins/$skin/$controller/$action`
+* Old pages from <v4: `application/views/_skins/$skin/$controller/$action`
+
+The indicated variables above mean:
+
+* `$controller`: typically the first part of the URL (after the main IXP Manager site) for the page you are looking at. Examples include: `patch-panel`, `router` but they may also be deeper API paths such as `api/v4/router`.
+* `$action`: the last part of the URL such as `edit`.
+* `$skin`: the name of your skin as defined above.
+
+**Typically**, following the URL path in the views directory will yield the template file you need.
+
+To help identify if the page you are looking at is from the <v4 or >=v4 code base, we have added a HTML comment to the templates which appears just after the `<head>` tag as follows:
+
+* For >=v4 (new codebase):
+
+    ```html
+    <!--  IXP MANAGER - template directory: resources/[views|skins] -->
+    ```
+
+* For <v4 (old codebase):
+
+    ```html
+    <!--  IXP MANAGER - template directory: application/views -->
+    ```
