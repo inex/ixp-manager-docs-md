@@ -35,8 +35,8 @@ When adding a router, you give it a *handle*. For example: `rc1-lan1-ipv4` which
 # This is generated in IXP Manager via the top right menu: *My Account -> API Keys*
 KEY="your-admin-ixp-manager-api-key"
 
-# The base URL of your IXP Manager install plus: 'api/v4/router/gen_config'
-URL="https://ixp.example.com/api/v4/router/gen_config"
+# The base URL of your IXP Manager install plus: 'api/v4/router/gen-config'
+URL="https://ixp.example.com/api/v4/router/gen-config"
 
 # The handle is as described above:
 HANDLE="rc1-lan1-ipv4"
