@@ -160,6 +160,8 @@
         
             <li><a class="toctree-l4" href="#skinning-old-templates">Skinning Old Templates</a></li>
         
+            <li><a class="toctree-l4" href="#finding-templates">Finding Templates</a></li>
+        
         </ul>
     
 
@@ -322,6 +324,41 @@ vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
 </li>
 </ol>
 <p>Once the above <code>.env</code> option is set, then any pages in its skin directory (using the same directory structure as <code>application/views</code> will take precedence over the default template files. This means you do not need to recreate / copy all the default files - just replace the ones you want.</p>
+<h2 id="finding-templates">Finding Templates</h2>
+<p>Usually there is one of two places to find a template:</p>
+<ul>
+<li>New pages in &gt;=v4: <code>resources/views/$controller/$action</code></li>
+<li>Old pages from &lt;v4: <code>application/views/$controller/$action</code></li>
+</ul>
+<p>If you're skinning, then there's an extra two places:</p>
+<ul>
+<li>New pages in &gt;=v4: <code>resources/skins/$skin/$controller/$action</code></li>
+<li>Old pages from &lt;v4: <code>application/views/_skins/$skin/$controller/$action</code></li>
+</ul>
+<p>The indicated variables above mean:</p>
+<ul>
+<li><code>$controller</code>: typically the first part of the URL (after the main IXP Manager site) for the page you are looking at. Examples include: <code>patch-panel</code>, <code>router</code> but they may also be deeper API paths such as <code>api/v4/router</code>.</li>
+<li><code>$action</code>: the last part of the URL such as <code>edit</code>.</li>
+<li><code>$skin</code>: the name of your skin as defined above.</li>
+</ul>
+<p><strong>Typically</strong>, following the URL path in the views directory will yield the template file you need.</p>
+<p>To help identify if the page you are looking at is from the <v4 or >=v4 code base, we have added a HTML comment to the templates which appears just after the <code>&lt;head&gt;</code> tag as follows:</p>
+<ul>
+<li>
+<p>For &gt;=v4 (new codebase):</p>
+<div class="highlight"><pre><span></span><span class="c">&lt;!--  IXP MANAGER - template directory: resources/[views|skins] --&gt;</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>For &lt;v4 (old codebase):</p>
+<div class="highlight"><pre><span></span><span class="c">&lt;!--  IXP MANAGER - template directory: application/views --&gt;</span>
+</pre></div>
+
+
+</li>
+</ul>
               
             </div>
           </div>
