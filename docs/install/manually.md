@@ -121,6 +121,12 @@ Now create the database schema:
 php artisan doctrine:schema:create
 ```
 
+Some older scripts still rely on MySQL view tables. Create these with:
+
+```sh
+mysql -u ixp -p ixp < $IXPROOT/tools/sql/views.sql
+```
+
 ### Configuration
 
 

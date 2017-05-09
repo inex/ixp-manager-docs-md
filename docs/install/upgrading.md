@@ -147,3 +147,9 @@ cd $IXPROOT
 ./artisan doctrine:generate:entities database
 ./artisan doctrine:generate:proxies
 ```
+
+Some older scripts also rely on MySQL view tables that may be missing. You can safely run this to (re)create them:
+
+```sh
+mysql -u ixp -p ixp < $IXPROOT/tools/sql/views.sql
+```
