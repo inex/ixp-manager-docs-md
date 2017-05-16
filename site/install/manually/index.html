@@ -76,10 +76,10 @@
     <li class="toctree-l3"><a href="#requirements">Requirements</a></li>
     
 
-    <li class="toctree-l3"><a href="#install-composer-and-bower">Install Composer and Bower</a></li>
+    <li class="toctree-l3"><a href="#get-the-ixp-manager-source">Get the IXP Manager Source</a></li>
     
 
-    <li class="toctree-l3"><a href="#get-the-ixp-manager-source">Get the IXP Manager Source</a></li>
+    <li class="toctree-l3"><a href="#install-composer-and-bower">Install Composer and Bower</a></li>
     
 
     <li class="toctree-l3"><a href="#initial-setup-and-dependancies">Initial Setup and Dependancies</a></li>
@@ -286,17 +286,29 @@
 <li>php-rrd</li>
 </ul>
 <p>For completeness, the IXP Manager installation script for Ubuntu 16.04 LTS installs:</p>
-<p><code>sh
-apt-get install apache2 php7.0 php7.0-intl php7.0-mysql php-rrd php7.0-cgi php7.0-cli  \
-    php7.0-snmp php7.0-curl php7.0-mcrypt php-memcached libapache2-mod-php7.0          \
-    mysql-server mysql-client php-mysql memcached snmp nodejs nodejs-legacy npm        \
-    php7.0-mbstring php7.0-xml php-gettext bgpq3 php-memcache unzip php-zip git</code></p>
+<div class="highlight"><pre>apt-get install apache2 php7.0 php7.0-intl php7.0-mysql php-rrd php7.0-cgi php7.0-cli  <span class="se">\</span>
+    php7.0-snmp php7.0-curl php7.0-mcrypt php-memcached libapache2-mod-php7.0          <span class="se">\</span>
+    mysql-server mysql-client php-mysql memcached snmp nodejs nodejs-legacy npm        <span class="se">\</span>
+    php7.0-mbstring php7.0-xml php-gettext php-gd bgpq3 php-memcache unzip php-zip git
+</pre></div>
+
+
+<h1 id="get-the-ixp-manager-source">Get the IXP Manager Source</h1>
+<p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
+<p>Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source (our examples use <code>/srv/ixpmanager</code> which we refer to as <code>$IXPROOT</code>). Note that it <strong>should not</strong> be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>).</p>
+<div class="highlight"><pre><span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+<span class="nb">cd</span> /srv
+git clone https://github.com/inex/IXP-Manager.git ixpmanager
+<span class="nb">cd</span> <span class="nv">$IXPROOT</span>   <span class="c"># /srv/ixpmanager</span>
+git checkout master
+chown -R www-data: <span class="nv">$IXPROOT</span>
+</pre></div>
+
+
 <h1 id="install-composer-and-bower">Install Composer and Bower</h1>
 <p>IXP Manager uses <a href="http://getcomposer.org/">Composer</a> to manage its PHP dependencies. First, download a copy of the composer.phar. Once you have the PHAR archive, you can either keep it in your local project directory or move to <code>/usr/local/bin</code> to use it globally on your system.</p>
 <p>The installation script for Ubuntu 16.04 LTS installs these via:</p>
-<div class="highlight"><pre><span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
-<span class="c"># ...</span>
-<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 <span class="nv">EXPECTED_SIGNATURE</span><span class="o">=</span><span class="k">$(</span>wget https://composer.github.io/installer.sig -O - -q<span class="k">)</span>
 php -r <span class="s2">&quot;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&quot;</span>
 <span class="nv">ACTUAL_SIGNATURE</span><span class="o">=</span><span class="k">$(</span>php -r <span class="s2">&quot;echo hash_file(&#39;SHA384&#39;, &#39;composer-setup.php&#39;);&quot;</span><span class="k">)</span>
@@ -316,16 +328,6 @@ php -r <span class="s2">&quot;copy(&#39;https://getcomposer.org/installer&#39;, 
 
 <p>and:</p>
 <div class="highlight"><pre>npm install -g bower
-</pre></div>
-
-
-<h1 id="get-the-ixp-manager-source">Get the IXP Manager Source</h1>
-<p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
-<p>Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source (our examples use <code>/srv/ixpmanager</code> which we refer to as <code>$IXPROOT</code>). Note that it <strong>should not</strong> be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>).</p>
-<div class="highlight"><pre><span class="nb">cd</span> /srv
-git clone https://github.com/inex/IXP-Manager.git ixpmanager
-<span class="nb">cd</span> <span class="nv">$IXPROOT</span>   <span class="c"># /srv/ixpmanager</span>
-git checkout master
 </pre></div>
 
 

@@ -25,12 +25,30 @@ To complete the installation using the included config/scripts, you will also ne
 
 For completeness, the IXP Manager installation script for Ubuntu 16.04 LTS installs:
 
-``sh
+```sh
 apt-get install apache2 php7.0 php7.0-intl php7.0-mysql php-rrd php7.0-cgi php7.0-cli  \
     php7.0-snmp php7.0-curl php7.0-mcrypt php-memcached libapache2-mod-php7.0          \
     mysql-server mysql-client php-mysql memcached snmp nodejs nodejs-legacy npm        \
-    php7.0-mbstring php7.0-xml php-gettext bgpq3 php-memcache unzip php-zip git
-``
+    php7.0-mbstring php7.0-xml php-gettext php-gd bgpq3 php-memcache unzip php-zip git
+```
+
+
+# Get the IXP Manager Source
+
+
+The code for IXP Manager is maintained on GitHub and the canonical repository is [inex/IXP-Manager](https://github.com/inex/IXP-Manager).
+
+Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source (our examples use `/srv/ixpmanager` which we refer to as `$IXPROOT`). Note that it **should not** be checked out into any web exposed directory (e.g. do not checkout to `/var/www`).
+
+```sh
+IXPROOT=/srv/ixpmanager
+cd /srv
+git clone https://github.com/inex/IXP-Manager.git ixpmanager
+cd $IXPROOT   # /srv/ixpmanager
+git checkout master
+chown -R www-data: $IXPROOT
+```
+
 
 # Install Composer and Bower
 
@@ -41,8 +59,6 @@ IXP Manager uses [Composer](http://getcomposer.org/) to manage its PHP dependenc
 The installation script for Ubuntu 16.04 LTS installs these via:
 
 ```sh
-IXPROOT=/srv/ixpmanager
-# ...
 cd $IXPROOT
 EXPECTED_SIGNATURE=$(wget https://composer.github.io/installer.sig -O - -q)
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -66,19 +82,6 @@ and:
 npm install -g bower
 ```
 
-# Get the IXP Manager Source
-
-
-The code for IXP Manager is maintained on GitHub and the canonical repository is [inex/IXP-Manager](https://github.com/inex/IXP-Manager).
-
-Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source (our examples use `/srv/ixpmanager` which we refer to as `$IXPROOT`). Note that it **should not** be checked out into any web exposed directory (e.g. do not checkout to `/var/www`).
-
-```sh
-cd /srv
-git clone https://github.com/inex/IXP-Manager.git ixpmanager
-cd $IXPROOT   # /srv/ixpmanager
-git checkout master
-```
 
 # Initial Setup and Dependancies
 
