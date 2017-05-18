@@ -15,6 +15,7 @@ pages:
     - 'Upgrading': 'install/upgrading.md'
     - 'Upgrade From v3': 'install/upgrade-v3.md'
 - Features:
+    - 'API': 'features/api.md'
     - 'AS112': 'features/routers.md'
     - 'Contact Groups': 'features/contact-groups.md'
     - 'Cross Connects': 'features/patch-panels.md'
