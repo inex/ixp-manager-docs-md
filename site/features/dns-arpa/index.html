@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>DNS / ARPA - IXP Manager Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "DNS / ARPA";
+    var mkdocs_page_input_path = "features/dns-arpa.md";
+    var mkdocs_page_url = "/features/dns-arpa/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../routers/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Cross Connects</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">DNS / ARPA</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#dns-arpa">DNS / ARPA</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#as-json">As JSON</a></li>
+        
+            <li><a class="toctree-l4" href="#from-templates">From Templates</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">Layer2 Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../mailing-lists/">Mailing List Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../reseller/">Reseller Functionality</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Route Collector</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Route Server</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Routers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../skinning/">Skinning</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/ci/">Continuous Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Features &raquo;</li>
+        
+      
+    
+    <li>DNS / ARPA</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/dns-arpa.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="dns-arpa">DNS / ARPA</h1>
+<p>An IXP assigns each customer (an) IP address(es) from the range used on the peering LAN(s). These IP addresses can show up in traceroutes (for example) and both IXPs and customers like to have these resolve to a hostname.</p>
+<p>When creating <em>VLAN Interfaces</em> in IXP Manager there is a field called <em>IPv[4/6] Hostname</em>. This is intended for this DNS ARPA purpose. Some customer have specific requirements for these while other smaller customers may not fully understand the use cases. At INEX, we typically default to entries such as:</p>
+<ul>
+<li><code>customer-name.v4.example.com</code> (where <em>example.com</em> would be <em>inex.ie</em> in our case)</li>
+<li><code>customer-name.v6.example.com</code></li>
+</ul>
+<p><strong>IXP Manager</strong> can generate your ARPA DNS entries for your peering IP space as per the hostnames configured on each VLAN interface and provide them in two ways:</p>
+<ul>
+<li>as JSON;</li>
+<li>as text based on a template (IXP Manager comes with a <em>ISC Bind</em> format example)</li>
+</ul>
+<p>Both of these are explained below.</p>
+<p>Note that the API endpoints below can be tested in your browser by directly accessing the URLs <strong>when logged in</strong>. Otherwise, you need an <a href="../../dev/api/">API key</a> when using them in scripts.</p>
+<h2 id="as-json">As JSON</h2>
+<p>You can use the <strong>IXP Manager</strong> API to get all ARPA entries for a given VLAN and protocol as a JSON object using the following endpoint format:</p>
+<div class="highlight"><pre>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}
+</pre></div>
+
+
+<p>where:</p>
+<ul>
+<li><code>vlanid</code> is the database ID (<em>DB ID</em>) of the VLAN. You can find the DB ID in IXP Manager in the VLAN table (select <em>VLANs</em> from the left hand side menu).</li>
+<li><code>protocol</code> is either <code>4</code> for IPv4 or 6 for <code>IPv6</code>.</li>
+</ul>
+<p>If either of these are invalid, the API will return with a HTTP 404 response.</p>
+<p>And example of the JSON response returned is:</p>
+<div class="highlight"><pre><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;192.0.2.67&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;hostname&quot;</span><span class="p">:</span> <span class="s2">&quot;cherrie.example.com&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;arpa&quot;</span><span class="p">:</span> <span class="s2">&quot;67.2.0.192.in-addr.arpa.&quot;</span>
+    <span class="p">},</span>
+    <span class="err">...</span>
+<span class="p">]</span>
+</pre></div>
+
+
+<p>where:</p>
+<ul>
+<li><code>enabled</code> indicates if the protocol has been enabled for this user. This is nearly always true. A situation where it may be false is if you enabled IPv6 for a user; then that user subsequently decided to not use IPv6; then you unchecked the <em>IPv6 Enabled</em> box in the VLAN Interface form without removing address / hostname entries.</li>
+<li><code>address</code> - this IPv4/6 address of the VLAN interface as assigned by the IXP.</li>
+<li><code>hostname</code> - the configured hostname for this address as entered into <strong>IXP Manager</strong>.</li>
+<li><code>arpa</code>: the generated ARPA record name for the IP address assigned by the IXP.</li>
+</ul>
+<p>You can now feed the JSON object into a script to create your own DNS zones appropriate to your DNS infrastructure.</p>
+<p>When scripting, we would normally pull the JSON object using something like:</p>
+<div class="highlight"><pre><span class="c">#! /usr/bin/env bash</span>
+
+<span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;your-ixp-manager-api-key&quot;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://ixp.example.com/api/v4/dns/arpa&quot;</span>
+<span class="nv">VLANIDS</span><span class="o">=</span><span class="s2">&quot;1 2&quot;</span>
+<span class="nv">PROTOCOLS</span><span class="o">=</span><span class="s2">&quot;4 6&quot;</span>
+
+<span class="k">for</span> v in <span class="nv">$VLANIDS</span><span class="p">;</span> <span class="k">do</span>
+    <span class="k">for</span> p in <span class="nv">$PROTOCOLS</span><span class="p">;</span> <span class="k">do</span>
+
+        <span class="nv">cmd</span><span class="o">=</span><span class="s2">&quot;/usr/local/bin/curl --fail -s             \</span>
+<span class="s2">            -H \&quot;X-IXP-Manager-API-Key: </span><span class="si">${</span><span class="nv">KEY</span><span class="si">}</span><span class="s2">\&quot;       \</span>
+<span class="s2">            </span><span class="si">${</span><span class="nv">URL</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">v</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">p</span><span class="si">}</span><span class="s2">                           \</span>
+<span class="s2">                &gt;/tmp/dns-arpa-vlanid</span><span class="nv">$v</span><span class="s2">-ipv</span><span class="nv">$p</span><span class="s2">.json.</span><span class="nv">$$</span><span class="s2">&quot;</span>
+        <span class="nb">eval</span> <span class="nv">$cmd</span>
+
+        <span class="k">if</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="nb">echo</span> <span class="s2">&quot;ERROR: non-zero return from DNS ARPA API call for vlan ID </span><span class="nv">$v</span><span class="s2"> with protocol </span><span class="nv">$p</span><span class="s2">&quot;</span>
+            <span class="k">continue</span>
+        <span class="k">fi</span>
+
+        // <span class="k">do</span> something
+
+        rm /tmp/dns-arpa-vlanid<span class="nv">$v</span>-ipv<span class="nv">$p</span>.json.<span class="nv">$$</span>
+    <span class="k">done</span>
+<span class="k">done</span>
+</pre></div>
+
+
+<h2 id="from-templates">From Templates</h2>
+<p>Rather than writing your own scripts to consume the JSON object as above, it may be easier to use the bundled ISC Bind template or to write your own template for IXP Manager.</p>
+<p>You can use the <strong>IXP Manager</strong> API to get all ARPA entries for a given VLAN and protocol as plain text based on a template by using the following API endpoint:</p>
+<div class="highlight"><pre>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}/{template}
+</pre></div>
+
+
+<p>where:</p>
+<ul>
+<li><code>vlanid</code> and <code>protocol</code> is as above in <em>As JSON</em>.</li>
+<li><code>template</code> is the name of a template file residing in the view path <code>api/v4/dns/</code>.</li>
+</ul>
+<p>Remember that the included ISC Bind template can be <a href="../skinning/">skinned</a> or you can add custom templates to your skin directory. More detail on this can be found in the dedicated section below.</p>
+<p>The bundled ISC Bind template can be used by setting <code>{template}</code> to <code>bind</code> in the above URL. For the example interface in the JSON above, the ISC Bind template would yield:</p>
+<div class="highlight"><pre>67.2.0.192.in-addr.arpa.       IN   PTR     cherrie.example.com.
+</pre></div>
+
+
+<p><em>(note that the terminated period on the hostname is added by the template)</em></p>
+<h3 id="skinning-templating">Skinning / Templating</h3>
+<p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled ISC Bind template or add your own.</p>
+<p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+mkdir -p resources/skins/myskin/api/v4/dns
+cp resources/views/api/v4/dns/bind.foil.php resources/skins/myskin/api/v4/dns/mytemplate1.foil.php
+</pre></div>
+
+
+<p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
+<blockquote>
+<p><strong>Contribute back</strong> - if you write a useful generator, please open a pull request and contribute it back to the project.</p>
+</blockquote>
+<p>The following variables are available in the template:</p>
+<ul>
+<li><code>$t-&gt;arpa</code>: array of the ARPA entries - see below.</li>
+<li><code>$t-&gt;vlan</code>: instance of the <a href="https://github.com/inex/IXP-Manager/blob/master/database/Entities/Vlan.php"><code>Vlan</code> entity object</a>.</li>
+<li><code>$t-&gt;protocol</code>: either <code>4</code> or <code>6</code>.</li>
+</ul>
+<p>The following variables are available for each element of the <code>$t-&gt;arpa</code> array (essentially the same as the JSON object above): <code>enabled, hostname, address, arpa</code>. See above for a description.</p>
+<p>The actually code in the bundled ISC Bind sample is as simple as:</p>
+<div class="highlight"><pre><span class="cp">&lt;?php</span> <span class="k">foreach</span><span class="p">(</span> <span class="nv">$t</span><span class="o">-&gt;</span><span class="na">arpa</span> <span class="k">as</span> <span class="nv">$a</span> <span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$a</span><span class="p">[</span><span class="s1">&#39;arpa&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">    IN      PTR     </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$a</span><span class="p">[</span><span class="s1">&#39;hostname&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">.</span>
+<span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>
+
+
+<h3 id="sample-script">Sample Script</h3>
+<p>At INEX, we have (for example) one peering LAN that is a /25 IPv4 network and so is not a zone file in its own right. As such, we make up the zone file using includes. The main zone file looks like:</p>
+<div class="highlight"><pre>$TTL 86400
+
+$INCLUDE /usr/local/etc/namedb/zones/soa-0.2.192.in-addr.arpa.inc
+
+$INCLUDE zones/inex-dns-slave-nslist.inc
+
+$INCLUDE zones/reverse-mgmt-hosts-ipv4.include
+$INCLUDE zones/reverse-vlan-12-ipv4.include
+</pre></div>
+
+
+<p>The SOA file looks like (as you might expect):</p>
+<div class="highlight"><pre>@               IN      SOA     ns.example.come.     hostmaster.example.com. (
+                        2017051701      ; Serial
+                        43200           ; Refresh
+                        7200            ; Retry
+                        1209600         ; Expire
+                        7200 )          ; Minimum
+</pre></div>
+
+
+<p>The <code>reverse-vlan-12-ipv4.include</code> is the output of the ISC Bind template above for a given VLAN ID.</p>
+<p>We use the sample script <code>update-dns-from-ixp-manager.sh</code> which can be found <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/dns-arpa">in this directory</a> to keep this updated ourselves.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../grapher/" class="btn btn-neutral float-right" title="Grapher">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../patch-panels/" class="btn btn-neutral" title="Cross Connects"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../patch-panels/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../grapher/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>

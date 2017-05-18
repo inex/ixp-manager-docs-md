@@ -18,6 +18,7 @@ pages:
     - 'AS112': 'features/routers.md'
     - 'Contact Groups': 'features/contact-groups.md'
     - 'Cross Connects': 'features/patch-panels.md'
+    - 'DNS / ARPA': 'features/dns-arpa.md'
     - 'Grapher': 'features/grapher.md'
     - 'Helpdesk Integration': 'features/helpdesk.md'
     - 'IRRDB': 'features/routers.md'
