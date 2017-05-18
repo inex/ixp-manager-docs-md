@@ -89,7 +89,7 @@ done
 
 ## From Templates
 
-Rather than writing your own scripts to consume the JSON object as above, it may be easier to use the bundled ISC Bind template or to write your own template for IXP Manager.
+Rather than writing your own scripts to consume the JSON object as above, it may be easier to use the bundled ISC Bind templates or to write your own template for IXP Manager.
 
 You can use the **IXP Manager** API to get all ARPA entries for a given VLAN and protocol as plain text based on a template by using the following API endpoint:
 
@@ -102,15 +102,20 @@ where:
 * `vlanid` and `protocol` is as above in *As JSON*.
 * `template` is the name of a template file residing in the view path `api/v4/dns/`.
 
-Remember that the included ISC Bind template can be [skinned](skinning.md) or you can add custom templates to your skin directory. More detail on this can be found in the dedicated section below.
+Remember that the included ISC Bind templates can be [skinned](skinning.md) or you can add custom templates to your skin directory. More detail on this can be found in the dedicated section below.
 
-The bundled ISC Bind template can be used by setting `{template}` to `bind` in the above URL. For the example interface in the JSON above, the ISC Bind template would yield:
+The bundled ISC Bind templates can be used by setting `{template}` to `bind` or `bind-full` in the above URL. For the example interface in the JSON above, the ISC Bind `bind` template would yield:
 
 ```
 67.2.0.192.in-addr.arpa.       IN   PTR     cherrie.example.com.
 ```
 
 *(note that the terminated period on the hostname is added by the template)*
+
+The two bundled templates are:
+
+* `bind`: outputs resource records only as per the above example.
+* `bind-full`: outputs a complete Bind zone file including head and serialized serial number (UNIX timestamp). This must be templated as it uses `example.com` for email and name server domains.
 
 ### Skinning / Templating
 
@@ -136,7 +141,7 @@ The following variables are available in the template:
 
 The following variables are available for each element of the `$t->arpa` array (essentially the same as the JSON object above): `enabled, hostname, address, arpa`. See above for a description.
 
-The actually code in the bundled ISC Bind sample is as simple as:
+The actual code in the bundled ISC Bind sample is as simple as:
 
 ```php
 <?php foreach( $t->arpa as $a ): ?>
@@ -170,6 +175,6 @@ The SOA file looks like (as you might expect):
                         7200 )          ; Minimum
 ```
 
-The `reverse-vlan-12-ipv4.include` is the output of the ISC Bind template above for a given VLAN ID.
+The `reverse-vlan-12-ipv4.include` is the output of the ISC Bind `bind` template above for a given VLAN ID.
 
 We use the sample script `update-dns-from-ixp-manager.sh` which can be found [in this directory](https://github.com/inex/IXP-Manager/blob/master/tools/runtime/dns-arpa) to keep this updated ourselves.
