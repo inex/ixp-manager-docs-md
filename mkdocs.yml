@@ -22,6 +22,7 @@ pages:
     - 'Grapher': 'features/grapher.md'
     - 'Helpdesk Integration': 'features/helpdesk.md'
     - 'IRRDB': 'features/routers.md'
+    - 'IX-F Member Export': 'features/ixf-export.md'
     - 'Layer2 Addresses': 'features/layer2-addresses.md'
     - 'Looking Glass': 'features/looking-glass.md'
     - 'MAC Addresses': 'features/layer2-addresses.md'
