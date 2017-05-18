@@ -320,7 +320,7 @@
 
 
 <h2 id="from-templates">From Templates</h2>
-<p>Rather than writing your own scripts to consume the JSON object as above, it may be easier to use the bundled ISC Bind template or to write your own template for IXP Manager.</p>
+<p>Rather than writing your own scripts to consume the JSON object as above, it may be easier to use the bundled ISC Bind templates or to write your own template for IXP Manager.</p>
 <p>You can use the <strong>IXP Manager</strong> API to get all ARPA entries for a given VLAN and protocol as plain text based on a template by using the following API endpoint:</p>
 <div class="highlight"><pre>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}/{template}
 </pre></div>
@@ -331,13 +331,18 @@
 <li><code>vlanid</code> and <code>protocol</code> is as above in <em>As JSON</em>.</li>
 <li><code>template</code> is the name of a template file residing in the view path <code>api/v4/dns/</code>.</li>
 </ul>
-<p>Remember that the included ISC Bind template can be <a href="../skinning/">skinned</a> or you can add custom templates to your skin directory. More detail on this can be found in the dedicated section below.</p>
-<p>The bundled ISC Bind template can be used by setting <code>{template}</code> to <code>bind</code> in the above URL. For the example interface in the JSON above, the ISC Bind template would yield:</p>
+<p>Remember that the included ISC Bind templates can be <a href="../skinning/">skinned</a> or you can add custom templates to your skin directory. More detail on this can be found in the dedicated section below.</p>
+<p>The bundled ISC Bind templates can be used by setting <code>{template}</code> to <code>bind</code> or <code>bind-full</code> in the above URL. For the example interface in the JSON above, the ISC Bind <code>bind</code> template would yield:</p>
 <div class="highlight"><pre>67.2.0.192.in-addr.arpa.       IN   PTR     cherrie.example.com.
 </pre></div>
 
 
 <p><em>(note that the terminated period on the hostname is added by the template)</em></p>
+<p>The two bundled templates are:</p>
+<ul>
+<li><code>bind</code>: outputs resource records only as per the above example.</li>
+<li><code>bind-full</code>: outputs a complete Bind zone file including head and serialized serial number (UNIX timestamp). This must be templated as it uses <code>example.com</code> for email and name server domains.</li>
+</ul>
 <h3 id="skinning-templating">Skinning / Templating</h3>
 <p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled ISC Bind template or add your own.</p>
 <p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
@@ -358,7 +363,7 @@ cp resources/views/api/v4/dns/bind.foil.php resources/skins/myskin/api/v4/dns/my
 <li><code>$t-&gt;protocol</code>: either <code>4</code> or <code>6</code>.</li>
 </ul>
 <p>The following variables are available for each element of the <code>$t-&gt;arpa</code> array (essentially the same as the JSON object above): <code>enabled, hostname, address, arpa</code>. See above for a description.</p>
-<p>The actually code in the bundled ISC Bind sample is as simple as:</p>
+<p>The actual code in the bundled ISC Bind sample is as simple as:</p>
 <div class="highlight"><pre><span class="cp">&lt;?php</span> <span class="k">foreach</span><span class="p">(</span> <span class="nv">$t</span><span class="o">-&gt;</span><span class="na">arpa</span> <span class="k">as</span> <span class="nv">$a</span> <span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
 <span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$a</span><span class="p">[</span><span class="s1">&#39;arpa&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">    IN      PTR     </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$a</span><span class="p">[</span><span class="s1">&#39;hostname&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">.</span>
 <span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
@@ -388,7 +393,7 @@ $INCLUDE zones/reverse-vlan-12-ipv4.include
 </pre></div>
 
 
-<p>The <code>reverse-vlan-12-ipv4.include</code> is the output of the ISC Bind template above for a given VLAN ID.</p>
+<p>The <code>reverse-vlan-12-ipv4.include</code> is the output of the ISC Bind <code>bind</code> template above for a given VLAN ID.</p>
 <p>We use the sample script <code>update-dns-from-ixp-manager.sh</code> which can be found <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/dns-arpa">in this directory</a> to keep this updated ourselves.</p>
               
             </div>
