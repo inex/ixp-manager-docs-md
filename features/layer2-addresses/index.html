@@ -117,6 +117,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../ixf-export/">IX-F Member Export</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="./">Layer2 Addresses</a>
                 </li>
                 <li class="">
@@ -284,7 +288,7 @@
 </ol>
 <h3 id="migrating-read-only-to-readwrite">Migrating Read-Only to Read/Write</h3>
 <p>INEX's use case was to switch from the read only <em>MAC Addresses</em> table to this table without the need to data fill all preexisting ~200 MACs. As such we have created an Artisan migration script which can be run with:</p>
-<div class="highlight"><pre>php <span class="nv">$IXPROOT</span>/artisan l2addresses:populate
+<div class="highlight"><pre><span></span>php <span class="nv">$IXPROOT</span>/artisan l2addresses:populate
 </pre></div>
 
 
@@ -304,7 +308,7 @@
 </blockquote>
 <p>These should all be checked manually.</p>
 <p>A useful SQL command to double check the results for me was:</p>
-<div class="highlight"><pre><span class="k">SELECT</span> <span class="n">mac</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">mac</span><span class="p">)</span> <span class="k">AS</span> <span class="k">c</span> <span class="k">FROM</span> <span class="n">l2address</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">mac</span> <span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">mac</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">mac</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">mac</span><span class="p">)</span> <span class="k">AS</span> <span class="k">c</span> <span class="k">FROM</span> <span class="n">l2address</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">mac</span> <span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">mac</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span>
 </pre></div>
 
 
@@ -312,20 +316,20 @@
 <p>This was the original functionality - a read-only table via an admin menu option called <em>MAC Addresses</em> which lists entries from a database of MAC addresses which are sourced via a script from the IXP's switches directly.</p>
 <p>At an IXP, it can be extremely useful to have a quick look up table to see what member owns what MAC address - especially when they start injecting illegal packets into the exchange fabric.</p>
 <p>We have a script, <a href="https://github.com/islandbridgenetworks/IXP-Manager/blob/master/tools/runtime/l2database/update-l2database.pl">update-l2database.pl</a>, for this. To set it up (using Ubuntu as an example=), proceed as below. We are in the process of trying to reduce the reliance on the perl library and direct database access. But for now, this script still requires it.</p>
-<div class="highlight"><pre><span class="c"># If you haven&#39;t already, install the Perl library for IXP Manager:</span>
+<div class="highlight"><pre><span></span><span class="c1"># If you haven&#39;t already, install the Perl library for IXP Manager:</span>
 apt-get install libnet-snmp-perl libconfig-general-perl libnetaddr-ip-perl
 <span class="nb">cd</span> <span class="nv">$IXPROOT</span>/tools/perl-lib/IXPManager
 perl Makefile.PL
 make install
 
-<span class="c"># Then copy and edit the configuration file to set the database connection settings:</span>
+<span class="c1"># Then copy and edit the configuration file to set the database connection settings:</span>
 cp <span class="nv">$IXPROOT</span>/tools/perl-lib/IXPManager/ixpmanager.conf /usr/local/etc/
-joe /usr/local/etc/ixpmanager.conf <span class="c">#and set database settings</span>
+joe /usr/local/etc/ixpmanager.conf <span class="c1">#and set database settings</span>
 
-<span class="c"># Now copy the script:</span>
+<span class="c1"># Now copy the script:</span>
 cp <span class="nv">$IXPROOT</span>/tools/runtime/l2database/update-l2database.pl /usr/local/bin
 
-<span class="c"># and then add it to your periodic cron job with:</span>
+<span class="c1"># and then add it to your periodic cron job with:</span>
 /usr/local/bin/update-l2database.pl
 </pre></div>
 
@@ -334,7 +338,7 @@ cp <span class="nv">$IXPROOT</span>/tools/runtime/l2database/update-l2database.p
 <p>IXP Manager can store the IEEE OUI database and reference it to show the manufacturer behind a MAC address.</p>
 <h3 id="populating-and-updating-the-oui-database">Populating and Updating the OUI Database</h3>
 <p>You would typically set a weekly cron job to call:</p>
-<div class="highlight"><pre>php <span class="nv">$IXPROOT</span>/artisan utils:oui-update
+<div class="highlight"><pre><span></span>php <span class="nv">$IXPROOT</span>/artisan utils:oui-update
 </pre></div>
 
 
