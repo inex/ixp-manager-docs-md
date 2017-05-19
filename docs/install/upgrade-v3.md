@@ -3,9 +3,30 @@
 Due to the significant changes between IXP Manager v3 and v4, there is no in place upgrade process. The advised way to handle this is to install v4 in parallel and then switch over (by adjusting your DNS or Apache configuration for example) to the new v4 directory/server.
 
 
-This documenation was compiled while performing an upgrade on three separate IXP Manager installations.
+This documentation was compiled while performing an upgrade on three separate IXP Manager installations.
 
-**Before you proceed, please check the requirement listed in [the official installation instructions](manually.md).**
+**Before you proceed, please check the requirements listed in [the official installation instructions](manually.md).**
+
+If you need help, please [contact us via the public mailing list](https://www.ixpmanager.org/support.php).
+
+If you find that this guide is insufficient, please [contribute back to this documentation](../dev/docs.md).
+
+## Overview
+
+The upgrade process is quite involved and, depending how many IXP Manager features you use, may take the best part of a day.
+
+The general steps are:
+
+1. Duplicate the Database (see below)
+2. Install IXP Manager v4 (see below)
+3. Initial configuration tasks (see below)
+4. MRTG Graphing Migration (including peer to peer changes) (see below)
+5. Route collector / servers / AS112 configuration has changed - [see here](../features/routers.md)
+6. DNS / ARPA export has changed - [see here](../features/dns-arpa.md)
+7. Examine the new layer2 addresses feature and consideration migration - [see here](../features/later2-addresses.md)
+8. If you are using Bird, set up looking glasses - [see here](../features/looking-glass.md)
+9. Set up you cross connect / patch panel management - [see here](../features/patch-panels.md)
+10. Read up on [the new skinning features](../features/skinning.md) and see if you need to update / duplicate any skinned files.
 
 ## Duplicating the Database
 
@@ -67,12 +88,22 @@ chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
 
 ### New Local Settings / Configuration (Laravel)
 
-IXP Manager v4 uses a new PHP framework (Zend Framework swapped for Laravel). As such, all the older configuration options (from `application/configs/application.ini`) need to be moved to `.env`.
+IXP Manager v4 uses a new PHP framework (Zend Framework swapped for Laravel). As such, all the older configuration options (from `application/configs/application.ini`) need to be ported to `.env`.
 
 The [php dotenv](https://github.com/vlucas/phpdotenv) file (`.env`) is where all the new configuration options go. These in turn are used by the configuration files under `config/`.
 
 **NB: Where possible, place local changes into `.env` rather than changing the config files as these files are under version control. See [Laravel's documentation on this](http://laravel.com/docs/5.4/installation#configuration) and email the mailing list for help.**
 
+Once you have worked your way through `.env`, move into the `$IXPROOT/config` directory and - as appropriate for your own installation - examine each config file that ends in `.dist`. If you use / need any features in these files, copy then such as:
+
+```sh
+cd $IXPROOT/config
+cp xxxx.php.dist xxxx.php
+```
+
+Then edit the resultant `.php` file (or, better, where `config()` options exist, add them to `.env`).
+
+These `.dist` files represent v3 funtionality that has not yet been fully ported to v4/Laravel.
 
 
 ### Update the Database Schema
