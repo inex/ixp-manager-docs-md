@@ -87,6 +87,8 @@
         
             <li><a class="toctree-l4" href="#overview">Overview</a></li>
         
+            <li><a class="toctree-l4" href="#deprecations-removed-features">Deprecations / Removed Features</a></li>
+        
             <li><a class="toctree-l4" href="#duplicating-the-database">Duplicating the Database</a></li>
         
             <li><a class="toctree-l4" href="#install-ixp-manager">Install IXP Manager</a></li>
@@ -115,7 +117,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../features/routers/">AS112</a>
+    <a class="" href="../../features/as112/">AS112</a>
                 </li>
                 <li class="">
                     
@@ -280,6 +282,15 @@
 <li>Read up on <a href="../../features/skinning/">the new skinning features</a> and see if you need to update / duplicate any skinned files.</li>
 </ol>
 <p>You will note from the above that a number of features have been deprecated in favor of doing it in new ways. Our advice is to keep both v3 and v4 live in parallel and then migrate services piece meal. That way your route server configuration can continue pulling from v3 until you have set-up the v4 method. Just ensure that people do not make customer changes in either IXP Manager during this period (or, if they do, do it in both!).</p>
+<h2 id="deprecations-removed-features">Deprecations / Removed Features</h2>
+<p>As of IXP Manager v4 (certainly &gt;=v4.5), the following are no longer available:</p>
+<ol>
+<li><a href="https://github.com/inex/IXP-Manager/wiki/Route-Collector">v3 methods for generating route collector. configuration</a> - <a href="../../features/routers/">see here for the v4 method</a>.</li>
+<li><a href="https://github.com/inex/IXP-Manager/wiki/Route-Server">v3 methods for generating route server configuration</a> - <a href="../../features/routers/">see here for the v4 method</a>.</li>
+<li><a href="https://github.com/inex/IXP-Manager/wiki/AS112">v3 methods for generating AS112 BGP configuration</a> - <a href="../../features/as112/">see here for the v4 method</a>.</li>
+<li><a href="https://github.com/inex/IXP-Manager/wiki/IRRDB-Prefixes">v3 method for IRRDB updates</a> - <a href="../../features/routers/">see here for the v4 method</a>.</li>
+<li>TACACS+ and RADIUS templates - see old details <a href="https://github.com/inex/IXP-Manager/wiki/TACACS">here for TACACS+</a> and <a href="https://github.com/inex/IXP-Manager/wiki/RADIUS">here for RADIUS</a>.</li>
+</ol>
 <h2 id="duplicating-the-database">Duplicating the Database</h2>
 <p>As we're installing in parallel, we want to duplicate the database.</p>
 <p>When granting permissions on the new database, use your existing IXP Manager database credentials for ease of configuration.</p>
