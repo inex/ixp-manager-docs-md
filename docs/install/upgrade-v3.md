@@ -28,6 +28,8 @@ The general steps are:
 9. Set up you cross connect / patch panel management - [see here](../features/patch-panels.md)
 10. Read up on [the new skinning features](../features/skinning.md) and see if you need to update / duplicate any skinned files.
 
+You will note from the above that a number of features have been deprecated in favor of doing it in new ways. Our advice is to keep both v3 and v4 live in parallel and then migrate services piece meal. That way your route server configuration can continue pulling from v3 until you have set-up the v4 method. Just ensure that people do not make customer changes in either IXP Manager during this period (or, if they do, do it in both!).
+
 ## Duplicating the Database
 
 As we're installing in parallel, we want to duplicate the database.
