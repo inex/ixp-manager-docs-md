@@ -276,19 +276,19 @@
 <p>The simplest configuration to generate is the route collector configuration. A route collector is an IXP router which serves only to <em>accept all routes and export no routes</em>. It is used for problem diagnosis, to aid customer monitoring and for looking glasses (see <a href="https://www.inex.ie/ixp/lg/rc1-lan1-ipv4">INEX's here</a>).</p>
 <p>The <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird/standard.foil.php">standard configuration</a> simply pulls in a fairly standard header (sets up router ID, listening address and - for the collector at least - some unused filters) and creates a session for all customer routers on the given VLAN.</p>
 <p>When adding a router, you give it a <em>handle</em>. For example: <code>rc1-lan1-ipv4</code> which, for INEX, would mean a route collector on peering LAN1 using IPv4. Then - for the given router handle - the configuration can be generated and pulled using the API as follows:</p>
-<div class="highlight"><pre><span></span><span class="ch">#! /bin/sh</span>
+<div class="highlight"><pre><span class="c">#! /bin/sh</span>
 
-<span class="c1"># The API Key.</span>
-<span class="c1"># This is generated in IXP Manager via the top right menu: *My Account -&gt; API Keys*</span>
+<span class="c"># The API Key.</span>
+<span class="c"># This is generated in IXP Manager via the top right menu: *My Account -&gt; API Keys*</span>
 <span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;your-admin-ixp-manager-api-key&quot;</span>
 
-<span class="c1"># The base URL of your IXP Manager install plus: &#39;api/v4/router/gen-config&#39;</span>
+<span class="c"># The base URL of your IXP Manager install plus: &#39;api/v4/router/gen-config&#39;</span>
 <span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://ixp.example.com/api/v4/router/gen-config&quot;</span>
 
-<span class="c1"># The handle is as described above:</span>
+<span class="c"># The handle is as described above:</span>
 <span class="nv">HANDLE</span><span class="o">=</span><span class="s2">&quot;rc1-lan1-ipv4&quot;</span>
 
-<span class="c1"># Then the configuration can be pulled as follows:</span>
+<span class="c"># Then the configuration can be pulled as follows:</span>
 curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span class="si">${</span><span class="nv">KEY</span><span class="si">}</span><span class="s2">&quot;</span> <span class="si">${</span><span class="nv">URL</span><span class="si">}</span>/<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span> &gt;<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span>.conf
 </pre></div>
 
@@ -328,17 +328,17 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
 <h2 id="irrdb-prefixes-and-asn-filtering">IRRDB Prefixes and ASN Filtering</h2>
 <p>IXP Manager can maintain a list of member route:/route6: prefixes and origin ASNs as registered in IRRDBs in its database and then use these to, for example, generate strict inbound filters on route servers.</p>
 <p><strong>Prerequisite:</strong> you need to have set up some IRRDB sources (e.g. RIPE's whois service) under the <em>IXP Admin Actions / IRRDB Configuration</em> on the left hand side menu. There is a database seeder to install some to start you off via the following (but thius is typically done during installation):</p>
-<div class="highlight"><pre><span></span>./artisan db:seed --class=IRRDBs
+<div class="highlight"><pre>./artisan db:seed --class=IRRDBs
 </pre></div>
 
 
 <p>BGPQ3 is a very easy and fast way of querying IRRDBs. You first need to install this on your system. Then configure the path to it in <code>config/ixp_tools.php</code>. If you have not used this file before, you'll need to create your own local copy as follows:</p>
-<div class="highlight"><pre><span></span>cp config/config/ixp_tools.php.dist config/config/ixp_tools.php
+<div class="highlight"><pre>cp config/config/ixp_tools.php.dist config/config/ixp_tools.php
 </pre></div>
 
 
 <p>Then set the full call path for <code>bgpq3</code> in this file:</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
 
   <span class="s1">&#39;irrdb&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
         <span class="s1">&#39;bgpq&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
@@ -349,7 +349,7 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
 
 
 <p>To populate (and update) your local IRRDB, run the following commands (changing the path as appropriate):</p>
-<div class="highlight"><pre><span></span>/srv/ixpmanager/artisan irrdb:update-prefix-db
+<div class="highlight"><pre>/srv/ixpmanager/artisan irrdb:update-prefix-db
 /srv/ixpmanager/artisan irrdb:update-asn-db
 </pre></div>
 
@@ -363,7 +363,7 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
 <li><code>-vvv</code> (debug): show prefixes/ASNs added remove also.</li>
 </ol>
 <p>You can also specify a specific customer to update (rather than all) with an additional free form parameter. The database is searched for a matching customer in the order: customer ASN; customer ID (database primary key); and customer shortname. E.g.:</p>
-<div class="highlight"><pre><span></span>/srv/ixpmanager/artisan irrdb:update-prefix-db 64511
+<div class="highlight"><pre>/srv/ixpmanager/artisan irrdb:update-prefix-db 64511
 </pre></div>
 
 
