@@ -259,7 +259,7 @@
 <p>The upgrade process for IXP Manager is currently a manual task. Especially database schema updates.</p>
 <p>The release notes for each version may contain specific upgrade instructions including schema changes.</p>
 <p>In the below, we assume the following installation directory - alter this to suit your own situation:</p>
-<div class="highlight"><pre><span></span>IXPROOT=/srv/ixpmanager
+<div class="highlight"><pre>IXPROOT=/srv/ixpmanager
 </pre></div>
 
 
@@ -267,7 +267,7 @@
 <ol>
 <li>
 <p>Enable maintenance mode:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 ./artisan down
 </pre></div>
 
@@ -275,10 +275,10 @@
 </li>
 <li>
 <p>Using Git, checkout the next version up from yours. For IXP Manager v4, this essentially means pulling from <code>master</code>.</p>
-<div class="highlight"><pre><span></span><span class="c1"># move to the directory where you have installed IXP Manager</span>
+<div class="highlight"><pre><span class="c"># move to the directory where you have installed IXP Manager</span>
 <span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-<span class="c1"># you should be in the master branch (if not: git checkout master)</span>
-<span class="c1"># pull the latest code</span>
+<span class="c"># you should be in the master branch (if not: git checkout master)</span>
+<span class="c"># pull the latest code</span>
 git pull
 </pre></div>
 
@@ -286,14 +286,14 @@ git pull
 </li>
 <li>
 <p>Install latest required libraries from composer (see notes below):</p>
-<div class="highlight"><pre><span></span>composer install
+<div class="highlight"><pre>composer install
 </pre></div>
 
 
 </li>
 <li>
 <p>Install latest frontend dependencies (see notes below):</p>
-<div class="highlight"><pre><span></span><span class="c1"># if asked to chose a jquery version, chose the latest / highest version offered</span>
+<div class="highlight"><pre><span class="c"># if asked to chose a jquery version, chose the latest / highest version offered</span>
 bower install
 </pre></div>
 
@@ -301,17 +301,17 @@ bower install
 </li>
 <li>
 <p>Restart Memcached. Do not forget / skip this step!</p>
-<div class="highlight"><pre><span></span>systemctl restart memcached.service
+<div class="highlight"><pre>systemctl restart memcached.service
 </pre></div>
 
 
 </li>
 <li>
 <p>Update the database schema:</p>
-<div class="highlight"><pre><span></span><span class="c1"># review / sanity check first:</span>
+<div class="highlight"><pre><span class="c"># review / sanity check first:</span>
 ./artisan doctrine:schema:update --sql
-<span class="c1"># If in doubt, take a mysqldump of your database first.</span>
-<span class="c1"># migrate:</span>
+<span class="c"># If in doubt, take a mysqldump of your database first.</span>
+<span class="c"># migrate:</span>
 ./artisan doctrine:schema:update --force
 </pre></div>
 
@@ -319,14 +319,14 @@ bower install
 </li>
 <li>
 <p>Restart Memcached (yes, again). Do not forget / skip this step!</p>
-<div class="highlight"><pre><span></span>systemctl restart memcached.service
+<div class="highlight"><pre>systemctl restart memcached.service
 </pre></div>
 
 
 </li>
 <li>
 <p>Disable maintenance mode:</p>
-<div class="highlight"><pre><span></span>./artisan up
+<div class="highlight"><pre>./artisan up
 </pre></div>
 
 
@@ -336,10 +336,10 @@ bower install
 <p>It is not advisable to run bower are root but how you run it will depend on your own installation.</p>
 <p>If you installed IXP Manager via the <a href="../automated-script/">installation scripts</a>, then it will have changed ownership on directories that the web server does not need to write to to root.</p>
 <p>The following options would work on Ubuntu (as root):</p>
-<div class="highlight"><pre><span></span><span class="c1"># set this to your IXP Manager installation directory</span>
+<div class="highlight"><pre><span class="c"># set this to your IXP Manager installation directory</span>
 <span class="nv">IXPHOME</span><span class="o">=</span>/srv/ixpmanager
 
-<span class="c1"># update bower</span>
+<span class="c"># update bower</span>
 sudo -u www-data bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPHOME</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPHOME</span><span class="si">}</span><span class="s2"> &amp;&amp; bower --config.interactive=false -f update&quot;</span>
 </pre></div>
 
@@ -349,10 +349,10 @@ sudo -u www-data bash -c <span class="s2">&quot;HOME=</span><span class="si">${<
 <h2 id="updating-composer-dependancies">Updating Composer Dependancies</h2>
 <p>This is similar to the bower section above so please read that if you have not already.</p>
 <p>The following options would work on Ubuntu (as root):</p>
-<div class="highlight"><pre><span></span><span class="c1"># set this to your IXP Manager installation directory</span>
+<div class="highlight"><pre><span class="c"># set this to your IXP Manager installation directory</span>
 <span class="nv">IXPHOME</span><span class="o">=</span>/srv/ixpmanager
 
-<span class="c1"># update bower</span>
+<span class="c"># update bower</span>
 sudo -u www-data bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPHOME</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPHOME</span><span class="si">}</span><span class="s2"> &amp;&amp; composer install&quot;</span>
 </pre></div>
 
@@ -361,7 +361,7 @@ sudo -u www-data bash -c <span class="s2">&quot;HOME=</span><span class="si">${<
 <p>Because of the manual process of database updates, it is possible your database schema may fall out of sync.</p>
 <p>If you are having issues, first and foremost, restart Memcached. Doctrine2 caches entities and schema information in Memcached so, after an upgrade, you must restart Memcached.</p>
 <p>You can verify and update your schema using the <code>artisan</code> script. The first action should be validation - here is a working example with no database issues:</p>
-<div class="highlight"><pre><span></span>./artisan doctrine:schema:validate
+<div class="highlight"><pre>./artisan doctrine:schema:validate
 
 Validating for default entity manager...
 [Mapping]  OK - The mapping files are correct.
@@ -370,18 +370,18 @@ Validating for default entity manager...
 
 
 <p>If there are issues, you can use the following to show what SQL commands are required to bring your schema into line:</p>
-<div class="highlight"><pre><span></span>./artisan doctrine:schema:update --sql
+<div class="highlight"><pre>./artisan doctrine:schema:update --sql
 </pre></div>
 
 
 <p>And you can let Doctrine make the changes for you via:</p>
-<div class="highlight"><pre><span></span>./artisan doctrine:schema:update --force
+<div class="highlight"><pre>./artisan doctrine:schema:update --force
 </pre></div>
 
 
 <p>Doctrine2 maintains the entities, proxies and repository classes. Ideally you should never need to do the following on a production installation - as we maintain these files with Git - but if you're developing / testing IXP Manager, you may need to.</p>
 <p>The process for updating these files with schema changes / updates is:</p>
-<div class="highlight"><pre><span></span>cd $IXPROOT
+<div class="highlight"><pre>cd $IXPROOT
 /etc/init.d/memcached restart    # (or as appropriate for your system)
 ./artisan doctrine:generate:entities database
 ./artisan doctrine:generate:proxies
@@ -389,7 +389,7 @@ Validating for default entity manager...
 
 
 <p>Some older scripts also rely on MySQL view tables that may be missing. You can safely run this to (re)create them:</p>
-<div class="highlight"><pre><span></span>mysql -u ixp -p ixp &lt; <span class="nv">$IXPROOT</span>/tools/sql/views.sql
+<div class="highlight"><pre>mysql -u ixp -p ixp &lt; <span class="nv">$IXPROOT</span>/tools/sql/views.sql
 </pre></div>
               
             </div>

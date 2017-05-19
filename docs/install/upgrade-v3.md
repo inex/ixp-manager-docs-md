@@ -132,15 +132,23 @@ cd $IXPROOT
 # stop mrtg
 service mrtg stop  # or as appropriate for your platform
 
-# Migrate IXP graphs. The naming convention here uses the
-# 'Aggregate Graph Name' from the IXP configuration in the
-# database. Usually accessed via `https://{IXP MANAGER URL}/ixp/edit/id/1`
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -X
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -X | sh
+# Migrate IXP graphs.
+#
+# In v3 of IXP Manager, the name of this was set by a database
+# parameter in the IXP table called 'aggregate graph name'.
+# You will be able to spot it in the old MRTG files where the
+# old IXP file is named something like: 'ixp_peering-XXXXX-bits.log'.
+# The 'XXXXXX' bit is the aggregate name you need to replace in the below:
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -X --agg-name=XXXXXX
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -X --agg-name=XXXXXX | sh
 
-# Migrate infrastructure graphs. The naming convention here uses the
-# 'Aggregate Graph Name' from the infrastructure configuration in the
-# database. Usually accessed via `https://{IXP MANAGER URL}/infrastructure/list`
+# Migrate infrastructure graphs.
+#
+# In v3 of IXP Manager, the name of this was set by a database
+# parameter in the infrastructure table called 'aggregate graph name'.
+# You will be able to spot it in the old MRTG files where the
+# old IXP file is named something like: 'ixp_peering-XXXXX-bits.log'.
+# The 'XXXXXX' bit is the aggregate name you need to replace in the below:
 php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -I
 php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -I | sh
 
@@ -195,12 +203,12 @@ If you have implemented this via a web server on the sflow server (as we typical
 Alias /grapher-sflow /srv/ixpmatrix
 
 <Directory "/srv/ixpmatrix">
-	Options None
-	AllowOverride None
-	<RequireAny>
-        	Require ip 192.0.2.0/24
+    Options None
+    AllowOverride None
+    <RequireAny>
+            Require ip 192.0.2.0/24
             Require ip 2001:db8::/32
-	</RequireAny>
+    </RequireAny>
 </Directory>
 ```
 
