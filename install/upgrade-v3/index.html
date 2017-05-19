@@ -85,6 +85,8 @@
     
         <ul>
         
+            <li><a class="toctree-l4" href="#overview">Overview</a></li>
+        
             <li><a class="toctree-l4" href="#duplicating-the-database">Duplicating the Database</a></li>
         
             <li><a class="toctree-l4" href="#install-ixp-manager">Install IXP Manager</a></li>
@@ -258,8 +260,25 @@
               
                 <h1 id="upgrade-from-v3">Upgrade From v3</h1>
 <p>Due to the significant changes between IXP Manager v3 and v4, there is no in place upgrade process. The advised way to handle this is to install v4 in parallel and then switch over (by adjusting your DNS or Apache configuration for example) to the new v4 directory/server.</p>
-<p>This documenation was compiled while performing an upgrade on three separate IXP Manager installations.</p>
-<p><strong>Before you proceed, please check the requirement listed in <a href="../manually/">the official installation instructions</a>.</strong></p>
+<p>This documentation was compiled while performing an upgrade on three separate IXP Manager installations.</p>
+<p><strong>Before you proceed, please check the requirements listed in <a href="../manually/">the official installation instructions</a>.</strong></p>
+<p>If you need help, please <a href="https://www.ixpmanager.org/support.php">contact us via the public mailing list</a>.</p>
+<p>If you find that this guide is insufficient, please <a href="../../dev/docs/">contribute back to this documentation</a>.</p>
+<h2 id="overview">Overview</h2>
+<p>The upgrade process is quite involved and, depending how many IXP Manager features you use, may take the best part of a day.</p>
+<p>The general steps are:</p>
+<ol>
+<li>Duplicate the Database (see below)</li>
+<li>Install IXP Manager v4 (see below)</li>
+<li>Initial configuration tasks (see below)</li>
+<li>MRTG Graphing Migration (including peer to peer changes) (see below)</li>
+<li>Route collector / servers / AS112 configuration has changed - <a href="../../features/routers/">see here</a></li>
+<li>DNS / ARPA export has changed - <a href="../../features/dns-arpa/">see here</a></li>
+<li>Examine the new layer2 addresses feature and consideration migration - <a href="../features/later2-addresses.md">see here</a></li>
+<li>If you are using Bird, set up looking glasses - <a href="../../features/looking-glass/">see here</a></li>
+<li>Set up you cross connect / patch panel management - <a href="../../features/patch-panels/">see here</a></li>
+<li>Read up on <a href="../../features/skinning/">the new skinning features</a> and see if you need to update / duplicate any skinned files.</li>
+</ol>
 <h2 id="duplicating-the-database">Duplicating the Database</h2>
 <p>As we're installing in parallel, we want to duplicate the database.</p>
 <p>When granting permissions on the new database, use your existing IXP Manager database credentials for ease of configuration.</p>
@@ -306,9 +325,17 @@ chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
 
 <h2 id="initial-configuration-tasks">Initial Configuration Tasks</h2>
 <h3 id="new-local-settings-configuration-laravel">New Local Settings / Configuration (Laravel)</h3>
-<p>IXP Manager v4 uses a new PHP framework (Zend Framework swapped for Laravel). As such, all the older configuration options (from <code>application/configs/application.ini</code>) need to be moved to <code>.env</code>.</p>
+<p>IXP Manager v4 uses a new PHP framework (Zend Framework swapped for Laravel). As such, all the older configuration options (from <code>application/configs/application.ini</code>) need to be ported to <code>.env</code>.</p>
 <p>The <a href="https://github.com/vlucas/phpdotenv">php dotenv</a> file (<code>.env</code>) is where all the new configuration options go. These in turn are used by the configuration files under <code>config/</code>.</p>
 <p><strong>NB: Where possible, place local changes into <code>.env</code> rather than changing the config files as these files are under version control. See <a href="http://laravel.com/docs/5.4/installation#configuration">Laravel's documentation on this</a> and email the mailing list for help.</strong></p>
+<p>Once you have worked your way through <code>.env</code>, move into the <code>$IXPROOT/config</code> directory and - as appropriate for your own installation - examine each config file that ends in <code>.dist</code>. If you use / need any features in these files, copy then such as:</p>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>/config
+cp xxxx.php.dist xxxx.php
+</pre></div>
+
+
+<p>Then edit the resultant <code>.php</code> file (or, better, where <code>config()</code> options exist, add them to <code>.env</code>).</p>
+<p>These <code>.dist</code> files represent v3 funtionality that has not yet been fully ported to v4/Laravel.</p>
 <h3 id="update-the-database-schema">Update the Database Schema</h3>
 <p>There's about 50 schema changed between the end of v3 and v4.4.</p>
 <p>View the required changes with:</p>
