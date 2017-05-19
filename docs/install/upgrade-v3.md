@@ -39,6 +39,7 @@ As of IXP Manager v4 (certainly >=v4.5), the following are no longer available:
 3. [v3 methods for generating AS112 BGP configuration](https://github.com/inex/IXP-Manager/wiki/AS112) - [see here for the v4 method](../features/as112.md).
 4. [v3 method for IRRDB updates](https://github.com/inex/IXP-Manager/wiki/IRRDB-Prefixes) - [see here for the v4 method](../features/routers.md).
 5. TACACS+ and RADIUS templates - see old details [here for TACACS+](https://github.com/inex/IXP-Manager/wiki/TACACS) and [here for RADIUS](https://github.com/inex/IXP-Manager/wiki/RADIUS).
+6. [v3 method for DNS/ARPA generation](https://github.com/inex/IXP-Manager/wiki/ARPA-DNS-Population) - [see here for the v4 method](../features/dns-arpa.md).
 
 ## Duplicating the Database
 

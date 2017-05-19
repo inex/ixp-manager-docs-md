@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Helpdesk Integration - IXP Manager Documentation</title>
+  <title>IRRDB - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Helpdesk Integration";
-    var mkdocs_page_input_path = "features/helpdesk.md";
-    var mkdocs_page_url = "/features/helpdesk/";
+    var mkdocs_page_name = "IRRDB";
+    var mkdocs_page_input_path = "features/irrdb.md";
+    var mkdocs_page_url = "/features/irrdb/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -111,29 +111,29 @@
                     
     <a class="" href="../grapher/">Grapher</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../helpdesk/">Helpdesk Integration</a>
+                </li>
                 <li class=" current">
                     
-    <a class="current" href="./">Helpdesk Integration</a>
+    <a class="current" href="./">IRRDB</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#helpdesk-integration">Helpdesk Integration</a></li>
+    <li class="toctree-l3"><a href="#irrdb-prefixes-and-asn-filtering">IRRDB Prefixes and ASN Filtering</a></li>
     
         <ul>
         
-            <li><a class="toctree-l4" href="#features-supported">Features Supported</a></li>
+            <li><a class="toctree-l4" href="#setup">Setup</a></li>
         
-            <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
+            <li><a class="toctree-l4" href="#usage">Usage</a></li>
         
-            <li><a class="toctree-l4" href="#implementation-development">Implementation Development</a></li>
+            <li><a class="toctree-l4" href="#details">Details</a></li>
         
         </ul>
     
 
     </ul>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../irrdb/">IRRDB</a>
                 </li>
                 <li class="">
                     
@@ -239,10 +239,10 @@
         
       
     
-    <li>Helpdesk Integration</li>
+    <li>IRRDB</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/helpdesk.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/irrdb.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -252,55 +252,72 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="helpdesk-integration">Helpdesk Integration</h1>
-<p><strong> WORK IN PROGRESS - DEVELOPMENT NOTES </strong></p>
-<p>As an IXP scales, it will eventually have to replace email support via a simple alias / shared IMAP mailbox with a <em>proper</em> ticketing system. After extensive (and painful!) research, we at INEX chose <a href="https://www.zendesk.com/">Zendesk</a> as the system that most matched our budget and required features (1).</p>
-<p>While your mileage may vary on this - or you may already have something else - please note that the reference implementation for helpdesk integration on IXP Manager is Zendesk. So, if you haven't already chosen one, Zendesk will provide maximum integration with minimal pain.</p>
+                <h1 id="irrdb-prefixes-and-asn-filtering">IRRDB Prefixes and ASN Filtering</h1>
 <blockquote>
-<p>Please do not open a feature request for other helpdesk implementations as the authors cannot undertake such additional work. If you wish to have integration with another helpdesk implemented, please consider <a href="https://www.ixpmanager.org/commercial.php">commercial support</a></p>
+<p><strong>Prerequisite Reading:</strong> Ensure you first familiarize yourself with <a href="../routers/">the generic documentation on managing and generating router configurations here</a>.</p>
 </blockquote>
-<h2 id="features-supported">Features Supported</h2>
-<p>IXP Manager currently supports:</p>
-<ul>
-<li>creation and update of customers / organisations in Zendesk</li>
-<li>creation and update of contacts / users in Zendesk</li>
-<li>finding tickets by customer / organisation</li>
-</ul>
-<p>Work that is in progress includes:</p>
-<ul>
-<li>allow users to create, update and close tickets in IXP Manager</li>
-<li>list all tickets per organisation (for admins and users)</li>
-</ul>
-<h2 id="configuration">Configuration</h2>
-<p><em>As Zendesk is the only implementation currently, this refers only to Zendesk.</em></p>
-<h3 id="zendesk">Zendesk</h3>
-<p>You need to enable API access to Zendesk as follows:</p>
-<ol>
-<li>Log into your Zendesk account</li>
-<li>On the bottom left, click the Settings icon</li>
-<li>Under <em>Channels</em> select <em>API</em></li>
-<li>Enable the API here and add a token</li>
-</ol>
-<p>With your Zendesk login and the token from above, edit the <code>.env</code> file in the base directory of IXP Manager and set:</p>
-<div class="highlight"><pre>HELPDESK_BACKEND=zendesk
-HELPDESK_ZENDESK_SUBDOMAIN=ixp
-HELPDESK_ZENDESK_TOKEN=yyy
-HELPDESK_ZENDESK_EMAIL=john.doe@example.com
+<p>IXP Manager can maintain a list of member route:/route6: prefixes and origin ASNs as registered in IRRDBs in its database and then use these to, for example, generate strict inbound filters on route servers.</p>
+<h2 id="setup">Setup</h2>
+<p>You need to have set up some IRRDB sources (e.g. RIPE's whois service) under the <em>IXP Admin Actions / IRRDB Configuration</em> on the left hand side menu. If this wasn't done as part of an upgrade from v3 / your initial installation then there is a database seeder you can use to install some to start you off:</p>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+./artisan db:seed --class<span class="o">=</span>IRRDBs
 </pre></div>
 
 
-<p>You can now test that your settings are correct with: <strong>FIXME</strong></p>
-<h2 id="implementation-development">Implementation Development</h2>
-<p>The helpdesk implementation in IXP Manager is designed using contracts and service providers. I.e. it is done <em>The Right Way (tm)</em>.</p>
-<p>The reference implementation is for Zendesk but it's coded to a contract (interface) at <code>app/Contracts/Helpdesk.php</code>.</p>
-<p>The actual Zendesk implementation can be found at: <code>app/Services/Helpdesk/Zendesk.php</code>.</p>
-<p>The good news here is if you want another helpdesk supported, you just need to:</p>
+<p><a href="https://github.com/snar/bgpq3">BGPQ3</a> is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On Ubuntu 16.04 this is as easy as:</p>
+<div class="highlight"><pre>apt install bgpq3
+</pre></div>
+
+
+<p>Then configure the path to it in <code>config/ixp_tools.php</code>. If you have not used this file before, you'll need to create your own local copy as follows:</p>
+<div class="highlight"><pre>cp config/config/ixp_tools.php.dist config/config/ixp_tools.php
+</pre></div>
+
+
+<p>Then set the full call path for <code>bgpq3</code> in this file:</p>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+
+  <span class="s1">&#39;irrdb&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;bgpq&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/path/to/bgpq3&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+</pre></div>
+
+
+<h2 id="usage">Usage</h2>
+<p>To populate (and update) your local IRRDB, run the following commands:</p>
+<div class="highlight"><pre>cd $IXPROOT
+php artisan irrdb:update-prefix-db
+php artisan irrdb:update-asn-db
+</pre></div>
+
+
+<p>These should be added to cron to run ~once per day (using the --quiet flag).</p>
+<p>There are four levels of verbosity:</p>
+<ol>
+<li><code>--quiet</code>: no output unless there's an error / issue.</li>
+<li>no option: simple stats on each customer's update results.</li>
+<li><code>-vv</code>: include per customer and overall timings (database, processing and network).</li>
+<li><code>-vvv</code> (debug): show prefixes/ASNs added remove also.</li>
+</ol>
+<p>You can also specify a specific customer to update (rather than all) with an additional free form parameter. The database is searched for a matching customer in the order: customer ASN; customer ID (database primary key); and customer shortname. E.g.:</p>
+<div class="highlight"><pre>php artisan irrdb:update-prefix-db 64511
+</pre></div>
+
+
+<h2 id="details">Details</h2>
+<p>The IRRDB update commands will:</p>
 <ul>
-<li>create an implementation like the Zendesk one above</li>
-<li>update the <code>switch()</code> statement in <code>app/Providers/HelpdeskServiceProvider.php</code></li>
-<li>open a pull request for IXP Manager and this documentation</li>
+<li>iterate over all route server client customers for IPv4 and IPv6 (unless a specific customer is specified);</li>
+<li>use the appropriate AS macro or ASN;</li>
+<li>query the RADB against the appropriate source set for that customer;</li>
+<li>compare prefixes(/ASNs) in the database already (if any) against RADB and insert / delete as appropriate;</li>
+<li>validate the prefix for proper CIDR notation before database inserts;</li>
+<li>update the last_seen time for all prefixes(/ASNs) for that customer;</li>
 </ul>
-<p>(1) Actually, Zendesk wasn't our first ticketing system. For a number of years we used <a href="http://www.cerberusweb.com/">Cerb</a> but it didn't stay current in terms of modern HTML UI/UX and it suffered from feature bloat. One requirement for our replacement was a decent API and with Zendesk's API we were able to migrate all our old tickets <a href="https://github.com/inex/cerb5-to-zendesk">using this script</a>.</p>
+<p><strong>We use transactions to update the database so, even in the middle of a refresh, a full set of prefixes for all customers will still be available.</strong> It also means the update process can be safely interrupted.</p>
+<p><em>Note that our current implementation only queries RADB as BGPQ3 does not support the RIPE whois protocol.</em> Our version will however set the RADB source database according to the member's stated IRRDB database as set on the customer add / edit page - so, for customer's registered with the RIPE IRRDB, the RIPE database of RADB is queried.</p>
               
             </div>
           </div>
@@ -308,10 +325,10 @@ HELPDESK_ZENDESK_EMAIL=john.doe@example.com
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../irrdb/" class="btn btn-neutral float-right" title="IRRDB">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../ixf-export/" class="btn btn-neutral float-right" title="IX-F Member Export">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../grapher/" class="btn btn-neutral" title="Grapher"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../helpdesk/" class="btn btn-neutral" title="Helpdesk Integration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -341,10 +358,10 @@ HELPDESK_ZENDESK_EMAIL=john.doe@example.com
           <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../grapher/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../helpdesk/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../irrdb/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../ixf-export/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
