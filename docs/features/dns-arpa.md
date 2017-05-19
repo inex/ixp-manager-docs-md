@@ -2,7 +2,7 @@
 
 An IXP assigns each customer (an) IP address(es) from the range used on the peering LAN(s). These IP addresses can show up in traceroutes (for example) and both IXPs and customers like to have these resolve to a hostname.
 
-When creating *VLAN Interfaces* in IXP Manager there is a field called *IPv[4/6] Hostname*. This is intended for this DNS ARPA purpose. Some customer have specific requirements for these while other smaller customers may not fully understand the use cases. At INEX, we typically default to entries such as:
+When creating *VLAN Interfaces* in IXP Manager there is a field called *IPv[4/6] Hostname*. This is intended for this DNS ARPA purpose. Some customers have specific requirements for these while other smaller customers may not fully understand the use cases. At INEX, we typically default to entries such as:
 
 * `customer-name.v4.example.com` (where *example.com* would be *inex.ie* in our case)
 * `customer-name.v6.example.com`
