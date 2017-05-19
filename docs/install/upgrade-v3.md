@@ -30,6 +30,16 @@ The general steps are:
 
 You will note from the above that a number of features have been deprecated in favor of doing it in new ways. Our advice is to keep both v3 and v4 live in parallel and then migrate services piece meal. That way your route server configuration can continue pulling from v3 until you have set-up the v4 method. Just ensure that people do not make customer changes in either IXP Manager during this period (or, if they do, do it in both!).
 
+## Deprecations / Removed Features
+
+As of IXP Manager v4 (certainly >=v4.5), the following are no longer available:
+
+1. [v3 methods for generating route collector. configuration](https://github.com/inex/IXP-Manager/wiki/Route-Collector) - [see here for the v4 method](../features/routers.md).
+2. [v3 methods for generating route server configuration](https://github.com/inex/IXP-Manager/wiki/Route-Server) - [see here for the v4 method](../features/routers.md).
+3. [v3 methods for generating AS112 BGP configuration](https://github.com/inex/IXP-Manager/wiki/AS112) - [see here for the v4 method](../features/as112.md).
+4. [v3 method for IRRDB updates](https://github.com/inex/IXP-Manager/wiki/IRRDB-Prefixes) - [see here for the v4 method](../features/routers.md).
+5. TACACS+ and RADIUS templates - see old details [here for TACACS+](https://github.com/inex/IXP-Manager/wiki/TACACS) and [here for RADIUS](https://github.com/inex/IXP-Manager/wiki/RADIUS).
+
 ## Duplicating the Database
 
 As we're installing in parallel, we want to duplicate the database.
