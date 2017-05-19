@@ -10,7 +10,7 @@ The full-mesh BGP session relationship scenario requires that each BGP speaker c
 
 However, by using a route servers for peering relationships, the number of BGP sessions per router stays at two: one for each route server (assuming a resilient set up). Clearly this is a more sustainable way of maintaining IXP peering relationships with a large number of participants.
 
-## Configuration Generation
+## Configuration Generation Features
 
 This is [covered in the router documentation here](routers.md). Please review that to learn how to automatically generate route server configurations. This section goes into a bit more specific detail on INEX's route server configuration (as shipped with IXP Manager) and why it's safe to use.
 
@@ -26,3 +26,20 @@ The features of the route server configurations that IXP Manager generates inclu
 * a decade of production use and experience.
 
 There are [some old notes on route server testing here](https://github.com/inex/IXP-Manager/wiki/Route-Server-Testing) which may also be useful.
+
+## Setting Up
+
+You first need to add your route servers to the **IXP Manager** routers database. See [this page on how to do that](routers.md).
+
+Typically an IXP's route server service will have a dedicated ASN that is different to the IXP's own management / route collector ASN. As such, you need to add a new *internal* customer to IXP Manager. Here's an example from INEX for our *route server #1*:
+
+![Route Servers INEX Customer](img/rs-inex-customer.png)
+
+You then need to create an interface for this route server on each peering LAN where the service will be offered. Here again is INEX's example from our peering LAN1 in Dublin:
+
+![Route Servers INEX VLAN Interface Entry](img/rs-inex-vli.png)
+
+There's a couple things to note in the above:
+
+1. *AS112 Client* is checked which means (so long as *Route Server Client* is checked on the [AS112 service](as112.md)) the AS112 service will peer with the route servers.
+2. *Apply IRRDB Filtering* has no meaning here as this is the route server rather than the route server client.
