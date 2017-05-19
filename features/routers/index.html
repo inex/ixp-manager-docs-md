@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Routers - IXP Manager Documentation</title>
+  <title>Router Configuration - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Routers";
+    var mkdocs_page_name = "Router Configuration";
     var mkdocs_page_input_path = "features/routers.md";
     var mkdocs_page_url = "/features/routers/";
   </script>
@@ -117,7 +117,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="./">IRRDB</a>
+    <a class="" href="../irrdb/">IRRDB</a>
                 </li>
                 <li class="">
                     
@@ -149,15 +149,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="./">Route Collector</a>
+    <a class="" href="../route-collectors/">Route Collectors</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="./">Route Server</a>
+    <a class="" href="../route-servers/">Route Servers</a>
                 </li>
                 <li class=" current">
                     
-    <a class="current" href="./">Routers</a>
+    <a class="current" href="./">Router Configuration</a>
     <ul class="subnav">
             
     <li class="toctree-l3"><a href="#routers">Routers</a></li>
@@ -169,10 +169,6 @@
             <li><a class="toctree-l4" href="#configuration-generation-overview">Configuration Generation Overview</a></li>
         
             <li><a class="toctree-l4" href="#examples">Examples</a></li>
-        
-            <li><a class="toctree-l4" href="#route-servers">Route Servers</a></li>
-        
-            <li><a class="toctree-l4" href="#irrdb-prefixes-and-asn-filtering">IRRDB Prefixes and ASN Filtering</a></li>
         
         </ul>
     
@@ -243,7 +239,7 @@
         
       
     
-    <li>Routers</li>
+    <li>Router Configuration</li>
     <li class="wy-breadcrumbs-aside">
       
         <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/routers.md"
@@ -257,11 +253,13 @@
             <div class="section">
               
                 <h1 id="routers">Routers</h1>
-<p><strong>Note that a number of pages redirect here where we have collated documentation on route collectors, route servers, AS112 services and IRRDB filtering.</strong></p>
-<p>IXP Manager can generate router configuration for typical IXP services such as route collectors, route servers and AS112 services. How this is done has been changed significantly from v3 to v4.</p>
-<blockquote>
-<p>Note that until officially deprecated, the older v3 methods still work and the <a href="https://github.com/inex/IXP-Manager/wiki">official v3 documentation</a> should be referenced for that.</p>
-</blockquote>
+<p>IXP Manager can generate router configuration for typical IXP services such as:</p>
+<ul>
+<li><a href="../route-collectors/">route collectors</a>;</li>
+<li><a href="../route-servers/">route servers</a> (with <a href="../irrdb/">IRRDB filtering</a>); and</li>
+<li><a href="../as112/">AS112 services</a>.</li>
+</ul>
+<p>See the above pages for specific information on each of those use cases and below for instructions on how to generate configuration.</p>
 <h2 id="managing-routers">Managing Routers</h2>
 <p>The basic elements of <em>a router</em> are configured in <strong>IXP Manager</strong> under the <em>IXP Admin Actions - Routers</em> option on the left hand menu.</p>
 <p>When you goto add / edit a router, the green help button willl provide explanatory details on each field of information required:</p>
@@ -305,79 +303,10 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
 <p>These known good configurations also serve as useful examples of what the standard IXP Manager configuration generates.</p>
 <p>See <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci/known-good">these known good configurations here</a> with the prefix <code>ci-apiv4-</code> and:</p>
 <ul>
-<li><code>as112</code>: AS112 router configurations conforming to <a href="https://tools.ietf.org/html/rfc7534">rfc7534</a> (AS112 Nameserver Operations) and implementing <a href="https://tools.ietf.org/html/rfc7535">rfc7535</a> (AS112 Redirection Using DNAME). There are configs to serve queries over both IPv4 and IPv6.</li>
+<li><code>as112</code>: AS112 router configurations conforming to <a href="https://tools.ietf.org/html/rfc7534">rfc7534</a> (AS112 Nameserver Operations) and implementing <a href="https://tools.ietf.org/html/rfc7535">rfc7535</a> (AS112 Redirection Using DNAME). There are configs to serve queries over both IPv4 and IPv6. See <a href="../as112/">the AS112 documentation for more details</a>.</li>
 <li><code>rc1</code>: route collector configurations. Peering with the route collector is mandatory at many IXPs including INEX. These are incredably useful for monitoring, diagnosing issues and providing looking glasses. We also use the quarantine version of these for turning up new member connections.</li>
-<li><code>rs1</code>: route collector configurations. See below for full details of what these implement. Note also that the <code>ci-apiv4-rs1-lan2-ipv4.conf</code> file includes BGP large communities (<a href="https://tools.ietf.org/html/rfc8092">rfc8092</a>).</li>
+<li><code>rs1</code>: route collector configurations. See below for full details of what these implement. Note also that the <code>ci-apiv4-rs1-lan2-ipv4.conf</code> file includes BGP large communities (<a href="https://tools.ietf.org/html/rfc8092">rfc8092</a>). See <a href="route-serves.md">the route servers documentation for more details</a>.</li>
 </ul>
-<h2 id="route-servers">Route Servers</h2>
-<p>Normally on a peering exchange, all connected parties will establish bilateral peering relationships with each other customer connected to the exchange. As the number of connected parties increases, it becomes increasingly more difficult to manage peering relationships with customers of the exchange.</p>
-<p>However, by using a route servers for peering relationships, the number of BGP sessions per router stays at two: one for each route server (assuming a resilient set up). Clearly this is a more sustainable way of maintaining IXP peering relationships with a large number of participants.</p>
-<p>You will have learnt above how to automatically generate route server configurations. This section goes into a bit more specific detail on INEX's route server configuration (shipped with IXP Manager) and why it's safe to use.</p>
-<p>The features of the route server configurations that we generate include:</p>
-<ul>
-<li>full prefix filtering based on IRRDB entries (can be disabled on a per member basis if required);</li>
-<li>full origin ASN filtering based on IRRDB entries (can be disabled on a per member basis if required);</li>
-<li>in all cases, prefix filtering for IPv4 and v6 based on the IANA special purpose registries (also known as bogon lists);</li>
-<li>ensuring next hop is the neighbor address to ensure no next hop hijacking;</li>
-<li>max prefix limits;</li>
-<li>multiple VLAN interfaces for a single member supported;</li>
-<li>large BGP communities supported;</li>
-<li>a decade of production use and experience.</li>
-</ul>
-<p>There are <a href="https://github.com/inex/IXP-Manager/wiki/Route-Server-Testing">some old notes on route server testing here</a> which may also be useful.</p>
-<h2 id="irrdb-prefixes-and-asn-filtering">IRRDB Prefixes and ASN Filtering</h2>
-<p>IXP Manager can maintain a list of member route:/route6: prefixes and origin ASNs as registered in IRRDBs in its database and then use these to, for example, generate strict inbound filters on route servers.</p>
-<p><strong>Prerequisite:</strong> you need to have set up some IRRDB sources (e.g. RIPE's whois service) under the <em>IXP Admin Actions / IRRDB Configuration</em> on the left hand side menu. There is a database seeder to install some to start you off via the following (but thius is typically done during installation):</p>
-<div class="highlight"><pre>./artisan db:seed --class=IRRDBs
-</pre></div>
-
-
-<p>BGPQ3 is a very easy and fast way of querying IRRDBs. You first need to install this on your system. Then configure the path to it in <code>config/ixp_tools.php</code>. If you have not used this file before, you'll need to create your own local copy as follows:</p>
-<div class="highlight"><pre>cp config/config/ixp_tools.php.dist config/config/ixp_tools.php
-</pre></div>
-
-
-<p>Then set the full call path for <code>bgpq3</code> in this file:</p>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
-
-  <span class="s1">&#39;irrdb&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">&#39;bgpq&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-            <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/path/to/bgpq3&#39;</span><span class="p">,</span>
-        <span class="p">],</span>
-    <span class="p">],</span>
-</pre></div>
-
-
-<p>To populate (and update) your local IRRDB, run the following commands (changing the path as appropriate):</p>
-<div class="highlight"><pre>/srv/ixpmanager/artisan irrdb:update-prefix-db
-/srv/ixpmanager/artisan irrdb:update-asn-db
-</pre></div>
-
-
-<p>These should be added to cron to run ~once per day (using the --quiet flag).</p>
-<p>There are four levels of verbosity:</p>
-<ol>
-<li><code>-quiet</code>: no output unless there's an error / issue.</li>
-<li>no option: simple stats on each customer's update results.</li>
-<li><code>-vv</code>: include per customer and overall timings (database, processing and network).</li>
-<li><code>-vvv</code> (debug): show prefixes/ASNs added remove also.</li>
-</ol>
-<p>You can also specify a specific customer to update (rather than all) with an additional free form parameter. The database is searched for a matching customer in the order: customer ASN; customer ID (database primary key); and customer shortname. E.g.:</p>
-<div class="highlight"><pre>/srv/ixpmanager/artisan irrdb:update-prefix-db 64511
-</pre></div>
-
-
-<p>The IRRDB update commands will:</p>
-<ul>
-<li>iterate over all route server client customers for IPv4 and IPv6 (unless a specific customer is specified);</li>
-<li>use the appropriate AS macro or ASN;</li>
-<li>query the RADB against the appropriate source set for that customer;</li>
-<li>compare prefixes(/ASNs) in the database already (if any) against RADB and insert / delete as appropriate;</li>
-<li>validate the prefix for proper CIDR notation before database inserts;</li>
-<li>update the last_seen time for all prefixes(/ASNs) for that customer;</li>
-</ul>
-<p><strong>We use transactions to update the database so, even in the middle of a refresh, a full set of prefixes for all customers will still be available.</strong></p>
-<p><em>Note that our current implementation only queries RADB as BGPQ3 does not support the RIPE whois protocol.</em> Our version will however set the RADB source database according to the member's stated IRRDB database as set on the customer add / edit page - so, for customer's registered with the RIPE IRRDB, the RIPE database of RADB is queried.</p>
               
             </div>
           </div>
@@ -388,7 +317,7 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
         <a href="../skinning/" class="btn btn-neutral float-right" title="Skinning">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="./" class="btn btn-neutral" title="Route Server"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../route-servers/" class="btn btn-neutral" title="Route Servers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -418,7 +347,7 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
           <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="./" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../route-servers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../skinning/" style="color: #fcfcfc">Next &raquo;</a></span>

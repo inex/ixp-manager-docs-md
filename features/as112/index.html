@@ -133,7 +133,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../routers/">IRRDB</a>
+    <a class="" href="../irrdb/">IRRDB</a>
                 </li>
                 <li class="">
                     
@@ -165,15 +165,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../routers/">Route Collector</a>
+    <a class="" href="../route-collectors/">Route Collectors</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../routers/">Route Server</a>
+    <a class="" href="../route-servers/">Route Servers</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../routers/">Routers</a>
+    <a class="" href="../routers/">Router Configuration</a>
                 </li>
                 <li class="">
                     
@@ -253,6 +253,9 @@
             <div class="section">
               
                 <h1 id="as112-service">AS112 Service</h1>
+<blockquote>
+<p><strong>Prerequisite Reading:</strong> Ensure you first familiarize yourself with <a href="../routers/">the generic documentation on managing and generating router configurations here</a>.</p>
+</blockquote>
 <p><strong>AS112</strong> is a service which provides anycast reverse DNS lookup for several prefixes, namely:</p>
 <ul>
 <li>10.0.0.0/8</li>
@@ -283,7 +286,7 @@
 <p>You need to add the AS112 service as a pro-bono member of your IXP in IXP Manager. Here's INEX's example:</p>
 <p><img alt="AS112 INEX Customer Entry" src="../img/as112-inex-cust.png" /></p>
 <p>You then need to create an interface for the AS112 service on each peering LAN where the service will be offered. Here again is INEX's example from our peering LAN1 in Dublin:</p>
-<p><img alt="AS112 INEX Customer Entry" src="../img/as112-inex-vli.png" /></p>
+<p><img alt="AS112 INEX VLAN Interface Entry" src="../img/as112-inex-vli.png" /></p>
 <p>Note that historically INEX has not used MD5 on our AS112 service. This is because the service dates from over 20 years ago at INEX when MD5 support was not available. There is no reason not to use MD5 on the service if you wise.</p>
 <h3 id="generating-the-bird-configuration">Generating the Bird Configuration</h3>
 <p>Please see the <a href="../routers/">router configuration generation</a> for this.</p>
