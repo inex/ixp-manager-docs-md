@@ -124,6 +124,17 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Features</span>
     <ul class="subnav">
                 <li class="">
@@ -275,7 +286,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="requirements">Requirements</h1>
+                <h1 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link"></a></h1>
 <p>IXP Manager tries to stay current in terms of technology. Typically, this means some element of framework refresh(es) every couple of years and other more incremental package upgrades with minor version upgrades. As well as the obvious reasons for this, there is also the requirement to prevent developer apathy - insisting on legacy frameworks and packages that have been EOL'd provides a major stumbling block for bringing on new developers and contributors.</p>
 <p>The current requirements for the web application are:</p>
 <ul>
@@ -305,7 +316,7 @@
 </pre></div>
 
 
-<h1 id="get-the-ixp-manager-source">Get the IXP Manager Source</h1>
+<h1 id="get-the-ixp-manager-source">Get the IXP Manager Source<a class="headerlink" href="#get-the-ixp-manager-source" title="Permanent link"></a></h1>
 <p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
 <p>Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source (our examples use <code>/srv/ixpmanager</code> which we refer to as <code>$IXPROOT</code>). Note that it <strong>should not</strong> be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>).</p>
 <div class="highlight"><pre><span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
@@ -317,7 +328,7 @@ chown -R www-data: <span class="nv">$IXPROOT</span>
 </pre></div>
 
 
-<h1 id="install-composer-and-bower">Install Composer and Bower</h1>
+<h1 id="install-composer-and-bower">Install Composer and Bower<a class="headerlink" href="#install-composer-and-bower" title="Permanent link"></a></h1>
 <p>IXP Manager uses <a href="http://getcomposer.org/">Composer</a> to manage its PHP dependencies. First, download a copy of the composer.phar. Once you have the PHAR archive, you can either keep it in your local project directory or move to <code>/usr/local/bin</code> to use it globally on your system.</p>
 <p>The installation script for Ubuntu 16.04 LTS installs these via:</p>
 <div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
@@ -343,8 +354,8 @@ php -r <span class="s2">&quot;copy(&#39;https://getcomposer.org/installer&#39;, 
 </pre></div>
 
 
-<h1 id="initial-setup-and-dependancies">Initial Setup and Dependancies</h1>
-<h2 id="dependencies">Dependencies</h2>
+<h1 id="initial-setup-and-dependancies">Initial Setup and Dependancies<a class="headerlink" href="#initial-setup-and-dependancies" title="Permanent link"></a></h1>
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link"></a></h2>
 <p>Install the required PHP libraries and frontend CSS/JS packages:</p>
 <div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 composer install
@@ -354,7 +365,7 @@ php artisan key:generate
 </pre></div>
 
 
-<h1 id="database-setup">Database Setup</h1>
+<h1 id="database-setup">Database Setup<a class="headerlink" href="#database-setup" title="Permanent link"></a></h1>
 <p>Use whatever means you like to create a database and user for IXP Manager. For example:</p>
 <div class="highlight"><pre><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="ss">`ixp`</span> <span class="k">CHARACTER</span> <span class="kt">SET</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4&#39;</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="ss">`ixp`</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="ss">`ixp`</span><span class="o">@</span><span class="ss">`localhost`</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;&lt;pick a password!&gt;&#39;</span><span class="p">;</span>
@@ -380,9 +391,9 @@ DB_PASSWORD=password
 </pre></div>
 
 
-<h3 id="configuration">Configuration</h3>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h3>
 <p>Edit <code>$IXPROOT/.env</code> and review and set/change all parameters. Hopefully this is mostly documented or clear but please start a discussion on the mailing list if you have difficultly and we'll update this and the example file's documentation as appropriate.</p>
-<h3 id="initial-database-objects">Initial Database Objects</h3>
+<h3 id="initial-database-objects">Initial Database Objects<a class="headerlink" href="#initial-database-objects" title="Permanent link"></a></h3>
 <p>Using the settings you edited in <code>.env</code> we'll create some database objects. [Yes, a setup wizard needs to be built!].</p>
 <p>First let's create the password for the admin user. The following will create a secure random password and hash it with bcrypt:</p>
 <div class="highlight"><pre><span class="nv">USERNAME</span><span class="o">=</span>admin
@@ -437,7 +448,7 @@ php artisan db:seed --class<span class="o">=</span>ContactGroups
 </pre></div>
 
 
-<h2 id="file-permissions">File Permissions</h2>
+<h2 id="file-permissions">File Permissions<a class="headerlink" href="#file-permissions" title="Permanent link"></a></h2>
 <p>The web server needs write access to some directories:</p>
 <div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 chown -R www-data: var/ storage/ bootstrap/cache/ database/Proxies/
@@ -445,7 +456,7 @@ chmod -R u+rwX var/ storage/ bootstrap/cache/ database/Proxies/
 </pre></div>
 
 
-<h2 id="setting-up-apache">Setting Up Apache</h2>
+<h2 id="setting-up-apache">Setting Up Apache<a class="headerlink" href="#setting-up-apache" title="Permanent link"></a></h2>
 <p>Here is a sample virtual hosts file for IXP Manager (replace <code>{$IXPROOT}</code> as appropriate!):</p>
 <div class="highlight"><pre><span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
     <span class="nb">ServerAdmin</span> webmaster@localhost
@@ -473,7 +484,7 @@ service apache2 restart
 </pre></div>
 
 
-<h1 id="congratulations">Congratulations!</h1>
+<h1 id="congratulations">Congratulations!<a class="headerlink" href="#congratulations" title="Permanent link"></a></h1>
 <p>Your new IXP Manager installation should be accessible via your server's IP address using the username (<code>$USERNAME</code>) and password (<code>$IXPM_ADMIN_PW</code>) you set above.</p>
 <p>If you plan to use this in production, you should:</p>
 <ul>

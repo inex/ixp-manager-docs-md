@@ -85,6 +85,17 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Features</span>
     <ul class="subnav">
                 <li class="">
@@ -252,12 +263,12 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="irrdb-prefixes-and-asn-filtering">IRRDB Prefixes and ASN Filtering</h1>
+                <h1 id="irrdb-prefixes-and-asn-filtering">IRRDB Prefixes and ASN Filtering<a class="headerlink" href="#irrdb-prefixes-and-asn-filtering" title="Permanent link"></a></h1>
 <blockquote>
 <p><strong>Prerequisite Reading:</strong> Ensure you first familiarize yourself with <a href="../routers/">the generic documentation on managing and generating router configurations here</a>.</p>
 </blockquote>
 <p>IXP Manager can maintain a list of member route:/route6: prefixes and origin ASNs as registered in IRRDBs in its database and then use these to, for example, generate strict inbound filters on route servers.</p>
-<h2 id="setup">Setup</h2>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link"></a></h2>
 <p>You need to have set up some IRRDB sources (e.g. RIPE's whois service) under the <em>IXP Admin Actions / IRRDB Configuration</em> on the left hand side menu. If this wasn't done as part of an upgrade from v3 / your initial installation then there is a database seeder you can use to install some to start you off:</p>
 <div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 ./artisan db:seed --class<span class="o">=</span>IRRDBs
@@ -285,7 +296,7 @@
 </pre></div>
 
 
-<h2 id="usage">Usage</h2>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link"></a></h2>
 <p>To populate (and update) your local IRRDB, run the following commands:</p>
 <div class="highlight"><pre>cd $IXPROOT
 php artisan irrdb:update-prefix-db
@@ -306,7 +317,7 @@ php artisan irrdb:update-asn-db
 </pre></div>
 
 
-<h2 id="details">Details</h2>
+<h2 id="details">Details<a class="headerlink" href="#details" title="Permanent link"></a></h2>
 <p>The IRRDB update commands will:</p>
 <ul>
 <li>iterate over all route server client customers for IPv4 and IPv6 (unless a specific customer is specified);</li>

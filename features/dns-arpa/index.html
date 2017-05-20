@@ -85,6 +85,17 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Features</span>
     <ul class="subnav">
                 <li class="">
@@ -250,7 +261,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="dns-arpa">DNS / ARPA</h1>
+                <h1 id="dns-arpa">DNS / ARPA<a class="headerlink" href="#dns-arpa" title="Permanent link"></a></h1>
 <p>An IXP assigns each customer (an) IP address(es) from the range used on the peering LAN(s). These IP addresses can show up in traceroutes (for example) and both IXPs and customers like to have these resolve to a hostname.</p>
 <p>When creating <em>VLAN Interfaces</em> in IXP Manager there is a field called <em>IPv[4/6] Hostname</em>. This is intended for this DNS ARPA purpose. Some customers have specific requirements for these while other smaller customers may not fully understand the use cases. At INEX, we typically default to entries such as:</p>
 <ul>
@@ -264,7 +275,7 @@
 </ul>
 <p>Both of these are explained below.</p>
 <p>Note that the API endpoints below can be tested in your browser by directly accessing the URLs <strong>when logged in</strong>. Otherwise, you need an <a href="../../dev/api/">API key</a> when using them in scripts.</p>
-<h2 id="as-json">As JSON</h2>
+<h2 id="as-json">As JSON<a class="headerlink" href="#as-json" title="Permanent link"></a></h2>
 <p>You can use the <strong>IXP Manager</strong> API to get all ARPA entries for a given VLAN and protocol as a JSON object using the following endpoint format:</p>
 <div class="highlight"><pre>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}
 </pre></div>
@@ -327,7 +338,7 @@
 </pre></div>
 
 
-<h2 id="from-templates">From Templates</h2>
+<h2 id="from-templates">From Templates<a class="headerlink" href="#from-templates" title="Permanent link"></a></h2>
 <p>Rather than writing your own scripts to consume the JSON object as above, it may be easier to use the bundled ISC Bind templates or to write your own template for IXP Manager.</p>
 <p>You can use the <strong>IXP Manager</strong> API to get all ARPA entries for a given VLAN and protocol as plain text based on a template by using the following API endpoint:</p>
 <div class="highlight"><pre>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}/{template}
@@ -351,7 +362,7 @@
 <li><code>bind</code>: outputs resource records only as per the above example.</li>
 <li><code>bind-full</code>: outputs a complete Bind zone file including head and serialized serial number (UNIX timestamp). This must be templated as it uses <code>example.com</code> for email and name server domains.</li>
 </ul>
-<h3 id="skinning-templating">Skinning / Templating</h3>
+<h3 id="skinning-templating">Skinning / Templating<a class="headerlink" href="#skinning-templating" title="Permanent link"></a></h3>
 <p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled ISC Bind template or add your own.</p>
 <p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
 <div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
@@ -378,7 +389,7 @@ cp resources/views/api/v4/dns/bind.foil.php resources/skins/myskin/api/v4/dns/my
 </pre></div>
 
 
-<h3 id="sample-script">Sample Script</h3>
+<h3 id="sample-script">Sample Script<a class="headerlink" href="#sample-script" title="Permanent link"></a></h3>
 <p>At INEX, we have (for example) one peering LAN that is a /25 IPv4 network and so is not a zone file in its own right. As such, we make up the zone file using includes. The main zone file looks like:</p>
 <div class="highlight"><pre>$TTL 86400
 

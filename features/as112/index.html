@@ -85,6 +85,17 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Features</span>
     <ul class="subnav">
                 <li class="">
@@ -252,7 +263,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="as112-service">AS112 Service</h1>
+                <h1 id="as112-service">AS112 Service<a class="headerlink" href="#as112-service" title="Permanent link"></a></h1>
 <blockquote>
 <p><strong>Prerequisite Reading:</strong> Ensure you first familiarize yourself with <a href="../routers/">the generic documentation on managing and generating router configurations here</a>.</p>
 </blockquote>
@@ -266,11 +277,11 @@
 <p>Because these IP addresses are widely used for private networking, many end-user systems are configured to perform reverse DNS lookups for these address ranges.  DNS lookups for these ranges should always be null-answered quickly, in order to make sure that DNS retransmits don’t occur (thereby overloading local DNS resolvers), and to prevent end-user systems from hanging due to DNS lookups.</p>
 <p>AS112 services are provided around the world by a group of volunteers and, very often, by IXP operators for the benefit of their members.</p>
 <p><a href="https://www.inex.ie/">INEX</a> has always provided an AS112 service to our members on all peering LANs and so it is an integral part of <strong>IXP Manager</strong>. You can read all about INEX's implementation at https://www.inex.ie/technical/as112-service/ including graphs for the service. Feel free to use our test and examples from that page for your own IXP.</p>
-<h2 id="building-an-as112-service">Building an AS112 Service</h2>
+<h2 id="building-an-as112-service">Building an AS112 Service<a class="headerlink" href="#building-an-as112-service" title="Permanent link"></a></h2>
 <p>You can find instructions for building an AS112 service in <a href="https://tools.ietf.org/html/rfc7534">rfc7534</a>. You should also add AS112 redirection using DNAME functionality as per <a href="https://tools.ietf.org/html/rfc7535">rfc7535</a>.</p>
 <p>You will also find a lot more information and how-tos on the official website at: <a href="https://www.as112.net/">https://www.as112.net/</a>.</p>
 <p>Follow these instructions in every way to build the AS112 service on a (virtual) machine with an appropriate DNS server - <strong>except skip the installation and configuration of the BGP daemon</strong>. When using IXP Manager, you will need to use Bird for this and IXP Manager will create the configuration.</p>
-<h2 id="managing-your-as112-service-from-ixp-manager">Managing Your AS112 Service from IXP Manager</h2>
+<h2 id="managing-your-as112-service-from-ixp-manager">Managing Your AS112 Service from IXP Manager<a class="headerlink" href="#managing-your-as112-service-from-ixp-manager" title="Permanent link"></a></h2>
 <p>AS112 is disabled by default in IXP Manager. This really just means UI elements are hidden. To enable these, set the following in your <code>.env</code> file:</p>
 <div class="highlight"><pre>IXP_AS112_UI_ACTIVE=true
 </pre></div>
@@ -282,16 +293,16 @@
 <li>an indication as to whether the user has AS112 services enabled on various overview screens.</li>
 </ul>
 <p>Enabling the AS112 service simply indicates if a BGP peering session should be created in the AS112 BGP configuration when downloading the AS112 router's BGP configuration from IXP Manager.</p>
-<h3 id="creating-the-pro-bono-as112-customer">Creating the Pro-Bono AS112 Customer</h3>
+<h3 id="creating-the-pro-bono-as112-customer">Creating the Pro-Bono AS112 Customer<a class="headerlink" href="#creating-the-pro-bono-as112-customer" title="Permanent link"></a></h3>
 <p>You need to add the AS112 service as a pro-bono member of your IXP in IXP Manager. Here's INEX's example:</p>
 <p><img alt="AS112 INEX Customer Entry" src="../img/as112-inex-cust.png" /></p>
 <p>You then need to create an interface for the AS112 service on each peering LAN where the service will be offered. Here again is INEX's example from our peering LAN1 in Dublin:</p>
 <p><img alt="AS112 INEX VLAN Interface Entry" src="../img/as112-inex-vli.png" /></p>
 <p>Note that historically INEX has not used MD5 on our AS112 service. This is because the service dates from over 20 years ago at INEX when MD5 support was not available. There is no reason not to use MD5 on the service if you wish.</p>
-<h3 id="generating-the-bird-configuration">Generating the Bird Configuration</h3>
+<h3 id="generating-the-bird-configuration">Generating the Bird Configuration<a class="headerlink" href="#generating-the-bird-configuration" title="Permanent link"></a></h3>
 <p>Please see the <a href="../routers/">router configuration generation</a> for this.</p>
 <p>For your AS112 server, we have a <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/as112">sample script(s)</a> for pulling and updating the configuration from IXP Manager. We typically put this in an hourly cron.</p>
-<h2 id="other-notes">Other Notes</h2>
+<h2 id="other-notes">Other Notes<a class="headerlink" href="#other-notes" title="Permanent link"></a></h2>
 <p>At INEX, we typically have our AS112 service peer with our route servers.</p>
 <p>This will happen automatically if you check the <em>Route Server Client</em> on the AS112 VLAN interface configuration (see above screen shot) and also check the <em>AS112 Client</em> checkbox on the VLAN interfaces of your route servers in IXP Manager. <em>Note that in the same way as you create an AS112 <strong>pro-bono</strong> customer, you should also have a dedicated route server <strong>internal</strong> customer.</em></p>
               

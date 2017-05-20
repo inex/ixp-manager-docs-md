@@ -85,6 +85,17 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Features</span>
     <ul class="subnav">
                 <li class="">
@@ -256,16 +267,16 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="contact-groups">Contact Groups</h1>
+                <h1 id="contact-groups">Contact Groups<a class="headerlink" href="#contact-groups" title="Permanent link"></a></h1>
 <p>Contacts can now be assigned to multiple arbitrary groups.</p>
-<h2 id="activating-the-configuration">Activating the Configuration</h2>
+<h2 id="activating-the-configuration">Activating the Configuration<a class="headerlink" href="#activating-the-configuration" title="Permanent link"></a></h2>
 <p>Your database will already be set-up via the database seeds during installation.</p>
 <p>To activate this feature, you just need to create the configuration file. From the root directory of IXP Manager just::</p>
 <div class="highlight"><pre>cp config/contact_group.php.dist config/contact_group.php
 </pre></div>
 
 
-<h2 id="creating-editing-deleting-groups">Creating / Editing / Deleting Groups</h2>
+<h2 id="creating-editing-deleting-groups">Creating / Editing / Deleting Groups<a class="headerlink" href="#creating-editing-deleting-groups" title="Permanent link"></a></h2>
 <p>A group is defined by:</p>
 <ul>
 <li>a name (e.g. beer);</li>
@@ -275,9 +286,9 @@
 <p>You define the group types in <code>config/contact_group.php</code>.</p>
 <p>In these examples, <code>ROLE</code> will be entered in the database column and <em>Role</em> will be displayed in the interface.</p>
 <p>Groups can then be added / edited / deleted via <code>https://www.example/com/ixp-manager/contact-group</code>. This can be reached by clicking <em>Contacts</em> and then <em>Contact Groups</em> in the left menu.</p>
-<h2 id="assigning-contacts-to-groups">Assigning Contacts to Groups</h2>
+<h2 id="assigning-contacts-to-groups">Assigning Contacts to Groups<a class="headerlink" href="#assigning-contacts-to-groups" title="Permanent link"></a></h2>
 <p>Assigning contacts to groups is done in the contact add / edit page.</p>
-<h2 id="exporting-contact-groups">Exporting Contact Groups</h2>
+<h2 id="exporting-contact-groups">Exporting Contact Groups<a class="headerlink" href="#exporting-contact-groups" title="Permanent link"></a></h2>
 <p>Contact groups can be exported using the <code>ixptool.php</code> command, for example::
 <div class="highlight"><pre>bin/ixptool.php -a cli.cli-export-group -p type=ROLE,format=csv,cid=1
 </pre></div>
@@ -294,7 +305,7 @@
 <li><code>sn</code>: Customer shortname to limit results to; or</li>
 <li><code>cid</code>: Customer id to limit results to.</li>
 </ul>
-<h2 id="special-group-roles">Special Group: <em>Roles</em></h2>
+<h2 id="special-group-roles">Special Group: <em>Roles</em><a class="headerlink" href="#special-group-roles" title="Permanent link"></a></h2>
 <p>The default sample configuration file (<code>config/contact_group.php</code>) and the database seeds create a <code>ROLE</code> group type populated with groups <em>Admin</em>, <em>Billing</em>, <em>Technical</em> and <em>Marketing</em>. There is a dedicated form element when editing contacts for any groups defined in the Role type.</p>
 <p>If the role type is removed from the configuration, the form element for the contact's roles will not be shown.</p>
               
