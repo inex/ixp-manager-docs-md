@@ -316,7 +316,7 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
 <ul>
 <li><code>as112</code>: AS112 router configurations conforming to <a href="https://tools.ietf.org/html/rfc7534">rfc7534</a> (AS112 Nameserver Operations) and implementing <a href="https://tools.ietf.org/html/rfc7535">rfc7535</a> (AS112 Redirection Using DNAME). There are configs to serve queries over both IPv4 and IPv6. See <a href="../as112/">the AS112 documentation for more details</a>.</li>
 <li><code>rc1</code>: route collector configurations. Peering with the route collector is mandatory at many IXPs including INEX. These are incredably useful for monitoring, diagnosing issues and providing looking glasses. We also use the quarantine version of these for turning up new member connections.</li>
-<li><code>rs1</code>: route collector configurations. See below for full details of what these implement. Note also that the <code>ci-apiv4-rs1-lan2-ipv4.conf</code> file includes BGP large communities (<a href="https://tools.ietf.org/html/rfc8092">rfc8092</a>). See <a href="route-serves.md">the route servers documentation for more details</a>.</li>
+<li><code>rs1</code>: route collector configurations. See below for full details of what these implement. Note also that the <code>ci-apiv4-rs1-lan2-ipv4.conf</code> file includes BGP large communities (<a href="https://tools.ietf.org/html/rfc8092">rfc8092</a>). See <a href="../route-servers/">the route servers documentation for more details</a>.</li>
 </ul>
               
             </div>
