@@ -85,6 +85,17 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Features</span>
     <ul class="subnav">
                 <li class="">
@@ -252,12 +263,12 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="templates-skinning">Templates &amp; Skinning</h1>
+                <h1 id="templates-skinning">Templates &amp; Skinning<a class="headerlink" href="#templates-skinning" title="Permanent link"></a></h1>
 <blockquote>
 <p>Remember that v4 is a transition version of <strong>IXP Manager</strong> from Zend Framework / Smarty to Laravel and so much of the frontend / templating still uses v3 templates and code. As such, how to skin a page will depend on whether the template is found in <code>resources/views</code> (v4) or <code>application/[modules/xxx/]views</code> (v3). Both are covered here.</p>
 </blockquote>
 <p><strong>IXP Manager</strong> supports template/view skinning allowing users to substitute any of their own templates in place of the default ones shipped with IXP Manager.</p>
-<h2 id="skinning-in-version-4">Skinning in Version 4+</h2>
+<h2 id="skinning-in-version-4">Skinning in Version 4+<a class="headerlink" href="#skinning-in-version-4" title="Permanent link"></a></h2>
 <p>First, set the following parameter in <code>.env</code>:</p>
 <div class="highlight"><pre>VIEW_SKIN=&quot;example&quot;
 </pre></div>
@@ -267,7 +278,7 @@
 <p>Once a skin is enabled from <code>.env</code>, then any templates found in the skin directory <em>(using the same directory structure as found under <code>resouces/views</code>)</em> will take precedence over the default template file. This means you do not need to recreate / copy all the default files - just replace the ones you want.</p>
 <p>In previous versions of <strong>IXP Manager</strong>, we used Smarty as the templating engine. This meant that if someone wanted to help improve <strong>IXP Manager</strong> then they would need to become familiar with PHP <em>and</em> Smarty. In v4 we dropped Smarty and, rather than using another compiled templating engine, we have decided to go with native PHP templates.</p>
 <p>For this, we are using <a href="http://www.foilphp.it/">Foil</a> - <em>Foil brings all the flexibility and power of modern template engines to native PHP templates. Write simple, clean and concise templates with nothing more than PHP.</em> Also, simulaneously supported are Lavael's own <a href="https://laravel.com/docs/5.4/blade">Blade templates</a> which we sometimes use for simple pages.</p>
-<h3 id="example">Example</h3>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link"></a></h3>
 <p>The <a href="../grapher/">graphing</a> MRTG configuration generator allows for custom configuration content at the top and bottom of the file. In order to have your custom configuration enabled, you need to skin two files.</p>
 <p>Here's an example:</p>
 <div class="highlight"><pre># position ourselves in the IXP Manager root directory
@@ -295,7 +306,7 @@ vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
 
 
 <p>You can of course skin any file including the non-custom MRTG files as suits your needs.</p>
-<h3 id="custom-variables-configuration-options">Custom Variables / Configuration Options</h3>
+<h3 id="custom-variables-configuration-options">Custom Variables / Configuration Options<a class="headerlink" href="#custom-variables-configuration-options" title="Permanent link"></a></h3>
 <p>When you are skinning your own templates, you may find you need to create custom configuration options for values you do not want to store directly in your own templates. For this, we have a configuration file which is excluded from Git. Initiate it via::</p>
 <div class="highlight"><pre>cp config/custom.php.dist config/custom.php
 </pre></div>
@@ -321,7 +332,7 @@ vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
 </pre></div>
 
 
-<h2 id="skinning-old-templates">Skinning Old Templates</h2>
+<h2 id="skinning-old-templates">Skinning Old Templates<a class="headerlink" href="#skinning-old-templates" title="Permanent link"></a></h2>
 <p>This is still important as <strong>IXP Manager</strong> v4 still uses most of the previous templates.</p>
 <p>To skin files found under <code>application/[modules/xxx/]views</code>, proceed as follows:</p>
 <ol>
@@ -336,7 +347,7 @@ vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
 </li>
 </ol>
 <p>Once the above <code>.env</code> option is set, then any pages in its skin directory (using the same directory structure as <code>application/views</code> will take precedence over the default template files. This means you do not need to recreate / copy all the default files - just replace the ones you want.</p>
-<h2 id="finding-templates">Finding Templates</h2>
+<h2 id="finding-templates">Finding Templates<a class="headerlink" href="#finding-templates" title="Permanent link"></a></h2>
 <p>Usually there is one of two places to find a template:</p>
 <ul>
 <li>New pages in &gt;=v4: <code>resources/views/$controller/$action</code></li>

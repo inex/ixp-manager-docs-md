@@ -85,6 +85,17 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Features</span>
     <ul class="subnav">
                 <li class="">
@@ -264,10 +275,10 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="patch-panels-cross-connects">Patch Panels / Cross Connects</h1>
+                <h1 id="patch-panels-cross-connects">Patch Panels / Cross Connects<a class="headerlink" href="#patch-panels-cross-connects" title="Permanent link"></a></h1>
 <p>One of the more difficult things for an IXP to manage is the sheer volume of patch panels / cross connects they need to manage. We have approached the issue a number of times in IXP Manger but abandoned the attempt every time. Typically our original solutions were over-engineered where all we really needed was something which could replace a spreadsheet per panel.</p>
 <p>We believe we have now developed a feature complete and useful means of managing patch panels and associated cross connects.</p>
-<h2 id="features">Features</h2>
+<h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link"></a></h2>
 <ul>
 <li>Add / edit patch panels  (which includes cable and connector types).</li>
 <li>List associated patch panel ports which includes:</li>
@@ -284,7 +295,7 @@
 <li>Generate emails for connection and cease requests as well as an email providing full customer view of a cross connect.</li>
 <li>Typically fibre ports are <em>duplex</em> ports but there is a growing use of BiDi optics meaning simplex ports. Our implementation treats all ports as simplex but you can mark it as duplex and set its partner port.</li>
 </ul>
-<h3 id="duplex-fibre-ports">Duplex Fibre Ports</h3>
+<h3 id="duplex-fibre-ports">Duplex Fibre Ports<a class="headerlink" href="#duplex-fibre-ports" title="Permanent link"></a></h3>
 <p>We suggest adding fibre ports as two ports per duplex port. I.e. if your patch panel has 12 duplex ports, enter this as 24 ports. When allocating ports later, you can set it as a duplex port and select its <em>partner / slave port</em>. This will future proof your patch panels for the growing use of bidi optics and other simplex based xWDM fibre solutions.</p>
 <p>From our experience, duplex fibre ports are often identified as their individual strands. For example, <em>duplex port 5</em> would be referenced as <em>F9/F10</em>.</p>
 <p>Your mileage may vary on this but we need to allow this flexibility to cover both use-cases. You always have options however:</p>
@@ -295,7 +306,7 @@
 <li>when you have duplex ports on a patch panel, IXP Manager will provide a duplex view by default with a CSS-based toggle to reveal the typical partner ports.</li>
 <li>if you think IXP Manager can make this easier, please talk to us. <em>But we cannot cover every use case programatically. We've opted to allow flexibility rather than dictate a particular format.</em></li>
 </ul>
-<h2 id="adding-a-patch-panel">Adding a Patch Panel</h2>
+<h2 id="adding-a-patch-panel">Adding a Patch Panel<a class="headerlink" href="#adding-a-patch-panel" title="Permanent link"></a></h2>
 <p>The following image shows a typical <em>add a new patch panel</em> form (as of v4.3). You'll note that clicking <em>Help</em> provides detailed context aware help messages.</p>
 <p><img alt="Adding a Patch Panel" src="../img/pp-add2.png" /></p>
 <p>Most of this is self-explanatory but:</p>
@@ -307,12 +318,12 @@
 <em> When setting the <strong>Number of Ports</strong>, ensure you count duplex fibre ports as </em>two ports<em>. So 12 duplex fibre ports would be entered as 24. When editing a patch panel, this input field represents the number of additional ports you want to add to a patch panel and thus defaults to 0 in that situation.
 </em> <strong>Port Name Prefix</strong>: This is an optional field intended for use on fibre patch panels. As an example, you may wish to prefix individual fibre strands in a duplex port with F which would mean the name of a duplex port would be displayed as F1/F2.
 * <strong>Chargeable</strong>: Usually IXPs request their members to come to them and bear the costs of that. However, sometimes a co-location facility may charge the IXP for a half circuit or the IXP may need order and pay for the connection. Setting this only sets the default option when allocating ports to members later. The options are Yes / No / Half / Other.</p>
-<h2 id="filtering-patch-panel-ports">Filtering Patch Panel Ports</h2>
+<h2 id="filtering-patch-panel-ports">Filtering Patch Panel Ports<a class="headerlink" href="#filtering-patch-panel-ports" title="Permanent link"></a></h2>
 <p>Quite often, all you are looking for is a free in a particular location (data centre) or cabinet of a particular cable type (UTP / SMF / etc.).</p>
 <p>IXP Manager makes this easy from the <em>Patch Panels</em> page via the top right button labeled <em>Filter Options</em>. When clicked, this yields an advanced search as follows:</p>
 <p><img alt="Filtering Ports" src="../img/pp-filter.png" /></p>
 <p>Cabinets auto-fills when you chose (or change) a location.</p>
-<h2 id="patch-panel-port-states">Patch Panel Port States</h2>
+<h2 id="patch-panel-port-states">Patch Panel Port States<a class="headerlink" href="#patch-panel-port-states" title="Permanent link"></a></h2>
 <p>A patch panel port can have the following states:</p>
 <ul>
 <li><strong>Available</strong>: The port is free and available for use.</li>
@@ -325,9 +336,9 @@
 <li><strong>Broken</strong></li>
 <li><strong>Other</strong></li>
 </ul>
-<h3 id="free-available-ports">Free / Available Ports</h3>
+<h3 id="free-available-ports">Free / Available Ports<a class="headerlink" href="#free-available-ports" title="Permanent link"></a></h3>
 <p>IXP Manager will colour ports in the <em>Available</em>, <em>Prewired</em> and <em>Awaiting Cease</em> states are green allowing an easy visual indication of available ports.</p>
-<h2 id="patch-panel-port-lifecycle">Patch Panel Port Lifecycle</h2>
+<h2 id="patch-panel-port-lifecycle">Patch Panel Port Lifecycle<a class="headerlink" href="#patch-panel-port-lifecycle" title="Permanent link"></a></h2>
 <p>Patch panel ports start as either <em>available</em> or <em>prewired</em>. The context menu in these states is:</p>
 <p><img alt="Adding a Patch Panel" src="../img/ppp-available.png" /></p>
 <ul>
@@ -388,7 +399,7 @@
 <li><strong>Set Awaiting Cease</strong>: mark the port and pending disconnection. Your next action after this should be <em>Email - Cease</em>.</li>
 <li><strong>Set Ceased</strong>: this is a <em>transitive state</em> in that it doesn't <em>stick</em>. When you mark a patch panel as ceased, the existing details (including files and notes) are archived as part of the port's history and then port is then cleared and made available again.</li>
 </ol>
-<h2 id="file-attachments">File Attachments</h2>
+<h2 id="file-attachments">File Attachments<a class="headerlink" href="#file-attachments" title="Permanent link"></a></h2>
 <p>Over the lifetime of a cross connect - and particularly when it is being ordered, there may be files exchanges between you and your customers or the colocation provider. These can be added to the patch panel port via the <em>Attach File...</em> option.</p>
 <p>The dialog will dynamically determine the maximum file upload size based on your PHP settings. To alter this, change the following in your server's appropriate <code>php.ini</code>:</p>
 <div class="highlight"><pre>; Maximum allowed size for uploaded files.
@@ -409,7 +420,7 @@ post_max_size = 40M
 <li>public files are accessible to the customer through their own dashboard.</li>
 <li>public files are attached to the <em>Email - Information</em> email.</li>
 </ul>
-<h2 id="loa-generation">LoA Generation</h2>
+<h2 id="loa-generation">LoA Generation<a class="headerlink" href="#loa-generation" title="Permanent link"></a></h2>
 <p>Many co-location providers will not accept a cross connect order without a LoA <em>(Letter of Agency/Authority)</em> from the party to whom the cross connect is to be delivered (typically the IXP).</p>
 <p>IXP Manager will generate a PDF LoA to download or include in the emails it generates for you. Here is an example:</p>
 <p><img alt="LoA Example" src="../img/ppp-loa.png" /></p>
@@ -420,11 +431,11 @@ post_max_size = 40M
 <li><strong>Download PDF</strong>: downloads the PDF via your browser.</li>
 <li><strong>View PDF</strong>: displays the PDF LoA in your browser (where browser supports it).</li>
 </ul>
-<h3 id="loa-verification">LoA Verification</h3>
+<h3 id="loa-verification">LoA Verification<a class="headerlink" href="#loa-verification" title="Permanent link"></a></h3>
 <p>The stock LoA template (and INEX's version) includes a link that allows co-location browsers to click on to verify its veracity.</p>
 <p>On successful verification, the end user sees:</p>
 <p><img alt="LoA Verification Example" src="../img/ppp-loa-verify.png" /></p>
-<h2 id="email-generation">Email Generation</h2>
+<h2 id="email-generation">Email Generation<a class="headerlink" href="#email-generation" title="Permanent link"></a></h2>
 <p>IXP Manager allows you to send four emails related to patch panels / cross connects (port status dependent). These are listed below. The Email editor looks as follows:</p>
 <p><img alt="Email Editor" src="../img/ppp-email.png" /></p>
 <p>Note that:</p>
@@ -443,13 +454,13 @@ post_max_size = 40M
 <li><strong>Email - LoA</strong>: Email a LoA to the customer as attached as a PDF. This is similar to <em>Email - Connect</em> but it is more reflective of a typical response to a second request for a LoA.</li>
 </ul>
 <p>All email templates can be <a href="../skinning/">skinned</a> for your own needs. See INEX's example skins <a href="https://github.com/inex/IXP-Manager/tree/master/resources/skins/inex/patch-panel-port/emails">here</a>.</p>
-<h2 id="viewing-patch-panel-details-and-archives">Viewing Patch Panel Details and Archives</h2>
+<h2 id="viewing-patch-panel-details-and-archives">Viewing Patch Panel Details and Archives<a class="headerlink" href="#viewing-patch-panel-details-and-archives" title="Permanent link"></a></h2>
 <p>Each patch panel port row has the following button:</p>
 <p><img alt="PPP View" src="../img/ppp-view.png" /></p>
 <p>The number in the badge indicates how many historical records are available.</p>
 <p>Clicking on the button yields the following view screen:</p>
 <p><img alt="PPP View" src="../img/ppp-view-page.png" /></p>
-<h3 id="development-history">Development History</h3>
+<h3 id="development-history">Development History<a class="headerlink" href="#development-history" title="Permanent link"></a></h3>
 <p>The Patch Panels functionality was developed during Q1 2017 and added in March 2017. This was made possible from sponsorship which enabled us to hire a new full time developer. We are especially grateful to our sponsors - <a href="https://www.ixpmanager.org/sponsors.php">please see them here</a>.</p>
               
             </div>

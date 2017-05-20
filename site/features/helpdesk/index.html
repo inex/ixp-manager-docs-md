@@ -85,6 +85,17 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Features</span>
     <ul class="subnav">
                 <li class="">
@@ -252,14 +263,14 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="helpdesk-integration">Helpdesk Integration</h1>
+                <h1 id="helpdesk-integration">Helpdesk Integration<a class="headerlink" href="#helpdesk-integration" title="Permanent link"></a></h1>
 <p><strong> WORK IN PROGRESS - DEVELOPMENT NOTES </strong></p>
 <p>As an IXP scales, it will eventually have to replace email support via a simple alias / shared IMAP mailbox with a <em>proper</em> ticketing system. After extensive (and painful!) research, we at INEX chose <a href="https://www.zendesk.com/">Zendesk</a> as the system that most matched our budget and required features (1).</p>
 <p>While your mileage may vary on this - or you may already have something else - please note that the reference implementation for helpdesk integration on IXP Manager is Zendesk. So, if you haven't already chosen one, Zendesk will provide maximum integration with minimal pain.</p>
 <blockquote>
 <p>Please do not open a feature request for other helpdesk implementations as the authors cannot undertake such additional work. If you wish to have integration with another helpdesk implemented, please consider <a href="https://www.ixpmanager.org/commercial.php">commercial support</a></p>
 </blockquote>
-<h2 id="features-supported">Features Supported</h2>
+<h2 id="features-supported">Features Supported<a class="headerlink" href="#features-supported" title="Permanent link"></a></h2>
 <p>IXP Manager currently supports:</p>
 <ul>
 <li>creation and update of customers / organisations in Zendesk</li>
@@ -271,9 +282,9 @@
 <li>allow users to create, update and close tickets in IXP Manager</li>
 <li>list all tickets per organisation (for admins and users)</li>
 </ul>
-<h2 id="configuration">Configuration</h2>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h2>
 <p><em>As Zendesk is the only implementation currently, this refers only to Zendesk.</em></p>
-<h3 id="zendesk">Zendesk</h3>
+<h3 id="zendesk">Zendesk<a class="headerlink" href="#zendesk" title="Permanent link"></a></h3>
 <p>You need to enable API access to Zendesk as follows:</p>
 <ol>
 <li>Log into your Zendesk account</li>
@@ -290,7 +301,7 @@ HELPDESK_ZENDESK_EMAIL=john.doe@example.com
 
 
 <p>You can now test that your settings are correct with: <strong>FIXME</strong></p>
-<h2 id="implementation-development">Implementation Development</h2>
+<h2 id="implementation-development">Implementation Development<a class="headerlink" href="#implementation-development" title="Permanent link"></a></h2>
 <p>The helpdesk implementation in IXP Manager is designed using contracts and service providers. I.e. it is done <em>The Right Way (tm)</em>.</p>
 <p>The reference implementation is for Zendesk but it's coded to a contract (interface) at <code>app/Contracts/Helpdesk.php</code>.</p>
 <p>The actual Zendesk implementation can be found at: <code>app/Services/Helpdesk/Zendesk.php</code>.</p>

@@ -85,6 +85,17 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Features</span>
     <ul class="subnav">
                 <li class="">
@@ -254,20 +265,20 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="reseller-functionality">Reseller Functionality</h1>
+                <h1 id="reseller-functionality">Reseller Functionality<a class="headerlink" href="#reseller-functionality" title="Permanent link"></a></h1>
 <p>Reseller mode must be explicitly enabled with a <code>.env</code> option:</p>
 <div class="highlight"><pre>IXP_RESELLER_ENABLED=true
 </pre></div>
 
 
-<h2 id="introduction">Introduction</h2>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link"></a></h2>
 <p>In our model, a <em>resold</em> member is still a fully fledged member, they just happen to reach the exchange via someone else's network. You / we would still have a relationship with the member independent of the reseller and would still be required to carry out the standard turn up (for us, this includes IP assignment, quarantine procedures, route collector session, route server sessions if appropriate, etc.).</p>
 <p>IXP Manager's functionality is simply to:</p>
 <ul>
 <li>record that a reseller relationship exists</li>
 <li>allow you to manage reseller and fanout ports</li>
 </ul>
-<h2 id="features">Features</h2>
+<h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link"></a></h2>
 <ul>
 <li>A customer / member can now also be a reseller. If you have a non-customer reseller, create them as an associate or internal member as appropriate. This is a boolean switch available in the add / edit customer page.</li>
 <li>Any customer can be marked as a <em>resold customer of a named reseller</em>. This is set in the add / edit customer page.</li>
@@ -276,7 +287,7 @@
 <li>In the reseller customer overview page, there is a new tab listing all the customers they have resold to the IXP.</li>
 <li>In the reseller customer overview page, the ports are separated into reseller uplink ports, the reseller's own peering ports and the fanout ports used to deliver the reseller's customers' traffic.</li>
 </ul>
-<h3 id="reseller-and-fanout-ports">Reseller and Fanout Ports.</h3>
+<h3 id="reseller-and-fanout-ports">Reseller and Fanout Ports.<a class="headerlink" href="#reseller-and-fanout-ports" title="Permanent link"></a></h3>
 <p>For resellers, we need to enforce the <strong>one port - one mac - one address</strong> rule on the peering LAN.</p>
 <p>Depending on switch technology, this can be done using</p>
 <ul>
@@ -294,7 +305,7 @@
 <li>a reseller has all their peering, reseller uplink and associated fanout ports listed in their overview and portal page;</li>
 <li>the add physical interface form and the add interface wizard support linking a peering port to a new fanout port as part of the process.</li>
 </ul>
-<h2 id="options">Options</h2>
+<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link"></a></h2>
 <p>The following are set in <code>.env</code>:</p>
 <p>To enable reseller functionality, set the following to <code>true</code>:</p>
 <div class="highlight"><pre>IXP_RESELLER_ENABLED=false
@@ -306,7 +317,7 @@
 </pre></div>
 
 
-<h2 id="coding-hints">Coding Hints</h2>
+<h2 id="coding-hints">Coding Hints<a class="headerlink" href="#coding-hints" title="Permanent link"></a></h2>
 <p>In the (older Zend Framework) controllers, you can execute reseller code via:</p>
 <div class="highlight"><pre><span class="x">if( $this-&gt;resellerMode() ) {</span>
 <span class="x">    // your reseller specific code here</span>

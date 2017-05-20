@@ -14,6 +14,8 @@ pages:
     - 'Manual Installation': 'install/manually.md'
     - 'Upgrading': 'install/upgrading.md'
     - 'Upgrade From v3': 'install/upgrade-v3.md'
+- General Usage:
+    - 'Users & Contacts': 'usage/users.md'
 - Features:
     - 'API': 'features/api.md'
     - 'AS112': 'features/as112.md'
@@ -43,3 +45,5 @@ pages:
     - 'Vagrant': 'dev/vagrant.md'
 markdown_extensions:
   - pymdownx.superfences
+  - toc:
+      permalink: 

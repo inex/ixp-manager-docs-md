@@ -85,6 +85,17 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Features</span>
     <ul class="subnav">
                 <li class="">
@@ -252,13 +263,13 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="layer2-mac-addresses">Layer2 / MAC Addresses</h1>
+                <h1 id="layer2-mac-addresses">Layer2 / MAC Addresses<a class="headerlink" href="#layer2-mac-addresses" title="Permanent link"></a></h1>
 <p>IXP Manager has support for layer2 / MAC addresses in two ways:</p>
 <ol>
 <li><strong>MAC Addresses</strong>: a read-only table via an admin menu option called <em>MAC Addresses</em> which lists entries from a database of MAC addresses which are sourced via a script from the IXP's switches directly. <em>(Available since version 3.x)</em>.</li>
 <li><strong>Layer2 Addresses</strong>: a managed table of layer2 addresses, viewed by the admin menu option <em>Layer2 Addresses</em>. These are assigned by IXP administrators on a per VLAN interface basis. <em>(Available since version 4.4)</em>.</li>
 </ol>
-<h2 id="layer2-addresses">Layer2 Addresses</h2>
+<h2 id="layer2-addresses">Layer2 Addresses<a class="headerlink" href="#layer2-addresses" title="Permanent link"></a></h2>
 <p>In early 2017, <a href="https://www.inex.ie/">INEX</a> migrated its primary peering LAN from a flat layer2 with spanning tree design to a VxLAN set-up with automation via Salt and Napalm <em>(we will insert references to presentations here once we complete all required functionality)</em>.</p>
 <p>Part of the requirements for this automation (and this was an existing feature request from other IXPs) was the management of layer2 addresses within IXP Manager and, rather than assigning them to a virtual interface, assign them to specific VLAN interfaces.</p>
 <p>Outside of our automation and VxLAN, other uses included:</p>
@@ -268,7 +279,7 @@
 <li>a static maintained database for lookups.</li>
 </ol>
 <p>The features of this system are listed below.</p>
-<h3 id="listing-and-searching-existing-layer2-addresses">Listing and Searching Existing Layer2 Addresses</h3>
+<h3 id="listing-and-searching-existing-layer2-addresses">Listing and Searching Existing Layer2 Addresses<a class="headerlink" href="#listing-and-searching-existing-layer2-addresses" title="Permanent link"></a></h3>
 <p>There is a new menu option (left hand side menu) under <em>MAC/L2 Addresses</em> called <em>Layer2 Addresses</em>. This lists all configured layer2 addresses including the OUI manufacturer (see below), associated switch / switch port(s), customer name, IPv4 and v6 addresses. You can also:</p>
 <ul>
 <li>as-you-type search from the datatable search box (lowercased and filtered to a normalised MAC address);</li>
@@ -277,12 +288,12 @@
 <li>click on a MAC to bring up a pop-up, allowing you to copy in different formats:</li>
 </ul>
 <p><img alt="MAC Address Formats" src="../img/l2a-formats.png" /></p>
-<h3 id="adding-removing-layer2-addresses-tofrom-a-vlan-interface">Adding / Removing Layer2 Addresses to/from a VLAN Interface</h3>
+<h3 id="adding-removing-layer2-addresses-tofrom-a-vlan-interface">Adding / Removing Layer2 Addresses to/from a VLAN Interface<a class="headerlink" href="#adding-removing-layer2-addresses-tofrom-a-vlan-interface" title="Permanent link"></a></h3>
 <p>When editing a customer's interface in the usual manner (customer overview -&gt; Ports -&gt; edit button), you will now see a layer2 address under <em>VLAN Interfaces</em>:</p>
 <p><img alt="MAC Address per VLAN Interface" src="../img/l2a-vlint1.png" /></p>
 <p>In the event that there is zero or more than one layer2 address, the layer2 address demonstrated above will be replaced with an appropriate note to indicate this.</p>
 <p>Clicking on the layer2 address (or note when none  / multiple) will bring you to the layer2 address management page for this VLAN interface. Addresses can be added / removed on this page. Layer2 addresses can be entered in either upper or lower cases and can optionally include characters such as <code>.</code>, <code>:</code>, <code>-</code>. These are all stripped before validation and insertion.</p>
-<h3 id="extracting-addresses">Extracting Addresses</h3>
+<h3 id="extracting-addresses">Extracting Addresses<a class="headerlink" href="#extracting-addresses" title="Permanent link"></a></h3>
 <p>As automation features are still a work in progress, not all methods are listed here. Please <a href="https://github.com/inex/IXP-Manager/issues">open an issue on GitHub</a> or start a discussion on the <a href="https://www.ixpmanager.org/support.php">mailing list</a> for whatever methods you would like.</p>
 <p>Currently implemented:</p>
 <ol>
@@ -290,7 +301,7 @@
 <li>YAML export for Salt. As yet undocumented and not suitable for general use.</li>
 <li>Querying the database directly. <em>Not usually recommended as the schema may change.</em></li>
 </ol>
-<h3 id="migrating-read-only-to-readwrite">Migrating Read-Only to Read/Write</h3>
+<h3 id="migrating-read-only-to-readwrite">Migrating Read-Only to Read/Write<a class="headerlink" href="#migrating-read-only-to-readwrite" title="Permanent link"></a></h3>
 <p>INEX's use case was to switch from the read only <em>MAC Addresses</em> table to this table without the need to data fill all preexisting ~200 MACs. As such we have created an Artisan migration script which can be run with:</p>
 <div class="highlight"><pre>php <span class="nv">$IXPROOT</span>/artisan l2addresses:populate
 </pre></div>
@@ -316,7 +327,7 @@
 </pre></div>
 
 
-<h2 id="mac-addresses">MAC Addresses</h2>
+<h2 id="mac-addresses">MAC Addresses<a class="headerlink" href="#mac-addresses" title="Permanent link"></a></h2>
 <p>This was the original functionality - a read-only table via an admin menu option called <em>MAC Addresses</em> which lists entries from a database of MAC addresses which are sourced via a script from the IXP's switches directly.</p>
 <p>At an IXP, it can be extremely useful to have a quick look up table to see what member owns what MAC address - especially when they start injecting illegal packets into the exchange fabric.</p>
 <p>We have a script, <a href="https://github.com/islandbridgenetworks/IXP-Manager/blob/master/tools/runtime/l2database/update-l2database.pl">update-l2database.pl</a>, for this. To set it up (using Ubuntu as an example=), proceed as below. We are in the process of trying to reduce the reliance on the perl library and direct database access. But for now, this script still requires it.</p>
@@ -338,9 +349,9 @@ cp <span class="nv">$IXPROOT</span>/tools/runtime/l2database/update-l2database.p
 </pre></div>
 
 
-<h2 id="oui-database">OUI Database</h2>
+<h2 id="oui-database">OUI Database<a class="headerlink" href="#oui-database" title="Permanent link"></a></h2>
 <p>IXP Manager can store the IEEE OUI database and reference it to show the manufacturer behind a MAC address.</p>
-<h3 id="populating-and-updating-the-oui-database">Populating and Updating the OUI Database</h3>
+<h3 id="populating-and-updating-the-oui-database">Populating and Updating the OUI Database<a class="headerlink" href="#populating-and-updating-the-oui-database" title="Permanent link"></a></h3>
 <p>You would typically set a weekly cron job to call:</p>
 <div class="highlight"><pre>php <span class="nv">$IXPROOT</span>/artisan utils:oui-update
 </pre></div>

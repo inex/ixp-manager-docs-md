@@ -18,15 +18,18 @@ The upgrade process is quite involved and, depending how many IXP Manager featur
 The general steps are:
 
 1. Duplicate the Database (see below)
-2. Install IXP Manager v4 (see below)
-3. Initial configuration tasks (see below)
-4. MRTG Graphing Migration (including peer to peer changes) (see below)
-5. Route collector / servers / AS112 configuration has changed - [see here](../features/routers.md)
-6. DNS / ARPA export has changed - [see here](../features/dns-arpa.md)
-7. Examine the new layer2 addresses feature and consideration migration - [see here](../features/later2-addresses.md)
-8. If you are using Bird, set up looking glasses - [see here](../features/looking-glass.md)
-9. Set up you cross connect / patch panel management - [see here](../features/patch-panels.md)
-10. Read up on [the new skinning features](../features/skinning.md) and see if you need to update / duplicate any skinned files.
+1. Install IXP Manager v4 (see below)
+1. Initial configuration tasks (see below), including:
+  * Configuration
+  * Update the database schema
+  * If appropriate, migrate plaintext passwords to bcrypt
+1. MRTG Graphing Migration (including peer to peer changes) (see below)
+1. Route collector / servers / AS112 configuration has changed - [see here](../features/routers.md)
+1. DNS / ARPA export has changed - [see here](../features/dns-arpa.md)
+1. Examine the new layer2 addresses feature and consideration migration - [see here](../features/layer2-addresses.md)
+1. If you are using Bird, set up looking glasses - [see here](../features/looking-glass.md)
+1. Set up you cross connect / patch panel management - [see here](../features/patch-panels.md)
+1. Read up on [the new skinning features](../features/skinning.md) and see if you need to update / duplicate any skinned files.
 
 You will note from the above that a number of features have been deprecated in favor of doing it in new ways. Our advice is to keep both v3 and v4 live in parallel and then migrate services piece meal. That way your route server configuration can continue pulling from v3 until you have set-up the v4 method. Just ensure that people do not make customer changes in either IXP Manager during this period (or, if they do, do it in both!).
 
@@ -35,11 +38,13 @@ You will note from the above that a number of features have been deprecated in f
 As of IXP Manager v4 (certainly >=v4.5), the following are no longer available:
 
 1. [v3 methods for generating route collector. configuration](https://github.com/inex/IXP-Manager/wiki/Route-Collector) - [see here for the v4 method](../features/routers.md).
-2. [v3 methods for generating route server configuration](https://github.com/inex/IXP-Manager/wiki/Route-Server) - [see here for the v4 method](../features/routers.md).
-3. [v3 methods for generating AS112 BGP configuration](https://github.com/inex/IXP-Manager/wiki/AS112) - [see here for the v4 method](../features/as112.md).
-4. [v3 method for IRRDB updates](https://github.com/inex/IXP-Manager/wiki/IRRDB-Prefixes) - [see here for the v4 method](../features/routers.md).
-5. TACACS+ and RADIUS templates - see old details [here for TACACS+](https://github.com/inex/IXP-Manager/wiki/TACACS) and [here for RADIUS](https://github.com/inex/IXP-Manager/wiki/RADIUS).
-6. [v3 method for DNS/ARPA generation](https://github.com/inex/IXP-Manager/wiki/ARPA-DNS-Population) - [see here for the v4 method](../features/dns-arpa.md).
+1. [v3 methods for generating route server configuration](https://github.com/inex/IXP-Manager/wiki/Route-Server) - [see here for the v4 method](../features/routers.md).
+1. [v3 methods for generating AS112 BGP configuration](https://github.com/inex/IXP-Manager/wiki/AS112) - [see here for the v4 method](../features/as112.md).
+1. [v3 method for IRRDB updates](https://github.com/inex/IXP-Manager/wiki/IRRDB-Prefixes) - [see here for the v4 method](../features/routers.md).
+1. TACACS+ and RADIUS templates - see old details [here for TACACS+](https://github.com/inex/IXP-Manager/wiki/TACACS) and [here for RADIUS](https://github.com/inex/IXP-Manager/wiki/RADIUS).
+1. [v3 method for DNS/ARPA generation](https://github.com/inex/IXP-Manager/wiki/ARPA-DNS-Population) - [see here for the v4 method](../features/dns-arpa.md).
+1. Support for plaintext passwords - see below.
+
 
 ## Duplicating the Database
 
@@ -136,6 +141,20 @@ And apply with:
 ```
  Note that this may take a few minutes if you have a lot of data such as BGP session data.
 
+
+### Migrate Plaintext Passwords to Bcrypt
+
+Since v4.5, we [no longer allows plaintext passwords](../usage/users.md#password-hashing). If you were using plaintext passwords, you need to convert them to bcrypt as follows:
+
+```sh
+cd $IXPROOT
+
+# dummy run to see what happens:
+php artisan utils:convert-plaintext-password
+
+# really convert passwords and save to database:
+php artisan utils:convert-plaintext-password --force
+ ```
 
 ### Stage One Complete
 

@@ -85,6 +85,17 @@
           
             <li class="toctree-l1">
 		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Features</span>
     <ul class="subnav">
                 <li class="">
@@ -256,11 +267,11 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="mailing-list-management">Mailing List Management</h1>
+                <h1 id="mailing-list-management">Mailing List Management<a class="headerlink" href="#mailing-list-management" title="Permanent link"></a></h1>
 <p><strong>IXP Manager</strong> has the ability to allow users to subscribe / unsubscribe from Mailman mailing lists (it should be relatively easy to expand this to other mailing list managers as the functionality is based on Mailman but not Mailman specific).</p>
 <p>The following sections explain the steps in how this is set up.</p>
 <p><strong>NB:</strong> This facility does not perform a 100% synchronisation. Any mailing list members that are added separately without a matching user in IXP Manager are not interfered with.</p>
-<h2 id="configuring-available-mailing-lists">Configuring Available Mailing Lists</h2>
+<h2 id="configuring-available-mailing-lists">Configuring Available Mailing Lists<a class="headerlink" href="#configuring-available-mailing-lists" title="Permanent link"></a></h2>
 <p>There is a sample configuration file which you need to copy as follows:</p>
 <div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 cp config/mailinglists.php.dist config/mailinglists.php
@@ -317,7 +328,7 @@ cp config/mailinglists.php.dist config/mailinglists.php
 
 </li>
 </ol>
-<h2 id="explanation-of-usage">Explanation of Usage</h2>
+<h2 id="explanation-of-usage">Explanation of Usage<a class="headerlink" href="#explanation-of-usage" title="Permanent link"></a></h2>
 <p>This mailing list synchronisation / integration code was written for existing Mailman lists we have at INEX where some lists are public with subscribers that will never have an account on INEX's IXP Manager. As such, these scripts are written so that email addresses in common between IXP Manager and Mailman can manage their subscriptions in IXP Manager but those other subscribers will be unaffected.</p>
 <p>Users in IXP Manager will either be marked as being subscribed to a list, not subscribed to a list or neither (i.e. a new user). Subscriptions are managed by user preferences (in the database) of the format:</p>
 <div class="highlight"><pre>mailinglist.listname1.subscribed = 0/1
@@ -325,7 +336,7 @@ cp config/mailinglists.php.dist config/mailinglists.php
 
 
 <p>There are four steps to performing the synchronisation <strong>for each list</strong> which are done by either using the IXP Manager CLI script <code>$IXPROOT/bin/ixptool.php</code> or the older <a href="https://github.com/inex/IXP-Manager/wiki/API-V1">API V1</a> interface.</p>
-<h3 id="cli-interface-overview">CLI Interface Overview</h3>
+<h3 id="cli-interface-overview">CLI Interface Overview<a class="headerlink" href="#cli-interface-overview" title="Permanent link"></a></h3>
 <ol>
 <li>
 <p>The execution of the <code>mailing-list-cli.list-init</code> script which is really for new IXP Manager users (or initial set up of the mailing list feature). This script is piped the full subscribers list from Mailman (via <code>list_members</code>). This function will iterate through all users and, if they have no preference set for subscription to this list, will either add a "not subscribed" preference if their email address is not in the provided list of subscribers or a "subscribed" preference if it is.</p>
@@ -340,7 +351,7 @@ cp config/mailinglists.php.dist config/mailinglists.php
 <p>The execution of the <code>mailing-list-cli.password-sync</code> action which sets the mailing list password for  all users who are unsubscribed to the given mailing list based on their IXP Manager user password. This action <code>exec()</code>'s' the change password command directly. <strong>See Password Synchronisation below.</strong> Unlike the above three operations, the password sync executes a command directly (via PHP <code>exec()</code>). If you just want to print the commands to stdout, add the parameters <code>-v -p noexec=1</code>.</p>
 </li>
 </ol>
-<h3 id="api-v1-interface-overview">API V1 Interface Overview</h3>
+<h3 id="api-v1-interface-overview">API V1 Interface Overview<a class="headerlink" href="#api-v1-interface-overview" title="Permanent link"></a></h3>
 <p>The CLI version of mailing list management was presented above. If you wish to use the API version, proceed as follows where:</p>
 <ul>
 <li><code>$MyKey</code> is one of your SUPERUSER API keys;</li>
@@ -374,7 +385,7 @@ rm /tmp/ml-listname1.txt
 
 
 <p><em>(Feel free to make the above regexp more secure and update this document).</em>        </p>
-<h2 id="how-to-implement">How to Implement</h2>
+<h2 id="how-to-implement">How to Implement<a class="headerlink" href="#how-to-implement" title="Permanent link"></a></h2>
 <p>You can implement mailing list management by configuring IXP Manager as above.</p>
 <p>IXP Manager will then generate shell scripts to manage all of the above.</p>
 <p>Execute the following command for the CLI version:</p>
@@ -389,7 +400,7 @@ rm /tmp/ml-listname1.txt
 
 <p>This generates a script called <code>mailing-list-sync[-apiv1].sh</code> which performs each of the above four steps for each configured mailing list. If your mailing list configuration does not change, you will not need to rerun this.</p>
 <p>You should now put this script into crontab on the appropriate server (same server for CLI!) and run as often as you feel is necessary. The current <em>success</em> message for a user updating their subscriptions says <em>within 12 hours</em> so we'd recommend at least running twice a day.</p>
-<h2 id="password-synchronisation">Password Synchronisation</h2>
+<h2 id="password-synchronisation">Password Synchronisation<a class="headerlink" href="#password-synchronisation" title="Permanent link"></a></h2>
 <p><strong>We now recommend against this <a href="https://github.com/inex/IXP-Manager/wiki/Password-Hashing">for the reasons explained here</a>. We have not investigated if Mailman can support Bcrypt as of yet.</strong></p>
 <p>By default, passwords from IXP Manager users with mailing list subscriptions will be sync'd to Mailman.</p>
 <p>This is done via the Mailman <code>withlist</code> script and it requires a <code>changepw.py</code> script to be in the same directory as <code>withlist</code> and this script is not supplied by default (although it is documented). Create the following <code>changepw.py</code> in the same directory as <code>withlist</code>:</p>
@@ -404,7 +415,7 @@ rm /tmp/ml-listname1.txt
 </pre></div>
 
 
-<h2 id="todo">Todo</h2>
+<h2 id="todo">Todo<a class="headerlink" href="#todo" title="Permanent link"></a></h2>
 <ul>
 <li>better handling of multiple users with the same email address and documentation of same</li>
 <li>user changes email address</li>

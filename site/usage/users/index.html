@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Continuous Integration - IXP Manager Documentation</title>
+  <title>Users & Contacts - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Continuous Integration";
-    var mkdocs_page_input_path = "dev/ci.md";
-    var mkdocs_page_url = "/dev/ci/";
+    var mkdocs_page_name = "Users & Contacts";
+    var mkdocs_page_input_path = "usage/users.md";
+    var mkdocs_page_url = "/usage/users/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -87,9 +87,27 @@
 		
     <span class="caption-text">General Usage</span>
     <ul class="subnav">
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../usage/users/">Users & Contacts</a>
+    <a class="current" href="./">Users & Contacts</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#users-contacts">Users &amp; Contacts</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#historical-perspective">Historical Perspective</a></li>
+        
+            <li><a class="toctree-l4" href="#types-of-users">Types of Users</a></li>
+        
+            <li><a class="toctree-l4" href="#logging-in-as-another-user">Logging in as Another User</a></li>
+        
+            <li><a class="toctree-l4" href="#password-hashing">Password Hashing</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -183,41 +201,27 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../api/">API</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">Continuous Integration</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#continuous-integration">Continuous Integration</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#setting-up-phpunit-tests">Setting Up PHPUnit Tests</a></li>
-        
-            <li><a class="toctree-l4" href="#running-tests">Running Tests</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../../dev/api/">API</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../docs/">Documentation</a>
+    <a class="" href="../../dev/ci/">Continuous Integration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../grapher/">Grapher</a>
+    <a class="" href="../../dev/docs/">Documentation</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../helpders/">Helpers</a>
+    <a class="" href="../../dev/grapher/">Grapher</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../vagrant/">Vagrant</a>
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
                 </li>
     </ul>
 	    </li>
@@ -244,14 +248,14 @@
     
       
         
-          <li>Development &raquo;</li>
+          <li>General Usage &raquo;</li>
         
       
     
-    <li>Continuous Integration</li>
+    <li>Users & Contacts</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/dev/ci.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/usage/users.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -261,57 +265,34 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="continuous-integration">Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permanent link"></a></h1>
-<p>IXP Manager grew out of a code base and schema that started in the early '90s. Long before <a href="http://phpunit.de/">test driven development</a> or <a href="http://behat.org/">behaviour driven development</a> was fashionable for PHP. However, as IXP Manager is taking over more and more critical configuration tasks, we need to back fill some automated testing with continuous integration.</p>
-<p>For this we have chosen <a href="https://travis-ci.org/inex/IXP-Manager">Travis-CI</a> which provides free cloud based CI linked with GitHub for open source projects. Our current build status is: <a href="https://travis-ci.org/inex/IXP-Manager"><img alt="Build Status" src="https://travis-ci.org/inex/IXP-Manager.png?branch=master" /></a></p>
-<p>We won't be aggressively writing tests for the existing codebase but will add tests as appropriate as we continue development. What follows is some basic instructions on how to set up tests and an overview (or links) to tests we have implemented.</p>
-<h2 id="setting-up-phpunit-tests">Setting Up PHPUnit Tests<a class="headerlink" href="#setting-up-phpunit-tests" title="Permanent link"></a></h2>
-<p><strong>DISCLAIMER:</strong> This is not a tutorial on unit testing, phpunit or anything else. If you have no experience with these tools, please read up on them elsewhere first.</p>
-<p>Documentation by real example can be found via the <a href="https://github.com/inex/IXP-Manager/blob/master/.travis.yml">.travis.yml</a> file and <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci">the Travis data directory</a> which contains scripts, database dumps and configurations.</p>
-<p>Testing assumes <em>a known good sample database</em> which contains a small mix of customers with different configuration options. The files generated from this database are tested against <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci/known-good">known good</a> configuration files. You first need to create a database, add a database user, import this testing database and then configure a <code>.env</code> section for testing.</p>
-<p>In MySQL:</p>
-<div class="highlight"><pre><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">ixp_ci</span> <span class="k">CHARACTER</span> <span class="kt">SET</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4&#39;</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
-<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="ss">`ixp_ci`</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="ss">`ixp_ci`</span><span class="o">@</span><span class="ss">`localhost`</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;somepassword&#39;</span><span class="p">;</span>
-<span class="n">FLUSH</span> <span class="n">PRIVILEGES</span><span class="p">;</span>
-</pre></div>
-
-
-<p>Then import the sample database:</p>
-<div class="highlight"><pre>bzcat data/travis-ci/travis_ci_test_db.sql.bz2  <span class="p">|</span> mysql -h localhost -u ixp_ci -psomepassword ixp_ci
-</pre></div>
-
-
-<p>Now, create your <code>.env</code> for testing, such as:</p>
-<div class="highlight"><pre><span class="na">DB_HOST</span><span class="o">=</span><span class="s">localhost</span>
-<span class="na">DB_DATABASE</span><span class="o">=</span><span class="s">ixp_ci</span>
-<span class="na">DB_USERNAME</span><span class="o">=</span><span class="s">ixp_ci</span>
-<span class="na">DB_PASSWORD</span><span class="o">=</span><span class="s">somepassword</span>
-</pre></div>
-
-
-<p>Note that the <a href="https://github.com/inex/IXP-Manager/blob/master/phpunit.xml"><code>phpunit.xml</code></a> file in the root directory has some default settings matching the test database. You should not need to edit these.</p>
-<h2 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link"></a></h2>
-<p>In one console session, start the artisan / Laravel web server:</p>
-<div class="highlight"><pre><span class="c"># move to the root directory of IXP Manager</span>
-<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-php artisan serve
-</pre></div>
-
-
-<p>And then kick off the tests:</p>
-<div class="highlight"><pre>phpunit
-</pre></div>
-
-
-<p>Sample output:</p>
-<div class="highlight"><pre>PHPUnit 6.1.0 by Sebastian Bergmann and contributors.
-
-...............                                                   15 / 15 (100%)
-
-Time: 1.65 seconds, Memory: 32.00MB
-
-OK (15 tests, 67 assertions)
-</pre></div>
+                <h1 id="users-contacts">Users &amp; Contacts<a class="headerlink" href="#users-contacts" title="Permanent link"></a></h1>
+<h2 id="historical-perspective">Historical Perspective<a class="headerlink" href="#historical-perspective" title="Permanent link"></a></h2>
+<p>IXP Manager's database schema has been in use in production at INEX since the mid-2000's. Since then, how users are represented in web-based applications has evolved and we have some work to do on IXP Manager in this regard.</p>
+<p>IXP Manager of pre-April 2013 had separate <em>contacts</em> and <em>users</em> which was quite confusing. <a href="http://www.lonap.net/">LONAP</a> sponsored a rework of this and now all users are contacts with login privileges. The interface still allows listing of these separately but all links for adding / editing / deleting will <em>do the right thing</em>.</p>
+<p>As IXP Manager v4 evolves, we would like to make a number of changes:</p>
+<ul>
+<li>reconsider the need for <em>users</em> and <em>contacts</em> - can these be collapsed to one table, be split again or stay as is;</li>
+<li>remove usernames and have users log in with email addresses;</li>
+<li>allow a user to be associated with more than one customer;</li>
+<li>look at OAuth2 with links to PeeringDB as well as allowing people to log in / link OAuth supported social media accounts;</li>
+<li>rework the standard <em>CUSTUSER</em> and <em>CUSTADMIN</em> privileges into (perhaps) a read-only and a read-write model;</li>
+<li>add 2fa.</li>
+</ul>
+<h2 id="types-of-users">Types of Users<a class="headerlink" href="#types-of-users" title="Permanent link"></a></h2>
+<p>See the entity definitions <a href="https://github.com/inex/IXP-Manager/blob/master/database/Entities/User.php">here</a>.</p>
+<p>There are four types of user:</p>
+<ul>
+<li><code>AUTH_PUBLIC</code> - a visitor who has not logged into IXP Manager.</li>
+<li><code>AUTH_CUSTUSER</code> - a standard customer user with portal access.</li>
+<li><code>AUTH_CUSTADMIN</code> - a customer administrative user. The only purpose of this account is to allow customers to create, edit and remove their own users. No other access is available through a CUSTADMIN login.</li>
+<li><code>AUTH_SUPERUSER</code> - IXP staff only. <strong>FULL ACCESS TO ALL CUSTOMERS AND FUNCTIONS</strong>. This is only for your IXP staff!</li>
+</ul>
+<p><strong>Additional Historical Perspective:</strong> the use of <em>AUTH_CUSTADMIN</em> was modeled on RIPE's equivalent model at the time. RIPE have since abandoned this model and it is our intention to do likewise.</p>
+<h2 id="logging-in-as-another-user">Logging in as Another User<a class="headerlink" href="#logging-in-as-another-user" title="Permanent link"></a></h2>
+<p>Administrative users (<em>AUTH_SUPERUSER</em>) can <em>switch to</em> other users to <em>see what they see</em> via the user list or the customer overview page.</p>
+<p>The purpose of this is for both development and for support staff to replicate issues as reported by users.</p>
+<h2 id="password-hashing">Password Hashing<a class="headerlink" href="#password-hashing" title="Permanent link"></a></h2>
+<p>Prior to <strong>IXP Manager</strong> v4.5, we supported both plaintext and bcrypt password hashing. There was a historical justification at INEX for support plaintext (this <a href="https://github.com/inex/IXP-Manager/wiki/Password-Hashing">may still be documented here</a>). However, IXP Manager is meant to represent the best practices for managing IXP's. As such, plaintext support was removed in v4.5.</p>
               
             </div>
           </div>
@@ -319,10 +300,10 @@ OK (15 tests, 67 assertions)
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../docs/" class="btn btn-neutral float-right" title="Documentation">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../features/api/" class="btn btn-neutral float-right" title="API">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api/" class="btn btn-neutral" title="API"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../install/upgrade-v3/" class="btn btn-neutral" title="Upgrade From v3"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -352,10 +333,10 @@ OK (15 tests, 67 assertions)
           <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../install/upgrade-v3/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../docs/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../features/api/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
