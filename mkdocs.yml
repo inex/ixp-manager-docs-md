@@ -36,6 +36,7 @@ pages:
     - 'Route Servers': 'features/route-servers.md'
     - 'Router Configuration': 'features/routers.md'
     - 'Skinning': 'features/skinning.md'
+    - 'Smokeping': 'features/smokeping.md'
 - Development:
     - 'API': 'dev/api.md'
     - 'Continuous Integration': 'dev/ci.md'
