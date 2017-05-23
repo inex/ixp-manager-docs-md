@@ -38,3 +38,5 @@ The purpose of this is for both development and for support staff to replicate i
 ## Password Hashing
 
 Prior to **IXP Manager** v4.5, we supported both plaintext and bcrypt password hashing. There was a historical justification at INEX for support plaintext (this [may still be documented here](https://github.com/inex/IXP-Manager/wiki/Password-Hashing)). However, IXP Manager is meant to represent the best practices for managing IXP's. As such, plaintext support was removed in v4.5.
+
+**As of v4.5, all passwords are stored as bcrypt with a cost >=10.**
