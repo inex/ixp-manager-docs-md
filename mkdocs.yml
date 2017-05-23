@@ -40,6 +40,7 @@ pages:
 - Development:
     - 'API': 'dev/api.md'
     - 'Continuous Integration': 'dev/ci.md'
+    - 'Contributer License Agreement': 'dev/cla.md'
     - 'Documentation': 'dev/docs.md'
     - 'Grapher': 'dev/grapher.md'
     - 'Helpers': 'dev/helpders.md'
