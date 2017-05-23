@@ -211,6 +211,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../dev/cla/">Contributer License Agreement</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/docs/">Documentation</a>
                 </li>
                 <li class="">
@@ -289,19 +293,19 @@
 <p>The simplest configuration to generate is the route collector configuration. A route collector is an IXP router which serves only to <em>accept all routes and export no routes</em>. It is used for problem diagnosis, to aid customer monitoring and for looking glasses (see <a href="https://www.inex.ie/ixp/lg/rc1-lan1-ipv4">INEX's here</a>).</p>
 <p>The <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird/standard.foil.php">standard configuration</a> simply pulls in a fairly standard header (sets up router ID, listening address and - for the collector at least - some unused filters) and creates a session for all customer routers on the given VLAN.</p>
 <p>When adding a router, you give it a <em>handle</em>. For example: <code>rc1-lan1-ipv4</code> which, for INEX, would mean a route collector on peering LAN1 using IPv4. Then - for the given router handle - the configuration can be generated and pulled using the API as follows:</p>
-<div class="highlight"><pre><span class="c">#! /bin/sh</span>
+<div class="highlight"><pre><span></span><span class="ch">#! /bin/sh</span>
 
-<span class="c"># The API Key.</span>
-<span class="c"># This is generated in IXP Manager via the top right menu: *My Account -&gt; API Keys*</span>
+<span class="c1"># The API Key.</span>
+<span class="c1"># This is generated in IXP Manager via the top right menu: *My Account -&gt; API Keys*</span>
 <span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;your-admin-ixp-manager-api-key&quot;</span>
 
-<span class="c"># The base URL of your IXP Manager install plus: &#39;api/v4/router/gen-config&#39;</span>
+<span class="c1"># The base URL of your IXP Manager install plus: &#39;api/v4/router/gen-config&#39;</span>
 <span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://ixp.example.com/api/v4/router/gen-config&quot;</span>
 
-<span class="c"># The handle is as described above:</span>
+<span class="c1"># The handle is as described above:</span>
 <span class="nv">HANDLE</span><span class="o">=</span><span class="s2">&quot;rc1-lan1-ipv4&quot;</span>
 
-<span class="c"># Then the configuration can be pulled as follows:</span>
+<span class="c1"># Then the configuration can be pulled as follows:</span>
 curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span class="si">${</span><span class="nv">KEY</span><span class="si">}</span><span class="s2">&quot;</span> <span class="si">${</span><span class="nv">URL</span><span class="si">}</span>/<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span> &gt;<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span>.conf
 </pre></div>
 
