@@ -192,6 +192,10 @@
                     
     <a class="" href="../../features/skinning/">Skinning</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../../features/smokeping/">Smokeping</a>
+                </li>
     </ul>
 	    </li>
           
@@ -293,6 +297,7 @@
 <p>The purpose of this is for both development and for support staff to replicate issues as reported by users.</p>
 <h2 id="password-hashing">Password Hashing<a class="headerlink" href="#password-hashing" title="Permanent link"></a></h2>
 <p>Prior to <strong>IXP Manager</strong> v4.5, we supported both plaintext and bcrypt password hashing. There was a historical justification at INEX for support plaintext (this <a href="https://github.com/inex/IXP-Manager/wiki/Password-Hashing">may still be documented here</a>). However, IXP Manager is meant to represent the best practices for managing IXP's. As such, plaintext support was removed in v4.5.</p>
+<p><strong>As of v4.5, all passwords are stored as bcrypt with a cost &gt;=10.</strong></p>
               
             </div>
           </div>

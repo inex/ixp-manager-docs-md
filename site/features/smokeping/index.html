@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Smokeping - IXP Manager Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Smokeping";
+    var mkdocs_page_input_path = "features/smokeping.md";
+    var mkdocs_page_url = "/features/smokeping/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../as112/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../dns-arpa/">DNS / ARPA</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../irrdb/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ixf-export/">IX-F Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">Layer2 Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../mailing-lists/">Mailing List Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../reseller/">Reseller Functionality</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../route-collectors/">Route Collectors</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../route-servers/">Route Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../skinning/">Skinning</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Smokeping</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#smokeping">Smokeping</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#historical-notes">Historical Notes</a></li>
+        
+            <li><a class="toctree-l4" href="#target-selection">Target Selection</a></li>
+        
+            <li><a class="toctree-l4" href="#generating-smokeping-targets">Generating Smokeping Targets</a></li>
+        
+            <li><a class="toctree-l4" href="#setting-up-smokeping">Setting Up Smokeping</a></li>
+        
+            <li><a class="toctree-l4" href="#apache-configuration">Apache Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#ixp-manager-configuration">IXP Manager Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#viewing-smokeping-in-ixp-manager">Viewing Smokeping in IXP Manager</a></li>
+        
+            <li><a class="toctree-l4" href="#troubleshooting">Troubleshooting</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/ci/">Continuous Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Features &raquo;</li>
+        
+      
+    
+    <li>Smokeping</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/smokeping.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="smokeping">Smokeping<a class="headerlink" href="#smokeping" title="Permanent link"></a></h1>
+<p>Smokeping is a tool for monitoring network latency and is an invaluable asset when diagnosing many IXP issues.</p>
+<blockquote>
+<p>While it should never be used as a tool for monitoring IXP latency (as routers de-prioritise ICMP requests and handle them in their management plane, it acts more of a indication of the router load than the latency of the exchange fabric), it can be an extremely useful tool for identifying and diagnosing other customer / member issues.</p>
+</blockquote>
+<p>IXP Manager can configure Smokeping to monitor member routers and display those graphs in member statistic pages. Presuming it is installed.</p>
+<h2 id="historical-notes">Historical Notes<a class="headerlink" href="#historical-notes" title="Permanent link"></a></h2>
+<p>If you have used Smokeping on IXP Manager &lt;4.5, then how the configuration is generated has changed. The <a href="https://github.com/inex/IXP-Manager/wiki/Smokeping">older documentation may be available here</a>. In previous versions of IXP Manager, we generated entire / monolithic Smokeping configuration files. We have found in practice that this does not scale well and creates a number of limitations.</p>
+<p>IXP Manager &gt;= v4.5 now simply creates the targets on a per VLAN and protocol basis.</p>
+<h2 id="target-selection">Target Selection<a class="headerlink" href="#target-selection" title="Permanent link"></a></h2>
+<p>This section explains the rules on how a member router (target) is selected to be included in the generated Smokeping configuration.</p>
+<p>When generating a list of targets per VLAN and protocol, the API call to IXP Manager will select all VLAN interfaces (member routers) where:</p>
+<ul>
+<li>that protocol (IPv4/6) is enabled for the member;</li>
+<li><em>Can Ping</em> has been checked for that protocol; and</li>
+<li>the virtual interface pertaining to the VLAN interface has at least on physical interface in the connected state.</li>
+</ul>
+<h2 id="generating-smokeping-targets">Generating Smokeping Targets<a class="headerlink" href="#generating-smokeping-targets" title="Permanent link"></a></h2>
+<p>You can use the <strong>IXP Manager</strong> API to get the Smokeping target configurations for a given VLAN and protocol using the following endpoint format (both GET and POST requests work):</p>
+<div class="highlight"><pre>https://ixp.example.com/api/v4/vlan/smokeping/{vlanid}/{protocol}
+</pre></div>
+
+
+<p>where:</p>
+<ul>
+<li><code>vlanid</code> is the database ID (<em>DB ID</em>) of the VLAN. You can find the DB ID in IXP Manager in the VLAN table (select <em>VLANs</em> from the left hand side menu).</li>
+<li><code>protocol</code> is either <code>4</code> for <code>IPv4</code> or 6 for <code>IPv6</code>.</li>
+</ul>
+<p>If either of these are invalid, the API will return with a HTTP 404 response.</p>
+<p>And example of a target in the reponse is:</p>
+<div class="highlight"><pre># AS112 Reverse DNS / 185.6.36.6
++++ vlanint_86_ipv4
+menu = AS112 Reverse DNS (IPv4)
+title =  Peering VLAN #1 :: AS112 Reverse DNS via 185.6.36.6
+probe = FPing
+host = 185.6.36.6
+</pre></div>
+
+
+<h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link"></a></h3>
+<p>You can optionally POST one or both of the following to change elements of the default template:</p>
+<ul>
+<li><code>level</code>: the Smokeping level / hierarchy of the target. Defaults to <code>+++</code>.</li>
+<li><code>probe</code>: the probe to use when measuring latency to the target. Defaults for <code>FPing</code> for IPv4 and <code>FPing6</code> for IPv6.</li>
+</ul>
+<p>An example of changing these parameters is:</p>
+<div class="highlight"><pre>curl --data <span class="s2">&quot;level=%2B%2B&amp;probe=MyPing&quot;</span> -X POST <span class="se">\</span>
+    -H <span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span> <span class="se">\</span>
+    -H <span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span> <span class="se">\</span>
+    https://ixpexample.com/api/v4/vlan/smokeping/2/4
+</pre></div>
+
+
+<h3 id="templates-skinning">Templates / Skinning<a class="headerlink" href="#templates-skinning" title="Permanent link"></a></h3>
+<p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
+<p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+mkdir -p resources/skins/myskin/api/v4/vlan/smokeping
+cp resources/views/api/v4/vlan/smokeping/default.foil.php resources/skins/myskin/api/v4/vlan/smokeping/mytemplate1.foil.php
+</pre></div>
+
+
+<p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
+<p>The following variables are available in the template:</p>
+<ul>
+<li><code>$t-&gt;vlis</code>: array of the VLAN interfaces/targets - it is generated <a href="https://github.com/inex/IXP-Manager/blob/master/database/Repositories/VlanInterface.php#L18">by the Repositories\VlanInterface::getForProto() function</a>.</li>
+<li><code>$t-&gt;vlan</code>: instance of the <a href="https://github.com/inex/IXP-Manager/blob/master/database/Entities/Vlan.php"><code>Vlan</code> entity object</a>.</li>
+<li><code>$t-&gt;protocol</code>: either <code>4</code> or <code>6</code>.</li>
+<li><code>probe</code> and <code>level</code> as defined above / passed via a post request.</li>
+</ul>
+<h2 id="setting-up-smokeping">Setting Up Smokeping<a class="headerlink" href="#setting-up-smokeping" title="Permanent link"></a></h2>
+<p>This section explains how to set up Smokeping with IXP Manager. We assume you already have a base install of Smokeping.</p>
+<h3 id="generating-updating-targets">Generating / Updating Targets<a class="headerlink" href="#generating-updating-targets" title="Permanent link"></a></h3>
+<p>At INEX, we would use a script <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/smokeping">such as this one which is bundled with IXP Manager</a> to (re)generate our targets by cron and update Smokeping if necessary.</p>
+<p>To use this script yourself, you just need to copy it to the appropriate Smokeping server and edit the first few lines:</p>
+<p><div class="highlight"><pre><span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;my-ixp-manager-api-key&quot;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://ixp.example.com/api/v4/vlan/smokeping&quot;</span>
+<span class="nv">ETCPATH</span><span class="o">=</span><span class="s2">&quot;/etc/smokeping&quot;</span>
+<span class="nv">SMOKEPING</span><span class="o">=</span><span class="s2">&quot;/usr/bin/smokeping&quot;</span>
+<span class="nv">SMOKEPING_RELOAD</span><span class="o">=</span><span class="s2">&quot;/etc/rc.d/smokeping reload&quot;</span>
+<span class="nv">VLANS</span><span class="o">=</span><span class="s2">&quot;1 2&quot;</span>
+<span class="nv">PROTOCOLS</span><span class="o">=</span><span class="s2">&quot;4 6&quot;</span>
+</pre></div>
+
+where:</p>
+<ul>
+<li><code>KEY</code> is your IXP Manager <a href="../api/">API key</a>.</li>
+<li><code>URL</code> is the API endpoint as descibed above.</li>
+<li><code>ETCPATH</code> is where the script puts the target files (named <code>$ETCPATH/targets-vlan${vlanid}-ipv${proto}.cfg</code>)</li>
+<li><code>SMOKEPING</code> is the Smokeping binary command. Just used to validate the config with <code>--check</code> before reloading.</li>
+<li><code>SMOKEPING_RELOAD</code> - the command to reload Smokeping.</li>
+<li><code>VLANS</code> - space separated list of VLAN DB IDs as described above. You probably only have one of these typically.</li>
+<li><code>PROTOCOLS</code> - the protocols to generate the configuration for.</li>
+</ul>
+<p>The script iterates over the VLAN IDs and protocols to create the individual configuration files.</p>
+<h3 id="using-targets-in-smokeping">Using Targets in Smokeping<a class="headerlink" href="#using-targets-in-smokeping" title="Permanent link"></a></h3>
+<p>Once the above target file(s) are created, we can use them in our standard Smokeping configuration file as follows:</p>
+<div class="highlight"><pre>+ infra_1
+menu = IXP Infrastructures 1
+title = IXP Infrastructures 1
+
+
+++ vlan_1
+menu = Peering VLAN 1
+title = IXP Infra 1 :: Peering VLAN 1
+
+
+@include targets-vlan1-ipv4.cfg
+@include targets-vlan1-ipv6.cfg
+</pre></div>
+
+
+<h2 id="apache-configuration">Apache Configuration<a class="headerlink" href="#apache-configuration" title="Permanent link"></a></h2>
+<p>You need to be able to configure IXP Manager with the base Smokeping URL such as <code>http://www.example.com/smokeping</code>. This should be the URL to Smokeping that is the standard Smokeping entry page.</p>
+<p>IXP Manager will add the trailing slash as assume the directory index is configured for the CGI script. Thus you need an Apache configuration such as:</p>
+<div class="highlight"><pre>ScriptAlias /smokeping/smokeping.cgi /usr/lib/cgi-bin/smokeping.cgi
+Alias /smokeping /usr/share/smokeping/www
+
+&lt;Directory &quot;/usr/share/smokeping/www&quot;&gt;
+    Options FollowSymLinks
+    DirectoryIndex smokeping.cgi
+&lt;/Directory&gt;
+</pre></div>
+
+
+<h2 id="ixp-manager-configuration">IXP Manager Configuration<a class="headerlink" href="#ixp-manager-configuration" title="Permanent link"></a></h2>
+<p>The current implementation of Smokeping in IXP Manager is as a <em>bridge</em> between IXP manager v3 and Grapher - where we hope it will eventually end up.</p>
+<p>Once you have configured Smokeping and Apache/web server as above, you really just need to set the following in your IXP Manager <code>.env</code> file:</p>
+<div class="highlight"><pre>GRAPHER_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
+</pre></div>
+
+
+<p>where the URL is as you set up in Apache above.</p>
+<p>There may be instances where you have multiple VLANs where it is not possible to have a single Smokeping instance graph latency for every VLAN. Particularly as the Smokeping daemon for a given VLAN needs to have an interface / IP address on that VLAN.</p>
+<p>INEX has such a situation where we have a regional exchange, <em>INEX Cork</em>, that is located in a different city to the main INEX LANs and IXP Manager. In this situation, you can configure Smokeping URL overrides on a per VLAN basis by creating a file called <code>$IXPROOT/config/grapher_smokeping_overrides.php</code> which returns an array as follows:</p>
+<div class="highlight"><pre><span class="cp">&lt;?php</span>
+
+<span class="k">return</span> <span class="p">[</span>
+    <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s1">&#39;http://www.example.com/smokeping&#39;</span><span class="p">,</span>
+    <span class="mi">4</span> <span class="o">=&gt;</span> <span class="s1">&#39;http://www.example2.com/smokeping&#39;</span><span class="p">,</span>
+    <span class="c1">// etc ...</span>
+<span class="p">];</span>
+</pre></div>
+
+
+<p>where the array index (<code>2</code> and <code>4</code> in the above example) is the VLAN DB ID as explained above.</p>
+<h2 id="viewing-smokeping-in-ixp-manager">Viewing Smokeping in IXP Manager<a class="headerlink" href="#viewing-smokeping-in-ixp-manager" title="Permanent link"></a></h2>
+<p>When configured correctly, there will be a Smokeping button available in the member drilldown graphs (per port graphs) in both the member and admin sections.</p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link"></a></h2>
+<p>See <a href="https://github.com/inex/IXP-Manager/issues/122">issue #122</a> for a discussion on Ubuntu installation and diagnosing issues in general (relates to IXP Manager v3 but may still be useful).</p>
+<p>When you look at the source HTML of the Smokeping page that IXP Manager generates, you'll see generated Smokeping image URLs like the following:</p>
+<div class="highlight"><pre>https://www.example.com/ixp/smokeping/retrieve-image/ixp/1/scale/3hours/infra/2/vlan/3/vlanint/94/proto/ipv4
+</pre></div>
+
+
+<p>IXP Manager will call something like</p>
+<div class="highlight"><pre><span class="x">file_get_contents( &#39;https://www.example.com/smokeping/?.....&#39; )</span>
+</pre></div>
+
+
+<p>You should see these requests to Smokeping in your Smokeping web server log files. Find these and compare them to the URLs that Smokeping itself generates for its own display of the images to ensure you have everything - and especially the Smokeping URL in IXP configuration set up correctly.</p>
+<p>Also, try testing these URLs directly on the IXP Manager server via:</p>
+<div class="highlight"><pre><span class="x">php -r &#39;echo file_get_contents( &quot;https://...&quot; );&#39;</span>
+</pre></div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../dev/api/" class="btn btn-neutral float-right" title="API">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../skinning/" class="btn btn-neutral" title="Skinning"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../skinning/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../dev/api/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
