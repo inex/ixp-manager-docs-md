@@ -109,6 +109,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../interfaces/">Customer Connections</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../users/">Users & Contacts</a>
                 </li>
     </ul>
@@ -286,13 +290,13 @@
 <ul>
 <li><code>Full</code>: this is what you will use most of the time. This is a full / normal trafficking IXP member.</li>
 <li><code>Pro-bono</code>: like full but for organisations that you provide IXP access to <em>for the good of the internet / your members</em>. Examples at INEX include the <a href="../../features/as112/">AS112 service</a>, <a href="https://www.pch.net/">Packet Clearing House's</a> route collector and DNS TLD/root services and other DNS root servers such as the RIPE K root / Verisign, etc.</li>
-<li><code>Internal</code>: while not enforced, you should really only have two internal customers which is the IXP itself and, separatelty, the IXP route sercers. Connections / interfaces such as route collectors and core links would be associated with the IXP customer. Because route servers typically have a dedicated ASN, they would have their own customer with their interfaces associated here.</li>
+<li><code>Internal</code>: while not enforced, you should really only have two internal customers which is the IXP itself and, separately, the IXP route servers. Connections / interfaces such as route collectors and core links would be associated with the IXP customer. Because route servers typically have a dedicated ASN, they would have their own customer with their interfaces associated here.</li>
 <li><code>Associate</code>: INEX has a concept of <em>associate members</em> which enables those organisations who are involved in the IP and networking industry, but who do not have their own IP traffic to peer, an opportunity to participate in the extensive INEX community. See <a href="https://www.inex.ie/become-a-member/associate-membership/">full details here</a>. Associate customers in IXP Manager have very limited functionality but it allows us to keep track of them.</li>
 </ul>
-<p>The <code>Shortname</code> field is something we are slowly removing. It is currently visable in some URLs and a couple other areas. It should be a lowercase single word (<code>[a-z0-9]</code>) and it should not be changed after it is set.</p>
+<p>The <code>Shortname</code> field is something we are slowly removing. It is currently visible in some URLs and a couple other areas. It should be a lowercase single word (<code>[a-z0-9]</code>) and it should not be changed after it is set.</p>
 <p>The <code>Corporate Website</code> is used when linking the customer name in various customer lists. It must be a valid URL. Try and stick to the scheme: <code>http://www.example.com/</code> - i.e. include <code>http[s]://</code> and end with a trailing slash.</p>
 <p>The <code>Date Joined</code> is just that and must be set. However, the <code>Date Left</code> has real consequences: <strong>setting <code>Date Left</code> effectivily closes the customer's account</strong>. This means configuration will no longer be included for graphing, router configuration, etc. We tend not to delete customers but mark them as closed by setting this field.</p>
-<p><code>Status</code> yields three options. The most important of which is <code>Normal</code> which is what you'll use nearly 100% of the time. Setting either of the other two otions (<code>Suspended</code> / <code>Not Connected</code>) will have the same effect as closing the accout as described above: removing route server / collector sessions, graphong configuration, etc.</p>
+<p><code>Status</code> yields three options. The most important of which is <code>Normal</code> which is what you'll use nearly 100% of the time. Setting either of the other two otions (<code>Suspended</code> / <code>Not Connected</code>) will have the same effect as closing the accout as described above: removing route server / collector sessions, graphing configuration, etc.</p>
 <p><code>MD5 Support</code>: this is not something that has been fully integrated into all view screens. You should probably default to <code>Yes</code> for now as this will cover 95+% of cases. It is an informational flag only for member to member bilateral peering.</p>
 <h3 id="peering-details">Peering Details<a class="headerlink" href="#peering-details" title="Permanent link"></a></h3>
 <p>The <code>AS Number</code> is just the integer value without any <code>AS</code> prefix, etc.</p>
@@ -310,7 +314,7 @@
 <p>At INEX, we default to 50 for small members, and 250 for medium sized members (who may already have 50 say), and as advised by larger members.</p>
 <p>The <code>Peering Email</code> is used in member lists and by the <em>Peering Manager</em> for sending emails. We try and encourage an alias of <code>peering@example.com</code> but this does not always work out.</p>
 <p>The <code>IPv4 Peering Macro</code> is used instead of the AS number when set to generate inbound prefix filters for the route servers based on the member's published IRR records. <code>AS-BTIRE</code> in the RIPE database is an example for BT Ireland.</p>
-<p>The <code>IPv6 Peering Macro</code> was added for another IX using IXP Manager that had a customer which used a separate macro for v4 and v6. We only know of that single instance of this. In the event that <code>IPv6 Peering Macro</code> is set, this will be used to generate IPv6 inbound prefix filters, otherwise the <code>IPv4 Peering Macro</code> will be used for both. If neither is set, the IRR policy of the AS number will be used. Use <code>AS-NULL</code> disable one or the other protocol peering macro if only one is required.</p>
+<p>The <code>IPv6 Peering Macro</code> was added for another IX using IXP Manager that had a customer which used a separate macro for v4 and v6. We only know of that single instance of this. In the event that <code>IPv6 Peering Macro</code> is set, this will be used to generate IPv6 inbound prefix filters, otherwise the <code>IPv4 Peering Macro</code> will be used for both. If neither is set, the IRR policy of the AS number will be used. Use <code>AS-NULL</code> to disable one or the other protocol peering macro if only one is required.</p>
 <p>It is not possible to have a different ASN for IPv4 and IPv6. We are not aware of any cases where this should be necessary but if it is, create two customers.</p>
 <p>The <code>Peering Policy</code> is informational only and is displayed in member lists. Typically speaking, route server members should have an open peering policy but others are possible if you use standard route server communities for controlling the distribution of prefixes.</p>
 <p>The IRRDB source sets the database where IXP Manager queries the customer's IRR data from. See <a href="../../features/irrdb/">the IRRDB feature page</a> for more information.</p>
@@ -331,7 +335,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../users/" class="btn btn-neutral float-right" title="Users & Contacts">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../interfaces/" class="btn btn-neutral float-right" title="Customer Connections">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../../install/upgrade-v3/" class="btn btn-neutral" title="Upgrade From v3"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -367,7 +371,7 @@
         <span><a href="../../install/upgrade-v3/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../users/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../interfaces/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Customer Connections - IXP Manager Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Customer Connections";
+    var mkdocs_page_input_path = "usage/interfaces.md";
+    var mkdocs_page_url = "/usage/interfaces/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../customers/">Customers / Members</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Customer Connections</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#customer-interfaces">Customer Interfaces</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#database-overview">Database Overview</a></li>
+        
+            <li><a class="toctree-l4" href="#provisioning-an-interface-via-the-wizard">Provisioning an Interface via the Wizard</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../features/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/as112/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/dns-arpa/">DNS / ARPA</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/irrdb/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/ixf-export/">IX-F Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">Layer2 Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/mailing-lists/">Mailing List Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/reseller/">Reseller Functionality</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/route-collectors/">Route Collectors</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/route-servers/">Route Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/skinning/">Skinning</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/smokeping/">Smokeping</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/ci/">Continuous Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/cla/">Contributer License Agreement</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>General Usage &raquo;</li>
+        
+      
+    
+    <li>Customer Connections</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/usage/interfaces.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="customer-interfaces">Customer Interfaces<a class="headerlink" href="#customer-interfaces" title="Permanent link"></a></h1>
+<p>This section explains how to set up a customer interface.</p>
+<h2 id="database-overview">Database Overview<a class="headerlink" href="#database-overview" title="Permanent link"></a></h2>
+<p>To fully understand how IXP Manager treats customer interfaces, you need a little background on the database schema. This will also help explain why we have laid out the UI as it is.</p>
+<p>The original database schema dates from pre-2005 and has stood the test of time extremely well.</p>
+<p><img alt="Interface Schema" src="../img/interfaces-schema.png" /></p>
+<p>The above is described as follows:</p>
+<ul>
+<li>Customers have a 1:n relationship with virtual interfaces (VI). A VI is a container object that represents a customer connection and all the elements that make up that connection.</li>
+<li>VIs have a 1:n relationship with physical interfaces (PI).</li>
+<li>A physical interface in turn has a 1:1 relationship with switch ports (SP).</li>
+<li>PIs represent what we say the customer has (e.g. a 1Gb port). The SP has information from the switch itself and can help identify inconsistencies with what was expected to be configured/billed and what has actually been provisioned).</li>
+<li>PIs can also move between SPs (e.g. customer upgrades / switch replacements / etc.).</li>
+<li>By schematically representing PIs and SPs as different entities, we can associate elements such as usage graphs to the PI so these remain consistent when a SP changes.</li>
+<li>Adding a second (or more) PI to a VI indicates that the port is a LAG.</li>
+<li>VIs have a 1:n relationship with VLAN interfaces (VLI). You can consider the PI element the layer2 / phsyical element and the VLI element the layer3 element.</li>
+<li>A VLI has a 1:1 mapping with a VLAN (typicaly the peering LAN).</li>
+<li>If IPv4 is enabled, the VLI has a 1:1 mapping to an IPv4 address from the given VLAN.</li>
+<li>If IPv6 is enabled, the VLI has a 1:1 mapping to an IPv6 address from the given VLAN.</li>
+<li>The VLI also indicates if this interface should have a route server peering session, MD5 passwords, etc. (all explaing below).</li>
+</ul>
+<h2 id="provisioning-an-interface-via-the-wizard">Provisioning an Interface via the Wizard<a class="headerlink" href="#provisioning-an-interface-via-the-wizard" title="Permanent link"></a></h2>
+<p>The best way to provision a new interface for a customer is to use the wizard. This can be accessed from the customer's overview page via a menu on the top right:</p>
+<p><img alt="Interface Wizard Menu" src="../img/interfaces-menu-wizard.png" /></p>
+<p>When you open the wizard, you will see:</p>
+<p><img alt="Interface Wizard Menu" src="../img/interfaces-wizard.png" /></p>
+<p>This can be used to provision a single port standard customer connection. If they customer needs a LAG or other non-standard options, these can be added afterwards.</p>
+<h3 id="general-interface-settings">General Interface Settings<a class="headerlink" href="#general-interface-settings" title="Permanent link"></a></h3>
+<p>The customer should be prefilled and read-only as you enter the wizard from a specific customer overview page.</p>
+<p>You would normally just select your main / primary peering VLAN from the <code>VLAN</code> dropdown. There are some notable exceptions:</p>
+<ul>
+<li>you may have more than one peering LAN. For example INEX runs two resilient peering networks in Dublin and a separate regional exchange called INEX Cork. These are all unique VLANs.</li>
+<li>if you are provisioning a port dedicated to a private VLAN, you would just select that VLAN but leave <em>IPv4 Enabled</em> and <em>IPv6 Enabled</em> unchecked as IP addressing on private VLANs in not within an IX's pervue.</li>
+<li>at INEX we also have quarantine VLANs for each peering VLAN. You would <em>typically</em> not select a quarantine VLAN here during provsioning unless you are using automation. Just put the interface in the primary peering LAN and let the <em>Physical Interface Settings</em> (see below) look after the quarantine flag.</li>
+<li>You should check the <code>Use 802.1q framing</code> checkbox if the port should be tagged facing the customer. If you are not using any automation tools, this will be informational for you rather than production affecting.</li>
+<li>Checking either or both of <em>IPv4 Enabled</em> and <em>IPv6 Enabled</em> will show the <em>IPv4 Details</em> and <em>IPv6 Details</em> (as per the above image) and enable these protocols for the customer's connection.</li>
+</ul>
+<h3 id="physical-interface-settings">Physical Interface Settings<a class="headerlink" href="#physical-interface-settings" title="Permanent link"></a></h3>
+<p>This section allows you to select the physical interface / switch port for the connection.</p>
+<ul>
+<li><code>Switch</code>: a dropdown list of all switches. Be careful as at present this list is all active switches rather than switches on the samer infrastructure as the selected VLAN from <em>General Interface Settings</em>.</li>
+<li><code>Port</code>: the switch port to use. This is dynamically populated when the switch is selected and <strong>will only show ports of type <em>Peering</em> or type <em>Unset / Unknown</em> (these are set on a per port basis when adding / editing switches).</strong></li>
+<li>
+<p><code>Status</code>: the port status currently has one of five options. They effectivily work as a boolean where <em>Connected</em> means on/enabled and the rest mean disabled as explained below. In practice, we tend to just use three states:</p>
+</li>
+<li>
+<p><code>Connected</code>: this is the most important. When a <em>virtual interface</em> has <strong>any</strong> port with the <strong>Connected</strong> state, then IXP Manager will consider this connection active and will generate router configuration, monitoring configuration, etc.</p>
+</li>
+<li><code>Awaiting X-Connect</code>: the customer has requested an upgrade / new port and we are awaiting for the co-location provider / customer to get the cross connect organised.</li>
+<li><code>Quarantine</code>: the port is connected and is under going quarantine prior to being moved onto the production peering LAN. During quarantine, INEX checks the port to ensure only ARP, IPv4 and IPv6 packets are received (no *-discovery, STP, etc. as well as a number of other things).</li>
+</ul>
+<p>The <code>Not Connected</code> and <code>Disabled</code> states have the same effect as (2) and (3) above and can be used as informational settings where (2) and (3) do not apply.</p>
+<p>Speed and duplex are self explanatory. These set set in the <em>physical interface</em> entitity are informational unless you are doing automation. They also have knock on effects to (for example) graphing - where the MRTG max value on an interface is set to this to prevent weird excessive spikes on counter rollovers.</p>
+<h3 id="general-vlan-settings">General VLAN Settings<a class="headerlink" href="#general-vlan-settings" title="Permanent link"></a></h3>
+<p>These settings apply to the the VLAN interface.</p>
+<p>The <em>Max BGP Prefixes</em> is a setting used to determine max prefixes on router BGP peers - please <a href="../customers/#peering-details">see the global version of this as explained in the customer section for details</a>.</p>
+<p>If <code>Apply IRRDB Filtering</code> is <strong>not</strong> set, then the route servers will accept any prefixes advertised by the customer (note that the default templaes will filter martians and apply a max prefix limit). Generally speaking this is a <strong>very bad idea</strong> and should only be used in exceptional cases. <em>INEX never uses this setting - but demand from other IX's had it added.</em></p>
+<p><code>Multicast Enabled</code> is informational only. INEX used to support multicast on the peering LAN but removed support in 2015 due to lack of interest and added complexity / cost when purchasing new switches.</p>
+<p>If <code>Route Server Client</code> is checked, then IXP Manager will configure a BGP peer for this connection when generating <a href="../../features/route-servers/">route server configurations</a>. It is also used in other areas to show if a member uses the route servers or not, by the <em>Peering Manager</em> to calculate missing BGP sessions, etc.</p>
+<p>Similarly, if <code>AS112 Client</code> is checked, then IXP Manager will configure a BGP peer for this connection when generating <a href="../../features/as112/">AS112 router configurations</a>.</p>
+<h3 id="ipv4ipv6-details">IPv4/IPv6 Details<a class="headerlink" href="#ipv4ipv6-details" title="Permanent link"></a></h3>
+<p>When <em>IPv4 / IPv6 Enabled</em> is checked under <em>General Interface Settings</em> above, these two sections will be available.</p>
+<p>The same details apply to IPv4 and IPv6 options so we will document them together.</p>
+<ul>
+<li><code>IP Address</code>: the IP address to assign to this customer. This is taken from <strong>available</strong> IP addresses for the VLAN selected in <em>General Interface Settings</em>.</li>
+<li>IP addresses are added in IXP Manager via the left hand menu under IXP Admin Actions.</li>
+<li>The dropdown also works as an input field - this allows you to enter a new IP address that does not already exist in the field. When the wizard form is submitted, the address is added and associated with the VLAN. This is most useful for the IPv6 field if you are using a non-sequenctial numbering plan.</li>
+<li><code>Hostname</code>: if you use IXP Manager to configure your <a href="../../features/dns-arpa/">DNS ARPA</a> entries, the hostname entered here will be returned when a PTR request is made for the assigned IP address. Enter a complete hostname without trailing period such as: <code>www.example.com</code>.</li>
+<li><code>BGP MD5 Secret</code>: The will be used for <a href="../../features/routers/">generating router configurations</a>.</li>
+<li>The <em>circle refresh</em> icon in the IPv4 section will generate a cryptographically secture secret in modern browsers.</li>
+<li>The <em>square refresh</em> icon in the IPv6 section will copy the value from the IPv4 section.</li>
+<li>Note that setting a MD5 here does not mean that all router configurations have to include it. MD5 can be disabled entirely by a <a href="../../features/routers/">routers configuration</a> or by templating.</li>
+<li><code>Can Ping</code>: IXP Manager generates configuration for a number of other tools such as <a href="../../features/smokeping/">Smokeping</a> and Nagios which ping customer routers. These are invaluable tools for problem solving, monitoring and graphing long term trends. We enable this by default unless a customer specifically asks us not to.</li>
+<li><code>Can Monitor RC BGP</code>: this is more of a legacy option for configuration builders that used to check for established route collector BGP sessions and warn if not present. This is depreacted and will be removed.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../users/" class="btn btn-neutral float-right" title="Users & Contacts">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../customers/" class="btn btn-neutral" title="Customers / Members"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../customers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../users/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
