@@ -89,6 +89,10 @@
     <ul class="subnav">
                 <li class="">
                     
+    <a class="" href="../../usage/customers/">Customers / Members</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../usage/users/">Users & Contacts</a>
                 </li>
     </ul>
@@ -322,6 +326,19 @@ php artisan irrdb:update-asn-db
 </ol>
 <p>You can also specify a specific customer to update (rather than all) with an additional free form parameter. The database is searched for a matching customer in the order: customer ASN; customer ID (database primary key); and customer shortname. E.g.:</p>
 <div class="highlight"><pre><span></span>php artisan irrdb:update-prefix-db 64511
+</pre></div>
+
+
+<h3 id="internal-workings">Internal Workings<a class="headerlink" href="#internal-workings" title="Permanent link"></a></h3>
+<p>Essentially, based on a customers AS number / IPv4/6 Peering Macro, IXP Manager <a href="https://github.com/snar/bgpq3">uses bgpq3</a> to query IRRDBs as follows:</p>
+<div class="highlight"><pre><span></span>bgpq3 -h <span class="nv">$whois_server</span> -S <span class="nv">$sources</span> -l pl -j <span class="o">[</span>-6<span class="o">]</span> <span class="nv">$asn</span>/macro
+</pre></div>
+
+
+<p>where <code>$whois_server</code> and <code>$sources</code> come from the IRRDB sources entries.</p>
+<p>Or, a real example:</p>
+<div class="highlight"><pre><span></span>bgpq3 -h whois.radb.net -S RIPE -l pl -j AS-BTIRE
+bgpq3 -h whois.radb.net -S RIPE -l pl -j -6 AS-BTIRE
 </pre></div>
 
 

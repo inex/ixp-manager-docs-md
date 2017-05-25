@@ -15,6 +15,7 @@ pages:
     - 'Upgrading': 'install/upgrading.md'
     - 'Upgrade From v3': 'install/upgrade-v3.md'
 - General Usage:
+    - 'Customers / Members': 'usage/customers.md'
     - 'Users & Contacts': 'usage/users.md'
 - Features:
     - 'API': 'features/api.md'

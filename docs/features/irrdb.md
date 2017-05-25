@@ -62,6 +62,25 @@ You can also specify a specific customer to update (rather than all) with an add
 php artisan irrdb:update-prefix-db 64511
 ```
 
+### Internal Workings
+
+Essentially, based on a customers AS number / IPv4/6 Peering Macro, IXP Manager [uses bgpq3](https://github.com/snar/bgpq3) to query IRRDBs as follows:
+
+```bash
+bgpq3 -h $whois_server -S $sources -l pl -j [-6] $asn/macro
+```
+
+where `$whois_server` and `$sources` come from the IRRDB sources entries.
+
+Or, a real example:
+
+```bash
+bgpq3 -h whois.radb.net -S RIPE -l pl -j AS-BTIRE
+bgpq3 -h whois.radb.net -S RIPE -l pl -j -6 AS-BTIRE
+```
+
+
+
 ## Details
 
 The IRRDB update commands will:
