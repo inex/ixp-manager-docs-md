@@ -58,6 +58,12 @@
     </url>
         
     <url>
+     <loc>http://docs.ixpmanager.org/usage/interfaces/</loc>
+     <lastmod>2017-05-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://docs.ixpmanager.org/usage/users/</loc>
      <lastmod>2017-05-25</lastmod>
      <changefreq>daily</changefreq>

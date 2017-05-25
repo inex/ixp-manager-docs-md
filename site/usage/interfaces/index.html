@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Grapher - IXP Manager Documentation</title>
+  <title>Customer Connections - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Grapher";
-    var mkdocs_page_input_path = "dev/grapher.md";
-    var mkdocs_page_url = "/dev/grapher/";
+    var mkdocs_page_name = "Customer Connections";
+    var mkdocs_page_input_path = "usage/interfaces.md";
+    var mkdocs_page_url = "/usage/interfaces/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -89,15 +89,29 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../usage/customers/">Customers / Members</a>
+    <a class="" href="../customers/">Customers / Members</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Customer Connections</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#customer-interfaces">Customer Interfaces</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#database-overview">Database Overview</a></li>
+        
+            <li><a class="toctree-l4" href="#provisioning-an-interface-via-the-wizard">Provisioning an Interface via the Wizard</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/interfaces/">Customer Connections</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../usage/users/">Users & Contacts</a>
+    <a class="" href="../users/">Users & Contacts</a>
                 </li>
     </ul>
 	    </li>
@@ -195,45 +209,31 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../api/">API</a>
+    <a class="" href="../../dev/api/">API</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../ci/">Continuous Integration</a>
+    <a class="" href="../../dev/ci/">Continuous Integration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../cla/">Contributer License Agreement</a>
+    <a class="" href="../../dev/cla/">Contributer License Agreement</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../docs/">Documentation</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">Grapher</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#grapher">Grapher</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#outline-of-adding-a-new-graph-type">Outline of Adding a New Graph Type</a></li>
-        
-            <li><a class="toctree-l4" href="#adding-a-new-mrtg-graph">Adding a New MRTG Graph</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../../dev/docs/">Documentation</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../helpders/">Helpers</a>
+    <a class="" href="../../dev/grapher/">Grapher</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../vagrant/">Vagrant</a>
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
                 </li>
     </ul>
 	    </li>
@@ -260,14 +260,14 @@
     
       
         
-          <li>Development &raquo;</li>
+          <li>General Usage &raquo;</li>
         
       
     
-    <li>Grapher</li>
+    <li>Customer Connections</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/dev/grapher.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/usage/interfaces.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -277,27 +277,43 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="grapher">Grapher<a class="headerlink" href="#grapher" title="Permanent link"></a></h1>
-<h2 id="outline-of-adding-a-new-graph-type">Outline of Adding a New Graph Type<a class="headerlink" href="#outline-of-adding-a-new-graph-type" title="Permanent link"></a></h2>
-<p>This is a quick write up as I commit a new graph type. To be fleshed out.</p>
-<p>Our new graphing backend, <a href="../../features/grapher/">Grapher</a>, supports different graph types from different backends. To add a new graph type - let's call it <code>Example</code> - you need to do the following:</p>
-<ol>
-<li>Create a graph class for this new type called <code>app/Services/Grapher/Graph/Example.php</code>. This must extend the abstract class <code>app/Services/Grapher/Graph.php</code>.</li>
-<li>Add an <code>example()</code> function to <code>app/Services/Grapher.php</code> which instantiates the above graph object.</li>
-<li>Update the appropriate backend file(s) (<code>app/Services/Grapher/Backend/xxx</code>) to handle this new graph file. I.e. create the actual implementation for getting the data to process this graph.</li>
-<li>Add your graph to the <code>supports()</code> function in the appropriate backends (and the <code>app/Services/Grapher/Backend/Dummy</code> backend).</li>
-<li>
-<p>To serve this graph over HTTP:</p>
-</li>
-<li>
-<p>Create a GET route in <code>app/Providers/GrapherServiceProvider.php</code></p>
-</li>
-<li>Create a function to handle the GET request in <code>app/Http/Controllers/Services/Grapher.php</code></li>
-<li>Add functionality to the middleware to process a graph request: <code>app/Http/Middleware/Services/Grapher.php</code></li>
-</ol>
-<p>Here's a great example from a <a href="https://github.com/inex/IXP-Manager/commit/a05a598135d023a726efcf62dac852e794792f3c">Github commit</a>.</p>
-<h2 id="adding-a-new-mrtg-graph">Adding a New MRTG Graph<a class="headerlink" href="#adding-a-new-mrtg-graph" title="Permanent link"></a></h2>
-<p>Here is an example of adding <a href="https://github.com/inex/IXP-Manager/commit/7bfffaa04bbca835759d7f65b3976cddd908ecd7#diff-c6d49ecf9afd38d2ecf83672196a0fc9">broadcast graphs</a> to MRTG.</p>
+                <h1 id="customer-interfaces">Customer Interfaces<a class="headerlink" href="#customer-interfaces" title="Permanent link"></a></h1>
+<p>This section explains how to set up a customer interface.</p>
+<h2 id="database-overview">Database Overview<a class="headerlink" href="#database-overview" title="Permanent link"></a></h2>
+<p>To fully understand how IXP Manager treats customer interfaces, you need a little background on the database schema. This will also help explain why we have laid out the UI as it is.</p>
+<p>The original database schema dates from pre-2005 and has stood the test of time extremely well.</p>
+<p><img alt="Interface Schema" src="../img/interfaces-schema.png" /></p>
+<p>The above is described as follows:</p>
+<ul>
+<li>Customers have a 1:n relationship with virtual interfaces (VI). A VI is a container object that represents a customer connection and all the elements that make up that connection.</li>
+<li>VIs have a 1:n relationship with physical interfaces (PI).</li>
+<li>A physical interface in turn has a 1:1 relationship with switch ports (SP).</li>
+<li>PIs represent what we say the customer has (e.g. a 1Gb port). The SP has information from the switch itself and can help identify inconsistencies with what was expected to be configured/billed and what has actually been provisioned).</li>
+<li>PIs can also move between SPs (e.g. customer upgrades / switch replacements / etc.).</li>
+<li>By schematically representing PIs and SPs as different entities, we can associate elements such as usage graphs to the PI so these remain consistent when a SP changes.</li>
+<li>Adding a second (or more) PI to a VI indicates that the port is a LAG.</li>
+<li>VIs have a 1:n relationship with VLAN interfaces (VLI). You can consider the PI element the layer2 / phsyical element and the VLI element the layer3 element.</li>
+<li>A VLI has a 1:1 mapping with a VLAN (typicaly the peering LAN).</li>
+<li>If IPv4 is enabled, the VLI has a 1:1 mapping to an IPv4 address from the given VLAN.</li>
+<li>If IPv6 is enabled, the VLI has a 1:1 mapping to an IPv6 address from the given VLAN.</li>
+<li>The VLI also indicates if this interface should have a route server peering session, MD5 passwords, etc. (all explaing below).</li>
+</ul>
+<h2 id="provisioning-an-interface-via-the-wizard">Provisioning an Interface via the Wizard<a class="headerlink" href="#provisioning-an-interface-via-the-wizard" title="Permanent link"></a></h2>
+<p>The best way to provision a new interface for a customer is to use the wizard. This can be accessed from the customer's overview page via a menu on the top right:</p>
+<p><img alt="Interface Wizard Menu" src="../img/interfaces-menu-wizard.png" /></p>
+<p>When you open the wizard, you will see:</p>
+<p><img alt="Interface Wizard Menu" src="../img/interfaces-wizard.png" /></p>
+<p>This can be used to provision a single port standard customer connection. If they customer needs a LAG or other non-standard options, these can be added afterwards.</p>
+<h3 id="general-interface-settings">General Interface Settings<a class="headerlink" href="#general-interface-settings" title="Permanent link"></a></h3>
+<p>The customer should be prefilled and read-only as you enter the wizard from a specific customer overview page.</p>
+<p>You would normally just select your main / primary peering VLAN from the <code>VLAN</code> dropdown. There are some notable exceptions:</p>
+<ul>
+<li>you may have more than one peering LAN. For example INEX runs two resilient peering networks in Dublin and a separate regional exchange called INEX Cork. These are all unique VLANs.</li>
+<li>if you are provisioning a port dedicated to a private VLAN, you would just select that VLAN but leave <em>IPv4 Enabled</em> and <em>IPv6 Enabled</em> unchecked as IP addressing on private VLANs in not within an IX's pervue.</li>
+<li>at INEX we also have quarantine VLANs for each peering VLAN. You would <em>typically</em> not select a quarantine VLAN here during provsioning unless you are using automation. Just put the interface in the primary peering LAN and let the <em>Physical Interface Settings</em> (see below) look after the quarantine flag.</li>
+<li>You should check the <code>Use 802.1q framing</code> checkbox if the port should be tagged facing the customer. If you are not using any automation tools, this will be informational for you rather than production affecting.</li>
+<li>Checking either or both of <em>IPv4 Enabled</em> and <em>IPv6 Enabled</em> will show the <em>IPv4 Details</em> and <em>IPv6 Details</em> (as per the above image) and enable these protocols for the customer's connection.</li>
+</ul>
               
             </div>
           </div>
@@ -305,10 +321,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../helpders/" class="btn btn-neutral float-right" title="Helpers">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../users/" class="btn btn-neutral float-right" title="Users & Contacts">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../docs/" class="btn btn-neutral" title="Documentation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../customers/" class="btn btn-neutral" title="Customers / Members"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -338,10 +354,10 @@
           <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../docs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../customers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../helpders/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../users/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
