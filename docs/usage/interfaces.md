@@ -95,3 +95,36 @@ The same details apply to IPv4 and IPv6 options so we will document them togethe
   * Note that setting a MD5 here does not mean that all router configurations have to include it. MD5 can be disabled entirely by a [routers configuration](../features/routers.md) or by templating.
 * `Can Ping`: IXP Manager generates configuration for a number of other tools such as [Smokeping](../features/smokeping.md) and Nagios which ping customer routers. These are invaluable tools for problem solving, monitoring and graphing long term trends. We enable this by default unless a customer specifically asks us not to.
 * `Can Monitor RC BGP`: this is more of a legacy option for configuration builders that used to check for established route collector BGP sessions and warn if not present. This is depreacted and will be removed.
+
+## Viewing / Editing an Interface
+
+Once an interface has been added as per the above wizard instructions, you can view and edit the interface by selecting the edit icon against the connection you are interested in from the *Ports* tab on the customer overview page. When you do that, you will see a screen such as the following:
+
+![Interface Edit/View](img/interfaces-vi-edit.png)
+
+You can see from the layout of this screen how it ties in with the schema explained above.
+
+### Virtual Interface Details
+
+The screenshot above shows the virtual interface details with the *Advanced Options* shown. The additional fields here that were not in the wizard are described below.
+
+`Link aggregation / LAG framing` is mostly informational unless you are doing automation. There are some restrictions. Namely / specifically:
+
+* if you have more than one physical interface, it will require you to set this.
+* for a single interface, checking this indicates you want LACP on a single member LAG. This is useful and often common practice as it allows upgrades without outages.
+
+The `Virtual Interface Name` is again mostly informational unless you are doing automation. It should be the start of the LAG name without the number. On an IOS device this would be `Port-channel` for example. Matched with this is the `Channel Group Number` with is tacked onto the end of the `Virtual Interface Name`. Leave it as 0 and when you check `Link aggregation / LAG framing` and save the changes, IXP Manager will set this to the next available unused port channel / bundle / LAG number on that switch.
+
+Both `Description` and `MTU` are informational.
+
+### Physical Interfaces
+
+You can add additional physical interfaces to a connection / virtual interface. This effectivily means you are creating a LAG. The form for adding additional physical interfaces is indentical to that in the wizard.
+
+### VLAN Interfaces
+
+The most common use case of more than one VLAN Interface is when your customer may also have private VLANs on their connection.
+
+Other than that, the VLAN interface add / edit form has all the same elements as the wizard with one addition:
+
+* `Busy host`: this flag indicates that the customer's router is unusually slow to reply to ICMP echo requests and that when monitoring, the configuraiton should allow for warnings after a 5sec RTT rather than 1sec.
