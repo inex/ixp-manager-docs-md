@@ -17,16 +17,16 @@ The `Type` field is a dropdown with the following meanings:
 
 * `Full`: this is what you will use most of the time. This is a full / normal trafficking IXP member.
 * `Pro-bono`: like full but for organisations that you provide IXP access to *for the good of the internet / your members*. Examples at INEX include the [AS112 service](../features/as112.md), [Packet Clearing House's](https://www.pch.net/) route collector and DNS TLD/root services and other DNS root servers such as the RIPE K root / Verisign, etc.
-* `Internal`: while not enforced, you should really only have two internal customers which is the IXP itself and, separatelty, the IXP route sercers. Connections / interfaces such as route collectors and core links would be associated with the IXP customer. Because route servers typically have a dedicated ASN, they would have their own customer with their interfaces associated here.
+* `Internal`: while not enforced, you should really only have two internal customers which is the IXP itself and, separately, the IXP route servers. Connections / interfaces such as route collectors and core links would be associated with the IXP customer. Because route servers typically have a dedicated ASN, they would have their own customer with their interfaces associated here.
 * `Associate`: INEX has a concept of *associate members* which enables those organisations who are involved in the IP and networking industry, but who do not have their own IP traffic to peer, an opportunity to participate in the extensive INEX community. See [full details here](https://www.inex.ie/become-a-member/associate-membership/). Associate customers in IXP Manager have very limited functionality but it allows us to keep track of them.
 
-The `Shortname` field is something we are slowly removing. It is currently visable in some URLs and a couple other areas. It should be a lowercase single word (`[a-z0-9]`) and it should not be changed after it is set.
+The `Shortname` field is something we are slowly removing. It is currently visible in some URLs and a couple other areas. It should be a lowercase single word (`[a-z0-9]`) and it should not be changed after it is set.
 
 The `Corporate Website` is used when linking the customer name in various customer lists. It must be a valid URL. Try and stick to the scheme: `http://www.example.com/` - i.e. include `http[s]://` and end with a trailing slash.
 
 The `Date Joined` is just that and must be set. However, the `Date Left` has real consequences: **setting `Date Left` effectivily closes the customer's account**. This means configuration will no longer be included for graphing, router configuration, etc. We tend not to delete customers but mark them as closed by setting this field.
 
-`Status` yields three options. The most important of which is `Normal` which is what you'll use nearly 100% of the time. Setting either of the other two otions (`Suspended` / `Not Connected`) will have the same effect as closing the accout as described above: removing route server / collector sessions, graphong configuration, etc.
+`Status` yields three options. The most important of which is `Normal` which is what you'll use nearly 100% of the time. Setting either of the other two otions (`Suspended` / `Not Connected`) will have the same effect as closing the accout as described above: removing route server / collector sessions, graphing configuration, etc.
 
 `MD5 Support`: this is not something that has been fully integrated into all view screens. You should probably default to `Yes` for now as this will cover 95+% of cases. It is an informational flag only for member to member bilateral peering.
 
@@ -52,7 +52,7 @@ The `Peering Email` is used in member lists and by the *Peering Manager* for sen
 
 The `IPv4 Peering Macro` is used instead of the AS number when set to generate inbound prefix filters for the route servers based on the member's published IRR records. `AS-BTIRE` in the RIPE database is an example for BT Ireland.
 
-The `IPv6 Peering Macro` was added for another IX using IXP Manager that had a customer which used a separate macro for v4 and v6. We only know of that single instance of this. In the event that `IPv6 Peering Macro` is set, this will be used to generate IPv6 inbound prefix filters, otherwise the `IPv4 Peering Macro` will be used for both. If neither is set, the IRR policy of the AS number will be used. Use `AS-NULL` disable one or the other protocol peering macro if only one is required.
+The `IPv6 Peering Macro` was added for another IX using IXP Manager that had a customer which used a separate macro for v4 and v6. We only know of that single instance of this. In the event that `IPv6 Peering Macro` is set, this will be used to generate IPv6 inbound prefix filters, otherwise the `IPv4 Peering Macro` will be used for both. If neither is set, the IRR policy of the AS number will be used. Use `AS-NULL` to disable one or the other protocol peering macro if only one is required.
 
 It is not possible to have a different ASN for IPv4 and IPv6. We are not aware of any cases where this should be necessary but if it is, create two customers.
 
