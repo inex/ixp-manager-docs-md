@@ -289,7 +289,6 @@
 <div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/member-export/ixf/0.6
 </pre></div>
 
-
 <p>where <em>0.6</em> is a version parameter which allows for support of potential future versions.</p>
 <p>Note that the publically accessable version does not include individiual member details such as name (ASN is provided), max prefixes, MAC addresses, contact email and phone, when the member joined, member's web address, peering policy, NOC website, NOC hours or member type. This information is available to any logged in users or users querying <a href="../api/">the API with an API key</a>.</p>
 <h2 id="registering-your-api-endpoint">Registering Your API Endpoint<a class="headerlink" href="#registering-your-api-endpoint" title="Permanent link"></a></h2>
@@ -298,7 +297,6 @@
 <p>There is only one configuration option presently available. To disable public access to the restricted member export, set the following in your <code>.env</code> file:</p>
 <div class="highlight"><pre><span></span>IXP_API_JSONEXPORTSCHEMA_PUBLIC=false
 </pre></div>
-
 
 <p><strong>We strongly advise you not to disable public access if you are a standard IXP.</strong> Remember, the public version is essentially the same list as you would provide on your standard website's list of members.</p>
 <p>In addition, membership of an IXP is easily discernable from a number of other sources including:</p>

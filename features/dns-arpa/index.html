@@ -296,7 +296,6 @@
 <div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}
 </pre></div>
 
-
 <p>where:</p>
 <ul>
 <li><code>vlanid</code> is the database ID (<em>DB ID</em>) of the VLAN. You can find the DB ID in IXP Manager in the VLAN table (select <em>VLANs</em> from the left hand side menu).</li>
@@ -314,7 +313,6 @@
     <span class="err">...</span>
 <span class="p">]</span>
 </pre></div>
-
 
 <p>where:</p>
 <ul>
@@ -353,13 +351,11 @@
 <span class="k">done</span>
 </pre></div>
 
-
 <h2 id="from-templates">From Templates<a class="headerlink" href="#from-templates" title="Permanent link"></a></h2>
 <p>Rather than writing your own scripts to consume the JSON object as above, it may be easier to use the bundled ISC Bind templates or to write your own template for IXP Manager.</p>
 <p>You can use the <strong>IXP Manager</strong> API to get all ARPA entries for a given VLAN and protocol as plain text based on a template by using the following API endpoint:</p>
 <div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}/{template}
 </pre></div>
-
 
 <p>where:</p>
 <ul>
@@ -370,7 +366,6 @@
 <p>The bundled ISC Bind templates can be used by setting <code>{template}</code> to <code>bind</code> or <code>bind-full</code> in the above URL. For the example interface in the JSON above, the ISC Bind <code>bind</code> template would yield:</p>
 <div class="highlight"><pre><span></span>67.2.0.192.in-addr.arpa.       IN   PTR     cherrie.example.com.
 </pre></div>
-
 
 <p><em>(note that the terminated period on the hostname is added by the template)</em></p>
 <p>The two bundled templates are:</p>
@@ -385,7 +380,6 @@
 mkdir -p resources/skins/myskin/api/v4/dns
 cp resources/views/api/v4/dns/bind.foil.php resources/skins/myskin/api/v4/dns/mytemplate1.foil.php
 </pre></div>
-
 
 <p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
 <blockquote>
@@ -404,7 +398,6 @@ cp resources/views/api/v4/dns/bind.foil.php resources/skins/myskin/api/v4/dns/my
 <span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 
-
 <h3 id="sample-script">Sample Script<a class="headerlink" href="#sample-script" title="Permanent link"></a></h3>
 <p>At INEX, we have (for example) one peering LAN that is a /25 IPv4 network and so is not a zone file in its own right. As such, we make up the zone file using includes. The main zone file looks like:</p>
 <div class="highlight"><pre><span></span>$TTL 86400
@@ -417,7 +410,6 @@ $INCLUDE zones/reverse-mgmt-hosts-ipv4.include
 $INCLUDE zones/reverse-vlan-12-ipv4.include
 </pre></div>
 
-
 <p>The SOA file looks like (as you might expect):</p>
 <div class="highlight"><pre><span></span>@               IN      SOA     ns.example.come.     hostmaster.example.com. (
                         2017051701      ; Serial
@@ -426,7 +418,6 @@ $INCLUDE zones/reverse-vlan-12-ipv4.include
                         1209600         ; Expire
                         7200 )          ; Minimum
 </pre></div>
-
 
 <p>The <code>reverse-vlan-12-ipv4.include</code> is the output of the ISC Bind <code>bind</code> template above for a given VLAN ID.</p>
 <p>We use the sample script <code>update-dns-from-ixp-manager.sh</code> which can be found <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/dns-arpa">in this directory</a> to keep this updated ourselves.</p>

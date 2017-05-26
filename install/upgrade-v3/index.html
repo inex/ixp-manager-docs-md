@@ -334,7 +334,6 @@ mysql -u root -pXXX -e <span class="s1">&#39;GRANT ALL ON ixp4.* TO `ixp`@`local
 mysql -u ixp -pYYY -h localhost ixp4
 </pre></div>
 
-
 <h2 id="install-ixp-manager">Install IXP Manager<a class="headerlink" href="#install-ixp-manager" title="Permanent link"></a></h2>
 <p>This is very much a tl;dr version of <a href="../manually/">the official installation instructions</a> which you should review if you need additional help.</p>
 <p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
@@ -364,7 +363,6 @@ joe .env
 chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
 </pre></div>
 
-
 <h2 id="initial-configuration-tasks">Initial Configuration Tasks<a class="headerlink" href="#initial-configuration-tasks" title="Permanent link"></a></h2>
 <h3 id="new-local-settings-configuration-laravel">New Local Settings / Configuration (Laravel)<a class="headerlink" href="#new-local-settings-configuration-laravel" title="Permanent link"></a></h3>
 <p>IXP Manager v4 uses a new PHP framework (Zend Framework swapped for Laravel). As such, all the older configuration options (from <code>application/configs/application.ini</code>) need to be ported to <code>.env</code>.</p>
@@ -375,7 +373,6 @@ chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
 cp xxxx.php.dist xxxx.php
 </pre></div>
 
-
 <p>Then edit the resultant <code>.php</code> file (or, better, where <code>config()</code> options exist, add them to <code>.env</code>).</p>
 <p>These <code>.dist</code> files represent v3 funtionality that has not yet been fully ported to v4/Laravel.</p>
 <h3 id="update-the-database-schema">Update the Database Schema<a class="headerlink" href="#update-the-database-schema" title="Permanent link"></a></h3>
@@ -384,11 +381,9 @@ cp xxxx.php.dist xxxx.php
 <div class="highlight"><pre><span></span>./artisan doctrine:schema:update --sql
 </pre></div>
 
-
 <p>And apply with:</p>
 <p><div class="highlight"><pre><span></span>./artisan doctrine:schema:update --force
 </pre></div>
-
  Note that this may take a few minutes if you have a lot of data such as BGP session data.</p>
 <h3 id="migrate-plaintext-passwords-to-bcrypt">Migrate Plaintext Passwords to Bcrypt<a class="headerlink" href="#migrate-plaintext-passwords-to-bcrypt" title="Permanent link"></a></h3>
 <p>Since v4.5, we <a href="../../usage/users/#password-hashing">no longer allows plaintext passwords</a>. If you were using plaintext passwords, you need to convert them to bcrypt as follows:</p>
@@ -419,7 +414,6 @@ As such, you need to both rename the statistics directory structure and regenera
 
 First, you<span class="err">&#39;</span>ll need to update your <span class="nb">local</span> configuration in <span class="sb">`</span>.env<span class="sb">`</span> by setting something like:
 </pre></div>
-
 GRAPHER_BACKENDS="mrtg"
 GRAPHER_BACKEND_MRTG_LOGDIR="/path/to/new/mrtg/data"
 GRAPHER_BACKEND_MRTG_WORKDIR="/path/to/new/mrtg/data"
@@ -491,14 +485,12 @@ php artisan grapher:generate-configuration -B mrtg &gt; path/to/mrtg.conf
 
 # Start mrtg
 service mrtg start  # or as appropriate for your platform
-</pre></div>
-</p>
+</pre></div></p>
 <h2 id="peer-to-peer-sflow-changes">Peer to Peer / sflow Changes<a class="headerlink" href="#peer-to-peer-sflow-changes" title="Permanent link"></a></h2>
 <p>The previous version of IXP Manager used a script called <code>sflow-graph.php</code> which was installed on the sflow server to create graphs on demand. IXP Manager v4 does not use this but pulls the required RRD files directly.</p>
 <p>If you have this on the same server or can expose it using NFS for example, then set the path accordingly in <code>.env</code>:</p>
 <div class="highlight"><pre><span></span>GRAPHER_BACKEND_SFLOW_ROOT=&quot;/srv/ixpmatrix&quot;
 </pre></div>
-
 
 <p>If you have implemented this via a web server on the sflow server (as we typically do at INEX), then you need to expose the RRD data directory to IXP Manager using an Apache config such as:</p>
 <div class="highlight"><pre><span></span>Alias /grapher-sflow /srv/ixpmatrix
@@ -512,7 +504,6 @@ service mrtg start  # or as appropriate for your platform
     &lt;/RequireAny&gt;
 &lt;/Directory&gt;
 </pre></div>
-
 
 <p>and update <code>.env</code> for this with something like:</p>
 <div class="highlight"><pre><span></span>GRAPHER_BACKEND_SFLOW_ROOT=&quot;http://www.example.com/grapher-sflow&quot;
