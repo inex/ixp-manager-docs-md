@@ -69,6 +69,8 @@ mysql -u ixp -pYYY -h localhost ixp4
 
 This is very much a tl;dr version of [the official installation instructions](manually.md) which you should review if you need additional help.
 
+**Critically, these upgrade instructions were designed and tested against IXP Manager v4.5.0. You need to upgrade to this version first and then [follow the v4 upgrade instructions from there](upgrading.md).**
+
 The code for IXP Manager is maintained on GitHub and the canonical repository is [inex/IXP-Manager](https://github.com/inex/IXP-Manager).
 
 Log into the server where you wish to install IXP Manager and move to the directory where you wish to install (we use `/srv/ixpmanager` here as an example and which will be referred to as `$IXPROOT` below).
@@ -81,6 +83,7 @@ IXPROOT=/srv/ixpmanager
 # get the source / application
 git clone https://github.com/inex/IXP-Manager.git $IXPROOT
 cd $IXPROOT
+git checkout v4.5.0
 
 # Using https://getcomposer.org/
 composer.phar install

@@ -2,9 +2,11 @@
 
 > These upgrade instructions relate to upgrading when you are already using IXP Manager v4.x.
 
-The upgrade process for IXP Manager is currently a manual task. Especially database schema updates.
+We track [releases on GitHub](https://github.com/inex/IXP-Manager/releases).
 
-The release notes for each version may contain specific upgrade instructions including schema changes.
+You will find standard instructions for upgrading IXP Manager below. Note that the release notes for each version may contain specific upgrade instructions including schema changes.
+
+If you have missed some versions, the most sensible approach is to upgrade to each minor release in sequence (4.5.0 -> 4.6.0 -> 4.7.0 -> ...) and then to the latest patch version in the latest minor version.
 
 In the below, we assume the following installation directory - alter this to suit your own situation:
 
@@ -22,14 +24,14 @@ The general process is:
     ./artisan down
     ```
 
-2. Using Git, checkout the next version up from yours. For IXP Manager v4, this essentially means pulling from `master`.
+2. Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v4.
 
     ```sh
     # move to the directory where you have installed IXP Manager
     cd $IXPROOT
-    # you should be in the master branch (if not: git checkout master)
     # pull the latest code
     git pull
+    # git checkout v4.x.y
     ```
 
 3. Install latest required libraries from composer (see notes below):
@@ -45,10 +47,11 @@ The general process is:
     bower install
     ```
 
-5. Restart Memcached. Do not forget / skip this step!
+5. Restart Memcached and clear the cache. Do not forget / skip this step!
 
     ```sh
     systemctl restart memcached.service
+    ./artisan cache:clear
     ```
 
 6. Update the database schema:
@@ -66,6 +69,8 @@ The general process is:
     ```sh
     systemctl restart memcached.service
     ```
+
+8. Ensure there are no version specific changes required in the release notes.
 
 8. Disable maintenance mode:
 
