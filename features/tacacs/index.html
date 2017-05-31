@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>AS112 - IXP Manager Documentation</title>
+  <title>TACACS - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "AS112";
-    var mkdocs_page_input_path = "features/as112.md";
-    var mkdocs_page_url = "/features/as112/";
+    var mkdocs_page_name = "TACACS";
+    var mkdocs_page_input_path = "features/tacacs.md";
+    var mkdocs_page_url = "/features/tacacs/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -110,25 +110,9 @@
                     
     <a class="" href="../api/">API</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">AS112</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#as112-service">AS112 Service</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#building-an-as112-service">Building an AS112 Service</a></li>
-        
-            <li><a class="toctree-l4" href="#managing-your-as112-service-from-ixp-manager">Managing Your AS112 Service from IXP Manager</a></li>
-        
-            <li><a class="toctree-l4" href="#other-notes">Other Notes</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../as112/">AS112</a>
                 </li>
                 <li class="">
                     
@@ -202,9 +186,23 @@
                     
     <a class="" href="../smokeping/">Smokeping</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../tacacs/">TACACS</a>
+    <a class="current" href="./">TACACS</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#tacacs-user-formatting">TACACS (User Formatting)</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#generating-tacacs-configuration">Generating TACACS Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#setting-up-tacacs">Setting Up TACACS</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -270,10 +268,10 @@
         
       
     
-    <li>AS112</li>
+    <li>TACACS</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/as112.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/tacacs.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -283,48 +281,76 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="as112-service">AS112 Service<a class="headerlink" href="#as112-service" title="Permanent link"></a></h1>
-<blockquote>
-<p><strong>Prerequisite Reading:</strong> Ensure you first familiarize yourself with <a href="../routers/">the generic documentation on managing and generating router configurations here</a>.</p>
-</blockquote>
-<p><strong>AS112</strong> is a service which provides anycast reverse DNS lookup for several prefixes, namely:</p>
+                <h1 id="tacacs-user-formatting">TACACS (User Formatting)<a class="headerlink" href="#tacacs-user-formatting" title="Permanent link"></a></h1>
+<p><strong>IXP Manager</strong> can generate formatted lists of user information. The best example of this is for TACACS.</p>
+<p>TACACS is used in most IXPs to manage access to switching and routing devices:</p>
 <ul>
-<li>10.0.0.0/8</li>
-<li>192.168.0.0/16</li>
-<li>172.16.0.0/12</li>
-<li>169.254.0.0/16</li>
+<li>to allow staff access to these devices with administrative privileges;</li>
+<li>to allow limited / full access to vendor support / TAC personnel;</li>
+<li>to allow member user access to services such as the route collector.</li>
 </ul>
-<p>Because these IP addresses are widely used for private networking, many end-user systems are configured to perform reverse DNS lookups for these address ranges.  DNS lookups for these ranges should always be null-answered quickly, in order to make sure that DNS retransmits don’t occur (thereby overloading local DNS resolvers), and to prevent end-user systems from hanging due to DNS lookups.</p>
-<p>AS112 services are provided around the world by a group of volunteers and, very often, by IXP operators for the benefit of their members.</p>
-<p><a href="https://www.inex.ie/">INEX</a> has always provided an AS112 service to our members on all peering LANs and so it is an integral part of <strong>IXP Manager</strong>. You can read all about INEX's implementation at https://www.inex.ie/technical/as112-service/ including graphs for the service. Feel free to use our test and examples from that page for your own IXP.</p>
-<h2 id="building-an-as112-service">Building an AS112 Service<a class="headerlink" href="#building-an-as112-service" title="Permanent link"></a></h2>
-<p>You can find instructions for building an AS112 service in <a href="https://tools.ietf.org/html/rfc7534">rfc7534</a>. You should also add AS112 redirection using DNAME functionality as per <a href="https://tools.ietf.org/html/rfc7535">rfc7535</a>.</p>
-<p>You will also find a lot more information and how-tos on the official website at: <a href="https://www.as112.net/">https://www.as112.net/</a>.</p>
-<p>Follow these instructions in every way to build the AS112 service on a (virtual) machine with an appropriate DNS server - <strong>except skip the installation and configuration of the BGP daemon</strong>. When using IXP Manager, you will need to use Bird for this and IXP Manager will create the configuration.</p>
-<h2 id="managing-your-as112-service-from-ixp-manager">Managing Your AS112 Service from IXP Manager<a class="headerlink" href="#managing-your-as112-service-from-ixp-manager" title="Permanent link"></a></h2>
-<p>AS112 is disabled by default in IXP Manager. This really just means UI elements are hidden. To enable these, set the following in your <code>.env</code> file:</p>
-<div class="highlight"><pre><span></span>IXP_AS112_UI_ACTIVE=true
+<p><strong>IXP Manager</strong> comes with a flexible template for generating the user section of a TACACS file.</p>
+<h2 id="generating-tacacs-configuration">Generating TACACS Configuration<a class="headerlink" href="#generating-tacacs-configuration" title="Permanent link"></a></h2>
+<p>You can use the <strong>IXP Manager</strong> API to get the user section of a TACACS file using the following endpoint formats (both GET and POST requests work):</p>
+<div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/user/formatted
+https://ixp.example.com/api/v4/user/formatted/{priv}
+https://ixp.example.com/api/v4/user/formatted/{priv}/{template}
 </pre></div>
 
 
-<p>This will add UI elements including:</p>
+<p>where:</p>
 <ul>
-<li>an <em>AS112 Client</em> checkbox on VLAN interface forms. Checking this toggles a database field to indicate if the customer's VLAN interface should have the AS112 service enabled.</li>
-<li>an indication as to whether the user has AS112 services enabled on various overview screens.</li>
+<li><code>priv</code> is an optional user privilege to limit the user selection to. See <a href="https://github.com/inex/IXP-Manager/blob/master/database/Entities/User.php">the available integer values on the <code>AUTH_</code> constants here</a>. You typically want <code>3</code>.</li>
+<li><code>template</code> is an optional template (rather than <code>$IXPROOT/resources/views/api/v4/user/formatted/default</code>). See below.</li>
 </ul>
-<p>Enabling the AS112 service simply indicates if a BGP peering session should be created in the AS112 BGP configuration when downloading the AS112 router's BGP configuration from IXP Manager.</p>
-<h3 id="creating-the-pro-bono-as112-customer">Creating the Pro-Bono AS112 Customer<a class="headerlink" href="#creating-the-pro-bono-as112-customer" title="Permanent link"></a></h3>
-<p>You need to add the AS112 service as a pro-bono member of your IXP in IXP Manager. Here's INEX's example:</p>
-<p><img alt="AS112 INEX Customer Entry" src="../img/as112-inex-cust.png" /></p>
-<p>You then need to create an interface for the AS112 service on each peering LAN where the service will be offered. Here again is INEX's example from our peering LAN1 in Dublin:</p>
-<p><img alt="AS112 INEX VLAN Interface Entry" src="../img/as112-inex-vli.png" /></p>
-<p>Note that historically INEX has not used MD5 on our AS112 service. This is because the service dates from over 20 years ago at INEX when MD5 support was not available. There is no reason not to use MD5 on the service if you wish.</p>
-<h3 id="generating-the-bird-configuration">Generating the Bird Configuration<a class="headerlink" href="#generating-the-bird-configuration" title="Permanent link"></a></h3>
-<p>Please see the <a href="../routers/">router configuration generation</a> for this.</p>
-<p>For your AS112 server, we have a <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/as112">sample script(s)</a> for pulling and updating the configuration from IXP Manager. We typically put this in an hourly cron.</p>
-<h2 id="other-notes">Other Notes<a class="headerlink" href="#other-notes" title="Permanent link"></a></h2>
-<p>At INEX, we typically have our AS112 service peer with our route servers.</p>
-<p>This will happen automatically if you check the <em>Route Server Client</em> on the AS112 VLAN interface configuration (see above screen shot) and also check the <em>AS112 Client</em> checkbox on the VLAN interfaces of your route servers in IXP Manager. <em>Note that in the same way as you create an AS112 <strong>pro-bono</strong> customer, you should also have a dedicated route server <strong>internal</strong> customer.</em></p>
+<p>And example of a user in the reponse is:</p>
+<div class="highlight"><pre><span></span>user=joebloggs {
+    member=admin
+    login = des &quot;$2y$10$pHln5b4DrPj3uuhgfg45HeWEQLK/3ngRxYgYppbnYzleJ.9EpLAN.&quot;
+}
+</pre></div>
+
+
+<h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link"></a></h3>
+<p>You can optionally POST any of the following to change elements of the default template:</p>
+<ul>
+<li><code>template</code>: only relavent when you want to specify a specific template without a privilege.</li>
+<li><code>priv</code>: same as above.</li>
+<li><code>users</code>: a comma-separated list of usernames to return rather than all / all based on privilege.</li>
+<li><code>bcrypt</code>: IXP Manager stores bcrypt hashes with the prefix <code>2y</code>. Some systems, such as TACACS+ on FreeBSD, require <code>2a</code>. If you set <code>bcrypt=2a</code>, this substitution will be made before the data is returned.</li>
+<li><code>group</code>: we put all users in the <code>admin</code> group in the default template. You can change that here.</li>
+</ul>
+<p>An example of changing these parameters is:</p>
+<div class="highlight"><pre><span></span>curl --data <span class="s2">&quot;users=bob,alice&amp;group=god&amp;bcrypt=2a&quot;</span> -X POST <span class="se">\</span>
+    -H <span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span> <span class="se">\</span>
+    -H <span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span> <span class="se">\</span>
+    https://ixpexample.com/api/v4/user/formatted
+</pre></div>
+
+
+<h3 id="templates-skinning">Templates / Skinning<a class="headerlink" href="#templates-skinning" title="Permanent link"></a></h3>
+<p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
+<p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+mkdir -p resources/skins/myskin/api/v4/user/formatted
+cp resources/views/api/v4/user/formatted/default.foil.php resources/skins/myskin/api/v4/user/formatted/mytemplate1.foil.php
+</pre></div>
+
+
+<p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
+<p>All variables available in the template can be <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/user/formatted/default.foil.php">seen in the default template</a>.</p>
+<h2 id="setting-up-tacacs">Setting Up TACACS<a class="headerlink" href="#setting-up-tacacs" title="Permanent link"></a></h2>
+<p>This section explains how to set up TACACS with IXP Manager. We assume you already have an understanding of TACACS.</p>
+<h3 id="generating-updating-tacacs">Generating / Updating TACACS<a class="headerlink" href="#generating-updating-tacacs" title="Permanent link"></a></h3>
+<p>At INEX, we use a script that:</p>
+<ul>
+<li>includes the header and footer information for the conf file;</li>
+<li>pulls the user details from IXP Manager (specific users);</li>
+<li>validates the config;</li>
+<li>compares to current;</li>
+<li>reloads / restarts tac_plus if required.</li>
+</ul>
+<p>You can find that script <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/tacacs">in this directory</a>. Alter it to suit your own purposes.</p>
               
             </div>
           </div>
@@ -332,10 +358,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../contact-groups/" class="btn btn-neutral float-right" title="Contact Groups">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../dev/api/" class="btn btn-neutral float-right" title="API">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api/" class="btn btn-neutral" title="API"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../smokeping/" class="btn btn-neutral" title="Smokeping"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -365,10 +391,10 @@
           <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../smokeping/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../contact-groups/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../dev/api/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

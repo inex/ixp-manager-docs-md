@@ -193,6 +193,12 @@
      <changefreq>daily</changefreq>
     </url>
         
+    <url>
+     <loc>http://docs.ixpmanager.org/features/tacacs/</loc>
+     <lastmod>2017-05-31</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
