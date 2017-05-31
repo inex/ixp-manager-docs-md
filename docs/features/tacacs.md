@@ -76,3 +76,13 @@ All variables available in the template can be [seen in the default template](ht
 This section explains how to set up TACACS with IXP Manager. We assume you already have an understanding of TACACS.
 
 ### Generating / Updating TACACS
+
+At INEX, we use a script that:
+
+* includes the header and footer information for the conf file;
+* pulls the user details from IXP Manager (specific users);
+* validates the config;
+* compares to current;
+* reloads / restarts tac_plus if required.
+
+You can find that script [in this directory](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/tacacs). Alter it to suit your own purposes.

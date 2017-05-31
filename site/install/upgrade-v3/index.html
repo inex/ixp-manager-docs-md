@@ -95,6 +95,8 @@
         
             <li><a class="toctree-l4" href="#initial-configuration-tasks">Initial Configuration Tasks</a></li>
         
+            <li><a class="toctree-l4" href="#mrtg-graphing-migration">MRTG Graphing Migration</a></li>
+        
             <li><a class="toctree-l4" href="#peer-to-peer-sflow-changes">Peer to Peer / sflow Changes</a></li>
         
         </ul>
@@ -337,6 +339,7 @@ mysql -u ixp -pYYY -h localhost ixp4
 
 <h2 id="install-ixp-manager">Install IXP Manager<a class="headerlink" href="#install-ixp-manager" title="Permanent link"></a></h2>
 <p>This is very much a tl;dr version of <a href="../manually/">the official installation instructions</a> which you should review if you need additional help.</p>
+<p><strong>Critically, these upgrade instructions were designed and tested against IXP Manager v4.5.0. You need to upgrade to this version first and then <a href="../upgrading/">follow the v4 upgrade instructions from there</a>.</strong></p>
 <p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
 <p>Log into the server where you wish to install IXP Manager and move to the directory where you wish to install (we use <code>/srv/ixpmanager</code> here as an example and which will be referred to as <code>$IXPROOT</code> below).</p>
 <p>Note that it should not be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>).</p>
@@ -345,6 +348,7 @@ mysql -u ixp -pYYY -h localhost ixp4
 <span class="c1"># get the source / application</span>
 git clone https://github.com/inex/IXP-Manager.git <span class="nv">$IXPROOT</span>
 <span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+git checkout v4.5.0
 
 <span class="c1"># Using https://getcomposer.org/</span>
 composer.phar install
@@ -391,108 +395,99 @@ cp xxxx.php.dist xxxx.php
 
  Note that this may take a few minutes if you have a lot of data such as BGP session data.</p>
 <h3 id="migrate-plaintext-passwords-to-bcrypt">Migrate Plaintext Passwords to Bcrypt<a class="headerlink" href="#migrate-plaintext-passwords-to-bcrypt" title="Permanent link"></a></h3>
-<p>Since v4.5, we <a href="../../usage/users/#password-hashing">no longer allows plaintext passwords</a>. If you were using plaintext passwords, you need to convert them to bcrypt as follows:</p>
-<p><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<p>Since v4.5, we <a href="../../usage/users/#password-hashing">no longer allow plaintext passwords</a>. If you were using plaintext passwords, you need to convert them to bcrypt as follows:</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 
 <span class="c1"># dummy run to see what happens:</span>
 php artisan utils:convert-plaintext-password
 
 <span class="c1"># really convert passwords and save to database:</span>
 php artisan utils:convert-plaintext-password --force
- <span class="sb">```</span>
-
-<span class="c1">### Stage One Complete</span>
-
-You should be able to point Apache / your web server at the new IXP Manager installation and log in.
-
-
-<span class="c1">## MRTG Graphing Migration</span>
-
-We<span class="s1">&#39;ve implemented a new graphing backend called [Grapher](../features/grapher.md). One of the changes is that the graphing directory structure and file-naming conventions have changed. Primarily, we&#39;</span>ve replaced non-static handles <span class="o">(</span>such as database fields like <span class="sb">`</span>customer.shortname<span class="sb">`</span>, <span class="sb">`</span>physicalinterface.monitorindex<span class="sb">`</span> and <span class="sb">`</span>switcher.name<span class="sb">`</span> with immutable primary keys<span class="o">)</span>.
-
-As such, you need to both rename the statistics directory structure and regenerate the configuration.
-
-**It is strongly recommended you copy your existing files and <span class="k">do</span> this in parallel or, at least keep a backup.** Also, stop the MRTG daemon before starting.
-
-
-<span class="c1">### Performing the Migration</span>
-
-First, you<span class="err">&#39;</span>ll need to update your <span class="nb">local</span> configuration in <span class="sb">`</span>.env<span class="sb">`</span> by setting something like:
 </pre></div>
 
-GRAPHER_BACKENDS="mrtg"
-GRAPHER_BACKEND_MRTG_LOGDIR="/path/to/new/mrtg/data"
-GRAPHER_BACKEND_MRTG_WORKDIR="/path/to/new/mrtg/data"
+
+<h3 id="stage-one-complete">Stage One Complete<a class="headerlink" href="#stage-one-complete" title="Permanent link"></a></h3>
+<p>You should be able to point Apache / your web server at the new IXP Manager installation and log in.</p>
+<h2 id="mrtg-graphing-migration">MRTG Graphing Migration<a class="headerlink" href="#mrtg-graphing-migration" title="Permanent link"></a></h2>
+<p>We've implemented a new graphing backend called <a href="../../features/grapher/">Grapher</a>. One of the changes is that the graphing directory structure and file-naming conventions have changed. Primarily, we've replaced non-static handles (such as database fields like <code>customer.shortname</code>, <code>physicalinterface.monitorindex</code> and <code>switcher.name</code> with immutable primary keys).</p>
+<p>As such, you need to both rename the statistics directory structure and regenerate the configuration.</p>
+<p><strong>It is strongly recommended you copy your existing files and do this in parallel or, at least keep a backup.</strong> Also, stop the MRTG daemon before starting.</p>
+<h3 id="performing-the-migration">Performing the Migration<a class="headerlink" href="#performing-the-migration" title="Permanent link"></a></h3>
+<p>First, you'll need to update your local configuration in <code>.env</code> by setting something like:</p>
+<div class="highlight"><pre><span></span>GRAPHER_BACKENDS=&quot;mrtg&quot;
+GRAPHER_BACKEND_MRTG_LOGDIR=&quot;/path/to/new/mrtg/data&quot;
+GRAPHER_BACKEND_MRTG_WORKDIR=&quot;/path/to/new/mrtg/data&quot;
 GRAPHER_CACHE_ENABLED=true
-<div class="highlight"><pre><span></span>See the [Grapher](../features/grapher.md) documentation for full details of what these mean.
+</pre></div>
 
-You&#39;ll then need to migrate all your MRTG files to the new naming scheme. Run the commands below twice. Once to verify the output and a second time piped to sh (` | sh`) to actually execute the commands.
 
-```sh
-# set a variable for what will become the &#39;old&#39; files for convenience
-OLDMRTG=/srv/old-mrtg
+<p>See the <a href="../../features/grapher/">Grapher</a> documentation for full details of what these mean.</p>
+<p>You'll then need to migrate all your MRTG files to the new naming scheme. Run the commands below twice. Once to verify the output and a second time piped to sh (<code>| sh</code>) to actually execute the commands.</p>
+<div class="highlight"><pre><span></span><span class="c1"># set a variable for what will become the &#39;old&#39; files for convenience</span>
+<span class="nv">OLDMRTG</span><span class="o">=</span>/srv/old-mrtg
 
-# position ourselves in the IXP Manager root directory
-cd $IXPROOT
+<span class="c1"># position ourselves in the IXP Manager root directory</span>
+<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 
-# stop mrtg
-service mrtg stop  # or as appropriate for your platform
+<span class="c1"># stop mrtg</span>
+service mrtg stop  <span class="c1"># or as appropriate for your platform</span>
 
-# Migrate IXP graphs.
-#
-# In v3 of IXP Manager, the name of this was set by a database
-# parameter in the IXP table called &#39;aggregate graph name&#39;.
-# You will be able to spot it in the old MRTG files where the
-# old IXP file is named something like: &#39;ixp_peering-XXXXX-bits.log&#39;.
-# The &#39;XXXXXX&#39; bit is the aggregate name you need to replace in the below:
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -X --agg-name=XXXXXX
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -X --agg-name=XXXXXX | sh
+<span class="c1"># Migrate IXP graphs.</span>
+<span class="c1">#</span>
+<span class="c1"># In v3 of IXP Manager, the name of this was set by a database</span>
+<span class="c1"># parameter in the IXP table called &#39;aggregate graph name&#39;.</span>
+<span class="c1"># You will be able to spot it in the old MRTG files where the</span>
+<span class="c1"># old IXP file is named something like: &#39;ixp_peering-XXXXX-bits.log&#39;.</span>
+<span class="c1"># The &#39;XXXXXX&#39; bit is the aggregate name you need to replace in the below:</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -X --agg-name<span class="o">=</span>XXXXXX
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -X --agg-name<span class="o">=</span>XXXXXX <span class="p">|</span> sh
 
-# Migrate infrastructure graphs.
-#
-# In v3 of IXP Manager, the name of this was set by a database
-# parameter in the infrastructure table called &#39;aggregate graph name&#39;.
-# You will be able to spot it in the old MRTG files where the
-# old IXP file is named something like: &#39;ixp_peering-XXXXX-bits.log&#39;.
-# The &#39;XXXXXX&#39; bit is the aggregate name you need to replace in the below:
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -I
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -I | sh
+<span class="c1"># Migrate infrastructure graphs.</span>
+<span class="c1">#</span>
+<span class="c1"># In v3 of IXP Manager, the name of this was set by a database</span>
+<span class="c1"># parameter in the infrastructure table called &#39;aggregate graph name&#39;.</span>
+<span class="c1"># You will be able to spot it in the old MRTG files where the</span>
+<span class="c1"># old IXP file is named something like: &#39;ixp_peering-XXXXX-bits.log&#39;.</span>
+<span class="c1"># The &#39;XXXXXX&#39; bit is the aggregate name you need to replace in the below:</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -I
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -I <span class="p">|</span> sh
 
-# Migrate switch graphs
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -S
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -S | sh
+<span class="c1"># Migrate switch graphs</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -S
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -S <span class="p">|</span> sh
 
-# Migrate trunk graphs and configuration.
-# If you had not configured trunk graphs you can skip this. We are
-# planning to (very soon - Q2/3 2017) fully integrate this into IXP
-# Manager.
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -T
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -T | sh
+<span class="c1"># Migrate trunk graphs and configuration.</span>
+<span class="c1"># If you had not configured trunk graphs you can skip this. We are</span>
+<span class="c1"># planning to (very soon - Q2/3 2017) fully integrate this into IXP</span>
+<span class="c1"># Manager.</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -T
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -T <span class="p">|</span> sh
 php artisan grapher:backend:mrtg:upgrade migrate-trunk-config
 
-# Create member directories
-php artisan grapher:backend:mrtg:upgrade mkdir -L $OLDMRTG -M
-php artisan grapher:backend:mrtg:upgrade mkdir -L $OLDMRTG -M | sh
+<span class="c1"># Create member directories</span>
+php artisan grapher:backend:mrtg:upgrade mkdir -L <span class="nv">$OLDMRTG</span> -M
+php artisan grapher:backend:mrtg:upgrade mkdir -L <span class="nv">$OLDMRTG</span> -M <span class="p">|</span> sh
 
-# Migrate member physical interface graphs
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -P
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -P | sh
+<span class="c1"># Migrate member physical interface graphs</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -P
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -P <span class="p">|</span> sh
 
-# Migrate member LAG graphs
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -Q
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -Q | sh
+<span class="c1"># Migrate member LAG graphs</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -Q
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -Q <span class="p">|</span> sh
 
-# Migrate member aggregate graphs
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -C
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -C | sh
+<span class="c1"># Migrate member aggregate graphs</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -C
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -C <span class="p">|</span> sh
 
-# Regenerate mrtg configuration
+<span class="c1"># Regenerate mrtg configuration</span>
 php artisan grapher:generate-configuration -B mrtg &gt; path/to/mrtg.conf
 
-# Start mrtg
-service mrtg start  # or as appropriate for your platform
+<span class="c1"># Start mrtg</span>
+service mrtg start  <span class="c1"># or as appropriate for your platform</span>
 </pre></div>
-</p>
+
+
 <h2 id="peer-to-peer-sflow-changes">Peer to Peer / sflow Changes<a class="headerlink" href="#peer-to-peer-sflow-changes" title="Permanent link"></a></h2>
 <p>The previous version of IXP Manager used a script called <code>sflow-graph.php</code> which was installed on the sflow server to create graphs on demand. IXP Manager v4 does not use this but pulls the required RRD files directly.</p>
 <p>If you have this on the same server or can expose it using NFS for example, then set the path accordingly in <code>.env</code>:</p>

@@ -147,7 +147,7 @@ And apply with:
 
 ### Migrate Plaintext Passwords to Bcrypt
 
-Since v4.5, we [no longer allows plaintext passwords](../usage/users.md#password-hashing). If you were using plaintext passwords, you need to convert them to bcrypt as follows:
+Since v4.5, we [no longer allow plaintext passwords](../usage/users.md#password-hashing). If you were using plaintext passwords, you need to convert them to bcrypt as follows:
 
 ```sh
 cd $IXPROOT
@@ -157,7 +157,7 @@ php artisan utils:convert-plaintext-password
 
 # really convert passwords and save to database:
 php artisan utils:convert-plaintext-password --force
- ```
+```
 
 ### Stage One Complete
 

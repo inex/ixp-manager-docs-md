@@ -283,8 +283,9 @@
 <blockquote>
 <p>These upgrade instructions relate to upgrading when you are already using IXP Manager v4.x.</p>
 </blockquote>
-<p>The upgrade process for IXP Manager is currently a manual task. Especially database schema updates.</p>
-<p>The release notes for each version may contain specific upgrade instructions including schema changes.</p>
+<p>We track <a href="https://github.com/inex/IXP-Manager/releases">releases on GitHub</a>.</p>
+<p>You will find standard instructions for upgrading IXP Manager below. Note that the release notes for each version may contain specific upgrade instructions including schema changes.</p>
+<p>If you have missed some versions, the most sensible approach is to upgrade to each minor release in sequence (4.5.0 -&gt; 4.6.0 -&gt; 4.7.0 -&gt; ...) and then to the latest patch version in the latest minor version.</p>
 <p>In the below, we assume the following installation directory - alter this to suit your own situation:</p>
 <div class="highlight"><pre><span></span>IXPROOT=/srv/ixpmanager
 </pre></div>
@@ -301,12 +302,12 @@
 
 </li>
 <li>
-<p>Using Git, checkout the next version up from yours. For IXP Manager v4, this essentially means pulling from <code>master</code>.</p>
+<p>Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v4.</p>
 <div class="highlight"><pre><span></span><span class="c1"># move to the directory where you have installed IXP Manager</span>
 <span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-<span class="c1"># you should be in the master branch (if not: git checkout master)</span>
 <span class="c1"># pull the latest code</span>
 git pull
+<span class="c1"># git checkout v4.x.y</span>
 </pre></div>
 
 
@@ -327,8 +328,9 @@ bower install
 
 </li>
 <li>
-<p>Restart Memcached. Do not forget / skip this step!</p>
+<p>Restart Memcached and clear the cache. Do not forget / skip this step!</p>
 <div class="highlight"><pre><span></span>systemctl restart memcached.service
+./artisan cache:clear
 </pre></div>
 
 
@@ -350,6 +352,9 @@ bower install
 </pre></div>
 
 
+</li>
+<li>
+<p>Ensure there are no version specific changes required in the release notes.</p>
 </li>
 <li>
 <p>Disable maintenance mode:</p>
