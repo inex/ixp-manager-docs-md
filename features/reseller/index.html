@@ -286,6 +286,7 @@
 <div class="highlight"><pre><span></span>IXP_RESELLER_ENABLED=true
 </pre></div>
 
+
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link"></a></h2>
 <p>In our model, a <em>resold</em> member is still a fully fledged member, they just happen to reach the exchange via someone else's network. You / we would still have a relationship with the member independent of the reseller and would still be required to carry out the standard turn up (for us, this includes IP assignment, quarantine procedures, route collector session, route server sessions if appropriate, etc.).</p>
 <p>IXP Manager's functionality is simply to:</p>
@@ -326,9 +327,11 @@
 <div class="highlight"><pre><span></span>IXP_RESELLER_ENABLED=false
 </pre></div>
 
+
 <p>If your resold customers are billed directly by the reseller and not the IXP, set this to true to remove billing details from their admin and member areas.</p>
 <div class="highlight"><pre><span></span>IXP_RESELLER_RESOLD_BILLING=false
 </pre></div>
+
 
 <h2 id="coding-hints">Coding Hints<a class="headerlink" href="#coding-hints" title="Permanent link"></a></h2>
 <p>In the (older Zend Framework) controllers, you can execute reseller code via:</p>
@@ -337,23 +340,28 @@
 <span class="x">}</span>
 </pre></div>
 
+
 <p>And in (the older Zend Framework) Smarty templates, you can add reseller only content via:</p>
 <div class="highlight"><pre><span></span>{if $resellerMode}
     &lt;!-- Your reseller content --&gt;
 {/if}
 </pre></div>
 
+
 <p>If you have a <code>$customer</code> entity, you can see if it is a reseller via:</p>
 <div class="highlight"><pre><span></span><span class="x">if( $customer-&gt;isReseller() ) {}</span>
 </pre></div>
+
 
 <p>To see if a customer is a resold customer or get the reseller customer entity:</p>
 <div class="highlight"><pre><span></span><span class="x">if( $customer-&gt;getReseller() ) {} // returns false if not a resold customer</span>
 </pre></div>
 
+
 <p>Finally, to get all resold customer entities of a reseller:</p>
 <div class="highlight"><pre><span></span><span class="x">$customer-&gt;getResoldCustomers()</span>
 </pre></div>
+
 
 <hr />
 <p>Reseller functionality was added jointly by <a href="https://www.inex.ie/">INEX</a> and <a href="http://www.lonap.net/">LONAP</a> in June 2013.</p>

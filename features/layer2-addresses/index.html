@@ -322,6 +322,7 @@
 <div class="highlight"><pre><span></span>php <span class="nv">$IXPROOT</span>/artisan l2addresses:populate
 </pre></div>
 
+
 <p>You will be prompted as follows:</p>
 <blockquote>
 <p>Are you sure you wish to proceed? This command will CLEAR the layer2address table and then copy addresses from the read-only macaddress table. Generally, this command should only ever be run once when initially populating the new table.</p>
@@ -340,6 +341,7 @@
 <p>A useful SQL command to double check the results for me was:</p>
 <div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">mac</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">mac</span><span class="p">)</span> <span class="k">AS</span> <span class="k">c</span> <span class="k">FROM</span> <span class="n">l2address</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">mac</span> <span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">mac</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span>
 </pre></div>
+
 
 <h2 id="mac-addresses">MAC Addresses<a class="headerlink" href="#mac-addresses" title="Permanent link"></a></h2>
 <p>This was the original functionality - a read-only table via an admin menu option called <em>MAC Addresses</em> which lists entries from a database of MAC addresses which are sourced via a script from the IXP's switches directly.</p>
@@ -362,12 +364,14 @@ cp <span class="nv">$IXPROOT</span>/tools/runtime/l2database/update-l2database.p
 /usr/local/bin/update-l2database.pl
 </pre></div>
 
+
 <h2 id="oui-database">OUI Database<a class="headerlink" href="#oui-database" title="Permanent link"></a></h2>
 <p>IXP Manager can store the IEEE OUI database and reference it to show the manufacturer behind a MAC address.</p>
 <h3 id="populating-and-updating-the-oui-database">Populating and Updating the OUI Database<a class="headerlink" href="#populating-and-updating-the-oui-database" title="Permanent link"></a></h3>
 <p>You would typically set a weekly cron job to call:</p>
 <div class="highlight"><pre><span></span>php <span class="nv">$IXPROOT</span>/artisan utils:oui-update
 </pre></div>
+
 
 <p>which will populate / update the OUI database directly from the latest IEEE file from their website.</p>
 <p>A specific file can be passed via the <code>file</code> parameter. You can also force a database reset (drop all OUI entries and re-populate) via the <code>--refresh</code> option.</p>

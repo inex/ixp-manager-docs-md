@@ -331,9 +331,11 @@
 <div class="highlight"><pre><span></span>apt-get install libconfig-general-perl libnetaddr-ip-perl mrtg
 </pre></div>
 
+
 <p>You also need a folder to store all MRTG files. For example:</p>
 <div class="highlight"><pre><span></span>mkdir -p /srv/mrtg
 </pre></div>
+
 
 <p>In your `.env, you need to set the following options:</p>
 <div class="highlight"><pre><span></span># the database type to use - either log or rrd
@@ -346,12 +348,14 @@ GRAPHER_BACKEND_MRTG_WORKDIR=&quot;/tmp&quot;
 GRAPHER_BACKEND_MRTG_LOGDIR=&quot;http://collector.example.com/mrtg&quot;
 </pre></div>
 
+
 <p>You can now generate a MRTG configuration by executing a command such as:</p>
 <div class="highlight"><pre><span></span><span class="c1"># output to stdout:</span>
 ./artisan grapher:generate-configuration -B mrtg
 <span class="c1"># output to a named file</span>
 ./artisan grapher:generate-configuration -B mrtg -O /tmp/mrtg.cfg.candidate
 </pre></div>
+
 
 <p>You could also combine a syntax check before putting the resultant file live. Here's a complete example that could be run via cron:</p>
 <div class="highlight"><pre><span></span><span class="ch">#! /usr/bin/env bash</span>
@@ -371,12 +375,13 @@ rm /tmp/mrtg.cfg.<span class="nv">$$</span>.filtered
 
 <span class="k">if</span> <span class="o">[[</span> <span class="nv">$DIFF</span> -eq <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
     rm /tmp/mrtg.cfg.<span class="nv">$$</span>
-    <span class="nb">exit</span> <span class="m">0</span>
+    <span class="nb">exit</span> 0
 <span class="k">fi</span>
 
 /usr/bin/mrtg --check /tmp/mrtg.cfg.<span class="nv">$$</span>                 <span class="se">\</span>
     <span class="o">&amp;&amp;</span> /bin/mv /tmp/mrtg.cfg.<span class="nv">$$</span> /etc/mrtg.cfg
 </pre></div>
+
 
 <p>If your MRTG collector is on a different server, you could use a script such as the following to safely update MRTG:</p>
 <div class="highlight"><pre><span></span><span class="ch">#! /bin/bash</span>
@@ -401,18 +406,20 @@ rm mrtg.cfg.<span class="nv">$$</span>.filtered
 
 <span class="k">if</span> <span class="o">[[</span> <span class="nv">$DIFF</span> -eq <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
     rm mrtg.cfg.<span class="nv">$$</span>
-    <span class="nb">exit</span> <span class="m">0</span>
+    <span class="nb">exit</span> 0
 <span class="k">fi</span>
 
 /usr/local/bin/mrtg --check /etc/mrtg/mrtg.cfg.<span class="nv">$$</span>                 <span class="se">\</span>
     <span class="o">&amp;&amp;</span> /bin/mv /etc/mrtg/mrtg.cfg.<span class="nv">$$</span> /etc/mrtg/mrtg.cfg <span class="se">\</span>
-    <span class="o">&amp;&amp;</span> /etc/rc.d/mrtg_daemon restart &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+    <span class="o">&amp;&amp;</span> /etc/rc.d/mrtg_daemon restart &gt; /dev/null 2&gt;<span class="p">&amp;</span>1
 </pre></div>
+
 
 <p>Note that our header template starts MRTG as a daemon. On FreeBSD, MRTG comes with an initd script by default and you can kick it off on boot with something like the following in rc.conf:</p>
 <div class="highlight"><pre><span></span>mrtg_daemon_enable=&quot;YES&quot;
 mrtg_daemon_config=&quot;/etc/mrtg/mrtg.cfg&quot;
 </pre></div>
+
 
 <p>However, on Ubuntu it does not but it comes with a /etc/cron.d/mrtg file which kicks it off every five minutes (it will daemonise the first time and further cron jobs will have no effect). If you use this method, you will need to have your periodic update script restart / stop the daemon when the configuration changes (as demonstrated in the above script).</p>
 <p>To start and stop it via standard initd scripts on Ubuntu, use <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/mrtg/ubuntu-mrtg-initd">an initd script such as this</a>  (<a href="http://www.iceflatline.com/2009/08/how-to-install-and-configure-mrtg-on-ubuntu-server/">source</a>:</p>
@@ -421,6 +428,7 @@ chmod +x /etc/init.d/mrtg
 update-rc.d mrtg defaults
 /etc/init.d/mrtg start
 </pre></div>
+
 
 <p>Remember to disable the default cron job for MRTG on Ubuntu!</p>
 <h3 id="customising-the-configuration">Customising the Configuration<a class="headerlink" href="#customising-the-configuration" title="Permanent link"></a></h3>
@@ -438,6 +446,7 @@ update-rc.d mrtg defaults
 32 10 * * *   www-data        /srv/ixpmanager/artisan grapher:email-ports-with-counts --errors ops@inex.ie
 </pre></div>
 
+
 <p>which, in the order above, do:</p>
 <ol>
 <li>Once per day, upload <em>yesterday's</em> summary of MRTG statistics into the database.</li>
@@ -453,6 +462,7 @@ update-rc.d mrtg defaults
 <div class="highlight"><pre><span></span>GRAPHER_BACKEND_SFLOW_ROOT=&quot;/srv/ixpmatrix&quot;
 </pre></div>
 
+
 <p>If you have implemented this via a web server on the sflow server (as we typically do at INEX), then you need to expose the RRD data directory to IXP Manager using an Apache config such as:</p>
 <div class="highlight"><pre><span></span>Alias /grapher-sflow /srv/ixpmatrix
 
@@ -465,6 +475,7 @@ update-rc.d mrtg defaults
     &lt;/RequireAny&gt;
 &lt;/Directory&gt;
 </pre></div>
+
 
 <p>and update <code>.env</code> for this with something like:</p>
 <div class="highlight"><pre><span></span>GRAPHER_BACKEND_SFLOW_ROOT=&quot;http://www.example.com/grapher-sflow&quot;

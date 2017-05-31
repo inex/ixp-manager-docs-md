@@ -277,9 +277,11 @@
 <div class="highlight"><pre><span></span>php artisan down
 </pre></div>
 
+
 <p>You may also provide message and retry options to the down command. The message value may be used to display or log a custom message, while the retry value will be set as the Retry-After HTTP header's value::</p>
 <div class="highlight"><pre><span></span>php artisan down --message=&#39;Upgrading Database&#39; --retry=60
 </pre></div>
+
 
 <p>To disable maintenance mode, use the up command::</p>
 <div class="highlight"><pre><span></span>php artisan up

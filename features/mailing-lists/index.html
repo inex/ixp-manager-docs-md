@@ -293,6 +293,7 @@
 cp config/mailinglists.php.dist config/mailinglists.php
 </pre></div>
 
+
 <p>You then need to edit this file as follows:</p>
 <ol>
 <li>
@@ -300,6 +301,7 @@ cp config/mailinglists.php.dist config/mailinglists.php
 <div class="highlight"><pre><span></span><span class="x">// Set the following to &#39;true&#39; to enable mailing list functionality:</span>
 <span class="x">&#39;enabled&#39; =&gt; true,</span>
 </pre></div>
+
 
 <p>If this is not set to true, the user will not be offered subscription options and the CLI commands will not execute.</p>
 </li>
@@ -323,6 +325,7 @@ cp config/mailinglists.php.dist config/mailinglists.php
 <span class="x">],</span>
 </pre></div>
 
+
 <p>Note that the <code>members</code> and <code>tech</code> array keys above are the list handles that will be used by the API interfaces later. It is also important that they match the Mailman list key.</p>
 <p>Historically, mailing list passwords were also sync'd from the IXP Manager user database <em>unless</em> <code>syncpws</code> is both defined and false for the given list. As we are now recommending <em>bcrypt</em> as the standard password hashing mechanism, we no longer recommend this and suggest allowing Mailman to manage its own passwords.</p>
 </li>
@@ -338,6 +341,7 @@ cp config/mailinglists.php.dist config/mailinglists.php
 <span class="x">]</span>
 </pre></div>
 
+
 </li>
 </ol>
 <h2 id="explanation-of-usage">Explanation of Usage<a class="headerlink" href="#explanation-of-usage" title="Permanent link"></a></h2>
@@ -345,6 +349,7 @@ cp config/mailinglists.php.dist config/mailinglists.php
 <p>Users in IXP Manager will either be marked as being subscribed to a list, not subscribed to a list or neither (i.e. a new user). Subscriptions are managed by user preferences (in the database) of the format:</p>
 <div class="highlight"><pre><span></span>mailinglist.listname1.subscribed = 0/1
 </pre></div>
+
 
 <p>There are four steps to performing the synchronisation <strong>for each list</strong> which are done by either using the IXP Manager CLI script <code>$IXPROOT/bin/ixptool.php</code> or the older <a href="https://github.com/inex/IXP-Manager/wiki/API-V1">API V1</a> interface.</p>
 <h3 id="cli-interface-overview">CLI Interface Overview<a class="headerlink" href="#cli-interface-overview" title="Permanent link"></a></h3>
@@ -376,20 +381,24 @@ curl -f --data-urlencode addresses@/tmp/ml-listname1.txt <span class="se">\</spa
 rm /tmp/ml-listname1.txt
 </pre></div>
 
+
 <p>Pipe all subscribed users to the <code>add_members</code> Mailman script:</p>
 <div class="highlight"><pre><span></span>curl -f <span class="s2">&quot;https://www.example.com/ixp/apiv1/mailing-list/get-subscribed/key/</span><span class="nv">$MyKey</span><span class="s2">/list/members&quot;</span> <span class="p">|</span> <span class="se">\</span>
     /path/to/mailman/bin/add_members -r - -w n -a n members &gt;/dev/null
 </pre></div>
+
 
 <p>Pipe all users who are unsubscribed to the <code>remove_members</code> Mailman script:</p>
 <div class="highlight"><pre><span></span>curl -f <span class="s2">&quot;https://www.example.com/ixp/apiv1/mailing-list/get-unsubscribed/key/</span><span class="nv">$MyKey</span><span class="s2">/list/members&quot;</span> <span class="p">|</span> <span class="se">\</span>
     /path/to/mailman/bin/remove_members -f - -n -N members &gt;/dev/null
 </pre></div>
 
+
 <p>Sync the passwords from IXP Manager to Mailman with something like:</p>
 <div class="highlight"><pre><span></span>curl -f <span class="s2">&quot;https://www.example.com/ixp/apiv1/mailing-list/password-sync/key/MyKey/list/listname1&quot;</span> <span class="p">|</span> <span class="se">\</span>
     egrep <span class="s2">&quot;^/path/to/mailman/bin/withlist -q -l -r changepw &#39;.+&#39; &#39;.+&#39; &#39;.+&#39;</span>$<span class="s2">&quot;</span> <span class="p">|</span> /bin/sh &gt;/dev/null
 </pre></div>
+
 
 <p><em>(Feel free to make the above regexp more secure and update this document).</em>        </p>
 <h2 id="how-to-implement">How to Implement<a class="headerlink" href="#how-to-implement" title="Permanent link"></a></h2>
@@ -399,9 +408,11 @@ rm /tmp/ml-listname1.txt
 <div class="highlight"><pre><span></span>bin/ixptool.php -a mailing-list-cli.sync-script &gt;bin/mailing-list-sync.sh
 </pre></div>
 
+
 <p>Or the following for the API V1 version <strong>(and make sure to update the assignments at the top of the script)</strong>:</p>
 <div class="highlight"><pre><span></span>bin/ixptool.php -a mailing-list-cli.sync-script --p1<span class="o">=</span>apiv1 &gt;bin/mailing-list-sync-apiv1.sh
 </pre></div>
+
 
 <p>This generates a script called <code>mailing-list-sync[-apiv1].sh</code> which performs each of the above four steps for each configured mailing list. If your mailing list configuration does not change, you will not need to rerun this.</p>
 <p>You should now put this script into crontab on the appropriate server (same server for CLI!) and run as often as you feel is necessary. The current <em>success</em> message for a user updating their subscriptions says <em>within 12 hours</em> so we'd recommend at least running twice a day.</p>
@@ -418,6 +429,7 @@ rm /tmp/ml-listname1.txt
     <span class="k">except</span> <span class="n">NotAMemberError</span><span class="p">:</span>
         <span class="k">print</span> <span class="s1">&#39;No address matched:&#39;</span><span class="p">,</span> <span class="n">addr</span>
 </pre></div>
+
 
 <h2 id="todo">Todo<a class="headerlink" href="#todo" title="Permanent link"></a></h2>
 <ul>
