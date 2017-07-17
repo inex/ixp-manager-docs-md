@@ -85,6 +85,7 @@ You can pass three optional parameters to Nagios via GET/POST and these are:
 1. `host_definition`; defaults to: `ixp-manager-member-host`.
 2. `service_definition`; defaults to `ixp-manager-member-service`.
 3. `ping_service_definition`; defaults to: `ixp-manager-member-ping-service`.
+4. `ping_busy_service_definition`; defaults to: `ixp-manager-member-ping-busy-service`.
 
 An example of changing two of these parameters is:
 
@@ -128,6 +129,14 @@ define service {
     use                     ixp-manager-member-service
     service_description     PING
     check_command           check_ping!250.0,20%!500.0,60%
+    register                0
+}
+
+define service {
+    name                    ixp-manager-member-ping-busy-service
+    use                     ixp-manager-member-service
+    service_description     PING-Busy
+    check_command           check_ping!1000.0,80%!2000.0,90%
     register                0
 }
 ```
