@@ -21,9 +21,9 @@ IXP Manager >= v4.5 now simply creates the targets on a per VLAN and protocol ba
 
 We monitor all member router interfaces (unless asked not to) via ICMP[v6] pings with Nagios. This is all controlled by the Nagios configuration created with this feature.
 
-To enable / disable these checks, edit the VLAN interface configuration and set IPvX Can Ping appropriately.
+To enable / disable these checks, edit the VLAN interface configuration and set IPvX Can Ping appropriately. *Note that when canping is disabled, the host definition is created anyway as this would be used for other Nagios checks such as route collector sessions.*
 
-There is an additional option when editing a member's VLAN interface called *Busy Host*. This changes the Nagios ping fidelity from `250.0,20%!500.0,60%` to `1000.0,80%!2000.0,90%` which is useful for routers with slow / rate limited control planes.
+There is an additional option when editing a member's VLAN interface called *Busy Host*. This changes the Nagios ping fidelity from `250.0,20%!500.0,60%` to `1000.0,80%!2000.0,90%` (using the default object definitions which are configurable). This is useful for routers with slow / rate limited control planes.
 
 Members are added to a number of hostgroups also:
 
@@ -57,72 +57,80 @@ And example of a target in the reponse is:
 ### Equinix DB2 (Kilcarbery) / Packet Clearing House DNS / swi1-kcp1-1.
 ###
 
-
 ### Host: 185.6.36.60 / inex.woodynet.net / Peering VLAN #1.
 
 define host {
     use                     ixp-manager-member-host
-    host_name               packet-clearing-house-dns-as42-ipv4-vlantag10-vliid109
+    host_name               packet-clearing-house-dns-as42-ipv4-vlanid2-vliid109
     alias                   Packet Clearing House DNS / swi1-kcp1-1 / Peering VLAN #1.
     address                 185.6.36.60
-    check_command           check-host-alive
-    max_check_attempts      10
-    notification_interval   120
-    notification_period     24x7
-    notification_options    d,u,r
-    contact_groups          admins
 }
-
-
 
 ### Service: 185.6.36.60 / inex.woodynet.net / Peering VLAN #1.
 
 define service {
-    use                     ixp-manager-member-service
-    host_name               packet-clearing-house-dns-as42-ipv4-vlantag10-vliid109
-    check_period            24x7
-    max_check_attempts      3
-    normal_check_interval   5
-    retry_check_interval    1
-    contact_groups          admins
-    notification_interval   120
-    notification_period     24x7
-    notification_options    w,u,c,r
-    service_description     PING
-    check_command           check_ping!250.0,20%!500.0,60%
+    use                     ixp-manager-member-ping-service
+    host_name               packet-clearing-house-dns-as42-ipv4-vlanid2-vliid109
 }
 ```
 
-### Optional Parameters
+### Configuring Nagios for Member Reachability
 
-You can optionally GET/POST any of the following to change elements of the default template. These are shown here as their interpretation in PHP with default values:
+You will notice that the above configuration example is very light and is missing an awful lot of required Nagios required configuration directives. This is intentional so that IXP Manager is not too prescriptive and allows you to define your own Nagios objects without having to resort to skinning IXP Manager.
 
-```php
-// optional POST/GET parameters
-'host_definition'               => $request->input( 'host_definition',        'ixp-manager-member-host'          ),
-'host_check_command'            => $request->input( 'host_check_command',     'check-host-alive'                 ),
-'max_check_attempts'            => $request->input( 'max_check_attempts',     '10'                               ),
-'check_period'                  => $request->input( 'check_period',           '24x7'                             ),
-'notification_interval'         => $request->input( 'notification_interval',  '120'                              ),
-'notification_period'           => $request->input( 'notification_period',    '24x7'                             ),
-'host_notification_options'     => $request->input( 'notification_options',   'd,u,r'                            ),
-'check_interval'                => $request->input( 'check_interval',         '5'                                ),
-'retry_check_interval'          => $request->input( 'retry_check_interval',   '1'                                ),
-'service_definition'            => $request->input( 'service_definition',     'ixp-manager-member-service'       ),
-'contact_groups'                => $request->input( 'contact_groups',         'admins'                           ),
-'ping_check_command'            => $request->input( 'ping_check_command',     'check_ping!250.0,20%!500.0,60%'   ),
-'pingbusy_check_command'        => $request->input( 'pingbusy_check_command', 'check_ping!1000.0,80%!2000.0,90%' ),
-```
+Two of the most important elements of Nagios configuration which you need to understand are [object definitions](https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/objectdefinitions.html) and [object inheritance](https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/objectinheritance.html).
+
+You can pass three optional parameters to Nagios via GET/POST and these are:
+
+1. `host_definition`; defaults to: `ixp-manager-member-host`.
+2. `service_definition`; defaults to `ixp-manager-member-service`.
+3. `ping_service_definition`; defaults to: `ixp-manager-member-ping-service`.
 
 An example of changing two of these parameters is:
 
 ```sh
-curl --data "host_definition=my-host-def&check_period=5x8" -X POST \
+curl --data "host_definition=my-host-def&service_definition=my-service-def" -X POST \
     -H "Content-Type: application/x-www-form-urlencoded" \
     -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
     https://ixpexample.com/api/v4/nagios/customers/2/4
 ```
 
+An example of the three objects that INEX use for this are:
+
+```
+define host {
+    name                    ixp-manager-member-host
+    check_command           check-host-alive
+    check_period            24x7
+    max_check_attempts      10
+    notification_interval   120
+    notification_period     24x7
+    notification_options    d,u,r
+    contact_groups          admins
+    register                0
+}
+
+define service {
+    name                    ixp-manager-member-service
+    check_period            24x7
+    max_check_attempts      10
+    check_interval          5
+    retry_check_interval    1
+    contact_groups          admins
+    notification_interval   120
+    notification_period     24x7
+    notification_options    w,u,c,r
+    register                0
+}
+
+define service {
+    name                    ixp-manager-member-ping-service
+    use                     ixp-manager-member-service
+    service_description     PING
+    check_command           check_ping!250.0,20%!500.0,60%
+    register                0
+}
+```
 
 ### Templates / Skinning
 
