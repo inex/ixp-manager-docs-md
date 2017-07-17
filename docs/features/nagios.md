@@ -155,3 +155,115 @@ https://ixp.example.com/api/v4/nagios/customers/{vlanid}/{protocol}/{template}
 where, in this example, `{template}` would be: `mytemplate1`.
 
 *As a policy, INEX tends to use the bundled templates and as such they should be fit for general purpose.*
+
+
+## Switch Monitoring
+
+We monitor all production peering LAN switches for a number of difference services (see below).
+
+IXP Manager produces a host configuration for each production switch such as:
+
+```
+#
+# swi2-dc1-1 - DUB01.XX.YY.ZZ, Data Centre DUB1.
+#
+
+define host {
+    use                     ixp-manager-production-switch
+    host_name               swi2-dc1-1.mgmt.inex.ie
+    alias                   swi2-dc1-1
+    address                 192.0.2.4
+}
+```
+
+Members are added to a number of hostgroups also:
+
+* switches per location / data centre;
+* all switches in the requested infrastructure;
+* grouped by vendor name (the vendor's *shortname* as defined in IXP Manager);
+* grouped by vendor model (as discovered by SNMP).
+
+These hostgroups are very useful when defining service checks.
+
+You can use the **IXP Manager** API to get the Nagios configuration for a given infrastructure using the following endpoint format (both GET and POST requests work):
+
+```
+https://ixp.example.com/api/v4/nagios/switches/{infraid}
+```
+
+where:
+
+* `infraid` is the database ID (*DB ID*) of the infrastructure. You can find the DB ID in IXP Manager in the infrastructures table (select *Infrastructures* from the left hand side menu).
+
+You can use [skinning](skinning.md) to make changes to the bundled `default` template or, **preferably**, add your own.
+
+Let's say you wanted to add your own template called `myswtemplate1` and your skin is named `myskin`. The best way to proceed is to copy the bundled example:
+
+```sh
+cd $IXPROOT
+mkdir -p resources/skins/myskin/api/v4/nagios/switches
+cp resources/views/api/v4/nagios/switches/default.foil.php resources/skins/myskin/api/v4/nagios/switches/myswtemplate1.foil.php
+```
+
+You can then elect to use this template by tacking the name onto the API request:
+
+```
+https://ixp.example.com/api/v4/nagios/switches/{infraid}/{template}
+```
+
+where, in this example, `{template}` would be: `myswtemplate1`.
+
+You can pass one optional parameter to Nagios via GET/POST which is the host definition to inherit from (see customer reachability testing about for full details and examples):
+
+```sh
+curl --data "host_definition=my-sw-host-def" -X POST \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
+    https://ixpexample.com/api/v4/nagios/switches/2
+```
+
+### Service Checking
+
+The recommended way to check various services on your production switches is to use the host groups created by the above switch API call. An example of the hostgroups produced include:
+
+1. `ixp-production-switches-infraid-2`: all switches on an infrastructure with DB ID 2;
+2. `ixp-switches-infraid-2-dc-dub1`: all switches in location dc-dub1;
+2. `ixp-switches-infraid-2-extreme`: all Extreme switches on an infrastructure with DB ID 2; and
+3. `ixp-switches-infraid-2-extreme-x670g2-48x-4q`: all Extreme switches of model X670G2-48x-4q on an infrastructure with DB ID 2.
+
+Using these, you can create generic service definitions to apply to all hosts such as:
+
+```
+define service{
+    use                             my-ixp-production-switch-service
+    hostgroup_name                  ixp-production-switches-infraid-1, ixp-production-switches-infraid-2
+    service_description             ping - IPv4
+    check_command                   check_ping_ipv4!10!100.0,10%!200.0,20%
+}
+
+define service  {
+    use                             my-ixp-production-switch-service
+    hostgroup_name                  ixp-production-switches-infraid-1, ixp-production-switches-infraid-2
+    service_description             SSH
+    check_command                   check_ssh
+}
+```
+
+You can target vendor / model specific checks as appropriate:
+
+```
+define service{
+    use                             my-ixp-production-switch-service
+    hostgroup_name                  ixp-switches-infraid-1-extreme, ixp-switches-infraid-2-extreme
+    service_description             Chassis
+    check_command                   check_extreme_chassis
+}
+```
+
+The one thing you'll need to keep an eye on is adding hostgroups to service checks as you create new infrastructures / add new switch vendors / models.
+
+**Hint:** over the years, we at [INEX](https://www.inex.ie/) have written a number of switch chassis check scripts and these can be found on Github at [barryo/nagios-plugins](https://github.com/barryo/nagios-plugins).
+
+For example the Extreme version checks and returns something like:
+
+> OK - CPU: 5sec - 10%. Uptime: 62.8 days. PSUs: 1 - presentOK: 2 - presentOK:. Overall system power state: redundant power available. Fans: [101 - OK (4311 RPM)]: [102 - OK (9273 RPM)]: [103 - OK (4468 RPM)]: [104 - OK (9637 RPM)]: [105 - OK (4165 RPM)]: [106 - OK (9273 RPM)]:. Temp: 34'C. Memory (slot:usage%): 1:29%.
