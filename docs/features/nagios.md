@@ -267,3 +267,114 @@ The one thing you'll need to keep an eye on is adding hostgroups to service chec
 For example the Extreme version checks and returns something like:
 
 > OK - CPU: 5sec - 10%. Uptime: 62.8 days. PSUs: 1 - presentOK: 2 - presentOK:. Overall system power state: redundant power available. Fans: [101 - OK (4311 RPM)]: [102 - OK (9273 RPM)]: [103 - OK (4468 RPM)]: [104 - OK (9637 RPM)]: [105 - OK (4165 RPM)]: [106 - OK (9273 RPM)]:. Temp: 34'C. Memory (slot:usage%): 1:29%.
+
+
+## Birdseye Daemon Monitoring
+
+We monitor our Bird instances at INEX directly through Birdseye, the software we use for our [looking glass](looking-glass.md). This means it is currently tightly coupled to Bird and Birdseye until such time as we look at a second router software.
+
+IXP Manager produces a host and service configuration for each router such as:
+
+```
+define host     {
+        use                     ixp-manager-host-birdseye-daemon
+        host_name               bird-rc1q-cork-ipv4
+        alias                   INEX Cork - Quarantine Route Collector - IPv4
+        address                 10.40.5.134
+        _apiurl                 http://rc1q-ipv4.cork.inex.ie/api
+}
+
+define service     {
+    use                     ixp-manager-service-birdseye-daemon
+    host_name               bird-rc1q-cork-ipv4
+}
+```
+
+You can use the **IXP Manager** API to get the Nagios configuration for all or a given VLAN using the following endpoint format (both GET and POST requests work):
+
+```
+https://ixp.example.com/api/v4/nagios/birdseye-daemons
+https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}
+https://ixp.example.com/api/v4/nagios/birdseye-daemons/default/{vlanid}
+https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}/{vlanid}
+```
+
+where:
+
+* `{template}` is the optional skin (see below).
+* `{vlanid}` is the VLAN id to limit the results to. If setting this, you need to provide a template also (or `default` for the standard template).
+
+
+You can use [skinning](skinning.md) to make changes to the bundled `default` template or, **preferably**, add your own.
+
+Let's say you wanted to add your own template called `mybetemplate1` and your skin is named `myskin`. The best way to proceed is to copy the bundled example:
+
+```sh
+cd $IXPROOT
+mkdir -p resources/skins/myskin/api/v4/nagios/birdseye-daemons
+cp resources/views/api/v4/nagios/birdseye-daemons/default.foil.php resources/skins/myskin/api/v4/nagios/birdseye-daemons/mybetemplate1.foil.php
+```
+
+You can then elect to use this template by tacking the name onto the API request:
+
+```
+https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}
+```
+
+where, in this example, `{template}` would be: `mybetemplate1`.
+
+You can pass two optional parameter to Nagios via GET/POST which is the host and service definition to inherit from (see customer reachability testing about for full details and examples):
+
+```sh
+curl --data "host_definition=my-be-host-def&service_definition=my-be-srv-def" -X POST \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
+    https://ixpexample.com/api/v4/nagios/birdseye-daemons
+```
+
+The default values for the host and service definitions are `ixp-manager-host-birdseye-daemon` and `ixp-manager-service-birdseye-daemon` respectively.
+
+
+### Service Checking
+
+You will need to create a parent host and service definition for the generated configuration such as:
+
+```
+define host {
+    name                    ixp-manager-host-birdseye-daemon
+    check_command           check-host-alive
+    check_period            24x7
+    max_check_attempts      10
+    notification_interval   120
+    notification_period     24x7
+    notification_options    d,u,r
+    contact_groups          admins
+    register                0
+}
+
+define service {
+    name                    ixp-manager-service-birdseye-daemon
+    service_description     Bird BGP Service
+    check_command           check_birdseye_daemon!$_HOSTAPIURL$
+    check_period            24x7
+    max_check_attempts      10
+    check_interval          5
+    retry_check_interval    1
+    contact_groups          admins
+    notification_interval   120
+    notification_period     24x7
+    notification_options    w,u,c,r
+    register                0
+}
+
+define command{
+        command_name    check_birdseye_daemon
+        command_line    /usr/local/nagios-plugins-other/nagios-check-birdseye.php -a $ARG1$
+}
+```
+
+The Nagios script we use is bundled with [inex/birdseye](https://github.com/inex/birdseye) and can be found [here](https://github.com/inex/birdseye/tree/master/bin).
+
+Typical Nagios state output:
+
+> OK: Bird 1.6.2. Bird's Eye 1.0.4. Router ID 192.0.2.126. Uptime: 235 days. Last Reconfigure: 2017-07-17 16:00:04.26 BGP sessions up of 28.
