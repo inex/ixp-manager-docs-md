@@ -21,7 +21,7 @@ IXP Manager >= v4.5 now simply creates the targets on a per VLAN and protocol ba
 
 We monitor all member router interfaces (unless asked not to) via ICMP[v6] pings with Nagios. This is all controlled by the Nagios configuration created with this feature.
 
-To enable / disable these checks, edit the VLAN interface configuration and set IPvX Can Ping appropriately. *Note that when canping is disabled, the host definition is created anyway as this would be used for other Nagios checks such as route collector sessions.*
+To enable / disable these checks, edit the VLAN interface configuration and set IPvX Can Ping appropriately. *Note that when IPvX Can Ping is disabled, the host definition is created anyway as this would be used for other Nagios checks such as route collector sessions.*
 
 There is an additional option when editing a member's VLAN interface called *Busy Host*. This changes the Nagios ping fidelity from `250.0,20%!500.0,60%` to `1000.0,80%!2000.0,90%` (using the default object definitions which are configurable). This is useful for routers with slow / rate limited control planes.
 
@@ -30,7 +30,7 @@ Members are added to a number of hostgroups also:
 * a per-switch hostgroup;
 * a per cabinet hostgroup;
 * a per location / data centre hostgroup;
-* a all members hostgroup.
+* an all members hostgroup.
 
 These hostgroups are very useful to single out issues and for post-maintenance checks.
 
@@ -76,7 +76,7 @@ define service {
 
 ### Configuring Nagios for Member Reachability
 
-You will notice that the above configuration example is very light and is missing an awful lot of required Nagios required configuration directives. This is intentional so that IXP Manager is not too prescriptive and allows you to define your own Nagios objects without having to resort to skinning IXP Manager.
+You will notice that the above configuration example is very light and is missing an awful lot of Nagios required configuration directives. This is intentional so that IXP Manager is not too prescriptive and allows you to define your own Nagios objects without having to resort to skinning IXP Manager.
 
 Two of the most important elements of Nagios configuration which you need to understand are [object definitions](https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/objectdefinitions.html) and [object inheritance](https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/objectinheritance.html).
 
