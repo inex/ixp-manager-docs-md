@@ -387,3 +387,102 @@ The Nagios script we use is bundled with [inex/birdseye](https://github.com/inex
 Typical Nagios state output:
 
 > OK: Bird 1.6.2. Bird's Eye 1.0.4. Router ID 192.0.2.126. Uptime: 235 days. Last Reconfigure: 2017-07-17 16:00:04.26 BGP sessions up of 28.
+
+
+
+## Birdseye BGP Session Monitoring
+
+We monitor our Bird route collector, route server and AS112 Bird BGP sessions at INEX directly through Birdseye, the software we use for our [looking glass](looking-glass.md). This means it is currently tightly coupled to Bird and Birdseye until such time as we look at a second router software.
+
+IXP Manager produces a host and service configuration for each router type such as:
+
+```
+### Router: INEX LAN1 - Route Collector - IPv4 / 192.0.2.126.
+
+define service     {
+    use                     ixp-manager-member-bgp-session-service
+    host_name               as112-reverse-dns-as112-ipv4-vlanid2-vliid99
+    service_description     BGP session to rc1-lan1-ipv4 (INEX LAN1 - Route Collector - IPv4)
+    _api_url                http://www.example.com/api
+    _protocol               pb_0099_as112
+}
+```
+
+The configuration also includes hostgroups for the given VLAN, protocol and type for:
+
+* per-router;
+* all sessions.
+
+You can use the **IXP Manager** API to get the Nagios configuration for a given protocol, VLAN and router type using the following templates:
+
+```
+https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}
+https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
+```
+
+where:
+
+* `{vlanid}` is the VLAN id to generate the configuration for.
+* `{protocol}` is either 4 (ipv4) or 6 (ipv6).
+* `{type}` is one of (these are defined in [Entities\Router](https://github.com/inex/IXP-Manager/blob/master/database/Entities/Router.php)):
+  * `1` for route servers;
+  * `2` for route collectors;
+  * `3` for AS112
+
+You can use [skinning](skinning.md) to make changes to the bundled `default` template or, **preferably**, add your own.
+
+Let's say you wanted to add your own template called `myrstemplate1` and your skin is named `myskin`. The best way to proceed is to copy the bundled example:
+
+```sh
+cd $IXPROOT
+mkdir -p resources/skins/myskin/api/v4/nagios/birdseye-bgp-sessions
+cp resources/views/api/v4/nagios/birdseye-bgp-sessions/default.foil.php resources/skins/myskin/api/v4/nagios/birdseye-bgp-sessions/myrstemplate1.foil.php
+```
+
+You can then elect to use this template by tacking the name onto the API request:
+
+```
+https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
+```
+
+where, in this example, `{template}` would be: `myrstemplate1`.
+
+You can pass one optional parameter to Nagios via GET/POST which is the service definition to inherit from (see customer reachability testing about for full details and examples):
+
+```sh
+curl --data "service_definition=my-rs-srv-def" -X POST \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
+    https://ixpexample.com/api/v4/nagios/birdseye-bgpsessions/2/4/1
+```
+
+The default values for the service definition is `ixp-manager-member-bgp-session-service` respectively.
+
+
+### Service Checking
+
+You will need to create a parent service definition and a check command for the generated configuration such as:
+
+```
+define service {
+    name                    ixp-manager-member-bgp-session-service
+    service_description     Member Bird BGP Sessions
+    check_period            24x7
+    max_check_attempts      10
+    check_interval          5
+    retry_check_interval    1
+    contact_groups          admins
+    notification_interval   120
+    notification_period     24x7
+    notification_options    w,u,c,r
+    register                0
+    check_command           check_birdseye_bgp_session!$_SERVICEAPIURL!$_SERVICEPROTOCOL
+}
+
+define command{
+    command_name    check_birdseye_bgp_session
+    command_line    /path/to/nagios-check-birdseye-bgp-sessions.php -a $ARG1$ -p $ARG2$ -n
+}
+```
+
+The Nagios script we use is bundled with [inex/birdseye](https://github.com/inex/birdseye) and can be found [here](https://github.com/inex/birdseye/tree/master/bin).
