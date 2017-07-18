@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Nagios - IXP Manager Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Nagios";
+    var mkdocs_page_input_path = "features/nagios.md";
+    var mkdocs_page_url = "/features/nagios/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/customers/">Customers / Members</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/interfaces/">Customer Connections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../as112/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../dns-arpa/">DNS / ARPA</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../irrdb/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ixf-export/">IX-F Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">Layer2 Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../mailing-lists/">Mailing List Management</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Nagios</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#nagios-monitoring">Nagios Monitoring</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#historical-notes">Historical Notes</a></li>
+        
+            <li><a class="toctree-l4" href="#monitoring-member-reachability">Monitoring Member Reachability</a></li>
+        
+            <li><a class="toctree-l4" href="#switch-monitoring">Switch Monitoring</a></li>
+        
+            <li><a class="toctree-l4" href="#birdseye-daemon-monitoring">Birdseye Daemon Monitoring</a></li>
+        
+            <li><a class="toctree-l4" href="#birdseye-bgp-session-monitoring">Birdseye BGP Session Monitoring</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../reseller/">Reseller Functionality</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../route-collectors/">Route Collectors</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../route-servers/">Route Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../skinning/">Skinning</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../smokeping/">Smokeping</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../tacacs/">TACACS</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/ci/">Continuous Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/cla/">Contributer License Agreement</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Features &raquo;</li>
+        
+      
+    
+    <li>Nagios</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/nagios.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="nagios-monitoring">Nagios Monitoring<a class="headerlink" href="#nagios-monitoring" title="Permanent link"></a></h1>
+<p>At <a href="https://www.inex.ie/">INEX</a> we use Nagios to monitor a number of production services including:</p>
+<ul>
+<li>peering LAN switches;</li>
+<li>member reachability (ping v4/v6);</li>
+<li>member route collector sessions;</li>
+<li>member route server sessions.</li>
+</ul>
+<p>IXP Manager can generate configuration to monitor the above for you.</p>
+<p><strong>NB: IXP Manager will not install and configure Nagios from scratch. You need a working Nagios installation first and then IXP Manager will automate the above areas of the configuration.</strong></p>
+<h2 id="historical-notes">Historical Notes<a class="headerlink" href="#historical-notes" title="Permanent link"></a></h2>
+<p>If you have used Nagios on IXP Manager &lt;4.5, then how the configuration is generated has changed. The <a href="https://github.com/inex/IXP-Manager/wiki/Nagios">older documentation may be available here</a>. In previous versions of IXP Manager, we generated entire / monolithic Nagios configuration files. We have found in practice that this does not scale well and creates a number of limitations.</p>
+<p>IXP Manager &gt;= v4.5 now simply creates the targets on a per VLAN and protocol basis.</p>
+<h2 id="monitoring-member-reachability">Monitoring Member Reachability<a class="headerlink" href="#monitoring-member-reachability" title="Permanent link"></a></h2>
+<p>We monitor all member router interfaces (unless asked not to) via ICMP[v6] pings with Nagios. This is all controlled by the Nagios configuration created with this feature.</p>
+<p>To enable / disable these checks, edit the VLAN interface configuration and set IPvX Can Ping appropriately. <em>Note that when IPvX Can Ping is disabled, the host definition is created anyway as this would be used for other Nagios checks such as route collector sessions.</em></p>
+<p>There is an additional option when editing a member's VLAN interface called <em>Busy Host</em>. This changes the Nagios ping fidelity from <code>250.0,20%!500.0,60%</code> to <code>1000.0,80%!2000.0,90%</code> (using the default object definitions which are configurable). This is useful for routers with slow / rate limited control planes.</p>
+<p>Members are added to a number of hostgroups also:</p>
+<ul>
+<li>a per-switch hostgroup;</li>
+<li>a per cabinet hostgroup;</li>
+<li>a per location / data centre hostgroup;</li>
+<li>an all members hostgroup.</li>
+</ul>
+<p>These hostgroups are very useful to single out issues and for post-maintenance checks.</p>
+<p>You can use the <strong>IXP Manager</strong> API to get the Nagios configuration for a given VLAN and protocol using the following endpoint format (both GET and POST requests work):</p>
+<div class="highlight"><pre>https://ixp.example.com/api/v4/nagios/customers/{vlanid}/{protocol}
+</pre></div>
+
+
+<p>where:</p>
+<ul>
+<li><code>vlanid</code> is the database ID (<em>DB ID</em>) of the VLAN. You can find the DB ID in IXP Manager in the VLAN table (select <em>VLANs</em> from the left hand side menu).</li>
+<li><code>protocol</code> is either <code>4</code> for <code>IPv4</code> or 6 for <code>IPv6</code>.</li>
+</ul>
+<p>If either of these are invalid, the API will return with a HTTP 404 response.</p>
+<p>And example of a target in the reponse is:</p>
+<div class="highlight"><pre>###############################################################################################
+###
+### Packet Clearing House DNS
+###
+### Equinix DB2 (Kilcarbery) / Packet Clearing House DNS / swi1-kcp1-1.
+###
+
+### Host: 185.6.36.60 / inex.woodynet.net / Peering VLAN #1.
+
+define host {
+    use                     ixp-manager-member-host
+    host_name               packet-clearing-house-dns-as42-ipv4-vlanid2-vliid109
+    alias                   Packet Clearing House DNS / swi1-kcp1-1 / Peering VLAN #1.
+    address                 185.6.36.60
+}
+
+### Service: 185.6.36.60 / inex.woodynet.net / Peering VLAN #1.
+
+define service {
+    use                     ixp-manager-member-ping-service
+    host_name               packet-clearing-house-dns-as42-ipv4-vlanid2-vliid109
+}
+</pre></div>
+
+
+<h3 id="configuring-nagios-for-member-reachability">Configuring Nagios for Member Reachability<a class="headerlink" href="#configuring-nagios-for-member-reachability" title="Permanent link"></a></h3>
+<p>You will notice that the above configuration example is very light and is missing an awful lot of Nagios required configuration directives. This is intentional so that IXP Manager is not too prescriptive and allows you to define your own Nagios objects without having to resort to skinning IXP Manager.</p>
+<p>Two of the most important elements of Nagios configuration which you need to understand are <a href="https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/objectdefinitions.html">object definitions</a> and <a href="https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/objectinheritance.html">object inheritance</a>.</p>
+<p>You can pass three optional parameters to Nagios via GET/POST and these are:</p>
+<ol>
+<li><code>host_definition</code>; defaults to: <code>ixp-manager-member-host</code>.</li>
+<li><code>service_definition</code>; defaults to <code>ixp-manager-member-service</code>.</li>
+<li><code>ping_service_definition</code>; defaults to: <code>ixp-manager-member-ping-service</code>.</li>
+<li><code>ping_busy_service_definition</code>; defaults to: <code>ixp-manager-member-ping-busy-service</code>.</li>
+</ol>
+<p>An example of changing two of these parameters is:</p>
+<div class="highlight"><pre>curl --data <span class="s2">&quot;host_definition=my-host-def&amp;service_definition=my-service-def&quot;</span> -X POST <span class="se">\</span>
+    -H <span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span> <span class="se">\</span>
+    -H <span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span> <span class="se">\</span>
+    https://ixpexample.com/api/v4/nagios/customers/2/4
+</pre></div>
+
+
+<p>An example of the three objects that INEX use for this are:</p>
+<div class="highlight"><pre>define host {
+    name                    ixp-manager-member-host
+    check_command           check-host-alive
+    check_period            24x7
+    max_check_attempts      10
+    notification_interval   120
+    notification_period     24x7
+    notification_options    d,u,r
+    contact_groups          admins
+    register                0
+}
+
+define service {
+    name                    ixp-manager-member-service
+    check_period            24x7
+    max_check_attempts      10
+    check_interval          5
+    retry_check_interval    1
+    contact_groups          admins
+    notification_interval   120
+    notification_period     24x7
+    notification_options    w,u,c,r
+    register                0
+}
+
+define service {
+    name                    ixp-manager-member-ping-service
+    use                     ixp-manager-member-service
+    service_description     PING
+    check_command           check_ping!250.0,20%!500.0,60%
+    register                0
+}
+
+define service {
+    name                    ixp-manager-member-ping-busy-service
+    use                     ixp-manager-member-service
+    service_description     PING-Busy
+    check_command           check_ping!1000.0,80%!2000.0,90%
+    register                0
+}
+</pre></div>
+
+
+<h3 id="templates-skinning">Templates / Skinning<a class="headerlink" href="#templates-skinning" title="Permanent link"></a></h3>
+<p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
+<p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+mkdir -p resources/skins/myskin/api/v4/nagios/customers
+cp resources/views/api/v4/nagios/customers/default.foil.php resources/skins/myskin/api/v4/nagios/customers/mytemplate1.foil.php
+</pre></div>
+
+
+<p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
+<p>You can then elect to use this template by tacking the name onto the API request:</p>
+<div class="highlight"><pre>https://ixp.example.com/api/v4/nagios/customers/{vlanid}/{protocol}/{template}
+</pre></div>
+
+
+<p>where, in this example, <code>{template}</code> would be: <code>mytemplate1</code>.</p>
+<p><em>As a policy, INEX tends to use the bundled templates and as such they should be fit for general purpose.</em></p>
+<h2 id="switch-monitoring">Switch Monitoring<a class="headerlink" href="#switch-monitoring" title="Permanent link"></a></h2>
+<p>We monitor all production peering LAN switches for a number of difference services (see below).</p>
+<p>IXP Manager produces a host configuration for each production switch such as:</p>
+<div class="highlight"><pre>#
+# swi2-dc1-1 - DUB01.XX.YY.ZZ, Data Centre DUB1.
+#
+
+define host {
+    use                     ixp-manager-production-switch
+    host_name               swi2-dc1-1.mgmt.inex.ie
+    alias                   swi2-dc1-1
+    address                 192.0.2.4
+}
+</pre></div>
+
+
+<p>Members are added to a number of hostgroups also:</p>
+<ul>
+<li>switches per location / data centre;</li>
+<li>all switches in the requested infrastructure;</li>
+<li>grouped by vendor name (the vendor's <em>shortname</em> as defined in IXP Manager);</li>
+<li>grouped by vendor model (as discovered by SNMP).</li>
+</ul>
+<p>These hostgroups are very useful when defining service checks.</p>
+<p>You can use the <strong>IXP Manager</strong> API to get the Nagios configuration for a given infrastructure using the following endpoint format (both GET and POST requests work):</p>
+<div class="highlight"><pre>https://ixp.example.com/api/v4/nagios/switches/{infraid}
+</pre></div>
+
+
+<p>where:</p>
+<ul>
+<li><code>infraid</code> is the database ID (<em>DB ID</em>) of the infrastructure. You can find the DB ID in IXP Manager in the infrastructures table (select <em>Infrastructures</em> from the left hand side menu).</li>
+</ul>
+<p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
+<p>Let's say you wanted to add your own template called <code>myswtemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+mkdir -p resources/skins/myskin/api/v4/nagios/switches
+cp resources/views/api/v4/nagios/switches/default.foil.php resources/skins/myskin/api/v4/nagios/switches/myswtemplate1.foil.php
+</pre></div>
+
+
+<p>You can then elect to use this template by tacking the name onto the API request:</p>
+<div class="highlight"><pre>https://ixp.example.com/api/v4/nagios/switches/{infraid}/{template}
+</pre></div>
+
+
+<p>where, in this example, <code>{template}</code> would be: <code>myswtemplate1</code>.</p>
+<p>You can pass one optional parameter to Nagios via GET/POST which is the host definition to inherit from (see customer reachability testing about for full details and examples):</p>
+<div class="highlight"><pre>curl --data <span class="s2">&quot;host_definition=my-sw-host-def&quot;</span> -X POST <span class="se">\</span>
+    -H <span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span> <span class="se">\</span>
+    -H <span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span> <span class="se">\</span>
+    https://ixpexample.com/api/v4/nagios/switches/2
+</pre></div>
+
+
+<h3 id="service-checking">Service Checking<a class="headerlink" href="#service-checking" title="Permanent link"></a></h3>
+<p>The recommended way to check various services on your production switches is to use the host groups created by the above switch API call. An example of the hostgroups produced include:</p>
+<ol>
+<li><code>ixp-production-switches-infraid-2</code>: all switches on an infrastructure with DB ID 2;</li>
+<li><code>ixp-switches-infraid-2-dc-dub1</code>: all switches in location dc-dub1;</li>
+<li><code>ixp-switches-infraid-2-extreme</code>: all Extreme switches on an infrastructure with DB ID 2; and</li>
+<li><code>ixp-switches-infraid-2-extreme-x670g2-48x-4q</code>: all Extreme switches of model X670G2-48x-4q on an infrastructure with DB ID 2.</li>
+</ol>
+<p>Using these, you can create generic service definitions to apply to all hosts such as:</p>
+<div class="highlight"><pre>define service{
+    use                             my-ixp-production-switch-service
+    hostgroup_name                  ixp-production-switches-infraid-1, ixp-production-switches-infraid-2
+    service_description             ping - IPv4
+    check_command                   check_ping_ipv4!10!100.0,10%!200.0,20%
+}
+
+define service  {
+    use                             my-ixp-production-switch-service
+    hostgroup_name                  ixp-production-switches-infraid-1, ixp-production-switches-infraid-2
+    service_description             SSH
+    check_command                   check_ssh
+}
+</pre></div>
+
+
+<p>You can target vendor / model specific checks as appropriate:</p>
+<div class="highlight"><pre>define service{
+    use                             my-ixp-production-switch-service
+    hostgroup_name                  ixp-switches-infraid-1-extreme, ixp-switches-infraid-2-extreme
+    service_description             Chassis
+    check_command                   check_extreme_chassis
+}
+</pre></div>
+
+
+<p>The one thing you'll need to keep an eye on is adding hostgroups to service checks as you create new infrastructures / add new switch vendors / models.</p>
+<p><strong>Hint:</strong> over the years, we at <a href="https://www.inex.ie/">INEX</a> have written a number of switch chassis check scripts and these can be found on Github at <a href="https://github.com/barryo/nagios-plugins">barryo/nagios-plugins</a>.</p>
+<p>For example the Extreme version checks and returns something like:</p>
+<blockquote>
+<p>OK - CPU: 5sec - 10%. Uptime: 62.8 days. PSUs: 1 - presentOK: 2 - presentOK:. Overall system power state: redundant power available. Fans: [101 - OK (4311 RPM)]: [102 - OK (9273 RPM)]: [103 - OK (4468 RPM)]: [104 - OK (9637 RPM)]: [105 - OK (4165 RPM)]: [106 - OK (9273 RPM)]:. Temp: 34'C. Memory (slot:usage%): 1:29%.</p>
+</blockquote>
+<h2 id="birdseye-daemon-monitoring">Birdseye Daemon Monitoring<a class="headerlink" href="#birdseye-daemon-monitoring" title="Permanent link"></a></h2>
+<p>We monitor our Bird instances at INEX directly through Birdseye, the software we use for our <a href="../looking-glass/">looking glass</a>. This means it is currently tightly coupled to Bird and Birdseye until such time as we look at a second router software.</p>
+<p>IXP Manager produces a host and service configuration for each router such as:</p>
+<div class="highlight"><pre>define host     {
+        use                     ixp-manager-host-birdseye-daemon
+        host_name               bird-rc1q-cork-ipv4
+        alias                   INEX Cork - Quarantine Route Collector - IPv4
+        address                 10.40.5.134
+        _apiurl                 http://rc1q-ipv4.cork.inex.ie/api
+}
+
+define service     {
+    use                     ixp-manager-service-birdseye-daemon
+    host_name               bird-rc1q-cork-ipv4
+}
+</pre></div>
+
+
+<p>You can use the <strong>IXP Manager</strong> API to get the Nagios configuration for all or a given VLAN using the following endpoint format (both GET and POST requests work):</p>
+<div class="highlight"><pre>https://ixp.example.com/api/v4/nagios/birdseye-daemons
+https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}
+https://ixp.example.com/api/v4/nagios/birdseye-daemons/default/{vlanid}
+https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}/{vlanid}
+</pre></div>
+
+
+<p>where:</p>
+<ul>
+<li><code>{template}</code> is the optional skin (see below).</li>
+<li><code>{vlanid}</code> is the VLAN id to limit the results to. If setting this, you need to provide a template also (or <code>default</code> for the standard template).</li>
+</ul>
+<p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
+<p>Let's say you wanted to add your own template called <code>mybetemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+mkdir -p resources/skins/myskin/api/v4/nagios/birdseye-daemons
+cp resources/views/api/v4/nagios/birdseye-daemons/default.foil.php resources/skins/myskin/api/v4/nagios/birdseye-daemons/mybetemplate1.foil.php
+</pre></div>
+
+
+<p>You can then elect to use this template by tacking the name onto the API request:</p>
+<div class="highlight"><pre>https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}
+</pre></div>
+
+
+<p>where, in this example, <code>{template}</code> would be: <code>mybetemplate1</code>.</p>
+<p>You can pass two optional parameter to Nagios via GET/POST which is the host and service definition to inherit from (see customer reachability testing about for full details and examples):</p>
+<div class="highlight"><pre>curl --data <span class="s2">&quot;host_definition=my-be-host-def&amp;service_definition=my-be-srv-def&quot;</span> -X POST <span class="se">\</span>
+    -H <span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span> <span class="se">\</span>
+    -H <span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span> <span class="se">\</span>
+    https://ixpexample.com/api/v4/nagios/birdseye-daemons
+</pre></div>
+
+
+<p>The default values for the host and service definitions are <code>ixp-manager-host-birdseye-daemon</code> and <code>ixp-manager-service-birdseye-daemon</code> respectively.</p>
+<h3 id="service-checking_1">Service Checking<a class="headerlink" href="#service-checking_1" title="Permanent link"></a></h3>
+<p>You will need to create a parent host and service definition for the generated configuration such as:</p>
+<div class="highlight"><pre>define host {
+    name                    ixp-manager-host-birdseye-daemon
+    check_command           check-host-alive
+    check_period            24x7
+    max_check_attempts      10
+    notification_interval   120
+    notification_period     24x7
+    notification_options    d,u,r
+    contact_groups          admins
+    register                0
+}
+
+define service {
+    name                    ixp-manager-service-birdseye-daemon
+    service_description     Bird BGP Service
+    check_command           check_birdseye_daemon!$_HOSTAPIURL$
+    check_period            24x7
+    max_check_attempts      10
+    check_interval          5
+    retry_check_interval    1
+    contact_groups          admins
+    notification_interval   120
+    notification_period     24x7
+    notification_options    w,u,c,r
+    register                0
+}
+
+define command{
+        command_name    check_birdseye_daemon
+        command_line    /usr/local/nagios-plugins-other/nagios-check-birdseye.php -a $ARG1$
+}
+</pre></div>
+
+
+<p>The Nagios script we use is bundled with <a href="https://github.com/inex/birdseye">inex/birdseye</a> and can be found <a href="https://github.com/inex/birdseye/tree/master/bin">here</a>.</p>
+<p>Typical Nagios state output:</p>
+<blockquote>
+<p>OK: Bird 1.6.2. Bird's Eye 1.0.4. Router ID 192.0.2.126. Uptime: 235 days. Last Reconfigure: 2017-07-17 16:00:04.26 BGP sessions up of 28.</p>
+</blockquote>
+<h2 id="birdseye-bgp-session-monitoring">Birdseye BGP Session Monitoring<a class="headerlink" href="#birdseye-bgp-session-monitoring" title="Permanent link"></a></h2>
+<p>We monitor our Bird route collector, route server and AS112 Bird BGP sessions at INEX directly through Birdseye, the software we use for our <a href="../looking-glass/">looking glass</a>. This means it is currently tightly coupled to Bird and Birdseye until such time as we look at a second router software.</p>
+<p>IXP Manager produces a host and service configuration for each router type such as:</p>
+<div class="highlight"><pre>### Router: INEX LAN1 - Route Collector - IPv4 / 192.0.2.126.
+
+define service     {
+    use                     ixp-manager-member-bgp-session-service
+    host_name               as112-reverse-dns-as112-ipv4-vlanid2-vliid99
+    service_description     BGP session to rc1-lan1-ipv4 (INEX LAN1 - Route Collector - IPv4)
+    _api_url                http://www.example.com/api
+    _protocol               pb_0099_as112
+}
+</pre></div>
+
+
+<p>The configuration also includes hostgroups for the given VLAN, protocol and type for:</p>
+<ul>
+<li>per-router;</li>
+<li>all sessions.</li>
+</ul>
+<p>You can use the <strong>IXP Manager</strong> API to get the Nagios configuration for a given protocol, VLAN and router type using the following templates:</p>
+<div class="highlight"><pre>https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}
+https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
+</pre></div>
+
+
+<p>where:</p>
+<ul>
+<li><code>{vlanid}</code> is the VLAN id to generate the configuration for.</li>
+<li><code>{protocol}</code> is either 4 (ipv4) or 6 (ipv6).</li>
+<li><code>{type}</code> is one of (these are defined in <a href="https://github.com/inex/IXP-Manager/blob/master/database/Entities/Router.php">Entities\Router</a>):</li>
+<li><code>1</code> for route servers;</li>
+<li><code>2</code> for route collectors;</li>
+<li><code>3</code> for AS112</li>
+</ul>
+<p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
+<p>Let's say you wanted to add your own template called <code>myrstemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+mkdir -p resources/skins/myskin/api/v4/nagios/birdseye-bgp-sessions
+cp resources/views/api/v4/nagios/birdseye-bgp-sessions/default.foil.php resources/skins/myskin/api/v4/nagios/birdseye-bgp-sessions/myrstemplate1.foil.php
+</pre></div>
+
+
+<p>You can then elect to use this template by tacking the name onto the API request:</p>
+<div class="highlight"><pre>https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
+</pre></div>
+
+
+<p>where, in this example, <code>{template}</code> would be: <code>myrstemplate1</code>.</p>
+<p>You can pass one optional parameter to Nagios via GET/POST which is the service definition to inherit from (see customer reachability testing about for full details and examples):</p>
+<div class="highlight"><pre>curl --data <span class="s2">&quot;service_definition=my-rs-srv-def&quot;</span> -X POST <span class="se">\</span>
+    -H <span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span> <span class="se">\</span>
+    -H <span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span> <span class="se">\</span>
+    https://ixpexample.com/api/v4/nagios/birdseye-bgpsessions/2/4/1
+</pre></div>
+
+
+<p>The default values for the service definition is <code>ixp-manager-member-bgp-session-service</code> respectively.</p>
+<h3 id="service-checking_2">Service Checking<a class="headerlink" href="#service-checking_2" title="Permanent link"></a></h3>
+<p>You will need to create a parent service definition and a check command for the generated configuration such as:</p>
+<div class="highlight"><pre>define service {
+    name                    ixp-manager-member-bgp-session-service
+    service_description     Member Bird BGP Sessions
+    check_period            24x7
+    max_check_attempts      10
+    check_interval          5
+    retry_check_interval    1
+    contact_groups          admins
+    notification_interval   120
+    notification_period     24x7
+    notification_options    w,u,c,r
+    register                0
+    check_command           check_birdseye_bgp_session!$_SERVICEAPIURL!$_SERVICEPROTOCOL
+}
+
+define command{
+    command_name    check_birdseye_bgp_session
+    command_line    /path/to/nagios-check-birdseye-bgp-sessions.php -a $ARG1$ -p $ARG2$ -n
+}
+</pre></div>
+
+
+<p>The Nagios script we use is bundled with <a href="https://github.com/inex/birdseye">inex/birdseye</a> and can be found <a href="https://github.com/inex/birdseye/tree/master/bin">here</a>.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../patch-panels/" class="btn btn-neutral float-right" title="Patch Panels">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../mailing-lists/" class="btn btn-neutral" title="Mailing List Management"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../mailing-lists/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../patch-panels/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
