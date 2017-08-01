@@ -17,6 +17,12 @@ If you have used Nagios on IXP Manager <4.5, then how the configuration is gener
 
 IXP Manager >= v4.5 now simply creates the targets on a per VLAN and protocol basis.
 
+## Sample Scripts
+
+You will find sample scripts for pulling Nagios configuration from IXP Manager and reloading Nagios at:
+
+https://github.com/inex/IXP-Manager/tree/master/tools/runtime/nagios
+
 ## Monitoring Member Reachability
 
 We monitor all member router interfaces (unless asked not to) via ICMP[v6] pings with Nagios. This is all controlled by the Nagios configuration created with this feature.
