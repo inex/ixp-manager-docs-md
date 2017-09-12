@@ -48,6 +48,7 @@ pages:
     - 'Documentation': 'dev/docs.md'
     - 'Grapher': 'dev/grapher.md'
     - 'Helpers': 'dev/helpders.md'
+    - 'Looking Glass': 'dev/looking-glass.md'
     - 'Vagrant': 'dev/vagrant.md'
 markdown_extensions:
   - pymdownx.superfences
