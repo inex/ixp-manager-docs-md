@@ -293,7 +293,7 @@
 <li>properly configured <a href="../routers/">router(s)</a>.</li>
 <li><em>Bird's Eye</em> installed on these.</li>
 <li>the API endpoint must be accessible from the server running IXP Manager and this endpoint must be set correctly in the router's configuration (see <a href="../routers/">router(s)</a> page) (along with an appropriate setting for <em>LG Access Privileges</em>). Note that the Birdseye API end points do not need to be publicly accessible - just from the IXP Manager server.</li>
-<li>set the <code>.env</code> option: <code>IXP_FE_FRONTEND_DISABLED_LOOKING_GLASS=false</code>.</li>
+<li>set the <code>.env</code> option: <code>IXP_FE_FRONTEND_DISABLED_LOOKING_GLASS=false</code> (in IXP Manager's <code>.env</code> and add it if it's missing as it defaults to <code>true</code>).</li>
 </ol>
 <h2 id="example-router-configuration">Example Router Configuration<a class="headerlink" href="#example-router-configuration" title="Permanent link"></a></h2>
 <p>See this screenshot for an appropriately configured INEX router with Bird's Eye:</p>
