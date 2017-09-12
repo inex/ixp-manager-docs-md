@@ -9,7 +9,7 @@ Enabling the looking glass just requires:
 1. properly configured [router(s)](routers.md).
 2. *Bird's Eye* installed on these.
 3. the API endpoint must be accessible from the server running IXP Manager and this endpoint must be set correctly in the router's configuration (see [router(s)](routers.md) page) (along with an appropriate setting for *LG Access Privileges*). Note that the Birdseye API end points do not need to be publicly accessible - just from the IXP Manager server.
-4. set the `.env` option: `IXP_FE_FRONTEND_DISABLED_LOOKING_GLASS=false`.
+4. set the `.env` option: `IXP_FE_FRONTEND_DISABLED_LOOKING_GLASS=false` (in IXP Manager's `.env` and add it if it's missing as it defaults to `true`).
 
 
 ## Example Router Configuration
