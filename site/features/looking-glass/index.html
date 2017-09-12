@@ -153,6 +153,14 @@
             
     <li class="toctree-l3"><a href="#looking-glass">Looking Glass</a></li>
     
+        <ul>
+        
+            <li><a class="toctree-l4" href="#example-router-configuration">Example Router Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#debugging">Debugging</a></li>
+        
+        </ul>
+    
 
     </ul>
                 </li>
@@ -278,15 +286,41 @@
             <div class="section">
               
                 <h1 id="looking-glass">Looking Glass<a class="headerlink" href="#looking-glass" title="Permanent link"></a></h1>
-<p>IXP Manager supports full looking glass features when using the Bird BGP daemon and <a href="https://github.com/inex/birdseye">Birdseye</a> <em>(a simple secure micro service for querying Bird)</em>.</p>
+<p>IXP Manager supports full looking glass features when using the Bird BGP daemon and <a href="https://github.com/inex/birdseye">Bird's Eye</a> <em>(a simple secure micro service for querying Bird)</em>.</p>
 <p>A fully working example of this can be seen <a href="https://www.inex.ie/ixp/lg">here on INEX's IXP Manager</a>.</p>
 <p>Enabling the looking glass just requires:</p>
 <ol>
 <li>properly configured <a href="../routers/">router(s)</a>.</li>
-<li><em>Birdseye</em> installed on these.</li>
-<li>the API endpoint must be accessible from the server running IXP Manager and this endpoint must be set correctly in the <code>config/routers.php</code> file (along with <code>lg_access</code>). Note that the Birdseye API end points do not need to be publicly accessible - just from the IXP Manager server.</li>
+<li><em>Bird's Eye</em> installed on these.</li>
+<li>the API endpoint must be accessible from the server running IXP Manager and this endpoint must be set correctly in the router's configuration (see <a href="../routers/">router(s)</a> page) (along with an appropriate setting for <em>LG Access Privileges</em>). Note that the Birdseye API end points do not need to be publicly accessible - just from the IXP Manager server.</li>
 <li>set the <code>.env</code> option: <code>IXP_FE_FRONTEND_DISABLED_LOOKING_GLASS=false</code>.</li>
 </ol>
+<h2 id="example-router-configuration">Example Router Configuration<a class="headerlink" href="#example-router-configuration" title="Permanent link"></a></h2>
+<p>See this screenshot for an appropriately configured INEX router with Bird's Eye:</p>
+<p><img alt="Router Configuration for LG" src="../img/lg-router-conf.png" /></p>
+<h2 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link"></a></h2>
+<p>The API endpoint must be accessible from the server running IXP Manager. Changing the URL as appropriate, test and confirm this with something like:</p>
+<div class="highlight"><pre>wget -O - http://as112-lan1-ipv4.example.com/api/status
+</pre></div>
+
+
+<p>which should give a status response (we've made the JSON formatting readable here):</p>
+<div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;api&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;from_cache&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+        <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.1.0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;max_routes&quot;</span><span class="p">:</span><span class="mi">1000</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.6.3&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;router_id&quot;</span><span class="p">:</span><span class="s2">&quot;192.0.2.45&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;server_time&quot;</span><span class="p">:</span><span class="s2">&quot;2017-09-12T14:25:49+00:00&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;last_reboot&quot;</span><span class="p">:</span><span class="s2">&quot;2017-05-21T16:02:30+00:00&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;last_reconfig&quot;</span><span class="p">:</span><span class="s2">&quot;2017-09-12T14:12:00+00:00&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;Daemon is up and running&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
               
             </div>
           </div>
