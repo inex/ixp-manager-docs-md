@@ -498,14 +498,15 @@ update-rc.d mrtg defaults
 
 <h2 id="api-access">API Access<a class="headerlink" href="#api-access" title="Permanent link"></a></h2>
 <p><em>Grapher</em> allows API access to graphs via a base URL of the form:</p>
-<div class="highlight"><pre>https://ixp.example.com/grapher/{graph}[?id=x][&amp;period=x][&amp;type=x][&amp;category=x][&amp;protocol=x][&amp;backend=x]
+<div class="highlight"><pre>https://ixp.example.com/grapher/{graph}[?id=x][&amp;period=x][&amp;type=x][&amp;category=x] \
+    [&amp;protocol=x][&amp;backend=x]
 </pre></div>
 
 
 <p>Here's two quick examples from INEX's production system:</p>
 <ol>
-<li>Aggregate exchange traffic options: https://www.inex.ie/ixp/grapher/ixp?id=1&amp;type=json</li>
-<li>Aggregate exchange traffic PNG: https://www.inex.ie/ixp/grapher/ixp (as you'll learn below, the defaults are <code>id=1&amp;type=png</code>).</li>
+<li>Aggregate exchange traffic options: <a href="https://www.inex.ie/ixp/grapher/ixp?id=1&amp;type=json">https://www.inex.ie/ixp/grapher/ixp?id=1&amp;type=json</a></li>
+<li>Aggregate exchange traffic PNG: <a href="https://www.inex.ie/ixp/grapher/ixp">https://www.inex.ie/ixp/grapher/ixp</a> (as you'll learn below, the defaults are <code>id=1&amp;type=png</code>).</li>
 </ol>
 <p>A sample of the JSON output is:</p>
 <div class="highlight"><pre><span class="p">{</span>
