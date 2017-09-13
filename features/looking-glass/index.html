@@ -157,6 +157,8 @@
         
             <li><a class="toctree-l4" href="#example-router-configuration">Example Router Configuration</a></li>
         
+            <li><a class="toctree-l4" href="#looking-glass-pass-thru-api-calls">Looking Glass 'Pass Thru' API Calls</a></li>
+        
             <li><a class="toctree-l4" href="#debugging">Debugging</a></li>
         
         </ul>
@@ -302,6 +304,19 @@
 <h2 id="example-router-configuration">Example Router Configuration<a class="headerlink" href="#example-router-configuration" title="Permanent link"></a></h2>
 <p>See this screenshot for an appropriately configured INEX router with Bird's Eye:</p>
 <p><img alt="Router Configuration for LG" src="../img/lg-router-conf.png" /></p>
+<h2 id="looking-glass-pass-thru-api-calls">Looking Glass 'Pass Thru' API Calls<a class="headerlink" href="#looking-glass-pass-thru-api-calls" title="Permanent link"></a></h2>
+<p>Depending on the configured <em>LG Access Privileges</em> for a given router, <strong>IXP Manager</strong> will pass thru the following API calls to the router API.</p>
+<ul>
+<li><code>https://ixp.example.com/api/v4/lg/{handle}/status</code></li>
+<li><code>https://ixp.example.com/api/v4/lg/{handle}/bgp-summary</code></li>
+</ul>
+<p>and return the JSON result.</p>
+<p>The rationale for this is that we expect most IX's to keep direct access to looking glass implementations on internal / private networks.</p>
+<p>Here are two live examples from INEX:</p>
+<ol>
+<li>https://www.inex.ie/ixp/api/v4/lg/rc1-cork-ipv4/status</li>
+<li>https://www.inex.ie/ixp/api/v4/lg/rc1-cork-ipv4/bgp-summary</li>
+</ol>
 <h2 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link"></a></h2>
 <p>The API endpoint must be accessible from the server running IXP Manager. Changing the URL as appropriate, test and confirm this with something like:</p>
 <div class="highlight"><pre>wget -O - http://as112-lan1-ipv4.example.com/api/status
