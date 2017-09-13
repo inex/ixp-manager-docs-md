@@ -143,6 +143,8 @@
         
             <li><a class="toctree-l4" href="#backend-sflow">Backend: sflow</a></li>
         
+            <li><a class="toctree-l4" href="#api-access">API Access</a></li>
+        
         </ul>
     
 
@@ -492,6 +494,139 @@ update-rc.d mrtg defaults
 <p>and update <code>.env</code> for this with something like:</p>
 <div class="highlight"><pre>GRAPHER_BACKEND_SFLOW_ROOT=&quot;http://www.example.com/grapher-sflow&quot;
 </pre></div>
+
+
+<h2 id="api-access">API Access<a class="headerlink" href="#api-access" title="Permanent link"></a></h2>
+<p><em>Grapher</em> allows API access to graphs via a base URL of the form:</p>
+<div class="highlight"><pre>https://ixp.example.com/grapher/{graph}[?id=x][&amp;period=x][&amp;type=x][&amp;category=x] \
+    [&amp;protocol=x][&amp;backend=x]
+</pre></div>
+
+
+<p>Here's two quick examples from INEX's production system:</p>
+<ol>
+<li>Aggregate exchange traffic options: <a href="https://www.inex.ie/ixp/grapher/ixp?id=1&amp;type=json">https://www.inex.ie/ixp/grapher/ixp?id=1&amp;type=json</a></li>
+<li>Aggregate exchange traffic PNG: <a href="https://www.inex.ie/ixp/grapher/ixp">https://www.inex.ie/ixp/grapher/ixp</a> (as you'll learn below, the defaults are <code>id=1&amp;type=png</code>).</li>
+</ol>
+<p>A sample of the JSON output is:</p>
+<div class="highlight"><pre><span class="p">{</span>
+    <span class="err">class:</span> <span class="nt">&quot;ixp&quot;</span><span class="p">,</span>
+    <span class="err">urls:</span> <span class="err">{</span>
+        <span class="err">png:</span> <span class="nt">&quot;https://www.inex.ie/ixp/grapher/ixp?period=day&amp;type=png&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span><span class="p">,</span>
+        <span class="err">log:</span> <span class="nt">&quot;https://www.inex.ie/ixp/grapher/ixp?period=day&amp;type=log&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span><span class="p">,</span>
+        <span class="err">json:</span> <span class="nt">&quot;https://www.inex.ie/ixp/grapher/ixp?period=day&amp;type=json&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span>
+    <span class="p">}</span><span class="err">,</span>
+    <span class="err">base_url:</span> <span class="s2">&quot;https://www.inex.ie/ixp/grapher/ixp&quot;</span><span class="err">,</span>
+    <span class="err">statistics:</span> <span class="p">{</span>
+        <span class="err">totalin:</span> <span class="err">13733441895899552,</span>
+        <span class="err">totalout:</span> <span class="err">13734817210037696,</span>
+        <span class="err">curin:</span> <span class="err">183970331392,</span>
+        <span class="err">curout:</span> <span class="err">184222146544,</span>
+        <span class="err">averagein:</span> <span class="err">114930932321.55484,</span>
+        <span class="err">averageout:</span> <span class="err">114942441900.67783,</span>
+        <span class="err">maxin:</span> <span class="err">204976886344,</span>
+        <span class="err">maxout:</span> <span class="err">204800400448</span>
+    <span class="p">}</span><span class="err">,</span>
+    <span class="err">params:</span> <span class="p">{</span>
+        <span class="err">type:</span> <span class="nt">&quot;json&quot;</span><span class="p">,</span>
+        <span class="err">category:</span> <span class="nt">&quot;bits&quot;</span><span class="p">,</span>
+        <span class="err">period:</span> <span class="nt">&quot;day&quot;</span><span class="p">,</span>
+        <span class="err">protocol:</span> <span class="nt">&quot;all&quot;</span><span class="p">,</span>
+        <span class="err">id:</span> <span class="err">1</span>
+    <span class="p">}</span><span class="err">,</span>
+    <span class="err">supports:</span> <span class="p">{</span>
+        <span class="err">protocols:</span> <span class="err">{</span>
+            <span class="err">all:</span> <span class="nt">&quot;all&quot;</span>
+        <span class="p">}</span><span class="err">,</span>
+        <span class="err">categories:</span> <span class="p">{</span>
+            <span class="err">bits:</span> <span class="nt">&quot;bits&quot;</span><span class="p">,</span>
+            <span class="err">pkts:</span> <span class="nt">&quot;pkts&quot;</span>
+        <span class="p">}</span><span class="err">,</span>
+        <span class="err">periods:</span> <span class="p">{</span>
+            <span class="err">day:</span> <span class="nt">&quot;day&quot;</span><span class="p">,</span>
+            <span class="err">week:</span> <span class="nt">&quot;week&quot;</span><span class="p">,</span>
+            <span class="err">month:</span> <span class="nt">&quot;month&quot;</span><span class="p">,</span>
+            <span class="err">year:</span> <span class="nt">&quot;year&quot;</span>
+        <span class="p">}</span><span class="err">,</span>
+        <span class="err">types:</span> <span class="p">{</span>
+            <span class="err">png:</span> <span class="nt">&quot;png&quot;</span><span class="p">,</span>
+            <span class="err">log:</span> <span class="nt">&quot;log&quot;</span><span class="p">,</span>
+            <span class="err">json:</span> <span class="nt">&quot;json&quot;</span>
+        <span class="p">}</span>
+    <span class="err">},</span>
+    <span class="err">backends:</span> <span class="p">{</span>
+        <span class="err">mrtg:</span> <span class="nt">&quot;mrtg&quot;</span>
+    <span class="p">}</span><span class="err">,</span>
+    <span class="err">backend:</span> <span class="s2">&quot;mrtg&quot;</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>You can see from the above what <code>params</code> were used to create the <code>statistics</code> (and would be used for the image if <code>type=png</code>), what parameters are supported (<code>supports</code>), what backends are available for the given graph type and mix of parameters, etc.</p>
+<p><strong>Notes:</strong></p>
+<ol>
+<li>not all backends support all options or graphs; use the <code>json</code> type to see what's supported <em>but remember that IXP Manager will, when configured correctly, chose the appropriate backend</em>;</li>
+<li>the primary key IDs mentioned below are mostly available in the UI when viewing lists of the relavent objects;</li>
+<li>an understanding of how IXP Manager represents interfaces is required to grasp the below - <a href="../../usage/interfaces/">see here</a>.</li>
+</ol>
+<p>Let's first look at supported graphs:</p>
+<ul>
+<li>
+<p><code>ixp</code>: aggregate graph for an IXP's overall traffic. <code>id</code>, which defaults to <code>1</code>, is the primary key of the IXP from the <code>ixp</code> database table. As <strong>IXP Manager</strong> does not support multiple IXPs, this defaults to <code>id=1</code>. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>infrastructure</code>: aggregate graph for the overall traffic on a specific IXP infrastructure. For many IXPs, they'll just have a single infrastructure and this will go unused as it would be the equivalent of <code>ixp</code> above. <code>id</code>, which is mandatory, is the primary key of the infrastructure from the <code>infrastructure</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>vlan</code>: aggregate graph for a specific VLAN. <code>id</code>, which is mandatory, is the primary key of the VLAN from the <code>vlan</code> database table. [Currently only supported via sflow for <code>protocol=ipv4|ipv6</code>]</p>
+</li>
+<li>
+<p><code>switch</code>: aggregate graph of all peering traffic being switched by a specific switch (sum of all customer ports plus core ports). <code>id</code>, which is mandatory, is the primary key of the switch from the <code>switch</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>trunk</code>: a legacy hold over from <em>Inter-Switch / Trunk Graphs</em> above to be replaced with core bundles.</p>
+</li>
+<li>
+<p><code>phsyicalinterface</code>: traffic for an individual member port - a single physical switch port. <code>id</code>, which is mandatory, is the primary key of the physical interface from the <code>physicalinterface</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>virtualinterface</code>: if a member has a single connection (one switch port) then this is the same as <code>phsyicalinterface</code> above. However, if they have a LAG port then it's the aggregate traffic for all physical ports in the LAG. <code>id</code>, which is mandatory, is the primary key of the virtual interface from the <code>virtualinterface</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>customer</code>: the aggregate traffic for all ports belonging to a customer across all infrastructures. <code>id</code>, which is mandatory, is the primary key of the customer from the <code>cust</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>vlaninterface</code>: aggregate traffic flowing through a members VLAN interface for a specific protocol. <code>id</code>, which is mandatory, is the primary key of the VLAN interface from the <code>vlaninterface</code> database table. [Currently only supported via sflow for <code>protocol=ipv4|ipv6</code>]</p>
+</li>
+<li>
+<p><code>p2p</code>: peer to peer traffic between two member VLAN interfaces. The source (<code>svli</code>) and destination (<code>dvli</code>) VLAN interface IDs are required. <code>svli</code> and <code>dvli</code>, which are mandatory, are primary keys of the VLAN interfaces from the <code>vlaninterface</code> database table. [Currently only supported via sflow for <code>protocol=ipv4|ipv6</code>]</p>
+</li>
+</ul>
+<p>For additional options, it's always best to manually or programmatically examine the output for <code>type=json</code> to see what is supported. The following is a general list.</p>
+<ul>
+<li>
+<p><code>type</code>: one of:</p>
+<ul>
+<li><code>json</code> - as demonstrated and described above; </li>
+<li><code>log</code> - MRTG  log file type output formatted as a JSON array;</li>
+<li><code>rrd</code> - the RRD file for the requested graph type;</li>
+<li><code>png</code> - the graph image itself (default).</li>
+<li>potentially others as supported / implemented by newer backends.</li>
+</ul>
+</li>
+<li>
+<p><code>period</code>: one of <code>day</code>, <code>week</code>, <code>month</code>, <code>year</code>.</p>
+</li>
+<li>
+<p><code>category</code>: one of <code>bits</code>, <code>pkts</code> (packets), <code>errs</code> (errors), <code>discs</code> (discards), <code>bcasts</code> (broadcasts). Bits is measured in bits per second, the rest in packets per second.</p>
+</li>
+<li>
+<p><code>protocol</code>: one of <code>all</code>, <code>ipv4</code> or <code>ipv6</code>.</p>
+</li>
+<li>
+<p><code>backend</code>: default is to let IXP Manager decide.</p>
+</li>
+</ul>
               
             </div>
           </div>
