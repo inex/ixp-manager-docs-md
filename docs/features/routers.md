@@ -127,3 +127,17 @@ See [these known good configurations here](https://github.com/inex/IXP-Manager/t
 * `as112`: AS112 router configurations conforming to [rfc7534](https://tools.ietf.org/html/rfc7534) (AS112 Nameserver Operations) and implementing [rfc7535](https://tools.ietf.org/html/rfc7535) (AS112 Redirection Using DNAME). There are configs to serve queries over both IPv4 and IPv6. See [the AS112 documentation for more details](as112.md).
 * `rc1`: route collector configurations. Peering with the route collector is mandatory at many IXPs including INEX. These are incredably useful for monitoring, diagnosing issues and providing looking glasses. We also use the quarantine version of these for turning up new member connections.
 * `rs1`: route collector configurations. See below for full details of what these implement. Note also that the `ci-apiv4-rs1-lan2-ipv4.conf` file includes BGP large communities ([rfc8092](https://tools.ietf.org/html/rfc8092)). See [the route servers documentation for more details](route-servers.md).
+
+
+## Live Status
+
+The live status of any configured routers that have API access can be seen in **IXP Manager** via the *Live Status* sub-menu option of *Routers* on the left hand side menu.
+
+Each router is queried twice via AJAX requests to provide:
+
+* BGP daemon version
+* API version
+* configured BGP sessions
+* established BGP sessions
+* last updated time
+* last reboot time

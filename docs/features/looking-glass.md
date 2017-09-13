@@ -18,6 +18,23 @@ See this screenshot for an appropriately configured INEX router with Bird's Eye:
 
 ![Router Configuration for LG](img/lg-router-conf.png)
 
+## Looking Glass 'Pass Thru' API Calls
+
+Depending on the configured *LG Access Privileges* for a given router, **IXP Manager** will pass thru the following API calls to the router API.
+
+* `https://ixp.example.com/api/v4/lg/{handle}/status`
+* `https://ixp.example.com/api/v4/lg/{handle}/bgp-summary`
+
+and return the JSON result.
+
+The rationale for this is that we expect most IX's to keep direct access to looking glass implementations on internal / private networks.
+
+Here are two live examples from INEX:
+
+1. https://www.inex.ie/ixp/api/v4/lg/rc1-cork-ipv4/status
+2. https://www.inex.ie/ixp/api/v4/lg/rc1-cork-ipv4/bgp-summary
+
+
 ## Debugging
 
 The API endpoint must be accessible from the server running IXP Manager. Changing the URL as appropriate, test and confirm this with something like:
