@@ -34,6 +34,8 @@ Here are two live examples from INEX:
 1. https://www.inex.ie/ixp/api/v4/lg/rc1-cork-ipv4/status
 2. https://www.inex.ie/ixp/api/v4/lg/rc1-cork-ipv4/bgp-summary
 
+You can see all of [INEX](https://www.inex.ie/)'s looking glasses at [https://www.inex.ie/ixp/lg](https://www.inex.ie/ixp/lg).
+[GRNET](https://grnet.gr/en/) have also a public IXP Manager integration at: [https://portal.gr-ix.gr/lg](https://portal.gr-ix.gr/lg).
 
 ## Debugging
 
