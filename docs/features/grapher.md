@@ -348,7 +348,7 @@ For additional options, it's always best to manually or programmatically examine
 
 * `type`: one of:
 
-    * `json` - as demonstrated and described above; 
+    * `json` - as demonstrated and described above;
     * `log` - MRTG  log file type output formatted as a JSON array;
     * `rrd` - the RRD file for the requested graph type;
     * `png` - the graph image itself (default).
@@ -366,3 +366,30 @@ For additional options, it's always best to manually or programmatically examine
 
 
 * `backend`: default is to let IXP Manager decide.
+
+
+### API Access Control
+
+The grapher API can be accessed using the [standard API access mechanisms](api.md).
+
+Each graph (ixp, infrastructure, etc.) has an `authorise()` method which determines who is allowed view a graph. For example, see [IXP\Services\Grapher\Graph\VlanInterface::authorise()](https://github.com/inex/IXP-Manager/blob/master/app/Services/Grapher/Graph/VlanInterface.php#L131). The logic is:
+
+* if not logged in / valid API key -> deny
+* if superuser -> allow
+* if user belongs to customer graoh requested -> allow
+* otherwise -> deny and log
+
+For the supported graph types, default access control is:
+
+Graph               |  Default Access Control
+--------------------|----------------------------------
+`ixp`               | public
+`infrastructure`    | public
+`vlan`              | public unless it's a private VLAN (in which case only superuser is supported currently)
+`switch`            | public
+`trunk`             | public
+`physicalinterface` | superuser or user of the owning customer
+`vlaninterface`     | superuser or user of the owning customer
+`virtualinterface`  | superuser or user of the owning customer
+`customer`          | superuser or user of the owning customer
+`p2p`               | superuser or user of the source (`svli`) owning customer
