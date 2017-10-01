@@ -23,6 +23,7 @@ To complete the installation using the included config/scripts, you will also ne
 * php7.0-mcrypt
 * php-ds
 * php-rrd
+* php-yaml
 
 For completeness, the IXP Manager installation script for Ubuntu 16.04 LTS installs:
 
@@ -31,7 +32,7 @@ apt-get install apache2 php7.0 php7.0-intl php7.0-mysql php-rrd php7.0-cgi php7.
     php7.0-snmp php7.0-curl php7.0-mcrypt php-memcached libapache2-mod-php7.0          \
     mysql-server mysql-client php-mysql memcached snmp nodejs nodejs-legacy npm        \
     php7.0-mbstring php7.0-xml php-gettext php-ds php-gd bgpq3 php-memcache unzip      \
-    php-zip git
+    php-zip php-yaml git
 ```
 
 
