@@ -369,6 +369,15 @@ bower install
 <p>Ensure there are no version specific changes required in the release notes.</p>
 </li>
 <li>
+<p>Ensure file permissions are correct.</p>
+<div class="highlight"><pre><span class="nv">MY_WWW_USER</span><span class="o">=</span>www-data  <span class="c"># fix as appropriate to your operating system</span>
+chown -R <span class="nv">$MY_WWW_USER</span>: bootstrap/cache var storage
+chmod -R u+rwX bootstrap/cache var storage
+</pre></div>
+
+
+</li>
+<li>
 <p>Disable maintenance mode:</p>
 <div class="highlight"><pre>./artisan up
 </pre></div>
