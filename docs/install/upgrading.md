@@ -44,6 +44,7 @@ The general process is:
 
     ```sh
     # if asked to chose a jquery version, chose the latest / highest version offered
+    bower prune
     bower install
     ```
 
