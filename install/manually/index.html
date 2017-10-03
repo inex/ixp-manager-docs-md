@@ -336,23 +336,24 @@
 <li>php7.0-mcrypt</li>
 <li>php-ds</li>
 <li>php-rrd</li>
+<li>php-yaml</li>
 </ul>
 <p>For completeness, the IXP Manager installation script for Ubuntu 16.04 LTS installs:</p>
-<div class="highlight"><pre>apt-get install apache2 php7.0 php7.0-intl php7.0-mysql php-rrd php7.0-cgi php7.0-cli  <span class="se">\</span>
+<div class="highlight"><pre><span></span>apt-get install apache2 php7.0 php7.0-intl php7.0-mysql php-rrd php7.0-cgi php7.0-cli  <span class="se">\</span>
     php7.0-snmp php7.0-curl php7.0-mcrypt php-memcached libapache2-mod-php7.0          <span class="se">\</span>
     mysql-server mysql-client php-mysql memcached snmp nodejs nodejs-legacy npm        <span class="se">\</span>
     php7.0-mbstring php7.0-xml php-gettext php-ds php-gd bgpq3 php-memcache unzip      <span class="se">\</span>
-    php-zip git
+    php-zip php-yaml git
 </pre></div>
 
 
 <h1 id="get-the-ixp-manager-source">Get the IXP Manager Source<a class="headerlink" href="#get-the-ixp-manager-source" title="Permanent link"></a></h1>
 <p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
 <p>Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source (our examples use <code>/srv/ixpmanager</code> which we refer to as <code>$IXPROOT</code>). Note that it <strong>should not</strong> be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>).</p>
-<div class="highlight"><pre><span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+<div class="highlight"><pre><span></span><span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
 <span class="nb">cd</span> /srv
 git clone https://github.com/inex/IXP-Manager.git ixpmanager
-<span class="nb">cd</span> <span class="nv">$IXPROOT</span>   <span class="c"># /srv/ixpmanager</span>
+<span class="nb">cd</span> <span class="nv">$IXPROOT</span>   <span class="c1"># /srv/ixpmanager</span>
 git checkout master
 chown -R www-data: <span class="nv">$IXPROOT</span>
 </pre></div>
@@ -361,7 +362,7 @@ chown -R www-data: <span class="nv">$IXPROOT</span>
 <h1 id="install-composer-and-bower">Install Composer and Bower<a class="headerlink" href="#install-composer-and-bower" title="Permanent link"></a></h1>
 <p>IXP Manager uses <a href="http://getcomposer.org/">Composer</a> to manage its PHP dependencies. First, download a copy of the composer.phar. Once you have the PHAR archive, you can either keep it in your local project directory or move to <code>/usr/local/bin</code> to use it globally on your system.</p>
 <p>The installation script for Ubuntu 16.04 LTS installs these via:</p>
-<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 <span class="nv">EXPECTED_SIGNATURE</span><span class="o">=</span><span class="k">$(</span>wget https://composer.github.io/installer.sig -O - -q<span class="k">)</span>
 php -r <span class="s2">&quot;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&quot;</span>
 <span class="nv">ACTUAL_SIGNATURE</span><span class="o">=</span><span class="k">$(</span>php -r <span class="s2">&quot;echo hash_file(&#39;SHA384&#39;, &#39;composer-setup.php&#39;);&quot;</span><span class="k">)</span>
@@ -369,25 +370,25 @@ php -r <span class="s2">&quot;copy(&#39;https://getcomposer.org/installer&#39;, 
 <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$EXPECTED_SIGNATURE</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="nv">$ACTUAL_SIGNATURE</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
     sudo -u www-data bash -c <span class="s2">&quot;HOME=</span><span class="nv">$IXPROOT</span><span class="s2"> &amp;&amp; cd </span><span class="nv">$IXPROOT</span><span class="s2"> &amp;&amp; php composer-setup.php --quiet&quot;</span>
     rm <span class="nv">$IXPROOT</span>/composer-setup.php
-    <span class="c"># optional:</span>
+    <span class="c1"># optional:</span>
     mv composer.phar /usr/local/bin/composer
 <span class="k">else</span>
     <span class="nb">echo</span> -e <span class="s2">&quot;\n\nERROR: Invalid installer signature for composer installation&quot;</span>
     rm <span class="nv">$IXPROOT</span>/composer-setup.php
-    <span class="nb">exit </span>1
+    <span class="nb">exit</span> 1
 <span class="k">fi</span>
 </pre></div>
 
 
 <p>and:</p>
-<div class="highlight"><pre>npm install -g bower
+<div class="highlight"><pre><span></span>npm install -g bower
 </pre></div>
 
 
 <h1 id="initial-setup-and-dependancies">Initial Setup and Dependancies<a class="headerlink" href="#initial-setup-and-dependancies" title="Permanent link"></a></h1>
 <h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link"></a></h2>
 <p>Install the required PHP libraries and frontend CSS/JS packages:</p>
-<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 composer install
 bower install
 cp .env.example .env
@@ -397,14 +398,14 @@ php artisan key:generate
 
 <h1 id="database-setup">Database Setup<a class="headerlink" href="#database-setup" title="Permanent link"></a></h1>
 <p>Use whatever means you like to create a database and user for IXP Manager. For example:</p>
-<div class="highlight"><pre><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="ss">`ixp`</span> <span class="k">CHARACTER</span> <span class="kt">SET</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4&#39;</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="ss">`ixp`</span> <span class="k">CHARACTER</span> <span class="kt">SET</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4&#39;</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="ss">`ixp`</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="ss">`ixp`</span><span class="o">@</span><span class="ss">`localhost`</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;&lt;pick a password!&gt;&#39;</span><span class="p">;</span>
-<span class="n">FLUSH</span> <span class="n">PRIVILEGES</span><span class="p">;</span>
+<span class="k">FLUSH</span> <span class="n">PRIVILEGES</span><span class="p">;</span>
 </pre></div>
 
 
 <p>Then edit <code>$IXPROOT/.env</code> and set the database options:</p>
-<div class="highlight"><pre>DB_HOST=localhost
+<div class="highlight"><pre><span></span>DB_HOST=localhost
 DB_DATABASE=ixp
 DB_USERNAME=ixp
 DB_PASSWORD=password
@@ -412,12 +413,12 @@ DB_PASSWORD=password
 
 
 <p>Now create the database schema:</p>
-<div class="highlight"><pre>php artisan doctrine:schema:create
+<div class="highlight"><pre><span></span>php artisan doctrine:schema:create
 </pre></div>
 
 
 <p>Some older scripts still rely on MySQL view tables. Create these with:</p>
-<div class="highlight"><pre>mysql -u ixp -p ixp &lt; <span class="nv">$IXPROOT</span>/tools/sql/views.sql
+<div class="highlight"><pre><span></span>mysql -u ixp -p ixp &lt; <span class="nv">$IXPROOT</span>/tools/sql/views.sql
 </pre></div>
 
 
@@ -426,17 +427,17 @@ DB_PASSWORD=password
 <h3 id="initial-database-objects">Initial Database Objects<a class="headerlink" href="#initial-database-objects" title="Permanent link"></a></h3>
 <p>Using the settings you edited in <code>.env</code> we'll create some database objects. [Yes, a setup wizard needs to be built!].</p>
 <p>First let's create the password for the admin user. The following will create a secure random password and hash it with bcrypt:</p>
-<div class="highlight"><pre><span class="nv">USERNAME</span><span class="o">=</span>admin
+<div class="highlight"><pre><span></span><span class="nv">USERNAME</span><span class="o">=</span>admin
 <span class="nv">USEREMAIL</span><span class="o">=</span>your@email.address
 <span class="nv">IXPM_ADMIN_PW</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span> openssl rand -base64 <span class="m">12</span> <span class="k">)</span><span class="s2">&quot;</span>
 <span class="nv">ADMIN_PW_SALT</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span> openssl rand -base64 <span class="m">16</span> <span class="k">)</span><span class="s2">&quot;</span>
 <span class="nv">HASH_PW</span><span class="o">=</span><span class="k">$(</span> php -r <span class="s2">&quot;echo escapeshellarg( crypt( &#39;</span><span class="si">${</span><span class="nv">IXPM_ADMIN_PW</span><span class="si">}</span><span class="s2">&#39;, sprintf( &#39;\$2a\$%02d\$%s&#39;, 10, substr( &#39;</span><span class="si">${</span><span class="nv">ADMIN_PW_SALT</span><span class="si">}</span><span class="s2">&#39;, 0, 22 ) ) ) );&quot;</span> <span class="k">)</span>
-<span class="nb">echo </span>Your password is: <span class="nv">$IXPM_ADMIN_PW</span>
+<span class="nb">echo</span> Your password is: <span class="nv">$IXPM_ADMIN_PW</span>
 </pre></div>
 
 
 <p>The following is taken from the IXP Manager installation script:</p>
-<div class="highlight"><pre><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">root</span> <span class="s2">&quot;-p${MYSQL_ROOT_PW}&quot;</span> <span class="err">$</span><span class="n">DBNAME</span> <span class="o">&lt;&lt;</span><span class="n">END_SQL</span>
+<div class="highlight"><pre><span></span><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">root</span> <span class="s2">&quot;-p${MYSQL_ROOT_PW}&quot;</span> <span class="err">$</span><span class="n">DBNAME</span> <span class="o">&lt;&lt;</span><span class="n">END_SQL</span>
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">ixp</span> <span class="p">(</span> <span class="n">name</span><span class="p">,</span> <span class="n">shortname</span><span class="p">,</span> <span class="n">address1</span><span class="p">,</span> <span class="n">country</span> <span class="p">)</span>
     <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">&#39;${IXPNAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPSNAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPCITY}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPCOUNTRY}&#39;</span> <span class="p">);</span>
 <span class="kt">SET</span> <span class="o">@</span><span class="n">ixpid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
@@ -471,7 +472,7 @@ DB_PASSWORD=password
 
 
 <p>And finally seed the database:</p>
-<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 php artisan db:seed --class<span class="o">=</span>IRRDBs
 php artisan db:seed --class<span class="o">=</span>Vendors
 php artisan db:seed --class<span class="o">=</span>ContactGroups
@@ -480,7 +481,7 @@ php artisan db:seed --class<span class="o">=</span>ContactGroups
 
 <h2 id="file-permissions">File Permissions<a class="headerlink" href="#file-permissions" title="Permanent link"></a></h2>
 <p>The web server needs write access to some directories:</p>
-<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 chown -R www-data: var/ storage/ bootstrap/cache/ database/Proxies/
 chmod -R u+rwX var/ storage/ bootstrap/cache/ database/Proxies/
 </pre></div>
@@ -488,7 +489,7 @@ chmod -R u+rwX var/ storage/ bootstrap/cache/ database/Proxies/
 
 <h2 id="setting-up-apache">Setting Up Apache<a class="headerlink" href="#setting-up-apache" title="Permanent link"></a></h2>
 <p>Here is a sample virtual hosts file for IXP Manager (replace <code>{$IXPROOT}</code> as appropriate!):</p>
-<div class="highlight"><pre><span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
     <span class="nb">ServerAdmin</span> webmaster@localhost
     <span class="nb">DocumentRoot</span> ${IXPROOT}/public
     <span class="nt">&lt;Directory</span> <span class="s">${IXPROOT}/public</span><span class="nt">&gt;</span>
@@ -509,7 +510,7 @@ chmod -R u+rwX var/ storage/ bootstrap/cache/ database/Proxies/
 
 
 <p>You also need to enable rewrite:</p>
-<div class="highlight"><pre>a2enmod rewrite
+<div class="highlight"><pre><span></span>a2enmod rewrite
 service apache2 restart
 </pre></div>
 
