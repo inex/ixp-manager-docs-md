@@ -79,3 +79,25 @@ After you add a new customer (or from the customer overview page from the dropdo
 ![Customer Registration and Billing Details](img/customer-reg-billing.png)
 
 All of these details are informatin only and only available to administrative users.
+
+### Notification of Billing Details Changed
+
+If you want a particular email address notified of changes to billing details, edit the `config/ixp_tools.php` configuration file and set:
+
+```php
+//;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+// Billing updates notifications
+//
+// Send email with updated billing details to the following address when billing details
+// are updated by an admin or a user.
+//
+'billing_updates_notify' => "some-email@example.com",
+```
+
+If you need multiple people notified, use an alias address encompassing all the users.
+
+If the above configuration file does not exist, create it from the suggested template:
+
+```sh
+cp config/ixp_tools.php.dist config/ixp_tools.php
+```

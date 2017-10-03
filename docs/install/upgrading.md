@@ -73,7 +73,15 @@ The general process is:
 
 8. Ensure there are no version specific changes required in the release notes.
 
-8. Disable maintenance mode:
+9. Ensure file permissions are correct.
+
+    ```sh
+    MY_WWW_USER=www-data  # fix as appropriate to your operating system
+    chown -R $MY_WWW_USER: bootstrap/cache var storage
+    chmod -R u+rwX bootstrap/cache var storage
+    ```
+
+10. Disable maintenance mode:
 
     ```sh
     ./artisan up

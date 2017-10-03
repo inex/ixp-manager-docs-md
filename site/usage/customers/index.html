@@ -340,6 +340,22 @@
 <p>After you add a new customer (or from the customer overview page from the dropdown edit icon on the right of the title area, you can select <em>Edit Billing/Registration Details</em>), you will get the following form:</p>
 <p><img alt="Customer Registration and Billing Details" src="../img/customer-reg-billing.png" /></p>
 <p>All of these details are informatin only and only available to administrative users.</p>
+<h3 id="notification-of-billing-details-changed">Notification of Billing Details Changed<a class="headerlink" href="#notification-of-billing-details-changed" title="Permanent link"></a></h3>
+<p>If you want a particular email address notified of changes to billing details, edit the <code>config/ixp_tools.php</code> configuration file and set:</p>
+<div class="highlight"><pre><span class="x">//;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="x">// Billing updates notifications</span>
+<span class="x">//</span>
+<span class="x">// Send email with updated billing details to the following address when billing details</span>
+<span class="x">// are updated by an admin or a user.</span>
+<span class="x">//</span>
+<span class="x">&#39;billing_updates_notify&#39; =&gt; &quot;some-email@example.com&quot;,</span>
+</pre></div>
+
+
+<p>If you need multiple people notified, use an alias address encompassing all the users.</p>
+<p>If the above configuration file does not exist, create it from the suggested template:</p>
+<div class="highlight"><pre>cp config/ixp_tools.php.dist config/ixp_tools.php
+</pre></div>
               
             </div>
           </div>
