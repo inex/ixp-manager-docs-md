@@ -301,36 +301,3 @@ Note from this:
 
 * validation is the standard [Laravel validation](https://laravel.com/docs/5.5/validation) which works well with [Former](https://github.com/formers/former).
 * it's important to remember to assign the object as: `$this->object = $inf;` as it is used to create log messages, etc.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-x
-
-x
-
-x
-
-x
-
-x
-
-
-x
