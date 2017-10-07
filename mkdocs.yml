@@ -14,6 +14,7 @@ pages:
     - 'Manual Installation': 'install/manually.md'
     - 'Upgrading': 'install/upgrading.md'
     - 'Upgrade From v3': 'install/upgrade-v3.md'
+    - 'Runtime Configuration': 'install/runtime.md'
 - General Usage:
     - 'Customers / Members': 'usage/customers.md'
     - 'Customer Connections': 'usage/interfaces.md'
@@ -46,6 +47,7 @@ pages:
     - 'Continuous Integration': 'dev/ci.md'
     - 'Contributer License Agreement': 'dev/cla.md'
     - 'Documentation': 'dev/docs.md'
+    - 'Frontend CRUD': 'dev/frontend-crud.md'
     - 'Grapher': 'dev/grapher.md'
     - 'Helpers': 'dev/helpders.md'
     - 'Looking Glass': 'dev/looking-glass.md'
