@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Frontend CRUD - IXP Manager Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Frontend CRUD";
+    var mkdocs_page_input_path = "dev/frontend-crud.md";
+    var mkdocs_page_url = "/dev/frontend-crud/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/runtime/">Runtime Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/customers/">Customers / Members</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/interfaces/">Customer Connections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../features/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/as112/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/dns-arpa/">DNS / ARPA</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/irrdb/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/ixf-export/">IX-F Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">Layer2 Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/mailing-lists/">Mailing List Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/nagios/">Nagios</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/reseller/">Reseller Functionality</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/route-collectors/">Route Collectors</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/route-servers/">Route Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/skinning/">Skinning</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/smokeping/">Smokeping</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/tacacs/">TACACS</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ci/">Continuous Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cla/">Contributer License Agreement</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../docs/">Documentation</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Frontend CRUD</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#frontend-crud">Frontend CRUD</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#actions">Actions</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Development &raquo;</li>
+        
+      
+    
+    <li>Frontend CRUD</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/dev/frontend-crud.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="frontend-crud">Frontend CRUD<a class="headerlink" href="#frontend-crud" title="Permanent link"></a></h1>
+<p><strong>IXP Manager</strong>, like many applications, has a lot of tables that need basic CRUD access: <strong>CR</strong>eate, <strong>U</strong>pdate and <strong>D</strong>elete (plus list and view). In older versions of <strong>IXP Manager</strong> (and as yet unupdated code), we used <a href="https://github.com/opensolutions/OSS-Framework/wiki/Doctrine2-Frontend">this Zend Framework trait</a> to allow us to repidly deploy CRUD interfaces.</p>
+<p>For <strong>IXP Manager</strong> &gt;= v4.7, we have duplicated (and improved) this to create a scaffolding framework in Laravel. This page documents that class.</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h2>
+<p>In any controller using extending the <code>Doctrine2Frontend</code> class, a <code>_feInit()</code> method is required which configures the controller and, for example, allows you to set what is displayed for different levels of user privileges.</p>
+<p>The primary purpose of this function is to define the anonymous object <code>_feParams</code> (using an object ensures that the view gets a reference to the object and not a copy of a static array at a point in time):</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">_feInit</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">view</span><span class="o">-&gt;</span><span class="na">feParams</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_feParams</span> <span class="o">=</span> <span class="p">(</span><span class="nx">object</span><span class="p">)[</span>
+
+        <span class="c1">// the ORM entity object that CRUD operations will affect:</span>
+        <span class="s1">&#39;entity&#39;</span>            <span class="o">=&gt;</span> <span class="nx">InfrastructureEntity</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>  
+
+        <span class="s1">&#39;pagetitle&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;Infrastructures&#39;</span><span class="p">,</span>     
+
+        <span class="c1">// default is false. If true, add / edit / delete will be disabled</span>
+        <span class="s1">&#39;readonly&#39;</span>          <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+
+        <span class="s1">&#39;titleSingular&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Infrastructure&#39;</span><span class="p">,</span>   
+        <span class="s1">&#39;nameSingular&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;an infrastructure&#39;</span><span class="p">,</span>   
+
+        <span class="s1">&#39;defaultAction&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;defaultController&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;InfrastructureController&#39;</span><span class="p">,</span>
+
+        <span class="s1">&#39;viewFolderName&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;infrastructure&#39;</span><span class="p">,</span>
+
+        <span class="s1">&#39;listColumns&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>                    
+            <span class="c1">// what columns to display in the list view</span>
+            <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span> <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;DB ID&#39;</span><span class="p">,</span> <span class="s1">&#39;display&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span> <span class="p">],</span>
+            <span class="s1">&#39;name&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;Name&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;shortname&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Shortname&#39;</span>
+        <span class="p">],</span>
+
+        <span class="s1">&#39;listOrderBy&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>    <span class="c1">// how to order columns</span>
+        <span class="s1">&#39;listOrderByDir&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ASC&#39;</span><span class="p">,</span>     <span class="c1">// direction of order columns</span>
+    <span class="p">];</span>
+
+    <span class="c1">// you can then override some of the above for different user privileges (for example)</span>
+    <span class="k">switch</span><span class="p">(</span> <span class="nx">Auth</span><span class="o">::</span><span class="na">user</span><span class="p">()</span> <span class="o">?</span> <span class="nx">Auth</span><span class="o">::</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getPrivs</span><span class="p">()</span> <span class="o">:</span> <span class="nx">UserEntity</span><span class="o">::</span><span class="na">AUTH_PUBLIC</span> <span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">case</span> <span class="nx">UserEntity</span><span class="o">::</span><span class="na">AUTH_SUPERUSER</span><span class="o">:</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_feParams</span><span class="o">-&gt;</span><span class="na">pagetitle</span> <span class="o">=</span> <span class="s1">&#39;Infrastructures (Superuser View)&#39;</span><span class="p">;</span>
+
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_feParams</span><span class="o">-&gt;</span><span class="na">listColumns</span> <span class="o">=</span> <span class="nb">array_merge</span><span class="p">(</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_feParams</span><span class="o">-&gt;</span><span class="na">listColumns</span><span class="p">,</span> <span class="p">[</span>
+                    <span class="c1">// ...</span>
+                <span class="p">];</span>
+            <span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+
+        <span class="k">default</span><span class="o">:</span>
+            <span class="k">if</span><span class="p">(</span> <span class="nb">php_sapi_name</span><span class="p">()</span> <span class="o">!==</span> <span class="s2">&quot;cli&quot;</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nx">abort</span><span class="p">(</span> <span class="s1">&#39;error/insufficient-permissions&#39;</span> <span class="p">);</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// display the same information in the single object view as the list of objects</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_feParams</span><span class="o">-&gt;</span><span class="na">viewColumns</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_feParams</span><span class="o">-&gt;</span><span class="na">listColumns</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 id="access-privileges">Access Privileges<a class="headerlink" href="#access-privileges" title="Permanent link"></a></h3>
+<p>By default, all <code>Doctrine2Frontend</code> controllers can only be accessed by an authenticated super user (<code>Entities\User::AUTH_SUPERUSER</code>). You can change this by setting the following property on your implementation:</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * The minimum privileges required to access this controller.</span>
+<span class="sd"> *</span>
+<span class="sd"> * If you set this to less than the superuser, you need to manage privileges and access</span>
+<span class="sd"> * within your own implementation yourself.</span>
+<span class="sd"> *</span>
+<span class="sd"> * @var int</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">static</span> <span class="nv">$minimum_privilege</span> <span class="o">=</span> <span class="nx">UserEntity</span><span class="o">::</span><span class="na">AUTH_SUPERUSER</span><span class="p">;</span>
+</pre></div>
+
+
+<p>If you set this to less than the superuser, you need to manage privileges and access within your own implementation yourself.</p>
+<h3 id="routing">Routing<a class="headerlink" href="#routing" title="Permanent link"></a></h3>
+<p>Routes are explicitly defined in Laravel. The <code>Doctrine2Frontend</code> class sets up the standard routes automatically once you add the following to your <code>routes/web.php</code> (or as appropriate) file on a per implementation basis. E.g. for the <em>Infrastructure</em> implementation, we add to <code>routes/web-doctrine2frontend.php</code>:</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nx">IXP\Http\Controllers\InfrastructureController</span><span class="o">::</span><span class="na">routes</span><span class="p">();</span>
+</pre></div>
+
+
+<p>Note that by placing the above in <code>routes/web-doctrine2frontend.php</code>, you ensure the appropriate middleware is attached.</p>
+<p>This <code>routes()</code> function determines the route prefix using kebab case of the controller name. That is to say: if the controller is <code>CustKitController</code>, the determined prefix is <code>cust-kit</code>. You can override this by setting a <code>$route_prefix</code> class constant in your implementation.</p>
+<p>The standard routes added (using <code>infrastructure</code> as an example) are:</p>
+<ul>
+<li>GET <code>infrastructure/add</code></li>
+<li>GET <code>infrastructure/edit/{id}</code></li>
+<li>GET <code>infrastructure/list</code></li>
+<li>GET <code>infrastructure/view/{id}</code></li>
+<li>POST <code>infrastructure/delete/{id}</code></li>
+<li>POST <code>infrastructure/store</code></li>
+</ul>
+<p>If you want to create your own additional routes, create a function as follows in your implementation:</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">additionalRoutes</span><span class="p">(</span> <span class="nv">$route_prefix</span> <span class="p">)</span> <span class="p">{}</span>
+</pre></div>
+
+
+<p>And add routes (using the normal <code>Route::get()</code> / <code>::post()</code> / etc Laravel methods).</p>
+<p>If you want to completely change the routes, just override the <code>public static function routes() {}</code> function.</p>
+<h3 id="view-templates">View Templates<a class="headerlink" href="#view-templates" title="Permanent link"></a></h3>
+<p>All the common view templates for thss functionality can be found in <code>resources/views/frontend</code> directory. You can override any of these with your own by creating a template of the same name and placing it under <code>resources/views/xxx</code> (or <code>resources/skins/skinname/xxx</code>) where <code>xxx</code> is the <code>feParams['viewFolderName']</code>.</p>
+<h2 id="actions">Actions<a class="headerlink" href="#actions" title="Permanent link"></a></h2>
+<p>Each of the typical CRUD actions will be described here.</p>
+<p><strong>NB: the best documentation is sometimes the code. Check out the above routes file (<code>routes/web-doctrine2frontend.php</code>) and examine some of the implemented controllers directly.</strong></p>
+<h3 id="list">List<a class="headerlink" href="#list" title="Permanent link"></a></h3>
+<p>The list action is for listing the contents of a database table in a HTML / DataTables view.</p>
+<p>The only requirement of the list action is that the following abstract function is implemented:</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * Provide array of table rows for the list action (and view action)</span>
+<span class="sd"> *</span>
+<span class="sd"> * @param int $id The `id` of the row to load for `view` action. `null` if `list` action.</span>
+<span class="sd"> * @return array</span>
+<span class="sd"> */</span>
+<span class="k">abstract</span> <span class="k">protected</span> <span class="k">function</span> <span class="nf">listGetData</span><span class="p">(</span> <span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span> <span class="p">);</span>
+</pre></div>
+
+
+<p>A sample implementation for the infrastructure controller just calls a Doctrine2 repository function:</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">listGetData</span><span class="p">(</span> <span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">D2EM</span><span class="o">::</span><span class="na">getRepository</span><span class="p">(</span> <span class="nx">InfrastructureEntity</span><span class="o">::</span><span class="na">class</span> <span class="p">)</span><span class="o">-&gt;</span><span class="na">getAllForFeList</span><span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">feParams</span><span class="p">,</span> <span class="nv">$id</span> <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>The table rows returned in the above array must be associatative arrays with keys matching the <code>feParams['listColumns']</code> definition.</p>
+<p>The list view template optionally includes other templates you can define (where <code>xxx</code> below is the <code>feParams['viewFolderName']</code>):</p>
+<ol>
+<li>the list view includes a JavaScript template <code>resources/views/frontend/js/list</code> which activates the DataTables, sets up sorting, etc. You can override this (and include the original if appropriate) if you want to add additional JS functionality.</li>
+<li>if the <code>resources/views/xxx/list-preamble</code> template exists, it is included just before the table.</li>
+<li>if the <code>resources/views/xxx/list-postamble</code> template exists, it is included just after the table.</li>
+</ol>
+<h3 id="view">View<a class="headerlink" href="#view" title="Permanent link"></a></h3>
+<p>The view action is for showing a single database row identified by the id passed in the URL.</p>
+<p>The only requirement of the view action is that the abstract function <code>listGetData( $id = null )</code> as used by the list action has been correctly implemented to take an optional ID and return an array with a single element matching that ID.</p>
+<p>The table rows returned in the above array must be associatative arrays with keys matching the <code>feParams['viewColumns']</code> definition.</p>
+<p>The list view template optionally includes other templates you can define (where <code>xxx</code> below is the <code>feParams['viewFolderName']</code>):</p>
+<ol>
+<li>an optional JavaScript template <code>resources/views/frontend/js/view</code>.</li>
+<li>if the <code>resources/views/xxx/view-preamble</code> template exists, it is included just before the view panel.</li>
+<li>if the <code>resources/views/xxx/view-postamble</code> template exists, it is included just after the view panel.</li>
+</ol>
+<h3 id="create-update-form">Create / Update Form<a class="headerlink" href="#create-update-form" title="Permanent link"></a></h3>
+<p>The presentation of the create / update (also known as add / edit) page is discussed here. Form processing and storage will be dealt with in the next section.</p>
+<p>The first required element of this functionality is the implementation of the following abstract function:</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">abstract</span> <span class="k">protected</span> <span class="k">function</span> <span class="nf">addEditPrepareForm</span><span class="p">(</span> <span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span> <span class="p">)</span><span class="o">:</span> <span class="k">array</span><span class="p">;</span>
+</pre></div>
+
+
+<p>The use of this function is best explained with reference to an implementation from the infrastructure controller:</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * Display the form to add/edit an object</span>
+<span class="sd"> * @param   int $id ID of the row to edit</span>
+<span class="sd"> * @return array</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">addEditPrepareForm</span><span class="p">(</span> <span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span> <span class="p">)</span><span class="o">:</span> <span class="k">array</span> <span class="p">{</span>
+
+    <span class="nv">$inf</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="nv">$id</span> <span class="o">!==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="p">(</span> <span class="nv">$inf</span> <span class="o">=</span> <span class="nx">D2EM</span><span class="o">::</span><span class="na">getRepository</span><span class="p">(</span> <span class="nx">InfrastructureEntity</span><span class="o">::</span><span class="na">class</span> <span class="p">)</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span> <span class="nv">$id</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nx">Former</span><span class="o">::</span><span class="na">populate</span><span class="p">([</span>
+            <span class="s1">&#39;name&#39;</span>             <span class="o">=&gt;</span> <span class="nv">$inf</span><span class="o">-&gt;</span><span class="na">getName</span><span class="p">(),</span>
+            <span class="s1">&#39;shortname&#39;</span>        <span class="o">=&gt;</span> <span class="nv">$inf</span><span class="o">-&gt;</span><span class="na">getShortname</span><span class="p">(),</span>
+            <span class="s1">&#39;isPrimary&#39;</span>        <span class="o">=&gt;</span> <span class="nv">$inf</span><span class="o">-&gt;</span><span class="na">getIsPrimary</span><span class="p">()</span> <span class="o">??</span> <span class="k">false</span><span class="p">,</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;inf&#39;</span>          <span class="o">=&gt;</span> <span class="nv">$inf</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Note from the above:</p>
+<ul>
+<li>this function operates for add and edit. In the case of edit, it tries to load the appropriate object from the database.</li>
+<li>if it's an edit operation, the <a href="https://github.com/formers/former">Former</a> object is built up containing the existing objects details.</li>
+<li>you can pass back any data you wish in the returned array and it will be available via <code>$t-&gt;params</code> in the template. Note that <code>$t-&gt;params['data']</code> is added later and contains the feParams object.</li>
+</ul>
+<p>The next required element is building the actual <a href="https://github.com/formers/former">Former</a> object for display. For this, you must create a custom <code>resources/views/xxx/edit-form</code> template. See, as an example, the infrastructure one under <code>resources/views/infrastructure/edit-form.js</code>.</p>
+<p>The add/edit view template optionally includes other templates you can define (where <code>xxx</code> below is the <code>feParams['viewFolderName']</code>):</p>
+<ol>
+<li>an optional JavaScript template <code>resources/views/xxx/js/edit</code>.</li>
+<li>if the <code>resources/views/xxx/edit-preamble</code> template exists, it is included just before the view panel.</li>
+<li>if the <code>resources/views/xxx/edit-postamble</code> template exists, it is included just after the view panel.</li>
+</ol>
+<p>You can query the boolean <code>$t-&gt;params['isAdd']</code> in your templates to distinguish between add and edit operations.</p>
+<h3 id="create-update-store">Create / Update Store<a class="headerlink" href="#create-update-store" title="Permanent link"></a></h3>
+<p>Storing the edited / new object requires implementing a single abstract method which manages validation and storage. This is best explained with a practical implementation:</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * Function to do the actual validation and storing of the submitted object.</span>
+<span class="sd"> * @param Request $request</span>
+<span class="sd"> * @return bool|RedirectResponse</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">doStore</span><span class="p">(</span> <span class="nx">Request</span> <span class="nv">$request</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$validator</span> <span class="o">=</span> <span class="nx">Validator</span><span class="o">::</span><span class="na">make</span><span class="p">(</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">(),</span> <span class="p">[</span>
+        <span class="s1">&#39;name&#39;</span>                  <span class="o">=&gt;</span> <span class="s1">&#39;required|string|max:255&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;shortname&#39;</span>             <span class="o">=&gt;</span> <span class="s1">&#39;required|string|max:255&#39;</span><span class="p">,</span>
+    <span class="p">]);</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">fails</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Redirect</span><span class="o">::</span><span class="na">back</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">withErrors</span><span class="p">(</span><span class="nv">$validator</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">withInput</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="k">false</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="p">(</span> <span class="nv">$inf</span> <span class="o">=</span> <span class="nx">D2EM</span><span class="o">::</span><span class="na">getRepository</span><span class="p">(</span> <span class="nx">InfrastructureEntity</span><span class="o">::</span><span class="na">class</span> <span class="p">)</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;id&#39;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nv">$inf</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InfrastructureEntity</span><span class="p">;</span>
+        <span class="nx">D2EM</span><span class="o">::</span><span class="na">persist</span><span class="p">(</span> <span class="nv">$inf</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nv">$inf</span><span class="o">-&gt;</span><span class="na">setName</span><span class="p">(</span>              <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;name&#39;</span>         <span class="p">)</span> <span class="p">);</span>
+    <span class="nv">$inf</span><span class="o">-&gt;</span><span class="na">setShortname</span><span class="p">(</span>         <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;shortname&#39;</span>    <span class="p">)</span> <span class="p">);</span>
+    <span class="nv">$inf</span><span class="o">-&gt;</span><span class="na">setIxfIxId</span><span class="p">(</span>           <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;ixf_ix_id&#39;</span>    <span class="p">)</span> <span class="o">?</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;ixf_ix_id&#39;</span>    <span class="p">)</span> <span class="o">:</span> <span class="k">null</span> <span class="p">);</span>
+    <span class="nv">$inf</span><span class="o">-&gt;</span><span class="na">setPeeringdbIxId</span><span class="p">(</span>     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;pdb_ixp&#39;</span>      <span class="p">)</span> <span class="o">?</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;pdb_ixp&#39;</span>      <span class="p">)</span> <span class="o">:</span> <span class="k">null</span> <span class="p">);</span>
+    <span class="nv">$inf</span><span class="o">-&gt;</span><span class="na">setIsPrimary</span><span class="p">(</span>         <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;primary&#39;</span>      <span class="p">)</span> <span class="o">??</span> <span class="k">false</span> <span class="p">);</span>
+    <span class="nv">$inf</span><span class="o">-&gt;</span><span class="na">setIXP</span><span class="p">(</span>               <span class="nx">D2EM</span><span class="o">::</span><span class="na">getRepository</span><span class="p">(</span> <span class="nx">IXPEntity</span><span class="o">::</span><span class="na">class</span> <span class="p">)</span><span class="o">-&gt;</span><span class="na">getDefault</span><span class="p">()</span> <span class="p">);</span>
+
+    <span class="nx">D2EM</span><span class="o">::</span><span class="na">flush</span><span class="p">(</span><span class="nv">$inf</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="nv">$inf</span><span class="o">-&gt;</span><span class="na">getIsPrimary</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// reset the rest:</span>
+        <span class="k">foreach</span><span class="p">(</span> <span class="nx">D2EM</span><span class="o">::</span><span class="na">getRepository</span><span class="p">(</span> <span class="nx">InfrastructureEntity</span><span class="o">::</span><span class="na">class</span> <span class="p">)</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$i</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span> <span class="nv">$i</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">()</span> <span class="o">==</span> <span class="nv">$inf</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">()</span> <span class="o">||</span> <span class="o">!</span><span class="nv">$i</span><span class="o">-&gt;</span><span class="na">getIsPrimary</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nv">$i</span><span class="o">-&gt;</span><span class="na">setIsPrimary</span><span class="p">(</span> <span class="k">false</span> <span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nx">D2EM</span><span class="o">::</span><span class="na">flush</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span> <span class="o">=</span> <span class="nv">$inf</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Note from this:</p>
+<ul>
+<li>validation is the standard <a href="https://laravel.com/docs/5.5/validation">Laravel validation</a> which works well with <a href="https://github.com/formers/former">Former</a>.</li>
+<li>it's important to remember to assign the object as: <code>$this-&gt;object = $inf;</code> as it is used to create log messages, etc.</li>
+</ul>
+<p>x</p>
+<p>x</p>
+<p>x</p>
+<p>x</p>
+<p>x</p>
+<p>x</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../grapher/" class="btn btn-neutral float-right" title="Grapher">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../docs/" class="btn btn-neutral" title="Documentation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../docs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../grapher/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
