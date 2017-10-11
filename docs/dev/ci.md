@@ -39,6 +39,10 @@ DB_PASSWORD=somepassword
 
 Note that the [`phpunit.xml`](https://github.com/inex/IXP-Manager/blob/master/phpunit.xml) file in the root directory has some default settings matching the test database. You should not need to edit these.
 
+## Test Database Notes
+
+* the *SUPERADMIN* username / password is one-way hashed using bcrypt. If you want to log into the frontend of the test databse, these details are: `travis` / `travisci`.
+
 ## Running Tests
 
 In one console session, start the artisan / Laravel web server:

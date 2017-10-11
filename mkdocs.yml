@@ -29,7 +29,7 @@ pages:
     - 'Helpdesk Integration': 'features/helpdesk.md'
     - 'IRRDB': 'features/irrdb.md'
     - 'IX-F Member Export': 'features/ixf-export.md'
-    - 'Layer2 Addresses': 'features/layer2-addresses.md'
+    - 'MAC Addresses': 'features/layer2-addresses.md'
     - 'Looking Glass': 'features/looking-glass.md'
     - 'MAC Addresses': 'features/layer2-addresses.md'
     - 'Mailing List Management': 'features/mailing-lists.md'
