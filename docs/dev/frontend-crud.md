@@ -167,6 +167,10 @@ The list view template optionally includes other templates you can define (where
 2. if the `resources/views/xxx/list-preamble` template exists, it is included just before the table.
 3. if the `resources/views/xxx/list-postamble` template exists, it is included just after the table.
 
+The following hooks are available:
+
+* `protected function preList():void {}` - called before the list is displayed allowing you to add elements to the template, etc.
+
 ### View
 
 The view action is for showing a single database row identified by the id passed in the URL.
@@ -203,24 +207,26 @@ The use of this function is best explained with reference to an implementation f
  * @return array
  */
 protected function addEditPrepareForm( $id = null ): array {
-
-    $inf = false;
-
     if( $id !== null ) {
 
-        if( !( $inf = D2EM::getRepository( InfrastructureEntity::class )->find( $id) ) ) {
+        if( !( $this->object = D2EM::getRepository( InfrastructureEntity::class )->find( $id) ) ) {
             abort(404);
         }
 
+        $old = request()->old();
+
+        // we use array_key_exists() here as the array can contain the
+        // key with a null value.
+
         Former::populate([
-            'name'             => $inf->getName(),
-            'shortname'        => $inf->getShortname(),
-            'isPrimary'        => $inf->getIsPrimary() ?? false,
+            'name'             => array_key_exists( 'name',      $old ) ? $old['name']      : $this->object->getName(),
+            'shortname'        => array_key_exists( 'shortname', $old ) ? $old['shortname'] : $this->object->getShortname(),
+            'isPrimary'        => array_key_exists( 'isPrimary', $old ) ? $old['isPrimary'] : ( $this->object->getIsPrimary() ?? false ),
         ]);
     }
 
     return [
-        'inf'          => $inf
+        'object'          => $this->object,
     ];
 }
 ```
@@ -264,27 +270,28 @@ public function doStore( Request $request )
     }
 
     if( $request->input( 'id', false ) ) {
-        if( !( $inf = D2EM::getRepository( InfrastructureEntity::class )->find( $request->input( 'id' ) ) ) ) {
+        if( !( $this->object = D2EM::getRepository( InfrastructureEntity::class )->find( $request->input( 'id' ) ) ) ) {
             abort(404);
         }
     } else {
-        $inf = new InfrastructureEntity;
-        D2EM::persist( $inf );
+        $this->object = new InfrastructureEntity;
+        D2EM::persist( $this->object );
     }
 
-    $inf->setName(              $request->input( 'name'         ) );
-    $inf->setShortname(         $request->input( 'shortname'    ) );
-    $inf->setIxfIxId(           $request->input( 'ixf_ix_id'    ) ? $request->input( 'ixf_ix_id'    ) : null );
-    $inf->setPeeringdbIxId(     $request->input( 'pdb_ixp'      ) ? $request->input( 'pdb_ixp'      ) : null );
-    $inf->setIsPrimary(         $request->input( 'primary'      ) ?? false );
-    $inf->setIXP(               D2EM::getRepository( IXPEntity::class )->getDefault() );
+    $this->object->setName(              $request->input( 'name'         ) );
+    $this->object->setShortname(         $request->input( 'shortname'    ) );
+    $this->object->setIxfIxId(           $request->input( 'ixf_ix_id'    ) ? $request->input( 'ixf_ix_id'    ) : null );
+    $this->object->setPeeringdbIxId(     $request->input( 'pdb_ixp'      ) ? $request->input( 'pdb_ixp'      ) : null );
+    $this->object->setIsPrimary(         $request->input( 'primary'      ) ?? false );
+    $this->object->setIXP(               D2EM::getRepository( IXPEntity::class )->getDefault() );
 
-    D2EM::flush($inf);
+    D2EM::flush($this->object);
 
-    if( $inf->getIsPrimary() ) {
+    if( $this->object->getIsPrimary() ) {
         // reset the rest:
+        /** @var InfrastructureEntity $i */
         foreach( D2EM::getRepository( InfrastructureEntity::class )->findAll() as $i ) {
-            if( $i->getId() == $inf->getId() || !$i->getIsPrimary() ) {
+            if( $i->getId() == $this->object->getId() || !$i->getIsPrimary() ) {
                 continue;
             }
             $i->setIsPrimary( false );
@@ -292,7 +299,6 @@ public function doStore( Request $request )
         D2EM::flush();
     }
 
-    $this->object = $inf;
     return true;
 }
 ```
@@ -301,3 +307,50 @@ Note from this:
 
 * validation is the standard [Laravel validation](https://laravel.com/docs/5.5/validation) which works well with [Former](https://github.com/formers/former).
 * it's important to remember to assign the object as: `$this->object = $inf;` as it is used to create log messages, etc.
+
+## Delete
+
+Deletes are handled via posts and so have Laravel's built in CSRF protection. The logic is quiet simple:
+
+```php
+<?php
+public function delete( Request $request ) {
+
+    if( !( $this->object = D2EM::getRepository( $this->feParams->entity )->find( $request->input( 'id' ) ) ) ) {
+        return abort( '404' );
+    }
+
+    if( $this->preDelete() ) {
+        D2EM::remove( $this->object );
+        D2EM::flush();
+        $this->postFlush( 'delete' );
+        AlertContainer::push( $this->feParams->titleSingular . " deleted.", Alert::SUCCESS );
+    }
+
+    return redirect()->action( $this->feParams->defaultController.'@'.$this->feParams->defaultAction );
+}
+```
+
+As you can see, it calls a `protected function preDelete(): bool {}` hook which, if it returns `false`, the delete operation is abandoned.
+
+## Other Hooks
+
+### Post Flush
+
+There is a `postFlush()` hook:
+
+```php
+<?php
+/**
+ * Optional method to be overridden if a D2F controllers needs to perform post-database flush actions
+ *
+ * @param string $action Either 'add', 'edit', 'delete'
+ * @return bool
+ */
+protected function postFlush( string $action ): bool
+{
+    return true;
+}
+```
+
+which is called during some actions with the action name as a parameter: `add`, `edit`, `delete`. This function is called just after the database flush operation.
