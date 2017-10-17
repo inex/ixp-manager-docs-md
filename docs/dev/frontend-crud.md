@@ -32,6 +32,8 @@ protected function _feInit()
 
         'viewFolderName'    => 'infrastructure',
 
+        'readonly'          => self::$read_only,
+
         'listColumns' => [                    
             // what columns to display in the list view
             'id'         => [ 'title' => 'DB ID', 'display' => true ],
@@ -125,6 +127,21 @@ If you want to completely change the routes, just override the `public static fu
 ### View Templates
 
 All the common view templates for thss functionality can be found in `resources/views/frontend` directory. You can override any of these with your own by creating a template of the same name and placing it under `resources/views/xxx` (or `resources/skins/skinname/xxx`) where `xxx` is the `feParams['viewFolderName']`.
+
+
+### Read Only
+
+If your controller should be read only (list and view actions, no add, edit or delete) then set the following static member:
+
+```php
+<?php
+/**
+ * Is this a read only controller?
+ *
+ * @var boolean
+ */
+public static $read_only = true;
+```
 
 
 ## Actions
