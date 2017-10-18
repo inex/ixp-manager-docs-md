@@ -453,6 +453,8 @@
 <li>the list view includes a JavaScript template <code>resources/views/frontend/js/list</code> which activates the DataTables, sets up sorting, etc. You can override this (and include the original if appropriate) if you want to add additional JS functionality.</li>
 <li>if the <code>resources/views/xxx/list-preamble</code> template exists, it is included just before the table.</li>
 <li>if the <code>resources/views/xxx/list-postamble</code> template exists, it is included just after the table.</li>
+<li>if the <code>resources/views/xxx/list-head-override</code> template exists, it will replace the <code>&lt;thead&gt;</code> element of the list table (<a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/mac-address/list-head-override.foil.php">example</a>).</li>
+<li>if the <code>resources/views/xxx/list-head-override</code> template exists, it will replace the <code>&lt;tr&gt;</code> elements of the list table (<a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/mac-address/list-row-override.foil.php">example</a>).</li>
 </ol>
 <p>The following hooks are available:</p>
 <ul>
@@ -467,6 +469,7 @@
 <li>an optional JavaScript template <code>resources/views/frontend/js/view</code>.</li>
 <li>if the <code>resources/views/xxx/view-preamble</code> template exists, it is included just before the view panel.</li>
 <li>if the <code>resources/views/xxx/view-postamble</code> template exists, it is included just after the view panel.</li>
+<li>if the <code>resources/views/xxx/view-row-override</code> template exists, it will replace the <code>&lt;tr&gt;</code> element of the view (<a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/mac-address/view-row-override.foil.php">example</a>).</li>
 </ol>
 <h3 id="create-update-form">Create / Update Form<a class="headerlink" href="#create-update-form" title="Permanent link"></a></h3>
 <p>The presentation of the create / update (also known as add / edit) page is discussed here. Form processing and storage will be dealt with in the next section.</p>
