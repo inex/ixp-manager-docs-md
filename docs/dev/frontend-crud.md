@@ -183,6 +183,8 @@ The list view template optionally includes other templates you can define (where
 1. the list view includes a JavaScript template `resources/views/frontend/js/list` which activates the DataTables, sets up sorting, etc. You can override this (and include the original if appropriate) if you want to add additional JS functionality.
 2. if the `resources/views/xxx/list-preamble` template exists, it is included just before the table.
 3. if the `resources/views/xxx/list-postamble` template exists, it is included just after the table.
+4. if the `resources/views/xxx/list-head-override` template exists, it will replace the `<thead>` element of the list table ([example](https://github.com/inex/IXP-Manager/blob/master/resources/views/mac-address/list-head-override.foil.php)).
+5. if the `resources/views/xxx/list-head-override` template exists, it will replace the `<tr>` elements of the list table ([example](https://github.com/inex/IXP-Manager/blob/master/resources/views/mac-address/list-row-override.foil.php)).
 
 The following hooks are available:
 
@@ -201,6 +203,7 @@ The list view template optionally includes other templates you can define (where
 1. an optional JavaScript template `resources/views/frontend/js/view`.
 2. if the `resources/views/xxx/view-preamble` template exists, it is included just before the view panel.
 3. if the `resources/views/xxx/view-postamble` template exists, it is included just after the view panel.
+4. if the `resources/views/xxx/view-row-override` template exists, it will replace the `<tr>` element of the view ([example](https://github.com/inex/IXP-Manager/blob/master/resources/views/mac-address/view-row-override.foil.php)).
 
 
 ### Create / Update Form
