@@ -185,6 +185,8 @@ The list view template optionally includes other templates you can define (where
 3. if the `resources/views/xxx/list-postamble` template exists, it is included just after the table.
 4. if the `resources/views/xxx/list-head-override` template exists, it will replace the `<thead>` element of the list table ([example](https://github.com/inex/IXP-Manager/blob/master/resources/views/mac-address/list-head-override.foil.php)).
 5. if the `resources/views/xxx/list-head-override` template exists, it will replace the `<tr>` elements of the list table ([example](https://github.com/inex/IXP-Manager/blob/master/resources/views/mac-address/list-row-override.foil.php)).
+6. if the `resources/views/xxx/list-empty-message` template exists, it will replace the the standard information box
+when a table is empty ([example](https://github.com/inex/IXP-Manager/blob/master/resources/views/irrdb-config/list-empty-message.foil.php)).
 
 The following hooks are available:
 
