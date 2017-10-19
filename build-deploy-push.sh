@@ -5,7 +5,10 @@ if [[ -z $1 ]]; then
     exit -1
 fi
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $DIR
 mkdocs build && mkdocs gh-deploy && git add . && git commit -am "$1" && git push
+cd -
 
 
 
