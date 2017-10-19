@@ -1,4 +1,4 @@
-# LMAC Addresses
+# MAC Addresses
 
 IXP Manager has support for layer2 / MAC addresses in two ways:
 
