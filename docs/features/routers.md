@@ -59,8 +59,7 @@ We also provide sample scripts for automating the re-configuration of these serv
 
 * AS112 scripts [can be found here](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/as112).
 * Route collector scripts [can be found here](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-collectors).
-* Route server scripts [can be found here]()
- See the `-v4` scripts [in this directory](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-servers). These are quite robust and have been in production for ~3 years at INEX (as of Jan 2017).
+* Route server scripts - see the `-v4` scripts [in this directory](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-servers). These are quite robust and have been in production for ~3 years at INEX (as of Jan 2017).
 
 All of these scripts have been written defensivily such that if there is any issue getting the configuring or validating the configuration then the running router instance should be unaffected. This has worked in practice at INEX when IXP Manager was under maintenance, when there were management connectivity issues and when there were database issues. They also use the *updated API* (see below) to mark when the router configuration update script ran successfully.
 

@@ -329,12 +329,12 @@
 <a href="https://grnet.gr/en/">GRNET</a> have also a public IXP Manager integration at: <a href="https://portal.gr-ix.gr/lg">https://portal.gr-ix.gr/lg</a>.</p>
 <h2 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link"></a></h2>
 <p>The API endpoint must be accessible from the server running IXP Manager. Changing the URL as appropriate, test and confirm this with something like:</p>
-<div class="highlight"><pre><span></span>wget -O - http://as112-lan1-ipv4.example.com/api/status
+<div class="highlight"><pre>wget -O - http://as112-lan1-ipv4.example.com/api/status
 </pre></div>
 
 
 <p>which should give a status response (we've made the JSON formatting readable here):</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;api&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;from_cache&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
         <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.1.0&quot;</span><span class="p">,</span>
