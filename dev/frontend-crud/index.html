@@ -323,9 +323,6 @@
         <span class="s1">&#39;titleSingular&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Infrastructure&#39;</span><span class="p">,</span>   
         <span class="s1">&#39;nameSingular&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;an infrastructure&#39;</span><span class="p">,</span>   
 
-        <span class="s1">&#39;defaultAction&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;defaultController&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;InfrastructureController&#39;</span><span class="p">,</span>
-
         <span class="s1">&#39;viewFolderName&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;infrastructure&#39;</span><span class="p">,</span>
 
         <span class="s1">&#39;readonly&#39;</span>          <span class="o">=&gt;</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$read_only</span><span class="p">,</span>
@@ -587,6 +584,11 @@ when a table is empty (<a href="https://github.com/inex/IXP-Manager/blob/master/
 <li>validation is the standard <a href="https://laravel.com/docs/5.5/validation">Laravel validation</a> which works well with <a href="https://github.com/formers/former">Former</a>.</li>
 <li>it's important to remember to assign the object as: <code>$this-&gt;object = $inf;</code> as it is used to create log messages, etc.</li>
 </ul>
+<p>The following hooks are available:</p>
+<ul>
+<li><code>protected function postStoreRedirect() {}</code> - the <em>Doctrine2Frontend</em> class returns null. Override it to return
+    a valid route name to have the post store redirect go somewhere besides <code>/list</code>.</li>
+</ul>
 <h2 id="delete">Delete<a class="headerlink" href="#delete" title="Permanent link"></a></h2>
 <p>Deletes are handled via posts and so have Laravel's built in CSRF protection. The logic is quiet simple:</p>
 <div class="highlight"><pre><span class="cp">&lt;?php</span>
@@ -609,6 +611,10 @@ when a table is empty (<a href="https://github.com/inex/IXP-Manager/blob/master/
 
 
 <p>As you can see, it calls a <code>protected function preDelete(): bool {}</code> hook which, if it returns <code>false</code>, the delete operation is abandoned.</p>
+<p>The following hooks are available:</p>
+<pre><code>* `protected function postDeleteRedirect() {}` - the *Doctrine2Frontend* class returns null. Override it to return
+    a valid route name to have the post store redirect go somewhere besides `/list`.
+</code></pre>
 <h2 id="other-hooks">Other Hooks<a class="headerlink" href="#other-hooks" title="Permanent link"></a></h2>
 <h3 id="post-flush">Post Flush<a class="headerlink" href="#post-flush" title="Permanent link"></a></h3>
 <p>There is a <code>postFlush()</code> hook:</p>
