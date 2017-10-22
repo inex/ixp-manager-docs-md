@@ -27,9 +27,6 @@ protected function _feInit()
         'titleSingular'     => 'Infrastructure',   
         'nameSingular'      => 'an infrastructure',   
 
-        'defaultAction'     => 'list',
-        'defaultController' => 'InfrastructureController',
-
         'viewFolderName'    => 'infrastructure',
 
         'readonly'          => self::$read_only,
@@ -269,6 +266,7 @@ The add/edit view template optionally includes other templates you can define (w
 
 You can query the boolean `$t->params['isAdd']` in your templates to distinguish between add and edit operations.
 
+
 ### Create / Update Store
 
 Storing the edited / new object requires implementing a single abstract method which manages validation and storage. This is best explained with a practical implementation:
@@ -330,6 +328,11 @@ Note from this:
 * validation is the standard [Laravel validation](https://laravel.com/docs/5.5/validation) which works well with [Former](https://github.com/formers/former).
 * it's important to remember to assign the object as: `$this->object = $inf;` as it is used to create log messages, etc.
 
+The following hooks are available:
+
+* `protected function postStoreRedirect() {}` - the *Doctrine2Frontend* class returns null. Override it to return
+    a valid route name to have the post store redirect go somewhere besides `/list`.
+
 ## Delete
 
 Deletes are handled via posts and so have Laravel's built in CSRF protection. The logic is quiet simple:
@@ -354,6 +357,11 @@ public function delete( Request $request ) {
 ```
 
 As you can see, it calls a `protected function preDelete(): bool {}` hook which, if it returns `false`, the delete operation is abandoned.
+
+The following hooks are available:
+
+    * `protected function postDeleteRedirect() {}` - the *Doctrine2Frontend* class returns null. Override it to return
+        a valid route name to have the post store redirect go somewhere besides `/list`.
 
 ## Other Hooks
 
