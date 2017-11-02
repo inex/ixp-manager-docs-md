@@ -214,6 +214,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../features/static-content/">Static Content</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../features/tacacs/">TACACS</a>
                 </li>
     </ul>
@@ -318,10 +322,10 @@
 <p>See the entity definitions <a href="https://github.com/inex/IXP-Manager/blob/master/database/Entities/User.php">here</a>.</p>
 <p>There are four types of user:</p>
 <ul>
-<li><code>AUTH_PUBLIC</code> - a visitor who has not logged into IXP Manager.</li>
-<li><code>AUTH_CUSTUSER</code> - a standard customer user with portal access.</li>
-<li><code>AUTH_CUSTADMIN</code> - a customer administrative user. The only purpose of this account is to allow customers to create, edit and remove their own users. No other access is available through a CUSTADMIN login.</li>
-<li><code>AUTH_SUPERUSER</code> - IXP staff only. <strong>FULL ACCESS TO ALL CUSTOMERS AND FUNCTIONS</strong>. This is only for your IXP staff!</li>
+<li><code>AUTH_PUBLIC</code> - a visitor who has not logged into IXP Manager (<code>priv == 0</code>).</li>
+<li><code>AUTH_CUSTUSER</code> - a standard customer user with portal access (<code>priv == 1</code>).</li>
+<li><code>AUTH_CUSTADMIN</code> - a customer administrative user. The only purpose of this account is to allow customers to create, edit and remove their own users. No other access is available through a CUSTADMIN login (<code>priv == 2</code>).</li>
+<li><code>AUTH_SUPERUSER</code> - IXP staff only. <strong>FULL ACCESS TO ALL CUSTOMERS AND FUNCTIONS</strong>. This is only for your IXP staff! (<code>priv == 3</code>)</li>
 </ul>
 <p><strong>Additional Historical Perspective:</strong> the use of <em>AUTH_CUSTADMIN</em> was modeled on RIPE's equivalent model at the time. RIPE have since abandoned this model and it is our intention to do likewise.</p>
 <h2 id="logging-in-as-another-user">Logging in as Another User<a class="headerlink" href="#logging-in-as-another-user" title="Permanent link"></a></h2>
