@@ -41,6 +41,7 @@ pages:
     - 'Router Configuration': 'features/routers.md'
     - 'Skinning': 'features/skinning.md'
     - 'Smokeping': 'features/smokeping.md'
+    - 'Static Content': 'features/static-content.md'
     - 'TACACS': 'features/tacacs.md'
 - Development:
     - 'API': 'dev/api.md'

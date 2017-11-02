@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Helpdesk Integration - IXP Manager Documentation</title>
+  <title>Static Content - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Helpdesk Integration";
-    var mkdocs_page_input_path = "features/helpdesk.md";
-    var mkdocs_page_url = "/features/helpdesk/";
+    var mkdocs_page_name = "Static Content";
+    var mkdocs_page_input_path = "features/static-content.md";
+    var mkdocs_page_url = "/features/static-content/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -134,25 +134,9 @@
                     
     <a class="" href="../grapher/">Grapher</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Helpdesk Integration</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#helpdesk-integration">Helpdesk Integration</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#features-supported">Features Supported</a></li>
-        
-            <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
-        
-            <li><a class="toctree-l4" href="#implementation-development">Implementation Development</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../helpdesk/">Helpdesk Integration</a>
                 </li>
                 <li class="">
                     
@@ -210,9 +194,25 @@
                     
     <a class="" href="../smokeping/">Smokeping</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../static-content/">Static Content</a>
+    <a class="current" href="./">Static Content</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#static-content">Static Content</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#overview">Overview</a></li>
+        
+            <li><a class="toctree-l4" href="#support-contact-template">Support / Contact Template</a></li>
+        
+            <li><a class="toctree-l4" href="#documentation-menu">Documentation Menu</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
@@ -290,10 +290,10 @@
         
       
     
-    <li>Helpdesk Integration</li>
+    <li>Static Content</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/helpdesk.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/static-content.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -303,55 +303,56 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="helpdesk-integration">Helpdesk Integration<a class="headerlink" href="#helpdesk-integration" title="Permanent link"></a></h1>
-<p><strong> WORK IN PROGRESS - DEVELOPMENT NOTES </strong></p>
-<p>As an IXP scales, it will eventually have to replace email support via a simple alias / shared IMAP mailbox with a <em>proper</em> ticketing system. After extensive (and painful!) research, we at INEX chose <a href="https://www.zendesk.com/">Zendesk</a> as the system that most matched our budget and required features (1).</p>
-<p>While your mileage may vary on this - or you may already have something else - please note that the reference implementation for helpdesk integration on IXP Manager is Zendesk. So, if you haven't already chosen one, Zendesk will provide maximum integration with minimal pain.</p>
-<blockquote>
-<p>Please do not open a feature request for other helpdesk implementations as the authors cannot undertake such additional work. If you wish to have integration with another helpdesk implemented, please consider <a href="https://www.ixpmanager.org/commercial.php">commercial support</a></p>
-</blockquote>
-<h2 id="features-supported">Features Supported<a class="headerlink" href="#features-supported" title="Permanent link"></a></h2>
-<p>IXP Manager currently supports:</p>
-<ul>
-<li>creation and update of customers / organisations in Zendesk</li>
-<li>creation and update of contacts / users in Zendesk</li>
-<li>finding tickets by customer / organisation</li>
-</ul>
-<p>Work that is in progress includes:</p>
-<ul>
-<li>allow users to create, update and close tickets in IXP Manager</li>
-<li>list all tickets per organisation (for admins and users)</li>
-</ul>
-<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h2>
-<p><em>As Zendesk is the only implementation currently, this refers only to Zendesk.</em></p>
-<h3 id="zendesk">Zendesk<a class="headerlink" href="#zendesk" title="Permanent link"></a></h3>
-<p>You need to enable API access to Zendesk as follows:</p>
+                <h1 id="static-content">Static Content<a class="headerlink" href="#static-content" title="Permanent link"></a></h1>
+<p><strong>IXP Manager</strong> can serve some static pages for you if you wish. The typical use cases for this are:</p>
 <ol>
-<li>Log into your Zendesk account</li>
-<li>On the bottom left, click the Settings icon</li>
-<li>Under <em>Channels</em> select <em>API</em></li>
-<li>Enable the API here and add a token</li>
+<li>support details / contact page;</li>
+<li>other static content relevant to your members.</li>
 </ol>
-<p>With your Zendesk login and the token from above, edit the <code>.env</code> file in the base directory of IXP Manager and set:</p>
-<div class="highlight"><pre><span></span>HELPDESK_BACKEND=zendesk
-HELPDESK_ZENDESK_SUBDOMAIN=ixp
-HELPDESK_ZENDESK_TOKEN=yyy
-HELPDESK_ZENDESK_EMAIL=john.doe@example.com
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link"></a></h2>
+<p>In IXP Manager, there are four types of users as descibed <a href="../../usage/users/">in the users page</a>. Static contact can be added which requires a minimum user privilege to access (e.g. <code>priv == 0</code> would be publically accessible through to <code>priv == 3</code> which would require a superadmin).</p>
+<p>To create static content, you should first <a href="../skinning/">set up skinning</a> for your installation. Let's assume you called your skin <code>example</code>.</p>
+<p>To create a publically accessible static content page called <code>misc-benefits</code>, you would first create a content directory in your skin as follows:</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+mkdir -p resources/skins/example/content/<span class="o">{</span>0,1,2,3<span class="o">}</span>
 </pre></div>
 
 
-<p>You can now test that your settings are correct with: <strong>FIXME</strong></p>
-<h2 id="implementation-development">Implementation Development<a class="headerlink" href="#implementation-development" title="Permanent link"></a></h2>
-<p>The helpdesk implementation in IXP Manager is designed using contracts and service providers. I.e. it is done <em>The Right Way (tm)</em>.</p>
-<p>The reference implementation is for Zendesk but it's coded to a contract (interface) at <code>app/Contracts/Helpdesk.php</code>.</p>
-<p>The actual Zendesk implementation can be found at: <code>app/Services/Helpdesk/Zendesk.php</code>.</p>
-<p>The good news here is if you want another helpdesk supported, you just need to:</p>
+<p>where the directories <code>0, 1, 2, 3</code> represent the <em>minimum required user privilege</em> to access the content. You can now create your content page as follows:</p>
+<div class="highlight"><pre><span></span>cp resources/views/content/0/example.foil.php resources/skins/example/content/0/misc-benefits.foil.php
+</pre></div>
+
+
+<p>and then edit that page.</p>
+<p>It can be accessed using a URL such as: <code>https://ixp.example.com/content/0/misc-benefits</code> where the route template is: <code>content/{priv}/{page}</code>.</p>
 <ul>
-<li>create an implementation like the Zendesk one above</li>
-<li>update the <code>switch()</code> statement in <code>app/Providers/HelpdeskServiceProvider.php</code></li>
-<li>open a pull request for IXP Manager and this documentation</li>
+<li><code>{priv}</code> is the <em>minimum required user privilege</em> required to access the page and is used first for testing the user's permissions and second as the directory to check for the file.</li>
+<li><code>{page}</code> is the name of the file to load (less <code>.foil.php</code>) and <strong>please be aware that this is normalised as follows:</strong>
+<div class="highlight"><pre><span></span><span class="x">strtolower( preg_replace( &#39;/[^a-z0-9\-_]/&#39;, &#39;&#39;, $page )</span>
+</pre></div>
+
+i.e. the file name can only contain characters from the class <code>[a-z0-9\-_]</code> and all lower case.</li>
 </ul>
-<p>(1) Actually, Zendesk wasn't our first ticketing system. For a number of years we used <a href="http://www.cerberusweb.com/">Cerb</a> but it didn't stay current in terms of modern HTML UI/UX and it suffered from feature bloat. One requirement for our replacement was a decent API and with Zendesk's API we were able to migrate all our old tickets <a href="https://github.com/inex/cerb5-to-zendesk">using this script</a>.</p>
+<p>The <code>example.foil.php</code> template copied above should provide the necessary structure for you. Essentially just replace the title and the content.</p>
+<p>For publically accessible documents, there is an alias route:</p>
+<div class="highlight"><pre><span></span>/public-content/{page}  -&gt; treated as: /content/0/{page}
+</pre></div>
+
+
+<h2 id="support-contact-template">Support / Contact Template<a class="headerlink" href="#support-contact-template" title="Permanent link"></a></h2>
+<p>IXP Manager ships with a link to <em>Support</em> in the main title menu. You should copy and adjust this as neccessary via skinning:</p>
+<div class="highlight"><pre><span></span>cp resources/views/content/0/support.foil.php resources/skins/example/content/0/support.foil.php
+</pre></div>
+
+
+<h2 id="documentation-menu">Documentation Menu<a class="headerlink" href="#documentation-menu" title="Permanent link"></a></h2>
+<p>You can link to your own static contact pages using the <em>Documentation</em> menu by skinning this file:</p>
+<div class="highlight"><pre><span></span>cp resources/views/header-documentation.foil.php resources/skins/example/header-documentation.foil.php
+</pre></div>
+
+
+<p>The stock version includes a link to the example page and a external link to the IXP Manager website <em>(we would be much obliged if you left this in place!)</em>.</p>
+<p>INEX's own version of this can be found in the shipped <code>resources/skins/inex/header-documentation.foil.php</code> file which shows how we use it.</p>
               
             </div>
           </div>
@@ -359,10 +360,10 @@ HELPDESK_ZENDESK_EMAIL=john.doe@example.com
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../irrdb/" class="btn btn-neutral float-right" title="IRRDB">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../tacacs/" class="btn btn-neutral float-right" title="TACACS">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../grapher/" class="btn btn-neutral" title="Grapher"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../smokeping/" class="btn btn-neutral" title="Smokeping"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -392,10 +393,10 @@ HELPDESK_ZENDESK_EMAIL=john.doe@example.com
           <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../grapher/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../smokeping/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../irrdb/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../tacacs/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -22,10 +22,10 @@ See the entity definitions [here](https://github.com/inex/IXP-Manager/blob/maste
 
 There are four types of user:
 
-* `AUTH_PUBLIC` - a visitor who has not logged into IXP Manager.
-* `AUTH_CUSTUSER` - a standard customer user with portal access.
-* `AUTH_CUSTADMIN` - a customer administrative user. The only purpose of this account is to allow customers to create, edit and remove their own users. No other access is available through a CUSTADMIN login.
-* `AUTH_SUPERUSER` - IXP staff only. **FULL ACCESS TO ALL CUSTOMERS AND FUNCTIONS**. This is only for your IXP staff!
+* `AUTH_PUBLIC` - a visitor who has not logged into IXP Manager (`priv == 0`).
+* `AUTH_CUSTUSER` - a standard customer user with portal access (`priv == 1`).
+* `AUTH_CUSTADMIN` - a customer administrative user. The only purpose of this account is to allow customers to create, edit and remove their own users. No other access is available through a CUSTADMIN login (`priv == 2`).
+* `AUTH_SUPERUSER` - IXP staff only. **FULL ACCESS TO ALL CUSTOMERS AND FUNCTIONS**. This is only for your IXP staff! (`priv == 3`)
 
 **Additional Historical Perspective:** the use of *AUTH_CUSTADMIN* was modeled on RIPE's equivalent model at the time. RIPE have since abandoned this model and it is our intention to do likewise.
 
