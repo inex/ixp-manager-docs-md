@@ -24,7 +24,7 @@ You then need to edit this file as follows:
     'enabled' => true,
     ```
 
-    If this is not set to true, the user will not be offered subscription options and the CLI commands will not execute.
+    If this is not set to true, the user will not be offered subscription options and the CLI/API commands will not execute.
 
 2. Configure the available mailing list(s) in the `lists` array. Here is an example:
 
@@ -35,14 +35,12 @@ You then need to edit this file as follows:
             'desc'    => "A longer description as presented in IXP Manager.",
             'email'   => "members@example.com",
             'archive' => "https://www.example.com/mailman/private/members/",
-            'syncpws' => false,
         ],
         'tech' => [
             'name'    => "Tech/Operations Mailing List",
             'desc'    => "A longer description as presented in IXP Manager.",
             'email'   => "tech@example.com",
-            'archive' => "https://www.example.com/mailman/private/tech/"
-            'syncpws' => false,
+            'archive' => "https://www.example.com/mailman/private/tech/",
         ],
     ],
 
@@ -50,7 +48,7 @@ You then need to edit this file as follows:
 
     Note that the `members` and `tech` array keys above are the list handles that will be used by the API interfaces later. It is also important that they match the Mailman list key.
 
-    Historically, mailing list passwords were also sync'd from the IXP Manager user database *unless* `syncpws` is both defined and false for the given list. As we are now recommending *bcrypt* as the standard password hashing mechanism, we no longer recommend this and suggest allowing Mailman to manage its own passwords.
+    Historically, mailing list passwords were also sync'd from the IXP Manager user database *unless* `syncpws` is both defined and false for the given list. As we are now enforcing *bcrypt* as the standard password hashing mechanism, we no longer support this and suggest allowing Mailman to manage its own passwords.
 
 3. Paths to Mailman commands. These will be used in the API/CLI elements later:
 
@@ -76,19 +74,88 @@ Users in IXP Manager will either be marked as being subscribed to a list, not su
 mailinglist.listname1.subscribed = 0/1
 ```
 
-There are four steps to performing the synchronisation **for each list** which are done by either using the IXP Manager CLI script `$IXPROOT/bin/ixptool.php` or the older [API V1](https://github.com/inex/IXP-Manager/wiki/API-V1) interface.
+There are three steps to performing the synchronisation **for each list** which are done by either using the IXP Manager CLI script `artisan mailing-list:...` or the [API](api.md) interface.
 
 ### CLI Interface Overview
 
-1. The execution of the `mailing-list-cli.list-init` script which is really for new IXP Manager users (or initial set up of the mailing list feature). This script is piped the full subscribers list from Mailman (via `list_members`). This function will iterate through all users and, if they have no preference set for subscription to this list, will either add a "not subscribed" preference if their email address is not in the provided list of subscribers or a "subscribed" preference if it is.
+**NB:** these relate to the CLI as implemented from IXP Manager >= v4.7.
 
-2. The execution of the `mailing-list-cli.get-subscribed` action which lists all users who are subscribed to the given mailing list based on their user preferences. This is piped to the `add_members` Mailman script.
+1. The execution of the `artisan mailing-list:init` script which is really for new IXP Manager users (or initial set up of the mailing list feature). This script is piped the full subscribers list from Mailman (via `list_members`). This function will iterate through all users and, if they have no preference set for subscription to this list, will either add a "not subscribed" preference if their email address is not in the provided list of subscribers or a "subscribed" preference if it is.
 
-3. The execution of the `mailing-list-cli.get-unsubscribed` action which lists all users who are unsubscribed to the given mailing list based on their user preferences. This is piped to the `remove_members` Mailman script.
+2. The execution of the `artisan mailing-list:get-subscribers` action which lists all users who are subscribed to the given mailing list based on their user preferences. This is piped to the `add_members` Mailman script.
 
-4. The execution of the `mailing-list-cli.password-sync` action which sets the mailing list password for  all users who are unsubscribed to the given mailing list based on their IXP Manager user password. This action `exec()`'s' the change password command directly. **See Password Synchronisation below.** Unlike the above three operations, the password sync executes a command directly (via PHP `exec()`). If you just want to print the commands to stdout, add the parameters `-v -p noexec=1`.
+3. The execution of the `artisan mailing-list:get-subscribers --unsubscribed` action which lists all users who are unsubscribed to the given mailing list based on their user preferences. This is piped to the `remove_members` Mailman script.
 
-### API V1 Interface Overview
+### API V4 Interface Overview
+
+The API v4 implementation was added in IXP Manager v4.7. See the end of this document for the API v1 implementation in previous versions of IXP Manager.
+
+If you wish to use the API version, proceed as follows where:
+
+* `$KEY` is one of your SUPERUSER API keys (see [here](api.md) for details);
+* `https://ixp.example.com` is your IXP Manager web interface;
+* `members` is an example mailing list handle as defined above in `$IXPROOT/config/mailinglists.php`.
+
+
+Use the initialisation function for new IXP Manager users (or initial set up of the mailing list feature) which updates IXP Manager with all currently subscribed mailing list members:
+
+```sh
+/path/to/mailman/bin/list_members members >/tmp/ml-members.txt
+curl -f --data-urlencode addresses@/tmp/ml-members.txt \
+    -H "X-IXP-Manager-API-Key: $KEY" -X POST
+    "https://ixp.example.co/api/v4/mailing-list/init/members"
+rm /tmp/ml-members.txt
+```
+
+Pipe all subscribed users to the `add_members` Mailman script:
+
+```sh
+curl -f -H "X-IXP-Manager-API-Key: $KEY" -X GET \
+    "https://ixp.example.co/api/v4/mailing-list/subscribers/members" | \
+    /path/to/mailman/bin/add_members -r - -w n -a n members >/dev/null
+```
+
+Pipe all users who are unsubscribed to the `remove_members` Mailman script:
+
+```sh
+curl -f -H "X-IXP-Manager-API-Key: $KEY" -X GET \
+    "https://ixp.example.co/api/v4/mailing-list/unsubscribed/members" | \
+    /path/to/mailman/bin/remove_members -f - -n -N members >/dev/null
+```
+
+## How to Implement
+
+You can implement mailing list management by configuring IXP Manager as above.
+
+IXP Manager will generate shell scripts to manage all of the above.
+
+Execute the following command for the CLI version **(and make sure to update the assignments at the top of the script)**:
+
+```sh
+artisan mailing-list:sync-script --sh
+```
+
+Or the following for the API V4 version **(and make sure to update the assignments at the top of the script)**:
+
+```sh
+artisan mailing-list:sync-script
+```
+
+This generates a script which performs each of the above four steps for each configured mailing list. If your mailing list configuration does not change, you will not need to rerun this.
+
+You should now put this script into crontab on the appropriate server (same server for CLI!) and run as often as you feel is necessary. The current *success* message for a user updating their subscriptions says *within 12 hours* so we'd recommend at least running twice a day.
+
+
+
+## Todo
+
+* better handling of multiple users with the same email address and documentation of same
+* user changes email address
+
+
+## API V1 Interface Overview
+
+**DEPRECATED** and only available in IXP Manager <v4.7.
 
 The CLI version of mailing list management was presented above. If you wish to use the API version, proceed as follows where:
 
@@ -119,60 +186,3 @@ Pipe all users who are unsubscribed to the `remove_members` Mailman script:
 curl -f "https://www.example.com/ixp/apiv1/mailing-list/get-unsubscribed/key/$MyKey/list/members" | \
     /path/to/mailman/bin/remove_members -f - -n -N members >/dev/null
 ```
-
-Sync the passwords from IXP Manager to Mailman with something like:
-
-```sh
-curl -f "https://www.example.com/ixp/apiv1/mailing-list/password-sync/key/MyKey/list/listname1" | \
-    egrep "^/path/to/mailman/bin/withlist -q -l -r changepw '.+' '.+' '.+'$" | /bin/sh >/dev/null
-```
-
-*(Feel free to make the above regexp more secure and update this document).*        
-
-
-## How to Implement
-
-You can implement mailing list management by configuring IXP Manager as above.
-
-IXP Manager will then generate shell scripts to manage all of the above.
-
-Execute the following command for the CLI version:
-
-```sh
-bin/ixptool.php -a mailing-list-cli.sync-script >bin/mailing-list-sync.sh
-```
-
-Or the following for the API V1 version **(and make sure to update the assignments at the top of the script)**:
-
-```sh
-bin/ixptool.php -a mailing-list-cli.sync-script --p1=apiv1 >bin/mailing-list-sync-apiv1.sh
-```
-
-This generates a script called `mailing-list-sync[-apiv1].sh` which performs each of the above four steps for each configured mailing list. If your mailing list configuration does not change, you will not need to rerun this.
-
-You should now put this script into crontab on the appropriate server (same server for CLI!) and run as often as you feel is necessary. The current *success* message for a user updating their subscriptions says *within 12 hours* so we'd recommend at least running twice a day.
-
-
-## Password Synchronisation
-
-**We now recommend against this [for the reasons explained here](https://github.com/inex/IXP-Manager/wiki/Password-Hashing). We have not investigated if Mailman can support Bcrypt as of yet.**
-
-By default, passwords from IXP Manager users with mailing list subscriptions will be sync'd to Mailman.
-
-This is done via the Mailman `withlist` script and it requires a `changepw.py` script to be in the same directory as `withlist` and this script is not supplied by default (although it is documented). Create the following `changepw.py` in the same directory as `withlist`:
-
-```py
-from Mailman.Errors import NotAMemberError
-
-def changepw(mlist, addr, newpasswd):
-    try:
-        mlist.setMemberPassword(addr, newpasswd)
-        mlist.Save()
-    except NotAMemberError:
-        print 'No address matched:', addr
-```
-
-## Todo
-
-* better handling of multiple users with the same email address and documentation of same
-* user changes email address
