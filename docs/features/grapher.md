@@ -235,6 +235,24 @@ GRAPHER_BACKEND_SFLOW_ROOT="http://www.example.com/grapher-sflow"
 ```
 
 
+## Accessibility of Aggregate Graphs
+
+By default, the following graphs are **publically** accessible in **IXP Manager** and available through the top menu under *Statistics*:
+
+1. aggregate bits and packets graphs for the IXP;
+2. aggregate bits and packets graphs for the infrastructures;
+3. aggregate graphs for the switches; and
+4. aggregate graphs for the trunk connections.
+
+If you wish to limit access to these to a *less than or equal* [user permission](../usage/users.md), see the `config/grapher.php` configuration file and set the following in `.env` appropriately:
+
+1. `GRAPHER_ACCESS_IXP`
+2. `GRAPHER_ACCESS_INFRASTRUCTURE`
+3. `GRAPHER_ACCESS_SWITCH`
+4. `GRAPHER_ACCESS_TRUNK`
+
+*The older Zend Framework templates will still show these options in the menu but these templates are beign agressivily phased out.*
+
 ## API Access
 
 *Grapher* allows API access to graphs via a base URL of the form:
@@ -372,22 +390,22 @@ For additional options, it's always best to manually or programmatically examine
 
 The grapher API can be accessed using the [standard API access mechanisms](api.md).
 
-Each graph (ixp, infrastructure, etc.) has an `authorise()` method which determines who is allowed view a graph. For example, see [IXP\Services\Grapher\Graph\VlanInterface::authorise()](https://github.com/inex/IXP-Manager/blob/master/app/Services/Grapher/Graph/VlanInterface.php#L131). The logic is:
+Each graph (ixp, infrastructure, etc.) has an `authorise()` method which determines who is allowed view a graph. For example, see [IXP\Services\Grapher\Graph\VlanInterface::authorise()](https://github.com/inex/IXP-Manager/blob/master/app/Services/Grapher/Graph/VlanInterface.php#L131). The general logic is:
 
 * if not logged in / valid API key -> deny
 * if superuser -> allow
-* if user belongs to customer graoh requested -> allow
+* if user belongs to customer graph requested -> allow
 * otherwise -> deny and log
 
 For the supported graph types, default access control is:
 
 Graph               |  Default Access Control
 --------------------|----------------------------------
-`ixp`               | public
-`infrastructure`    | public
+`ixp`               | public but respects `GRAPHER_ACCESS_IXP` (see above)
+`infrastructure`    | public but respects `GRAPHER_ACCESS_INFRASTRUCTURE` (see above)
 `vlan`              | public unless it's a private VLAN (in which case only superuser is supported currently)
-`switch`            | public
-`trunk`             | public
+`switch`            | public but respects `GRAPHER_ACCESS_SWITCH` (see above)
+`trunk`             | public but respects `GRAPHER_ACCESS_TRUNK` (see above)
 `physicalinterface` | superuser or user of the owning customer
 `vlaninterface`     | superuser or user of the owning customer
 `virtualinterface`  | superuser or user of the owning customer
