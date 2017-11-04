@@ -147,6 +147,8 @@
         
             <li><a class="toctree-l4" href="#backend-sflow">Backend: sflow</a></li>
         
+            <li><a class="toctree-l4" href="#accessibility-of-aggregate-graphs">Accessibility of Aggregate Graphs</a></li>
+        
             <li><a class="toctree-l4" href="#api-access">API Access</a></li>
         
         </ul>
@@ -508,6 +510,22 @@ update-rc.d mrtg defaults
 </pre></div>
 
 
+<h2 id="accessibility-of-aggregate-graphs">Accessibility of Aggregate Graphs<a class="headerlink" href="#accessibility-of-aggregate-graphs" title="Permanent link"></a></h2>
+<p>By default, the following graphs are <strong>publically</strong> accessible in <strong>IXP Manager</strong> and available through the top menu under <em>Statistics</em>:</p>
+<ol>
+<li>aggregate bits and packets graphs for the IXP;</li>
+<li>aggregate bits and packets graphs for the infrastructures;</li>
+<li>aggregate graphs for the switches; and</li>
+<li>aggregate graphs for the trunk connections.</li>
+</ol>
+<p>If you wish to limit access to these to a <em>less than or equal</em> <a href="../../usage/users/">user permission</a>, see the <code>config/grapher.php</code> configuration file and set the following in <code>.env</code> appropriately:</p>
+<ol>
+<li><code>GRAPHER_ACCESS_IXP</code></li>
+<li><code>GRAPHER_ACCESS_INFRASTRUCTURE</code></li>
+<li><code>GRAPHER_ACCESS_SWITCH</code></li>
+<li><code>GRAPHER_ACCESS_TRUNK</code></li>
+</ol>
+<p><em>The older Zend Framework templates will still show these options in the menu but these templates are beign agressivily phased out.</em></p>
 <h2 id="api-access">API Access<a class="headerlink" href="#api-access" title="Permanent link"></a></h2>
 <p><em>Grapher</em> allows API access to graphs via a base URL of the form:</p>
 <div class="highlight"><pre><span></span>https://ixp.example.com/grapher/{graph}[?id=x][&amp;period=x][&amp;type=x][&amp;category=x] \
@@ -641,11 +659,11 @@ update-rc.d mrtg defaults
 </ul>
 <h3 id="api-access-control">API Access Control<a class="headerlink" href="#api-access-control" title="Permanent link"></a></h3>
 <p>The grapher API can be accessed using the <a href="../api/">standard API access mechanisms</a>.</p>
-<p>Each graph (ixp, infrastructure, etc.) has an <code>authorise()</code> method which determines who is allowed view a graph. For example, see <a href="https://github.com/inex/IXP-Manager/blob/master/app/Services/Grapher/Graph/VlanInterface.php#L131">IXP\Services\Grapher\Graph\VlanInterface::authorise()</a>. The logic is:</p>
+<p>Each graph (ixp, infrastructure, etc.) has an <code>authorise()</code> method which determines who is allowed view a graph. For example, see <a href="https://github.com/inex/IXP-Manager/blob/master/app/Services/Grapher/Graph/VlanInterface.php#L131">IXP\Services\Grapher\Graph\VlanInterface::authorise()</a>. The general logic is:</p>
 <ul>
 <li>if not logged in / valid API key -&gt; deny</li>
 <li>if superuser -&gt; allow</li>
-<li>if user belongs to customer graoh requested -&gt; allow</li>
+<li>if user belongs to customer graph requested -&gt; allow</li>
 <li>otherwise -&gt; deny and log</li>
 </ul>
 <p>For the supported graph types, default access control is:</p>
@@ -659,11 +677,11 @@ update-rc.d mrtg defaults
 <tbody>
 <tr>
 <td><code>ixp</code></td>
-<td>public</td>
+<td>public but respects <code>GRAPHER_ACCESS_IXP</code> (see above)</td>
 </tr>
 <tr>
 <td><code>infrastructure</code></td>
-<td>public</td>
+<td>public but respects <code>GRAPHER_ACCESS_INFRASTRUCTURE</code> (see above)</td>
 </tr>
 <tr>
 <td><code>vlan</code></td>
@@ -671,11 +689,11 @@ update-rc.d mrtg defaults
 </tr>
 <tr>
 <td><code>switch</code></td>
-<td>public</td>
+<td>public but respects <code>GRAPHER_ACCESS_SWITCH</code> (see above)</td>
 </tr>
 <tr>
 <td><code>trunk</code></td>
-<td>public</td>
+<td>public but respects <code>GRAPHER_ACCESS_TRUNK</code> (see above)</td>
 </tr>
 <tr>
 <td><code>physicalinterface</code></td>
