@@ -30,8 +30,9 @@ The general process is:
     # move to the directory where you have installed IXP Manager
     cd $IXPROOT
     # pull the latest code
-    git pull
-    # git checkout v4.x.y
+    git fetch
+    # check out the version you are upgrading to
+    git checkout v4.x.y
     ```
 
 3. Install latest required libraries from composer (see notes below):
