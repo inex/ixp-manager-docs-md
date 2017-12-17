@@ -313,13 +313,13 @@
 <p>In IXP Manager, there are four types of users as descibed <a href="../../usage/users/">in the users page</a>. Static contact can be added which requires a minimum user privilege to access (e.g. <code>priv == 0</code> would be publically accessible through to <code>priv == 3</code> which would require a superadmin).</p>
 <p>To create static content, you should first <a href="../skinning/">set up skinning</a> for your installation. Let's assume you called your skin <code>example</code>.</p>
 <p>To create a publically accessible static content page called <code>misc-benefits</code>, you would first create a content directory in your skin as follows:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 mkdir -p resources/skins/example/content/<span class="o">{</span>0,1,2,3<span class="o">}</span>
 </pre></div>
 
 
 <p>where the directories <code>0, 1, 2, 3</code> represent the <em>minimum required user privilege</em> to access the content. You can now create your content page as follows:</p>
-<div class="highlight"><pre><span></span>cp resources/views/content/0/example.foil.php resources/skins/example/content/0/misc-benefits.foil.php
+<div class="highlight"><pre>cp resources/views/content/0/example.foil.php resources/skins/example/content/0/misc-benefits.foil.php
 </pre></div>
 
 
@@ -328,26 +328,26 @@ mkdir -p resources/skins/example/content/<span class="o">{</span>0,1,2,3<span cl
 <ul>
 <li><code>{priv}</code> is the <em>minimum required user privilege</em> required to access the page and is used first for testing the user's permissions and second as the directory to check for the file.</li>
 <li><code>{page}</code> is the name of the file to load (less <code>.foil.php</code>) and <strong>please be aware that this is normalised as follows:</strong>
-<div class="highlight"><pre><span></span><span class="x">strtolower( preg_replace( &#39;/[^a-z0-9\-_]/&#39;, &#39;&#39;, $page )</span>
+<div class="highlight"><pre><span class="x">strtolower( preg_replace( &#39;/[^a-z0-9\-_]/&#39;, &#39;&#39;, $page )</span>
 </pre></div>
 
 i.e. the file name can only contain characters from the class <code>[a-z0-9\-_]</code> and all lower case.</li>
 </ul>
 <p>The <code>example.foil.php</code> template copied above should provide the necessary structure for you. Essentially just replace the title and the content.</p>
 <p>For publically accessible documents, there is an alias route:</p>
-<div class="highlight"><pre><span></span>/public-content/{page}  -&gt; treated as: /content/0/{page}
+<div class="highlight"><pre>/public-content/{page}  -&gt; treated as: /content/0/{page}
 </pre></div>
 
 
 <h2 id="support-contact-template">Support / Contact Template<a class="headerlink" href="#support-contact-template" title="Permanent link"></a></h2>
 <p>IXP Manager ships with a link to <em>Support</em> in the main title menu. You should copy and adjust this as neccessary via skinning:</p>
-<div class="highlight"><pre><span></span>cp resources/views/content/0/support.foil.php resources/skins/example/content/0/support.foil.php
+<div class="highlight"><pre>cp resources/views/content/0/support.foil.php resources/skins/example/content/0/support.foil.php
 </pre></div>
 
 
 <h2 id="documentation-menu">Documentation Menu<a class="headerlink" href="#documentation-menu" title="Permanent link"></a></h2>
 <p>You can link to your own static contact pages using the <em>Documentation</em> menu by skinning this file:</p>
-<div class="highlight"><pre><span></span>cp resources/views/header-documentation.foil.php resources/skins/example/header-documentation.foil.php
+<div class="highlight"><pre>cp resources/views/header-documentation.foil.php resources/skins/example/header-documentation.foil.php
 </pre></div>
 
 
