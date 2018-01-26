@@ -8,7 +8,7 @@ This page on Docker for IXP Manager development should be read in conjunction wi
 
 If you want to get IXP Manager with Docker up and running quickly, follow these steps:
 
-1. Install Docker (see: https://www.docker.com/community-edition)
+1. Install Docker (see: [https://www.docker.com/community-edition](https://www.docker.com/community-edition))
 2. Clone IXP Manager to a directory:
 
     ```sh
