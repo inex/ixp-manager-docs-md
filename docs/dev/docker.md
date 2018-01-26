@@ -138,7 +138,7 @@ And you can get shell access to the container with:
 docker exec -it ixpm_mysql_1 bash
 ```
 
- ### Web Server
+### Web Server
 
  Note that the `www` container mounts the IXP Manager development directory under `/srv/ixpmanager`. This means all local code changes are immediately reflected on the Docker web server.
 
