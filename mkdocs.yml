@@ -47,6 +47,7 @@ pages:
     - 'API': 'dev/api.md'
     - 'Continuous Integration': 'dev/ci.md'
     - 'Contributer License Agreement': 'dev/cla.md'
+    - 'Docker': 'dev/docker.md'
     - 'Documentation': 'dev/docs.md'
     - 'Frontend CRUD': 'dev/frontend-crud.md'
     - 'Grapher': 'dev/grapher.md'

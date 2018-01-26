@@ -1,6 +1,8 @@
 # Vagrant
 
-To aid development (as well as allowing easier evaluation), we use [Vagrant](https://www.vagrantup.com/) from v4 onwards.
+For development purposes, we have both [Docker](docker.md) and Vagrant build files.
+
+
 
 
 ## Quick Vagrant
