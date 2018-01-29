@@ -277,5 +277,84 @@ It will replace `/etc/mrtg.conf` for the next cron run. It also sets the configu
 
 ## Dev Tool Integrations
 
+**NB: these tools and integrations are not IXP Manager specific but rather the typical Docker / PHP development tool chain. Please use support forums for the relevant sections / tools rather than contacting the IXP Manager developers directly.**
 
 ### PHP Storm and Xdebug
+
+We are big fans of [PhpStorm](https://www.jetbrains.com/phpstorm/) at IXP Manager DevHQ. One key feature is PhpStorm's integration with PHP Xdebug. We of course also need this to work with Docker.
+
+Some background information on Xdebug is provided below but you are expected to be familiar with [the Xdebug documentation on remote debugging](https://xdebug.org/docs/remote).
+
+The way interactive remote debugging works with Xdebug is as follows:
+
+1. Enable remote debugging on the PHP server (`php.ini` settings on the `www` container).
+2. Your browser, with a suitable plugin, includes a Xdebug parameter to signal you want remote debugging started for this request (either a GET, POST or Cookie setting).
+3. PHP Xdebug connects to the configured remote debugger *(PhpStorm in our case)* allowing you to set break points, step through instructions, view variable contents at a point in time, etc.
+
+To get this working with Docker, we need to work through each of these steps.
+
+**1. Enable Remote Debugging in the Docker Container**
+
+If you examine the `www` container Dockerfile in the IXP Manager source under `tools/docker/containers/www/Dockerfile`, you will see that we:
+
+* build the PHP Xdebug extension (`pecl install xdebug`).
+* configure in the container file `/usr/local/etc/php/conf.d/local-ixpmanager-xdebug.ini` as follows:
+
+```
+[xdebug]
+zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20151012/xdebug.so
+xdebug.remote_enable=1
+xdebug.remote_port=9001
+xdebug.remote_autostart=0
+xdebug.idekey=PHPSTORM
+```
+
+Note that the `zend_extension` may change as it is dynamically set by the build script. We also chose port 9001 rather than the default of 9000 [due to local conflicts with common tool chains](https://www.barryodonovan.com/2017/01/05/phpstorm-and-xdebug-macos-homebrew).
+
+The **one key element that is missing in the INI is the remote debugger IP address**. This needs to be set to your development computer's LAN address (there are other options but this works best in practice). Once you know this address (say it's `192.0.2.23`), set the following in the `${IXPHOME}/.env`:
+
+```
+# For PHP xdebug, put in the IP address of your host
+DOCKER_XDEBUG_CONFIG_REMOTE_HOST=192.0.2.23
+```
+
+When you start the Docker environment from `$IXPHOME` using `docker-compose` with something like:
+
+```
+cd $IXPHOME
+docker-compose -p ixpm up mysql www
+```
+
+then `docker-compose` will use this setting from the `.env` file and it will be passed through the Xdebug.
+
+**2. Install a Xdebug Plugin on Your Browser**
+
+Some recommended plugins from [the Xdebug documentation on remote debugging](https://xdebug.org/docs/remote) are these: [Firefox](https://addons.mozilla.org/en-GB/firefox/addon/xdebug-helper-for-firefox/), [Chrome](https://chrome.google.com/extensions/detail/eadndfjplgieldjbigjakmdgkmoaaaoc), [Safari](https://github.com/benmatselby/xdebug-toggler). It can also be enabled manually using a GET parameter - see the Xdebug documentation.
+
+The only required parameter is the session key. For PhpStorm, the default is `PHPSTORM` unless you have configured it different (see step 3 below).
+
+The PHP Xdebug browser plugins allow you to enable debugging on a per request basis. See the Firefox link about for an example.
+
+**3. Configure PhpStorm**
+
+PhpStorm have [their own documentation for Xdebug](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html). The short version to match the above is:
+
+* in PhpStorm, open *Preferences*
+* choose *Languages & Frameworks* -> *PHP* -> *Debug*.
+* in the *Xdebug* section:
+  * set the port to *9001*
+  * check *Can accept external connections*
+* apply these changes
+
+You now need to create a *Run/Debug Configuration*. This is so you can map file paths on the remote system (`www` container) to your local development files:
+
+* under the*Run* menu, select *Edit Configurations...*
+* in the resulting *Run/Debug Configurations* window, select the 'add' button on the top left
+* choose to add a new *PHP Remote Debug* configuration
+* configure the directory mapping as per this screenshot:
+
+![PhpStorm/Docker PHP Remote Debug Configuration](img/docker-devint-phpstorm.png)
+
+* under the *Run* menu, click *Start listening for PHP Debug connections*
+
+For testing, set a break point in `public/index.php` and access your development IXP Manager using your new browser plugin.
