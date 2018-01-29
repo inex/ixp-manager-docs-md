@@ -35,13 +35,13 @@ The general process is:
     git checkout v4.x.y
     ```
 
-3. Install latest required libraries from composer (see notes below):
+3. Install latest required libraries from composer **(see notes below)**:
 
     ```sh
     composer install
     ```
 
-4. Install latest frontend dependencies (see notes below):
+4. Install latest frontend dependencies **(see notes below)**:
 
     ```sh
     # if asked to chose a jquery version, chose the latest / highest version offered
@@ -100,6 +100,10 @@ The following options would work on Ubuntu (as root):
 # set this to your IXP Manager installation directory
 IXPHOME=/srv/ixpmanager
 
+# ensure www-data can write to bower:
+chown -R www-data: $IXPHOME/public/bower_components
+chmod -R u+rwX $IXPHOME/public/bower_components
+
 # update bower
 sudo -u www-data bash -c "HOME=${IXPHOME}/storage && cd ${IXPHOME} && bower --config.interactive=false -f update"
 ```
@@ -122,6 +126,11 @@ IXPHOME=/srv/ixpmanager
 sudo -u www-data bash -c "HOME=${IXPHOME}/storage && cd ${IXPHOME} && composer install"
 ```
 
+If composer is not managed by your package management system, you should keep it up to date via:
+
+```
+composer selfupdate
+```
 
 
 ## Correcting Database Issues / Verifying Your Schema
