@@ -307,6 +307,12 @@ xdebug.remote_enable=1
 xdebug.remote_port=9001
 xdebug.remote_autostart=0
 xdebug.idekey=PHPSTORM
+xdebug.profiler_enable=0
+xdebug.profiler_enable_trigger=1
+xdebug.profiler_output_dir=/srv/ixpmanager/storage/tmp
+xdebug.auto_trace=0
+xdebug.trace_enable_trigger=1
+xdebug.trace_output_dir=/srv/ixpmanager/storage/tmp
 ```
 
 Note that the `zend_extension` may change as it is dynamically set by the build script. We also chose port 9001 rather than the default of 9000 [due to local conflicts with common tool chains](https://www.barryodonovan.com/2017/01/05/phpstorm-and-xdebug-macos-homebrew).
@@ -331,13 +337,13 @@ then `docker-compose` will use this setting from the `.env` file and it will be 
 
 Some recommended plugins from [the Xdebug documentation on remote debugging](https://xdebug.org/docs/remote) are these: [Firefox](https://addons.mozilla.org/en-GB/firefox/addon/xdebug-helper-for-firefox/), [Chrome](https://chrome.google.com/extensions/detail/eadndfjplgieldjbigjakmdgkmoaaaoc), [Safari](https://github.com/benmatselby/xdebug-toggler). It can also be enabled manually using a GET parameter - see the Xdebug documentation.
 
-The only required parameter is the session key. For PhpStorm, the default is `PHPSTORM` unless you have configured it different (see step 3 below).
+The only required parameter is the session key. For PhpStorm, the default is `PHPSTORM` unless you have configured it differently (see step 3 below).
 
-The PHP Xdebug browser plugins allow you to enable debugging on a per request basis. See the Firefox link about for an example.
+The PHP Xdebug browser plugins allow you to enable debugging on a per request basis. See the Firefox link above to the plugin homepage for screenshots (as of 2018-01 at least).
 
 **3. Configure PhpStorm**
 
-PhpStorm have [their own documentation for Xdebug](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html). The short version to match the above is:
+PhpStorm have [their own documentation for Xdebug](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html). The short version to match the above two steps is:
 
 * in PhpStorm, open *Preferences*
 * choose *Languages & Frameworks* -> *PHP* -> *Debug*.
@@ -355,6 +361,15 @@ You now need to create a *Run/Debug Configuration*. This is so you can map file 
 
 ![PhpStorm/Docker PHP Remote Debug Configuration](img/docker-devint-phpstorm.png)
 
+* you should see this new configuration selected on the top right (if not, please refer to PhpStorm documentation)
 * under the *Run* menu, click *Start listening for PHP Debug connections*
 
-For testing, set a break point in `public/index.php` and access your development IXP Manager using your new browser plugin.
+For testing, set a break point in `public/index.php` and access your development IXP Manager using your new browser plugin. You should be able to step through each statement and - presuming your mappings are correctly set up - step into any file in the project.
+
+**Profiling and Function Traces**
+
+You may have noticed in the Xdebug configuration above, we have allowed for the triggering of function traces and profiling also. The browser plugins should support these - certainly the Firefox one does *(leave the trigger key blank in both cases)*.
+
+When you request an IXP Manager page via Firefox with profiling enabled, you will find the *cachegrind* file in `$IXPHOME/storage/tmp` on your own system You can then view this in PhpStorm via the menu *Tools -> Analyze Xdebug Profiler Snapshot...*.
+
+Function traces can be found in the same directory - these are just text files.
