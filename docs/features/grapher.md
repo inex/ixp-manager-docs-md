@@ -178,28 +178,42 @@ An example of how to customise the MRTG configuration [can be found in the skinn
 
 ### Inserting Traffic Data Into the Database / Reporting Emails
 
-The MRTG backend inserts daily summaries into MySQL for reporting. An example crontab for this is:
+The MRTG backend inserts daily summaries into MySQL for reporting. See the `traffic_daily` database table for this. Essentially, there is a row per day per customer for traffic types *bits, discards, errors, broadcasts and packets*. Each row has a daily, weekly, monthly and yearly value for average, max and total.
+
+ An example crontab for collecting and storing *yesterday's* data is as follows. **This should run everyday.**
 
 ```
-
 0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
-
-0 4   * * *   www-data        /srv/ixpmanager/artisan grapher:email-traffic-deltas --stddev=1.5 -v user1@example.com,user2@example.com
-
-30 10 * * tue www-data        /srv/ixpmanager/artisan grapher:email-port-utilisations --threshold=80 ops@inex.ie,barry.rhodes@inex.ie,eileen@inex.ie
-
-31 10 * * *   www-data        /srv/ixpmanager/artisan grapher:email-ports-with-counts --discards ops@inex.ie
-
-32 10 * * *   www-data        /srv/ixpmanager/artisan grapher:email-ports-with-counts --errors ops@inex.ie
 ```
 
-which, in the order above, do:
+In the IXP Manager application, this data powers the *League Table* function on the left hand menu.
 
-1. Once per day, upload *yesterday's* summary of MRTG statistics into the database.
-2. Email a report of members whose average traffic has changed by more than 1.5 times their standard deviation to `user1@example.com` and `user2@example.com`.
+This data is also used to send email reports / notifications of various traffic events. A sample crontab for this would look like the following:
+
+```
+0 4   * * *   www-data        /srv/ixpmanager/artisan grapher:email-traffic-deltas    \
+                                --stddev=1.5 -v user1@example.com,user2@example.com
+
+30 10 * * tue www-data        /srv/ixpmanager/artisan grapher:email-port-utilisations \
+                                --threshold=80 user1@example.com,user2@example.com
+
+31 10 * * *   www-data        /srv/ixpmanager/artisan grapher:email-ports-with-counts \
+                                --discards user1@example.com,user2@example.com
+
+32 10 * * *   www-data        /srv/ixpmanager/artisan grapher:email-ports-with-counts \
+                                --errors user1@example.com,user2@example.com
+```
+
+Which, in the order above, do:
+
+1. Email a report of members whose average traffic has changed by more than 1.5 times their standard deviation.
 3. Email a report of all ports with >=80% utilisation yesterday.
 4. Email a report of all ports with a non-zero discard count yesterday.
 5. Email a report of all ports with a non-zero error count yesterday.
+
+
+This generated emails are HTML formatted with embedded graph images.
+
 
 ## Backend: sflow
 
