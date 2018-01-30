@@ -329,7 +329,9 @@
 <p>There are <a href="https://github.com/inex/IXP-Manager/wiki/Route-Server-Testing">some old notes on route server testing here</a> which may also be useful.</p>
 <h2 id="setting-up">Setting Up<a class="headerlink" href="#setting-up" title="Permanent link"></a></h2>
 <p>You first need to add your route servers to the <strong>IXP Manager</strong> routers database. See <a href="../routers/">this page on how to do that</a>.</p>
-<p>Typically an IXP's route server service will have a dedicated ASN that is different to the IXP's own management / route collector ASN. As such, you need to add a new <em>internal</em> customer to IXP Manager. Here's an example from INEX for our <em>route server #1</em>:</p>
+<p>Typically an IXP's route server service will have a dedicated ASN that is different to the IXP's own management / route collector ASN. As such, you need to add a new <em>internal</em> customer to IXP Manager.</p>
+<p><strong>You are strongly advised to use / request a 16-bit ASN from your RIR for route server use. If you do not, you will be unable to offer your members standard community based filtering.</strong></p>
+<p>Here's an example from INEX for our <em>route server #1</em>:</p>
 <p><img alt="Route Servers INEX Customer" src="../img/rs-inex-customer.png" /></p>
 <p>You then need to create an interface for this route server on each peering LAN where the service will be offered. Here again is INEX's example from our peering LAN1 in Dublin:</p>
 <p><img alt="Route Servers INEX VLAN Interface Entry" src="../img/rs-inex-vli.png" /></p>

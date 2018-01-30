@@ -336,7 +336,7 @@
 </ul>
 <h2 id="generating-smokeping-targets">Generating Smokeping Targets<a class="headerlink" href="#generating-smokeping-targets" title="Permanent link"></a></h2>
 <p>You can use the <strong>IXP Manager</strong> API to get the Smokeping target configurations for a given VLAN and protocol using the following endpoint format (both GET and POST requests work):</p>
-<div class="highlight"><pre>https://ixp.example.com/api/v4/vlan/smokeping/{vlanid}/{protocol}
+<div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/vlan/smokeping/{vlanid}/{protocol}
 </pre></div>
 
 
@@ -347,7 +347,7 @@
 </ul>
 <p>If either of these are invalid, the API will return with a HTTP 404 response.</p>
 <p>And example of a target in the reponse is:</p>
-<div class="highlight"><pre># AS112 Reverse DNS / 185.6.36.6
+<div class="highlight"><pre><span></span># AS112 Reverse DNS / 185.6.36.6
 +++ vlanint_86_ipv4
 menu = AS112 Reverse DNS (IPv4)
 title =  Peering VLAN #1 :: AS112 Reverse DNS via 185.6.36.6
@@ -363,7 +363,7 @@ host = 185.6.36.6
 <li><code>probe</code>: the probe to use when measuring latency to the target. Defaults for <code>FPing</code> for IPv4 and <code>FPing6</code> for IPv6.</li>
 </ul>
 <p>An example of changing these parameters is:</p>
-<div class="highlight"><pre>curl --data <span class="s2">&quot;level=%2B%2B&amp;probe=MyPing&quot;</span> -X POST <span class="se">\</span>
+<div class="highlight"><pre><span></span>curl --data <span class="s2">&quot;level=%2B%2B&amp;probe=MyPing&quot;</span> -X POST <span class="se">\</span>
     -H <span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span> <span class="se">\</span>
     -H <span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span> <span class="se">\</span>
     https://ixpexample.com/api/v4/vlan/smokeping/2/4
@@ -373,7 +373,7 @@ host = 185.6.36.6
 <h3 id="templates-skinning">Templates / Skinning<a class="headerlink" href="#templates-skinning" title="Permanent link"></a></h3>
 <p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
 <p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
-<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 mkdir -p resources/skins/myskin/api/v4/vlan/smokeping
 cp resources/views/api/v4/vlan/smokeping/default.foil.php resources/skins/myskin/api/v4/vlan/smokeping/mytemplate1.foil.php
 </pre></div>
@@ -392,7 +392,7 @@ cp resources/views/api/v4/vlan/smokeping/default.foil.php resources/skins/myskin
 <h3 id="generating-updating-targets">Generating / Updating Targets<a class="headerlink" href="#generating-updating-targets" title="Permanent link"></a></h3>
 <p>At INEX, we would use a script <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/smokeping">such as this one which is bundled with IXP Manager</a> to (re)generate our targets by cron and update Smokeping if necessary.</p>
 <p>To use this script yourself, you just need to copy it to the appropriate Smokeping server and edit the first few lines:</p>
-<p><div class="highlight"><pre><span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;my-ixp-manager-api-key&quot;</span>
+<p><div class="highlight"><pre><span></span><span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;my-ixp-manager-api-key&quot;</span>
 <span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://ixp.example.com/api/v4/vlan/smokeping&quot;</span>
 <span class="nv">ETCPATH</span><span class="o">=</span><span class="s2">&quot;/etc/smokeping&quot;</span>
 <span class="nv">SMOKEPING</span><span class="o">=</span><span class="s2">&quot;/usr/bin/smokeping&quot;</span>
@@ -414,7 +414,7 @@ where:</p>
 <p>The script iterates over the VLAN IDs and protocols to create the individual configuration files.</p>
 <h3 id="using-targets-in-smokeping">Using Targets in Smokeping<a class="headerlink" href="#using-targets-in-smokeping" title="Permanent link"></a></h3>
 <p>Once the above target file(s) are created, we can use them in our standard Smokeping configuration file as follows:</p>
-<div class="highlight"><pre>+ infra_1
+<div class="highlight"><pre><span></span>+ infra_1
 menu = IXP Infrastructures 1
 title = IXP Infrastructures 1
 
@@ -432,7 +432,7 @@ title = IXP Infra 1 :: Peering VLAN 1
 <h2 id="apache-configuration">Apache Configuration<a class="headerlink" href="#apache-configuration" title="Permanent link"></a></h2>
 <p>You need to be able to configure IXP Manager with the base Smokeping URL such as <code>http://www.example.com/smokeping</code>. This should be the URL to Smokeping that is the standard Smokeping entry page.</p>
 <p>IXP Manager will add the trailing slash as assume the directory index is configured for the CGI script. Thus you need an Apache configuration such as:</p>
-<div class="highlight"><pre>ScriptAlias /smokeping/smokeping.cgi /usr/lib/cgi-bin/smokeping.cgi
+<div class="highlight"><pre><span></span>ScriptAlias /smokeping/smokeping.cgi /usr/lib/cgi-bin/smokeping.cgi
 Alias /smokeping /usr/share/smokeping/www
 
 &lt;Directory &quot;/usr/share/smokeping/www&quot;&gt;
@@ -445,14 +445,14 @@ Alias /smokeping /usr/share/smokeping/www
 <h2 id="ixp-manager-configuration">IXP Manager Configuration<a class="headerlink" href="#ixp-manager-configuration" title="Permanent link"></a></h2>
 <p>The current implementation of Smokeping in IXP Manager is as a <em>bridge</em> between IXP manager v3 and Grapher - where we hope it will eventually end up.</p>
 <p>Once you have configured Smokeping and Apache/web server as above, you really just need to set the following in your IXP Manager <code>.env</code> file:</p>
-<div class="highlight"><pre>GRAPHER_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
+<div class="highlight"><pre><span></span>GRAPHER_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
 </pre></div>
 
 
 <p>where the URL is as you set up in Apache above.</p>
 <p>There may be instances where you have multiple VLANs where it is not possible to have a single Smokeping instance graph latency for every VLAN. Particularly as the Smokeping daemon for a given VLAN needs to have an interface / IP address on that VLAN.</p>
 <p>INEX has such a situation where we have a regional exchange, <em>INEX Cork</em>, that is located in a different city to the main INEX LANs and IXP Manager. In this situation, you can configure Smokeping URL overrides on a per VLAN basis by creating a file called <code>$IXPROOT/config/grapher_smokeping_overrides.php</code> which returns an array as follows:</p>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 
 <span class="k">return</span> <span class="p">[</span>
     <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s1">&#39;http://www.example.com/smokeping&#39;</span><span class="p">,</span>
@@ -468,18 +468,18 @@ Alias /smokeping /usr/share/smokeping/www
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link"></a></h2>
 <p>See <a href="https://github.com/inex/IXP-Manager/issues/122">issue #122</a> for a discussion on Ubuntu installation and diagnosing issues in general (relates to IXP Manager v3 but may still be useful).</p>
 <p>When you look at the source HTML of the Smokeping page that IXP Manager generates, you'll see generated Smokeping image URLs like the following:</p>
-<div class="highlight"><pre>https://www.example.com/ixp/smokeping/retrieve-image/ixp/1/scale/3hours/infra/2/vlan/3/vlanint/94/proto/ipv4
+<div class="highlight"><pre><span></span>https://www.example.com/ixp/smokeping/retrieve-image/ixp/1/scale/3hours/infra/2/vlan/3/vlanint/94/proto/ipv4
 </pre></div>
 
 
 <p>IXP Manager will call something like</p>
-<div class="highlight"><pre><span class="x">file_get_contents( &#39;https://www.example.com/smokeping/?.....&#39; )</span>
+<div class="highlight"><pre><span></span><span class="x">file_get_contents( &#39;https://www.example.com/smokeping/?.....&#39; )</span>
 </pre></div>
 
 
 <p>You should see these requests to Smokeping in your Smokeping web server log files. Find these and compare them to the URLs that Smokeping itself generates for its own display of the images to ensure you have everything - and especially the Smokeping URL in IXP configuration set up correctly.</p>
 <p>Also, try testing these URLs directly on the IXP Manager server via:</p>
-<div class="highlight"><pre><span class="x">php -r &#39;echo file_get_contents( &quot;https://...&quot; );&#39;</span>
+<div class="highlight"><pre><span></span><span class="x">php -r &#39;echo file_get_contents( &quot;https://...&quot; );&#39;</span>
 </pre></div>
               
             </div>
