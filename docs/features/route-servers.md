@@ -31,7 +31,11 @@ There are [some old notes on route server testing here](https://github.com/inex/
 
 You first need to add your route servers to the **IXP Manager** routers database. See [this page on how to do that](routers.md).
 
-Typically an IXP's route server service will have a dedicated ASN that is different to the IXP's own management / route collector ASN. As such, you need to add a new *internal* customer to IXP Manager. Here's an example from INEX for our *route server #1*:
+Typically an IXP's route server service will have a dedicated ASN that is different to the IXP's own management / route collector ASN. As such, you need to add a new *internal* customer to IXP Manager.
+
+**You are strongly advised to use / request a 16-bit ASN from your RIR for route server use. If you do not, you will be unable to offer your members standard community based filtering.**
+
+Here's an example from INEX for our *route server #1*:
 
 ![Route Servers INEX Customer](img/rs-inex-customer.png)
 
