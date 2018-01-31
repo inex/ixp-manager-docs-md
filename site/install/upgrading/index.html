@@ -408,14 +408,14 @@ chmod -R u+rwX bootstrap/cache var storage
 <p>If you installed IXP Manager via the <a href="../automated-script/">installation scripts</a>, then it will have changed ownership on directories that the web server does not need to write to to root.</p>
 <p>The following options would work on Ubuntu (as root):</p>
 <div class="highlight"><pre><span></span><span class="c1"># set this to your IXP Manager installation directory</span>
-<span class="nv">IXPHOME</span><span class="o">=</span>/srv/ixpmanager
+<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
 
 <span class="c1"># ensure www-data can write to bower:</span>
-chown -R www-data: <span class="nv">$IXPHOME</span>/public/bower_components
-chmod -R u+rwX <span class="nv">$IXPHOME</span>/public/bower_components
+chown -R www-data: <span class="nv">$IXPROOT</span>/public/bower_components
+chmod -R u+rwX <span class="nv">$IXPROOT</span>/public/bower_components
 
 <span class="c1"># update bower</span>
-sudo -u www-data bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPHOME</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPHOME</span><span class="si">}</span><span class="s2"> &amp;&amp; bower --config.interactive=false -f update&quot;</span>
+sudo -u www-data bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; bower --config.interactive=false -f update&quot;</span>
 </pre></div>
 
 
@@ -425,10 +425,10 @@ sudo -u www-data bash -c <span class="s2">&quot;HOME=</span><span class="si">${<
 <p>This is similar to the bower section above so please read that if you have not already.</p>
 <p>The following options would work on Ubuntu (as root):</p>
 <div class="highlight"><pre><span></span><span class="c1"># set this to your IXP Manager installation directory</span>
-<span class="nv">IXPHOME</span><span class="o">=</span>/srv/ixpmanager
+<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
 
 <span class="c1"># update bower</span>
-sudo -u www-data bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPHOME</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPHOME</span><span class="si">}</span><span class="s2"> &amp;&amp; composer install&quot;</span>
+sudo -u www-data bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; composer install&quot;</span>
 </pre></div>
 
 

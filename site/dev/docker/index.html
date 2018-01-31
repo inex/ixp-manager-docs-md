@@ -575,14 +575,14 @@ xdebug.trace_output_dir=/srv/ixpmanager/storage/tmp
 
 
 <p>Note that the <code>zend_extension</code> may change as it is dynamically set by the build script. We also chose port 9001 rather than the default of 9000 <a href="https://www.barryodonovan.com/2017/01/05/phpstorm-and-xdebug-macos-homebrew">due to local conflicts with common tool chains</a>.</p>
-<p>The <strong>one key element that is missing in the INI is the remote debugger IP address</strong>. This needs to be set to your development computer's LAN address (there are other options but this works best in practice). Once you know this address (say it's <code>192.0.2.23</code>), set the following in the <code>${IXPHOME}/.env</code>:</p>
+<p>The <strong>one key element that is missing in the INI is the remote debugger IP address</strong>. This needs to be set to your development computer's LAN address (there are other options but this works best in practice). Once you know this address (say it's <code>192.0.2.23</code>), set the following in the <code>${IXPROOT}/.env</code>:</p>
 <div class="highlight"><pre><span></span># For PHP xdebug, put in the IP address of your host
 DOCKER_XDEBUG_CONFIG_REMOTE_HOST=192.0.2.23
 </pre></div>
 
 
-<p>When you start the Docker environment from <code>$IXPHOME</code> using <code>docker-compose</code> with something like:</p>
-<div class="highlight"><pre><span></span>cd $IXPHOME
+<p>When you start the Docker environment from <code>$IXPROOT</code> using <code>docker-compose</code> with something like:</p>
+<div class="highlight"><pre><span></span>cd $IXPROOT
 docker-compose -p ixpm up mysql www
 </pre></div>
 
@@ -617,7 +617,7 @@ docker-compose -p ixpm up mysql www
 <p>For testing, set a break point in <code>public/index.php</code> and access your development IXP Manager using your new browser plugin. You should be able to step through each statement and - presuming your mappings are correctly set up - step into any file in the project.</p>
 <p><strong>Profiling and Function Traces</strong></p>
 <p>You may have noticed in the Xdebug configuration above, we have allowed for the triggering of function traces and profiling also. The browser plugins should support these - certainly the Firefox one does <em>(leave the trigger key blank in both cases)</em>.</p>
-<p>When you request an IXP Manager page via Firefox with profiling enabled, you will find the <em>cachegrind</em> file in <code>$IXPHOME/storage/tmp</code> on your own system You can then view this in PhpStorm via the menu <em>Tools -&gt; Analyze Xdebug Profiler Snapshot...</em>.</p>
+<p>When you request an IXP Manager page via Firefox with profiling enabled, you will find the <em>cachegrind</em> file in <code>$IXPROOT/storage/tmp</code> on your own system You can then view this in PhpStorm via the menu <em>Tools -&gt; Analyze Xdebug Profiler Snapshot...</em>.</p>
 <p>Function traces can be found in the same directory - these are just text files.</p>
               
             </div>
