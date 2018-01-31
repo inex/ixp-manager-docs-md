@@ -317,17 +317,17 @@ xdebug.trace_output_dir=/srv/ixpmanager/storage/tmp
 
 Note that the `zend_extension` may change as it is dynamically set by the build script. We also chose port 9001 rather than the default of 9000 [due to local conflicts with common tool chains](https://www.barryodonovan.com/2017/01/05/phpstorm-and-xdebug-macos-homebrew).
 
-The **one key element that is missing in the INI is the remote debugger IP address**. This needs to be set to your development computer's LAN address (there are other options but this works best in practice). Once you know this address (say it's `192.0.2.23`), set the following in the `${IXPHOME}/.env`:
+The **one key element that is missing in the INI is the remote debugger IP address**. This needs to be set to your development computer's LAN address (there are other options but this works best in practice). Once you know this address (say it's `192.0.2.23`), set the following in the `${IXPROOT}/.env`:
 
 ```
 # For PHP xdebug, put in the IP address of your host
 DOCKER_XDEBUG_CONFIG_REMOTE_HOST=192.0.2.23
 ```
 
-When you start the Docker environment from `$IXPHOME` using `docker-compose` with something like:
+When you start the Docker environment from `$IXPROOT` using `docker-compose` with something like:
 
 ```
-cd $IXPHOME
+cd $IXPROOT
 docker-compose -p ixpm up mysql www
 ```
 
@@ -370,6 +370,6 @@ For testing, set a break point in `public/index.php` and access your development
 
 You may have noticed in the Xdebug configuration above, we have allowed for the triggering of function traces and profiling also. The browser plugins should support these - certainly the Firefox one does *(leave the trigger key blank in both cases)*.
 
-When you request an IXP Manager page via Firefox with profiling enabled, you will find the *cachegrind* file in `$IXPHOME/storage/tmp` on your own system You can then view this in PhpStorm via the menu *Tools -> Analyze Xdebug Profiler Snapshot...*.
+When you request an IXP Manager page via Firefox with profiling enabled, you will find the *cachegrind* file in `$IXPROOT/storage/tmp` on your own system You can then view this in PhpStorm via the menu *Tools -> Analyze Xdebug Profiler Snapshot...*.
 
 Function traces can be found in the same directory - these are just text files.

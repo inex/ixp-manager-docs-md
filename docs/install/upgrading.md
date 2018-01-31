@@ -98,14 +98,14 @@ The following options would work on Ubuntu (as root):
 
 ```sh
 # set this to your IXP Manager installation directory
-IXPHOME=/srv/ixpmanager
+IXPROOT=/srv/ixpmanager
 
 # ensure www-data can write to bower:
-chown -R www-data: $IXPHOME/public/bower_components
-chmod -R u+rwX $IXPHOME/public/bower_components
+chown -R www-data: $IXPROOT/public/bower_components
+chmod -R u+rwX $IXPROOT/public/bower_components
 
 # update bower
-sudo -u www-data bash -c "HOME=${IXPHOME}/storage && cd ${IXPHOME} && bower --config.interactive=false -f update"
+sudo -u www-data bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && bower --config.interactive=false -f update"
 ```
 
 The above command is structured as it is because typically the `www-data` user has a nologin shell specified.
@@ -120,10 +120,10 @@ The following options would work on Ubuntu (as root):
 
 ```sh
 # set this to your IXP Manager installation directory
-IXPHOME=/srv/ixpmanager
+IXPROOT=/srv/ixpmanager
 
 # update bower
-sudo -u www-data bash -c "HOME=${IXPHOME}/storage && cd ${IXPHOME} && composer install"
+sudo -u www-data bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && composer install"
 ```
 
 If composer is not managed by your package management system, you should keep it up to date via:
