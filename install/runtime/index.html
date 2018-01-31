@@ -89,6 +89,8 @@
     
         <ul>
         
+            <li><a class="toctree-l4" href="#behind-a-https-proxy">Behind a HTTP[S] Proxy</a></li>
+        
             <li><a class="toctree-l4" href="#disabling-controllers">Disabling Controllers</a></li>
         
         </ul>
@@ -304,6 +306,23 @@
             <div class="section">
               
                 <h1 id="runtime-configuration">Runtime Configuration<a class="headerlink" href="#runtime-configuration" title="Permanent link"></a></h1>
+<h2 id="behind-a-https-proxy">Behind a HTTP[S] Proxy<a class="headerlink" href="#behind-a-https-proxy" title="Permanent link"></a></h2>
+<p>If you are running IXP Manager behind a load balancer / proxy that terminates TLS / SSL connections, you may notice your application sometimes does not generate HTTPS links. Typically this is because your application is being forwarded traffic from your load balancer on port 80 and does not know it should generate secure links.</p>
+<p>From <a href="https://github.com/inex/IXP-Manager/releases/tag/v4.7.2">v4.7.2</a>, IXP Manager supports trusted proxies via <a href="https://laravel.com/docs/5.5/requests#configuring-trusted-proxies">Laravel's support</a> for <a href="https://github.com/fideloper/TrustedProxy">fideloper/TrustedProxy</a>.</p>
+<p>See the above links for complete documentation. To just get it working, you need to:</p>
+<ol>
+<li>
+<p>Publish the default trusted proxies configuration file:
+    <div class="highlight"><pre><span></span>cd $IXPROOT
+./artisan vendor:publish --provider=&quot;Fideloper\Proxy\TrustedProxyServiceProvider&quot;
+</pre></div>
+</p>
+</li>
+<li>
+<p>The above will create a file <code>${IXPROOT}/config/trustedproxy.php</code>. For the most part, you now just need to change the IP address(es) in the array <code>proxies</code> to those of your own proxy/proxies.</p>
+</li>
+</ol>
+<p><strong>NB:</strong> as well as the above, it is also critical that your have correctly set <code>APP_URL</code> in the <code>.env</code> file for URL generation to correctly work.</p>
 <h2 id="disabling-controllers">Disabling Controllers<a class="headerlink" href="#disabling-controllers" title="Permanent link"></a></h2>
 <p>Controllers can be disabled by setting the following config item in <code>config/ixp_fe.php</code>:</p>
 <div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
