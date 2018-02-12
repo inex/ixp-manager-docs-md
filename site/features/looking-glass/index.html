@@ -336,27 +336,128 @@
 <p>You can see all of <a href="https://www.inex.ie/">INEX</a>'s looking glasses at <a href="https://www.inex.ie/ixp/lg">https://www.inex.ie/ixp/lg</a>.
 <a href="https://grnet.gr/en/">GRNET</a> have also a public IXP Manager integration at: <a href="https://portal.gr-ix.gr/lg">https://portal.gr-ix.gr/lg</a>.</p>
 <h2 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link"></a></h2>
-<p>The API endpoint must be accessible from the server running IXP Manager. Changing the URL as appropriate, test and confirm this with something like:</p>
-<div class="highlight"><pre><span></span>wget -O - http://as112-lan1-ipv4.example.com/api/status
+<p>Generally speaking, if you carefully read the above and the <a href="https://github.com/inex/birdseye/blob/master/README.md">Bird's Eye README file</a>, you should be able to get IXP Manager / Bird's Eye integration working.</p>
+<p>If you do not, try all of the following and solve any elements that fail. If you still have issues, email the <a href="https://www.inex.ie/mailman/listinfo/ixpmanager">IXP Manager mailing list</a> <strong>with the output of all of the following commands</strong>.</p>
+<p>For the following examples, we will use a real INEX example router with the following settings:</p>
+<div class="highlight"><pre><span></span>mysql&gt; SELECT * FROM routers WHERE id = 17\G
+*************************** 1. row ***************************
+          id: 17
+     vlan_id: 2
+      handle: as112-lan1-ipv4
+    protocol: 4
+        type: 3
+        name: INEX LAN1 - AS112 - IPv4
+   shortname: AS112 - LAN1 - IPv4
+   router_id: 185.6.36.6
+  peering_ip: 185.6.36.6
+         asn: 112
+    software: 1
+   mgmt_host: 10.39.5.6
+         api: http://as112-lan1-ipv4.mgmt.inex.ie/api
+    api_type: 1
+   lg_access: 0
+  quarantine: 0
+      bgp_lc: 0
+    template: api/v4/router/as112/bird/standard
+    skip_md5: 1
+last_updated: 2018-02-03 14:26:15
 </pre></div>
 
 
-<p>which should give a status response (we've made the JSON formatting readable here):</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;api&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;from_cache&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
-        <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.1.0&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;max_routes&quot;</span><span class="p">:</span><span class="mi">1000</span>
-    <span class="p">},</span>
-    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.6.3&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;router_id&quot;</span><span class="p">:</span><span class="s2">&quot;192.0.2.45&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;server_time&quot;</span><span class="p">:</span><span class="s2">&quot;2017-09-12T14:25:49+00:00&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;last_reboot&quot;</span><span class="p">:</span><span class="s2">&quot;2017-05-21T16:02:30+00:00&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;last_reconfig&quot;</span><span class="p">:</span><span class="s2">&quot;2017-09-12T14:12:00+00:00&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;Daemon is up and running&quot;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<p>From the server running IXP Manager:</p>
+<div class="highlight"><pre><span></span><span class="c1"># Does the API hostname resolve?</span>
+$ dig +short as112-lan1-ipv4.mgmt.inex.ie
+
+10.39.5.6
+
+
+<span class="c1"># Is there network access?</span>
+$ ping as112-lan1-ipv4.mgmt.inex.ie -c 1
+
+PING as112.mgmt.inex.ie <span class="o">(</span>10.39.5.6<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from as112.mgmt.inex.ie <span class="o">(</span>10.39.5.6<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.103 ms
+
+--- as112.mgmt.inex.ie ping statistics ---
+<span class="m">1</span> packets transmitted, <span class="m">1</span> received, 0% packet loss, <span class="nb">time</span> 0ms
+rtt min/avg/max/mdev <span class="o">=</span> 0.103/0.103/0.103/0.000 ms
+
+
+<span class="c1"># Is the Bird&#39;s Eye service available?</span>
+$ curl -v http://as112-lan1-ipv4.mgmt.inex.ie/api/status
+
+*   Trying 10.39.5.6...
+* Connected to as112-lan1-ipv4.mgmt.inex.ie <span class="o">(</span>10.39.5.6<span class="o">)</span> port <span class="m">80</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; GET /api/status HTTP/1.1
+&gt; Host: as112-lan1-ipv4.mgmt.inex.ie
+&gt; User-Agent: curl/7.47.0
+&gt; Accept: */*
+&gt;
+&lt; HTTP/1.1 <span class="m">200</span> OK
+&lt; Cache-Control: no-cache
+&lt; Content-Type: application/json
+&lt; Date: Mon, <span class="m">12</span> Feb <span class="m">2018</span> 16:29:52 GMT
+&lt; Transfer-Encoding: chunked
+&lt; Server: lighttpd/1.4.35
+&lt;
+* Connection <span class="c1">#0 to host as112-lan1-ipv4.mgmt.inex.ie left intact</span>
+
+<span class="o">{</span>
+    <span class="s2">&quot;api&quot;</span>: <span class="o">{</span>
+        <span class="s2">&quot;from_cache&quot;</span>:true,
+        <span class="s2">&quot;ttl_mins&quot;</span>:1,
+        <span class="s2">&quot;version&quot;</span>:<span class="s2">&quot;1.1.0&quot;</span>,
+        <span class="s2">&quot;max_routes&quot;</span>:1000
+    <span class="o">}</span>,
+    <span class="s2">&quot;status&quot;</span>: <span class="o">{</span>
+        <span class="s2">&quot;version&quot;</span>:<span class="s2">&quot;1.6.3&quot;</span>,
+        <span class="s2">&quot;router_id&quot;</span>:<span class="s2">&quot;185.6.36.6&quot;</span>,
+        <span class="s2">&quot;server_time&quot;</span>:<span class="s2">&quot;2018-02-12T16:29:48+00:00&quot;</span>,
+        <span class="s2">&quot;last_reboot&quot;</span>:<span class="s2">&quot;2017-11-09T00:23:24+00:00&quot;</span>,
+        <span class="s2">&quot;last_reconfig&quot;</span>:<span class="s2">&quot;2018-02-12T16:26:14+00:00&quot;</span>,
+        <span class="s2">&quot;message&quot;</span>:<span class="s2">&quot;Daemon is up and running&quot;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>The API endpoint must be accessible from the server running IXP Manager. Changing the URL as appropriate, test and confirm this with something like:</p>
+<p>Then on the router (the server running Bird's Eye), you need to provide the following answers when seeking help:</p>
+<div class="highlight"><pre><span></span><span class="c1"># Is Bird actually running and what are the names of its sockets:</span>
+ls -la /var/run/bird
+
+<span class="c1"># What configuration file(s) exist:</span>
+ls -la /srv/birdseye/*env
+
+<span class="c1"># Let&#39;s see the contents of these:</span>
+cat /srv/birdseye/*env <span class="p">|</span> egrep -v <span class="s1">&#39;^#&#39;</span>
+
+<span class="c1"># Test birdc access to the daemon - run for each socket found above:</span>
+/usr/sbin/birdc -s /var/run/bird/<span class="o">[</span>insert name of socket<span class="o">]</span>.ctl show status
+
+<span class="c1"># Have you created the sudo file for www-data to be able to access Birdc?</span>
+cat /etc/sudoers /etc/sudoers.d/* <span class="p">|</span> grep birdseye
+
+<span class="c1"># Does the Bird&#39;s Eye client work - run for each socket found above with the</span>
+<span class="c1"># appropriate protocol:</span>
+/srv/birdseye/bin/birdc <span class="o">[</span>-4<span class="p">|</span>-6<span class="o">]</span> -s /var/run/bird/<span class="o">[</span>insert name of socket<span class="o">]</span>.ctl show status
+
+<span class="c1"># Is the web server running:</span>
+netstat -lpn <span class="p">|</span> grep lighttpd
+tcp        <span class="m">0</span>      <span class="m">0</span> 10.39.5.6:80            0.0.0.0:*               LISTEN      1165/lighttpd
+tcp6       <span class="m">0</span>      <span class="m">0</span> 2001:7f8:18:5::6:80     :::*                    LISTEN      1165/lighttpd
+unix  <span class="m">2</span>      <span class="o">[</span> ACC <span class="o">]</span>     STREAM     LISTENING     <span class="m">13970</span>    635/php-cgi         /var/run/lighttpd/php.socket-0
+
+<span class="c1"># Is PHP running:</span>
+netstat -lpn <span class="p">|</span> grep php
+unix  <span class="m">2</span>      <span class="o">[</span> ACC <span class="o">]</span>     STREAM     LISTENING     <span class="m">13970</span>    635/php-cgi         /var/run/lighttpd/php.socket-0
+
+<span class="c1"># what&#39;s the web server configuration</span>
+<span class="c1"># NB: make sure you have compared it to:</span>
+<span class="c1">#   https://github.com/inex/birdseye/blob/master/data/configs/lighttpd.conf</span>
+cat /etc/lighttpd/lighttpd.conf
+
+<span class="c1"># provide the IXP Manager configuration of your router(s):</span>
+mysql&gt; SELECT * FROM routers<span class="se">\G</span>
 </pre></div>
               
             </div>
