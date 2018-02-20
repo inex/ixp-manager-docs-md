@@ -127,3 +127,37 @@ which will populate / update the OUI database directly from the latest IEEE file
 A specific file can be passed via the `file` parameter. You can also force a database reset (drop all OUI entries and re-populate) via the `--refresh` option.
 
 Neither of these options are typically necessary.
+
+
+## End User Access
+
+In v4.7.3 we introduced the ability for logged in users to management their own configured MAC addresses.
+
+This is disabled by default but can be enabled with the following `.env` settings:
+
+```
+# Set this to allow customers to change their own configured MAC addresses:
+IXP_FE_LAYER2_ADDRESSES_CUST_CAN_EDIT=true
+
+# The following defaults are configured for min/max MAC addresses
+IXP_FE_LAYER2_ADDRESSES_CUST_PARAMS_MIN_ADDRESSES=1
+IXP_FE_LAYER2_ADDRESSES_CUST_PARAMS_MAX_ADDRESSES=2
+```
+
+When a MAC is added, a `IXP\Events\Layer2Address\Added` event is triggered and, similarly, when a MAC is deleted a `IXP\Events\Layer2Address\Deleted` event is triggered. We have created an event listener for these to fire off an email in both cases. To enable this listener, set the following `.env` settings:
+
+```
+# Trigger an email when a superuser adds/deletes a MAC:
+IXP_FE_LAYER2_ADDRESSES_EMAIL_ON_SUPERUSER_CHANGE=true
+
+# Trigger an email when a customer user adds/deletes a MAC:
+IXP_FE_LAYER2_ADDRESSES_EMAIL_ON_CUSTOMER_CHANGE=true
+
+# Destination address of the email:
+IXP_FE_LAYER2_ADDRESSES_EMAIL_ON_CHANGE_DEST=ops@ixp.example.net
+```
+
+There are two files you can consider [skinning](skinning.md) with this functionality:
+
+1. `resources/views/layer2-address/emails/changed.blade.php` - the email which is sent when a MAC is added / removed.
+2. `resources/views/layer2-address/customer-edit-msg.foil.php` - an informational alert box that is shown to the customer on the MAC add/delete page to set their expectations on time to complete on the IXP end.
