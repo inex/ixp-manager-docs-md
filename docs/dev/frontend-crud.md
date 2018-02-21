@@ -85,7 +85,42 @@ public static $minimum_privilege = UserEntity::AUTH_SUPERUSER;
 
 If you set this to less than the superuser, you need to manage privileges and access within your own implementation yourself.
 
+This is normally handled in a number of ways:
 
+1. dedicated `Request` object utilising the `authorize()` method;
+2. additional middleware;
+3. per action basis;
+4. in `feInit()`
+
+The `feInit()` method would normally look something like the following:
+
+```php
+<?php
+// phpunit / artisan trips up here without the cli test:
+if( php_sapi_name() !== 'cli' ) {
+
+    // custom access controls:
+    switch( Auth::check() ? Auth::user()->getPrivs() : UserEntity::AUTH_PUBLIC ) {
+        case UserEntity::AUTH_SUPERUSER:
+            break;
+
+        case UserEntity::AUTH_CUSTUSER:
+            switch( Route::current()->getName() ) {
+                case 'Layer2AddressController@forVlanInterface':
+                    break;
+
+                default:
+                    $this->unauthorized();
+            }
+            break;
+
+        default:
+            $this->unauthorized();
+    }
+}
+```
+
+The `$this->unauthorized( $url = '', $code = 302 )` calls `abort()` with the given redirect code and URL. The default parameters will *do the right thing*.
 
 
 ### Routing
