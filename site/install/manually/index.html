@@ -356,11 +356,13 @@
 <li>php-yaml</li>
 </ul>
 <p>For completeness, the IXP Manager installation script for Ubuntu 16.04 LTS installs:</p>
-<div class="highlight"><pre>apt-get install apache2 php7.0 php7.0-intl php7.0-mysql php-rrd php7.0-cgi php7.0-cli  <span class="se">\</span>
-    php7.0-snmp php7.0-curl php7.0-mcrypt php-memcached libapache2-mod-php7.0          <span class="se">\</span>
-    mysql-server mysql-client php-mysql memcached snmp nodejs nodejs-legacy npm        <span class="se">\</span>
-    php7.0-mbstring php7.0-xml php-gettext php-ds php-gd bgpq3 php-memcache unzip      <span class="se">\</span>
-    php-zip php-yaml php7.0-bcmath git
+<div class="highlight"><pre>apt-get install -qy apache2 php7.0 php7.0-intl php-rrd php7.0-cgi php7.0-cli       <span class="se">\</span>
+    php7.0-snmp php7.0-curl php7.0-mcrypt php-memcached libapache2-mod-php7.0      <span class="se">\</span>
+    mysql-server mysql-client php7.0-mysql memcached snmp nodejs nodejs-legacy npm <span class="se">\</span>
+    php7.0-mbstring php7.0-xml php7.0-gd php7.0-bcmath php-gettext bgpq3           <span class="se">\</span>
+    php-memcache unzip php7.0-zip git php-yaml php-ds libconfig-general-perl       <span class="se">\</span>
+    libnetaddr-ip-perl mrtg  libconfig-general-perl libnetaddr-ip-perl rrdtool     <span class="se">\</span>
+    librrds-perl
 </pre></div>
 
 
@@ -387,8 +389,6 @@ php -r <span class="s2">&quot;copy(&#39;https://getcomposer.org/installer&#39;, 
 <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$EXPECTED_SIGNATURE</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="nv">$ACTUAL_SIGNATURE</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
     sudo -u www-data bash -c <span class="s2">&quot;HOME=</span><span class="nv">$IXPROOT</span><span class="s2"> &amp;&amp; cd </span><span class="nv">$IXPROOT</span><span class="s2"> &amp;&amp; php composer-setup.php --quiet&quot;</span>
     rm <span class="nv">$IXPROOT</span>/composer-setup.php
-    <span class="c"># optional:</span>
-    mv composer.phar /usr/local/bin/composer
 <span class="k">else</span>
     <span class="nb">echo</span> -e <span class="s2">&quot;\n\nERROR: Invalid installer signature for composer installation&quot;</span>
     rm <span class="nv">$IXPROOT</span>/composer-setup.php
@@ -406,7 +406,7 @@ php -r <span class="s2">&quot;copy(&#39;https://getcomposer.org/installer&#39;, 
 <h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link"></a></h2>
 <p>Install the required PHP libraries and frontend CSS/JS packages:</p>
 <div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-composer install
+php composer.phar install
 bower install
 cp .env.example .env
 php artisan key:generate

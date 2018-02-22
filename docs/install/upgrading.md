@@ -35,13 +35,14 @@ The general process is:
     git checkout v4.x.y
     ```
 
-3. Install latest required libraries from composer **(see notes below)**:
+3. Install latest required libraries from composer [**(see notes below)**](#updating-composer-dependancies):
 
     ```sh
-    composer install
+    # this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.
+    php ./composer.phar install
     ```
 
-4. Install latest frontend dependencies **(see notes below)**:
+4. Install latest frontend dependencies [**(see notes below)**](#updating-bower-dependancies):
 
     ```sh
     # if asked to chose a jquery version, chose the latest / highest version offered
@@ -90,47 +91,55 @@ The general process is:
 
 ## Updating Bower Dependancies
 
-It is not advisable to run bower are root but how you run it will depend on your own installation.
-
-If you installed IXP Manager via the [installation scripts](automated-script.md), then it will have changed ownership on directories that the web server does not need to write to to root.
-
-The following options would work on Ubuntu (as root):
+It is not advisable to run bower are root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the bower commands themselves will be run as `$MY_WWW_USER`):
 
 ```sh
 # set this to your IXP Manager installation directory
 IXPROOT=/srv/ixpmanager
 
+MY_WWW_USER=www-data  # fix as appropriate to your operating system
+
 # ensure www-data can write to bower:
-chown -R www-data: $IXPROOT/public/bower_components
-chmod -R u+rwX $IXPROOT/public/bower_components
+chown -R $MY_WWW_USER: $IXPROOT/public/bower_components ${IXPROOT}/bower.json ${IXPROOT}/storage
+chmod -R u+rwX $IXPROOT/public/bower_components ${IXPROOT}/bower.json ${IXPROOT}/storage
 
 # update bower
-sudo -u www-data bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && bower --config.interactive=false -f update"
+sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && bower --config.interactive=false -f update"
 ```
 
-The above command is structured as it is because typically the `www-data` user has a nologin shell specified.
+The above command is structured as it is because typically the `www-data` user has a `nologin` shell specified.
 
-Your mileage may vary on this and we're happy to accept pull requests with other options.
 
 ## Updating Composer Dependancies
 
 This is similar to the bower section above so please read that if you have not already.
 
-The following options would work on Ubuntu (as root):
+Note that we assume here what you have installed Composer (see: https://getcomposer.org/ ) in the `${IXPROOT}` directory as `composer.phar`. This is where and how the IXP Manager installation scripts and documentation instructions install it.
+
+The following options would work on Ubuntu (run these as root and the composer commands themselves will be run as `$MY_WWW_USER`):
 
 ```sh
 # set this to your IXP Manager installation directory
 IXPROOT=/srv/ixpmanager
 
-# update bower
-sudo -u www-data bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && composer install"
+MY_WWW_USER=www-data  # fix as appropriate to your operating system
+
+# ensure www-data can write to vendor:
+chown -R $MY_WWW_USER: $IXPROOT/vendor ${IXPROOT}/storage
+chmod -R u+rwX $IXPROOT/vendor ${IXPROOT}/storage
+
+# update composer
+sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && php ./composer.phar install"
 ```
 
-If composer is not managed by your package management system, you should keep it up to date via:
+NB: If composer is not managed by your package management system, you should keep it up to date via the following (using the same definitions from the composer update example above):
 
+```sh
+chown -R $MY_WWW_USER: ${IXPROOT}/composer.phar
+chmod -R u+rwx ${IXPROOT}/composer.phar
+sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && php ./composer.phar selfupdate"
 ```
-composer selfupdate
-```
+
 
 
 ## Correcting Database Issues / Verifying Your Schema

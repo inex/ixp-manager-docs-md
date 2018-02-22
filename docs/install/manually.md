@@ -29,11 +29,13 @@ To complete the installation using the included config/scripts, you will also ne
 For completeness, the IXP Manager installation script for Ubuntu 16.04 LTS installs:
 
 ```sh
-apt-get install apache2 php7.0 php7.0-intl php7.0-mysql php-rrd php7.0-cgi php7.0-cli  \
-    php7.0-snmp php7.0-curl php7.0-mcrypt php-memcached libapache2-mod-php7.0          \
-    mysql-server mysql-client php-mysql memcached snmp nodejs nodejs-legacy npm        \
-    php7.0-mbstring php7.0-xml php-gettext php-ds php-gd bgpq3 php-memcache unzip      \
-    php-zip php-yaml php7.0-bcmath git
+apt-get install -qy apache2 php7.0 php7.0-intl php-rrd php7.0-cgi php7.0-cli       \
+    php7.0-snmp php7.0-curl php7.0-mcrypt php-memcached libapache2-mod-php7.0      \
+    mysql-server mysql-client php7.0-mysql memcached snmp nodejs nodejs-legacy npm \
+    php7.0-mbstring php7.0-xml php7.0-gd php7.0-bcmath php-gettext bgpq3           \
+    php-memcache unzip php7.0-zip git php-yaml php-ds libconfig-general-perl       \
+    libnetaddr-ip-perl mrtg  libconfig-general-perl libnetaddr-ip-perl rrdtool     \
+    librrds-perl
 ```
 
 
@@ -71,8 +73,6 @@ ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
 if [ "$EXPECTED_SIGNATURE" = "$ACTUAL_SIGNATURE" ]; then
     sudo -u www-data bash -c "HOME=$IXPROOT && cd $IXPROOT && php composer-setup.php --quiet"
     rm $IXPROOT/composer-setup.php
-    # optional:
-    mv composer.phar /usr/local/bin/composer
 else
     echo -e "\n\nERROR: Invalid installer signature for composer installation"
     rm $IXPROOT/composer-setup.php
@@ -96,7 +96,7 @@ Install the required PHP libraries and frontend CSS/JS packages:
 
 ```sh
 cd $IXPROOT
-composer install
+php composer.phar install
 bower install
 cp .env.example .env
 php artisan key:generate
