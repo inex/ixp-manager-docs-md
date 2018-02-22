@@ -322,6 +322,23 @@
 <p>The general process is:</p>
 <ol>
 <li>
+<p>Set up some variables and ensure directory permissions are okay:</p>
+<div class="highlight"><pre><span class="c"># set this to your IXP Manager installation directory</span>
+<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+
+<span class="c"># fix as appropriate to your operating system</span>
+<span class="nv">MY_WWW_USER</span><span class="o">=</span>www-data  
+
+<span class="c"># ensure the web server daemon user can write to necessary directories:</span>
+chown -R <span class="nv">$MY_WWW_USER</span>: <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json <span class="se">\</span>
+    <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage <span class="nv">$IXPROOT</span>/vendor
+chmod -R u+rwX <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json         <span class="se">\</span>
+    <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage <span class="nv">$IXPROOT</span>/vendor
+</pre></div>
+
+
+</li>
+<li>
 <p>Enable maintenance mode:</p>
 <div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 ./artisan down
@@ -331,8 +348,7 @@
 </li>
 <li>
 <p>Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v4.</p>
-<div class="highlight"><pre><span class="c"># move to the directory where you have installed IXP Manager</span>
-<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<div class="highlight"><pre><span class="c"># (assuming we&#39;re still in $IXPROOT)</span>
 <span class="c"># pull the latest code</span>
 git fetch
 <span class="c"># check out the version you are upgrading to</span>
@@ -344,7 +360,7 @@ git checkout v4.x.y
 <li>
 <p>Install latest required libraries from composer <a href="#updating-composer-dependancies"><strong>(see notes below)</strong></a>:</p>
 <div class="highlight"><pre><span class="c"># this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.</span>
-php ./composer.phar install
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; php ./composer.phar install&quot;</span>
 </pre></div>
 
 
@@ -352,15 +368,18 @@ php ./composer.phar install
 <li>
 <p>Install latest frontend dependencies <a href="#updating-bower-dependancies"><strong>(see notes below)</strong></a>:</p>
 <div class="highlight"><pre><span class="c"># if asked to chose a jquery version, chose the latest / highest version offered</span>
-bower prune
-bower install
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; \</span>
+<span class="s2">    bower --config.interactive=false -f prune&quot;</span>
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; \</span>
+<span class="s2">    bower --config.interactive=false -f update&quot;</span>
 </pre></div>
 
 
 </li>
 <li>
 <p>Restart Memcached and clear the cache. Do not forget / skip this step!</p>
-<div class="highlight"><pre>systemctl restart memcached.service
+<div class="highlight"><pre><span class="c"># (assuming we&#39;re still in $IXPROOT)</span>
+systemctl restart memcached.service
 ./artisan cache:clear
 </pre></div>
 
@@ -368,7 +387,8 @@ bower install
 </li>
 <li>
 <p>Update the database schema:</p>
-<div class="highlight"><pre><span class="c"># review / sanity check first:</span>
+<div class="highlight"><pre><span class="c"># (assuming we&#39;re still in $IXPROOT)</span>
+<span class="c"># review / sanity check first:</span>
 ./artisan doctrine:schema:update --sql
 <span class="c"># If in doubt, take a mysqldump of your database first.</span>
 <span class="c"># migrate:</span>
@@ -389,23 +409,25 @@ bower install
 </li>
 <li>
 <p>Ensure file permissions are correct.</p>
-<div class="highlight"><pre><span class="nv">MY_WWW_USER</span><span class="o">=</span>www-data  <span class="c"># fix as appropriate to your operating system</span>
-chown -R <span class="nv">$MY_WWW_USER</span>: bootstrap/cache var storage
-chmod -R u+rwX bootstrap/cache var storage
+<div class="highlight"><pre>chown -R <span class="nv">$MY_WWW_USER</span>: <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json <span class="se">\</span>
+    <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage <span class="nv">$IXPROOT</span>/vendor <span class="nv">$IXPROOT</span>/var <span class="nv">$IXPROOT</span>/bootstrap/cache
+chmod -R u+rwX <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json         <span class="se">\</span>
+    <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage <span class="nv">$IXPROOT</span>/vendor <span class="nv">$IXPROOT</span>/var <span class="nv">$IXPROOT</span>/bootstrap/cache
 </pre></div>
 
 
 </li>
 <li>
 <p>Disable maintenance mode:</p>
-<div class="highlight"><pre>./artisan up
+<div class="highlight"><pre><span class="c"># (assuming we&#39;re still in $IXPROOT)</span>
+./artisan up
 </pre></div>
 
 
 </li>
 </ol>
 <h2 id="updating-bower-dependancies">Updating Bower Dependancies<a class="headerlink" href="#updating-bower-dependancies" title="Permanent link"></a></h2>
-<p>It is not advisable to run bower are root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the bower commands themselves will be run as <code>$MY_WWW_USER</code>):</p>
+<p>It is not advisable to run bower as root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the bower commands themselves will be run as <code>$MY_WWW_USER</code>):</p>
 <div class="highlight"><pre><span class="c"># set this to your IXP Manager installation directory</span>
 <span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
 
@@ -450,7 +472,8 @@ sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME
 <p>Because of the manual process of database updates, it is possible your database schema may fall out of sync.</p>
 <p>If you are having issues, first and foremost, restart Memcached. Doctrine2 caches entities and schema information in Memcached so, after an upgrade, you must restart Memcached.</p>
 <p>You can verify and update your schema using the <code>artisan</code> script. The first action should be validation - here is a working example with no database issues:</p>
-<div class="highlight"><pre>./artisan doctrine:schema:validate
+<div class="highlight"><pre>cd $IXPROOT
+./artisan doctrine:schema:validate
 
 Validating for default entity manager...
 [Mapping]  OK - The mapping files are correct.
@@ -471,7 +494,7 @@ Validating for default entity manager...
 <p>Doctrine2 maintains the entities, proxies and repository classes. Ideally you should never need to do the following on a production installation - as we maintain these files with Git - but if you're developing / testing IXP Manager, you may need to.</p>
 <p>The process for updating these files with schema changes / updates is:</p>
 <div class="highlight"><pre>cd $IXPROOT
-/etc/init.d/memcached restart    # (or as appropriate for your system)
+systemctl restart memcached.service           # (or as appropriate for your system)
 ./artisan doctrine:generate:entities database
 ./artisan doctrine:generate:proxies
 </pre></div>

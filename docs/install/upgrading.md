@@ -17,49 +17,68 @@ IXPROOT=/srv/ixpmanager
 
 The general process is:
 
-1. Enable maintenance mode:
+1. Set up some variables and ensure directory permissions are okay:
+
+    ```sh
+    # set this to your IXP Manager installation directory
+    IXPROOT=/srv/ixpmanager
+
+    # fix as appropriate to your operating system
+    MY_WWW_USER=www-data  
+
+    # ensure the web server daemon user can write to necessary directories:
+    chown -R $MY_WWW_USER: $IXPROOT/public/bower_components ${IXPROOT}/bower.json \
+        ${IXPROOT}/storage $IXPROOT/vendor
+    chmod -R u+rwX $IXPROOT/public/bower_components ${IXPROOT}/bower.json         \
+        ${IXPROOT}/storage $IXPROOT/vendor
+    ```
+
+2. Enable maintenance mode:
 
     ```sh
     cd $IXPROOT
     ./artisan down
     ```
 
-2. Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v4.
+3. Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v4.
 
     ```sh
-    # move to the directory where you have installed IXP Manager
-    cd $IXPROOT
+    # (assuming we're still in $IXPROOT)
     # pull the latest code
     git fetch
     # check out the version you are upgrading to
     git checkout v4.x.y
     ```
 
-3. Install latest required libraries from composer [**(see notes below)**](#updating-composer-dependancies):
+4. Install latest required libraries from composer [**(see notes below)**](#updating-composer-dependancies):
 
     ```sh
     # this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.
-    php ./composer.phar install
+    sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && php ./composer.phar install"
     ```
 
-4. Install latest frontend dependencies [**(see notes below)**](#updating-bower-dependancies):
+5. Install latest frontend dependencies [**(see notes below)**](#updating-bower-dependancies):
 
     ```sh
     # if asked to chose a jquery version, chose the latest / highest version offered
-    bower prune
-    bower install
+    sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && \
+        bower --config.interactive=false -f prune"
+    sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && \
+        bower --config.interactive=false -f update"
     ```
 
-5. Restart Memcached and clear the cache. Do not forget / skip this step!
+6. Restart Memcached and clear the cache. Do not forget / skip this step!
 
     ```sh
+    # (assuming we're still in $IXPROOT)
     systemctl restart memcached.service
     ./artisan cache:clear
     ```
 
-6. Update the database schema:
+7. Update the database schema:
 
     ```sh
+    # (assuming we're still in $IXPROOT)
     # review / sanity check first:
     ./artisan doctrine:schema:update --sql
     # If in doubt, take a mysqldump of your database first.
@@ -67,31 +86,33 @@ The general process is:
     ./artisan doctrine:schema:update --force
     ```
 
-7. Restart Memcached (yes, again). Do not forget / skip this step!
+8. Restart Memcached (yes, again). Do not forget / skip this step!
 
     ```sh
     systemctl restart memcached.service
     ```
 
-8. Ensure there are no version specific changes required in the release notes.
+9. Ensure there are no version specific changes required in the release notes.
 
-9. Ensure file permissions are correct.
+10. Ensure file permissions are correct.
 
     ```sh
-    MY_WWW_USER=www-data  # fix as appropriate to your operating system
-    chown -R $MY_WWW_USER: bootstrap/cache var storage
-    chmod -R u+rwX bootstrap/cache var storage
+    chown -R $MY_WWW_USER: $IXPROOT/public/bower_components ${IXPROOT}/bower.json \
+        ${IXPROOT}/storage $IXPROOT/vendor $IXPROOT/var $IXPROOT/bootstrap/cache
+    chmod -R u+rwX $IXPROOT/public/bower_components ${IXPROOT}/bower.json         \
+        ${IXPROOT}/storage $IXPROOT/vendor $IXPROOT/var $IXPROOT/bootstrap/cache
     ```
 
-10. Disable maintenance mode:
+11. Disable maintenance mode:
 
     ```sh
+    # (assuming we're still in $IXPROOT)
     ./artisan up
     ```
 
 ## Updating Bower Dependancies
 
-It is not advisable to run bower are root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the bower commands themselves will be run as `$MY_WWW_USER`):
+It is not advisable to run bower as root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the bower commands themselves will be run as `$MY_WWW_USER`):
 
 ```sh
 # set this to your IXP Manager installation directory
@@ -151,6 +172,7 @@ If you are having issues, first and foremost, restart Memcached. Doctrine2 cache
 You can verify and update your schema using the `artisan` script. The first action should be validation - here is a working example with no database issues:
 
 ```
+cd $IXPROOT
 ./artisan doctrine:schema:validate
 
 Validating for default entity manager...
@@ -176,7 +198,7 @@ The process for updating these files with schema changes / updates is:
 
 ```
 cd $IXPROOT
-/etc/init.d/memcached restart    # (or as appropriate for your system)
+systemctl restart memcached.service           # (or as appropriate for your system)
 ./artisan doctrine:generate:entities database
 ./artisan doctrine:generate:proxies
 ```
