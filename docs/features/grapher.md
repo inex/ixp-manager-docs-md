@@ -9,31 +9,50 @@ The biggest new feature available at launch in IXP Manager v4 is a new graphing 
 - configuration generation where required
 - consistent and flexible OOP design
 
-To date, we've developed three reference backend implementations:
+To date, we have developed the following reference backend implementations:
 
 1. ``dummy`` - a dummy grapher that just provides a placeholder graph for all possible graph types;
 2. ``mrtg`` - MRTG graphing using either the log or rrd backend. Use cases for MRTG are L2 interface statistics for bits / packets / errors / discards / broadcasts per second. Aggregate graphs for customer LAGs, overall customer traffic, all traffic over a switch / infrastructure / the entire IXP are all supported.
 3. ``sflow`` - while the MRTG backend looks at layer 2 statistics, sflow is used to provide layer 3 statistics such as per protocol (IPv4/6) graphs and peer to peer graphs.
+4.``smokeping`` - (available from v4.8.0) this replaces the previous way we used to access Smokeping graphs. See [the Smokeping documenation](smokeping.md) for more information.
 
-In a typical production environment, you'd implement both MRTG and sflow to provide the complete set of features.
+In a typical production environment, you'd implement MRTG, Smokeping and sflow to provide the complete set of features.
 
 ## Configuration
 
-There is only a handful of configuration options required and these can be seen with documentation in [``config/grapher.php``](https://github.com/inex/IXP-Manager/blob/master/config/grapher.php) (remember to put your own local changes in ``.env`` rather than editing this file directly).
+There is only a handful of configuration options required and a typical and complete `$IXPROOT/.env` would look like this:
 
-The only global (non-backend specific) options are:
+```
+GRAPHER_BACKENDS="mrtg|sflow|smokeping"
+GRAPHER_CACHE_ENABLED=true
 
-* ``backend`` - in a typical production environment this would be ``"mrtg|sflow"`` which means try the MRTG backend first and then sflow. We ship with this set as ``"dummy"`` so you can see sample graphs working out of the box.
-* ``cache`` - as the industry standard is to graph at 5min intervals, the cache settings do not regenerate / reload / reprocess log / rrd / image files if we have cached them and they are less than 5mins old. This is enabled by default which is the recommended setting.
+GRAPHER_BACKEND_MRTG_DBTYPE="rrd"
+GRAPHER_BACKEND_MRTG_WORKDIR="/srv/mrtg"
+GRAPHER_BACKEND_MRTG_LOGDIR="/srv/mrtg"
 
-Backend specific configuration and set-up instructions can be found in their own sections.
+GRAPHER_BACKEND_SFLOW_ENABLED=true
+GRAPHER_BACKEND_SFLOW_ROOT="http://sflow-server.example.com/grapher-sflow"
+
+GRAPHER_BACKEND_SMOKEPING_ENABLED=true
+GRAPHER_SMOKEPING_URL="http://smokeping-server.example.com/smokeping"
+```
+
+For those interested, the complete Grapher configuration file can be seen in [`$IXPROOT/config/grapher.php](https://github.com/inex/IXP-Manager/blob/master/config/grapher.php). Remember: put your own local changes in `.env` rather than editing this file directly.
+
+
+The global (non-backend specific) options are:
+
+* `GRAPHER_BACKENDS` - in a typical production environment this would be `"mrtg|sflow|smokeping"` which means *try the MRTG backend first, then sflow and then smokeping*. We ship with this set as `"dummy"` so you can see sample graphs working out of the box.
+* `GRAPHER_CACHE_ENABLED` - the IXP industry standard for graphing is to graph at 5min intervals. With the cache enabled, IXP Manager does not have to regenerate / reload / reprocess log / rrd / image files if we have cached them and they are less than 5mins old. This is enabled by default which is the recommended setting.
+
+Backend specific configuration and set-up instructions can be found in their own sections below.
 
 
 ## Grapher Backends
 
 ## Backend: MRTG
 
-MRTG is a particularly efficient SNMP poller as, irrespective of how many times an interface is referenced for different graphs, it is only polled once per run.
+MRTG is a particularly efficient SNMP poller as, irrespective of how many times an interface is referenced for different graphs, it is only polled once per run. If you want to understand MRTG related options in this section, please refer to MRTG's own documenation: https://oss.oetiker.ch/mrtg/doc/mrtg.en.html
 
 Per-second graphs are generated for bits, packets, errors, discards and broadcasts at 5min intervals. IXP Manager's Grapher system can use MRTG to poll switches and create traffic graphs for:
 
@@ -47,7 +66,7 @@ Per-second graphs are generated for bits, packets, errors, discards and broadcas
 
 * **Inter-Switch / Trunk Graphs**
 
-  IXP Manager does not currently support a frontend means of creating these definitions (but, as of March 2017, it is being worked on). For now, we do it manually via the [IXP Manager v3 way](https://github.com/inex/IXP-Manager/wiki/MRTG---Traffic-Graphs#inter-switch--trunk-graphs).
+  IXP Manager does not currently support a frontend means of creating these definitions (but, as of late 2017, it is being worked on). For now, we do it manually via the [IXP Manager v3 way](https://github.com/inex/IXP-Manager/wiki/MRTG---Traffic-Graphs#inter-switch--trunk-graphs).
 
   These graphs will be available in the *Statistics* menu under *Inter-Switch / PoP Graphs*.
 
@@ -60,7 +79,7 @@ Per-second graphs are generated for bits, packets, errors, discards and broadcas
 You need to install some basic packages for MRTG to work - on Ubuntu for example, install:
 
 ```sh
-apt-get install libconfig-general-perl libnetaddr-ip-perl mrtg
+apt-get install rrdtool mrtg
 ```
 
 You also need a folder to store all MRTG files. For example:
@@ -72,22 +91,32 @@ mkdir -p /srv/mrtg
 In your `.env, you need to set the following options:
 
 ```
-# the database type to use - either log or rrd
-GRAPHER_BACKEND_MRTG_DBTYPE="log"
-# where to store log/rrd/png files as created above. This is from the perspective
-# of the mrtg daemon so should also be local
-GRAPHER_BACKEND_MRTG_WORKDIR="/tmp"
-# where to find the WORKDIR above from IXP Manager's perspective. This can be the
-# same local directory as the workdir for same server or a URL to remote web server.
-GRAPHER_BACKEND_MRTG_LOGDIR="http://collector.example.com/mrtg"
+# The MRTG database type to use - either log or rrd:
+GRAPHER_BACKEND_MRTG_DBTYPE="rrd"
+
+# Where to store log/rrd/png files as created above. This is from the perspective
+# of the mrtg daemon and it is only used when generating the mrtg configuration
+# file so this should be a local path on whatever server mrtg will run:
+GRAPHER_BACKEND_MRTG_WORKDIR="/srv/mrtg"
+
+# Where IXP Manager can fine the GRAPHER_BACKEND_MRTG_WORKDIR above. If mrtg is
+# running on the same server as IXP Manager, this this would just be the same:
+GRAPHER_BACKEND_MRTG_LOGDIR="/srv/mrtg"
+# Note that if you wish to run MRTG on another server, you can expose the
+# WORKDIR on a HTTP server and provide a URL to this option:
+# GRAPHER_BACKEND_MRTG_LOGDIR="http://collector.example.com/mrtg"
 ```
 
 You can now generate a MRTG configuration by executing a command such as:
 
 ```sh
-# output to stdout:
+# Move to the directory where you have installed IXP Manager (typically: /srv/ixpmanager)
+cd $IXPROOT
+
+# Generate MRTG configuration and output to stdout:
 ./artisan grapher:generate-configuration -B mrtg
-# output to a named file
+
+# Generate MRTG configuration and output to a named file:
 ./artisan grapher:generate-configuration -B mrtg -O /tmp/mrtg.cfg.candidate
 ```
 
@@ -96,35 +125,46 @@ You could also combine a syntax check before putting the resultant file live. He
 ```sh
 #! /usr/bin/env bash
 
-APPLICATION_PATH=/srv/ixpmanager
+# Set this to the directory where you have installed IXP Manager (typically: /srv/ixpmanager)
+IXPROOT=/srv/ixpmanager
 
-# Synchronise configuration files
-${APPLICATION_PATH}/artisan grapher:generate-configuration -B mrtg -O /tmp/mrtg.cfg.$$
+# Temporary configuration file:
+TMPCONF=/tmp/mrtg.cfg.$$
 
-cat /etc/mrtg.cfg    | egrep -v '^#.*$' | egrep -v '^[ ]+Based on configuration last generated by.*$' >/tmp/mrtg.cfg.filtered
-cat /tmp/mrtg.cfg.$$ | egrep -v '^#.*$' | egrep -v '^[ ]+Based on configuration last generated by.*$' >/tmp/mrtg.cfg.$$.filtered
-diff /tmp/mrtg.cfg.filtered /tmp/mrtg.cfg.$$.filtered >/dev/null
+# Synchronize configuration files
+${IXPROOT}/artisan grapher:generate-configuration -B mrtg -O $TMPCONF
+
+# Remove comments and date/time stamps for before comparing for differences
+cat /etc/mrtg.cfg    | egrep -v '^#.*$' | \
+    egrep -v '^[ ]+Based on configuration last generated by.*$' >/tmp/mrtg.cfg.filtered
+cat $TMPCONF         | egrep -v '^#.*$' |
+    egrep -v '^[ ]+Based on configuration last generated by.*$' >${TMPCONF}.filtered
+diff /tmp/mrtg.cfg.filtered ${TMPCONF}.filtered >/dev/null
 DIFF=$?
 
 rm /tmp/mrtg.cfg.filtered
-rm /tmp/mrtg.cfg.$$.filtered
+rm ${TMPCONF}.filtered
 
 if [[ $DIFF -eq 0 ]]; then
-    rm /tmp/mrtg.cfg.$$
+    rm ${TMPCONF}
     exit 0
 fi
 
-/usr/bin/mrtg --check /tmp/mrtg.cfg.$$                 \
-    && /bin/mv /tmp/mrtg.cfg.$$ /etc/mrtg.cfg
+/usr/bin/mrtg --check ${TMPCONF} && /bin/mv ${TMPCONF} /etc/mrtg.cfg
 ```
 
-If your MRTG collector is on a different server, you could use a script such as the following to safely update MRTG:
+If your MRTG collector is on a different server, you could use a script such as the following to safely update MRTG via [IXP Manager's API](api.md).
 
-```bash
-#! /bin/bash
+```sh
+#! /usr/bin/env bash
 
+# Temporary configuration file:
+TMPCONF=/etc/mrtg/mrtg.cfg.$$
+
+# Download the configuration via the API. Be sure to replace 'your_api_key'
+# with your actual API key (see API documenation).
 curl --fail -s -H "X-IXP-Manager-API-Key: your_api_key" \
-    https://ixp.example.com/api/v4/grapher/mrtg-config >/etc/mrtg/mrtg.cfg.$$
+    https://ixp.example.com/api/v4/grapher/mrtg-config >${TMPCONF}
 
 if [[ $? -ne 0 ]]; then
     echo "WARNING: COULD NOT FETCH UP TO DATE MRTG CONFIGURATION!"
@@ -133,47 +173,55 @@ fi
 
 cd /etc/mrtg
 
-cat mrtg.cfg    | egrep -v '^#.*$' | egrep -v '^[ ]+Based on configuration last generated by.*$' >mrtg.cfg.filtered
-cat mrtg.cfg.$$ | egrep -v '^#.*$' | egrep -v '^[ ]+Based on configuration last generated by.*$' >mrtg.cfg.$$.filtered
-diff mrtg.cfg.filtered mrtg.cfg.$$.filtered >/dev/null
+# Remove comments and date/time stamps for before comparing for differences
+cat mrtg.cfg    | egrep -v '^#.*$' |
+    egrep -v '^[ ]+Based on configuration last generated by.*$' >mrtg.cfg.filtered
+cat ${TMPCONF}  | egrep -v '^#.*$' | \
+    egrep -v '^[ ]+Based on configuration last generated by.*$' >${TMPCONF}.filtered
+diff mrtg.cfg.filtered ${TMPCONF}.filtered >/dev/null
 DIFF=$?
 
 rm mrtg.cfg.filtered
-rm mrtg.cfg.$$.filtered
+rm ${TMPCONF}.filtered
 
 if [[ $DIFF -eq 0 ]]; then
-    rm mrtg.cfg.$$
+    rm ${TMPCONF}
     exit 0
 fi
 
-/usr/local/bin/mrtg --check /etc/mrtg/mrtg.cfg.$$                 \
-    && /bin/mv /etc/mrtg/mrtg.cfg.$$ /etc/mrtg/mrtg.cfg \
-    && /etc/rc.d/mrtg_daemon restart > /dev/null 2>&1
+/usr/bin/mrtg --check ${TMPCONF} && /bin/mv ${TMPCONF} /etc/mrtg/mrtg.cfg     
 ```
 
-Note that our header template starts MRTG as a daemon. On FreeBSD, MRTG comes with an initd script by default and you can kick it off on boot with something like the following in rc.conf:
+Note that the MRTG configuration that IXP Manager generates instructs MRTG to run as a daemon. On FreeBSD, MRTG comes with an initd script by default and you can kick it off on boot with something like the following in `/etc/rc.conf`:
 
 ```
 mrtg_daemon_enable="YES"
 mrtg_daemon_config="/etc/mrtg/mrtg.cfg"
 ```
 
-However, on Ubuntu it does not but it comes with a /etc/cron.d/mrtg file which kicks it off every five minutes (it will daemonise the first time and further cron jobs will have no effect). If you use this method, you will need to have your periodic update script restart / stop the daemon when the configuration changes (as demonstrated in the above script).
+However, on Ubuntu it does not but it comes with a `/etc/cron.d/mrtg` file which kicks it off every five minutes (it will daemonize the first time and further cron jobs will have no effect).
 
-To start and stop it via standard initd scripts on Ubuntu, use [an initd script such as this](https://github.com/inex/IXP-Manager/blob/master/tools/runtime/mrtg/ubuntu-mrtg-initd)  ([source](http://www.iceflatline.com/2009/08/how-to-install-and-configure-mrtg-on-ubuntu-server/):
+To start and stop it via standard initd scripts on Ubuntu, use an initd script such as this: [ubuntu-mrtg-initd](https://github.com/inex/IXP-Manager/blob/master/tools/runtime/mrtg/ubuntu-mrtg-initd)  ([source](http://www.iceflatline.com/2009/08/how-to-install-and-configure-mrtg-on-ubuntu-server/)):
 
 ```
-cp $APPLICATION_PATH/tools/runtime/mrtg/ubuntu-mrtg-initd /etc/init.d/mrtg
+cp ${IXPROOT}/tools/runtime/mrtg/ubuntu-mrtg-initd /etc/init.d/mrtg
 chmod +x /etc/init.d/mrtg
 update-rc.d mrtg defaults
 /etc/init.d/mrtg start
 ```
 
-Remember to disable the default cron job for MRTG on Ubuntu!
+And disable the default cron job for MRTG on Ubuntu (`/etc/cron.d/mrtg`).
+
+**Important notes:**
+
+* If you have difficulty getting MRTG to work, please also refer the MRTG documentation at https://oss.oetiker.ch/mrtg/doc/mrtg.en.html
+* Any references to installing MRTG above are guidelines from our own experience. IXP Manager's role is to generate a configuration file for MRTG. It is up to the user to install MRTG as they deem appropriate.
+* The above assumes that MRTG automatically reconfigures itself when the configuration changes [as stated in the MRTG documentation for *RunAdDaemon*](https://oss.oetiker.ch/mrtg/doc/mrtg-reference.en.html). We have seen inconsistent behaviors for this and if it does not work for you, you will need to add a step to restart the MRTG daemon to the reconfiguration script above (at the very end).
+* The Ubuntu example above was a pre-systemd example. If anyone has an example of a systemd MRTG daemon configuration please provide us with some updated documentation.
 
 ### Customising the Configuration
 
-An example of how to customise the MRTG configuration [can be found in the skinning documenation](skinning.md).
+Generally speaking, you should not customize the way IXP Manager generates MRTG configuration as the naming conventions are tightly coupled to how IXP Manager fetches the graphs. However, if there are bits of the MRTG configuration you need to alter, you can do it via [skinning](skinning.md). *The skinning documenation actually uses MRTG as an example.*
 
 
 ### Inserting Traffic Data Into the Database / Reporting Emails
@@ -217,7 +265,7 @@ This generated emails are HTML formatted with embedded graph images.
 
 ## Backend: sflow
 
-Documentation on sflow is being prepared for v4 but the [v4 documentation is stail available here](https://github.com/inex/IXP-Manager/wiki/Installing-Sflow-Support).
+Documentation on sflow is being prepared for v4 but the [v3 documentation is still available here](https://github.com/inex/IXP-Manager/wiki/Installing-Sflow-Support).
 
 The previous version of IXP Manager (<4) used a script called `sflow-graph.php` which was installed on the sflow server to create graphs on demand. IXP Manager v4 does not use this but pulls the required RRD files directly.
 
@@ -227,7 +275,7 @@ If you have these on the same server (not typically recommended), then set the p
 GRAPHER_BACKEND_SFLOW_ROOT="/srv/ixpmatrix"
 ```
 
-If you have implemented this via a web server on the sflow server (as we typically do at INEX), then you need to expose the RRD data directory to IXP Manager using an Apache config such as:
+If you have implemented this via a web server on a dedicated sflow server (as we typically do at INEX), then you need to expose the RRD data directory to IXP Manager using an Apache config such as:
 
 ```
 Alias /grapher-sflow /srv/ixpmatrix
