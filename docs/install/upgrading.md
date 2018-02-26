@@ -109,6 +109,13 @@ The general process is:
     # (assuming we're still in $IXPROOT)
     ./artisan up
     ```
+12. Recreate SQL views
+
+Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them:
+
+    ```sh
+    mysql -u ixp -p ixp < $IXPROOT/tools/sql/views.sql
+    ```
 
 ## Updating Bower Dependancies
 
@@ -203,8 +210,3 @@ systemctl restart memcached.service           # (or as appropriate for your syst
 ./artisan doctrine:generate:proxies
 ```
 
-Some older scripts also rely on MySQL view tables that may be missing. You can safely run this to (re)create them:
-
-```sh
-mysql -u ixp -p ixp < $IXPROOT/tools/sql/views.sql
-```
