@@ -311,7 +311,7 @@
               
                 <h1 id="reseller-functionality">Reseller Functionality<a class="headerlink" href="#reseller-functionality" title="Permanent link"></a></h1>
 <p>Reseller mode must be explicitly enabled with a <code>.env</code> option:</p>
-<div class="highlight"><pre>IXP_RESELLER_ENABLED=true
+<div class="highlight"><pre><span></span>IXP_RESELLER_ENABLED=true
 </pre></div>
 
 
@@ -352,42 +352,42 @@
 <h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link"></a></h2>
 <p>The following are set in <code>.env</code>:</p>
 <p>To enable reseller functionality, set the following to <code>true</code>:</p>
-<div class="highlight"><pre>IXP_RESELLER_ENABLED=false
+<div class="highlight"><pre><span></span>IXP_RESELLER_ENABLED=false
 </pre></div>
 
 
 <p>If your resold customers are billed directly by the reseller and not the IXP, set this to true to remove billing details from their admin and member areas.</p>
-<div class="highlight"><pre>IXP_RESELLER_RESOLD_BILLING=false
+<div class="highlight"><pre><span></span>IXP_RESELLER_RESOLD_BILLING=false
 </pre></div>
 
 
 <h2 id="coding-hints">Coding Hints<a class="headerlink" href="#coding-hints" title="Permanent link"></a></h2>
 <p>In the (older Zend Framework) controllers, you can execute reseller code via:</p>
-<div class="highlight"><pre><span class="x">if( $this-&gt;resellerMode() ) {</span>
+<div class="highlight"><pre><span></span><span class="x">if( $this-&gt;resellerMode() ) {</span>
 <span class="x">    // your reseller specific code here</span>
 <span class="x">}</span>
 </pre></div>
 
 
 <p>And in (the older Zend Framework) Smarty templates, you can add reseller only content via:</p>
-<div class="highlight"><pre>{if $resellerMode}
+<div class="highlight"><pre><span></span>{if $resellerMode}
     &lt;!-- Your reseller content --&gt;
 {/if}
 </pre></div>
 
 
 <p>If you have a <code>$customer</code> entity, you can see if it is a reseller via:</p>
-<div class="highlight"><pre><span class="x">if( $customer-&gt;isReseller() ) {}</span>
+<div class="highlight"><pre><span></span><span class="x">if( $customer-&gt;isReseller() ) {}</span>
 </pre></div>
 
 
 <p>To see if a customer is a resold customer or get the reseller customer entity:</p>
-<div class="highlight"><pre><span class="x">if( $customer-&gt;getReseller() ) {} // returns false if not a resold customer</span>
+<div class="highlight"><pre><span></span><span class="x">if( $customer-&gt;getReseller() ) {} // returns false if not a resold customer</span>
 </pre></div>
 
 
 <p>Finally, to get all resold customer entities of a reseller:</p>
-<div class="highlight"><pre><span class="x">$customer-&gt;getResoldCustomers()</span>
+<div class="highlight"><pre><span></span><span class="x">$customer-&gt;getResoldCustomers()</span>
 </pre></div>
 
 
