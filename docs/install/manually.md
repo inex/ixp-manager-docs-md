@@ -6,25 +6,18 @@ IXP Manager tries to stay current in terms of technology. Typically, this means 
 The current requirements for the web application are:
 
 * a Linux / BSD host.
-* MariaDB / MySQL version 5.5.4 or later.
+* MySQL version 5.7 or later.
 * Apache / Nginx / etc.
 * PHP >= 7.0. **Note that IXP Manager will not run on older versions of PHP.**
 * Memcached - optional but highly recommended.
 
-To complete the installation using the included config/scripts, you will also need to have installed:
+To complete the installation using the included config/scripts, you will also need to have installed git (`apt-get install git`) and a number of PHP extensions (see the example `apt-get install` below).
 
-* git - distributed revision control system (e.g.: `apt-get install git`)
-* memcache extension module for PHP (e.g.: `apt-get install php-memcached`)
-* SNMP extension module for PHP (e.g.: `apt-get install php7.0-snmp`)
-* php7.0-mbstring - may be built into the PHP core
-* php7.0-xml
-* php7.0-intl
-* php7.0-mysql
-* php7.0-mcrypt
-* php7.0-bcmath
-* php-ds
-* php-rrd
-* php-yaml
+Regrettably the potential combinations of operating systems, versions of
+same and then versions of PHP are too numerous to provide individual
+support. As such, we recommend installing IXP Manager on Ubuntu LTS 16.04 and we officially support this platform.
+
+In fact we provide a complete installation script for this - see [the automated installation page](automated-script.md) for details. If you have any issues with the manual installation, the automated script should be your first reference to compare what you are doing to what we recommend.
 
 For completeness, the IXP Manager installation script for Ubuntu 16.04 LTS installs:
 
@@ -37,6 +30,8 @@ apt-get install -qy apache2 php7.0 php7.0-intl php-rrd php7.0-cgi php7.0-cli    
     libnetaddr-ip-perl mrtg  libconfig-general-perl libnetaddr-ip-perl rrdtool     \
     librrds-perl
 ```
+
+If you are using a different platform, you will need to replicate the above as appropriate for your chosen platform.
 
 
 # Get the IXP Manager Source
