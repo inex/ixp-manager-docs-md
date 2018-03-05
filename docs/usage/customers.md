@@ -24,9 +24,9 @@ The `Shortname` field is something we are slowly removing. It is currently visib
 
 The `Corporate Website` is used when linking the customer name in various customer lists. It must be a valid URL. Try and stick to the scheme: `http://www.example.com/` - i.e. include `http[s]://` and end with a trailing slash.
 
-The `Date Joined` is just that and must be set. However, the `Date Left` has real consequences: **setting `Date Left` effectivily closes the customer's account**. This means configuration will no longer be included for graphing, router configuration, etc. We tend not to delete customers but mark them as closed by setting this field.
+The `Date Joined` is just that and must be set. However, the `Date Left` has real consequences: **setting `Date Left` effectively closes the customer's account**. This means configuration will no longer be included for graphing, router configuration, etc. We tend not to delete customers but mark them as closed by setting this field.
 
-`Status` yields three options. The most important of which is `Normal` which is what you'll use nearly 100% of the time. Setting either of the other two otions (`Suspended` / `Not Connected`) will have the same effect as closing the accout as described above: removing route server / collector sessions, graphing configuration, etc.
+`Status` yields three options. The most important of which is `Normal` which is what you'll use nearly 100% of the time. Setting either of the other two options (`Suspended` / `Not Connected`) will have the same effect as closing the account as described above: removing route server / collector sessions, graphing configuration, etc.
 
 `MD5 Support`: this is not something that has been fully integrated into all view screens. You should probably default to `Yes` for now as this will cover 95+% of cases. It is an informational flag only for member to member bilateral peering.
 
@@ -34,7 +34,7 @@ The `Date Joined` is just that and must be set. However, the `Date Left` has rea
 
 The `AS Number` is just the integer value without any `AS` prefix, etc.
 
-`Max Prefixes` is known as the *global max prefixes value*. It is used to work out the approproiate max prefixes value to apply to all router configurations in the stock / default templates (route collector and servers, AS112). The calculated value is also included in emails from the *Peering Manager* from customer to customer.
+`Max Prefixes` is known as the *global max prefixes value*. It is used to work out the appropriate max prefixes value to apply to all router configurations in the stock / default templates (route collector and servers, AS112). The calculated value is also included in emails from the *Peering Manager* from customer to customer.
 
 There are two issues with max prefixes:
 
@@ -72,32 +72,63 @@ This section will only be displayed if reseller functionality is enabled.
 
 See the [reseller instructions](../features/reseller.md) for details on this.
 
+## Welcome Emails
+
+When a new customer is provisioned, you can send them a *welcome email* from IXP Manager which is a useful way to provide all their connectivity details and other on-boarding information for your IX.
+
+From the *Customer Overview* page, you will find the *Send Welcome Email...* option under the tools menu on the top right hand corner of the page:
+
+![Welcome Email](img/customer-welcome-email.png)
+
+To be useful, you need to [skin](../features/skinning.md) the welcome email.
+
+From IXP Manager v4.8.0 onwards, its format is Markdown and it is sent as a HTML email. The file you need to skin is (with an example of how to do it):
+
+```
+cd ${IXPROOT}
+mkdir -p resources/skins/example/customer/emails
+cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/customer/emails/
+```
+
+The `example` skin name in the above *is just an example*. Please read the [skinning documentation](../features/skinning.md).
+
+
+## Customer Logos
+
+Customer users and administrators can upload and manage logos for customers. To enable this functionality, set the following in your `${IXPROOT}/.env` file:
+
+```
+IXP_FE_FRONTEND_DISABLED_LOGO=false
+```
+
+When you do this, the ability to manage logos will appear:
+
+* under the *Edit* menu (top right, pencil icon) for administrators on the *Customer Overview* page;
+* via a *Your Logo* section on the customer user's landing page after logging in.
+
+Logos will then be shown in the customer overview page and a new admin left-hand-side menu option called *Member Logos* (which shows all logos).
+
+Logos are stored under `${IXPROOT}/public/logos` in a sharded directory structure based on the SHA1 of the image content.
+
+
 ## Registration and Billing Details
 
 After you add a new customer (or from the customer overview page from the dropdown edit icon on the right of the title area, you can select *Edit Billing/Registration Details*), you will get the following form:
 
 ![Customer Registration and Billing Details](img/customer-reg-billing.png)
 
-All of these details are informatin only and only available to administrative users.
+All of these details are informative only and only available to administrative users.
 
 ### Notification of Billing Details Changed
 
-If you want a particular email address notified of changes to billing details, edit the `config/ixp_tools.php` configuration file and set:
+If you want notification of a customer's billing details being changed by email, set the following parameter in your `${IXPROOT}/.env` file:
 
-```php
-//;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-// Billing updates notifications
-//
-// Send email with updated billing details to the following address when billing details
-// are updated by an admin or a user.
-//
-'billing_updates_notify' => "some-email@example.com",
 ```
+IXP_FE_CUSTOMER_BILLING_UPDATES_NOTIFY="mail@example.com"
+```
+
+This can be useful to alert your accounts / billing staff of these changes automatically.
 
 If you need multiple people notified, use an alias address encompassing all the users.
 
-If the above configuration file does not exist, create it from the suggested template:
-
-```sh
-cp config/ixp_tools.php.dist config/ixp_tools.php
-```
+*Prior to v4.8, you had to edit the `config/ixp_tools.php` configuration file and set the `billing_updates_notify` array element. If this file does not exist, create it from the suggested template: `cp config/ixp_tools.php.dist config/ixp_tools.php`.*

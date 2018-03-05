@@ -29,7 +29,7 @@ Here's an example:
 
 ```
 # position ourselves in the IXP Manager root directory
-cd /path/to/ixp4
+cd ${IXPROOT}
 
 # make the skin directory
 mkdir resources/skins/example

@@ -104,6 +104,10 @@
         
             <li><a class="toctree-l4" href="#customer-details">Customer Details</a></li>
         
+            <li><a class="toctree-l4" href="#welcome-emails">Welcome Emails</a></li>
+        
+            <li><a class="toctree-l4" href="#customer-logos">Customer Logos</a></li>
+        
             <li><a class="toctree-l4" href="#registration-and-billing-details">Registration and Billing Details</a></li>
         
         </ul>
@@ -323,12 +327,12 @@
 </ul>
 <p>The <code>Shortname</code> field is something we are slowly removing. It is currently visible in some URLs and a couple other areas. It should be a lowercase single word (<code>[a-z0-9]</code>) and it should not be changed after it is set.</p>
 <p>The <code>Corporate Website</code> is used when linking the customer name in various customer lists. It must be a valid URL. Try and stick to the scheme: <code>http://www.example.com/</code> - i.e. include <code>http[s]://</code> and end with a trailing slash.</p>
-<p>The <code>Date Joined</code> is just that and must be set. However, the <code>Date Left</code> has real consequences: <strong>setting <code>Date Left</code> effectivily closes the customer's account</strong>. This means configuration will no longer be included for graphing, router configuration, etc. We tend not to delete customers but mark them as closed by setting this field.</p>
-<p><code>Status</code> yields three options. The most important of which is <code>Normal</code> which is what you'll use nearly 100% of the time. Setting either of the other two otions (<code>Suspended</code> / <code>Not Connected</code>) will have the same effect as closing the accout as described above: removing route server / collector sessions, graphing configuration, etc.</p>
+<p>The <code>Date Joined</code> is just that and must be set. However, the <code>Date Left</code> has real consequences: <strong>setting <code>Date Left</code> effectively closes the customer's account</strong>. This means configuration will no longer be included for graphing, router configuration, etc. We tend not to delete customers but mark them as closed by setting this field.</p>
+<p><code>Status</code> yields three options. The most important of which is <code>Normal</code> which is what you'll use nearly 100% of the time. Setting either of the other two options (<code>Suspended</code> / <code>Not Connected</code>) will have the same effect as closing the account as described above: removing route server / collector sessions, graphing configuration, etc.</p>
 <p><code>MD5 Support</code>: this is not something that has been fully integrated into all view screens. You should probably default to <code>Yes</code> for now as this will cover 95+% of cases. It is an informational flag only for member to member bilateral peering.</p>
 <h3 id="peering-details">Peering Details<a class="headerlink" href="#peering-details" title="Permanent link"></a></h3>
 <p>The <code>AS Number</code> is just the integer value without any <code>AS</code> prefix, etc.</p>
-<p><code>Max Prefixes</code> is known as the <em>global max prefixes value</em>. It is used to work out the approproiate max prefixes value to apply to all router configurations in the stock / default templates (route collector and servers, AS112). The calculated value is also included in emails from the <em>Peering Manager</em> from customer to customer.</p>
+<p><code>Max Prefixes</code> is known as the <em>global max prefixes value</em>. It is used to work out the appropriate max prefixes value to apply to all router configurations in the stock / default templates (route collector and servers, AS112). The calculated value is also included in emails from the <em>Peering Manager</em> from customer to customer.</p>
 <p>There are two issues with max prefixes:</p>
 <ul>
 <li>it is also possible to set a max prefixes value on a per VLAN interface basis. This is not ideal and something we intend to fix.</li>
@@ -352,26 +356,45 @@
 <h3 id="reseller-details">Reseller Details<a class="headerlink" href="#reseller-details" title="Permanent link"></a></h3>
 <p>This section will only be displayed if reseller functionality is enabled.</p>
 <p>See the <a href="../../features/reseller/">reseller instructions</a> for details on this.</p>
+<h2 id="welcome-emails">Welcome Emails<a class="headerlink" href="#welcome-emails" title="Permanent link"></a></h2>
+<p>When a new customer is provisioned, you can send them a <em>welcome email</em> from IXP Manager which is a useful way to provide all their connectivity details and other on-boarding information for your IX.</p>
+<p>From the <em>Customer Overview</em> page, you will find the <em>Send Welcome Email...</em> option under the tools menu on the top right hand corner of the page:</p>
+<p><img alt="Welcome Email" src="../img/customer-welcome-email.png" /></p>
+<p>To be useful, you need to <a href="../../features/skinning/">skin</a> the welcome email.</p>
+<p>From IXP Manager v4.8.0 onwards, its format is Markdown and it is sent as a HTML email. The file you need to skin is (with an example of how to do it):</p>
+<div class="highlight"><pre>cd ${IXPROOT}
+mkdir -p resources/skins/example/customer/emails
+cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/customer/emails/
+</pre></div>
+
+
+<p>The <code>example</code> skin name in the above <em>is just an example</em>. Please read the <a href="../../features/skinning/">skinning documentation</a>.</p>
+<h2 id="customer-logos">Customer Logos<a class="headerlink" href="#customer-logos" title="Permanent link"></a></h2>
+<p>Customer users and administrators can upload and manage logos for customers. To enable this functionality, set the following in your <code>${IXPROOT}/.env</code> file:</p>
+<div class="highlight"><pre>IXP_FE_FRONTEND_DISABLED_LOGO=false
+</pre></div>
+
+
+<p>When you do this, the ability to manage logos will appear:</p>
+<ul>
+<li>under the <em>Edit</em> menu (top right, pencil icon) for administrators on the <em>Customer Overview</em> page;</li>
+<li>via a <em>Your Logo</em> section on the customer user's landing page after logging in.</li>
+</ul>
+<p>Logos will then be shown in the customer overview page and a new admin left-hand-side menu option called <em>Member Logos</em> (which shows all logos).</p>
+<p>Logos are stored under <code>${IXPROOT}/public/logos</code> in a sharded directory structure based on the SHA1 of the image content.</p>
 <h2 id="registration-and-billing-details">Registration and Billing Details<a class="headerlink" href="#registration-and-billing-details" title="Permanent link"></a></h2>
 <p>After you add a new customer (or from the customer overview page from the dropdown edit icon on the right of the title area, you can select <em>Edit Billing/Registration Details</em>), you will get the following form:</p>
 <p><img alt="Customer Registration and Billing Details" src="../img/customer-reg-billing.png" /></p>
-<p>All of these details are informatin only and only available to administrative users.</p>
+<p>All of these details are informative only and only available to administrative users.</p>
 <h3 id="notification-of-billing-details-changed">Notification of Billing Details Changed<a class="headerlink" href="#notification-of-billing-details-changed" title="Permanent link"></a></h3>
-<p>If you want a particular email address notified of changes to billing details, edit the <code>config/ixp_tools.php</code> configuration file and set:</p>
-<div class="highlight"><pre><span class="x">//;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="x">// Billing updates notifications</span>
-<span class="x">//</span>
-<span class="x">// Send email with updated billing details to the following address when billing details</span>
-<span class="x">// are updated by an admin or a user.</span>
-<span class="x">//</span>
-<span class="x">&#39;billing_updates_notify&#39; =&gt; &quot;some-email@example.com&quot;,</span>
+<p>If you want notification of a customer's billing details being changed by email, set the following parameter in your <code>${IXPROOT}/.env</code> file:</p>
+<div class="highlight"><pre>IXP_FE_CUSTOMER_BILLING_UPDATES_NOTIFY=&quot;mail@example.com&quot;
 </pre></div>
 
 
+<p>This can be useful to alert your accounts / billing staff of these changes automatically.</p>
 <p>If you need multiple people notified, use an alias address encompassing all the users.</p>
-<p>If the above configuration file does not exist, create it from the suggested template:</p>
-<div class="highlight"><pre>cp config/ixp_tools.php.dist config/ixp_tools.php
-</pre></div>
+<p><em>Prior to v4.8, you had to edit the <code>config/ixp_tools.php</code> configuration file and set the <code>billing_updates_notify</code> array element. If this file does not exist, create it from the suggested template: <code>cp config/ixp_tools.php.dist config/ixp_tools.php</code>.</em></p>
               
             </div>
           </div>
