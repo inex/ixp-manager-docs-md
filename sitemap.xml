@@ -152,6 +152,12 @@
     </url>
         
     <url>
+     <loc>http://docs.ixpmanager.org/features/member-export/</loc>
+     <lastmod>2018-03-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://docs.ixpmanager.org/features/mailing-lists/</loc>
      <lastmod>2018-03-05</lastmod>
      <changefreq>daily</changefreq>
