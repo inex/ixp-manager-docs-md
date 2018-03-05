@@ -7,7 +7,7 @@
 
 ## Overview
 
-In IXP Manager, there are four types of users as descibed [in the users page](../usage/users.md). Static contact can be added which requires a minimum user privilege to access (e.g. `priv == 0` would be publically accessible through to `priv == 3` which would require a superadmin).
+In IXP Manager, there are four types of users as described [in the users page](../usage/users.md). Static contact can be added which requires a minimum user privilege to access (e.g. `priv == 0` would be publicly accessible through to `priv == 3` which would require a superadmin).
 
 To create static content, you should first [set up skinning](skinning.md) for your installation. Let's assume you called your skin `example`.
 

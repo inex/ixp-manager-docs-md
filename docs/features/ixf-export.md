@@ -6,7 +6,7 @@ The key element of the IX-F Member Export is it makes you, the individual IXP, t
 
 To find out more about the JSON schema and see examples, you can [explore any of the public IXP end points available here](http://ml.ix-f.net/directory) or see the GitHub [euro-ix/json-schemas](https://github.com/euro-ix/json-schemas) repository.
 
-**IXP Manager** supports the IX-F Member List Export out of the box. It previously supported all versions from 0.3 to 0.5 but as of May 2017, we now only support 0.6. This is because this has become the stable common version.
+**IXP Manager** supports the IX-F Member List Export out of the box. It previously supported all versions from 0.3 to 0.5 but as of May 2017, we now only support 0.6 and 0.7. This is because these have become the stable common versions (as at time of writing, March 2018).
 
 ## Accessing the IX-F Member List
 

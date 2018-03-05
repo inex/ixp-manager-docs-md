@@ -32,6 +32,7 @@ pages:
     - 'MAC Addresses': 'features/layer2-addresses.md'
     - 'Looking Glass': 'features/looking-glass.md'
     - 'MAC Addresses': 'features/layer2-addresses.md'
+    - 'Member Export': 'features/member-export.md'
     - 'Mailing List Management': 'features/mailing-lists.md'
     - 'Nagios': 'features/nagios.md'
     - 'Patch Panels': 'features/patch-panels.md'
