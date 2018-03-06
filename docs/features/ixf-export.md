@@ -50,7 +50,7 @@ Leave public access available, own your own data, ensure it's validy and adverti
 
 ## Example: Member Lists
 
-A common requirement of IXPs is to create a public member list on their official website. This can be done with the IX-F Member Export quite easily. The below HTML and JavaScript is a way to do it with INEX's endpoint. There's a [live JSFiddle which demonstrates this also](https://jsfiddle.net/barryo/2tzuypf9/) - https://jsfiddle.net/barryo/2tzuypf9/ .
+A common requirement of IXPs is to create a public member list on their official website. This can be done with the IX-F Member Export quite easily. The below HTML and JavaScript is a way to do it with INEX's endpoint. There's a [live JSFiddle which demonstrates this also](https://jsfiddle.net/barryo/2tzuypf9/) - [https://jsfiddle.net/barryo/2tzuypf9/](https://jsfiddle.net/barryo/2tzuypf9/).
 
 The HTML requires just a table with a placeholder and an `id` on the `body`:
 
@@ -143,8 +143,8 @@ $.getJSON( "https://www.inex.ie/ixp/api/v4/member-export/ixf/0.7", function( jso
 
 The end result is a table that looks like:
 
-Company             | ASN         | Connections
---------------------|----------------------------------
-3 Ireland           | 34218       | 2\*10Gb + 2\*10Gb
-Afilias             | 12041       | 1Gb
-...                 | ...         | ...
+Company             | ASN         | Connections        |
+--------------------|----------------------------------|
+3 Ireland           | 34218       | 2\*10Gb + 2\*10Gb  |
+Afilias             | 12041       | 1Gb                |
+...                 | ...         | ...                |
