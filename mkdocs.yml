@@ -54,6 +54,7 @@ pages:
     - 'Grapher': 'dev/grapher.md'
     - 'Helpers': 'dev/helpders.md'
     - 'Looking Glass': 'dev/looking-glass.md'
+    - 'Release Procedure': 'dev/release-procedure.md'
     - 'Vagrant': 'dev/vagrant.md'
 markdown_extensions:
   - pymdownx.superfences
