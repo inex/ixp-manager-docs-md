@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Automated Script - IXP Manager Documentation</title>
+  <title>Forms - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Automated Script";
-    var mkdocs_page_input_path = "install/automated-script.md";
-    var mkdocs_page_url = "/install/automated-script/";
+    var mkdocs_page_name = "Forms";
+    var mkdocs_page_input_path = "dev/forms.md";
+    var mkdocs_page_url = "/dev/forms/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -58,37 +58,31 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../">Introduction</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">Automated Script</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#automated-installation-script">Automated Installation Script</a></li>
-    
-
-    </ul>
+    <a class="" href="../../install/">Introduction</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../maint-mode/">Maintenance Mode</a>
+    <a class="" href="../../install/automated-script/">Automated Script</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../manually/">Manual Installation</a>
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../upgrading/">Upgrading</a>
+    <a class="" href="../../install/manually/">Manual Installation</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../upgrade-v3/">Upgrade From v3</a>
+    <a class="" href="../../install/upgrading/">Upgrading</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../runtime/">Runtime Configuration</a>
+    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/runtime/">Runtime Configuration</a>
                 </li>
     </ul>
 	    </li>
@@ -221,51 +215,65 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../dev/api/">API</a>
+    <a class="" href="../api/">API</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/ci/">Continuous Integration</a>
+    <a class="" href="../ci/">Continuous Integration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/cla/">Contributer License Agreement</a>
+    <a class="" href="../cla/">Contributer License Agreement</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/docker/">Docker</a>
+    <a class="" href="../docker/">Docker</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/docs/">Documentation</a>
+    <a class="" href="../docs/">Documentation</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Forms</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#forms">Forms</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#html5-validation">HTML5 Validation</a></li>
+        
+            <li><a class="toctree-l4" href="#checkboxes">Checkboxes</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/forms/">Forms</a>
+    <a class="" href="../frontend-crud/">Frontend CRUD</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/frontend-crud/">Frontend CRUD</a>
+    <a class="" href="../grapher/">Grapher</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/grapher/">Grapher</a>
+    <a class="" href="../helpders/">Helpers</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/helpders/">Helpers</a>
+    <a class="" href="../looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/looking-glass/">Looking Glass</a>
+    <a class="" href="../release-procedure/">Release Procedure</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/release-procedure/">Release Procedure</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/vagrant/">Vagrant</a>
+    <a class="" href="../vagrant/">Vagrant</a>
                 </li>
     </ul>
 	    </li>
@@ -292,14 +300,14 @@
     
       
         
-          <li>Installation &raquo;</li>
+          <li>Development &raquo;</li>
         
       
     
-    <li>Automated Script</li>
+    <li>Forms</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/install/automated-script.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/dev/forms.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -309,9 +317,65 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="automated-installation-script">Automated Installation Script<a class="headerlink" href="#automated-installation-script" title="Permanent link"></a></h1>
-<p>The available installation script(s) can be found at: <a href="https://github.com/inex/IXP-Manager/tree/master/tools/installers">https://github.com/inex/IXP-Manager/tree/master/tools/installers</a>.</p>
-<p>Even if you choose not to use these, the scripts under the above link show the accurate and complete installation process and should be used as a reference guide.</p>
+                <h1 id="forms">Forms<a class="headerlink" href="#forms" title="Permanent link"></a></h1>
+<p>This page collates various notes and bets practice for writing HTML forms with IXP Manager and Laravel.</p>
+<p><strong>IXP Manager</strong> uses the library <a href="https://github.com/formers/former">Former</a> to generate forms. <a href="https://github.com/formers/former/wiki/Usage-and-Examples">Here are some examples</a> of how to use Former.</p>
+<h2 id="html5-validation">HTML5 Validation<a class="headerlink" href="#html5-validation" title="Permanent link"></a></h2>
+<p>Former adds HTML5 validation tags when it created forms. If you wish to test the PHP code's validation rules, you will need to disable this is development by setting the following <code>.env</code> setting:</p>
+<div class="highlight"><pre><span></span>FORMER_LIVE_VALIDATION=false
+</pre></div>
+
+
+<h2 id="checkboxes">Checkboxes<a class="headerlink" href="#checkboxes" title="Permanent link"></a></h2>
+<p>We had some issues using Former's checkboxes correctly - this is why we are providing the <em>correct</em> way to use them.</p>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h3>
+<p>First make sure that the Former configuration file (<code>config/former.php</code>) is correctly configured:</p>
+<div class="highlight"><pre><span></span><span class="x">// Whether checkboxes should always be present in the POST data,</span>
+<span class="x">// no matter if you checked them or not</span>
+<span class="x">&#39;push_checkboxes&#39;         =&gt; true,</span>
+
+<span class="x">// The value a checkbox will have in the POST array if unchecked</span>
+<span class="x">&#39;unchecked_value&#39;         =&gt; 0,</span>
+</pre></div>
+
+
+<h3 id="view">View<a class="headerlink" href="#view" title="Permanent link"></a></h3>
+<p>The following is the structure of a checkbox input:</p>
+<ul>
+<li><code>Former::checkbox( 'checkbox-name' )</code> will be the HTML <code>name=""</code> of the input in the DOM.</li>
+<li><code>-&gt;id( 'checkbox-id' )</code> will be the HTML `id=""`` of the input in the DOM, it is not required and defaults to the name above.</li>
+<li><code>-&gt;label( 'my-label' )</code> will be the label of the input displayed on the <em>left</em> of the checkbox, it is not required. If you are just using a right hand side text label, setting this to <code>'&amp;nbsp;'</code> can help improve layout.</li>
+<li><code>-&gt;label( 'my-text' )</code> will be the text of the input displayed on the <em>right</em> of the checkbox, it is not required.</li>
+<li><code>-&gt;value( 1 )</code> <strong>this is really important for the correct functioning of the checkboxes</strong>.</li>
+<li><code>-&gt;blockHelp( "help text”)</code> will be the help text of the checkbox.</li>
+</ul>
+<p><strong>Note:</strong> in this example the checkbox will be unchecked:</p>
+<div class="highlight"><pre><span></span><span class="x">Former::checkbox( &#39;checkbox-name&#39; )</span>
+<span class="x">    -&gt;id( &#39;checkbox-id&#39; )</span>
+<span class="x">    -&gt;label( &#39;my-label&#39; )</span>
+<span class="x">    -&gt;text( &#39;my-text&#39; )</span>
+<span class="x">    -&gt;value( 1 )</span>
+<span class="x">    -&gt;blockHelp( &quot;Help text” );</span>
+</pre></div>
+
+
+<p>To check a checkbox by default add the following function to the checkbox structure above:</p>
+<div class="highlight"><pre><span></span><span class="x">    -&gt;check()</span>
+</pre></div>
+
+
+<p>If the checkbox has to be checked depending on a variable:</p>
+<div class="highlight"><pre><span></span><span class="x">    -&gt;check( $myVariableIsChecked ? 1 : 0 )</span>
+</pre></div>
+
+
+<p><strong>Note:</strong> The above case should be an exception and not a common way to populate the checkboxes. To populate the checkboxes correctly you have to do it via the controller as explained below.</p>
+<h3 id="controller">Controller<a class="headerlink" href="#controller" title="Permanent link"></a></h3>
+<p>You can populate a form via the controller with the function <code>Former::populate()</code> by the usual method of passing an array of values:</p>
+<div class="highlight"><pre><span></span><span class="x">Former::populate([</span>
+<span class="x">    &#39;my-checkbox&#39; =&gt; $object-&gt;isChecked() ? 1 : 0,</span>
+<span class="x">]);</span>
+</pre></div>
               
             </div>
           </div>
@@ -319,10 +383,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../maint-mode/" class="btn btn-neutral float-right" title="Maintenance Mode">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../frontend-crud/" class="btn btn-neutral float-right" title="Frontend CRUD">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../" class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../docs/" class="btn btn-neutral" title="Documentation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -352,10 +416,10 @@
           <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../docs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../maint-mode/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../frontend-crud/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
