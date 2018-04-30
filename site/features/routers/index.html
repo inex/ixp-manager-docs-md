@@ -345,20 +345,22 @@
 <p>The simplest configuration to generate is the route collector configuration. A route collector is an IXP router which serves only to <em>accept all routes and export no routes</em>. It is used for problem diagnosis, to aid customer monitoring and for looking glasses (see <a href="https://www.inex.ie/ixp/lg/rc1-lan1-ipv4">INEX's here</a>).</p>
 <p>The <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird/standard.foil.php">standard configuration</a> simply pulls in a fairly standard header (sets up router ID, listening address and - for the collector at least - some unused filters) and creates a session for all customer routers on the given VLAN.</p>
 <p>When adding a router, you give it a <em>handle</em>. For example: <code>rc1-lan1-ipv4</code> which, for INEX, would mean a route collector on peering LAN1 using IPv4. Then - for the given router handle - the configuration can be generated and pulled using the API as follows:</p>
-<pre class="highlight"><code class="language-sh">#! /bin/sh
+<div class="highlight"><pre><span></span><span class="ch">#! /bin/sh</span>
 
-# The API Key.
-# This is generated in IXP Manager via the top right menu: *My Account -&gt; API Keys*
-KEY=&quot;your-admin-ixp-manager-api-key&quot;
+<span class="c1"># The API Key.</span>
+<span class="c1"># This is generated in IXP Manager via the top right menu: *My Account -&gt; API Keys*</span>
+<span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;your-admin-ixp-manager-api-key&quot;</span>
 
-# The base URL of your IXP Manager install plus: 'api/v4/router/gen-config'
-URL=&quot;https://ixp.example.com/api/v4/router/gen-config&quot;
+<span class="c1"># The base URL of your IXP Manager install plus: &#39;api/v4/router/gen-config&#39;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://ixp.example.com/api/v4/router/gen-config&quot;</span>
 
-# The handle is as described above:
-HANDLE=&quot;rc1-lan1-ipv4&quot;
+<span class="c1"># The handle is as described above:</span>
+<span class="nv">HANDLE</span><span class="o">=</span><span class="s2">&quot;rc1-lan1-ipv4&quot;</span>
 
-# Then the configuration can be pulled as follows:
-curl --fail -s -H &quot;X-IXP-Manager-API-Key: ${KEY}&quot; ${URL}/${HANDLE} &gt;${HANDLE}.conf</code></pre>
+<span class="c1"># Then the configuration can be pulled as follows:</span>
+curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span class="si">${</span><span class="nv">KEY</span><span class="si">}</span><span class="s2">&quot;</span> <span class="si">${</span><span class="nv">URL</span><span class="si">}</span>/<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span> &gt;<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span>.conf
+</pre></div>
+
 
 <p>Configurations for the route server and AS112 templates can be configured just as easily.</p>
 <p>The stock templates for both are secure and well tested and can be used by setting the <code>template</code> element of the router to one of the following:</p>
@@ -378,33 +380,43 @@ curl --fail -s -H &quot;X-IXP-Manager-API-Key: ${KEY}&quot; ${URL}/${HANDLE} &gt
 <p>It can be useful to know that the scripts for updating the router configuration for AS112, route collector and route server BGP daemons run successfully. At INEX for example, we have three LANs and so 10 individual servers running a total of 30 Bird instances which is unwieldy to check and monitor manually.</p>
 <p>When viewing routers in IXP Manager, you may have noticed the <em>Last Updated</em> column which will initially show <em>(unknown)</em>. All our update scripts (see above) trigger the updated API call when a route configuration run has completed successfully. Note that this does not mean that a configuration has necessarily changed but rather that the update script ran and executed correctly. In other words: <em>the configuration was successfully pulled from IXP Manager, compared to the running configuration and, if changed, successfully applied</em>.</p>
 <p>The API call to update the <em>last updated</em> field to <em>now</em> is a POST as follows:</p>
-<pre class="highlight"><code>curl -s -X POST -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
-    https://ixp.example.com/api/v4/router/updated/{handle}</code></pre>
+<div class="highlight"><pre><span></span>curl -s -X POST -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
+    https://ixp.example.com/api/v4/router/updated/{handle}
+</pre></div>
+
 
 <p>where <code>{handle}</code> should be replaced with the route handle as described above.</p>
 <p>The result is a JSON object with the datetime as set and is equivalent to the result of the following API call which fetchs the <em>last updated</em> field without setting it:</p>
-<pre class="highlight"><code>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
+<div class="highlight"><pre><span></span>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
     https://ixp.example.com/api/v4/router/updated/{handle}
 
-{&quot;last_updated&quot;:&quot;2017-05-21T19:14:43+00:00&quot;,&quot;last_updated_unix&quot;:1495394083}</code></pre>
+{&quot;last_updated&quot;:&quot;2017-05-21T19:14:43+00:00&quot;,&quot;last_updated_unix&quot;:1495394083}
+</pre></div>
+
 
 <p>There are two useful additional API endpoints. To get the last updated time of <strong>all</strong> routers, use:</p>
-<pre class="highlight"><code>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
+<div class="highlight"><pre><span></span>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
     https://ixp.example.com/api/v4/router/updated
 
 {&quot;handle1&quot;:{&quot;last_updated&quot;:&quot;2017-05-21T19:14:43+00:00&quot;,&quot;last_updated_unix&quot;:1495394083},
  &quot;handle2&quot;:{&quot;last_updated&quot;:null,&quot;last_updated_unix&quot;:null},
- ...}</code></pre>
+ ...}
+</pre></div>
+
 
 <p>The above output shows the format of the reply as well as the fact that routers without a last updated value set will be included as null values.</p>
 <p>Lastly, you can request the last updated time of routers where that time exceeds a given number of seconds. <em>In this call, routers without a last updated time will not be returned.</em> This is useful for monitoring applications such as Nagios where you would want a warning / alert on any routers that have not updated in the last day for example:</p>
-<pre class="highlight"><code>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
+<div class="highlight"><pre><span></span>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
     https://ixp.example.com/api/v4/router/updated-before/86400
 
-[]</code></pre>
+[]
+</pre></div>
+
 
 <p>This example also shows that an empty JSON object is returned for an empty result. Otherwise the format of the reply is the same as for the call above for all routers:</p>
-<pre class="highlight"><code>{&quot;handle1&quot;:{&quot;last_updated&quot;:&quot;2017-05-21T19:14:43+00:00&quot;,&quot;last_updated_unix&quot;:1495394083},...}</code></pre>
+<div class="highlight"><pre><span></span>{&quot;handle1&quot;:{&quot;last_updated&quot;:&quot;2017-05-21T19:14:43+00:00&quot;,&quot;last_updated_unix&quot;:1495394083},...}
+</pre></div>
+
 
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link"></a></h2>
 <p>We use <a href="../../dev/ci/">Travis CI</a> to test IXP Manager before pushing new releases. The primary purpose of this is to ensure that the configuration for routers generated matches known good configurations from the same sample database.</p>
@@ -452,18 +464,18 @@ curl --fail -s -H &quot;X-IXP-Manager-API-Key: ${KEY}&quot; ${URL}/${HANDLE} &gt
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+	  
         </div>
       </div>
 
     </section>
-
+    
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../route-servers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -473,10 +485,7 @@ curl --fail -s -H &quot;X-IXP-Manager-API-Key: ${KEY}&quot; ${URL}/${HANDLE} &gt
       
     </span>
 </div>
-    <script>var base_url = '../..';</script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/require.js"></script>
-      <script src="../../search/search.js"></script>
 
 </body>
 </html>
