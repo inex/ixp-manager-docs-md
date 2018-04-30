@@ -50,6 +50,7 @@ pages:
     - 'Contributer License Agreement': 'dev/cla.md'
     - 'Docker': 'dev/docker.md'
     - 'Documentation': 'dev/docs.md'
+    - 'Forms': 'dev/forms.md'
     - 'Frontend CRUD': 'dev/frontend-crud.md'
     - 'Grapher': 'dev/grapher.md'
     - 'Helpers': 'dev/helpders.md'

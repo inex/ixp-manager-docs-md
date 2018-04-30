@@ -251,6 +251,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../forms/">Forms</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../frontend-crud/">Frontend CRUD</a>
                 </li>
                 <li class="">
@@ -324,24 +328,18 @@
 <p>Documentation by real example can be found via the <a href="https://github.com/inex/IXP-Manager/blob/master/.travis.yml">.travis.yml</a> file and <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci">the Travis data directory</a> which contains scripts, database dumps and configurations.</p>
 <p>Testing assumes <em>a known good sample database</em> which contains a small mix of customers with different configuration options. The files generated from this database are tested against <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci/known-good">known good</a> configuration files. You first need to create a database, add a database user, import this testing database and then configure a <code>.env</code> section for testing.</p>
 <p>In MySQL:</p>
-<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">ixp_ci</span> <span class="k">CHARACTER</span> <span class="kt">SET</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4&#39;</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
-<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="ss">`ixp_ci`</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="ss">`ixp_ci`</span><span class="o">@</span><span class="ss">`localhost`</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;somepassword&#39;</span><span class="p">;</span>
-<span class="k">FLUSH</span> <span class="n">PRIVILEGES</span><span class="p">;</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-mysql">CREATE DATABASE ixp_ci CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci';
+GRANT ALL ON `ixp_ci`.* TO `ixp_ci`@`localhost` IDENTIFIED BY 'somepassword';
+FLUSH PRIVILEGES;</code></pre>
 
 <p>Then import the sample database:</p>
-<div class="highlight"><pre><span></span>bzcat data/travis-ci/travis_ci_test_db.sql.bz2  <span class="p">|</span> mysql -h localhost -u ixp_ci -psomepassword ixp_ci
-</pre></div>
-
+<pre class="highlight"><code class="language-sh">bzcat data/travis-ci/travis_ci_test_db.sql.bz2  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci</code></pre>
 
 <p>Now, create your <code>.env</code> for testing, such as:</p>
-<div class="highlight"><pre><span></span><span class="na">DB_HOST</span><span class="o">=</span><span class="s">localhost</span>
-<span class="na">DB_DATABASE</span><span class="o">=</span><span class="s">ixp_ci</span>
-<span class="na">DB_USERNAME</span><span class="o">=</span><span class="s">ixp_ci</span>
-<span class="na">DB_PASSWORD</span><span class="o">=</span><span class="s">somepassword</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-ini">DB_HOST=localhost
+DB_DATABASE=ixp_ci
+DB_USERNAME=ixp_ci
+DB_PASSWORD=somepassword</code></pre>
 
 <p>Note that the <a href="https://github.com/inex/IXP-Manager/blob/master/phpunit.xml"><code>phpunit.xml</code></a> file in the root directory has some default settings matching the test database. You should not need to edit these.</p>
 <h2 id="test-database-notes">Test Database Notes<a class="headerlink" href="#test-database-notes" title="Permanent link"></a></h2>
@@ -350,26 +348,21 @@
 </ul>
 <h2 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link"></a></h2>
 <p>In one console session, start the artisan / Laravel web server:</p>
-<div class="highlight"><pre><span></span><span class="c1"># move to the root directory of IXP Manager</span>
-<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-php artisan serve
-</pre></div>
-
+<pre class="highlight"><code class="language-sh"># move to the root directory of IXP Manager
+cd $IXPROOT
+php artisan serve</code></pre>
 
 <p>And then kick off the tests:</p>
-<div class="highlight"><pre><span></span>phpunit
-</pre></div>
-
+<pre class="highlight"><code class="language-sh">phpunit</code></pre>
 
 <p>Sample output:</p>
-<div class="highlight"><pre><span></span>PHPUnit 6.1.0 by Sebastian Bergmann and contributors.
+<pre class="highlight"><code>PHPUnit 6.1.0 by Sebastian Bergmann and contributors.
 
 ...............                                                   15 / 15 (100%)
 
 Time: 1.65 seconds, Memory: 32.00MB
 
-OK (15 tests, 67 assertions)
-</pre></div>
+OK (15 tests, 67 assertions)</code></pre>
               
             </div>
           </div>
@@ -396,18 +389,18 @@ OK (15 tests, 67 assertions)
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../api/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -417,7 +410,10 @@ OK (15 tests, 67 assertions)
       
     </span>
 </div>
+    <script>var base_url = '../..';</script>
     <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
 
 </body>
 </html>
