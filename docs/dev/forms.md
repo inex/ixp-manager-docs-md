@@ -76,3 +76,119 @@ Former::populate([
     'my-checkbox' => $object->isChecked() ? 1 : 0,
 ]);
 ```
+
+
+
+## Mardown Textarea
+
+**IXP Manager** uses the library [Mardown](https://github.com/erusev/parsedown) to edit notes input field. [Here are some examples](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) of how to use Markdown.
+
+### View
+
+You will have to use the following HTML structure to be able to add markdown to your textrea :
+
+```html
+<div class="form-group">
+    <label for="notes" class="control-label col-lg-2 col-sm-4">Notes</label>
+    <div class="col-sm-8">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active">
+                <a class="tab-link-body-note" href="#body">Body</a>
+            </li>
+            <li role="presentation">
+                <a class="tab-link-preview-note" href="#preview">Preview</a>
+            </li>
+        </ul>
+        <br>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="body">
+                <textarea class="form-control" style="font-family:monospace;" rows="20" id="notes" name="notes"><?= $note_value ?></textarea>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="preview">
+                <div class="well well-preview" style="background: rgb(255,255,255);">
+                    Loading...
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
+</div>
+``` 
+The `href="#body"` from `<a id="tab-link-body" class="tab-link-body-note" href="#body">Body</a>` have to match with the `id="body"` from `<div role="tabpanel" class="tab-pane active" id="body">`.
+
+The same for `<a  id="tab-link-preview" class="tab-link-preview-note" href="#preview">Preview</a>` and ` <div role="tabpanel" class="tab-pane" id="preview">`.
+
+
+
+
+If you want to add **more than one** textarea with markdown to your page you will have to make sure that the HTML ID of the inputs are different like on the following example :
+
+```html
+
+<div class="form-group">
+    <label for="notes" class="control-label col-lg-2 col-sm-4">Public Notes</label>
+    <div class="col-sm-8">
+
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active">
+                <a class="tab-link-body-note" href="#body1">Body</a>
+            </li>
+            <li role="presentation">
+                <a class="tab-link-preview-note" href="#preview1">Preview</a>
+            </li>
+        </ul>
+
+        <br>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="body1">
+                <textarea class="form-control" style="font-family:monospace;" rows="20" id="notes" name="notes"><?= $t->notes ?></textarea>
+                <p class="help-block">These notes are visible (but not editable) to the member. You can use markdown here.</p>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="preview1">
+                <div class="well well-preview" style="background: rgb(255,255,255);">
+                    Loading...
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+    </div>
+
+</div>
+
+
+<div class="form-group">
+
+    <label for="private_notes" class="control-label col-lg-2 col-sm-4">Private Notes</label>
+    <div class="col-sm-8">
+
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active">
+                <a class="tab-link-body-note" href="#body2">Body</a>
+            </li>
+            <li role="presentation">
+                <a class="tab-link-preview-note" href="#preview2">Preview</a>    
+            </li>
+        </ul>
+
+        <br>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="body2">
+                <textarea class="form-control" style="font-family:monospace;" rows="20" id="private_notes" name="private_notes"><?= $t->private_notes ?></textarea>
+                <p class="help-block">These notes are <b>NOT</b> visible to the member. You can use markdown here.</p>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="preview2">
+                <div class="well well-preview" style="background: rgb(255,255,255);">
+                    Loading...
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+    </div>
+
+</div>
+
+```
