@@ -192,3 +192,5 @@ If you want to add **more than one** textarea with markdown to your page you wil
 </div>
 
 ```
+
+**Note:** Please **do not** change the HTML **class** of the elements!
