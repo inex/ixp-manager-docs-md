@@ -120,6 +120,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../contact-groups/">Contact Groups</a>
                 </li>
                 <li class="">
@@ -329,7 +333,7 @@
 <p><strong>NB:</strong> This facility does not perform a 100% synchronisation. Any mailing list members that are added separately without a matching user in IXP Manager are not interfered with.</p>
 <h2 id="configuring-available-mailing-lists">Configuring Available Mailing Lists<a class="headerlink" href="#configuring-available-mailing-lists" title="Permanent link"></a></h2>
 <p>There is a sample configuration file which you need to copy as follows:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 cp config/mailinglists.php.dist config/mailinglists.php
 </pre></div>
 
@@ -338,7 +342,7 @@ cp config/mailinglists.php.dist config/mailinglists.php
 <ol>
 <li>
 <p>Enable the mailing list functionality by setting this to true:</p>
-<div class="highlight"><pre><span></span><span class="x">// Set the following to &#39;true&#39; to enable mailing list functionality:</span>
+<div class="highlight"><pre><span class="x">// Set the following to &#39;true&#39; to enable mailing list functionality:</span>
 <span class="x">&#39;enabled&#39; =&gt; true,</span>
 </pre></div>
 
@@ -347,7 +351,7 @@ cp config/mailinglists.php.dist config/mailinglists.php
 </li>
 <li>
 <p>Configure the available mailing list(s) in the <code>lists</code> array. Here is an example:</p>
-<div class="highlight"><pre><span></span><span class="x">&#39;lists&#39; =&gt; [</span>
+<div class="highlight"><pre><span class="x">&#39;lists&#39; =&gt; [</span>
 <span class="x">    &#39;members&#39; =&gt; [</span>
 <span class="x">        &#39;name&#39;    =&gt; &quot;Members&#39; Mailing List&quot;,</span>
 <span class="x">        &#39;desc&#39;    =&gt; &quot;A longer description as presented in IXP Manager.&quot;,</span>
@@ -369,7 +373,7 @@ cp config/mailinglists.php.dist config/mailinglists.php
 </li>
 <li>
 <p>Paths to Mailman commands. These will be used in the API/CLI elements later:</p>
-<div class="highlight"><pre><span></span><span class="x">&#39;mailman&#39; =&gt; [</span>
+<div class="highlight"><pre><span class="x">&#39;mailman&#39; =&gt; [</span>
 <span class="x">    &#39;cmds&#39; =&gt; [</span>
 <span class="x">        &#39;list_members&#39;   =&gt; &quot;/usr/local/mailman/bin/list_members&quot;,</span>
 <span class="x">        &#39;add_members&#39;    =&gt; &quot;/usr/local/mailman/bin/add_members -r - -w n -a n&quot;,</span>
@@ -385,7 +389,7 @@ cp config/mailinglists.php.dist config/mailinglists.php
 <h2 id="explanation-of-usage">Explanation of Usage<a class="headerlink" href="#explanation-of-usage" title="Permanent link"></a></h2>
 <p>This mailing list synchronisation / integration code was written for existing Mailman lists we have at INEX where some lists are public with subscribers that will never have an account on INEX's IXP Manager. As such, these scripts are written so that email addresses in common between IXP Manager and Mailman can manage their subscriptions in IXP Manager but those other subscribers will be unaffected.</p>
 <p>Users in IXP Manager will either be marked as being subscribed to a list, not subscribed to a list or neither (i.e. a new user). Subscriptions are managed by user preferences (in the database) of the format:</p>
-<div class="highlight"><pre><span></span>mailinglist.listname1.subscribed = 0/1
+<div class="highlight"><pre>mailinglist.listname1.subscribed = 0/1
 </pre></div>
 
 
@@ -412,7 +416,7 @@ cp config/mailinglists.php.dist config/mailinglists.php
 <li><code>members</code> is an example mailing list handle as defined above in <code>$IXPROOT/config/mailinglists.php</code>.</li>
 </ul>
 <p>Use the initialisation function for new IXP Manager users (or initial set up of the mailing list feature) which updates IXP Manager with all currently subscribed mailing list members:</p>
-<div class="highlight"><pre><span></span>/path/to/mailman/bin/list_members members &gt;/tmp/ml-members.txt
+<div class="highlight"><pre>/path/to/mailman/bin/list_members members &gt;/tmp/ml-members.txt
 curl -f --data-urlencode addresses@/tmp/ml-members.txt <span class="se">\</span>
     -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span class="nv">$KEY</span><span class="s2">&quot;</span> -X POST
     <span class="s2">&quot;https://ixp.example.co/api/v4/mailing-list/init/members&quot;</span>
@@ -421,14 +425,14 @@ rm /tmp/ml-members.txt
 
 
 <p>Pipe all subscribed users to the <code>add_members</code> Mailman script:</p>
-<div class="highlight"><pre><span></span>curl -f -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span class="nv">$KEY</span><span class="s2">&quot;</span> -X GET <span class="se">\</span>
+<div class="highlight"><pre>curl -f -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span class="nv">$KEY</span><span class="s2">&quot;</span> -X GET <span class="se">\</span>
     <span class="s2">&quot;https://ixp.example.co/api/v4/mailing-list/subscribers/members&quot;</span> <span class="p">|</span> <span class="se">\</span>
     /path/to/mailman/bin/add_members -r - -w n -a n members &gt;/dev/null
 </pre></div>
 
 
 <p>Pipe all users who are unsubscribed to the <code>remove_members</code> Mailman script:</p>
-<div class="highlight"><pre><span></span>curl -f -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span class="nv">$KEY</span><span class="s2">&quot;</span> -X GET <span class="se">\</span>
+<div class="highlight"><pre>curl -f -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span class="nv">$KEY</span><span class="s2">&quot;</span> -X GET <span class="se">\</span>
     <span class="s2">&quot;https://ixp.example.co/api/v4/mailing-list/unsubscribed/members&quot;</span> <span class="p">|</span> <span class="se">\</span>
     /path/to/mailman/bin/remove_members -f - -n -N members &gt;/dev/null
 </pre></div>
@@ -438,12 +442,12 @@ rm /tmp/ml-members.txt
 <p>You can implement mailing list management by configuring IXP Manager as above.</p>
 <p>IXP Manager will generate shell scripts to manage all of the above.</p>
 <p>Execute the following command for the CLI version <strong>(and make sure to update the assignments at the top of the script)</strong>:</p>
-<div class="highlight"><pre><span></span>artisan mailing-list:sync-script --sh
+<div class="highlight"><pre>artisan mailing-list:sync-script --sh
 </pre></div>
 
 
 <p>Or the following for the API V4 version <strong>(and make sure to update the assignments at the top of the script)</strong>:</p>
-<div class="highlight"><pre><span></span>artisan mailing-list:sync-script
+<div class="highlight"><pre>artisan mailing-list:sync-script
 </pre></div>
 
 
@@ -463,7 +467,7 @@ rm /tmp/ml-members.txt
 <li><code>members</code> is an example mailing list handle as defined above in <code>$IXPROOT/config/mailinglists.php</code>.</li>
 </ul>
 <p>Use the initialisation function for new IXP Manager users (or initial set up of the mailing list feature) which updates IXP Manager with all currently subscribed mailing list members:</p>
-<div class="highlight"><pre><span></span>/path/to/mailman/bin/list_members members &gt;/tmp/ml-listname1.txt
+<div class="highlight"><pre>/path/to/mailman/bin/list_members members &gt;/tmp/ml-listname1.txt
 curl -f --data-urlencode addresses@/tmp/ml-listname1.txt <span class="se">\</span>
     <span class="s2">&quot;https://www.example.com/ixp/apiv1/mailing-list/init/key/</span><span class="nv">$MyKey</span><span class="s2">/list/members&quot;</span>
 rm /tmp/ml-listname1.txt
@@ -471,13 +475,13 @@ rm /tmp/ml-listname1.txt
 
 
 <p>Pipe all subscribed users to the <code>add_members</code> Mailman script:</p>
-<div class="highlight"><pre><span></span>curl -f <span class="s2">&quot;https://www.example.com/ixp/apiv1/mailing-list/get-subscribed/key/</span><span class="nv">$MyKey</span><span class="s2">/list/members&quot;</span> <span class="p">|</span> <span class="se">\</span>
+<div class="highlight"><pre>curl -f <span class="s2">&quot;https://www.example.com/ixp/apiv1/mailing-list/get-subscribed/key/</span><span class="nv">$MyKey</span><span class="s2">/list/members&quot;</span> <span class="p">|</span> <span class="se">\</span>
     /path/to/mailman/bin/add_members -r - -w n -a n members &gt;/dev/null
 </pre></div>
 
 
 <p>Pipe all users who are unsubscribed to the <code>remove_members</code> Mailman script:</p>
-<div class="highlight"><pre><span></span>curl -f <span class="s2">&quot;https://www.example.com/ixp/apiv1/mailing-list/get-unsubscribed/key/</span><span class="nv">$MyKey</span><span class="s2">/list/members&quot;</span> <span class="p">|</span> <span class="se">\</span>
+<div class="highlight"><pre>curl -f <span class="s2">&quot;https://www.example.com/ixp/apiv1/mailing-list/get-unsubscribed/key/</span><span class="nv">$MyKey</span><span class="s2">/list/members&quot;</span> <span class="p">|</span> <span class="se">\</span>
     /path/to/mailman/bin/remove_members -f - -n -N members &gt;/dev/null
 </pre></div>
               
