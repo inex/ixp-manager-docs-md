@@ -23,7 +23,7 @@ For this, we are using [Foil](http://www.foilphp.it/) - *Foil brings all the fle
 
 ### Example
 
-The [graphing](grapher.md) MRTG configuration generator allows for custom configuration content at the top and bottom of the file. In order to have your custom configuration enabled, you need to skin two files.
+The [graphing](../grapher/introduction.md) MRTG configuration generator allows for custom configuration content at the top and bottom of the file. In order to have your custom configuration enabled, you need to skin two files.
 
 Here's an example:
 

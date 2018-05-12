@@ -4,7 +4,7 @@
 
 This is a quick write up as I commit a new graph type. To be fleshed out.
 
-Our new graphing backend, [Grapher](../features/grapher.md), supports different graph types from different backends. To add a new graph type - let's call it `Example` - you need to do the following:
+Our new graphing backend, [Grapher](../grapher/introduction.md), supports different graph types from different backends. To add a new graph type - let's call it `Example` - you need to do the following:
 
 1. Create a graph class for this new type called `app/Services/Grapher/Graph/Example.php`. This must extend the abstract class `app/Services/Grapher/Graph.php`.
 2. Add an `example()` function to `app/Services/Grapher.php` which instantiates the above graph object.

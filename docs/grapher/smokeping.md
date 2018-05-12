@@ -1,4 +1,4 @@
-# Smokeping
+# Backend: Smokeping
 
 Smokeping is a tool for monitoring network latency and is an invaluable asset when diagnosing many IXP issues.
 
@@ -67,7 +67,7 @@ curl --data "level=%2B%2B&probe=MyPing" -X POST \
 
 ### Templates / Skinning
 
-You can use [skinning](skinning.md) to make changes to the bundled `default` template or, **preferably**, add your own.
+You can use [skinning](../features/skinning.md) to make changes to the bundled `default` template or, **preferably**, add your own.
 
 Let's say you wanted to add your own template called `mytemplate1` and your skin is named `myskin`. The best way to proceed is to copy the bundled example:
 
@@ -107,9 +107,10 @@ SMOKEPING_RELOAD="/etc/rc.d/smokeping reload"
 VLANS="1 2"
 PROTOCOLS="4 6"
 ```
+
 where:
 
- * `KEY` is your IXP Manager [API key](api.md).
+ * `KEY` is your IXP Manager [API key](../features/api.md).
  * `URL` is the API endpoint as descibed above.
  * `ETCPATH` is where the script puts the target files (named `$ETCPATH/targets-vlan${vlanid}-ipv${proto}.cfg`)
  * `SMOKEPING` is the Smokeping binary command. Just used to validate the config with `--check` before reloading.

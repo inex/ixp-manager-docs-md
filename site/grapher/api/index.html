@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>API &amp; Permissions - IXP Manager Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "API &amp; Permissions";
+    var mkdocs_page_input_path = "grapher/api.md";
+    var mkdocs_page_url = "/grapher/api/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/runtime/">Runtime Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/customers/">Customers / Members</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/interfaces/">Customer Connections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../features/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/as112/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/dns-arpa/">DNS / ARPA</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../introduction/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/irrdb/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/ixf-export/">IX-F Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/member-export/">Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/mailing-lists/">Mailing List Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/nagios/">Nagios</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/reseller/">Reseller Functionality</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/route-collectors/">Route Collectors</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/route-servers/">Route Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/skinning/">Skinning</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../smokeping/">Smokeping</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/static-content/">Static Content</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/tacacs/">TACACS</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Grapher</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../introduction/">Introduction</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">API &amp; Permissions</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#api-permissions">API &amp; Permissions</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#accessibility-of-aggregate-graphs">Accessibility of Aggregate Graphs</a></li>
+        
+            <li><a class="toctree-l4" href="#api-access">API Access</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../mrtg/">Backend: MRTG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sflow/">Backend: sflow</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../smokeping/">Backend: Smokeping</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/ci/">Continuous Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/cla/">Contributer License Agreement</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docker/">Docker</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/forms/">Forms</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/frontend-crud/">Frontend CRUD</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/release-procedure/">Release Procedure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Grapher &raquo;</li>
+        
+      
+    
+    <li>API &amp; Permissions</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/grapher/api.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="api-permissions">API &amp; Permissions<a class="headerlink" href="#api-permissions" title="Permanent link"></a></h1>
+<p>This page discusses default permissions required for accessing certain graphs and well as details on how to change that.</p>
+<h2 id="accessibility-of-aggregate-graphs">Accessibility of Aggregate Graphs<a class="headerlink" href="#accessibility-of-aggregate-graphs" title="Permanent link"></a></h2>
+<p>By default, the following graphs are <strong>publically</strong> accessible in <strong>IXP Manager</strong> and available through the top menu under <em>Statistics</em>:</p>
+<ol>
+<li>aggregate bits and packets graphs for the IXP;</li>
+<li>aggregate bits and packets graphs for the infrastructures;</li>
+<li>aggregate graphs for the switches; and</li>
+<li>aggregate graphs for the trunk connections.</li>
+</ol>
+<p>If you wish to limit access to these to a <em>less than or equal</em> <a href="../../usage/users/">user permission</a>, set the following in <code>.env</code> appropriately:</p>
+<ol>
+<li><code>GRAPHER_ACCESS_IXP</code></li>
+<li><code>GRAPHER_ACCESS_INFRASTRUCTURE</code></li>
+<li><code>GRAPHER_ACCESS_SWITCH</code></li>
+<li><code>GRAPHER_ACCESS_TRUNK</code></li>
+</ol>
+<p>For example to limit <code>GRAPHER_ACCESS_TRUNK</code> to logged in users, set:</p>
+<div class="highlight"><pre>GRAPHER_ACCESS_TRUNK=1
+</pre></div>
+
+
+<p><em>The older Zend Framework templates will still show these options in the menu but these templates are being aggressively phased out.</em></p>
+<h2 id="api-access">API Access<a class="headerlink" href="#api-access" title="Permanent link"></a></h2>
+<p><em>Grapher</em> allows API access to graphs via a base URL of the form:</p>
+<div class="highlight"><pre>https://ixp.example.com/grapher/{graph}[?id=x][&amp;period=x][&amp;type=x][&amp;category=x] \
+    [&amp;protocol=x][&amp;backend=x]
+</pre></div>
+
+
+<p>Here's two quick examples from INEX's production system:</p>
+<ol>
+<li>Aggregate exchange traffic options: <a href="https://www.inex.ie/ixp/grapher/ixp?id=1&amp;type=json">https://www.inex.ie/ixp/grapher/ixp?id=1&amp;type=json</a></li>
+<li>Aggregate exchange traffic PNG: <a href="https://www.inex.ie/ixp/grapher/ixp">https://www.inex.ie/ixp/grapher/ixp</a> (as you'll learn below, the defaults are <code>id=1&amp;type=png</code>).</li>
+</ol>
+<p>A sample of the JSON output is:</p>
+<div class="highlight"><pre><span class="p">{</span>
+    <span class="err">class:</span> <span class="nt">&quot;ixp&quot;</span><span class="p">,</span>
+    <span class="err">urls:</span> <span class="err">{</span>
+        <span class="err">png:</span> <span class="nt">&quot;https://www.inex.ie/ixp/grapher/ixp?period=day&amp;type=png&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span><span class="p">,</span>
+        <span class="err">log:</span> <span class="nt">&quot;https://www.inex.ie/ixp/grapher/ixp?period=day&amp;type=log&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span><span class="p">,</span>
+        <span class="err">json:</span> <span class="nt">&quot;https://www.inex.ie/ixp/grapher/ixp?period=day&amp;type=json&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span>
+    <span class="p">}</span><span class="err">,</span>
+    <span class="err">base_url:</span> <span class="s2">&quot;https://www.inex.ie/ixp/grapher/ixp&quot;</span><span class="err">,</span>
+    <span class="err">statistics:</span> <span class="p">{</span>
+        <span class="err">totalin:</span> <span class="err">13733441895899552,</span>
+        <span class="err">totalout:</span> <span class="err">13734817210037696,</span>
+        <span class="err">curin:</span> <span class="err">183970331392,</span>
+        <span class="err">curout:</span> <span class="err">184222146544,</span>
+        <span class="err">averagein:</span> <span class="err">114930932321.55484,</span>
+        <span class="err">averageout:</span> <span class="err">114942441900.67783,</span>
+        <span class="err">maxin:</span> <span class="err">204976886344,</span>
+        <span class="err">maxout:</span> <span class="err">204800400448</span>
+    <span class="p">}</span><span class="err">,</span>
+    <span class="err">params:</span> <span class="p">{</span>
+        <span class="err">type:</span> <span class="nt">&quot;json&quot;</span><span class="p">,</span>
+        <span class="err">category:</span> <span class="nt">&quot;bits&quot;</span><span class="p">,</span>
+        <span class="err">period:</span> <span class="nt">&quot;day&quot;</span><span class="p">,</span>
+        <span class="err">protocol:</span> <span class="nt">&quot;all&quot;</span><span class="p">,</span>
+        <span class="err">id:</span> <span class="err">1</span>
+    <span class="p">}</span><span class="err">,</span>
+    <span class="err">supports:</span> <span class="p">{</span>
+        <span class="err">protocols:</span> <span class="err">{</span>
+            <span class="err">all:</span> <span class="nt">&quot;all&quot;</span>
+        <span class="p">}</span><span class="err">,</span>
+        <span class="err">categories:</span> <span class="p">{</span>
+            <span class="err">bits:</span> <span class="nt">&quot;bits&quot;</span><span class="p">,</span>
+            <span class="err">pkts:</span> <span class="nt">&quot;pkts&quot;</span>
+        <span class="p">}</span><span class="err">,</span>
+        <span class="err">periods:</span> <span class="p">{</span>
+            <span class="err">day:</span> <span class="nt">&quot;day&quot;</span><span class="p">,</span>
+            <span class="err">week:</span> <span class="nt">&quot;week&quot;</span><span class="p">,</span>
+            <span class="err">month:</span> <span class="nt">&quot;month&quot;</span><span class="p">,</span>
+            <span class="err">year:</span> <span class="nt">&quot;year&quot;</span>
+        <span class="p">}</span><span class="err">,</span>
+        <span class="err">types:</span> <span class="p">{</span>
+            <span class="err">png:</span> <span class="nt">&quot;png&quot;</span><span class="p">,</span>
+            <span class="err">log:</span> <span class="nt">&quot;log&quot;</span><span class="p">,</span>
+            <span class="err">json:</span> <span class="nt">&quot;json&quot;</span>
+        <span class="p">}</span>
+    <span class="err">},</span>
+    <span class="err">backends:</span> <span class="p">{</span>
+        <span class="err">mrtg:</span> <span class="nt">&quot;mrtg&quot;</span>
+    <span class="p">}</span><span class="err">,</span>
+    <span class="err">backend:</span> <span class="s2">&quot;mrtg&quot;</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p>You can see from the above what <code>params</code> were used to create the <code>statistics</code> (and would be used for the image if <code>type=png</code>), what parameters are supported (<code>supports</code>), what backends are available for the given graph type and mix of parameters, etc.</p>
+<p><strong>Notes:</strong></p>
+<ol>
+<li>not all backends support all options or graphs; use the <code>json</code> type to see what's supported <em>but remember that IXP Manager will, when configured correctly, chose the appropriate backend</em>;</li>
+<li>the primary key IDs mentioned below are mostly available in the UI when viewing lists of the relavent objects;</li>
+<li>an understanding of how IXP Manager represents interfaces is required to grasp the below - <a href="../../usage/interfaces/">see here</a>.</li>
+</ol>
+<p>Let's first look at supported graphs:</p>
+<ul>
+<li>
+<p><code>ixp</code>: aggregate graph for an IXP's overall traffic. <code>id</code>, which defaults to <code>1</code>, is the primary key of the IXP from the <code>ixp</code> database table. As <strong>IXP Manager</strong> does not support multiple IXPs, this defaults to <code>id=1</code>. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>infrastructure</code>: aggregate graph for the overall traffic on a specific IXP infrastructure. For many IXPs, they'll just have a single infrastructure and this will go unused as it would be the equivalent of <code>ixp</code> above. <code>id</code>, which is mandatory, is the primary key of the infrastructure from the <code>infrastructure</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>vlan</code>: aggregate graph for a specific VLAN. <code>id</code>, which is mandatory, is the primary key of the VLAN from the <code>vlan</code> database table. [Currently only supported via sflow for <code>protocol=ipv4|ipv6</code>]</p>
+</li>
+<li>
+<p><code>switch</code>: aggregate graph of all peering traffic being switched by a specific switch (sum of all customer ports plus core ports). <code>id</code>, which is mandatory, is the primary key of the switch from the <code>switch</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>trunk</code>: a legacy hold over from <em>Inter-Switch / Trunk Graphs</em> above to be replaced with core bundles.</p>
+</li>
+<li>
+<p><code>phsyicalinterface</code>: traffic for an individual member port - a single physical switch port. <code>id</code>, which is mandatory, is the primary key of the physical interface from the <code>physicalinterface</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>virtualinterface</code>: if a member has a single connection (one switch port) then this is the same as <code>phsyicalinterface</code> above. However, if they have a LAG port then it's the aggregate traffic for all physical ports in the LAG. <code>id</code>, which is mandatory, is the primary key of the virtual interface from the <code>virtualinterface</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>customer</code>: the aggregate traffic for all ports belonging to a customer across all infrastructures. <code>id</code>, which is mandatory, is the primary key of the customer from the <code>cust</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>vlaninterface</code>: aggregate traffic flowing through a members VLAN interface for a specific protocol. <code>id</code>, which is mandatory, is the primary key of the VLAN interface from the <code>vlaninterface</code> database table. [Currently only supported via sflow for <code>protocol=ipv4|ipv6</code>]</p>
+</li>
+<li>
+<p><code>latency</code>: latency graphs (e.g. Smokeping). <code>id</code>, which is mandatory, is the primary key of the VLAN interface from the <code>vlaninterface</code> database table. <code>protocol=ipv4|ipv6</code> is also mandatory. Periods for Smokeping are different to the default periods and should be one of <code>3hours|30hours|10days|1year</code>.</p>
+</li>
+<li>
+<p><code>p2p</code>: peer to peer traffic between two member VLAN interfaces. The source (<code>svli</code>) and destination (<code>dvli</code>) VLAN interface IDs are required. <code>svli</code> and <code>dvli</code>, which are mandatory, are primary keys of the VLAN interfaces from the <code>vlaninterface</code> database table. [Currently only supported via sflow for <code>protocol=ipv4|ipv6</code>]</p>
+</li>
+</ul>
+<p>For additional options, it's always best to manually or programmatically examine the output for <code>type=json</code> to see what is supported. The following is a general list.</p>
+<ul>
+<li>
+<p><code>type</code>: one of:</p>
+<ul>
+<li><code>json</code> - as demonstrated and described above;</li>
+<li><code>log</code> - MRTG  log file type output formatted as a JSON array;</li>
+<li><code>rrd</code> - the RRD file for the requested graph type;</li>
+<li><code>png</code> - the graph image itself (default).</li>
+<li>potentially others as supported / implemented by newer backends.</li>
+</ul>
+</li>
+<li>
+<p><code>period</code>: one of <code>day</code>, <code>week</code>, <code>month</code>, <code>year</code> (except for <code>latency</code> graphs as described above).</p>
+</li>
+<li>
+<p><code>category</code>: one of <code>bits</code>, <code>pkts</code> (packets), <code>errs</code> (errors), <code>discs</code> (discards), <code>bcasts</code> (broadcasts). Bits is measured in bits per second, the rest in packets per second.</p>
+</li>
+<li>
+<p><code>protocol</code>: one of <code>all</code>, <code>ipv4</code> or <code>ipv6</code>.</p>
+</li>
+<li>
+<p><code>backend</code>: default is to let IXP Manager decide.</p>
+</li>
+</ul>
+<h3 id="api-access-control">API Access Control<a class="headerlink" href="#api-access-control" title="Permanent link"></a></h3>
+<p>The grapher API can be accessed using the <a href="../../features/api/">standard API access mechanisms</a>.</p>
+<p>Each graph (ixp, infrastructure, etc.) has an <code>authorise()</code> method which determines who is allowed view a graph. For example, see <a href="https://github.com/inex/IXP-Manager/blob/master/app/Services/Grapher/Graph/VlanInterface.php#L131">IXP\Services\Grapher\Graph\VlanInterface::authorise()</a>. The general logic is:</p>
+<ul>
+<li>if not logged in / valid API key -&gt; deny</li>
+<li>if superuser -&gt; allow</li>
+<li>if user belongs to customer graph requested -&gt; allow</li>
+<li>otherwise -&gt; deny and log</li>
+</ul>
+<p>For the supported graph types, default access control is:</p>
+<table>
+<thead>
+<tr>
+<th>Graph</th>
+<th>Default Access Control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ixp</code></td>
+<td>public but respects <code>GRAPHER_ACCESS_IXP</code> (see above)</td>
+</tr>
+<tr>
+<td><code>infrastructure</code></td>
+<td>public but respects <code>GRAPHER_ACCESS_INFRASTRUCTURE</code> (see above)</td>
+</tr>
+<tr>
+<td><code>vlan</code></td>
+<td>public unless it's a private VLAN (in which case only superuser is supported currently)</td>
+</tr>
+<tr>
+<td><code>switch</code></td>
+<td>public but respects <code>GRAPHER_ACCESS_SWITCH</code> (see above)</td>
+</tr>
+<tr>
+<td><code>trunk</code></td>
+<td>public but respects <code>GRAPHER_ACCESS_TRUNK</code> (see above)</td>
+</tr>
+<tr>
+<td><code>physicalinterface</code></td>
+<td>superuser or user of the owning customer</td>
+</tr>
+<tr>
+<td><code>vlaninterface</code></td>
+<td>superuser or user of the owning customer</td>
+</tr>
+<tr>
+<td><code>virtualinterface</code></td>
+<td>superuser or user of the owning customer</td>
+</tr>
+<tr>
+<td><code>customer</code></td>
+<td>superuser or user of the owning customer</td>
+</tr>
+<tr>
+<td><code>latency</code></td>
+<td>superuser or user of the owning customer</td>
+</tr>
+<tr>
+<td><code>p2p</code></td>
+<td>superuser or user of the source (<code>svli</code>) owning customer</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../mrtg/" class="btn btn-neutral float-right" title="Backend: MRTG">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../introduction/" class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../introduction/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../mrtg/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>

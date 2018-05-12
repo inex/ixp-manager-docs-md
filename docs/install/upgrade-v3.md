@@ -166,7 +166,7 @@ You should be able to point Apache / your web server at the new IXP Manager inst
 
 ## MRTG Graphing Migration
 
-We've implemented a new graphing backend called [Grapher](../features/grapher.md). One of the changes is that the graphing directory structure and file-naming conventions have changed. Primarily, we've replaced non-static handles (such as database fields like `customer.shortname`, `physicalinterface.monitorindex` and `switcher.name` with immutable primary keys).
+We've implemented a new graphing backend called [Grapher](../grapher/introduction.md). One of the changes is that the graphing directory structure and file-naming conventions have changed. Primarily, we've replaced non-static handles (such as database fields like `customer.shortname`, `physicalinterface.monitorindex` and `switcher.name` with immutable primary keys).
 
 As such, you need to both rename the statistics directory structure and regenerate the configuration.
 
@@ -184,7 +184,7 @@ GRAPHER_BACKEND_MRTG_WORKDIR="/path/to/new/mrtg/data"
 GRAPHER_CACHE_ENABLED=true
 ```
 
-See the [Grapher](../features/grapher.md) documentation for full details of what these mean.
+See the [Grapher](../grapher/introduction.md) documentation for full details of what these mean.
 
 You'll then need to migrate all your MRTG files to the new naming scheme. Run the commands below twice. Once to verify the output and a second time piped to sh (` | sh`) to actually execute the commands.
 
