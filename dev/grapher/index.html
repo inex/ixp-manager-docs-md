@@ -136,7 +136,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../features/grapher/">Grapher</a>
+    <a class="" href="../../grapher/introduction/">Grapher</a>
                 </li>
                 <li class="">
                     
@@ -200,7 +200,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../features/smokeping/">Smokeping</a>
+    <a class="" href="../../grapher/smokeping/">Smokeping</a>
                 </li>
                 <li class="">
                     
@@ -209,6 +209,33 @@
                 <li class="">
                     
     <a class="" href="../../features/tacacs/">TACACS</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Grapher</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../grapher/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/api/">API &amp; Permissions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/mrtg/">Backend: MRTG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/sflow/">Backend: sflow</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/smokeping/">Backend: Smokeping</a>
                 </li>
     </ul>
 	    </li>
@@ -324,7 +351,7 @@
                 <h1 id="grapher">Grapher<a class="headerlink" href="#grapher" title="Permanent link"></a></h1>
 <h2 id="outline-of-adding-a-new-graph-type">Outline of Adding a New Graph Type<a class="headerlink" href="#outline-of-adding-a-new-graph-type" title="Permanent link"></a></h2>
 <p>This is a quick write up as I commit a new graph type. To be fleshed out.</p>
-<p>Our new graphing backend, <a href="../../features/grapher/">Grapher</a>, supports different graph types from different backends. To add a new graph type - let's call it <code>Example</code> - you need to do the following:</p>
+<p>Our new graphing backend, <a href="../../grapher/introduction/">Grapher</a>, supports different graph types from different backends. To add a new graph type - let's call it <code>Example</code> - you need to do the following:</p>
 <ol>
 <li>Create a graph class for this new type called <code>app/Services/Grapher/Graph/Example.php</code>. This must extend the abstract class <code>app/Services/Grapher/Graph.php</code>.</li>
 <li>Add an <code>example()</code> function to <code>app/Services/Grapher.php</code> which instantiates the above graph object.</li>

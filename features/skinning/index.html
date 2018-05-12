@@ -136,7 +136,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../grapher/">Grapher</a>
+    <a class="" href="../../grapher/introduction/">Grapher</a>
                 </li>
                 <li class="">
                     
@@ -216,7 +216,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../smokeping/">Smokeping</a>
+    <a class="" href="../../grapher/smokeping/">Smokeping</a>
                 </li>
                 <li class="">
                     
@@ -225,6 +225,33 @@
                 <li class="">
                     
     <a class="" href="../tacacs/">TACACS</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Grapher</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../grapher/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/api/">API &amp; Permissions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/mrtg/">Backend: MRTG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/sflow/">Backend: sflow</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/smokeping/">Backend: Smokeping</a>
                 </li>
     </ul>
 	    </li>
@@ -339,7 +366,7 @@
 <p>In previous versions of <strong>IXP Manager</strong>, we used Smarty as the templating engine. This meant that if someone wanted to help improve <strong>IXP Manager</strong> then they would need to become familiar with PHP <em>and</em> Smarty. In v4 we dropped Smarty and, rather than using another compiled templating engine, we have decided to go with native PHP templates.</p>
 <p>For this, we are using <a href="http://www.foilphp.it/">Foil</a> - <em>Foil brings all the flexibility and power of modern template engines to native PHP templates. Write simple, clean and concise templates with nothing more than PHP.</em> Also, simulaneously supported are Lavael's own <a href="https://laravel.com/docs/5.4/blade">Blade templates</a> which we sometimes use for simple pages.</p>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link"></a></h3>
-<p>The <a href="../grapher/">graphing</a> MRTG configuration generator allows for custom configuration content at the top and bottom of the file. In order to have your custom configuration enabled, you need to skin two files.</p>
+<p>The <a href="../../grapher/introduction/">graphing</a> MRTG configuration generator allows for custom configuration content at the top and bottom of the file. In order to have your custom configuration enabled, you need to skin two files.</p>
 <p>Here's an example:</p>
 <div class="highlight"><pre># position ourselves in the IXP Manager root directory
 cd ${IXPROOT}
@@ -449,7 +476,7 @@ vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../smokeping/" class="btn btn-neutral float-right" title="Smokeping">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../grapher/smokeping/" class="btn btn-neutral float-right" title="Smokeping">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../routers/" class="btn btn-neutral" title="Router Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -485,7 +512,7 @@ vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
         <span><a href="../routers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../smokeping/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../grapher/smokeping/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

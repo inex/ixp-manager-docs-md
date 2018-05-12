@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Backend: MRTG - IXP Manager Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Backend: MRTG";
+    var mkdocs_page_input_path = "grapher/mrtg.md";
+    var mkdocs_page_url = "/grapher/mrtg/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/runtime/">Runtime Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/customers/">Customers / Members</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/interfaces/">Customer Connections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users & Contacts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../features/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/as112/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/contact-groups/">Contact Groups</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/dns-arpa/">DNS / ARPA</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../introduction/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/irrdb/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/ixf-export/">IX-F Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/member-export/">Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/mailing-lists/">Mailing List Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/nagios/">Nagios</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/reseller/">Reseller Functionality</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/route-collectors/">Route Collectors</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/route-servers/">Route Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/skinning/">Skinning</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../smokeping/">Smokeping</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/static-content/">Static Content</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/tacacs/">TACACS</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Grapher</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../api/">API &amp; Permissions</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Backend: MRTG</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#backend-mrtg">Backend: MRTG</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#mrtg-setup-and-configuration">MRTG Setup and Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#generating-mrtg-configuration">Generating MRTG Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#notes-and-troubleshooting">Notes and Troubleshooting</a></li>
+        
+            <li><a class="toctree-l4" href="#customising-the-configuration">Customising the Configuration</a></li>
+        
+            <li><a class="toctree-l4" href="#inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sflow/">Backend: sflow</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../smokeping/">Backend: Smokeping</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/ci/">Continuous Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/cla/">Contributer License Agreement</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docker/">Docker</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/forms/">Forms</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/frontend-crud/">Frontend CRUD</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/release-procedure/">Release Procedure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Grapher &raquo;</li>
+        
+      
+    
+    <li>Backend: MRTG</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/grapher/mrtg.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="backend-mrtg">Backend: MRTG<a class="headerlink" href="#backend-mrtg" title="Permanent link"></a></h1>
+<p>MRTG is used to generate interface graphs. MRTG is a particularly efficient SNMP poller as, irrespective of how many times an interface is referenced for different graphs, it is only polled once per run. If you want to understand MRTG related options in this section, please refer to <a href="https://oss.oetiker.ch/mrtg/doc/mrtg.en.html">MRTG's own documentation</a>.</p>
+<p>Per-second graphs are generated for bits, packets, errors, discards and broadcasts at 5min intervals. <strong>IXP Manager</strong>'s <em>Grapher</em> system can use MRTG to poll switches and create traffic graphs for:</p>
+<ul>
+<li><strong>Aggregate IXP and Infrastructure Graphs</strong></li>
+</ul>
+<p>The MRTG script creates aggregate graphs for the entire IXP as well as per-infrastructure graphs. These graphs are available from the <em>Statistics</em> menu under <em>Overall Peering Graphs</em>. Also, the graphs on the admin dashboard are the monthly versions of these and will appear on the dashboard when configured as above.</p>
+<ul>
+<li><strong>Switch Aggregate Graphs</strong></li>
+</ul>
+<p>These are defined and built automatically from the switches you have defined. These graphs are the aggregate of all peering ports. These graphs are available from the <em>Statistics</em> menu under <em>Switch Aggregate Graphs</em>.</p>
+<ul>
+<li><strong>Inter-Switch / Trunk Graphs</strong></li>
+</ul>
+<p>IXP Manager does not currently support a frontend means of creating these definitions (but, as of late 2017, it is being worked on). For now, we do it manually via the <a href="https://github.com/inex/IXP-Manager/wiki/MRTG---Traffic-Graphs#inter-switch--trunk-graphs">IXP Manager v3 way</a>.</p>
+<p>These graphs will be available in the <em>Statistics</em> menu under <em>Inter-Switch / PoP Graphs</em>.</p>
+<ul>
+<li><strong>Customer Graphs</strong></li>
+</ul>
+<p>MRTG creates per port, per LAG and aggregate graphs for each member / customer.</p>
+<h2 id="mrtg-setup-and-configuration">MRTG Setup and Configuration<a class="headerlink" href="#mrtg-setup-and-configuration" title="Permanent link"></a></h2>
+<p>You need to install some basic packages for MRTG to work - on Ubuntu for example, install:</p>
+<div class="highlight"><pre>apt install rrdtool mrtg
+</pre></div>
+
+
+<p>You also need a folder to store all MRTG files. For example:</p>
+<div class="highlight"><pre>mkdir -p /srv/mrtg
+</pre></div>
+
+
+<p>In your `.env, you need to set the following options:</p>
+<div class="highlight"><pre># The MRTG database type to use - either log or rrd:
+GRAPHER_BACKEND_MRTG_DBTYPE=&quot;rrd&quot;
+
+# Where to store log/rrd/png files. This is from the perspective
+# of the mrtg daemon and it is only used when generating the mrtg configuration
+# file so this should be a local path on whatever server mrtg will run:
+GRAPHER_BACKEND_MRTG_WORKDIR=&quot;/srv/mrtg&quot;
+
+# Where IXP Manager can fine the GRAPHER_BACKEND_MRTG_WORKDIR above. If mrtg is
+# running on the same server as IXP Manager, this this would just be the same:
+GRAPHER_BACKEND_MRTG_LOGDIR=&quot;/srv/mrtg&quot;
+# Note that if you wish to run MRTG on another server, you can expose the
+# WORKDIR on a HTTP server and provide a URL to this option:
+# GRAPHER_BACKEND_MRTG_LOGDIR=&quot;http://collector.example.com/mrtg&quot;
+</pre></div>
+
+
+<h2 id="generating-mrtg-configuration">Generating MRTG Configuration<a class="headerlink" href="#generating-mrtg-configuration" title="Permanent link"></a></h2>
+<p>You can now generate a MRTG configuration by executing a command such as:</p>
+<div class="highlight"><pre><span class="c"># Move to the directory where you have installed IXP Manager (typically: /srv/ixpmanager)</span>
+<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+
+<span class="c"># Generate MRTG configuration and output to stdout:</span>
+php artisan grapher:generate-configuration -B mrtg
+
+<span class="c"># Generate MRTG configuration and output to a named file:</span>
+php artisan grapher:generate-configuration -B mrtg -O /tmp/mrtg.cfg.candidate
+</pre></div>
+
+
+<p>You could also combine a syntax check before putting the resultant file live. Here's a complete example that could be run via cron:</p>
+<div class="highlight"><pre><span class="c">#! /usr/bin/env bash</span>
+
+<span class="c"># Set this to the directory where you have installed IXP Manager (typically: /srv/ixpmanager)</span>
+<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+
+<span class="c"># Temporary configuration file:</span>
+<span class="nv">TMPCONF</span><span class="o">=</span>/tmp/mrtg.cfg.<span class="nv">$$</span>
+
+<span class="c"># Synchronize configuration files</span>
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan grapher:generate-configuration -B mrtg -O <span class="nv">$TMPCONF</span>
+
+<span class="c"># Remove comments and date/time stamps for before comparing for differences</span>
+cat /etc/mrtg.cfg    <span class="p">|</span> egrep -v <span class="s1">&#39;^#.*$&#39;</span> <span class="p">|</span> <span class="se">\</span>
+    egrep -v <span class="s1">&#39;^[ ]+Based on configuration last generated by.*$&#39;</span> &gt;/tmp/mrtg.cfg.filtered
+cat <span class="nv">$TMPCONF</span>         <span class="p">|</span> egrep -v <span class="s1">&#39;^#.*$&#39;</span> <span class="p">|</span> <span class="se">\</span>
+    egrep -v <span class="s1">&#39;^[ ]+Based on configuration last generated by.*$&#39;</span> &gt;<span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered
+diff /tmp/mrtg.cfg.filtered <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered &gt;/dev/null
+<span class="nv">DIFF</span><span class="o">=</span><span class="nv">$?</span>
+
+rm /tmp/mrtg.cfg.filtered
+rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered
+
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$DIFF</span> -eq <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+    rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>
+    <span class="nb">exit </span>0
+<span class="k">fi</span>
+
+/usr/bin/mrtg --check <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> <span class="o">&amp;&amp;</span> /bin/mv <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> /etc/mrtg.cfg
+</pre></div>
+
+
+<p>If your MRTG collector is on a different server, you could use a script such as the following to safely update MRTG via <a href="../../features/api/">IXP Manager's API</a>.</p>
+<div class="highlight"><pre><span class="c">#! /usr/bin/env bash</span>
+
+<span class="c"># Temporary configuration file:</span>
+<span class="nv">TMPCONF</span><span class="o">=</span>/etc/mrtg/mrtg.cfg.<span class="nv">$$</span>
+
+<span class="c"># Download the configuration via the API. Be sure to replace &#39;your_api_key&#39;</span>
+<span class="c"># with your actual API key (see API documenation).</span>
+curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: your_api_key&quot;</span> <span class="se">\</span>
+    https://ixp.example.com/api/v4/grapher/mrtg-config &gt;<span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>
+
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;WARNING: COULD NOT FETCH UP TO DATE MRTG CONFIGURATION!&quot;</span>
+    <span class="nb">exit</span> -1
+<span class="k">fi</span>
+
+<span class="nb">cd</span> /etc/mrtg
+
+<span class="c"># Remove comments and date/time stamps for before comparing for differences</span>
+cat mrtg.cfg    <span class="p">|</span> egrep -v <span class="s1">&#39;^#.*$&#39;</span> <span class="p">|</span> <span class="se">\</span>
+    egrep -v <span class="s1">&#39;^[ ]+Based on configuration last generated by.*$&#39;</span> &gt;mrtg.cfg.filtered
+cat <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>  <span class="p">|</span> egrep -v <span class="s1">&#39;^#.*$&#39;</span> <span class="p">|</span> <span class="se">\</span>
+    egrep -v <span class="s1">&#39;^[ ]+Based on configuration last generated by.*$&#39;</span> &gt;<span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered
+diff mrtg.cfg.filtered <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered &gt;/dev/null
+<span class="nv">DIFF</span><span class="o">=</span><span class="nv">$?</span>
+
+rm mrtg.cfg.filtered
+rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered
+
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$DIFF</span> -eq <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+    rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>
+    <span class="nb">exit </span>0
+<span class="k">fi</span>
+
+/usr/bin/mrtg --check <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> <span class="o">&amp;&amp;</span> /bin/mv <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> /etc/mrtg/mrtg.cfg     
+</pre></div>
+
+
+<p>Note that the MRTG configuration that IXP Manager generates instructs MRTG to run as a daemon. On FreeBSD, MRTG comes with an initd script by default and you can kick it off on boot with something like the following in <code>/etc/rc.conf</code>:</p>
+<div class="highlight"><pre>mrtg_daemon_enable=&quot;YES&quot;
+mrtg_daemon_config=&quot;/etc/mrtg/mrtg.cfg&quot;
+</pre></div>
+
+
+<p>However, on Ubuntu it does not but it comes with a <code>/etc/cron.d/mrtg</code> file which kicks it off every five minutes (it will daemonize the first time and further cron jobs will have no effect).</p>
+<p>To start and stop it via standard initd scripts on Ubuntu, use an initd script such as this: <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/mrtg/ubuntu-mrtg-initd">ubuntu-mrtg-initd</a>  (<a href="http://www.iceflatline.com/2009/08/how-to-install-and-configure-mrtg-on-ubuntu-server/">source</a>):</p>
+<div class="highlight"><pre>cp ${IXPROOT}/tools/runtime/mrtg/ubuntu-mrtg-initd /etc/init.d/mrtg
+chmod +x /etc/init.d/mrtg
+update-rc.d mrtg defaults
+/etc/init.d/mrtg start
+</pre></div>
+
+
+<p>And disable the default cron job for MRTG on Ubuntu (<code>/etc/cron.d/mrtg</code>).</p>
+<h2 id="notes-and-troubleshooting">Notes and Troubleshooting<a class="headerlink" href="#notes-and-troubleshooting" title="Permanent link"></a></h2>
+<ul>
+<li>If you have difficulty getting MRTG to work, please also refer the MRTG documentation at https://oss.oetiker.ch/mrtg/doc/mrtg.en.html</li>
+<li>Any references to installing MRTG above are guidelines from our own experience. IXP Manager's role is to generate a configuration file for MRTG. It is up to the user to install MRTG as they deem appropriate.</li>
+<li>The above assumes that MRTG automatically reconfigures itself when the configuration changes <a href="https://oss.oetiker.ch/mrtg/doc/mrtg-reference.en.html">as stated in the MRTG documentation for <em>RunAdDaemon</em></a>. We have seen inconsistent behaviors for this and if it does not work for you, you will need to add a step to restart the MRTG daemon to the reconfiguration script above (at the very end).</li>
+<li>The Ubuntu example above was a pre-systemd example. If anyone has an example of a systemd MRTG daemon configuration please provide us with some updated documentation.</li>
+</ul>
+<h2 id="customising-the-configuration">Customising the Configuration<a class="headerlink" href="#customising-the-configuration" title="Permanent link"></a></h2>
+<p>Generally speaking, you should not customize the way IXP Manager generates MRTG configuration as the naming conventions are tightly coupled to how IXP Manager fetches the graphs. However, if there are bits of the MRTG configuration you need to alter, you can do it via <a href="../../features/skinning/">skinning</a>. <em>The skinning documentation actually uses MRTG as an example.</em></p>
+<h2 id="inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails<a class="headerlink" href="#inserting-traffic-data-into-the-database-reporting-emails" title="Permanent link"></a></h2>
+<p>The MRTG backend inserts daily summaries into MySQL for reporting. See the <code>traffic_daily</code> database table for this. Essentially, there is a row per day per customer for traffic types <em>bits, discards, errors, broadcasts and packets</em>. Each row has a daily, weekly, monthly and yearly value for average, max and total.</p>
+<p>An example crontab for collecting and storing <em>yesterday's</em> data is as follows. <strong>This should run everyday.</strong></p>
+<div class="highlight"><pre>0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
+</pre></div>
+
+
+<p>In the IXP Manager application, this data powers the <em>League Table</em> function on the left hand menu.</p>
+<p>This data is also used to send email reports / notifications of various traffic events. A sample crontab for this would look like the following:</p>
+<div class="highlight"><pre>0 4   * * *   www-data        /srv/ixpmanager/artisan grapher:email-traffic-deltas    \
+                                --stddev=1.5 -v user1@example.com,user2@example.com
+
+30 10 * * tue www-data        /srv/ixpmanager/artisan grapher:email-port-utilisations \
+                                --threshold=80 user1@example.com,user2@example.com
+
+31 10 * * *   www-data        /srv/ixpmanager/artisan grapher:email-ports-with-counts \
+                                --discards user1@example.com,user2@example.com
+
+32 10 * * *   www-data        /srv/ixpmanager/artisan grapher:email-ports-with-counts \
+                                --errors user1@example.com,user2@example.com
+</pre></div>
+
+
+<p>Which, in the order above, do:</p>
+<ol>
+<li>Email a report of members whose average traffic has changed by more than 1.5 times their standard deviation.</li>
+<li>Email a report of all ports with &gt;=80% utilisation yesterday.</li>
+<li>Email a report of all ports with a non-zero discard count yesterday.</li>
+<li>Email a report of all ports with a non-zero error count yesterday.</li>
+</ol>
+<p>This generated emails are HTML formatted with embedded graph images.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sflow/" class="btn btn-neutral float-right" title="Backend: sflow">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../api/" class="btn btn-neutral" title="API &amp; Permissions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../api/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../sflow/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
