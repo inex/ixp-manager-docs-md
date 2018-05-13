@@ -34,7 +34,7 @@ GRAPHER_BACKEND_SFLOW_ENABLED=true
 GRAPHER_BACKEND_SFLOW_ROOT="http://sflow-server.example.com/grapher-sflow"
 
 GRAPHER_BACKEND_SMOKEPING_ENABLED=true
-GRAPHER_SMOKEPING_URL="http://smokeping-server.example.com/smokeping"
+GRAPHER_BACKEND_SMOKEPING_URL="http://smokeping-server.example.com/smokeping"
 ```
 
 For those interested, the complete Grapher configuration file can be seen in [`$IXPROOT/config/grapher.php](https://github.com/inex/IXP-Manager/blob/master/config/grapher.php). Remember: put your own local changes in `.env` rather than editing this file directly.

@@ -1,16 +1,19 @@
 # Backend: Smokeping
 
-Smokeping is a tool for monitoring network latency and is an invaluable asset when diagnosing many IXP issues.
+Latency graphs are a tool for monitoring latency / packet loss to the routers of IXP partipants and they can be an invaluable asset when diagnosing many IXP issues.
 
-> While it should never be used as a tool for monitoring IXP latency (as routers de-prioritise ICMP requests and handle them in their management plane, it acts more of a indication of the router load than the latency of the exchange fabric), it can be an extremely useful tool for identifying and diagnosing other customer / member issues.
+**While they should never be used as a tool for monitoring IXP latency or packet loss** (as routers de-prioritise ICMP requests and/or may not have a suitably powerful management plane), they can act as an extremely useful tool for identifying and diagnosing customer / member issues. **What we really look for here is recent changes over time.**
 
-IXP Manager can configure Smokeping to monitor member routers and display those graphs in member statistic pages. Presuming it is installed.
+**IXP Manager** can configure Smokeping to monitor member routers and display those graphs in member statistic pages. Presuming it is installed.
 
 ## Historical Notes
 
-If you have used Smokeping on IXP Manager <4.5, then how the configuration is generated has changed. The [older documentation may be available here](https://github.com/inex/IXP-Manager/wiki/Smokeping). In previous versions of IXP Manager, we generated entire / monolithic Smokeping configuration files. We have found in practice that this does not scale well and creates a number of limitations.
+If you have used Smokeping on IXP Manager <v4.5 or between v4.5 and v4.7.3, then how the configuration is generated has changed.
 
-IXP Manager >= v4.5 now simply creates the targets on a per VLAN and protocol basis.
+
+* In versions of IXP Manager <v4.5, we generated an entire / monolithic Smokeping configuration file. We have found in practice that this does not scale well and creates a number of limitations - especially when running more than one infrastructures. IXP Manager >= v4.5 now simply creates the targets on a per VLAN and protocol basis.
+* In versions >=v4.8, the URL endpoint has changed from that which was used in versions between v4.5 and v4.7.3. This was done as Smokeping (latency graphs) were fully integrated into Grapher.
+
 
 ## Target Selection
 
@@ -22,22 +25,25 @@ When generating a list of targets per VLAN and protocol, the API call to IXP Man
 * *Can Ping* has been checked for that protocol; and
 * the virtual interface pertaining to the VLAN interface has at least on physical interface in the connected state.
 
+
 ## Generating Smokeping Targets
 
 You can use the **IXP Manager** API to get the Smokeping target configurations for a given VLAN and protocol using the following endpoint format (both GET and POST requests work):
 
 ```
-https://ixp.example.com/api/v4/vlan/smokeping/{vlanid}/{protocol}
+https://ixp.example.com/api/v4/grapher/config?backend=smokeping&vlanid=10&protocol=ipv4
 ```
 
-where:
+*Note that in versions of IXP Manager between v4.5 and v4.7.3, this was: `https://ixp.example.com/api/v4/vlan/smokeping/{vlanid}/{protocol}`.*
+
+In the above, the parameters are:
 
 * `vlanid` is the database ID (*DB ID*) of the VLAN. You can find the DB ID in IXP Manager in the VLAN table (select *VLANs* from the left hand side menu).
-* `protocol` is either `4` for `IPv4` or 6 for `IPv6`.
+* `protocol` is either `ipv4` or `ipv6` *(while in versions between v4.5 and v4.7.3, these were just `4` and `6` respectfully)*.
 
 If either of these are invalid, the API will return with a HTTP 404 response.
 
-And example of a target in the reponse is:
+And example of a Smokeping target in the response is:
 
 ```
 # AS112 Reverse DNS / 185.6.36.6
@@ -50,7 +56,7 @@ host = 185.6.36.6
 
 ### Optional Parameters
 
-You can optionally POST one or both of the following to change elements of the default template:
+You can optionally POST any of the above parameters and none, one or both of the following to change elements of the default template:
 
 * `level`: the Smokeping level / hierarchy of the target. Defaults to `+++`.
 * `probe`: the probe to use when measuring latency to the target. Defaults for `FPing` for IPv4 and `FPing6` for IPv6.
@@ -58,10 +64,10 @@ You can optionally POST one or both of the following to change elements of the d
 An example of changing these parameters is:
 
 ```sh
-curl --data "level=%2B%2B&probe=MyPing" -X POST \
+curl --data "backend=smokeping&protocol=ipv4&vlanid=10&level=%2B%2B&probe=MyPing" -X POST \
     -H "Content-Type: application/x-www-form-urlencoded" \
     -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
-    https://ixpexample.com/api/v4/vlan/smokeping/2/4
+    https://ixpexample.com/api/v4/grapher/config
 ```
 
 
@@ -73,8 +79,9 @@ Let's say you wanted to add your own template called `mytemplate1` and your skin
 
 ```sh
 cd $IXPROOT
-mkdir -p resources/skins/myskin/api/v4/vlan/smokeping
-cp resources/views/api/v4/vlan/smokeping/default.foil.php resources/skins/myskin/api/v4/vlan/smokeping/mytemplate1.foil.php
+mkdir -p resources/skins/myskin/services/grapher/smokeping
+cp resources/views/services/grapher/smokeping/default.foil.php \
+    resources/skins/myskin/services/grapher/smokeping/mytemplate1.foil.php
 ```
 
 You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes `a-z, 0-9, -`. **NB:** do not use uppercase characters.
@@ -84,7 +91,7 @@ The following variables are available in the template:
 * `$t->vlis`: array of the VLAN interfaces/targets - it is generated [by the Repositories\VlanInterface::getForProto() function](https://github.com/inex/IXP-Manager/blob/master/database/Repositories/VlanInterface.php#L18).
 * `$t->vlan`: instance of the [`Vlan` entity object](https://github.com/inex/IXP-Manager/blob/master/database/Entities/Vlan.php).
 * `$t->protocol`: either `4` or `6`.
-* `probe` and `level` as defined above / passed via a post request.
+* `$t->probe` and `$t->level` as defined above / passed via a post request.
 
 
 
@@ -100,19 +107,19 @@ To use this script yourself, you just need to copy it to the appropriate Smokepi
 
 ```bash
 KEY="my-ixp-manager-api-key"
-URL="https://ixp.example.com/api/v4/vlan/smokeping"
+URL="https://ixp.example.com/api/v4/grapher/config?backend=smokeping"
 ETCPATH="/etc/smokeping"
 SMOKEPING="/usr/bin/smokeping"
 SMOKEPING_RELOAD="/etc/rc.d/smokeping reload"
 VLANS="1 2"
-PROTOCOLS="4 6"
+PROTOCOLS="ipv4 ipv6"
 ```
 
 where:
 
  * `KEY` is your IXP Manager [API key](../features/api.md).
- * `URL` is the API endpoint as descibed above.
- * `ETCPATH` is where the script puts the target files (named `$ETCPATH/targets-vlan${vlanid}-ipv${proto}.cfg`)
+ * `URL` is the API endpoint as described above.
+ * `ETCPATH` is where the script puts the target files (named `$ETCPATH/targets-vlan${vlanid}-${proto}.cfg`)
  * `SMOKEPING` is the Smokeping binary command. Just used to validate the config with `--check` before reloading.
  * `SMOKEPING_RELOAD` - the command to reload Smokeping.
  * `VLANS` - space separated list of VLAN DB IDs as described above. You probably only have one of these typically.
@@ -126,8 +133,8 @@ Once the above target file(s) are created, we can use them in our standard Smoke
 
 ```
 + infra_1
-menu = IXP Infrastructures 1
-title = IXP Infrastructures 1
+menu = IXP Infrastructure 1
+title = IXP Infrastructure 1
 
 
 ++ vlan_1
@@ -141,9 +148,9 @@ title = IXP Infra 1 :: Peering VLAN 1
 
 ## Apache Configuration
 
-You need to be able to configure IXP Manager with the base Smokeping URL such as `http://www.example.com/smokeping`. This should be the URL to Smokeping that is the standard Smokeping entry page.
+You need to be able to configure IXP Manager with the base Smokeping URL such as `http://www.example.com/smokeping`. This should be the URL to the standard entry page to Smokeping.
 
-IXP Manager will add the trailing slash as assume the directory index is configured for the CGI script. Thus you need an Apache configuration such as:
+IXP Manager will add the trailing slash and assume the directory index is configured for the CGI script. Thus you need an Apache configuration such as:
 
 ```
 ScriptAlias /smokeping/smokeping.cgi /usr/lib/cgi-bin/smokeping.cgi
@@ -158,17 +165,22 @@ Alias /smokeping /usr/share/smokeping/www
 
 ## IXP Manager Configuration
 
-The current implementation of Smokeping in IXP Manager is as a *bridge* between IXP manager v3 and Grapher - where we hope it will eventually end up.
-
 Once you have configured Smokeping and Apache/web server as above, you really just need to set the following in your IXP Manager `.env` file:
 
 ```
-GRAPHER_SMOKEPING_URL="http://www.example.com/smokeping"
+# Add smokeping to the grapher backends:
+GRAPHER_BACKENDS="...|smokeping|..."
+
+# Mark it as enabled (this just affects whether certain UI elements are shown):
+GRAPHER_BACKEND_SMOKEPING_ENABLED=true
+
+# And set the default location to fetch the Smokeping graphs from:
+GRAPHER_BACKEND_SMOKEPING_URL="http://www.example.com/smokeping"
 ```
 
 where the URL is as you set up in Apache above.
 
-There may be instances where you have multiple VLANs where it is not possible to have a single Smokeping instance graph latency for every VLAN. Particularly as the Smokeping daemon for a given VLAN needs to have an interface / IP address on that VLAN.
+There may be instances where you have multiple VLANs where it is not possible to have a single Smokeping instance graph latency for all of them. Particularly as the Smokeping daemon for a given VLAN needs to have an interface / IP address on that VLAN.
 
 INEX has such a situation where we have a regional exchange, *INEX Cork*, that is located in a different city to the main INEX LANs and IXP Manager. In this situation, you can configure Smokeping URL overrides on a per VLAN basis by creating a file called `$IXPROOT/config/grapher_smokeping_overrides.php` which returns an array as follows:
 
@@ -176,32 +188,31 @@ INEX has such a situation where we have a regional exchange, *INEX Cork*, that i
 <?php
 
 return [
-    2 => 'http://www.example.com/smokeping',
-    4 => 'http://www.example2.com/smokeping',
-    // etc ...
-];
 
+    'per_vlan_urls' => [
+        2 => 'http://www.example.com/smokeping',
+        4 => 'http://www.example2.com/smokeping',
+    ],
+
+];
 ```
 
 where the array index (`2` and `4` in the above example) is the VLAN DB ID as explained above.
 
+Any VLANs without a specific override configured in this way will fall back to the `GRAPHER_BACKEND_SMOKEPING_URL` setting.
+
 
 ## Viewing Smokeping in IXP Manager
 
-When configured correctly, there will be a Smokeping button available in the member drilldown graphs (per port graphs) in both the member and admin sections.
+When configured correctly, there will be a latency button available (clock icon) in the member graphs in both the member and admin sections.
 
 
 ## Troubleshooting
 
 See [issue #122](https://github.com/inex/IXP-Manager/issues/122) for a discussion on Ubuntu installation and diagnosing issues in general (relates to IXP Manager v3 but may still be useful).
 
-When you look at the source HTML of the Smokeping page that IXP Manager generates, you'll see generated Smokeping image URLs like the following:
 
-```
-https://www.example.com/ixp/smokeping/retrieve-image/ixp/1/scale/3hours/infra/2/vlan/3/vlanint/94/proto/ipv4
-```
-
-IXP Manager will call something like
+IXP Manager will call something like the following to fetch graphs from Smokeping:
 
 ```php
 file_get_contents( 'https://www.example.com/smokeping/?.....' )
