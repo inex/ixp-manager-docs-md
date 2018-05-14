@@ -234,6 +234,8 @@
         
             <li><a class="toctree-l4" href="#api-access">API Access</a></li>
         
+            <li><a class="toctree-l4" href="#access-control">Access Control</a></li>
+        
         </ul>
     
 
@@ -353,8 +355,9 @@
 <h2 id="accessibility-of-aggregate-graphs">Accessibility of Aggregate Graphs<a class="headerlink" href="#accessibility-of-aggregate-graphs" title="Permanent link"></a></h2>
 <p>By default, the following graphs are <strong>publically</strong> accessible in <strong>IXP Manager</strong> and available through the top menu under <em>Statistics</em>:</p>
 <ol>
-<li>aggregate bits and packets graphs for the IXP;</li>
-<li>aggregate bits and packets graphs for the infrastructures;</li>
+<li>aggregate bits/sec and packets/sec graphs for the IXP;</li>
+<li>aggregate bits/sec and packets/sec graphs for the infrastructures;</li>
+<li>aggregate bits/sec graphs on a per-protocol and per-VLAN basis (requires <a href="slow.md">sflow</a>);</li>
 <li>aggregate graphs for the switches; and</li>
 <li>aggregate graphs for the trunk connections.</li>
 </ol>
@@ -362,18 +365,28 @@
 <ol>
 <li><code>GRAPHER_ACCESS_IXP</code></li>
 <li><code>GRAPHER_ACCESS_INFRASTRUCTURE</code></li>
+<li><code>GRAPHER_ACCESS_VLAN</code></li>
 <li><code>GRAPHER_ACCESS_SWITCH</code></li>
 <li><code>GRAPHER_ACCESS_TRUNK</code></li>
 </ol>
 <p>For example to limit <code>GRAPHER_ACCESS_TRUNK</code> to logged in users, set:</p>
-<div class="highlight"><pre>GRAPHER_ACCESS_TRUNK=1
+<div class="highlight"><pre><span></span>GRAPHER_ACCESS_TRUNK=1
 </pre></div>
 
 
-<p><em>The older Zend Framework templates will still show these options in the menu but these templates are being aggressively phased out.</em></p>
+<p>If you would like to make the aggregate graphs available to logged in users only, set the following <code>.env</code> options:</p>
+<div class="highlight"><pre><span></span>GRAPHER_ACCESS_IXP=1
+GRAPHER_ACCESS_INFRASTRUCTURE=1
+GRAPHER_ACCESS_VLAN=1
+GRAPHER_ACCESS_SWITCH=1
+GRAPHER_ACCESS_TRUNK=1
+</pre></div>
+
+
+<p>If you would prefer to restrict access to these to superusers / admins only, replace <code>=1</code> above with <code>=3</code>.</p>
 <h2 id="api-access">API Access<a class="headerlink" href="#api-access" title="Permanent link"></a></h2>
 <p><em>Grapher</em> allows API access to graphs via a base URL of the form:</p>
-<div class="highlight"><pre>https://ixp.example.com/grapher/{graph}[?id=x][&amp;period=x][&amp;type=x][&amp;category=x] \
+<div class="highlight"><pre><span></span>https://ixp.example.com/grapher/{graph}[?id=x][&amp;period=x][&amp;type=x][&amp;category=x] \
     [&amp;protocol=x][&amp;backend=x]
 </pre></div>
 
@@ -384,56 +397,56 @@
 <li>Aggregate exchange traffic PNG: <a href="https://www.inex.ie/ixp/grapher/ixp">https://www.inex.ie/ixp/grapher/ixp</a> (as you'll learn below, the defaults are <code>id=1&amp;type=png</code>).</li>
 </ol>
 <p>A sample of the JSON output is:</p>
-<div class="highlight"><pre><span class="p">{</span>
-    <span class="err">class:</span> <span class="nt">&quot;ixp&quot;</span><span class="p">,</span>
-    <span class="err">urls:</span> <span class="err">{</span>
-        <span class="err">png:</span> <span class="nt">&quot;https://www.inex.ie/ixp/grapher/ixp?period=day&amp;type=png&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span><span class="p">,</span>
-        <span class="err">log:</span> <span class="nt">&quot;https://www.inex.ie/ixp/grapher/ixp?period=day&amp;type=log&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span><span class="p">,</span>
-        <span class="err">json:</span> <span class="nt">&quot;https://www.inex.ie/ixp/grapher/ixp?period=day&amp;type=json&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span>
-    <span class="p">}</span><span class="err">,</span>
-    <span class="err">base_url:</span> <span class="s2">&quot;https://www.inex.ie/ixp/grapher/ixp&quot;</span><span class="err">,</span>
-    <span class="err">statistics:</span> <span class="p">{</span>
-        <span class="err">totalin:</span> <span class="err">13733441895899552,</span>
-        <span class="err">totalout:</span> <span class="err">13734817210037696,</span>
-        <span class="err">curin:</span> <span class="err">183970331392,</span>
-        <span class="err">curout:</span> <span class="err">184222146544,</span>
-        <span class="err">averagein:</span> <span class="err">114930932321.55484,</span>
-        <span class="err">averageout:</span> <span class="err">114942441900.67783,</span>
-        <span class="err">maxin:</span> <span class="err">204976886344,</span>
-        <span class="err">maxout:</span> <span class="err">204800400448</span>
-    <span class="p">}</span><span class="err">,</span>
-    <span class="err">params:</span> <span class="p">{</span>
-        <span class="err">type:</span> <span class="nt">&quot;json&quot;</span><span class="p">,</span>
-        <span class="err">category:</span> <span class="nt">&quot;bits&quot;</span><span class="p">,</span>
-        <span class="err">period:</span> <span class="nt">&quot;day&quot;</span><span class="p">,</span>
-        <span class="err">protocol:</span> <span class="nt">&quot;all&quot;</span><span class="p">,</span>
-        <span class="err">id:</span> <span class="err">1</span>
-    <span class="p">}</span><span class="err">,</span>
-    <span class="err">supports:</span> <span class="p">{</span>
-        <span class="err">protocols:</span> <span class="err">{</span>
-            <span class="err">all:</span> <span class="nt">&quot;all&quot;</span>
-        <span class="p">}</span><span class="err">,</span>
-        <span class="err">categories:</span> <span class="p">{</span>
-            <span class="err">bits:</span> <span class="nt">&quot;bits&quot;</span><span class="p">,</span>
-            <span class="err">pkts:</span> <span class="nt">&quot;pkts&quot;</span>
-        <span class="p">}</span><span class="err">,</span>
-        <span class="err">periods:</span> <span class="p">{</span>
-            <span class="err">day:</span> <span class="nt">&quot;day&quot;</span><span class="p">,</span>
-            <span class="err">week:</span> <span class="nt">&quot;week&quot;</span><span class="p">,</span>
-            <span class="err">month:</span> <span class="nt">&quot;month&quot;</span><span class="p">,</span>
-            <span class="err">year:</span> <span class="nt">&quot;year&quot;</span>
-        <span class="p">}</span><span class="err">,</span>
-        <span class="err">types:</span> <span class="p">{</span>
-            <span class="err">png:</span> <span class="nt">&quot;png&quot;</span><span class="p">,</span>
-            <span class="err">log:</span> <span class="nt">&quot;log&quot;</span><span class="p">,</span>
-            <span class="err">json:</span> <span class="nt">&quot;json&quot;</span>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;ixp&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;urls&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;png&quot;</span><span class="p">:</span> <span class="s2">&quot;https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&amp;type=png&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;log&quot;</span><span class="p">:</span> <span class="s2">&quot;https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&amp;type=log&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;json&quot;</span><span class="p">:</span> <span class="s2">&quot;https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&amp;type=json&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;base_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https:\/\/www.inex.ie\/ixp\/grapher\/ixp&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;statistics&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;totalin&quot;</span><span class="p">:</span> <span class="mi">15013439801606864</span><span class="p">,</span>
+        <span class="nt">&quot;totalout&quot;</span><span class="p">:</span> <span class="mi">15013959560329200</span><span class="p">,</span>
+        <span class="nt">&quot;curin&quot;</span><span class="p">:</span> <span class="mi">158715231920</span><span class="p">,</span>
+        <span class="nt">&quot;curout&quot;</span><span class="p">:</span> <span class="mi">158713872624</span><span class="p">,</span>
+        <span class="nt">&quot;averagein&quot;</span><span class="p">:</span> <span class="mf">125566129180.59367</span><span class="p">,</span>
+        <span class="nt">&quot;averageout&quot;</span><span class="p">:</span> <span class="mf">125570476225.09074</span><span class="p">,</span>
+        <span class="nt">&quot;maxin&quot;</span><span class="p">:</span> <span class="mi">222438012592</span><span class="p">,</span>
+        <span class="nt">&quot;maxout&quot;</span><span class="p">:</span> <span class="mi">222348641336</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;bits&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;period&quot;</span><span class="p">:</span> <span class="s2">&quot;day&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;supports&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;protocols&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;all&quot;</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;categories&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;bits&quot;</span><span class="p">:</span> <span class="s2">&quot;bits&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;pkts&quot;</span><span class="p">:</span> <span class="s2">&quot;pkts&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;periods&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;day&quot;</span><span class="p">:</span> <span class="s2">&quot;day&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;week&quot;</span><span class="p">:</span> <span class="s2">&quot;week&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;month&quot;</span><span class="p">:</span> <span class="s2">&quot;month&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="s2">&quot;year&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;types&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;png&quot;</span><span class="p">:</span> <span class="s2">&quot;png&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;log&quot;</span><span class="p">:</span> <span class="s2">&quot;log&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;json&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span>
         <span class="p">}</span>
-    <span class="err">},</span>
-    <span class="err">backends:</span> <span class="p">{</span>
-        <span class="err">mrtg:</span> <span class="nt">&quot;mrtg&quot;</span>
-    <span class="p">}</span><span class="err">,</span>
-    <span class="err">backend:</span> <span class="s2">&quot;mrtg&quot;</span>
-<span class="err">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;backends&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;mrtg&quot;</span><span class="p">:</span> <span class="s2">&quot;mrtg&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;backend&quot;</span><span class="p">:</span> <span class="s2">&quot;mrtg&quot;</span>
+<span class="p">}</span>
 </pre></div>
 
 
@@ -441,7 +454,7 @@
 <p><strong>Notes:</strong></p>
 <ol>
 <li>not all backends support all options or graphs; use the <code>json</code> type to see what's supported <em>but remember that IXP Manager will, when configured correctly, chose the appropriate backend</em>;</li>
-<li>the primary key IDs mentioned below are mostly available in the UI when viewing lists of the relavent objects;</li>
+<li>the primary key IDs mentioned below are mostly available in the UI when viewing lists of the relevant objects under a column <em>DB ID</em>;</li>
 <li>an understanding of how IXP Manager represents interfaces is required to grasp the below - <a href="../../usage/interfaces/">see here</a>.</li>
 </ol>
 <p>Let's first look at supported graphs:</p>
@@ -453,7 +466,7 @@
 <p><code>infrastructure</code>: aggregate graph for the overall traffic on a specific IXP infrastructure. For many IXPs, they'll just have a single infrastructure and this will go unused as it would be the equivalent of <code>ixp</code> above. <code>id</code>, which is mandatory, is the primary key of the infrastructure from the <code>infrastructure</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
 </li>
 <li>
-<p><code>vlan</code>: aggregate graph for a specific VLAN. <code>id</code>, which is mandatory, is the primary key of the VLAN from the <code>vlan</code> database table. [Currently only supported via sflow for <code>protocol=ipv4|ipv6</code>]</p>
+<p><code>vlan</code>: aggregate graph for a specific VLAN. <code>id</code>, which is mandatory, is the primary key of the VLAN from the <code>vlan</code> database table. [Currently only supported via sflow for <code>protocol=ipv4|ipv6</code> and <code>category=bits|pkts</code>]</p>
 </li>
 <li>
 <p><code>switch</code>: aggregate graph of all peering traffic being switched by a specific switch (sum of all customer ports plus core ports). <code>id</code>, which is mandatory, is the primary key of the switch from the <code>switch</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
@@ -505,11 +518,12 @@
 <p><code>backend</code>: default is to let IXP Manager decide.</p>
 </li>
 </ul>
-<h3 id="api-access-control">API Access Control<a class="headerlink" href="#api-access-control" title="Permanent link"></a></h3>
+<h2 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link"></a></h2>
 <p>The grapher API can be accessed using the <a href="../../features/api/">standard API access mechanisms</a>.</p>
 <p>Each graph (ixp, infrastructure, etc.) has an <code>authorise()</code> method which determines who is allowed view a graph. For example, see <a href="https://github.com/inex/IXP-Manager/blob/master/app/Services/Grapher/Graph/VlanInterface.php#L131">IXP\Services\Grapher\Graph\VlanInterface::authorise()</a>. The general logic is:</p>
 <ul>
-<li>if not logged in / valid API key -&gt; deny</li>
+<li>if the graph is configured to be publicly accessible -&gt; allow</li>
+<li>if not logged in / no valid API key -&gt; deny</li>
 <li>if superuser -&gt; allow</li>
 <li>if user belongs to customer graph requested -&gt; allow</li>
 <li>otherwise -&gt; deny and log</li>
@@ -533,7 +547,7 @@
 </tr>
 <tr>
 <td><code>vlan</code></td>
-<td>public unless it's a private VLAN (in which case only superuser is supported currently)</td>
+<td>public but respects <code>GRAPHER_ACCESS_VLAN</code> (see above), unless it's a private VLAN (in which case only superuser is supported currently)</td>
 </tr>
 <tr>
 <td><code>switch</code></td>
@@ -545,30 +559,54 @@
 </tr>
 <tr>
 <td><code>physicalinterface</code></td>
-<td>superuser or user of the owning customer</td>
+<td>superuser or user of the owning customer but respects <code>GRAPHER_ACCESS_CUSTOMER</code> (see <em>Access to Member Graphs</em> below)</td>
 </tr>
 <tr>
 <td><code>vlaninterface</code></td>
-<td>superuser or user of the owning customer</td>
+<td>superuser or user of the owning customer but respects <code>GRAPHER_ACCESS_CUSTOMER</code> (see <em>Access to Member Graphs</em> below)</td>
 </tr>
 <tr>
 <td><code>virtualinterface</code></td>
-<td>superuser or user of the owning customer</td>
+<td>superuser or user of the owning customer but respects <code>GRAPHER_ACCESS_CUSTOMER</code> (see <em>Access to Member Graphs</em> below)</td>
 </tr>
 <tr>
 <td><code>customer</code></td>
-<td>superuser or user of the owning customer</td>
+<td>superuser or user of the owning customer but respects <code>GRAPHER_ACCESS_CUSTOMER</code> (see <em>Access to Member Graphs</em> below)</td>
 </tr>
 <tr>
 <td><code>latency</code></td>
-<td>superuser or user of the owning customer</td>
+<td>superuser or user of the owning customer but respects <code>GRAPHER_ACCESS_LATENCY</code> (see <em>Access to Member Graphs</em> below)</td>
 </tr>
 <tr>
 <td><code>p2p</code></td>
-<td>superuser or user of the source (<code>svli</code>) owning customer</td>
+<td>superuser or user of the source (<code>svli</code>) owning customer but respects <code>GRAPHER_ACCESS_P2P</code> (see <em>Access to Member Graphs</em> below)</td>
 </tr>
 </tbody>
 </table>
+<h3 id="access-to-member-graphs">Access to Member Graphs<a class="headerlink" href="#access-to-member-graphs" title="Permanent link"></a></h3>
+<p><strong>NB: before you read this section, please first read and be familiar with the <em>Accessibility of Aggregate Graphs</em> section above.</strong></p>
+<p>A number of IXPs have requested a feature to allow public access to member / customer graphs. To support this we have added the following <code>.env</code> options with the default value as shown:</p>
+<div class="highlight"><pre><span></span>GRAPHER_ACCESS_CUSTOMER=&quot;own_graphs_only&quot;
+GRAPHER_ACCESS_P2P=&quot;own_graphs_only&quot;
+GRAPHER_ACCESS_LATENCY=&quot;own_graphs_only&quot;
+</pre></div>
+
+
+<p>The <code>own_graphs_only</code> setting just means <em>perform the default access checks</em> which means: access is granted to a superuser or a user who belongs to the customer which owns the respective graph. I.e. no one but the customer or a superadmin can access the respective graph.</p>
+<p>If you wish to allow access to these to a <em>less than or equal</em> <a href="../../usage/users/">user permission</a>, set the above in <code>.env</code> appropriately.</p>
+<p>For example:</p>
+<ul>
+<li>to allow public access to all customer graphs (customer aggregate, LAG aggregates, physical interfaces and per-VLAN/protocol graphs);</li>
+<li>to allow any logged in customer access any other customer's peer to peer graphs; and</li>
+<li>to continue to restrict latency graph access to superadmins and the owning customer</li>
+</ul>
+<p>then set the following in <code>.env</code>:</p>
+<div class="highlight"><pre><span></span>GRAPHER_ACCESS_CUSTOMER=0
+GRAPHER_ACCESS_P2P=1
+</pre></div>
+
+
+<p><em>Note that <code>GRAPHER_ACCESS_LATENCY</code> is omitted as we are not changing the default.</em></p>
               
             </div>
           </div>

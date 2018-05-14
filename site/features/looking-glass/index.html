@@ -382,7 +382,7 @@
 <p>Generally speaking, if you carefully read the above and the <a href="https://github.com/inex/birdseye/blob/master/README.md">Bird's Eye README file</a>, you should be able to get IXP Manager / Bird's Eye integration working.</p>
 <p>If you do not, try all of the following and solve any elements that fail. If you still have issues, email the <a href="https://www.inex.ie/mailman/listinfo/ixpmanager">IXP Manager mailing list</a> <strong>with the output of all of the following commands from both sections</strong>.</p>
 <p>For the following examples, we will use a real INEX example router with these settings:</p>
-<div class="highlight"><pre>mysql&gt; SELECT * FROM routers WHERE id = 17\G
+<div class="highlight"><pre><span></span>mysql&gt; SELECT * FROM routers WHERE id = 17\G
 *************************** 1. row ***************************
           id: 17
      vlan_id: 2
@@ -408,7 +408,7 @@ last_updated: 2018-02-03 14:26:15
 
 
 <p>From the server running IXP Manager:</p>
-<div class="highlight"><pre>###############################################################################
+<div class="highlight"><pre><span></span>###############################################################################
 # Does the API hostname resolve?
 $ dig +short as112-lan1-ipv4.mgmt.inex.ie
 
@@ -467,14 +467,14 @@ $ curl -v http://as112-lan1-ipv4.mgmt.inex.ie/api/status
 
 
 <p>If all of the above checks out, watch the log file while you try and access the looking glass:</p>
-<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 tail -f storage/log/laravel.log
 </pre></div>
 
 
 <p>If there are error messages in the above log as you try and access the looking glass, include them when emailing the mailing list for help.</p>
 <p>Then on the router (the server running Bird's Eye), you need to provide the following answers when seeking help:</p>
-<div class="highlight"><pre>###############################################################################
+<div class="highlight"><pre><span></span>###############################################################################
 # Is Bird actually running and what are the names of its sockets:
 $ ls -la /var/run/bird
 

@@ -6,17 +6,19 @@ This page discusses default permissions required for accessing certain graphs an
 
 By default, the following graphs are **publically** accessible in **IXP Manager** and available through the top menu under *Statistics*:
 
-1. aggregate bits and packets graphs for the IXP;
-2. aggregate bits and packets graphs for the infrastructures;
-3. aggregate graphs for the switches; and
-4. aggregate graphs for the trunk connections.
+1. aggregate bits/sec and packets/sec graphs for the IXP;
+2. aggregate bits/sec and packets/sec graphs for the infrastructures;
+3. aggregate bits/sec graphs on a per-protocol and per-VLAN basis (requires [sflow](slow.md));
+4. aggregate graphs for the switches; and
+5. aggregate graphs for the trunk connections.
 
 If you wish to limit access to these to a *less than or equal* [user permission](../usage/users.md), set the following in `.env` appropriately:
 
 1. `GRAPHER_ACCESS_IXP`
 2. `GRAPHER_ACCESS_INFRASTRUCTURE`
-3. `GRAPHER_ACCESS_SWITCH`
-4. `GRAPHER_ACCESS_TRUNK`
+3. `GRAPHER_ACCESS_VLAN`
+4. `GRAPHER_ACCESS_SWITCH`
+5. `GRAPHER_ACCESS_TRUNK`
 
 For example to limit `GRAPHER_ACCESS_TRUNK` to logged in users, set:
 
@@ -24,7 +26,17 @@ For example to limit `GRAPHER_ACCESS_TRUNK` to logged in users, set:
 GRAPHER_ACCESS_TRUNK=1
 ```
 
-*The older Zend Framework templates will still show these options in the menu but these templates are being aggressively phased out.*
+If you would like to make the aggregate graphs available to logged in users only, set the following `.env` options:
+
+```
+GRAPHER_ACCESS_IXP=1
+GRAPHER_ACCESS_INFRASTRUCTURE=1
+GRAPHER_ACCESS_VLAN=1
+GRAPHER_ACCESS_SWITCH=1
+GRAPHER_ACCESS_TRUNK=1
+```
+
+If you would prefer to restrict access to these to superusers / admins only, replace `=1` above with `=3`.
 
 ## API Access
 
@@ -44,54 +56,54 @@ A sample of the JSON output is:
 
 ```json
 {
-    class: "ixp",
-    urls: {
-        png: "https://www.inex.ie/ixp/grapher/ixp?period=day&type=png&category=bits&protocol=all&id=1",
-        log: "https://www.inex.ie/ixp/grapher/ixp?period=day&type=log&category=bits&protocol=all&id=1",
-        json: "https://www.inex.ie/ixp/grapher/ixp?period=day&type=json&category=bits&protocol=all&id=1"
+    "class": "ixp",
+    "urls": {
+        "png": "https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&type=png&category=bits&protocol=all&id=1",
+        "log": "https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&type=log&category=bits&protocol=all&id=1",
+        "json": "https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&type=json&category=bits&protocol=all&id=1"
     },
-    base_url: "https://www.inex.ie/ixp/grapher/ixp",
-    statistics: {
-        totalin: 13733441895899552,
-        totalout: 13734817210037696,
-        curin: 183970331392,
-        curout: 184222146544,
-        averagein: 114930932321.55484,
-        averageout: 114942441900.67783,
-        maxin: 204976886344,
-        maxout: 204800400448
+    "base_url": "https:\/\/www.inex.ie\/ixp\/grapher\/ixp",
+    "statistics": {
+        "totalin": 15013439801606864,
+        "totalout": 15013959560329200,
+        "curin": 158715231920,
+        "curout": 158713872624,
+        "averagein": 125566129180.59367,
+        "averageout": 125570476225.09074,
+        "maxin": 222438012592,
+        "maxout": 222348641336
     },
-    params: {
-        type: "json",
-        category: "bits",
-        period: "day",
-        protocol: "all",
-        id: 1
+    "params": {
+        "type": "json",
+        "category": "bits",
+        "period": "day",
+        "protocol": "all",
+        "id": 1
     },
-    supports: {
-        protocols: {
-            all: "all"
+    "supports": {
+        "protocols": {
+            "all": "all"
         },
-        categories: {
-            bits: "bits",
-            pkts: "pkts"
+        "categories": {
+            "bits": "bits",
+            "pkts": "pkts"
         },
-        periods: {
-            day: "day",
-            week: "week",
-            month: "month",
-            year: "year"
+        "periods": {
+            "day": "day",
+            "week": "week",
+            "month": "month",
+            "year": "year"
         },
-        types: {
-            png: "png",
-            log: "log",
-            json: "json"
+        "types": {
+            "png": "png",
+            "log": "log",
+            "json": "json"
         }
     },
-    backends: {
-        mrtg: "mrtg"
+    "backends": {
+        "mrtg": "mrtg"
     },
-    backend: "mrtg"
+    "backend": "mrtg"
 }
 ```
 
@@ -100,7 +112,7 @@ You can see from the above what `params` were used to create the `statistics` (a
 **Notes:**
 
 1. not all backends support all options or graphs; use the `json` type to see what's supported *but remember that IXP Manager will, when configured correctly, chose the appropriate backend*;
-2. the primary key IDs mentioned below are mostly available in the UI when viewing lists of the relavent objects;
+2. the primary key IDs mentioned below are mostly available in the UI when viewing lists of the relevant objects under a column *DB ID*;
 3. an understanding of how IXP Manager represents interfaces is required to grasp the below - [see here](../usage/interfaces.md).
 
 Let's first look at supported graphs:
@@ -111,7 +123,7 @@ Let's first look at supported graphs:
 * `infrastructure`: aggregate graph for the overall traffic on a specific IXP infrastructure. For many IXPs, they'll just have a single infrastructure and this will go unused as it would be the equivalent of `ixp` above. `id`, which is mandatory, is the primary key of the infrastructure from the `infrastructure` database table. [Currently only supported via MRTG for `protocol=all`]
 
 
-* `vlan`: aggregate graph for a specific VLAN. `id`, which is mandatory, is the primary key of the VLAN from the `vlan` database table. [Currently only supported via sflow for `protocol=ipv4|ipv6`]
+* `vlan`: aggregate graph for a specific VLAN. `id`, which is mandatory, is the primary key of the VLAN from the `vlan` database table. [Currently only supported via sflow for `protocol=ipv4|ipv6` and `category=bits|pkts`]
 
 
 * `switch`: aggregate graph of all peering traffic being switched by a specific switch (sum of all customer ports plus core ports). `id`, which is mandatory, is the primary key of the switch from the `switch` database table. [Currently only supported via MRTG for `protocol=all`]
@@ -160,13 +172,14 @@ For additional options, it's always best to manually or programmatically examine
 * `backend`: default is to let IXP Manager decide.
 
 
-### API Access Control
+## Access Control
 
 The grapher API can be accessed using the [standard API access mechanisms](../features/api.md).
 
 Each graph (ixp, infrastructure, etc.) has an `authorise()` method which determines who is allowed view a graph. For example, see [IXP\Services\Grapher\Graph\VlanInterface::authorise()](https://github.com/inex/IXP-Manager/blob/master/app/Services/Grapher/Graph/VlanInterface.php#L131). The general logic is:
 
-* if not logged in / valid API key -> deny
+* if the graph is configured to be publicly accessible -> allow
+* if not logged in / no valid API key -> deny
 * if superuser -> allow
 * if user belongs to customer graph requested -> allow
 * otherwise -> deny and log
@@ -177,12 +190,45 @@ Graph               |  Default Access Control
 --------------------|----------------------------------
 `ixp`               | public but respects `GRAPHER_ACCESS_IXP` (see above)
 `infrastructure`    | public but respects `GRAPHER_ACCESS_INFRASTRUCTURE` (see above)
-`vlan`              | public unless it's a private VLAN (in which case only superuser is supported currently)
+`vlan`              | public but respects `GRAPHER_ACCESS_VLAN` (see above), unless it's a private VLAN (in which case only superuser is supported currently)
 `switch`            | public but respects `GRAPHER_ACCESS_SWITCH` (see above)
 `trunk`             | public but respects `GRAPHER_ACCESS_TRUNK` (see above)
-`physicalinterface` | superuser or user of the owning customer
-`vlaninterface`     | superuser or user of the owning customer
-`virtualinterface`  | superuser or user of the owning customer
-`customer`          | superuser or user of the owning customer
-`latency`           | superuser or user of the owning customer
-`p2p`               | superuser or user of the source (`svli`) owning customer
+`physicalinterface` | superuser or user of the owning customer but respects `GRAPHER_ACCESS_CUSTOMER` (see *Access to Member Graphs* below)
+`vlaninterface`     | superuser or user of the owning customer but respects `GRAPHER_ACCESS_CUSTOMER` (see *Access to Member Graphs* below)
+`virtualinterface`  | superuser or user of the owning customer but respects `GRAPHER_ACCESS_CUSTOMER` (see *Access to Member Graphs* below)
+`customer`          | superuser or user of the owning customer but respects `GRAPHER_ACCESS_CUSTOMER` (see *Access to Member Graphs* below)
+`latency`           | superuser or user of the owning customer but respects `GRAPHER_ACCESS_LATENCY` (see *Access to Member Graphs* below)
+`p2p`               | superuser or user of the source (`svli`) owning customer but respects `GRAPHER_ACCESS_P2P` (see *Access to Member Graphs* below)
+
+
+
+### Access to Member Graphs
+
+**NB: before you read this section, please first read and be familiar with the *Accessibility of Aggregate Graphs* section above.**
+
+A number of IXPs have requested a feature to allow public access to member / customer graphs. To support this we have added the following `.env` options with the default value as shown:
+
+```
+GRAPHER_ACCESS_CUSTOMER="own_graphs_only"
+GRAPHER_ACCESS_P2P="own_graphs_only"
+GRAPHER_ACCESS_LATENCY="own_graphs_only"
+```
+
+The `own_graphs_only` setting just means *perform the default access checks* which means: access is granted to a superuser or a user who belongs to the customer which owns the respective graph. I.e. no one but the customer or a superadmin can access the respective graph.
+
+If you wish to allow access to these to a *less than or equal* [user permission](../usage/users.md), set the above in `.env` appropriately.
+
+For example:
+
+* to allow public access to all customer graphs (customer aggregate, LAG aggregates, physical interfaces and per-VLAN/protocol graphs);
+* to allow any logged in customer access any other customer's peer to peer graphs; and
+* to continue to restrict latency graph access to superadmins and the owning customer
+
+then set the following in `.env`:
+
+```
+GRAPHER_ACCESS_CUSTOMER=0
+GRAPHER_ACCESS_P2P=1
+```
+
+*Note that `GRAPHER_ACCESS_LATENCY` is omitted as we are not changing the default.*
