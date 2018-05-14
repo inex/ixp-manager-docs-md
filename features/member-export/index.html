@@ -355,13 +355,13 @@
 <p>In IXP Manager, there are four types of users as described <a href="../../usage/users/">in the users page</a>. Member export templates can be added which requires a minimum user privilege to access (e.g. <code>priv == 0</code> would be publicly accessible through to <code>priv == 3</code> which would require a superadmin).</p>
 <p>To create your own member export templte, you should first <a href="../skinning/">set up skinning</a> for your installation. Let's assume you called your skin <code>example</code> in the following.</p>
 <p>To create a publicly accessible member export page called <code>lonap</code>, you would first create a directory structure in your skin as follows:</p>
-<div class="highlight"><pre><span class="nb">cd</span> <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>
 mkdir -p resources/skins/example/content/members/<span class="o">{</span>0,1,2,3<span class="o">}</span>
 </pre></div>
 
 
 <p>where the directories <code>0, 1, 2, 3</code> represent the <em>minimum required user privilege</em> to access the template. You can now create your export template page by creating a file:</p>
-<div class="highlight"><pre>resources/skins/example/content/members/0/lonap.foil.php
+<div class="highlight"><pre><span></span>resources/skins/example/content/members/0/lonap.foil.php
 </pre></div>
 
 
@@ -372,14 +372,14 @@ mkdir -p resources/skins/example/content/members/<span class="o">{</span>0,1,2,3
 <li><code>resources/skins/inex/content/members/0/list.foil.php</code>: what we at INEX use to generate <a href="https://www.inex.ie/about-us/inex-members/">this members list</a>. You can access the real data via: https://www.inex.ie/ixp/content/members/0/list.json (not that this is publicly accessible).</li>
 </ol>
 <p>The format of the URL to access these member export templates is:</p>
-<div class="highlight"><pre>https://ixp.example.com/content/members/{priv}/{page}[.json]
+<div class="highlight"><pre><span></span>https://ixp.example.com/content/members/{priv}/{page}[.json]
 </pre></div>
 
 
 <ul>
 <li><code>{priv}</code> is the <em>minimum required user privilege</em> required to access the page and is used first for testing the user's permissions and second as the directory to check for the file.</li>
 <li><code>{page}</code> is the name of the file to load (less <code>.foil.php</code>) and <strong>please be aware that this is normalised as follows:</strong>
-<div class="highlight"><pre><span class="x">preg_replace( &#39;/[^a-z0-9\-_]/&#39;, &#39;&#39;, strtolower( $page ) )</span>
+<div class="highlight"><pre><span></span><span class="x">preg_replace( &#39;/[^a-z0-9\-_]/&#39;, &#39;&#39;, strtolower( $page ) )</span>
 </pre></div>
 
 i.e. the file name can only contain characters from the class <code>[a-z0-9\-_]</code> and all lower case.</li>
