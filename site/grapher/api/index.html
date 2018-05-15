@@ -585,14 +585,14 @@ GRAPHER_ACCESS_TRUNK=1
 </table>
 <h3 id="access-to-member-graphs">Access to Member Graphs<a class="headerlink" href="#access-to-member-graphs" title="Permanent link"></a></h3>
 <p><strong>NB: before you read this section, please first read and be familiar with the <em>Accessibility of Aggregate Graphs</em> section above.</strong></p>
-<p>A number of IXPs have requested a feature to allow public access to member / customer graphs. To support this we have added the following <code>.env</code> options with the default value as shown:</p>
+<p>A number of IXPs have requested a feature to allow public access to member / customer graphs. To support this we have added the following <code>.env</code> options (beginning in v4.8) with the default value as shown:</p>
 <div class="highlight"><pre><span></span>GRAPHER_ACCESS_CUSTOMER=&quot;own_graphs_only&quot;
 GRAPHER_ACCESS_P2P=&quot;own_graphs_only&quot;
 GRAPHER_ACCESS_LATENCY=&quot;own_graphs_only&quot;
 </pre></div>
 
 
-<p>The <code>own_graphs_only</code> setting just means <em>perform the default access checks</em> which means: access is granted to a superuser or a user who belongs to the customer which owns the respective graph. I.e. no one but the customer or a superadmin can access the respective graph.</p>
+<p>The <code>own_graphs_only</code> setting just means <em>perform the default access checks</em> which are: access is granted to a superuser or a user who belongs to the customer which owns the respective graph. I.e. no one but the customer or a superadmin can access the respective graph.</p>
 <p>If you wish to allow access to these to a <em>less than or equal</em> <a href="../../usage/users/">user permission</a>, set the above in <code>.env</code> appropriately.</p>
 <p>For example:</p>
 <ul>
@@ -607,6 +607,11 @@ GRAPHER_ACCESS_P2P=1
 
 
 <p><em>Note that <code>GRAPHER_ACCESS_LATENCY</code> is omitted as we are not changing the default.</em></p>
+<p>Please note the following:</p>
+<ul>
+<li><code>GRAPHER_ACCESS_CUSTOMER</code> applies to customer aggregate graphs, customer LAG graphs (virtualinterface), customer ports (physicalinterface) and customer vlaninterface. T individually limit these makes little sense and drastically increases complexity (from a UI perspectve).</li>
+<li>It makes limited sense for UI access to enable either <code>GRAPHER_ACCESS_P2P</code> or <code>GRAPHER_ACCESS_LATENCY</code> without enabling equivalent or less restrictive access to <code>GRAPHER_ACCESS_CUSTOMER</code>. This is because most of the user interface (UI) pathways to access these is via <code>GRAPHER_ACCESS_CUSTOMER</code> pages.</li>
+</ul>
               
             </div>
           </div>

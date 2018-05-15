@@ -206,7 +206,7 @@ Graph               |  Default Access Control
 
 **NB: before you read this section, please first read and be familiar with the *Accessibility of Aggregate Graphs* section above.**
 
-A number of IXPs have requested a feature to allow public access to member / customer graphs. To support this we have added the following `.env` options with the default value as shown:
+A number of IXPs have requested a feature to allow public access to member / customer graphs. To support this we have added the following `.env` options (beginning in v4.8) with the default value as shown:
 
 ```
 GRAPHER_ACCESS_CUSTOMER="own_graphs_only"
@@ -214,7 +214,7 @@ GRAPHER_ACCESS_P2P="own_graphs_only"
 GRAPHER_ACCESS_LATENCY="own_graphs_only"
 ```
 
-The `own_graphs_only` setting just means *perform the default access checks* which means: access is granted to a superuser or a user who belongs to the customer which owns the respective graph. I.e. no one but the customer or a superadmin can access the respective graph.
+The `own_graphs_only` setting just means *perform the default access checks* which are: access is granted to a superuser or a user who belongs to the customer which owns the respective graph. I.e. no one but the customer or a superadmin can access the respective graph.
 
 If you wish to allow access to these to a *less than or equal* [user permission](../usage/users.md), set the above in `.env` appropriately.
 
@@ -232,3 +232,8 @@ GRAPHER_ACCESS_P2P=1
 ```
 
 *Note that `GRAPHER_ACCESS_LATENCY` is omitted as we are not changing the default.*
+
+Please note the following:
+
+* `GRAPHER_ACCESS_CUSTOMER` applies to customer aggregate graphs, customer LAG graphs (virtualinterface), customer ports (physicalinterface) and customer vlaninterface. T individually limit these makes little sense and drastically increases complexity (from a UI perspectve).
+* It makes limited sense for UI access to enable either `GRAPHER_ACCESS_P2P` or `GRAPHER_ACCESS_LATENCY` without enabling equivalent or less restrictive access to `GRAPHER_ACCESS_CUSTOMER`. This is because most of the user interface (UI) pathways to access these is via `GRAPHER_ACCESS_CUSTOMER` pages.
