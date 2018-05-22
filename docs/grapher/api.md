@@ -132,10 +132,10 @@ Let's first look at supported graphs:
 * `trunk`: a legacy hold over from *Inter-Switch / Trunk Graphs* above to be replaced with core bundles.
 
 
-* `phsyicalinterface`: traffic for an individual member port - a single physical switch port. `id`, which is mandatory, is the primary key of the physical interface from the `physicalinterface` database table. [Currently only supported via MRTG for `protocol=all`]
+* `physicalinterface`: traffic for an individual member port - a single physical switch port. `id`, which is mandatory, is the primary key of the physical interface from the `physicalinterface` database table. [Currently only supported via MRTG for `protocol=all`]
 
 
-* `virtualinterface`: if a member has a single connection (one switch port) then this is the same as `phsyicalinterface` above. However, if they have a LAG port then it's the aggregate traffic for all physical ports in the LAG. `id`, which is mandatory, is the primary key of the virtual interface from the `virtualinterface` database table. [Currently only supported via MRTG for `protocol=all`]
+* `virtualinterface`: if a member has a single connection (one switch port) then this is the same as `physicalinterface` above. However, if they have a LAG port then it's the aggregate traffic for all physical ports in the LAG. `id`, which is mandatory, is the primary key of the virtual interface from the `virtualinterface` database table. [Currently only supported via MRTG for `protocol=all`]
 
 
 * `customer`: the aggregate traffic for all ports belonging to a customer across all infrastructures. `id`, which is mandatory, is the primary key of the customer from the `cust` database table. [Currently only supported via MRTG for `protocol=all`]
