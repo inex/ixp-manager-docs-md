@@ -475,10 +475,10 @@ GRAPHER_ACCESS_TRUNK=1
 <p><code>trunk</code>: a legacy hold over from <em>Inter-Switch / Trunk Graphs</em> above to be replaced with core bundles.</p>
 </li>
 <li>
-<p><code>phsyicalinterface</code>: traffic for an individual member port - a single physical switch port. <code>id</code>, which is mandatory, is the primary key of the physical interface from the <code>physicalinterface</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+<p><code>physicalinterface</code>: traffic for an individual member port - a single physical switch port. <code>id</code>, which is mandatory, is the primary key of the physical interface from the <code>physicalinterface</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
 </li>
 <li>
-<p><code>virtualinterface</code>: if a member has a single connection (one switch port) then this is the same as <code>phsyicalinterface</code> above. However, if they have a LAG port then it's the aggregate traffic for all physical ports in the LAG. <code>id</code>, which is mandatory, is the primary key of the virtual interface from the <code>virtualinterface</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+<p><code>virtualinterface</code>: if a member has a single connection (one switch port) then this is the same as <code>physicalinterface</code> above. However, if they have a LAG port then it's the aggregate traffic for all physical ports in the LAG. <code>id</code>, which is mandatory, is the primary key of the virtual interface from the <code>virtualinterface</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
 </li>
 <li>
 <p><code>customer</code>: the aggregate traffic for all ports belonging to a customer across all infrastructures. <code>id</code>, which is mandatory, is the primary key of the customer from the <code>cust</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
