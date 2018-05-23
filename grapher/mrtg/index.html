@@ -360,20 +360,24 @@
 <ul>
 <li><strong>Aggregate IXP and Infrastructure Graphs</strong></li>
 </ul>
-<p>The MRTG script creates aggregate graphs for the entire IXP as well as per-infrastructure graphs. These graphs are available from the <em>Statistics</em> menu under <em>Overall Peering Graphs</em>. Also, the graphs on the admin dashboard are the monthly versions of these and will appear on the dashboard when configured as above.</p>
+<p>The MRTG script creates aggregate graphs for the entire IXP as well as per-infrastructure graphs. These graphs are available from the <em>Statistics</em> menu under <em>Overall Peering Graphs</em>. Also, the graphs on the admin dashboard are versions of these.</p>
+<p>IXP and infrastructure graphs are aggregate graphs of edge / member ports only. It is the aggregate of traffic exchanged between the members of the IXP and thus does not include core / trunk ports between switches.</p>
+<p>You'll find examples of <a href="https://www.inex.ie/ixp/statistics/ixp">IXP graphs</a> and <a href="https://www.inex.ie/ixp/statistics/infrastructure">infrastructure graphs</a> on INEX's own <a href="https://www.inex.ie/ixp/">IXP Manager</a> where they are public be default.</p>
 <ul>
 <li><strong>Switch Aggregate Graphs</strong></li>
 </ul>
-<p>These are defined and built automatically from the switches you have defined. These graphs are the aggregate of all peering ports. These graphs are available from the <em>Statistics</em> menu under <em>Switch Aggregate Graphs</em>.</p>
+<p>These are defined and built automatically from the switches you have defined. These graphs are available from the <em>Statistics</em> menu under <em>Switch Aggregate Graphs</em>.</p>
+<p>These graphs are the aggregate of all peering ports <strong>and core/trunk ports</strong> on a given switch. It is the aggregate of traffic being exchanged across a given switch.</p>
+<p>You'll find examples of <a href="https://www.inex.ie/ixp/statistics/switch">switch graphs</a> on INEX's own <a href="https://www.inex.ie/ixp/">IXP Manager</a> where they are public be default.</p>
 <ul>
 <li><strong>Inter-Switch / Trunk Graphs</strong></li>
 </ul>
-<p>IXP Manager does not currently support a frontend means of creating these definitions (but, as of late 2017, it is being worked on). For now, we do it manually via the <a href="https://github.com/inex/IXP-Manager/wiki/MRTG---Traffic-Graphs#inter-switch--trunk-graphs">IXP Manager v3 way</a>.</p>
-<p>These graphs will be available in the <em>Statistics</em> menu under <em>Inter-Switch / PoP Graphs</em>.</p>
+<p>IXP Manager does not currently support a frontend means of creating these definitions (but, as of mid 2018, it is being worked on). For now, we do it manually via the <a href="https://github.com/inex/IXP-Manager/wiki/MRTG---Traffic-Graphs#inter-switch--trunk-graphs">IXP Manager v3 way</a>.</p>
+<p>These graphs will be available in the <em>Statistics</em> menu under <em>Inter-Switch / PoP Graphs</em>. You can see <a href="https://www.inex.ie/ixp/statistics/trunk">examples from INEX here</a>.</p>
 <ul>
 <li><strong>Customer Graphs</strong></li>
 </ul>
-<p>MRTG creates per port, per LAG and aggregate graphs for each member / customer.</p>
+<p>MRTG creates: per port (physical interface); per LAG (virtual interface); and per customer aggregate graphs for each member / customer.</p>
 <h2 id="mrtg-setup-and-configuration">MRTG Setup and Configuration<a class="headerlink" href="#mrtg-setup-and-configuration" title="Permanent link"></a></h2>
 <p>You need to install some basic packages for MRTG to work - on Ubuntu for example, install:</p>
 <div class="highlight"><pre><span></span>apt install rrdtool mrtg
