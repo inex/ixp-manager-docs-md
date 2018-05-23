@@ -6,21 +6,29 @@ Per-second graphs are generated for bits, packets, errors, discards and broadcas
 
 * **Aggregate IXP and Infrastructure Graphs**
 
-  The MRTG script creates aggregate graphs for the entire IXP as well as per-infrastructure graphs. These graphs are available from the *Statistics* menu under *Overall Peering Graphs*. Also, the graphs on the admin dashboard are the monthly versions of these and will appear on the dashboard when configured as above.
+  The MRTG script creates aggregate graphs for the entire IXP as well as per-infrastructure graphs. These graphs are available from the *Statistics* menu under *Overall Peering Graphs*. Also, the graphs on the admin dashboard are versions of these.
+
+  IXP and infrastructure graphs are aggregate graphs of edge / member ports only. It is the aggregate of traffic exchanged between the members of the IXP and thus does not include core / trunk ports between switches.
+
+  You'll find examples of [IXP graphs](https://www.inex.ie/ixp/statistics/ixp) and [infrastructure graphs](https://www.inex.ie/ixp/statistics/infrastructure) on INEX's own [IXP Manager](https://www.inex.ie/ixp/) where they are public be default.
 
 * **Switch Aggregate Graphs**
 
-  These are defined and built automatically from the switches you have defined. These graphs are the aggregate of all peering ports. These graphs are available from the *Statistics* menu under *Switch Aggregate Graphs*.
+  These are defined and built automatically from the switches you have defined. These graphs are available from the *Statistics* menu under *Switch Aggregate Graphs*.
+
+  These graphs are the aggregate of all peering ports **and core/trunk ports** on a given switch. It is the aggregate of traffic being exchanged across a given switch.
+
+  You'll find examples of [switch graphs](https://www.inex.ie/ixp/statistics/switch) on INEX's own [IXP Manager](https://www.inex.ie/ixp/) where they are public be default.
 
 * **Inter-Switch / Trunk Graphs**
 
-  IXP Manager does not currently support a frontend means of creating these definitions (but, as of late 2017, it is being worked on). For now, we do it manually via the [IXP Manager v3 way](https://github.com/inex/IXP-Manager/wiki/MRTG---Traffic-Graphs#inter-switch--trunk-graphs).
+  IXP Manager does not currently support a frontend means of creating these definitions (but, as of mid 2018, it is being worked on). For now, we do it manually via the [IXP Manager v3 way](https://github.com/inex/IXP-Manager/wiki/MRTG---Traffic-Graphs#inter-switch--trunk-graphs).
 
-  These graphs will be available in the *Statistics* menu under *Inter-Switch / PoP Graphs*.
+  These graphs will be available in the *Statistics* menu under *Inter-Switch / PoP Graphs*. You can see [examples from INEX here](https://www.inex.ie/ixp/statistics/trunk).
 
 * **Customer Graphs**
 
-  MRTG creates per port, per LAG and aggregate graphs for each member / customer.
+  MRTG creates: per port (physical interface); per LAG (virtual interface); and per customer aggregate graphs for each member / customer.
 
 ## MRTG Setup and Configuration
 
