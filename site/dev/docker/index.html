@@ -363,12 +363,12 @@
 <li>Install Docker (see: <a href="https://www.docker.com/community-edition">https://www.docker.com/community-edition</a>)</li>
 <li>
 <p>Clone IXP Manager to a directory:</p>
-<p><div class="highlight"><pre><span></span>git clone https://github.com/inex/IXP-Manager.git ixpmanager
-<span class="nb">cd</span> ixpmanager
+<p><div class="highlight"><pre>git clone https://github.com/inex/IXP-Manager.git ixpmanager
+<span class="nb">cd </span>ixpmanager
 </pre></div>
 
 3. Copy the stock Docker/IXP Manager configuration file and default database:</p>
-<div class="highlight"><pre><span></span>cp .env.docker .env
+<div class="highlight"><pre>cp .env.docker .env
 cp tools/docker/containers/mysql/docker.sql.dist tools/docker/containers/mysql/docker.sql
 </pre></div>
 
@@ -376,7 +376,7 @@ cp tools/docker/containers/mysql/docker.sql.dist tools/docker/containers/mysql/d
 </li>
 <li>
 <p>Spin up the Docker containers</p>
-<div class="highlight"><pre><span></span>docker-compose -p ixpm up
+<div class="highlight"><pre>docker-compose -p ixpm up
 </pre></div>
 
 
@@ -408,35 +408,35 @@ cp tools/docker/containers/mysql/docker.sql.dist tools/docker/containers/mysql/d
 <h2 id="useful-docker-commands">Useful Docker Commands<a class="headerlink" href="#useful-docker-commands" title="Permanent link"></a></h2>
 <p>The following are a list of Docker commands that are useful in general but also specifically for the IXP Manager Docker environment.</p>
 <p>Note that in our examples, we set the Docker project name to <code>ixpm</code> and so that prefix is used in some of the below. We also assume that only one IXP Manager Docker environments is running and so we complate Docker container names with <code>_1</code>.</p>
-<div class="highlight"><pre><span></span><span class="c1"># show all running containers</span>
+<div class="highlight"><pre><span class="c"># show all running containers</span>
 docker ps
 
-<span class="c1"># show all containers - running and stopped</span>
+<span class="c"># show all containers - running and stopped</span>
 docker ps -a
 
-<span class="c1"># stop a container:</span>
+<span class="c"># stop a container:</span>
 docker stop &lt;container&gt;
 
-<span class="c1"># start a container:</span>
+<span class="c"># start a container:</span>
 docker start &lt;container&gt;
 
-<span class="c1"># we create a &#39;ixpmanager&#39; network. Sometimes you need to delete this when</span>
-<span class="c1"># stopping / starting the environment</span>
+<span class="c"># we create a &#39;ixpmanager&#39; network. Sometimes you need to delete this when</span>
+<span class="c"># stopping / starting the environment</span>
 docker network rm ixpm_ixpmanager
 
-<span class="c1"># you can copy files into a docker container via:</span>
+<span class="c"># you can copy files into a docker container via:</span>
 docker cp test.sql ixmp_mysql_1:/tmp
-<span class="c1"># where &#39;ixmp_mysql_1&#39; is the container name.</span>
-<span class="c1"># reverse it to copy a file out:</span>
+<span class="c"># where &#39;ixmp_mysql_1&#39; is the container name.</span>
+<span class="c"># reverse it to copy a file out:</span>
 docker cp ixmp_mysql_1:/tmp/dump.sql .
 
-<span class="c1"># I use two useful aliases for stopping and removing all containers:</span>
-<span class="nb">alias</span> docker-stop-all<span class="o">=</span><span class="s1">&#39;docker stop $(docker ps -a -q)&#39;</span>
-<span class="nb">alias</span> docker-rm-all<span class="o">=</span><span class="s1">&#39;docker rm $(docker ps -a -q)&#39;</span>
+<span class="c"># I use two useful aliases for stopping and removing all containers:</span>
+<span class="nb">alias </span>docker-stop-all<span class="o">=</span><span class="s1">&#39;docker stop $(docker ps -a -q)&#39;</span>
+<span class="nb">alias </span>docker-rm-all<span class="o">=</span><span class="s1">&#39;docker rm $(docker ps -a -q)&#39;</span>
 
-<span class="c1"># You can also remove all unused (unattached) volumes:</span>
+<span class="c"># You can also remove all unused (unattached) volumes:</span>
 docker volume prune
-<span class="c1"># WARNING: you might want to check what will be deleted with:</span>
+<span class="c"># WARNING: you might want to check what will be deleted with:</span>
 docker volume ls -f <span class="nv">dangling</span><span class="o">=</span><span class="nb">true</span>
 </pre></div>
 
@@ -444,24 +444,24 @@ docker volume ls -f <span class="nv">dangling</span><span class="o">=</span><spa
 <h2 id="development-use">Development Use<a class="headerlink" href="#development-use" title="Permanent link"></a></h2>
 <p>As above, please note that in our examples, we set the Docker project name to <code>ixpm</code> and so that prefix is used in some of the below. We also assume that only one IXP Manager Docker environments is running and so we complete Docker container names with <code>_1</code>.</p>
 <p>For most routine development use, you only need two containers usually:</p>
-<div class="highlight"><pre><span></span>docker-compose -p ixpm up mysql www
+<div class="highlight"><pre>docker-compose -p ixpm up mysql www
 </pre></div>
 
 
 <p>If you are sending emails as part of your development process, include the mail catcher:</p>
-<div class="highlight"><pre><span></span>docker-compose -p ixpm up mysql www mailcatcher
+<div class="highlight"><pre>docker-compose -p ixpm up mysql www mailcatcher
 </pre></div>
 
 
 <h3 id="mysql-database">MySQL Database<a class="headerlink" href="#mysql-database" title="Permanent link"></a></h3>
 <p>When the mysql container builds, it pre-populates the database with the contents of the SQL file found at <code>tools/docker/containers/mysql/docker.sql</code>. This is not present by default and is ignored by Git (to ensure you do not accidentally commit a production database!).</p>
 <p>A default SQL database is bundled and should be placed in this location via:</p>
-<div class="highlight"><pre><span></span>cp tools/docker/containers/mysql/docker.sql.dist tools/docker/containers/mysql/docker.sql
+<div class="highlight"><pre>cp tools/docker/containers/mysql/docker.sql.dist tools/docker/containers/mysql/docker.sql
 </pre></div>
 
 
 <p>You can put your own database here also. If you do, you will need to rebuilt the mysql contain:</p>
-<div class="highlight"><pre><span></span> docker-compose build mysql
+<div class="highlight"><pre> docker-compose build mysql
  <span class="sb">```</span>
 
  You can access the MySQL database via:
@@ -472,7 +472,7 @@ docker <span class="nb">exec</span> -it ixpm_mysql_1 mysql -i ixpmanager
 
 
 <p>And you can get shell access to the container with:</p>
-<div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it ixpm_mysql_1 bash
+<div class="highlight"><pre>docker <span class="nb">exec</span> -it ixpm_mysql_1 bash
 </pre></div>
 
 
@@ -480,21 +480,21 @@ docker <span class="nb">exec</span> -it ixpm_mysql_1 mysql -i ixpmanager
 <p>Note that the <code>www</code> container mounts the IXP Manager development directory under <code>/srv/ixpmanager</code>. This means all local code changes are immediately reflected on the Docker web server.</p>
 <p>The Dockerfile used to build the <code>www</code> container can be found at <code>tools/docker/containers/www/Dockerfile</code>.</p>
 <p>You can access the container with:</p>
-<div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it ixpm_www_1 bash
+<div class="highlight"><pre>docker <span class="nb">exec</span> -it ixpm_www_1 bash
 </pre></div>
 
 
 <h3 id="mailcatcher">Mailcatcher<a class="headerlink" href="#mailcatcher" title="Permanent link"></a></h3>
 <p>We include a mailcatcher container which catches all emails IXP Manager sends and displays them on a web frontend. Ensure this container is started by either:</p>
-<div class="highlight"><pre><span></span><span class="c1"># start all containers:</span>
+<div class="highlight"><pre><span class="c"># start all containers:</span>
 docker-compose -p ixpm up
-<span class="c1"># start mailcatcher with (at least) mysql and www:</span>
+<span class="c"># start mailcatcher with (at least) mysql and www:</span>
 docker-compose -p ixpm up mysql www mailcatcher
 </pre></div>
 
 
 <p>The <code>.env.docker</code> config contains the following SMTP / mail settings which ensure emails get send to the mailcatcher:</p>
-<div class="highlight"><pre><span></span>MAIL_HOST=172.30.201.11
+<div class="highlight"><pre>MAIL_HOST=172.30.201.11
 MAIL_PORT=1025
 </pre></div>
 
@@ -503,7 +503,7 @@ MAIL_PORT=1025
 <h3 id="emulating-switches">Emulating Switches<a class="headerlink" href="#emulating-switches" title="Permanent link"></a></h3>
 <p><code>ixpm_switch1_1</code> and <code>ixpm_switch2_1</code> emulate switches by replaying SNMP dumps from real INEX switches (with some sanitisation). The OIDs for traffic have been replaced with a dynamic function to give varying values.</p>
 <p>From the <code>www</code> container, you can interact with these via:</p>
-<div class="highlight"><pre><span></span>$ docker exec -it ixpm_www_1 bash
+<div class="highlight"><pre>$ docker exec -it ixpm_www_1 bash
 # ping switch1
 ...
 64 bytes from switch1 (172.30.201.60): icmp_seq=1 ttl=64 time=0.135 ms
@@ -527,35 +527,35 @@ MAIL_PORT=1025
 <h3 id="route-server-and-clients">Route Server and Clients<a class="headerlink" href="#route-server-and-clients" title="Permanent link"></a></h3>
 <p>The containers include a working route server (<code>ixpm_rs1_1</code>) with 3 IPv4 clients (<code>ixpm_cust-as112_1</code>, <code>ixpm_cust-as42_1</code>, <code>ixpm_cust-as1213_1</code>) and and 2 IPv6 clients (<code>ixpm_cust-as1213-v6_1</code>, <code>ixpm_cust-as25441-v6_1</code>). IXP Manager also includes a working looking glass for this with Bird's Eye installed on the route server.</p>
 <p>You can access the Bird BGP clients on the five sample customers using the following examples:</p>
-<div class="highlight"><pre><span></span><span class="c1"># access Bird command line interface:</span>
+<div class="highlight"><pre><span class="c"># access Bird command line interface:</span>
 docker <span class="nb">exec</span> -it ixpm_cust-as112_1 birdc
 
-<span class="c1"># run a specific Bird command</span>
+<span class="c"># run a specific Bird command</span>
 docker <span class="nb">exec</span> -it ixpm_cust-as112_1 birdc show protocols
 </pre></div>
 
 
 <p>The route server runs an IPv4 and an IPv6 daemon. These can be accessed via the looking glass at http://127.0.0.1:8880/lg or on the command line via:</p>
-<div class="highlight"><pre><span></span><span class="c1"># ipv4 daemon:</span>
+<div class="highlight"><pre><span class="c"># ipv4 daemon:</span>
 docker <span class="nb">exec</span> -it ixpm_rs1_1 birdc -s /var/run/bird/bird-rs1-ipv4.ctl
 
-<span class="c1"># ipv6 daemon:</span>
+<span class="c"># ipv6 daemon:</span>
 docker <span class="nb">exec</span> -it ixpm_rs1_1 birdc6 -s /var/run/bird/bird-rs1-ipv6.ctl
 </pre></div>
 
 
 <p>In this container, Bird's Eye can be found at <code>/srv/birdseye</code> with the web server config under <code>/etc/lighttpd/lighttpd.conf</code>.</p>
 <p>We include the IXP Manager scripts for updating the route server configuration and reconfiguring Bird:</p>
-<div class="highlight"><pre><span></span><span class="c1"># get shell access to the container</span>
+<div class="highlight"><pre><span class="c"># get shell access to the container</span>
 docker <span class="nb">exec</span> -it ixpm_rs1_1 bash
 
-<span class="c1"># all scripts under the following directory</span>
+<span class="c"># all scripts under the following directory</span>
 <span class="nb">cd</span> /usr/local/sbin/
 
-<span class="c1"># reconfigure both daemons:</span>
+<span class="c"># reconfigure both daemons:</span>
 ./api-reconfigure-all-v4.sh
 
-<span class="c1"># reconfigure a specific daemon with verbosity:</span>
+<span class="c"># reconfigure a specific daemon with verbosity:</span>
 ./api-reconfigure-v4.sh -d -h rs1-ipv4
 </pre></div>
 
@@ -563,22 +563,22 @@ docker <span class="nb">exec</span> -it ixpm_rs1_1 bash
 <h3 id="mrtg-grapher">Mrtg / Grapher<a class="headerlink" href="#mrtg-grapher" title="Permanent link"></a></h3>
 <p>For developing / testing Grapher with Mrtg, we include a container that runs Mrtg via cron from a pre-configured <code>mrtg.conf</code> file.</p>
 <p><strong>NB: please ensure to update the <code>GRAPHER_BACKENDS</code> option in <code>.env</code> so it includes <code>mrtg</code> as follows:</strong></p>
-<div class="highlight"><pre><span></span>GRAPHER_BACKENDS=&quot;mrtg|dummy&quot;
+<div class="highlight"><pre>GRAPHER_BACKENDS=&quot;mrtg|dummy&quot;
 </pre></div>
 
 
 <p>The configuration file matches the <code>docker.sql</code> configuration and can be seen in the IXP Manager source directory at <code>tools/docker/mrtg/mrtg.cfg</code>.</p>
 <p>You can access the Mrtg container via:</p>
-<div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it ixpm_mrtg_1 sh
+<div class="highlight"><pre>docker <span class="nb">exec</span> -it ixpm_mrtg_1 sh
 </pre></div>
 
 
 <p>We also install a script in the root directory of the container that will pull a new configuration from IXP Manager. Run it via:</p>
-<div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it ixpm_mrtg_1 sh
+<div class="highlight"><pre>docker <span class="nb">exec</span> -it ixpm_mrtg_1 sh
 <span class="nb">cd</span> /
 ./update-mrtg-conf.sh
 
-<span class="c1"># or without entering the container:</span>
+<span class="c"># or without entering the container:</span>
 docker <span class="nb">exec</span> -it ixpm_mrtg_1 /update-mrtg-conf.sh
 </pre></div>
 
@@ -602,7 +602,7 @@ docker <span class="nb">exec</span> -it ixpm_mrtg_1 /update-mrtg-conf.sh
 <li>build the PHP Xdebug extension (<code>pecl install xdebug</code>).</li>
 <li>configure in the container file <code>/usr/local/etc/php/conf.d/local-ixpmanager-xdebug.ini</code> as follows:</li>
 </ul>
-<div class="highlight"><pre><span></span>[xdebug]
+<div class="highlight"><pre>[xdebug]
 zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20151012/xdebug.so
 xdebug.remote_enable=1
 xdebug.remote_port=9001
@@ -619,13 +619,13 @@ xdebug.trace_output_dir=/srv/ixpmanager/storage/tmp
 
 <p>Note that the <code>zend_extension</code> may change as it is dynamically set by the build script. We also chose port 9001 rather than the default of 9000 <a href="https://www.barryodonovan.com/2017/01/05/phpstorm-and-xdebug-macos-homebrew">due to local conflicts with common tool chains</a>.</p>
 <p>The <strong>one key element that is missing in the INI is the remote debugger IP address</strong>. This needs to be set to your development computer's LAN address (there are other options but this works best in practice). Once you know this address (say it's <code>192.0.2.23</code>), set the following in the <code>${IXPROOT}/.env</code>:</p>
-<div class="highlight"><pre><span></span># For PHP xdebug, put in the IP address of your host
+<div class="highlight"><pre># For PHP xdebug, put in the IP address of your host
 DOCKER_XDEBUG_CONFIG_REMOTE_HOST=192.0.2.23
 </pre></div>
 
 
 <p>When you start the Docker environment from <code>$IXPROOT</code> using <code>docker-compose</code> with something like:</p>
-<div class="highlight"><pre><span></span>cd $IXPROOT
+<div class="highlight"><pre>cd $IXPROOT
 docker-compose -p ixpm up mysql www
 </pre></div>
 

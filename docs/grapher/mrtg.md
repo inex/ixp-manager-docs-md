@@ -117,7 +117,7 @@ If your MRTG collector is on a different server, you could use a script such as 
 #! /usr/bin/env bash
 
 # Temporary configuration file:
-TMPCONF=/etc/mrtg/mrtg.cfg.$$
+TMPCONF=/etc/mrtg.cfg.$$
 
 # Download the configuration via the API. Be sure to replace 'your_api_key'
 # with your actual API key (see API documenation).
@@ -129,7 +129,7 @@ if [[ $? -ne 0 ]]; then
     exit -1
 fi
 
-cd /etc/mrtg
+cd /etc
 
 # Remove comments and date/time stamps for before comparing for differences
 cat mrtg.cfg    | egrep -v '^#.*$' | \
@@ -147,14 +147,14 @@ if [[ $DIFF -eq 0 ]]; then
     exit 0
 fi
 
-/usr/bin/mrtg --check ${TMPCONF} && /bin/mv ${TMPCONF} /etc/mrtg/mrtg.cfg     
+/usr/bin/mrtg --check ${TMPCONF} && /bin/mv ${TMPCONF} /etc/mrtg.cfg     
 ```
 
 Note that the MRTG configuration that IXP Manager generates instructs MRTG to run as a daemon. On FreeBSD, MRTG comes with an initd script by default and you can kick it off on boot with something like the following in `/etc/rc.conf`:
 
 ```
 mrtg_daemon_enable="YES"
-mrtg_daemon_config="/etc/mrtg/mrtg.cfg"
+mrtg_daemon_config="/etc/mrtg.cfg"
 ```
 
 However, on Ubuntu it does not but it comes with a `/etc/cron.d/mrtg` file which kicks it off every five minutes (it will daemonize the first time and further cron jobs will have no effect).
