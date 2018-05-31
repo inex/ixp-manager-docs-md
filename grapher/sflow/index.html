@@ -344,12 +344,12 @@
 <p>Documentation on sflow is being prepared for v4 but the <a href="https://github.com/inex/IXP-Manager/wiki/Installing-Sflow-Support">v3 documentation is still available here</a>.</p>
 <p>The previous version of IXP Manager (&lt;4) used a script called <code>sflow-graph.php</code> which was installed on the sflow server to create graphs on demand. IXP Manager v4 does not use this but pulls the required RRD files directly.</p>
 <p>If you have these on the same server (not typically recommended), then set the path accordingly in <code>.env</code>:</p>
-<div class="highlight"><pre><span></span>GRAPHER_BACKEND_SFLOW_ROOT=&quot;/srv/ixpmatrix&quot;
+<div class="highlight"><pre>GRAPHER_BACKEND_SFLOW_ROOT=&quot;/srv/ixpmatrix&quot;
 </pre></div>
 
 
 <p>If you have implemented this via a web server on a dedicated sflow server (as we typically do at INEX), then you need to expose the RRD data directory to IXP Manager using an Apache config such as:</p>
-<div class="highlight"><pre><span></span>Alias /grapher-sflow /srv/ixpmatrix
+<div class="highlight"><pre>Alias /grapher-sflow /srv/ixpmatrix
 
 &lt;Directory &quot;/srv/ixpmatrix&quot;&gt;
     Options None
@@ -363,7 +363,7 @@
 
 
 <p>and update <code>.env</code> for this with something like:</p>
-<div class="highlight"><pre><span></span>GRAPHER_BACKEND_SFLOW_ROOT=&quot;http://www.example.com/grapher-sflow&quot;
+<div class="highlight"><pre>GRAPHER_BACKEND_SFLOW_ROOT=&quot;http://www.example.com/grapher-sflow&quot;
 </pre></div>
               
             </div>

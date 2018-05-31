@@ -359,7 +359,7 @@
 <p><strong>IXP Manager</strong> comes with a flexible template for generating the user section of a TACACS file.</p>
 <h2 id="generating-tacacs-configuration">Generating TACACS Configuration<a class="headerlink" href="#generating-tacacs-configuration" title="Permanent link"></a></h2>
 <p>You can use the <strong>IXP Manager</strong> API to get the user section of a TACACS file using the following endpoint formats (both GET and POST requests work):</p>
-<div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/user/formatted
+<div class="highlight"><pre>https://ixp.example.com/api/v4/user/formatted
 https://ixp.example.com/api/v4/user/formatted/{priv}
 https://ixp.example.com/api/v4/user/formatted/{priv}/{template}
 </pre></div>
@@ -371,7 +371,7 @@ https://ixp.example.com/api/v4/user/formatted/{priv}/{template}
 <li><code>template</code> is an optional template (rather than <code>$IXPROOT/resources/views/api/v4/user/formatted/default</code>). See below.</li>
 </ul>
 <p>And example of a user in the reponse is:</p>
-<div class="highlight"><pre><span></span>user=joebloggs {
+<div class="highlight"><pre>user=joebloggs {
     member=admin
     login = des &quot;$2y$10$pHln5b4DrPj3uuhgfg45HeWEQLK/3ngRxYgYppbnYzleJ.9EpLAN.&quot;
 }
@@ -388,7 +388,7 @@ https://ixp.example.com/api/v4/user/formatted/{priv}/{template}
 <li><code>group</code>: we put all users in the <code>admin</code> group in the default template. You can change that here.</li>
 </ul>
 <p>An example of changing these parameters is:</p>
-<div class="highlight"><pre><span></span>curl --data <span class="s2">&quot;users=bob,alice&amp;group=god&amp;bcrypt=2a&quot;</span> -X POST <span class="se">\</span>
+<div class="highlight"><pre>curl --data <span class="s2">&quot;users=bob,alice&amp;group=god&amp;bcrypt=2a&quot;</span> -X POST <span class="se">\</span>
     -H <span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span> <span class="se">\</span>
     -H <span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span> <span class="se">\</span>
     https://ixpexample.com/api/v4/user/formatted
@@ -398,7 +398,7 @@ https://ixp.example.com/api/v4/user/formatted/{priv}/{template}
 <h3 id="templates-skinning">Templates / Skinning<a class="headerlink" href="#templates-skinning" title="Permanent link"></a></h3>
 <p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
 <p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 mkdir -p resources/skins/myskin/api/v4/user/formatted
 cp resources/views/api/v4/user/formatted/default.foil.php resources/skins/myskin/api/v4/user/formatted/mytemplate1.foil.php
 </pre></div>
