@@ -1522,12 +1522,12 @@
         }, 
         {
             "location": "/grapher/sflow/", 
-            "text": "Backend: sflow\n\uf0c1\n\n\nThis page has moved to [../features/sflow-p2p.md] and [../features/sflow.md]", 
+            "text": "Backend: sflow\n\uf0c1\n\n\nInstructions for configuring the IXP Manager sflow integration can be found\non the \nSflow Introduction\n and \nSflow\npeer-to-peer\n pages.", 
             "title": "Backend: sflow"
         }, 
         {
             "location": "/grapher/sflow/#backend-sflow", 
-            "text": "This page has moved to [../features/sflow-p2p.md] and [../features/sflow.md]", 
+            "text": "Instructions for configuring the IXP Manager sflow integration can be found\non the  Sflow Introduction  and  Sflow\npeer-to-peer  pages.", 
             "title": "Backend: sflow"
         }, 
         {
