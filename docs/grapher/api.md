@@ -8,7 +8,7 @@ By default, the following graphs are **publically** accessible in **IXP Manager*
 
 1. aggregate bits/sec and packets/sec graphs for the IXP;
 2. aggregate bits/sec and packets/sec graphs for the infrastructures;
-3. aggregate bits/sec graphs on a per-protocol and per-VLAN basis (requires [sflow](slow.md));
+3. aggregate bits/sec graphs on a per-protocol and per-VLAN basis (requires [sflow](../features/sflow.md));
 4. aggregate graphs for the switches; and
 5. aggregate graphs for the trunk connections.
 
