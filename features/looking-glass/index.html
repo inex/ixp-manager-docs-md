@@ -216,6 +216,20 @@
                 </li>
                 <li class="">
                     
+    <span class="caption-text">Sflow</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../sflow/">Introduction</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../sflow-p2p/">Peer-to-peer Graphs</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../grapher/smokeping/">Smokeping</a>
                 </li>
                 <li class="">
@@ -382,7 +396,7 @@
 <p>Generally speaking, if you carefully read the above and the <a href="https://github.com/inex/birdseye/blob/master/README.md">Bird's Eye README file</a>, you should be able to get IXP Manager / Bird's Eye integration working.</p>
 <p>If you do not, try all of the following and solve any elements that fail. If you still have issues, email the <a href="https://www.inex.ie/mailman/listinfo/ixpmanager">IXP Manager mailing list</a> <strong>with the output of all of the following commands from both sections</strong>.</p>
 <p>For the following examples, we will use a real INEX example router with these settings:</p>
-<div class="highlight"><pre>mysql&gt; SELECT * FROM routers WHERE id = 17\G
+<pre class="highlight"><code>mysql&gt; SELECT * FROM routers WHERE id = 17\G
 *************************** 1. row ***************************
           id: 17
      vlan_id: 2
@@ -403,12 +417,10 @@
       bgp_lc: 0
     template: api/v4/router/as112/bird/standard
     skip_md5: 1
-last_updated: 2018-02-03 14:26:15
-</pre></div>
-
+last_updated: 2018-02-03 14:26:15</code></pre>
 
 <p>From the server running IXP Manager:</p>
-<div class="highlight"><pre>###############################################################################
+<pre class="highlight"><code>###############################################################################
 # Does the API hostname resolve?
 $ dig +short as112-lan1-ipv4.mgmt.inex.ie
 
@@ -428,7 +440,7 @@ rtt min/avg/max/mdev = 0.103/0.103/0.103/0.000 ms
 
 
 ###############################################################################
-# Is the Bird&#39;s Eye service available?
+# Is the Bird's Eye service available?
 $ curl -v http://as112-lan1-ipv4.mgmt.inex.ie/api/status
 
 *   Trying 10.39.5.6...
@@ -462,19 +474,15 @@ $ curl -v http://as112-lan1-ipv4.mgmt.inex.ie/api/status
         &quot;last_reconfig&quot;:&quot;2018-02-12T16:26:14+00:00&quot;,
         &quot;message&quot;:&quot;Daemon is up and running&quot;
     }
-}
-</pre></div>
-
+}</code></pre>
 
 <p>If all of the above checks out, watch the log file while you try and access the looking glass:</p>
-<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-tail -f storage/log/laravel.log
-</pre></div>
-
+<pre class="highlight"><code class="language-sh">cd $IXPROOT
+tail -f storage/log/laravel.log</code></pre>
 
 <p>If there are error messages in the above log as you try and access the looking glass, include them when emailing the mailing list for help.</p>
 <p>Then on the router (the server running Bird's Eye), you need to provide the following answers when seeking help:</p>
-<div class="highlight"><pre>###############################################################################
+<pre class="highlight"><code>###############################################################################
 # Is Bird actually running and what are the names of its sockets:
 $ ls -la /var/run/bird
 
@@ -496,8 +504,8 @@ $ ls -la /srv/birdseye/*env
 -rw-r--r-- 1 root root 2833 Dec  5  2016 /srv/birdseye/birdseye-as112-lan2-ipv6.env
 
 ###############################################################################
-# Let&#39;s see the contents of these:
-$ cat /srv/birdseye/*env | egrep -v &#39;(^#)|(^\s*$)&#39;
+# Let's see the contents of these:
+$ cat /srv/birdseye/*env | egrep -v '(^#)|(^\s*$)'
 
 BIRDC=&quot;/usr/bin/sudo /srv/birdseye/bin/birdc -4 -s /var/run/bird/bird-as112-lan1-ipv4.ctl&quot;
 CACHE_DRIVER=file
@@ -532,7 +540,7 @@ $ cat /etc/sudoers /etc/sudoers.d/* | grep birdseye
 www-data        ALL=(ALL)       NOPASSWD: /srv/birdseye/bin/birdc
 
 ###############################################################################
-# Does the Bird&#39;s Eye client work?
+# Does the Bird's Eye client work?
 # Run for each socket found above with the appropriate protocol (-4/-6):
 # (only one shown here for brevity - include all in your request for help!)
 
@@ -563,7 +571,7 @@ $ netstat -lpn | grep php
 unix  2      [ ACC ]     STREAM     LISTENING     13970    635/php-cgi         /var/run/lighttpd/php.socket-0
 
 ###############################################################################
-# what&#39;s the web server configuration
+# what's the web server configuration
 # NB: make sure you have compared it to:
 #   https://github.com/inex/birdseye/blob/master/data/configs/lighttpd.conf
 $ cat /etc/lighttpd/lighttpd.conf
@@ -574,8 +582,7 @@ $ cat /etc/lighttpd/lighttpd.conf
 # provide the IXP Manager configuration of your router(s):
 mysql&gt; SELECT * FROM routers\G
 
-&lt;not included - see example at start of this section&gt;
-</pre></div>
+&lt;not included - see example at start of this section&gt;</code></pre>
               
             </div>
           </div>
@@ -602,18 +609,18 @@ mysql&gt; SELECT * FROM routers\G
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../layer2-addresses/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -623,7 +630,10 @@ mysql&gt; SELECT * FROM routers\G
       
     </span>
 </div>
+    <script>var base_url = '../..';</script>
     <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
 
 </body>
 </html>

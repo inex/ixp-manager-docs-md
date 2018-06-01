@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Console Servers - IXP Manager Documentation</title>
+  <title>Introduction - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Console Servers";
-    var mkdocs_page_input_path = "features/console-servers.md";
-    var mkdocs_page_url = "/features/console-servers/";
+    var mkdocs_page_name = "Introduction";
+    var mkdocs_page_input_path = "features/sflow.md";
+    var mkdocs_page_url = "/features/sflow/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -118,21 +118,9 @@
                     
     <a class="" href="../as112/">AS112</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Console Servers</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#console-servers">Console Servers</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#improvements-from-v480">Improvements from v4.8.0</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../console-servers/">Console Servers</a>
                 </li>
                 <li class="">
                     
@@ -210,13 +198,31 @@
                     
     <a class="" href="../skinning/">Skinning</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
     <span class="caption-text">Sflow</span>
     <ul class="subnav">
-                <li class="toctree-l3">
+                <li class="toctree-l3 current">
                     
-    <a class="" href="../sflow/">Introduction</a>
+    <a class="current" href="./">Introduction</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l4"><a href="#introduction">Introduction</a></li>
+    
+
+    <li class="toctree-l4"><a href="#helicopter-view">Helicopter View</a></li>
+    
+
+    <li class="toctree-l4"><a href="#sflow-on-switches">Sflow on Switches</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l5" href="#switch-implementation-limitations">Switch Implementation Limitations</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="toctree-l3">
                     
@@ -346,11 +352,15 @@
           <li>Features &raquo;</li>
         
       
+        
+          <li>Sflow &raquo;</li>
+        
+      
     
-    <li>Console Servers</li>
+    <li>Introduction</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/console-servers.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/sflow.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -360,12 +370,55 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="console-servers">Console Servers<a class="headerlink" href="#console-servers" title="Permanent link"></a></h1>
-<p>An IXP would typically have out of band access (for emergencies, firmware upgrades, etc) to critical infrastructure devices by means of a console server.</p>
-<p><strong>IXP Manager</strong> has <em>Console Servers</em> and <em>Console Server Connections</em> menu options to allow IXP administrators add / edit / delete / list console server devices and, for any such device, record what console server port is connected to what device (as well as connection characteristics such as baud rate).</p>
-<p>From <strong>IXP Manager v4.8.0</strong> onwards, each of these pages has a notes field which supports markdown to allow you to include sample connection sessions to devices. This is especially useful for rearely used console connections to awkward devices.</p>
-<h2 id="improvements-from-v480">Improvements from v4.8.0<a class="headerlink" href="#improvements-from-v480" title="Permanent link"></a></h2>
-<p>One of the new features of v4.8.0 is fixing the switch database table which until now could hold switches and console servers. This was awkward in practice and we have split these into distinct database tables and menu options.</p>
+                <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link"></a></h1>
+<p>IXP Manager can use <a href="http://www.sflow.org/">sflow</a> data to:</p>
+<ul>
+<li>analyse BGP flows over the exchange and use the data to create a peering matrix</li>
+<li>build <a href="../sflow-p2p/">peer-to-peer</a> traffic graphs</li>
+</ul>
+<p>The peer-to-peer traffic graphs show traffic aggregate analysis of bytes/packets, split by VLAN and protocol (IPv4 / IPv6), both for individual IXP peering ports and entire VLANs.</p>
+<h1 id="helicopter-view">Helicopter View<a class="headerlink" href="#helicopter-view" title="Permanent link"></a></h1>
+<p>Sflow needs to be configured with an "accounting perimeter".  This means that ingress sflow accounting should be enabled on all edge ports, but should not be enabled on any of the core ports.  This approach ensures that all packets entering or leaving the IXP are counted exactly once, when they enter the IXP fabric.</p>
+<p>All the switches at the IXP should be configured to send sflow packets to the IP address of your sflow collector.  This will probably be the same server that you use for your IXP Manager sflow peer-to-peer graphing.</p>
+<p>If sflow is enabled on any of the core ports or sflow is enabled in both directions (ingress + egress), traffic will be double-counted and this will lead to incorrect graphs.</p>
+<p>Each switch on the network sends sampled sflow packets to an sflow collector.  These packets are processed by the "sflowtool" command, which converts into an easily-parseable ascii format.  IXP Manager provides a script to read the output of the sflowtool command, correlate this against the IXP database and to use this to build up a matrix of traffic flows which are then exported to an RRD database.</p>
+<p>The RRD files are stored on disk and can be accessed by using the sflow graphing system included in IXP Manager.</p>
+<h1 id="sflow-on-switches">Sflow on Switches<a class="headerlink" href="#sflow-on-switches" title="Permanent link"></a></h1>
+<p>Many vendors support sflow, but some do not.  There is a <a href="http://www.sflow.org/products/network.php">partial list</a> on the sflow web site.</p>
+<p>Most switches which support sflow will support ingress accounting, because this is what's required in <a href="http://www.ietf.org/rfc/rfc3176">RFC 3176</a>. Some switches (e.g. Dell Force10 running older software) only support egress sflow.  If you use these on your IXP alongside other switches which only support ingress sflow, then the sflow graphs will show twice the traffic in one direction for the p2p graphs and zero traffic in the other direction.  There is no way for IXP Manager to work around this problem.</p>
+<p>If not all of the IXP edge ports are sflow capable, then sflow traffic data will be lost for these ports.  This means that some point-to-point traffic graphs will show up with zero traffic, and that the sflow aggregate graphs will be wrong.</p>
+<p>Sflow uses data sampling.  This means that the results it produces are estimated projections, but on largee data sets, these projections tend to be statistically accurate.</p>
+<p>Each switch or switch port needs to be configured with an sflow sampling rate. The exact rate chosen will depend on the traffic levels on the switch, how powerful the switch management plane CPU is, and how much bandwidth is available for the switch management.</p>
+<p>On a small setup with low levels of traffic (e.g. 100kpps), it would be sensible to leave the sampling rate low (e.g. 1:1024). Alternatively, a busy 100G port may need a sampling rate of  1:32768 may turn out to be too low if the port is seeing large numbers of packets.  If the switch or the entire network is handling very large quantities of traffic, this figure should be high enough that IXP ports with low quantities of traffic will still get good quality graphs, but low enough that the switch management CPU isn't trashed, and that packets are not dropped on the management ethernet port.</p>
+<p>Some switches have automatic rate-limiting built in for sflow data export.  The sampling rate needs to be chosen so that sflow data export rate limiting doesn't kick in.  If it does, samples will be lost and this will cause graph inaccuracies.</p>
+<h2 id="switch-implementation-limitations">Switch Implementation Limitations<a class="headerlink" href="#switch-implementation-limitations" title="Permanent link"></a></h2>
+<h3 id="netflow">Netflow<a class="headerlink" href="#netflow" title="Permanent link"></a></h3>
+<p>IXP Manager does not support netflow and support is not on the roadmap. This is because most netflow implementations do not export mac address information, which means that they cannot provide workable mac layer peer-to-peer statistics.</p>
+<h3 id="cisco-switches">Cisco Switches<a class="headerlink" href="#cisco-switches" title="Permanent link"></a></h3>
+<p>Of Cisco's entire product range, only the Nexus 3000 and Nexus 9000 product range support sflow. Also, the sflow support on the Cisco Nexus 3k range is crippled due to the NX-OS software implementation, which forces ingress+egress sflow to be configured on specified ports rather than ingress-only.  Functional accounting requires ingress-only or egress-only sflow to be configured on a per-port basis: ingress + egress causes double-counting of packets.  It may be possible to work around this limitation using the broadcom shell using something like the following untested configuration:</p>
+<pre class="highlight"><code>n3k# conf t
+n3k(config)# feature sflow
+n3k(config)# sflow data-source interface Ethernet1/1
+n3k(config)# ^Z
+n3k# test hardware internal bcm-usd bcm-diag-shell
+Available Unit Numbers: 0
+bcm-shell.0&gt; PortSampRate xe0 4096 0
+bcm-shell.0&gt; PortSampRate xe0
+ xe0:   ingress: 1 out of 4096 packets, egress: not sampling,
+bcm-shell.0&gt; quit
+n3k#</code></pre>
+
+<p>Note that this command is not reboot persistent, and any time a TIX24X is rebooted, the command needs to be re-entered manually.  Note also that this configuration is untested.</p>
+<h3 id="brocade-turboiron-24x">Brocade TurboIron 24X<a class="headerlink" href="#brocade-turboiron-24x" title="Permanent link"></a></h3>
+<p>By default a TIX24X will export 100 sflow records per second.  This can be changed using the following command:</p>
+<pre class="highlight"><code>SSH@Switch# dm device-command 2762233
+SSH@Switch# tor modreg CPUPKTMAXBUCKETCONFIG(3) PKT_MAX_REFRESH=0xHHHH</code></pre>
+
+<p>... where HHHH is the hex representation of the number of sflow records per second.  INEX has done some very primitive usage profiling which suggests that going above ~3000 sflow records per second will trash the management CPU too hard, so we use PKT_MAX_REFRESH=0x0BB8.  Note that this command is not reboot persistent, and any time a TIX24X is rebooted, the command needs to be re-entered manually.</p>
+<h3 id="dell-force10">Dell Force10<a class="headerlink" href="#dell-force10" title="Permanent link"></a></h3>
+<p>Earlier versions of FTOS only support egress sflow, but support for ingress sflow was added in 2014.  If you intend to deploy IXP Manager sflow accounting on a Dell F10 switch, then you should upgrade to a software release which supports ingress sflow.</p>
+<h3 id="cumulus-linux">Cumulus Linux<a class="headerlink" href="#cumulus-linux" title="Permanent link"></a></h3>
+<p>Cumulus Linux uses hsflowd, which does not allow the operator to enable or disable sflow on a per-port basis, nor does it permit the operator to configure ports to use ingress-only sflow.  This configuration needs to be handled using the <code>/usr/lib/cumulus/portsamp</code> command, which is not reboot persistent.  It is strongly recommended to handle this configuration using orchestration, as it is not feasible to manually maintain this configuration.</p>
               
             </div>
           </div>
@@ -373,10 +426,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../contact-groups/" class="btn btn-neutral float-right" title="Contact Groups">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../sflow-p2p/" class="btn btn-neutral float-right" title="Peer-to-peer Graphs">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../as112/" class="btn btn-neutral" title="AS112"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../skinning/" class="btn btn-neutral" title="Skinning"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -406,10 +459,10 @@
           <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../as112/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../skinning/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../contact-groups/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../sflow-p2p/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

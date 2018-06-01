@@ -206,6 +206,20 @@
                 </li>
                 <li class="">
                     
+    <span class="caption-text">Sflow</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../features/sflow/">Introduction</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../../features/sflow-p2p/">Peer-to-peer Graphs</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../grapher/smokeping/">Smokeping</a>
                 </li>
                 <li class="">
@@ -345,18 +359,13 @@
 <p>Maintenance mode is now handled by Laravel's built in tool for this. You can review <a href="https://laravel.com/docs/5.3/configuration#maintenance-mode">their own documentation for this</a> which us copied here.</p>
 <p>When your application is in maintenance mode, a custom view will be displayed for all requests into your application. This makes it easy to "disable" your application while it is updating or when you are performing maintenance. A maintenance mode check is included in the default middleware stack for your application. If the application is in maintenance mode, a <code>MaintenanceModeException</code> will be thrown with a status code of 503.</p>
 <p>To enable maintenance mode, simply execute the down Artisan command:</p>
-<div class="highlight"><pre>php artisan down
-</pre></div>
-
+<pre class="highlight"><code>php artisan down</code></pre>
 
 <p>You may also provide message and retry options to the down command. The message value may be used to display or log a custom message, while the retry value will be set as the Retry-After HTTP header's value::</p>
-<div class="highlight"><pre>php artisan down --message=&#39;Upgrading Database&#39; --retry=60
-</pre></div>
-
+<pre class="highlight"><code>php artisan down --message='Upgrading Database' --retry=60</code></pre>
 
 <p>To disable maintenance mode, use the up command::</p>
-<div class="highlight"><pre>php artisan up
-</pre></div>
+<pre class="highlight"><code>php artisan up</code></pre>
               
             </div>
           </div>
@@ -383,18 +392,18 @@
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../automated-script/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -404,7 +413,10 @@
       
     </span>
 </div>
+    <script>var base_url = '../..';</script>
     <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
 
 </body>
 </html>

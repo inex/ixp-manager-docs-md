@@ -220,6 +220,20 @@
                 </li>
                 <li class="">
                     
+    <span class="caption-text">Sflow</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../sflow/">Introduction</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../sflow-p2p/">Peer-to-peer Graphs</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../grapher/smokeping/">Smokeping</a>
                 </li>
                 <li class="">
@@ -359,9 +373,7 @@
 <h2 id="activating-the-configuration">Activating the Configuration<a class="headerlink" href="#activating-the-configuration" title="Permanent link"></a></h2>
 <p>Your database will already be set-up via the database seeds during installation.</p>
 <p>To activate this feature, you just need to create the configuration file. From the root directory of IXP Manager just::</p>
-<div class="highlight"><pre>cp config/contact_group.php.dist config/contact_group.php
-</pre></div>
-
+<pre class="highlight"><code>cp config/contact_group.php.dist config/contact_group.php</code></pre>
 
 <h2 id="creating-editing-deleting-groups">Creating / Editing / Deleting Groups<a class="headerlink" href="#creating-editing-deleting-groups" title="Permanent link"></a></h2>
 <p>A group is defined by:</p>
@@ -377,9 +389,7 @@
 <p>Assigning contacts to groups is done in the contact add / edit page.</p>
 <h2 id="exporting-contact-groups">Exporting Contact Groups<a class="headerlink" href="#exporting-contact-groups" title="Permanent link"></a></h2>
 <p>Contact groups can be exported using the <code>ixptool.php</code> command, for example::
-<div class="highlight"><pre>bin/ixptool.php -a cli.cli-export-group -p type=ROLE,format=csv,cid=1
-</pre></div>
-</p>
+<pre class="highlight"><code>bin/ixptool.php -a cli.cli-export-group -p type=ROLE,format=csv,cid=1</code></pre></p>
 <p>where the possible comma separated parameters are:</p>
 <ul>
 <li><code>type=XXX</code>: Contact group type (e.g. ROLE); or</li>
@@ -421,18 +431,18 @@
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../console-servers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -442,7 +452,10 @@
       
     </span>
 </div>
+    <script>var base_url = '../..';</script>
     <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
 
 </body>
 </html>

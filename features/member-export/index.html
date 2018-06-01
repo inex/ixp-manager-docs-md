@@ -212,6 +212,20 @@
                 </li>
                 <li class="">
                     
+    <span class="caption-text">Sflow</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../sflow/">Introduction</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../sflow-p2p/">Peer-to-peer Graphs</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../grapher/smokeping/">Smokeping</a>
                 </li>
                 <li class="">
@@ -355,15 +369,11 @@
 <p>In IXP Manager, there are four types of users as described <a href="../../usage/users/">in the users page</a>. Member export templates can be added which requires a minimum user privilege to access (e.g. <code>priv == 0</code> would be publicly accessible through to <code>priv == 3</code> which would require a superadmin).</p>
 <p>To create your own member export templte, you should first <a href="../skinning/">set up skinning</a> for your installation. Let's assume you called your skin <code>example</code> in the following.</p>
 <p>To create a publicly accessible member export page called <code>lonap</code>, you would first create a directory structure in your skin as follows:</p>
-<div class="highlight"><pre><span class="nb">cd</span> <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>
-mkdir -p resources/skins/example/content/members/<span class="o">{</span>0,1,2,3<span class="o">}</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-sh">cd ${IXPROOT}
+mkdir -p resources/skins/example/content/members/{0,1,2,3}</code></pre>
 
 <p>where the directories <code>0, 1, 2, 3</code> represent the <em>minimum required user privilege</em> to access the template. You can now create your export template page by creating a file:</p>
-<div class="highlight"><pre>resources/skins/example/content/members/0/lonap.foil.php
-</pre></div>
-
+<pre class="highlight"><code class="language-sh">resources/skins/example/content/members/0/lonap.foil.php</code></pre>
 
 <p>and then edit that page. In fact, we have bundled three examples in the following locations:</p>
 <ol>
@@ -372,16 +382,12 @@ mkdir -p resources/skins/example/content/members/<span class="o">{</span>0,1,2,3
 <li><code>resources/skins/inex/content/members/0/list.foil.php</code>: what we at INEX use to generate <a href="https://www.inex.ie/about-us/inex-members/">this members list</a>. You can access the real data via: https://www.inex.ie/ixp/content/members/0/list.json (not that this is publicly accessible).</li>
 </ol>
 <p>The format of the URL to access these member export templates is:</p>
-<div class="highlight"><pre>https://ixp.example.com/content/members/{priv}/{page}[.json]
-</pre></div>
-
+<pre class="highlight"><code>https://ixp.example.com/content/members/{priv}/{page}[.json]</code></pre>
 
 <ul>
 <li><code>{priv}</code> is the <em>minimum required user privilege</em> required to access the page and is used first for testing the user's permissions and second as the directory to check for the file.</li>
 <li><code>{page}</code> is the name of the file to load (less <code>.foil.php</code>) and <strong>please be aware that this is normalised as follows:</strong>
-<div class="highlight"><pre><span class="x">preg_replace( &#39;/[^a-z0-9\-_]/&#39;, &#39;&#39;, strtolower( $page ) )</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-php">preg_replace( '/[^a-z0-9\-_]/', '', strtolower( $page ) )</code></pre>
 i.e. the file name can only contain characters from the class <code>[a-z0-9\-_]</code> and all lower case.</li>
 <li><code>[.json]</code> is an optional extension which tells IXP Manager to set the <code>Content-Type: application/json</code> header in the response.</li>
 </ul>
@@ -411,18 +417,18 @@ i.e. the file name can only contain characters from the class <code>[a-z0-9\-_]<
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../layer2-addresses/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -432,7 +438,10 @@ i.e. the file name can only contain characters from the class <code>[a-z0-9\-_]<
       
     </span>
 </div>
+    <script>var base_url = '../..';</script>
     <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
 
 </body>
 </html>

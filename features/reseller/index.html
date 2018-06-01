@@ -218,6 +218,20 @@
                 </li>
                 <li class="">
                     
+    <span class="caption-text">Sflow</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../sflow/">Introduction</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../sflow-p2p/">Peer-to-peer Graphs</a>
+                </li>
+    </ul>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../grapher/smokeping/">Smokeping</a>
                 </li>
                 <li class="">
@@ -354,9 +368,7 @@
               
                 <h1 id="reseller-functionality">Reseller Functionality<a class="headerlink" href="#reseller-functionality" title="Permanent link"></a></h1>
 <p>Reseller mode must be explicitly enabled with a <code>.env</code> option:</p>
-<div class="highlight"><pre>IXP_RESELLER_ENABLED=true
-</pre></div>
-
+<pre class="highlight"><code>IXP_RESELLER_ENABLED=true</code></pre>
 
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link"></a></h2>
 <p>In our model, a <em>resold</em> member is still a fully fledged member, they just happen to reach the exchange via someone else's network. You / we would still have a relationship with the member independent of the reseller and would still be required to carry out the standard turn up (for us, this includes IP assignment, quarantine procedures, route collector session, route server sessions if appropriate, etc.).</p>
@@ -395,44 +407,30 @@
 <h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link"></a></h2>
 <p>The following are set in <code>.env</code>:</p>
 <p>To enable reseller functionality, set the following to <code>true</code>:</p>
-<div class="highlight"><pre>IXP_RESELLER_ENABLED=false
-</pre></div>
-
+<pre class="highlight"><code>IXP_RESELLER_ENABLED=false</code></pre>
 
 <p>If your resold customers are billed directly by the reseller and not the IXP, set this to true to remove billing details from their admin and member areas.</p>
-<div class="highlight"><pre>IXP_RESELLER_RESOLD_BILLING=false
-</pre></div>
-
+<pre class="highlight"><code>IXP_RESELLER_RESOLD_BILLING=false</code></pre>
 
 <h2 id="coding-hints">Coding Hints<a class="headerlink" href="#coding-hints" title="Permanent link"></a></h2>
 <p>In the (older Zend Framework) controllers, you can execute reseller code via:</p>
-<div class="highlight"><pre><span class="x">if( $this-&gt;resellerMode() ) {</span>
-<span class="x">    // your reseller specific code here</span>
-<span class="x">}</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-php">if( $this-&gt;resellerMode() ) {
+    // your reseller specific code here
+}</code></pre>
 
 <p>And in (the older Zend Framework) Smarty templates, you can add reseller only content via:</p>
-<div class="highlight"><pre>{if $resellerMode}
+<pre class="highlight"><code>{if $resellerMode}
     &lt;!-- Your reseller content --&gt;
-{/if}
-</pre></div>
-
+{/if}</code></pre>
 
 <p>If you have a <code>$customer</code> entity, you can see if it is a reseller via:</p>
-<div class="highlight"><pre><span class="x">if( $customer-&gt;isReseller() ) {}</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-php">if( $customer-&gt;isReseller() ) {}</code></pre>
 
 <p>To see if a customer is a resold customer or get the reseller customer entity:</p>
-<div class="highlight"><pre><span class="x">if( $customer-&gt;getReseller() ) {} // returns false if not a resold customer</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-php">if( $customer-&gt;getReseller() ) {} // returns false if not a resold customer</code></pre>
 
 <p>Finally, to get all resold customer entities of a reseller:</p>
-<div class="highlight"><pre><span class="x">$customer-&gt;getResoldCustomers()</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-php">$customer-&gt;getResoldCustomers()</code></pre>
 
 <hr />
 <p>Reseller functionality was added jointly by <a href="https://www.inex.ie/">INEX</a> and <a href="http://www.lonap.net/">LONAP</a> in June 2013.</p>
@@ -462,18 +460,18 @@
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../patch-panels/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -483,7 +481,10 @@
       
     </span>
 </div>
+    <script>var base_url = '../..';</script>
     <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
 
 </body>
 </html>
