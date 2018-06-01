@@ -212,12 +212,6 @@
     </url>
         
     <url>
-     <loc>https://docs.ixpmanager.org</loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
      <loc>https://docs.ixpmanager.org/grapher/smokeping/</loc>
      <lastmod>2018-06-01</lastmod>
      <changefreq>daily</changefreq>
@@ -231,6 +225,22 @@
         
     <url>
      <loc>https://docs.ixpmanager.org/features/tacacs/</loc>
+     <lastmod>2018-06-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://docs.ixpmanager.org/features/sflow/</loc>
+     <lastmod>2018-06-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.ixpmanager.org/features/sflow-p2p/</loc>
      <lastmod>2018-06-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
