@@ -174,7 +174,7 @@ And disable the default cron job for MRTG on Ubuntu (`/etc/cron.d/mrtg`).
 
 * If you have difficulty getting MRTG to work, please also refer the MRTG documentation at https://oss.oetiker.ch/mrtg/doc/mrtg.en.html
 * Any references to installing MRTG above are guidelines from our own experience. IXP Manager's role is to generate a configuration file for MRTG. It is up to the user to install MRTG as they deem appropriate.
-* The above assumes that MRTG automatically reconfigures itself when the configuration changes [as stated in the MRTG documentation for *RunAdDaemon*](https://oss.oetiker.ch/mrtg/doc/mrtg-reference.en.html). We have seen inconsistent behaviors for this and if it does not work for you, you will need to add a step to restart the MRTG daemon to the reconfiguration script above (at the very end).
+* The above assumes that MRTG automatically reconfigures itself when the configuration changes [as stated in the MRTG documentation for *RunAsDaemon*](https://oss.oetiker.ch/mrtg/doc/mrtg-reference.en.html). We have seen inconsistent behaviors for this and if it does not work for you, you will need to add a step to restart the MRTG daemon to the reconfiguration script above (at the very end).
 * The Ubuntu example above was a pre-systemd example. If anyone has an example of a systemd MRTG daemon configuration please provide us with some updated documentation.
 
 ## Customising the Configuration
