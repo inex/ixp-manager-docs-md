@@ -1522,12 +1522,12 @@
         }, 
         {
             "location": "/grapher/sflow/", 
-            "text": "Backend: sflow\n\uf0c1\n\n\nDocumentation on sflow is being prepared for v4 but the \nv3 documentation is still available here\n.\n\n\nThe previous version of IXP Manager (\n4) used a script called \nsflow-graph.php\n which was installed on the sflow server to create graphs on demand. IXP Manager v4 does not use this but pulls the required RRD files directly.\n\n\nIf you have these on the same server (not typically recommended), then set the path accordingly in \n.env\n:\n\n\nGRAPHER_BACKEND_SFLOW_ROOT=\n/srv/ixpmatrix\n\n\n\nIf you have implemented this via a web server on a dedicated sflow server (as we typically do at INEX), then you need to expose the RRD data directory to IXP Manager using an Apache config such as:\n\n\nAlias /grapher-sflow /srv/ixpmatrix\n\n\nDirectory \n/srv/ixpmatrix\n\n    Options None\n    AllowOverride None\n    \nRequireAny\n\n            Require ip 192.0.2.0/24\n            Require ip 2001:db8::/32\n    \n/RequireAny\n\n\n/Directory\n\n\n\nand update \n.env\n for this with something like:\n\n\nGRAPHER_BACKEND_SFLOW_ROOT=\nhttp://www.example.com/grapher-sflow", 
+            "text": "Backend: sflow\n\uf0c1\n\n\nThis page has moved to [../features/sflow-p2p.md] and [../features/sflow.md]", 
             "title": "Backend: sflow"
         }, 
         {
             "location": "/grapher/sflow/#backend-sflow", 
-            "text": "Documentation on sflow is being prepared for v4 but the  v3 documentation is still available here .  The previous version of IXP Manager ( 4) used a script called  sflow-graph.php  which was installed on the sflow server to create graphs on demand. IXP Manager v4 does not use this but pulls the required RRD files directly.  If you have these on the same server (not typically recommended), then set the path accordingly in  .env :  GRAPHER_BACKEND_SFLOW_ROOT= /srv/ixpmatrix  If you have implemented this via a web server on a dedicated sflow server (as we typically do at INEX), then you need to expose the RRD data directory to IXP Manager using an Apache config such as:  Alias /grapher-sflow /srv/ixpmatrix Directory  /srv/ixpmatrix \n    Options None\n    AllowOverride None\n     RequireAny \n            Require ip 192.0.2.0/24\n            Require ip 2001:db8::/32\n     /RequireAny  /Directory  and update  .env  for this with something like:  GRAPHER_BACKEND_SFLOW_ROOT= http://www.example.com/grapher-sflow", 
+            "text": "This page has moved to [../features/sflow-p2p.md] and [../features/sflow.md]", 
             "title": "Backend: sflow"
         }, 
         {
