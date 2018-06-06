@@ -97,6 +97,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../usage/customer-notes/">Customer Notes</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../usage/interfaces/">Customer Connections</a>
                 </li>
                 <li class="">
@@ -223,21 +227,6 @@
                 <li class="">
                     
     <a class="" href="../tacacs/">TACACS</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Sflow Support</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../sflow/">Introduction</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../sflow-p2p/">Peer-to-peer Graphs</a>
                 </li>
     </ul>
 	    </li>
@@ -379,7 +368,9 @@
 <p>Note that the API endpoints below can be tested in your browser by directly accessing the URLs <strong>when logged in</strong>. Otherwise, you need an <a href="../../dev/api/">API key</a> when using them in scripts.</p>
 <h2 id="as-json">As JSON<a class="headerlink" href="#as-json" title="Permanent link"></a></h2>
 <p>You can use the <strong>IXP Manager</strong> API to get all ARPA entries for a given VLAN and protocol as a JSON object using the following endpoint format:</p>
-<pre class="highlight"><code>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}</code></pre>
+<div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}
+</pre></div>
+
 
 <p>where:</p>
 <ul>
@@ -388,15 +379,17 @@
 </ul>
 <p>If either of these are invalid, the API will return with a HTTP 404 response.</p>
 <p>And example of the JSON response returned is:</p>
-<pre class="highlight"><code class="language-json">[
-    {
-        &quot;enabled&quot;: true,
-        &quot;address&quot;: &quot;192.0.2.67&quot;,
-        &quot;hostname&quot;: &quot;cherrie.example.com&quot;,
-        &quot;arpa&quot;: &quot;67.2.0.192.in-addr.arpa.&quot;
-    },
-    ...
-]</code></pre>
+<div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;192.0.2.67&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;hostname&quot;</span><span class="p">:</span> <span class="s2">&quot;cherrie.example.com&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;arpa&quot;</span><span class="p">:</span> <span class="s2">&quot;67.2.0.192.in-addr.arpa.&quot;</span>
+    <span class="p">},</span>
+    <span class="err">...</span>
+<span class="p">]</span>
+</pre></div>
+
 
 <p>where:</p>
 <ul>
@@ -407,37 +400,41 @@
 </ul>
 <p>You can now feed the JSON object into a script to create your own DNS zones appropriate to your DNS infrastructure.</p>
 <p>When scripting, we would normally pull the JSON object using something like:</p>
-<pre class="highlight"><code class="language-bash">#! /usr/bin/env bash
+<div class="highlight"><pre><span></span><span class="ch">#! /usr/bin/env bash</span>
 
-KEY=&quot;your-ixp-manager-api-key&quot;
-URL=&quot;https://ixp.example.com/api/v4/dns/arpa&quot;
-VLANIDS=&quot;1 2&quot;
-PROTOCOLS=&quot;4 6&quot;
+<span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;your-ixp-manager-api-key&quot;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://ixp.example.com/api/v4/dns/arpa&quot;</span>
+<span class="nv">VLANIDS</span><span class="o">=</span><span class="s2">&quot;1 2&quot;</span>
+<span class="nv">PROTOCOLS</span><span class="o">=</span><span class="s2">&quot;4 6&quot;</span>
 
-for v in $VLANIDS; do
-    for p in $PROTOCOLS; do
+<span class="k">for</span> v in <span class="nv">$VLANIDS</span><span class="p">;</span> <span class="k">do</span>
+    <span class="k">for</span> p in <span class="nv">$PROTOCOLS</span><span class="p">;</span> <span class="k">do</span>
 
-        cmd=&quot;/usr/local/bin/curl --fail -s             \
-            -H \&quot;X-IXP-Manager-API-Key: ${KEY}\&quot;       \
-            ${URL}/${v}/${p}                           \
-                &gt;/tmp/dns-arpa-vlanid$v-ipv$p.json.$$&quot;
-        eval $cmd
+        <span class="nv">cmd</span><span class="o">=</span><span class="s2">&quot;/usr/local/bin/curl --fail -s             \</span>
+<span class="s2">            -H \&quot;X-IXP-Manager-API-Key: </span><span class="si">${</span><span class="nv">KEY</span><span class="si">}</span><span class="s2">\&quot;       \</span>
+<span class="s2">            </span><span class="si">${</span><span class="nv">URL</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">v</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">p</span><span class="si">}</span><span class="s2">                           \</span>
+<span class="s2">                &gt;/tmp/dns-arpa-vlanid</span><span class="nv">$v</span><span class="s2">-ipv</span><span class="nv">$p</span><span class="s2">.json.</span><span class="nv">$$</span><span class="s2">&quot;</span>
+        <span class="nb">eval</span> <span class="nv">$cmd</span>
 
-        if [[ $? -ne 0 ]]; then
-            echo &quot;ERROR: non-zero return from DNS ARPA API call for vlan ID $v with protocol $p&quot;
-            continue
-        fi
+        <span class="k">if</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="nb">echo</span> <span class="s2">&quot;ERROR: non-zero return from DNS ARPA API call for vlan ID </span><span class="nv">$v</span><span class="s2"> with protocol </span><span class="nv">$p</span><span class="s2">&quot;</span>
+            <span class="k">continue</span>
+        <span class="k">fi</span>
 
-        // do something
+        // <span class="k">do</span> something
 
-        rm /tmp/dns-arpa-vlanid$v-ipv$p.json.$$
-    done
-done</code></pre>
+        rm /tmp/dns-arpa-vlanid<span class="nv">$v</span>-ipv<span class="nv">$p</span>.json.<span class="nv">$$</span>
+    <span class="k">done</span>
+<span class="k">done</span>
+</pre></div>
+
 
 <h2 id="from-templates">From Templates<a class="headerlink" href="#from-templates" title="Permanent link"></a></h2>
 <p>Rather than writing your own scripts to consume the JSON object as above, it may be easier to use the bundled ISC Bind templates or to write your own template for IXP Manager.</p>
 <p>You can use the <strong>IXP Manager</strong> API to get all ARPA entries for a given VLAN and protocol as plain text based on a template by using the following API endpoint:</p>
-<pre class="highlight"><code>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}/{template}</code></pre>
+<div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}/{template}
+</pre></div>
+
 
 <p>where:</p>
 <ul>
@@ -446,7 +443,9 @@ done</code></pre>
 </ul>
 <p>Remember that the included ISC Bind templates can be <a href="../skinning/">skinned</a> or you can add custom templates to your skin directory. More detail on this can be found in the dedicated section below.</p>
 <p>The bundled ISC Bind templates can be used by setting <code>{template}</code> to <code>bind</code> or <code>bind-full</code> in the above URL. For the example interface in the JSON above, the ISC Bind <code>bind</code> template would yield:</p>
-<pre class="highlight"><code>67.2.0.192.in-addr.arpa.       IN   PTR     cherrie.example.com.</code></pre>
+<div class="highlight"><pre><span></span>67.2.0.192.in-addr.arpa.       IN   PTR     cherrie.example.com.
+</pre></div>
+
 
 <p><em>(note that the terminated period on the hostname is added by the template)</em></p>
 <p>The two bundled templates are:</p>
@@ -457,9 +456,11 @@ done</code></pre>
 <h3 id="skinning-templating">Skinning / Templating<a class="headerlink" href="#skinning-templating" title="Permanent link"></a></h3>
 <p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled ISC Bind template or add your own.</p>
 <p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
-<pre class="highlight"><code class="language-sh">cd $IXPROOT
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 mkdir -p resources/skins/myskin/api/v4/dns
-cp resources/views/api/v4/dns/bind.foil.php resources/skins/myskin/api/v4/dns/mytemplate1.foil.php</code></pre>
+cp resources/views/api/v4/dns/bind.foil.php resources/skins/myskin/api/v4/dns/mytemplate1.foil.php
+</pre></div>
+
 
 <p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
 <blockquote>
@@ -473,28 +474,34 @@ cp resources/views/api/v4/dns/bind.foil.php resources/skins/myskin/api/v4/dns/my
 </ul>
 <p>The following variables are available for each element of the <code>$t-&gt;arpa</code> array (essentially the same as the JSON object above): <code>enabled, hostname, address, arpa</code>. See above for a description.</p>
 <p>The actual code in the bundled ISC Bind sample is as simple as:</p>
-<pre class="highlight"><code class="language-php">&lt;?php foreach( $t-&gt;arpa as $a ): ?&gt;
-&lt;?= trim($a['arpa']) ?&gt;    IN      PTR     &lt;?= trim($a['hostname']) ?&gt;.
-&lt;?php endforeach; ?&gt;</code></pre>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span> <span class="k">foreach</span><span class="p">(</span> <span class="nv">$t</span><span class="o">-&gt;</span><span class="na">arpa</span> <span class="k">as</span> <span class="nv">$a</span> <span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$a</span><span class="p">[</span><span class="s1">&#39;arpa&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">    IN      PTR     </span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$a</span><span class="p">[</span><span class="s1">&#39;hostname&#39;</span><span class="p">])</span> <span class="cp">?&gt;</span><span class="x">.</span>
+<span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>
+
 
 <h3 id="sample-script">Sample Script<a class="headerlink" href="#sample-script" title="Permanent link"></a></h3>
 <p>At INEX, we have (for example) one peering LAN that is a /25 IPv4 network and so is not a zone file in its own right. As such, we make up the zone file using includes. The main zone file looks like:</p>
-<pre class="highlight"><code>$TTL 86400
+<div class="highlight"><pre><span></span>$TTL 86400
 
 $INCLUDE /usr/local/etc/namedb/zones/soa-0.2.192.in-addr.arpa.inc
 
 $INCLUDE zones/inex-dns-slave-nslist.inc
 
 $INCLUDE zones/reverse-mgmt-hosts-ipv4.include
-$INCLUDE zones/reverse-vlan-12-ipv4.include</code></pre>
+$INCLUDE zones/reverse-vlan-12-ipv4.include
+</pre></div>
+
 
 <p>The SOA file looks like (as you might expect):</p>
-<pre class="highlight"><code>@               IN      SOA     ns.example.come.     hostmaster.example.com. (
+<div class="highlight"><pre><span></span>@               IN      SOA     ns.example.come.     hostmaster.example.com. (
                         2017051701      ; Serial
                         43200           ; Refresh
                         7200            ; Retry
                         1209600         ; Expire
-                        7200 )          ; Minimum</code></pre>
+                        7200 )          ; Minimum
+</pre></div>
+
 
 <p>The <code>reverse-vlan-12-ipv4.include</code> is the output of the ISC Bind <code>bind</code> template above for a given VLAN ID.</p>
 <p>We use the sample script <code>update-dns-from-ixp-manager.sh</code> which can be found <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/dns-arpa">in this directory</a> to keep this updated ourselves.</p>
@@ -524,18 +531,18 @@ $INCLUDE zones/reverse-vlan-12-ipv4.include</code></pre>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+	  
         </div>
       </div>
 
     </section>
-
+    
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../patch-panels/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -545,10 +552,7 @@ $INCLUDE zones/reverse-vlan-12-ipv4.include</code></pre>
       
     </span>
 </div>
-    <script>var base_url = '../..';</script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/require.js"></script>
-      <script src="../../search/search.js"></script>
 
 </body>
 </html>
