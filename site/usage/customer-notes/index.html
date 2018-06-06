@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Continuous Integration - IXP Manager Documentation</title>
+  <title>Customer Notes - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Continuous Integration";
-    var mkdocs_page_input_path = "dev/ci.md";
-    var mkdocs_page_url = "/dev/ci/";
+    var mkdocs_page_name = "Customer Notes";
+    var mkdocs_page_input_path = "usage/customer-notes.md";
+    var mkdocs_page_url = "/usage/customer-notes/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -93,19 +93,33 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../usage/customers/">Customers / Members</a>
+    <a class="" href="../customers/">Customers / Members</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Customer Notes</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#customer-notes">Customer Notes</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#notes-in-customer-overview">Notes in Customer Overview</a></li>
+        
+            <li><a class="toctree-l4" href="#notifications">Notifications</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/customer-notes/">Customer Notes</a>
+    <a class="" href="../interfaces/">Customer Connections</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/interfaces/">Customer Connections</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../usage/users/">Users & Contacts</a>
+    <a class="" href="../users/">Users & Contacts</a>
                 </li>
     </ul>
 	    </li>
@@ -250,67 +264,51 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../api/">API</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">Continuous Integration</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#continuous-integration">Continuous Integration</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#setting-up-phpunit-tests">Setting Up PHPUnit Tests</a></li>
-        
-            <li><a class="toctree-l4" href="#test-database-notes">Test Database Notes</a></li>
-        
-            <li><a class="toctree-l4" href="#running-tests">Running Tests</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../../dev/api/">API</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../cla/">Contributer License Agreement</a>
+    <a class="" href="../../dev/ci/">Continuous Integration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../docker/">Docker</a>
+    <a class="" href="../../dev/cla/">Contributer License Agreement</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../docs/">Documentation</a>
+    <a class="" href="../../dev/docker/">Docker</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../forms/">Forms</a>
+    <a class="" href="../../dev/docs/">Documentation</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../frontend-crud/">Frontend CRUD</a>
+    <a class="" href="../../dev/forms/">Forms</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../grapher/">Grapher</a>
+    <a class="" href="../../dev/frontend-crud/">Frontend CRUD</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../helpders/">Helpers</a>
+    <a class="" href="../../dev/grapher/">Grapher</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../looking-glass/">Looking Glass</a>
+    <a class="" href="../../dev/helpders/">Helpers</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../release-procedure/">Release Procedure</a>
+    <a class="" href="../../dev/looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../vagrant/">Vagrant</a>
+    <a class="" href="../../dev/release-procedure/">Release Procedure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
                 </li>
     </ul>
 	    </li>
@@ -337,14 +335,14 @@
     
       
         
-          <li>Development &raquo;</li>
+          <li>General Usage &raquo;</li>
         
       
     
-    <li>Continuous Integration</li>
+    <li>Customer Notes</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/dev/ci.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/usage/customer-notes.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -354,61 +352,66 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="continuous-integration">Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permanent link"></a></h1>
-<p>IXP Manager grew out of a code base and schema that started in the early '90s. Long before <a href="http://phpunit.de/">test driven development</a> or <a href="http://behat.org/">behaviour driven development</a> was fashionable for PHP. However, as IXP Manager is taking over more and more critical configuration tasks, we need to back fill some automated testing with continuous integration.</p>
-<p>For this we have chosen <a href="https://travis-ci.org/inex/IXP-Manager">Travis-CI</a> which provides free cloud based CI linked with GitHub for open source projects. Our current build status is: <a href="https://travis-ci.org/inex/IXP-Manager"><img alt="Build Status" src="https://travis-ci.org/inex/IXP-Manager.png?branch=master" /></a></p>
-<p>We won't be aggressively writing tests for the existing codebase but will add tests as appropriate as we continue development. What follows is some basic instructions on how to set up tests and an overview (or links) to tests we have implemented.</p>
-<h2 id="setting-up-phpunit-tests">Setting Up PHPUnit Tests<a class="headerlink" href="#setting-up-phpunit-tests" title="Permanent link"></a></h2>
-<p><strong>DISCLAIMER:</strong> This is not a tutorial on unit testing, phpunit or anything else. If you have no experience with these tools, please read up on them elsewhere first.</p>
-<p>Documentation by real example can be found via the <a href="https://github.com/inex/IXP-Manager/blob/master/.travis.yml">.travis.yml</a> file and <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci">the Travis data directory</a> which contains scripts, database dumps and configurations.</p>
-<p>Testing assumes <em>a known good sample database</em> which contains a small mix of customers with different configuration options. The files generated from this database are tested against <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci/known-good">known good</a> configuration files. You first need to create a database, add a database user, import this testing database and then configure a <code>.env</code> section for testing.</p>
-<p>In MySQL:</p>
-<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">ixp_ci</span> <span class="k">CHARACTER</span> <span class="kt">SET</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4&#39;</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
-<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="ss">`ixp_ci`</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="ss">`ixp_ci`</span><span class="o">@</span><span class="ss">`localhost`</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;somepassword&#39;</span><span class="p">;</span>
-<span class="k">FLUSH</span> <span class="n">PRIVILEGES</span><span class="p">;</span>
-</pre></div>
-
-
-<p>Then import the sample database:</p>
-<div class="highlight"><pre><span></span>bzcat data/travis-ci/travis_ci_test_db.sql.bz2  <span class="p">|</span> mysql -h localhost -u ixp_ci -psomepassword ixp_ci
-</pre></div>
-
-
-<p>Now, create your <code>.env</code> for testing, such as:</p>
-<div class="highlight"><pre><span></span><span class="na">DB_HOST</span><span class="o">=</span><span class="s">localhost</span>
-<span class="na">DB_DATABASE</span><span class="o">=</span><span class="s">ixp_ci</span>
-<span class="na">DB_USERNAME</span><span class="o">=</span><span class="s">ixp_ci</span>
-<span class="na">DB_PASSWORD</span><span class="o">=</span><span class="s">somepassword</span>
-</pre></div>
-
-
-<p>Note that the <a href="https://github.com/inex/IXP-Manager/blob/master/phpunit.xml"><code>phpunit.xml</code></a> file in the root directory has some default settings matching the test database. You should not need to edit these.</p>
-<h2 id="test-database-notes">Test Database Notes<a class="headerlink" href="#test-database-notes" title="Permanent link"></a></h2>
+                <h1 id="customer-notes">Customer Notes<a class="headerlink" href="#customer-notes" title="Permanent link"></a></h1>
+<p><strong>IXP Manager</strong> allows administrators to add notes to customer records via the customer overview page.</p>
+<p>Some of the features currently supported include:</p>
 <ul>
-<li>the <em>SUPERADMIN</em> username / password is one-way hashed using bcrypt. If you want to log into the frontend of the test databse, these details are: <code>travis</code> / <code>travisci</code>.</li>
+<li>all actions are via AJAX allowing a quick seamless experience;</li>
+<li>notes can be private (visible to administrators only) or public (also visible to the customer via their own portal login);</li>
+<li>if a note is marked as public, there is a clear and obvious user interface hint to remind the admin of this;</li>
+<li>notes have a title <em>(required)</em> and a text area with markdown support for additional information;</li>
+<li>admins can choose to be alerted by email to new / edited / deleted notes in one of four ways:<ul>
+<li>never</li>
+<li>all notes for all customers</li>
+<li>watched customers only</li>
+<li>watched notes only</li>
 </ul>
-<h2 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link"></a></h2>
-<p>In one console session, start the artisan / Laravel web server:</p>
-<div class="highlight"><pre><span></span><span class="c1"># move to the root directory of IXP Manager</span>
-<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-php artisan serve
-</pre></div>
-
-
-<p>And then kick off the tests:</p>
-<div class="highlight"><pre><span></span>phpunit
-</pre></div>
-
-
-<p>Sample output:</p>
-<div class="highlight"><pre><span></span>PHPUnit 6.1.0 by Sebastian Bergmann and contributors.
-
-...............                                                   15 / 15 (100%)
-
-Time: 1.65 seconds, Memory: 32.00MB
-
-OK (15 tests, 67 assertions)
-</pre></div>
+</li>
+<li>there is a <em>Unread Notes</em> action via the <em>My Account</em> menu to show a given admin a list of customers with unread notes for the administrator logged in.</li>
+</ul>
+<h2 id="notes-in-customer-overview">Notes in Customer Overview<a class="headerlink" href="#notes-in-customer-overview" title="Permanent link"></a></h2>
+<p>The following image shows the standard customer overview page (as per v4.8.0) with the <em>Notes</em> tab selected and two sample notes:</p>
+<p><img alt="Customer Notes Overview" src="../img/customer-notes-overview.png" /></p>
+<p>The first note, <em>Sample Private Note</em>, is a note that is only visible to administrators. The second note, <em>Test Public Note</em>, is visible to any user logged in for this customer.</p>
+<p>The next image shows the dialog for adding a customer note.</p>
+<p><img alt="Customer Notes Add" src="../img/customer-notes-add.png" /></p>
+<p>By default, notes are private and you are required to check the <em>Makee note visible to customer</em> to make it a public note.</p>
+<p>The <em>Preview</em> table allows you to see what the note will look like when formatted via Markdown:</p>
+<p><img alt="Customer Notes Preview" src="../img/customer-notes-preview.png" /></p>
+<p>Existing notes can be edited, deleted and viewed:</p>
+<p><img alt="Customer Notes View" src="../img/customer-notes-view.png" /></p>
+<h2 id="notifications">Notifications<a class="headerlink" href="#notifications" title="Permanent link"></a></h2>
+<p>As mentioned above, administrators can choose to be alerted by email to new / edited / deleted notes in one of four ways:</p>
+<ol>
+<li>never</li>
+<li>all notes for all customers</li>
+<li>watched customers only</li>
+<li>watched notes only</li>
+</ol>
+<p>On an administrator's <em>My Account -&gt; Profile</em> page, you will find the following:</p>
+<p><img alt="Administrator Notification Preference for Notes" src="../img/customer-notes-notifications.png" /></p>
+<p>The first of these radio options, <em>Disable all email notifications</em>, corresponds to <em>(1) never</em> above. The last of these radio options, <em>Email me on any change to any customer note</em> corresponds to <em>(2) all notes for all customers</em> above.</p>
+<p>The middle option, <em>Email me on changes to only watched customers and notes</em>, is controlled via the <em>bell</em> icon on the customer overview notes tab. If a user had requested notifications as follows:</p>
+<p><img alt="Customer Notes Overview - Notifications" src="../img/customer-notes-overview-notifications.png" /></p>
+<p>then all changes to any customer note for <em>AS112 Reverse DNS [AS112]</em> will be emailed to the user because the <em>customer bell</em> (the one on the top right) has been selected.</p>
+<p>If the user had not selected the <em>customer bell</em> then:</p>
+<ul>
+<li>changes to <em>Sample Private Note</em> and any new notes added / edited / deleted would not be notified to the user.</li>
+<li>only changes to <em>Test Public Note</em> would be emailed to the user.</li>
+</ul>
+<p>The order of precedence for determining if a note change should be notified by email is:</p>
+<ol>
+<li>if the customer chose via their <em>Profile</em> the radio option <em>Disable all email notifications</em> then notifications are <strong>never</strong> sent.</li>
+<li>if the customer chose via their <em>Profile</em> the radio option <em>Email me on any change to any customer note</em> then notifications are <strong>always</strong> sent.</li>
+<li>
+<p>If neither (1) nor (2) hold above, then the user has selected the radio option <em>Email me on changes to only watched customers and notes</em>. In which case a notification is sent for the customer whose note is being added / edited / deleted:</p>
+<p>a. if the <em>customer bell</em> is selected for the customer in question
+b. if the <em>note bell</em> is selected for the note in question</p>
+</li>
+<li>
+<p>Otherwise no notification is sent.</p>
+</li>
+</ol>
               
             </div>
           </div>
@@ -416,10 +419,10 @@ OK (15 tests, 67 assertions)
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../cla/" class="btn btn-neutral float-right" title="Contributer License Agreement">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../interfaces/" class="btn btn-neutral float-right" title="Customer Connections">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api/" class="btn btn-neutral" title="API"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../customers/" class="btn btn-neutral" title="Customers / Members"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -449,10 +452,10 @@ OK (15 tests, 67 assertions)
           <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../api/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../customers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../cla/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../interfaces/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -17,6 +17,7 @@ pages:
     - 'Runtime Configuration': 'install/runtime.md'
 - General Usage:
     - 'Customers / Members': 'usage/customers.md'
+    - 'Customer Notes': 'usage/customer-notes.md'
     - 'Customer Connections': 'usage/interfaces.md'
     - 'Users & Contacts': 'usage/users.md'
 - Features:

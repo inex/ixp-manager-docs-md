@@ -97,6 +97,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../usage/customer-notes/">Customer Notes</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../usage/interfaces/">Customer Connections</a>
                 </li>
                 <li class="">
@@ -357,7 +361,7 @@
 <ol>
 <li>aggregate bits/sec and packets/sec graphs for the IXP;</li>
 <li>aggregate bits/sec and packets/sec graphs for the infrastructures;</li>
-<li>aggregate bits/sec graphs on a per-protocol and per-VLAN basis (requires <a href="slow.md">sflow</a>);</li>
+<li>aggregate bits/sec graphs on a per-protocol and per-VLAN basis (requires <a href="../features/sflow.md">sflow</a>);</li>
 <li>aggregate graphs for the switches; and</li>
 <li>aggregate graphs for the trunk connections.</li>
 </ol>
@@ -370,12 +374,12 @@
 <li><code>GRAPHER_ACCESS_TRUNK</code></li>
 </ol>
 <p>For example to limit <code>GRAPHER_ACCESS_TRUNK</code> to logged in users, set:</p>
-<div class="highlight"><pre>GRAPHER_ACCESS_TRUNK=1
+<div class="highlight"><pre><span></span>GRAPHER_ACCESS_TRUNK=1
 </pre></div>
 
 
 <p>If you would like to make the aggregate graphs available to logged in users only, set the following <code>.env</code> options:</p>
-<div class="highlight"><pre>GRAPHER_ACCESS_IXP=1
+<div class="highlight"><pre><span></span>GRAPHER_ACCESS_IXP=1
 GRAPHER_ACCESS_INFRASTRUCTURE=1
 GRAPHER_ACCESS_VLAN=1
 GRAPHER_ACCESS_SWITCH=1
@@ -386,7 +390,7 @@ GRAPHER_ACCESS_TRUNK=1
 <p>If you would prefer to restrict access to these to superusers / admins only, replace <code>=1</code> above with <code>=3</code>.</p>
 <h2 id="api-access">API Access<a class="headerlink" href="#api-access" title="Permanent link"></a></h2>
 <p><em>Grapher</em> allows API access to graphs via a base URL of the form:</p>
-<div class="highlight"><pre>https://ixp.example.com/grapher/{graph}[?id=x][&amp;period=x][&amp;type=x][&amp;category=x] \
+<div class="highlight"><pre><span></span>https://ixp.example.com/grapher/{graph}[?id=x][&amp;period=x][&amp;type=x][&amp;category=x] \
     [&amp;protocol=x][&amp;backend=x]
 </pre></div>
 
@@ -397,7 +401,7 @@ GRAPHER_ACCESS_TRUNK=1
 <li>Aggregate exchange traffic PNG: <a href="https://www.inex.ie/ixp/grapher/ixp">https://www.inex.ie/ixp/grapher/ixp</a> (as you'll learn below, the defaults are <code>id=1&amp;type=png</code>).</li>
 </ol>
 <p>A sample of the JSON output is:</p>
-<div class="highlight"><pre><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;ixp&quot;</span><span class="p">,</span>
     <span class="nt">&quot;urls&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;png&quot;</span><span class="p">:</span> <span class="s2">&quot;https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&amp;type=png&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span><span class="p">,</span>
@@ -586,7 +590,7 @@ GRAPHER_ACCESS_TRUNK=1
 <h3 id="access-to-member-graphs">Access to Member Graphs<a class="headerlink" href="#access-to-member-graphs" title="Permanent link"></a></h3>
 <p><strong>NB: before you read this section, please first read and be familiar with the <em>Accessibility of Aggregate Graphs</em> section above.</strong></p>
 <p>A number of IXPs have requested a feature to allow public access to member / customer graphs. To support this we have added the following <code>.env</code> options (beginning in v4.8) with the default value as shown:</p>
-<div class="highlight"><pre>GRAPHER_ACCESS_CUSTOMER=&quot;own_graphs_only&quot;
+<div class="highlight"><pre><span></span>GRAPHER_ACCESS_CUSTOMER=&quot;own_graphs_only&quot;
 GRAPHER_ACCESS_P2P=&quot;own_graphs_only&quot;
 GRAPHER_ACCESS_LATENCY=&quot;own_graphs_only&quot;
 </pre></div>
@@ -601,7 +605,7 @@ GRAPHER_ACCESS_LATENCY=&quot;own_graphs_only&quot;
 <li>to continue to restrict latency graph access to superadmins and the owning customer</li>
 </ul>
 <p>then set the following in <code>.env</code>:</p>
-<div class="highlight"><pre>GRAPHER_ACCESS_CUSTOMER=0
+<div class="highlight"><pre><span></span>GRAPHER_ACCESS_CUSTOMER=0
 GRAPHER_ACCESS_P2P=1
 </pre></div>
 

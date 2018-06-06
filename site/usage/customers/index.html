@@ -117,6 +117,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../customer-notes/">Customer Notes</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../interfaces/">Customer Connections</a>
                 </li>
                 <li class="">
@@ -405,7 +409,7 @@
 <p><img alt="Welcome Email" src="../img/customer-welcome-email.png" /></p>
 <p>To be useful, you need to <a href="../../features/skinning/">skin</a> the welcome email.</p>
 <p>From IXP Manager v4.8.0 onwards, its format is Markdown and it is sent as a HTML email. The file you need to skin is (with an example of how to do it):</p>
-<div class="highlight"><pre>cd ${IXPROOT}
+<div class="highlight"><pre><span></span>cd ${IXPROOT}
 mkdir -p resources/skins/example/customer/emails
 cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/customer/emails/
 </pre></div>
@@ -414,7 +418,7 @@ cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/
 <p>The <code>example</code> skin name in the above <em>is just an example</em>. Please read the <a href="../../features/skinning/">skinning documentation</a>.</p>
 <h2 id="customer-logos">Customer Logos<a class="headerlink" href="#customer-logos" title="Permanent link"></a></h2>
 <p>Customer users and administrators can upload and manage logos for customers. To enable this functionality, set the following in your <code>${IXPROOT}/.env</code> file:</p>
-<div class="highlight"><pre>IXP_FE_FRONTEND_DISABLED_LOGO=false
+<div class="highlight"><pre><span></span>IXP_FE_FRONTEND_DISABLED_LOGO=false
 </pre></div>
 
 
@@ -431,7 +435,7 @@ cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/
 <p>All of these details are informative only and only available to administrative users.</p>
 <h3 id="notification-of-billing-details-changed">Notification of Billing Details Changed<a class="headerlink" href="#notification-of-billing-details-changed" title="Permanent link"></a></h3>
 <p>If you want notification of a customer's billing details being changed by email, set the following parameter in your <code>${IXPROOT}/.env</code> file:</p>
-<div class="highlight"><pre>IXP_FE_CUSTOMER_BILLING_UPDATES_NOTIFY=&quot;mail@example.com&quot;
+<div class="highlight"><pre><span></span>IXP_FE_CUSTOMER_BILLING_UPDATES_NOTIFY=&quot;mail@example.com&quot;
 </pre></div>
 
 
@@ -445,7 +449,7 @@ cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../interfaces/" class="btn btn-neutral float-right" title="Customer Connections">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../customer-notes/" class="btn btn-neutral float-right" title="Customer Notes">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../../install/runtime/" class="btn btn-neutral" title="Runtime Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -481,7 +485,7 @@ cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/
         <span><a href="../../install/runtime/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../interfaces/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../customer-notes/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
