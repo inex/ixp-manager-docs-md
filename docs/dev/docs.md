@@ -42,3 +42,17 @@ mkdocs gh-deploy
 ```
 
 You must be an authorised user for this but we **welcome pull requests against the documentation repository!**
+
+**Do not forget to push your changes to GutHub** (if you have push permissions):
+
+```sh
+git add .
+git commit -am "your commit message"
+git push
+```
+
+There is a simple script in the documentation root directory that combiles these deploy and commit steps:
+
+```sh
+./build-deploy-push.sh "your commit message"
+```

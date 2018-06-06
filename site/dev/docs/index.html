@@ -386,6 +386,16 @@ mkdocs build
 
 
 <p>You must be an authorised user for this but we <strong>welcome pull requests against the documentation repository!</strong></p>
+<p><strong>Do not forget to push your changes to GutHub</strong> (if you have push permissions):</p>
+<div class="highlight"><pre><span></span>git add .
+git commit -am <span class="s2">&quot;your commit message&quot;</span>
+git push
+</pre></div>
+
+
+<p>There is a simple script in the documentation root directory that combiles these deploy and commit steps:</p>
+<div class="highlight"><pre><span></span>./build-deploy-push.sh <span class="s2">&quot;your commit message&quot;</span>
+</pre></div>
               
             </div>
           </div>
