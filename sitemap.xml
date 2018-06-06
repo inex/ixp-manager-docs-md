@@ -274,6 +274,22 @@
     
         
     <url>
+     <loc>https://docs.ixpmanager.org/features/sflow/</loc>
+     <lastmod>2018-06-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://docs.ixpmanager.org/features/sflow-p2p/</loc>
+     <lastmod>2018-06-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
      <loc>https://docs.ixpmanager.org/dev/api/</loc>
      <lastmod>2018-06-06</lastmod>
      <changefreq>daily</changefreq>

@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Helpdesk Integration - IXP Manager Documentation</title>
+  <title>Introduction - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Helpdesk Integration";
-    var mkdocs_page_input_path = "features/helpdesk.md";
-    var mkdocs_page_url = "/features/helpdesk/";
+    var mkdocs_page_name = "Introduction";
+    var mkdocs_page_input_path = "features/sflow.md";
+    var mkdocs_page_url = "/features/sflow/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -142,25 +142,9 @@
                     
     <a class="" href="../../grapher/introduction/">Grapher</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Helpdesk Integration</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#helpdesk-integration">Helpdesk Integration</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#features-supported">Features Supported</a></li>
-        
-            <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
-        
-            <li><a class="toctree-l4" href="#implementation-development">Implementation Development</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../helpdesk/">Helpdesk Integration</a>
                 </li>
                 <li class="">
                     
@@ -264,9 +248,27 @@
 		
     <span class="caption-text">Sflow Support</span>
     <ul class="subnav">
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../sflow/">Introduction</a>
+    <a class="current" href="./">Introduction</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#introduction">Introduction</a></li>
+    
+
+    <li class="toctree-l3"><a href="#helicopter-view">Helicopter View</a></li>
+    
+
+    <li class="toctree-l3"><a href="#sflow-on-switches">Sflow on Switches</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#switch-implementation-limitations">Switch Implementation Limitations</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
@@ -352,14 +354,14 @@
     
       
         
-          <li>Features &raquo;</li>
+          <li>Sflow Support &raquo;</li>
         
       
     
-    <li>Helpdesk Integration</li>
+    <li>Introduction</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/helpdesk.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/sflow.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -369,55 +371,59 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="helpdesk-integration">Helpdesk Integration<a class="headerlink" href="#helpdesk-integration" title="Permanent link"></a></h1>
-<p><strong> WORK IN PROGRESS - DEVELOPMENT NOTES </strong></p>
-<p>As an IXP scales, it will eventually have to replace email support via a simple alias / shared IMAP mailbox with a <em>proper</em> ticketing system. After extensive (and painful!) research, we at INEX chose <a href="https://www.zendesk.com/">Zendesk</a> as the system that most matched our budget and required features (1).</p>
-<p>While your mileage may vary on this - or you may already have something else - please note that the reference implementation for helpdesk integration on IXP Manager is Zendesk. So, if you haven't already chosen one, Zendesk will provide maximum integration with minimal pain.</p>
-<blockquote>
-<p>Please do not open a feature request for other helpdesk implementations as the authors cannot undertake such additional work. If you wish to have integration with another helpdesk implemented, please consider <a href="https://www.ixpmanager.org/commercial.php">commercial support</a></p>
-</blockquote>
-<h2 id="features-supported">Features Supported<a class="headerlink" href="#features-supported" title="Permanent link"></a></h2>
-<p>IXP Manager currently supports:</p>
+                <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link"></a></h1>
+<p>IXP Manager can use <a href="http://www.sflow.org/">sflow</a> data to:</p>
 <ul>
-<li>creation and update of customers / organisations in Zendesk</li>
-<li>creation and update of contacts / users in Zendesk</li>
-<li>finding tickets by customer / organisation</li>
+<li>analyse BGP flows over the exchange and use the data to create a peering matrix</li>
+<li>build <a href="../sflow-p2p/">peer-to-peer</a> traffic graphs</li>
 </ul>
-<p>Work that is in progress includes:</p>
-<ul>
-<li>allow users to create, update and close tickets in IXP Manager</li>
-<li>list all tickets per organisation (for admins and users)</li>
-</ul>
-<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h2>
-<p><em>As Zendesk is the only implementation currently, this refers only to Zendesk.</em></p>
-<h3 id="zendesk">Zendesk<a class="headerlink" href="#zendesk" title="Permanent link"></a></h3>
-<p>You need to enable API access to Zendesk as follows:</p>
-<ol>
-<li>Log into your Zendesk account</li>
-<li>On the bottom left, click the Settings icon</li>
-<li>Under <em>Channels</em> select <em>API</em></li>
-<li>Enable the API here and add a token</li>
-</ol>
-<p>With your Zendesk login and the token from above, edit the <code>.env</code> file in the base directory of IXP Manager and set:</p>
-<div class="highlight"><pre><span></span>HELPDESK_BACKEND=zendesk
-HELPDESK_ZENDESK_SUBDOMAIN=ixp
-HELPDESK_ZENDESK_TOKEN=yyy
-HELPDESK_ZENDESK_EMAIL=john.doe@example.com
+<p>The peer-to-peer traffic graphs show traffic aggregate analysis of bytes/packets, split by VLAN and protocol (IPv4 / IPv6), both for individual IXP peering ports and entire VLANs.</p>
+<h1 id="helicopter-view">Helicopter View<a class="headerlink" href="#helicopter-view" title="Permanent link"></a></h1>
+<p>Sflow needs to be configured with an "accounting perimeter".  This means that ingress sflow accounting should be enabled on all edge ports, but should not be enabled on any of the core ports.  This approach ensures that all packets entering or leaving the IXP are counted exactly once, when they enter the IXP fabric.</p>
+<p>All the switches at the IXP should be configured to send sflow packets to the IP address of your sflow collector.  This will probably be the same server that you use for your IXP Manager sflow peer-to-peer graphing.</p>
+<p>If sflow is enabled on any of the core ports or sflow is enabled in both directions (ingress + egress), traffic will be double-counted and this will lead to incorrect graphs.</p>
+<p>Each switch on the network sends sampled sflow packets to an sflow collector.  These packets are processed by the "sflowtool" command, which converts into an easily-parseable ascii format.  IXP Manager provides a script to read the output of the sflowtool command, correlate this against the IXP database and to use this to build up a matrix of traffic flows which are then exported to an RRD database.</p>
+<p>The RRD files are stored on disk and can be accessed by using the sflow graphing system included in IXP Manager.</p>
+<h1 id="sflow-on-switches">Sflow on Switches<a class="headerlink" href="#sflow-on-switches" title="Permanent link"></a></h1>
+<p>Many vendors support sflow, but some do not.  There is a <a href="http://www.sflow.org/products/network.php">partial list</a> on the sflow web site.</p>
+<p>Most switches which support sflow will support ingress accounting, because this is what's required in <a href="http://www.ietf.org/rfc/rfc3176">RFC 3176</a>. Some switches (e.g. Dell Force10 running older software) only support egress sflow.  If you use these on your IXP alongside other switches which only support ingress sflow, then the sflow graphs will show twice the traffic in one direction for the p2p graphs and zero traffic in the other direction.  There is no way for IXP Manager to work around this problem.</p>
+<p>If not all of the IXP edge ports are sflow capable, then sflow traffic data will be lost for these ports.  This means that some point-to-point traffic graphs will show up with zero traffic, and that the sflow aggregate graphs will be wrong.</p>
+<p>Sflow uses data sampling.  This means that the results it produces are estimated projections, but on largee data sets, these projections tend to be statistically accurate.</p>
+<p>Each switch or switch port needs to be configured with an sflow sampling rate. The exact rate chosen will depend on the traffic levels on the switch, how powerful the switch management plane CPU is, and how much bandwidth is available for the switch management.</p>
+<p>On a small setup with low levels of traffic (e.g. 100kpps), it would be sensible to leave the sampling rate low (e.g. 1:1024). Alternatively, a busy 100G port may need a sampling rate of  1:32768 may turn out to be too low if the port is seeing large numbers of packets.  If the switch or the entire network is handling very large quantities of traffic, this figure should be high enough that IXP ports with low quantities of traffic will still get good quality graphs, but low enough that the switch management CPU isn't trashed, and that packets are not dropped on the management ethernet port.</p>
+<p>Some switches have automatic rate-limiting built in for sflow data export.  The sampling rate needs to be chosen so that sflow data export rate limiting doesn't kick in.  If it does, samples will be lost and this will cause graph inaccuracies.</p>
+<h2 id="switch-implementation-limitations">Switch Implementation Limitations<a class="headerlink" href="#switch-implementation-limitations" title="Permanent link"></a></h2>
+<h3 id="netflow">Netflow<a class="headerlink" href="#netflow" title="Permanent link"></a></h3>
+<p>IXP Manager does not support netflow and support is not on the roadmap. This is because most netflow implementations do not export mac address information, which means that they cannot provide workable mac layer peer-to-peer statistics.</p>
+<h3 id="cisco-switches">Cisco Switches<a class="headerlink" href="#cisco-switches" title="Permanent link"></a></h3>
+<p>Of Cisco's entire product range, only the Nexus 3000 and Nexus 9000 product range support sflow. Also, the sflow support on the Cisco Nexus 3k range is crippled due to the NX-OS software implementation, which forces ingress+egress sflow to be configured on specified ports rather than ingress-only.  Functional accounting requires ingress-only or egress-only sflow to be configured on a per-port basis: ingress + egress causes double-counting of packets.  It may be possible to work around this limitation using the broadcom shell using something like the following untested configuration:</p>
+<div class="highlight"><pre><span></span>n3k# conf t
+n3k(config)# feature sflow
+n3k(config)# sflow data-source interface Ethernet1/1
+n3k(config)# ^Z
+n3k# test hardware internal bcm-usd bcm-diag-shell
+Available Unit Numbers: 0
+bcm-shell.0&gt; PortSampRate xe0 4096 0
+bcm-shell.0&gt; PortSampRate xe0
+ xe0:   ingress: 1 out of 4096 packets, egress: not sampling,
+bcm-shell.0&gt; quit
+n3k#
 </pre></div>
 
 
-<p>You can now test that your settings are correct with: <strong>FIXME</strong></p>
-<h2 id="implementation-development">Implementation Development<a class="headerlink" href="#implementation-development" title="Permanent link"></a></h2>
-<p>The helpdesk implementation in IXP Manager is designed using contracts and service providers. I.e. it is done <em>The Right Way (tm)</em>.</p>
-<p>The reference implementation is for Zendesk but it's coded to a contract (interface) at <code>app/Contracts/Helpdesk.php</code>.</p>
-<p>The actual Zendesk implementation can be found at: <code>app/Services/Helpdesk/Zendesk.php</code>.</p>
-<p>The good news here is if you want another helpdesk supported, you just need to:</p>
-<ul>
-<li>create an implementation like the Zendesk one above</li>
-<li>update the <code>switch()</code> statement in <code>app/Providers/HelpdeskServiceProvider.php</code></li>
-<li>open a pull request for IXP Manager and this documentation</li>
-</ul>
-<p>(1) Actually, Zendesk wasn't our first ticketing system. For a number of years we used <a href="http://www.cerberusweb.com/">Cerb</a> but it didn't stay current in terms of modern HTML UI/UX and it suffered from feature bloat. One requirement for our replacement was a decent API and with Zendesk's API we were able to migrate all our old tickets <a href="https://github.com/inex/cerb5-to-zendesk">using this script</a>.</p>
+<p>Note that this command is not reboot persistent, and any time a TIX24X is rebooted, the command needs to be re-entered manually.  Note also that this configuration is untested.</p>
+<h3 id="brocade-turboiron-24x">Brocade TurboIron 24X<a class="headerlink" href="#brocade-turboiron-24x" title="Permanent link"></a></h3>
+<p>By default a TIX24X will export 100 sflow records per second.  This can be changed using the following command:</p>
+<div class="highlight"><pre><span></span>SSH@Switch# dm device-command 2762233
+SSH@Switch# tor modreg CPUPKTMAXBUCKETCONFIG(3) PKT_MAX_REFRESH=0xHHHH
+</pre></div>
+
+
+<p>... where HHHH is the hex representation of the number of sflow records per second.  INEX has done some very primitive usage profiling which suggests that going above ~3000 sflow records per second will trash the management CPU too hard, so we use PKT_MAX_REFRESH=0x0BB8.  Note that this command is not reboot persistent, and any time a TIX24X is rebooted, the command needs to be re-entered manually.</p>
+<h3 id="dell-force10">Dell Force10<a class="headerlink" href="#dell-force10" title="Permanent link"></a></h3>
+<p>Earlier versions of FTOS only support egress sflow, but support for ingress sflow was added in 2014.  If you intend to deploy IXP Manager sflow accounting on a Dell F10 switch, then you should upgrade to a software release which supports ingress sflow.</p>
+<h3 id="cumulus-linux">Cumulus Linux<a class="headerlink" href="#cumulus-linux" title="Permanent link"></a></h3>
+<p>Cumulus Linux uses hsflowd, which does not allow the operator to enable or disable sflow on a per-port basis, nor does it permit the operator to configure ports to use ingress-only sflow.  This configuration needs to be handled using the <code>/usr/lib/cumulus/portsamp</code> command, which is not reboot persistent.  It is strongly recommended to handle this configuration using orchestration, as it is not feasible to manually maintain this configuration.</p>
               
             </div>
           </div>
@@ -425,10 +431,10 @@ HELPDESK_ZENDESK_EMAIL=john.doe@example.com
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../irrdb/" class="btn btn-neutral float-right" title="IRRDB">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../sflow-p2p/" class="btn btn-neutral float-right" title="Peer-to-peer Graphs">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../grapher/introduction/" class="btn btn-neutral" title="Grapher"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../grapher/smokeping/" class="btn btn-neutral" title="Backend: Smokeping"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -458,10 +464,10 @@ HELPDESK_ZENDESK_EMAIL=john.doe@example.com
           <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../grapher/introduction/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../grapher/smokeping/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../irrdb/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../sflow-p2p/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
