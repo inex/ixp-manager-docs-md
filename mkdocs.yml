@@ -52,6 +52,9 @@ pages:
     - 'Backend: MRTG': 'grapher/mrtg.md'
     - 'Backend: sflow': 'grapher/sflow.md'
     - 'Backend: Smokeping': 'grapher/smokeping.md'
+- 'Sflow Support':
+    - 'Introduction': 'features/sflow.md'
+    - 'Peer-to-peer Graphs': 'features/sflow-p2p.md'
 - Development:
     - 'API': 'dev/api.md'
     - 'Continuous Integration': 'dev/ci.md'
