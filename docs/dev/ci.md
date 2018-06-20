@@ -1,14 +1,24 @@
 # Continuous Integration
 
-IXP Manager grew out of a code base and schema that started in the early '90s. Long before [test driven development](http://phpunit.de/) or [behaviour driven development](http://behat.org/) was fashionable for PHP. However, as IXP Manager is taking over more and more critical configuration tasks, we need to back fill some automated testing with continuous integration.
+IXP Manager grew out of a code base and schema that started in the early '90s. Long before [test driven development](http://phpunit.de/) or [behaviour driven development](http://behat.org/) was fashionable for PHP. However, as IXP Manager is taking over more and more critical configuration tasks, we continue to back fill some automated testing with continuous integration for critical elements.
 
-For this we have chosen [Travis-CI](https://travis-ci.org/inex/IXP-Manager) which provides free cloud based CI linked with GitHub for open source projects. Our current build status is: [![Build Status](https://travis-ci.org/inex/IXP-Manager.png?branch=master)](https://travis-ci.org/inex/IXP-Manager)
+We use [Travis-CI](https://travis-ci.org/inex/IXP-Manager) for continuous integration (CI) who provide free cloud based CI linked to GitHub for open source projects.
 
-We won't be aggressively writing tests for the existing codebase but will add tests as appropriate as we continue development. What follows is some basic instructions on how to set up tests and an overview (or links) to tests we have implemented.
+Our current build status is: [![Build Status](https://travis-ci.org/inex/IXP-Manager.png?branch=master)](https://travis-ci.org/inex/IXP-Manager)
+
+The CI system runs the full suite of tests every time a commit is pushed to GitHub. As such, any *build failing* states are usually transitory. **Official IXP Manager releases are only made when all tests pass.**
+
+We use two types of unit tests:
+
+1. [PHP Unit](http://phpunit.de/) for standard unit tests;
+2. [Laravel Dusk](https://laravel.com/docs/5.6/dusk) for browser based tests.
+
+We won't be aggressively writing tests for the existing codebase but will add tests as appropriate as we continue development. What follows is some basic instructions on how to set up tests and an overview (or links) to some of the tests we have implemented.
+
+**DISCLAIMER:** This is not a tutorial on unit testing, phpunit, Laravel Dusk or anything else. If you have no experience with these tools, please read up on them elsewhere first.
+
 
 ## Setting Up PHPUnit Tests
-
-**DISCLAIMER:** This is not a tutorial on unit testing, phpunit or anything else. If you have no experience with these tools, please read up on them elsewhere first.
 
 Documentation by real example can be found via the [.travis.yml](https://github.com/inex/IXP-Manager/blob/master/.travis.yml) file and [the Travis data directory](https://github.com/inex/IXP-Manager/tree/master/data/travis-ci) which contains scripts, database dumps and configurations.
 
@@ -39,9 +49,27 @@ DB_PASSWORD=somepassword
 
 Note that the [`phpunit.xml`](https://github.com/inex/IXP-Manager/blob/master/phpunit.xml) file in the root directory has some default settings matching the test database. You should not need to edit these.
 
+The `.env` file used by Travis CI can be [seen here](https://github.com/inex/IXP-Manager/blob/master/.env.travisci) and - as it's used by Travis CI to run the tests - it should be a complete example of what is required.
+
+## Setting Up Laravel Dusk
+
+Please review the [official documentation here](https://laravel.com/docs/5.6/dusk).
+
+You need to ensure the development packages for IXP Manager are installed via:
+
+```sh
+# move to the root directory of IXP Manager
+cd $IXPROOT
+composer install --dev
+```
+
+You need to set the `APP_URL` environment variable in your `.env file`. This value should match the URL you use to access your application in a browser.
+
 ## Test Database Notes
 
-* the *SUPERADMIN* username / password is one-way hashed using bcrypt. If you want to log into the frontend of the test databse, these details are: `travis` / `travisci`.
+1. The *SUPERADMIN* username / password is one-way hashed using bcrypt. If you want to log into the frontend of the test databse, these details are: `travis` / `travisci`.
+2. There are two test *CUSTADMIN* accounts which can be accessed using username / password: `hecustadmin` / `travisci` and `imcustadmin` / `travisci`.
+3. There are two test *CUSTUSER* accounts which can be accessed using username / password: `hecustuser` / `travisci` and `imcustuser` / `travisci`.
 
 ## Running Tests
 
@@ -53,7 +81,7 @@ cd $IXPROOT
 php artisan serve
 ```
 
-And then kick off the tests:
+And then kick off **all the tests** which includes PHPUnit and Laravel Dusk tests, run:
 
 ```sh
 phpunit
@@ -62,11 +90,35 @@ phpunit
 Sample output:
 
 ```
-PHPUnit 6.1.0 by Sebastian Bergmann and contributors.
+PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
 
-...............                                                   15 / 15 (100%)
+...............................................................  63 / 144 ( 43%)
+............................................................... 126 / 144 ( 87%)
+..................                                              144 / 144 (100%)
 
-Time: 1.65 seconds, Memory: 32.00MB
+Time: 1.86 minutes, Memory: 103.73MB
+```
 
-OK (15 tests, 67 assertions)
+If you only want to run Laravel Dusk / browser tests, run the following (shown with sample output):
+
+```sh
+$ php artisan dusk
+PHPUnit 6.5.8 by Sebastian Bergmann and contributors.
+
+..                                                                  2 / 2 (100%)
+
+Time: 12.73 seconds, Memory: 24.00MB
+```
+
+If you want to exclude the browser based tests, just exclude that directory as follows:
+
+```sh
+$ phpunit --filter '/^((?!Tests\\Browser).)*$/'
+PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 142 ( 44%)
+............................................................... 126 / 142 ( 88%)
+................                                                142 / 142 (100%)
+
+Time: 1.59 minutes, Memory: 106.41MB
 ```

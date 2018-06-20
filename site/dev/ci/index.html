@@ -282,6 +282,8 @@
         
             <li><a class="toctree-l4" href="#setting-up-phpunit-tests">Setting Up PHPUnit Tests</a></li>
         
+            <li><a class="toctree-l4" href="#setting-up-laravel-dusk">Setting Up Laravel Dusk</a></li>
+        
             <li><a class="toctree-l4" href="#test-database-notes">Test Database Notes</a></li>
         
             <li><a class="toctree-l4" href="#running-tests">Running Tests</a></li>
@@ -374,11 +376,18 @@
             <div class="section">
               
                 <h1 id="continuous-integration">Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permanent link"></a></h1>
-<p>IXP Manager grew out of a code base and schema that started in the early '90s. Long before <a href="http://phpunit.de/">test driven development</a> or <a href="http://behat.org/">behaviour driven development</a> was fashionable for PHP. However, as IXP Manager is taking over more and more critical configuration tasks, we need to back fill some automated testing with continuous integration.</p>
-<p>For this we have chosen <a href="https://travis-ci.org/inex/IXP-Manager">Travis-CI</a> which provides free cloud based CI linked with GitHub for open source projects. Our current build status is: <a href="https://travis-ci.org/inex/IXP-Manager"><img alt="Build Status" src="https://travis-ci.org/inex/IXP-Manager.png?branch=master" /></a></p>
-<p>We won't be aggressively writing tests for the existing codebase but will add tests as appropriate as we continue development. What follows is some basic instructions on how to set up tests and an overview (or links) to tests we have implemented.</p>
+<p>IXP Manager grew out of a code base and schema that started in the early '90s. Long before <a href="http://phpunit.de/">test driven development</a> or <a href="http://behat.org/">behaviour driven development</a> was fashionable for PHP. However, as IXP Manager is taking over more and more critical configuration tasks, we continue to back fill some automated testing with continuous integration for critical elements.</p>
+<p>We use <a href="https://travis-ci.org/inex/IXP-Manager">Travis-CI</a> for continuous integration (CI) who provide free cloud based CI linked to GitHub for open source projects.</p>
+<p>Our current build status is: <a href="https://travis-ci.org/inex/IXP-Manager"><img alt="Build Status" src="https://travis-ci.org/inex/IXP-Manager.png?branch=master" /></a></p>
+<p>The CI system runs the full suite of tests every time a commit is pushed to GitHub. As such, any <em>build failing</em> states are usually transitory. <strong>Official IXP Manager releases are only made when all tests pass.</strong></p>
+<p>We use two types of unit tests:</p>
+<ol>
+<li><a href="http://phpunit.de/">PHP Unit</a> for standard unit tests;</li>
+<li><a href="https://laravel.com/docs/5.6/dusk">Laravel Dusk</a> for browser based tests.</li>
+</ol>
+<p>We won't be aggressively writing tests for the existing codebase but will add tests as appropriate as we continue development. What follows is some basic instructions on how to set up tests and an overview (or links) to some of the tests we have implemented.</p>
+<p><strong>DISCLAIMER:</strong> This is not a tutorial on unit testing, phpunit, Laravel Dusk or anything else. If you have no experience with these tools, please read up on them elsewhere first.</p>
 <h2 id="setting-up-phpunit-tests">Setting Up PHPUnit Tests<a class="headerlink" href="#setting-up-phpunit-tests" title="Permanent link"></a></h2>
-<p><strong>DISCLAIMER:</strong> This is not a tutorial on unit testing, phpunit or anything else. If you have no experience with these tools, please read up on them elsewhere first.</p>
 <p>Documentation by real example can be found via the <a href="https://github.com/inex/IXP-Manager/blob/master/.travis.yml">.travis.yml</a> file and <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci">the Travis data directory</a> which contains scripts, database dumps and configurations.</p>
 <p>Testing assumes <em>a known good sample database</em> which contains a small mix of customers with different configuration options. The files generated from this database are tested against <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci/known-good">known good</a> configuration files. You first need to create a database, add a database user, import this testing database and then configure a <code>.env</code> section for testing.</p>
 <p>In MySQL:</p>
@@ -402,10 +411,23 @@
 
 
 <p>Note that the <a href="https://github.com/inex/IXP-Manager/blob/master/phpunit.xml"><code>phpunit.xml</code></a> file in the root directory has some default settings matching the test database. You should not need to edit these.</p>
+<p>The <code>.env</code> file used by Travis CI can be <a href="https://github.com/inex/IXP-Manager/blob/master/.env.travisci">seen here</a> and - as it's used by Travis CI to run the tests - it should be a complete example of what is required.</p>
+<h2 id="setting-up-laravel-dusk">Setting Up Laravel Dusk<a class="headerlink" href="#setting-up-laravel-dusk" title="Permanent link"></a></h2>
+<p>Please review the <a href="https://laravel.com/docs/5.6/dusk">official documentation here</a>.</p>
+<p>You need to ensure the development packages for IXP Manager are installed via:</p>
+<div class="highlight"><pre><span></span><span class="c1"># move to the root directory of IXP Manager</span>
+<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+composer install --dev
+</pre></div>
+
+
+<p>You need to set the <code>APP_URL</code> environment variable in your <code>.env file</code>. This value should match the URL you use to access your application in a browser.</p>
 <h2 id="test-database-notes">Test Database Notes<a class="headerlink" href="#test-database-notes" title="Permanent link"></a></h2>
-<ul>
-<li>the <em>SUPERADMIN</em> username / password is one-way hashed using bcrypt. If you want to log into the frontend of the test databse, these details are: <code>travis</code> / <code>travisci</code>.</li>
-</ul>
+<ol>
+<li>The <em>SUPERADMIN</em> username / password is one-way hashed using bcrypt. If you want to log into the frontend of the test databse, these details are: <code>travis</code> / <code>travisci</code>.</li>
+<li>There are two test <em>CUSTADMIN</em> accounts which can be accessed using username / password: <code>hecustadmin</code> / <code>travisci</code> and <code>imcustadmin</code> / <code>travisci</code>.</li>
+<li>There are two test <em>CUSTUSER</em> accounts which can be accessed using username / password: <code>hecustuser</code> / <code>travisci</code> and <code>imcustuser</code> / <code>travisci</code>.</li>
+</ol>
 <h2 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link"></a></h2>
 <p>In one console session, start the artisan / Laravel web server:</p>
 <div class="highlight"><pre><span></span><span class="c1"># move to the root directory of IXP Manager</span>
@@ -414,19 +436,41 @@ php artisan serve
 </pre></div>
 
 
-<p>And then kick off the tests:</p>
+<p>And then kick off <strong>all the tests</strong> which includes PHPUnit and Laravel Dusk tests, run:</p>
 <div class="highlight"><pre><span></span>phpunit
 </pre></div>
 
 
 <p>Sample output:</p>
-<div class="highlight"><pre><span></span>PHPUnit 6.1.0 by Sebastian Bergmann and contributors.
+<div class="highlight"><pre><span></span>PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
 
-...............                                                   15 / 15 (100%)
+...............................................................  63 / 144 ( 43%)
+............................................................... 126 / 144 ( 87%)
+..................                                              144 / 144 (100%)
 
-Time: 1.65 seconds, Memory: 32.00MB
+Time: 1.86 minutes, Memory: 103.73MB
+</pre></div>
 
-OK (15 tests, 67 assertions)
+
+<p>If you only want to run Laravel Dusk / browser tests, run the following (shown with sample output):</p>
+<div class="highlight"><pre><span></span>$ php artisan dusk
+PHPUnit 6.5.8 by Sebastian Bergmann and contributors.
+
+..                                                                  <span class="m">2</span> / <span class="m">2</span> <span class="o">(</span>100%<span class="o">)</span>
+
+Time: 12.73 seconds, Memory: 24.00MB
+</pre></div>
+
+
+<p>If you want to exclude the browser based tests, just exclude that directory as follows:</p>
+<div class="highlight"><pre><span></span>$ phpunit --filter <span class="s1">&#39;/^((?!Tests\\Browser).)*$/&#39;</span>
+PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
+
+...............................................................  <span class="m">63</span> / <span class="m">142</span> <span class="o">(</span> 44%<span class="o">)</span>
+............................................................... <span class="m">126</span> / <span class="m">142</span> <span class="o">(</span> 88%<span class="o">)</span>
+................                                                <span class="m">142</span> / <span class="m">142</span> <span class="o">(</span>100%<span class="o">)</span>
+
+Time: 1.59 minutes, Memory: 106.41MB
 </pre></div>
               
             </div>
