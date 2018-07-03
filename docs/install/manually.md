@@ -91,7 +91,7 @@ Install the required PHP libraries and frontend CSS/JS packages:
 
 ```sh
 cd $IXPROOT
-php composer.phar install
+php composer.phar install --no-dev --prefer-dist
 bower install
 cp .env.example .env
 php artisan key:generate

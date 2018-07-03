@@ -54,7 +54,7 @@ The general process is:
 
     ```sh
     # this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.
-    sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && php ./composer.phar install"
+    sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && php ./composer.phar install --no-dev --prefer-dist"
     ```
 
 5. Install latest frontend dependencies [**(see notes below)**](#updating-bower-dependancies):
@@ -111,7 +111,7 @@ The general process is:
     ```
 12. Recreate SQL views
 
-Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them:
+    Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them:
 
     ```sh
     mysql -u ixp -p ixp < $IXPROOT/tools/sql/views.sql
@@ -209,4 +209,3 @@ systemctl restart memcached.service           # (or as appropriate for your syst
 ./artisan doctrine:generate:entities database
 ./artisan doctrine:generate:proxies
 ```
-

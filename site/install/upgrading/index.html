@@ -426,7 +426,7 @@ git checkout v4.x.y
 <li>
 <p>Install latest required libraries from composer <a href="#updating-composer-dependancies"><strong>(see notes below)</strong></a>:</p>
 <div class="highlight"><pre><span></span><span class="c1"># this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.</span>
-sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; php ./composer.phar install&quot;</span>
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; php ./composer.phar install --no-dev --prefer-dist&quot;</span>
 </pre></div>
 
 
@@ -490,13 +490,13 @@ chmod -R u+rwX <span class="nv">$IXPROOT</span>/public/bower_components <span cl
 </pre></div>
 
 12. Recreate SQL views</p>
+<p>Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them:</p>
+<div class="highlight"><pre><span></span>mysql -u ixp -p ixp &lt; <span class="nv">$IXPROOT</span>/tools/sql/views.sql
+</pre></div>
+
+
 </li>
 </ol>
-<p>Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them:</p>
-<pre><code>```sh
-mysql -u ixp -p ixp &lt; $IXPROOT/tools/sql/views.sql
-```
-</code></pre>
 <h2 id="updating-bower-dependancies">Updating Bower Dependancies<a class="headerlink" href="#updating-bower-dependancies" title="Permanent link"></a></h2>
 <p>It is not advisable to run bower as root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the bower commands themselves will be run as <code>$MY_WWW_USER</code>):</p>
 <div class="highlight"><pre><span></span><span class="c1"># set this to your IXP Manager installation directory</span>
