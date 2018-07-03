@@ -463,7 +463,7 @@ php -r <span class="s2">&quot;copy(&#39;https://getcomposer.org/installer&#39;, 
 <h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link"></a></h2>
 <p>Install the required PHP libraries and frontend CSS/JS packages:</p>
 <div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-php composer.phar install
+php composer.phar install --no-dev --prefer-dist
 bower install
 cp .env.example .env
 php artisan key:generate
