@@ -49,7 +49,7 @@ vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
 Then, finally, edit `.env` and set the skin to use:
 
 ```
-VIEW_SKINS="example"
+VIEW_SKIN="example"
 ```
 
 You can of course skin any file including the non-custom MRTG files as suits your needs.
