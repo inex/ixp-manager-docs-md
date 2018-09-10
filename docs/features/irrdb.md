@@ -22,7 +22,7 @@ apt install bgpq3
 Then configure the path to it in `config/ixp_tools.php`. If you have not used this file before, you'll need to create your own local copy as follows:
 
 ```sh
-cp config/config/ixp_tools.php.dist config/config/ixp_tools.php
+cp config/ixp_tools.php.dist config/ixp_tools.php
 ```
 
 Then set the full call path for `bgpq3` in this file:
