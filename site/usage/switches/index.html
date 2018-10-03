@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Contributer License Agreement - IXP Manager Documentation</title>
+  <title>Switches - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Contributer License Agreement";
-    var mkdocs_page_input_path = "dev/cla.md";
-    var mkdocs_page_url = "/dev/cla/";
+    var mkdocs_page_name = "Switches";
+    var mkdocs_page_input_path = "usage/switches.md";
+    var mkdocs_page_url = "/usage/switches/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -93,27 +93,39 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../usage/customers/">Customers / Members</a>
+    <a class="" href="../customers/">Customers / Members</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/customer-notes/">Customer Notes</a>
+    <a class="" href="../customer-notes/">Customer Notes</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/customer-tags/">Customer Tags</a>
+    <a class="" href="../customer-tags/">Customer Tags</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/interfaces/">Customer Connections</a>
+    <a class="" href="../interfaces/">Customer Connections</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/users/">Users & Contacts</a>
+    <a class="" href="../users/">Users & Contacts</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../usage/switches/">Switches</a>
+    <a class="current" href="./">Switches</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#switches">Switches</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#port-audit">Port Audit</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -273,57 +285,51 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../api/">API</a>
+    <a class="" href="../../dev/api/">API</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../ci/">Continuous Integration</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">Contributer License Agreement</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#contributor-license-agreement">Contributor License Agreement</a></li>
-    
-
-    </ul>
+    <a class="" href="../../dev/ci/">Continuous Integration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../docker/">Docker</a>
+    <a class="" href="../../dev/cla/">Contributer License Agreement</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../docs/">Documentation</a>
+    <a class="" href="../../dev/docker/">Docker</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../forms/">Forms</a>
+    <a class="" href="../../dev/docs/">Documentation</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../frontend-crud/">Frontend CRUD</a>
+    <a class="" href="../../dev/forms/">Forms</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../grapher/">Grapher</a>
+    <a class="" href="../../dev/frontend-crud/">Frontend CRUD</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../helpders/">Helpers</a>
+    <a class="" href="../../dev/grapher/">Grapher</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../looking-glass/">Looking Glass</a>
+    <a class="" href="../../dev/helpders/">Helpers</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../release-procedure/">Release Procedure</a>
+    <a class="" href="../../dev/looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../vagrant/">Vagrant</a>
+    <a class="" href="../../dev/release-procedure/">Release Procedure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
                 </li>
     </ul>
 	    </li>
@@ -350,14 +356,14 @@
     
       
         
-          <li>Development &raquo;</li>
+          <li>General Usage &raquo;</li>
         
       
     
-    <li>Contributer License Agreement</li>
+    <li>Switches</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/dev/cla.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/usage/switches.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -367,57 +373,32 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="contributor-license-agreement">Contributor License Agreement<a class="headerlink" href="#contributor-license-agreement" title="Permanent link"></a></h1>
-<p>Please see the <a href="https://github.com/inex/IXP-Manager/blob/master/CONTRIBUTING.md">contributing instructions</a> for full details.</p>
-<p>Third-party patches are welcomed for adding functionality and  fixing bugs. Before they can be accepted into the project, contributors must sign the below <em>Contributor License Agreement</em> (<code>gpg --clearsign inex-cla.txt</code>) and email it to <code>operations (at) inex (dot) ie</code>.</p>
-<div class="highlight"><pre><span></span>Individual Contributor License Agreement v1.1
-=============================================
+                <h1 id="switches">Switches<a class="headerlink" href="#switches" title="Permanent link"></a></h1>
+<p>Switch functionality is currently being migrated in development from Zend Framework to Laravel. Once that is complete, this documentation will be updated.</p>
+<p>In the meantime see: https://github.com/inex/IXP-Manager/wiki/Switch-and-Switch-Port-Management</p>
+<h2 id="port-audit">Port Audit<a class="headerlink" href="#port-audit" title="Permanent link"></a></h2>
+<p>A new feature (adding in v4.9.0) allows <strong>IXP Manager</strong> administrators to audit port speeds as configured in <a href="../interfaces/#physical-interface-settings">physical interfaces</a> against what has been discovered in the last SNMP run.</p>
+<p>You can run it from Artisan such as the following example:</p>
+<div class="highlight"><pre><span></span>./artisan audit:port-speeds
 
-Internet Neutral Exchange Association Company Limited By Guarantee
+Audit of Configured Physical Interface Port Speeds Against SNMP Discovered Speeds
 
-This document clarifies the terms under which You, the person listed below,
-may make Contributions — which may include without limitation, software, bug
-fixes, configuration changes, documentation, or any other materials — to any
-of the projects owned or managed by Internet Neutral Exchange Association
-Company Limited By Guarantee, hereinafter known as &quot;INEX&quot;.
++------------------------------+----------+----------------+-----------------------+----------+------------+
+| Customer                     | PI DB ID | Switch         | Switchport            | PI Speed | SNMP Speed |
++------------------------------+----------+----------------+-----------------------+----------+------------+
+| INEX Route Servers [AS43760] | 14       | swi2-tcy1-2    | GigabitEthernet27     | 0        | 1000       |
+| INEX [AS2128]                | 15       | swi1-ix1-2     | X460-48t Port 47      | 0        | 1000       |
+| INEX [AS2128]                | 16       | swi2-ix1-1     | GigabitEthernet25     | 0        | 1000       |
+| AS112 Reverse DNS [AS112]    | 21       | swi2-nwb1-1    | X670G2-48x-4q Port 15 | 0        | 1000       |
+| INEX [AS2128]                | 357      | swic-cix-2     | GigabitEthernet27     | 100      | 1000       |
+| AS112 Reverse DNS [AS112]    | 590      | swt-cwt1-edge1 | swp3                  | 10000    | 1000       |
++------------------------------+----------+----------------+-----------------------+----------+------------+
+</pre></div>
 
-Please complete the following information about You and the Contributions.
-If You have questions about these terms, please contact us at
-manager@inex.ie.
 
-You accept and agree to the following terms and conditions for Your present
-and future Contributions submitted to INEX.  Except for the license granted
-herein to INEX, You reserve all right, title, and interest in and to Your
-Contributions.
-
-INEX projects (code, documentation, and any other materials) are released
-under the terms of the GNU General Public License, v2.0.
-
-You certify that:
-
-(a) Your Contributions are created in whole or in part by You and You have
-the right to submit it under the designated license; or
-
-(b) Your Contributions are based upon previous work that, to the best of
-your knowledge, is covered under an appropriate open source license and You
-have the right under that license to submit that work with modifications,
-whether created in whole or in part by You, under the designated license; or
-
-(c) Your Contributions are provided directly to You by some other person who
-certified (a) or (b) and You have not modified them.
-
-(d) You understand and agree that INEX projects and Your Contributions are
-public and that a record of the Contributions (including all metadata and
-personal information You submit with them) is maintained indefinitely and
-may be redistributed in a manner consistent with INEX&#39;s policies and/or the
-requirements of the GNU General Public License v2.0 where they are relevant.
-
-(e) You are granting Your Contributions to INEX under the terms of the GNU
-General Public License v2.0.
-
-Full Name:
-Email Addresses:
-Date:
+<p>The above examples are edge cases as they are not physically connected devices but rather virtual machines. This audit can be added to cron such that it will only make noise if an issue is found with something like:</p>
+<div class="highlight"><pre><span></span>13 9 * * *   www-data     /srv/ixpmanager/artisan audit:port-speeds \
+                            --cron --ignore-pids 14,15,16,21,357,590
 </pre></div>
               
             </div>
@@ -426,10 +407,10 @@ Date:
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../docker/" class="btn btn-neutral float-right" title="Docker">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../features/api/" class="btn btn-neutral float-right" title="API">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../ci/" class="btn btn-neutral" title="Continuous Integration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../users/" class="btn btn-neutral" title="Users & Contacts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -459,10 +440,10 @@ Date:
           <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../ci/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../users/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../docker/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../features/api/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

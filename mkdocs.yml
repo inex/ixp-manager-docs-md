@@ -21,6 +21,7 @@ pages:
     - 'Customer Tags': 'usage/customer-tags.md'
     - 'Customer Connections': 'usage/interfaces.md'
     - 'Users & Contacts': 'usage/users.md'
+    - 'Switches': 'usage/switches.md'
 - Features:
     - 'API': 'features/api.md'
     - 'AS112': 'features/as112.md'
