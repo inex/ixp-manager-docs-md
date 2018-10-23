@@ -6,35 +6,25 @@ IXP Manager can maintain a list of member route:/route6: prefixes and origin ASN
 
 ## Setup
 
-You need to have set up some IRRDB sources (e.g. RIPE's whois service) under the *IXP Admin Actions / IRRDB Configuration* on the left hand side menu. If this wasn't done as part of an upgrade from v3 / your initial installation then there is a database seeder you can use to install some to start you off:
+You need to have set up some IRRDB sources (e.g. RIPE's whois service) under the *IXP Admin Actions / IRRDB Configuration* on the left hand side menu. If you do not have any entries here, there is a database seeder you can use to install some to start you off:
 
 ```sh
 cd $IXPROOT
 ./artisan db:seed --class=IRRDBs
 ```
 
-[BGPQ3](https://github.com/snar/bgpq3) is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On Ubuntu 16.04 this is as easy as:
+[BGPQ3](https://github.com/snar/bgpq3) is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On Ubuntu 16.04/18.04 this is as easy as:
 
 ```sh
 apt install bgpq3
 ```
 
-Then configure the path to it in `config/ixp_tools.php`. If you have not used this file before, you'll need to create your own local copy as follows:
-
-```sh
-cp config/ixp_tools.php.dist config/ixp_tools.php
-```
-
-Then set the full call path for `bgpq3` in this file:
+Then configure the path to it in your `.env` file.
 
 ```php
-<?php
-
-  'irrdb' => [
-        'bgpq' => [
-            'path' => '/path/to/bgpq3',
-        ],
-    ],
+# Absolute path to run the bgpq3 utility
+# e.g. IXP_IRRDB_BGPQ3_PATH=/usr/local/bin/bgpq3
+IXP_IRRDB_BGPQ3_PATH=/usr/bin/bgpq3
 ```
 
 ## Usage
@@ -67,18 +57,20 @@ php artisan irrdb:update-prefix-db 64511
 Essentially, based on a customers AS number / IPv4/6 Peering Macro, IXP Manager [uses bgpq3](https://github.com/snar/bgpq3) to query IRRDBs as follows:
 
 ```bash
-bgpq3 -h $whois_server -S $sources -l pl -j [-6] $asn/macro
+bgpq3 -S $sources -l pl -j [-6] $asn/macro
 ```
 
-where `$whois_server` and `$sources` come from the IRRDB sources entries.
+where `$sources` come from the IRRDB sources entries.
 
 Or, a real example:
 
 ```bash
-bgpq3 -h whois.radb.net -S RIPE -l pl -j AS-BTIRE
-bgpq3 -h whois.radb.net -S RIPE -l pl -j -6 AS-BTIRE
+bgpq3 -S RIPE -l pl -j AS-BTIRE
+bgpq3 -S RIPE -l pl -j -6 AS-BTIRE
 ```
 
+
+**NB: currently, the whois server entry in IXP Manager is not used and all queries are sent to bgpq3's default host - `whois.radb.net`. However, the sources specific are used and only those sources on RADB's IRRDB are queried.**
 
 
 ## Details
