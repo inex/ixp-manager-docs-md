@@ -70,9 +70,6 @@ bgpq3 -S RIPE -l pl -j -6 AS-BTIRE
 ```
 
 
-**NB: currently, the whois server entry in IXP Manager is not used and all queries are sent to bgpq3's default host - `whois.radb.net`. However, the sources specific are used and only those sources on RADB's IRRDB are queried.**
-
-
 ## Details
 
 The IRRDB update commands will:
@@ -86,4 +83,4 @@ The IRRDB update commands will:
 
 **We use transactions to update the database so, even in the middle of a refresh, a full set of prefixes for all customers will still be available.** It also means the update process can be safely interrupted.
 
-*Note that our current implementation only queries RADB as BGPQ3 does not support the RIPE whois protocol.* Our version will however set the RADB source database according to the member's stated IRRDB database as set on the customer add / edit page - so, for customer's registered with the RIPE IRRDB, the RIPE database of RADB is queried.
+**Note that our current implementation only queries RADB as BGPQ3 does not support the RIPE whois protocol.** Our version will however set the RADB source database according to the member's stated IRRDB database as set on the customer add / edit page - so, for customer's registered with the RIPE IRRDB, the RIPE database of RADB is queried.
