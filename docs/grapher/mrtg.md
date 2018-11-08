@@ -170,12 +170,6 @@ update-rc.d mrtg defaults
 
 And disable the default cron job for MRTG on Ubuntu (`/etc/cron.d/mrtg`).
 
-## Notes and Troubleshooting
-
-* If you have difficulty getting MRTG to work, please also refer the MRTG documentation at https://oss.oetiker.ch/mrtg/doc/mrtg.en.html
-* Any references to installing MRTG above are guidelines from our own experience. IXP Manager's role is to generate a configuration file for MRTG. It is up to the user to install MRTG as they deem appropriate.
-* The above assumes that MRTG automatically reconfigures itself when the configuration changes [as stated in the MRTG documentation for *RunAsDaemon*](https://oss.oetiker.ch/mrtg/doc/mrtg-reference.en.html). We have seen inconsistent behaviors for this and if it does not work for you, you will need to add a step to restart the MRTG daemon to the reconfiguration script above (at the very end).
-* The Ubuntu example above was a pre-systemd example. If anyone has an example of a systemd MRTG daemon configuration please provide us with some updated documentation.
 
 ## Customising the Configuration
 
@@ -219,3 +213,37 @@ Which, in the order above, do:
 
 
 This generated emails are HTML formatted with embedded graph images.
+
+## Troubleshooting
+
+### General Notes
+
+* If you have difficulty getting MRTG to work, please also refer the MRTG documentation at https://oss.oetiker.ch/mrtg/doc/mrtg.en.html
+* Any references to installing MRTG above are guidelines from our own experience. IXP Manager's role is to generate a configuration file for MRTG. It is up to the user to install MRTG as they deem appropriate.
+* The above assumes that MRTG automatically reconfigures itself when the configuration changes [as stated in the MRTG documentation for *RunAsDaemon*](https://oss.oetiker.ch/mrtg/doc/mrtg-reference.en.html). We have seen inconsistent behaviors for this and if it does not work for you, you will need to add a step to restart the MRTG daemon to the reconfiguration script above (at the very end).
+* The Ubuntu example above was a pre-systemd example. If anyone has an example of a systemd MRTG daemon configuration please provide us with some updated documentation.
+
+### Missing Graphs
+
+A common issue raised on the mailing list is missing customer graphs. The code which generates MRTG configuration is [in the MRTG backend file](https://github.com/inex/IXP-Manager/blob/master/app/Services/Grapher/Backend/Mrtg.php) (see the function `getPeeringPorts()`).
+
+The conditions for a physical interface allocated to a customer to make the configuration file are:
+
+* the physical interface state must be either *Connected* or *Quarantine*.
+* the switch must be *active*.
+
+If you are not sure about how ports are configured in IXP Manager, please see [the interfaces document](../usage/interfaces.md).
+
+You can check the physical interface state by:
+
+1. goto the customer's overview page (select customer from dropdown menu on top right).
+2. select the *Ports* tab.
+3. edit the port via the *Pencil* icon next to the connection you are interested in.
+4. find the physical interface under *Physical Interfaces* and edit it via the *Pencil* icon on the right hand side of the row.
+5. **Status** should be either *Connected* or *Quarantine*.
+
+You can ensure a switch is active by:
+
+1. Select *Switches* from the left hand side *IXP ADMIN ACTIONS* menu.
+2. Click *Include Inactive* on the top right heading.
+3. Find the switch where the physical interface is and ensure *Active* is checked.

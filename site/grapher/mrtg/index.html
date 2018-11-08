@@ -250,11 +250,11 @@
         
             <li><a class="toctree-l4" href="#generating-mrtg-configuration">Generating MRTG Configuration</a></li>
         
-            <li><a class="toctree-l4" href="#notes-and-troubleshooting">Notes and Troubleshooting</a></li>
-        
             <li><a class="toctree-l4" href="#customising-the-configuration">Customising the Configuration</a></li>
         
             <li><a class="toctree-l4" href="#inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails</a></li>
+        
+            <li><a class="toctree-l4" href="#troubleshooting">Troubleshooting</a></li>
         
         </ul>
     
@@ -533,13 +533,6 @@ update-rc.d mrtg defaults
 
 
 <p>And disable the default cron job for MRTG on Ubuntu (<code>/etc/cron.d/mrtg</code>).</p>
-<h2 id="notes-and-troubleshooting">Notes and Troubleshooting<a class="headerlink" href="#notes-and-troubleshooting" title="Permanent link"></a></h2>
-<ul>
-<li>If you have difficulty getting MRTG to work, please also refer the MRTG documentation at https://oss.oetiker.ch/mrtg/doc/mrtg.en.html</li>
-<li>Any references to installing MRTG above are guidelines from our own experience. IXP Manager's role is to generate a configuration file for MRTG. It is up to the user to install MRTG as they deem appropriate.</li>
-<li>The above assumes that MRTG automatically reconfigures itself when the configuration changes <a href="https://oss.oetiker.ch/mrtg/doc/mrtg-reference.en.html">as stated in the MRTG documentation for <em>RunAsDaemon</em></a>. We have seen inconsistent behaviors for this and if it does not work for you, you will need to add a step to restart the MRTG daemon to the reconfiguration script above (at the very end).</li>
-<li>The Ubuntu example above was a pre-systemd example. If anyone has an example of a systemd MRTG daemon configuration please provide us with some updated documentation.</li>
-</ul>
 <h2 id="customising-the-configuration">Customising the Configuration<a class="headerlink" href="#customising-the-configuration" title="Permanent link"></a></h2>
 <p>Generally speaking, you should not customize the way IXP Manager generates MRTG configuration as the naming conventions are tightly coupled to how IXP Manager fetches the graphs. However, if there are bits of the MRTG configuration you need to alter, you can do it via <a href="../../features/skinning/">skinning</a>. <em>The skinning documentation actually uses MRTG as an example.</em></p>
 <h2 id="inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails<a class="headerlink" href="#inserting-traffic-data-into-the-database-reporting-emails" title="Permanent link"></a></h2>
@@ -573,6 +566,36 @@ update-rc.d mrtg defaults
 <li>Email a report of all ports with a non-zero error count yesterday.</li>
 </ol>
 <p>This generated emails are HTML formatted with embedded graph images.</p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link"></a></h2>
+<h3 id="general-notes">General Notes<a class="headerlink" href="#general-notes" title="Permanent link"></a></h3>
+<ul>
+<li>If you have difficulty getting MRTG to work, please also refer the MRTG documentation at https://oss.oetiker.ch/mrtg/doc/mrtg.en.html</li>
+<li>Any references to installing MRTG above are guidelines from our own experience. IXP Manager's role is to generate a configuration file for MRTG. It is up to the user to install MRTG as they deem appropriate.</li>
+<li>The above assumes that MRTG automatically reconfigures itself when the configuration changes <a href="https://oss.oetiker.ch/mrtg/doc/mrtg-reference.en.html">as stated in the MRTG documentation for <em>RunAsDaemon</em></a>. We have seen inconsistent behaviors for this and if it does not work for you, you will need to add a step to restart the MRTG daemon to the reconfiguration script above (at the very end).</li>
+<li>The Ubuntu example above was a pre-systemd example. If anyone has an example of a systemd MRTG daemon configuration please provide us with some updated documentation.</li>
+</ul>
+<h3 id="missing-graphs">Missing Graphs<a class="headerlink" href="#missing-graphs" title="Permanent link"></a></h3>
+<p>A common issue raised on the mailing list is missing customer graphs. The code which generates MRTG configuration is <a href="https://github.com/inex/IXP-Manager/blob/master/app/Services/Grapher/Backend/Mrtg.php">in the MRTG backend file</a> (see the function <code>getPeeringPorts()</code>).</p>
+<p>The conditions for a physical interface allocated to a customer to make the configuration file are:</p>
+<ul>
+<li>the physical interface state must be either <em>Connected</em> or <em>Quarantine</em>.</li>
+<li>the switch must be <em>active</em>.</li>
+</ul>
+<p>If you are not sure about how ports are configured in IXP Manager, please see <a href="../../usage/interfaces/">the interfaces document</a>.</p>
+<p>You can check the physical interface state by:</p>
+<ol>
+<li>goto the customer's overview page (select customer from dropdown menu on top right).</li>
+<li>select the <em>Ports</em> tab.</li>
+<li>edit the port via the <em>Pencil</em> icon next to the connection you are interested in.</li>
+<li>find the physical interface under <em>Physical Interfaces</em> and edit it via the <em>Pencil</em> icon on the right hand side of the row.</li>
+<li><strong>Status</strong> should be either <em>Connected</em> or <em>Quarantine</em>.</li>
+</ol>
+<p>You can ensure a switch is active by:</p>
+<ol>
+<li>Select <em>Switches</em> from the left hand side <em>IXP ADMIN ACTIONS</em> menu.</li>
+<li>Click <em>Include Inactive</em> on the top right heading.</li>
+<li>Find the switch where the physical interface is and ensure <em>Active</em> is checked.</li>
+</ol>
               
             </div>
           </div>
