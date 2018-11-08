@@ -1,30 +1,74 @@
 # IX-F Member List Export
 
-The [IX-F Member Export](http://ml.ix-f.net/) is an agreed and standardized JSON schema which allows IXPs to make their member lists available for consumption by tools such as PeeringDB, networks with automated peering managers, prospective members and the many other tools appearing in the peering eco-system.
+The [IX-F Member Export](http://ml.ix-f.net/) is an agreed and standardized JSON schema which allows IXPs to make their member lists available for consumption by tools such as [PeeringDB](https://www.peeringdb.com/), networks with automated peering managers, prospective members and the many other tools appearing in the peering eco-system.
 
-The key element of the IX-F Member Export is it makes you, the individual IXP, the canonical trusted source for data about *your own IXP*. Data that is guaranteed to be correct and up to date.
+The key element of the IX-F Member Export is it makes you, the individual IXP, the canonical trusted source for data about *your own IXP*. Data that has the best chance of being correct and up to date.
 
-To find out more about the JSON schema and see examples, you can [explore any of the public IXP end points available here](http://ml.ix-f.net/directory) or see the GitHub [euro-ix/json-schemas](https://github.com/euro-ix/json-schemas) repository.
+To find out more about the JSON schema and see examples, you can [read more here](https://ixpdb.euro-ix.net/en/), [explore many of the public IXP end points available here](https://ixpdb.euro-ix.net/en/ixpdb/providers/) or see the GitHub [euro-ix/json-schemas](https://github.com/euro-ix/json-schemas) repository.
 
-**IXP Manager** supports the IX-F Member List Export out of the box. It previously supported all versions from 0.3 to 0.5 but as of May 2017, we now only support 0.6 and 0.7. This is because these have become the stable common versions (as at time of writing, March 2018).
+**IXP Manager** supports the IX-F Member List Export out of the box. It previously supported all versions from 0.3 to 0.5 but as of May 2017, we now only support 0.6 and 0.7. This is because these have become the stable common versions (as at time of writing, November 2018).
 
-*Sometimes you may need something more customised than the the IX-F Member Export. For that, see [the other member export feature](member-export.md) if IXP Manager.*
+*Sometimes you may need something more customized than the the IX-F Member Export. For that, see [the other member export feature](member-export.md) if IXP Manager.*
+
+## Preparing the IX-F Member Export
+
+There are a small number of things you should do to ensure your IX-F export is correct.
+
+The first is to ensure you have correctly set the PeeringDB ID and IX-F ID in your infrastructure (see *Infrastructures* under the left hand side *IXP ADMIN ACTIONS* menu).
+
+The IX-F ID is mandatory. You will find yours by searching [the IX-F providers database here](https://ixpdb.euro-ix.net/en/ixpdb/providers/). If you are a new IXP that is not registered here, please email your IXP's: full name, short name, city / region / country, GPS co-ordinates and website URL to `secretariat (at) euro-ix (dot) net` so they can register it in the IXPDB.
+
+The second bit is a little hacky and we apologize for this. We are working to put a more appropriate UI (and database schema) around this in a future version. There is a database table called `networkinfo` that requires you to manually insert some detail on your peering LAN.
+
+The first thing you need is the peering VLAN ID. For this, select *VLANs* under the left hand side *IXP ADMIN ACTIONS* menu in IXP Manager. Locate your peering VLAN *DB ID* and note it.
+
+For our example, we will use the following sample data:
+
+* Peering VLAN *DB ID*: 66
+* IPv4 peering network: `192.0.2.0/25` with route servers on `.8` and `.9`
+* IPv6 peering network: `2001:db8:1000::/64` with route servers on `.8` and `.9`
+
+You need need to add this data to `networkinfo` with the following sample SQL commands:
+
+```mysql
+INSERT INTO `networkinfo`
+    ( `vlanid`, `protocol`, `network`, `masklen`, `rs1address`, `rs2address`),
+VALUES
+    ( 0, 66, 4, '192.0.2.0', '25', '192.0.2.8', '192.0.2.9' );
+
+INSERT INTO `networkinfo`
+    ( `vlanid`, `protocol`, `network`, `masklen`, `rs1address`, `rs2address`),
+VALUES
+    ( 0, 66, 6, '2001:db8:1000::', '64', '2001:db8:1000::8', '2001:db8:1000::9' );
+
+```
+
 
 ## Accessing the IX-F Member List
 
 If your version of IXP Manager is installed at, say, *https://ixp.example.com/*, then the IX-F Member List export can be accessed at:
 
 ```
-https://ixp.example.com/api/v4/member-export/ixf/0.6
+https://ixp.example.com/api/v4/member-export/ixf/0.7
 ```
 
-where *0.6* is a version parameter which allows for support of potential future versions.
+where *0.7* is a version parameter which allows for support of potential future versions.
 
-Note that the publically accessable version does not include individiual member details such as name (ASN is provided), max prefixes, MAC addresses, contact email and phone, when the member joined, member's web address, peering policy, NOC website, NOC hours or member type. This information is available to any logged in users or users querying [the API with an API key](api.md).
+Note that the publicly accessible version does not include individual member details such as name (ASN is provided), max prefixes, MAC addresses, contact email and phone, when the member joined, member's web address, peering policy, NOC website, NOC hours or member type. This information is available to any logged in users or users querying [the API with an API key](api.md).
 
-## Registering Your API Endpoint
+## Registering Your API Endpoint With IXPDB
 
-Register your IX-F Member List export on the [IXF Member List Directory Service](http://ml.ix-f.net/) at http://ml.ix-f.net/.
+IXPDB requires two pieces of information to fully integrate with the IXPDB. You can provide this information to `secretariat (at) euro-ix (dot) net` or - if you have a login to the Euro-IX website, you should be able to login and edit your own IXP directly on IXPDB.
+
+The first element needed is the API endpoint as described above in *Accessing the IX-F Member List*.
+
+The second is the API endpoint to export your statistics. This is:
+
+```
+https://ixp.example.com/grapher/infrastructure?id=1&type=log&period=day
+```
+
+where `id=1` is the infrastructure DB ID (see *Infrastructures* under the left hand side *IXP ADMIN ACTIONS* menu).
 
 ## Configuration Options
 
@@ -36,7 +80,7 @@ IXP_API_JSONEXPORTSCHEMA_PUBLIC=false
 
 **We strongly advise you not to disable public access if you are a standard IXP.** Remember, the public version is essentially the same list as you would provide on your standard website's list of members.
 
-In addition, membership of an IXP is easily discernable from a number of other sources including:
+In addition, membership of an IXP is easily discernible from a number of other sources including:
 
 * [PeeringDB](https://www.peeringdb.com)
 * Route collectors (your own, PCH, members’ own, ...)
@@ -45,7 +89,17 @@ In addition, membership of an IXP is easily discernable from a number of other s
 * RIPE RRC’s / RIS, RIPE Atlas
 * Commercial products (Noction, ...)
 
-Leave public access available, own your own data, ensure it's validy and advertise it!
+Leave public access available, own your own data, ensure it's validity and advertise it!
+
+If you wish to control access to the infrastructure statistics, see [the Grapher API documentation](../grapher/api.md). The statistics data is a JSON object representing each line of [a *the rest of the file* from a standard MRTG log file](https://oss.oetiker.ch/mrtg/doc/mrtg-logfile.en.html). This means the per-line array elements are:
+
+1. The Unix timestamp for the point in time the data on this line is relevant.
+2. The average incoming transfer rate in bytes per second. This is valid for the time between the A value of the current line and the A value of the previous line.
+3. The average outgoing transfer rate in bytes per second since the previous measurement.
+4. The maximum incoming transfer rate in bytes per second for the current interval. This is calculated from all the updates which have occurred in the current interval. If the current interval is 1 hour, and updates have occurred every 5 minutes, it will be the biggest 5 minute transfer rate seen during the hour.
+5. The maximum outgoing transfer rate in bytes per second for the current interval.
+
+
 
 
 ## Example: Member Lists
