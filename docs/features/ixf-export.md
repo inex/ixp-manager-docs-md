@@ -54,7 +54,7 @@ https://ixp.example.com/api/v4/member-export/ixf/0.7
 
 where *0.7* is a version parameter which allows for support of potential future versions.
 
-Note that the publicly accessible version does not include individual member details such as name (ASN is provided), max prefixes, MAC addresses, contact email and phone, when the member joined, member's web address, peering policy, NOC website, NOC hours or member type. This information is available to any logged in users or users querying [the API with an API key](api.md).
+Note that the publicly accessible version does not include individual member details such as name (ASN is provided), max prefixes, contact email and phone, when the member joined, member's web address, peering policy, NOC website, NOC hours or member type. This information is available to any logged in users or users querying [the API with an API key](api.md).
 
 ## Registering Your API Endpoint With IXPDB
 
