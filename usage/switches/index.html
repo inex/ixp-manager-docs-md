@@ -379,7 +379,7 @@
 <h2 id="port-audit">Port Audit<a class="headerlink" href="#port-audit" title="Permanent link"></a></h2>
 <p>A new feature (adding in v4.9.0) allows <strong>IXP Manager</strong> administrators to audit port speeds as configured in <a href="../interfaces/#physical-interface-settings">physical interfaces</a> against what has been discovered in the last SNMP run.</p>
 <p>You can run it from Artisan such as the following example:</p>
-<div class="highlight"><pre>./artisan audit:port-speeds
+<div class="highlight"><pre><span></span>./artisan audit:port-speeds
 
 Audit of Configured Physical Interface Port Speeds Against SNMP Discovered Speeds
 
@@ -397,7 +397,7 @@ Audit of Configured Physical Interface Port Speeds Against SNMP Discovered Speed
 
 
 <p>The above examples are edge cases as they are not physically connected devices but rather virtual machines. This audit can be added to cron such that it will only make noise if an issue is found with something like:</p>
-<div class="highlight"><pre>13 9 * * *   www-data     /srv/ixpmanager/artisan audit:port-speeds \
+<div class="highlight"><pre><span></span>13 9 * * *   www-data     /srv/ixpmanager/artisan audit:port-speeds \
                             --cron --ignore-pids 14,15,16,21,357,590
 </pre></div>
               
