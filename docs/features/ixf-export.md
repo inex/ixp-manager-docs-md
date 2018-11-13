@@ -53,7 +53,7 @@ VALUES
 The third task is to ensure your IXP's details are correct in the IX-F export. These are mostly set in the `.env` file (as well as some other places) and the following table shows how they get mapped to the IX-F Export:
 
 IX-F Export IXP Element   | How to Set in IXP Manager
-------------------------------------------------------------------------------------------
+--------------------------|---------------------------------------------------------------
 `shortname`               | In IXP Manager, from the *Infrastructure* object name field
 `name`                    | `IDENTITY_LEGALNAME` from `.env`
 `country`                 | `IDENTITY_COUNTRY` from `.env` **in 2-letter ISO2 format**
