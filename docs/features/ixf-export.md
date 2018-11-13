@@ -14,9 +14,13 @@ To find out more about the JSON schema and see examples, you can [read more here
 
 There are a small number of things you should do to ensure your IX-F export is correct.
 
+**Correctly set the PeeringDB ID and IX-F ID**
+
 The first is to ensure you have correctly set the PeeringDB ID and IX-F ID in your infrastructure (see *Infrastructures* under the left hand side *IXP ADMIN ACTIONS* menu).
 
 The IX-F ID is mandatory. You will find yours by searching [the IX-F providers database here](https://ixpdb.euro-ix.net/en/ixpdb/providers/). If you are a new IXP that is not registered here, please email your IXP's: full name, short name, city / region / country, GPS co-ordinates and website URL to `secretariat (at) euro-ix (dot) net` so they can register it in the IXPDB.
+
+**Create Network Info**
 
 The second bit is a little hacky and we apologize for this. We are working to put a more appropriate UI (and database schema) around this in a future version. There is a database table called `networkinfo` that requires you to manually insert some detail on your peering LAN.
 
@@ -42,6 +46,32 @@ VALUES
     ( 66, 6, '2001:db8:1000::', '64', '2001:db8:1000::8', '2001:db8:1000::9' );
 
 ```
+
+
+**Set Your IXP's Name / Country / etc**
+
+The third task is to ensure your IXP's details are correct in the IX-F export. These are mostly set in the `.env` file (as well as some other places) and the following table shows how they get mapped to the IX-F Export:
+
+IX-F Export IXP Element   | How to Set in IXP Manager
+------------------------------------------------------------------------------------------
+`shortname`               | In IXP Manager, from the *Infrastructure* object name field
+`name`                    | `IDENTITY_LEGALNAME` from `.env`
+`country`                 | `IDENTITY_COUNTRY` from `.env` **in 2-letter ISO2 format**
+`url`                     | `IDENTITY_CORPORATE_URL` from `.env`
+`peeringdb_id`            | In IXP Manager, from the *Infrastructure* object
+`ixf_id`                  | In IXP Manager, from the *Infrastructure* object
+`support_email`           | `IDENTITY_SUPPORT_EMAIL` from `.env`
+`support_phone`           | `IDENTITY_SUPPORT_PHONE` from `.env`
+`support_contact_hours`   | `IDENTITY_SUPPORT_HOURS` from `.env`
+`emergency_email`         | `IDENTITY_SUPPORT_EMAIL` from `.env`
+`emergency_phone`         | `IDENTITY_SUPPORT_PHONE` from `.env`
+`emergency_contact_hours` | `IDENTITY_SUPPORT_HOURS` from `.env`
+`billing_email`           | `IDENTITY_BILLING_EMAIL`
+`billing_phone`           | `IDENTITY_BILLING_PHONE`
+`billing_contact_hours`   | `IDENTITY_BILLING_HOURS`
+
+We we say *from the Infrastructure object* above, we mean that when you are logged into IXP Manager as an admin, it's the *Infrastructures* menu option under *IXP Admin Actions* on the left hand side.
+
 
 
 ## Accessing the IX-F Member List
