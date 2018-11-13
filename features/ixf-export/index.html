@@ -169,8 +169,6 @@
         
             <li><a class="toctree-l4" href="#preparing-the-ix-f-member-export">Preparing the IX-F Member Export</a></li>
         
-            <li><a class="toctree-l4" href="#ix-f-export-ixp-element-how-to-set-in-ixp-manager">IX-F Export IXP Element   | How to Set in IXP Manager</a></li>
-        
             <li><a class="toctree-l4" href="#accessing-the-ix-f-member-list">Accessing the IX-F Member List</a></li>
         
             <li><a class="toctree-l4" href="#registering-your-api-endpoint-with-ixpdb">Registering Your API Endpoint With IXPDB</a></li>
@@ -418,22 +416,76 @@
 
 <p><strong>Set Your IXP's Name / Country / etc</strong></p>
 <p>The third task is to ensure your IXP's details are correct in the IX-F export. These are mostly set in the <code>.env</code> file (as well as some other places) and the following table shows how they get mapped to the IX-F Export:</p>
-<h2 id="ix-f-export-ixp-element-how-to-set-in-ixp-manager">IX-F Export IXP Element   | How to Set in IXP Manager<a class="headerlink" href="#ix-f-export-ixp-element-how-to-set-in-ixp-manager" title="Permanent link"></a></h2>
-<p><code>shortname</code>               | In IXP Manager, from the <em>Infrastructure</em> object name field
-<code>name</code>                    | <code>IDENTITY_LEGALNAME</code> from <code>.env</code>
-<code>country</code>                 | <code>IDENTITY_COUNTRY</code> from <code>.env</code> <strong>in 2-letter ISO2 format</strong>
-<code>url</code>                     | <code>IDENTITY_CORPORATE_URL</code> from <code>.env</code>
-<code>peeringdb_id</code>            | In IXP Manager, from the <em>Infrastructure</em> object
-<code>ixf_id</code>                  | In IXP Manager, from the <em>Infrastructure</em> object
-<code>support_email</code>           | <code>IDENTITY_SUPPORT_EMAIL</code> from <code>.env</code>
-<code>support_phone</code>           | <code>IDENTITY_SUPPORT_PHONE</code> from <code>.env</code>
-<code>support_contact_hours</code>   | <code>IDENTITY_SUPPORT_HOURS</code> from <code>.env</code>
-<code>emergency_email</code>         | <code>IDENTITY_SUPPORT_EMAIL</code> from <code>.env</code>
-<code>emergency_phone</code>         | <code>IDENTITY_SUPPORT_PHONE</code> from <code>.env</code>
-<code>emergency_contact_hours</code> | <code>IDENTITY_SUPPORT_HOURS</code> from <code>.env</code>
-<code>billing_email</code>           | <code>IDENTITY_BILLING_EMAIL</code>
-<code>billing_phone</code>           | <code>IDENTITY_BILLING_PHONE</code>
-<code>billing_contact_hours</code>   | <code>IDENTITY_BILLING_HOURS</code></p>
+<table>
+<thead>
+<tr>
+<th>IX-F Export IXP Element</th>
+<th>How to Set in IXP Manager</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>shortname</code></td>
+<td>In IXP Manager, from the <em>Infrastructure</em> object name field</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>IDENTITY_LEGALNAME</code> from <code>.env</code></td>
+</tr>
+<tr>
+<td><code>country</code></td>
+<td><code>IDENTITY_COUNTRY</code> from <code>.env</code> <strong>in 2-letter ISO2 format</strong></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>IDENTITY_CORPORATE_URL</code> from <code>.env</code></td>
+</tr>
+<tr>
+<td><code>peeringdb_id</code></td>
+<td>In IXP Manager, from the <em>Infrastructure</em> object</td>
+</tr>
+<tr>
+<td><code>ixf_id</code></td>
+<td>In IXP Manager, from the <em>Infrastructure</em> object</td>
+</tr>
+<tr>
+<td><code>support_email</code></td>
+<td><code>IDENTITY_SUPPORT_EMAIL</code> from <code>.env</code></td>
+</tr>
+<tr>
+<td><code>support_phone</code></td>
+<td><code>IDENTITY_SUPPORT_PHONE</code> from <code>.env</code></td>
+</tr>
+<tr>
+<td><code>support_contact_hours</code></td>
+<td><code>IDENTITY_SUPPORT_HOURS</code> from <code>.env</code></td>
+</tr>
+<tr>
+<td><code>emergency_email</code></td>
+<td><code>IDENTITY_SUPPORT_EMAIL</code> from <code>.env</code></td>
+</tr>
+<tr>
+<td><code>emergency_phone</code></td>
+<td><code>IDENTITY_SUPPORT_PHONE</code> from <code>.env</code></td>
+</tr>
+<tr>
+<td><code>emergency_contact_hours</code></td>
+<td><code>IDENTITY_SUPPORT_HOURS</code> from <code>.env</code></td>
+</tr>
+<tr>
+<td><code>billing_email</code></td>
+<td><code>IDENTITY_BILLING_EMAIL</code></td>
+</tr>
+<tr>
+<td><code>billing_phone</code></td>
+<td><code>IDENTITY_BILLING_PHONE</code></td>
+</tr>
+<tr>
+<td><code>billing_contact_hours</code></td>
+<td><code>IDENTITY_BILLING_HOURS</code></td>
+</tr>
+</tbody>
+</table>
 <p>We we say <em>from the Infrastructure object</em> above, we mean that when you are logged into IXP Manager as an admin, it's the <em>Infrastructures</em> menu option under <em>IXP Admin Actions</em> on the left hand side.</p>
 <h2 id="accessing-the-ix-f-member-list">Accessing the IX-F Member List<a class="headerlink" href="#accessing-the-ix-f-member-list" title="Permanent link"></a></h2>
 <p>If your version of IXP Manager is installed at, say, <em>https://ixp.example.com/</em>, then the IX-F Member List export can be accessed at:</p>
