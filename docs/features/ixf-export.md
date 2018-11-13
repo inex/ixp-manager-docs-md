@@ -34,12 +34,12 @@ You need need to add this data to `networkinfo` with the following sample SQL co
 INSERT INTO `networkinfo`
     ( `vlanid`, `protocol`, `network`, `masklen`, `rs1address`, `rs2address`),
 VALUES
-    ( 0, 66, 4, '192.0.2.0', '25', '192.0.2.8', '192.0.2.9' );
+    ( 66, 4, '192.0.2.0', '25', '192.0.2.8', '192.0.2.9' );
 
 INSERT INTO `networkinfo`
     ( `vlanid`, `protocol`, `network`, `masklen`, `rs1address`, `rs2address`),
 VALUES
-    ( 0, 66, 6, '2001:db8:1000::', '64', '2001:db8:1000::8', '2001:db8:1000::9' );
+    ( 66, 6, '2001:db8:1000::', '64', '2001:db8:1000::8', '2001:db8:1000::9' );
 
 ```
 
