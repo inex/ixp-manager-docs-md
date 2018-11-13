@@ -169,6 +169,8 @@
         
             <li><a class="toctree-l4" href="#preparing-the-ix-f-member-export">Preparing the IX-F Member Export</a></li>
         
+            <li><a class="toctree-l4" href="#ix-f-export-ixp-element-how-to-set-in-ixp-manager">IX-F Export IXP Element   | How to Set in IXP Manager</a></li>
+        
             <li><a class="toctree-l4" href="#accessing-the-ix-f-member-list">Accessing the IX-F Member List</a></li>
         
             <li><a class="toctree-l4" href="#registering-your-api-endpoint-with-ixpdb">Registering Your API Endpoint With IXPDB</a></li>
@@ -389,8 +391,10 @@
 <p><em>Sometimes you may need something more customized than the the IX-F Member Export. For that, see <a href="../member-export/">the other member export feature</a> if IXP Manager.</em></p>
 <h2 id="preparing-the-ix-f-member-export">Preparing the IX-F Member Export<a class="headerlink" href="#preparing-the-ix-f-member-export" title="Permanent link"></a></h2>
 <p>There are a small number of things you should do to ensure your IX-F export is correct.</p>
+<p><strong>Correctly set the PeeringDB ID and IX-F ID</strong></p>
 <p>The first is to ensure you have correctly set the PeeringDB ID and IX-F ID in your infrastructure (see <em>Infrastructures</em> under the left hand side <em>IXP ADMIN ACTIONS</em> menu).</p>
 <p>The IX-F ID is mandatory. You will find yours by searching <a href="https://ixpdb.euro-ix.net/en/ixpdb/providers/">the IX-F providers database here</a>. If you are a new IXP that is not registered here, please email your IXP's: full name, short name, city / region / country, GPS co-ordinates and website URL to <code>secretariat (at) euro-ix (dot) net</code> so they can register it in the IXPDB.</p>
+<p><strong>Create Network Info</strong></p>
 <p>The second bit is a little hacky and we apologize for this. We are working to put a more appropriate UI (and database schema) around this in a future version. There is a database table called <code>networkinfo</code> that requires you to manually insert some detail on your peering LAN.</p>
 <p>The first thing you need is the peering VLAN ID. <em>[clarification note: this is nothing to do with PeeringDB but the VLAN created within IXP Manager].</em> For this, select <em>VLANs</em> under the left hand side <em>IXP ADMIN ACTIONS</em> menu in IXP Manager. Locate your peering VLAN <em>DB ID</em> and note it.</p>
 <p>For our example, we will use the following sample data:</p>
@@ -412,6 +416,25 @@
 </pre></div>
 
 
+<p><strong>Set Your IXP's Name / Country / etc</strong></p>
+<p>The third task is to ensure your IXP's details are correct in the IX-F export. These are mostly set in the <code>.env</code> file (as well as some other places) and the following table shows how they get mapped to the IX-F Export:</p>
+<h2 id="ix-f-export-ixp-element-how-to-set-in-ixp-manager">IX-F Export IXP Element   | How to Set in IXP Manager<a class="headerlink" href="#ix-f-export-ixp-element-how-to-set-in-ixp-manager" title="Permanent link"></a></h2>
+<p><code>shortname</code>               | In IXP Manager, from the <em>Infrastructure</em> object name field
+<code>name</code>                    | <code>IDENTITY_LEGALNAME</code> from <code>.env</code>
+<code>country</code>                 | <code>IDENTITY_COUNTRY</code> from <code>.env</code> <strong>in 2-letter ISO2 format</strong>
+<code>url</code>                     | <code>IDENTITY_CORPORATE_URL</code> from <code>.env</code>
+<code>peeringdb_id</code>            | In IXP Manager, from the <em>Infrastructure</em> object
+<code>ixf_id</code>                  | In IXP Manager, from the <em>Infrastructure</em> object
+<code>support_email</code>           | <code>IDENTITY_SUPPORT_EMAIL</code> from <code>.env</code>
+<code>support_phone</code>           | <code>IDENTITY_SUPPORT_PHONE</code> from <code>.env</code>
+<code>support_contact_hours</code>   | <code>IDENTITY_SUPPORT_HOURS</code> from <code>.env</code>
+<code>emergency_email</code>         | <code>IDENTITY_SUPPORT_EMAIL</code> from <code>.env</code>
+<code>emergency_phone</code>         | <code>IDENTITY_SUPPORT_PHONE</code> from <code>.env</code>
+<code>emergency_contact_hours</code> | <code>IDENTITY_SUPPORT_HOURS</code> from <code>.env</code>
+<code>billing_email</code>           | <code>IDENTITY_BILLING_EMAIL</code>
+<code>billing_phone</code>           | <code>IDENTITY_BILLING_PHONE</code>
+<code>billing_contact_hours</code>   | <code>IDENTITY_BILLING_HOURS</code></p>
+<p>We we say <em>from the Infrastructure object</em> above, we mean that when you are logged into IXP Manager as an admin, it's the <em>Infrastructures</em> menu option under <em>IXP Admin Actions</em> on the left hand side.</p>
 <h2 id="accessing-the-ix-f-member-list">Accessing the IX-F Member List<a class="headerlink" href="#accessing-the-ix-f-member-list" title="Permanent link"></a></h2>
 <p>If your version of IXP Manager is installed at, say, <em>https://ixp.example.com/</em>, then the IX-F Member List export can be accessed at:</p>
 <div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/member-export/ixf/0.7
