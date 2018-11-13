@@ -50,7 +50,11 @@ VALUES
 
 **Set Your IXP's Name / Country / etc**
 
-The third task is to ensure your IXP's details are correct in the IX-F export. These are mostly set in the `.env` file (as well as some other places) and the following table shows how they get mapped to the IX-F Export:
+The third task is to ensure your IXP's details are correct in the IX-F export.
+
+You will most likely have nothing to do here as it would have been done on installation but this reference may prove useful if there are any issues.
+
+These are mostly set in the `.env` file (as well as some other places) and the following table shows how they get mapped to the IX-F Export:
 
 IX-F Export IXP Element   | How to Set in IXP Manager
 --------------------------|---------------------------------------------------------------
