@@ -123,10 +123,10 @@ cp tools/docker/containers/mysql/docker.sql.dist tools/docker/containers/mysql/d
 You can put your own database here also. If you do, you will need to rebuilt the mysql contain:
 
 ```sh
- docker-compose build mysql
- ```
+docker-compose build mysql
+```
 
- You can access the MySQL database via:
+You can access the MySQL database via:
 
 ```sh
 docker exec -it ixpm_mysql_1 mysql -i ixpmanager
@@ -177,7 +177,7 @@ You can then view emails sent on: http://localhost:1080/
 
 From the `www` container, you can interact with these via:
 
-```
+```sh
 $ docker exec -it ixpm_www_1 bash
 # ping switch1
 ...
