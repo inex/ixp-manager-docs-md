@@ -384,18 +384,18 @@
 <p>IXP Manager can maintain a list of member route:/route6: prefixes and origin ASNs as registered in IRRDBs in its database and then use these to, for example, generate strict inbound filters on route servers.</p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link"></a></h2>
 <p>You need to have set up some IRRDB sources (e.g. RIPE's whois service) under the <em>IXP Admin Actions / IRRDB Configuration</em> on the left hand side menu. If you do not have any entries here, there is a database seeder you can use to install some to start you off:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 ./artisan db:seed --class<span class="o">=</span>IRRDBs
 </pre></div>
 
 
 <p><a href="https://github.com/snar/bgpq3">BGPQ3</a> is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On Ubuntu 16.04/18.04 this is as easy as:</p>
-<div class="highlight"><pre><span></span>apt install bgpq3
+<div class="highlight"><pre>apt install bgpq3
 </pre></div>
 
 
 <p>Then configure the path to it in your <code>.env</code> file.</p>
-<div class="highlight"><pre><span></span><span class="x"># Absolute path to run the bgpq3 utility</span>
+<div class="highlight"><pre><span class="x"># Absolute path to run the bgpq3 utility</span>
 <span class="x"># e.g. IXP_IRRDB_BGPQ3_PATH=/usr/local/bin/bgpq3</span>
 <span class="x">IXP_IRRDB_BGPQ3_PATH=/usr/bin/bgpq3</span>
 </pre></div>
@@ -403,7 +403,7 @@
 
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link"></a></h2>
 <p>To populate (and update) your local IRRDB, run the following commands:</p>
-<div class="highlight"><pre><span></span>cd $IXPROOT
+<div class="highlight"><pre>cd $IXPROOT
 php artisan irrdb:update-prefix-db
 php artisan irrdb:update-asn-db
 </pre></div>
@@ -418,19 +418,19 @@ php artisan irrdb:update-asn-db
 <li><code>-vvv</code> (debug): show prefixes/ASNs added remove also.</li>
 </ol>
 <p>You can also specify a specific customer to update (rather than all) with an additional free form parameter. The database is searched for a matching customer in the order: customer ASN; customer ID (database primary key); and customer shortname. E.g.:</p>
-<div class="highlight"><pre><span></span>php artisan irrdb:update-prefix-db 64511
+<div class="highlight"><pre>php artisan irrdb:update-prefix-db 64511
 </pre></div>
 
 
 <h3 id="internal-workings">Internal Workings<a class="headerlink" href="#internal-workings" title="Permanent link"></a></h3>
 <p>Essentially, based on a customers AS number / IPv4/6 Peering Macro, IXP Manager <a href="https://github.com/snar/bgpq3">uses bgpq3</a> to query IRRDBs as follows:</p>
-<div class="highlight"><pre><span></span>bgpq3 -S <span class="nv">$sources</span> -l pl -j <span class="o">[</span>-6<span class="o">]</span> <span class="nv">$asn</span>/macro
+<div class="highlight"><pre>bgpq3 -S <span class="nv">$sources</span> -l pl -j <span class="o">[</span>-6<span class="o">]</span> <span class="nv">$asn</span>/macro
 </pre></div>
 
 
 <p>where <code>$sources</code> come from the IRRDB sources entries.</p>
 <p>Or, a real example:</p>
-<div class="highlight"><pre><span></span>bgpq3 -S RIPE -l pl -j AS-BTIRE
+<div class="highlight"><pre>bgpq3 -S RIPE -l pl -j AS-BTIRE
 bgpq3 -S RIPE -l pl -j -6 AS-BTIRE
 </pre></div>
 

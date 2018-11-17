@@ -405,7 +405,7 @@
 <p>IXP Manager does not support netflow and support is not on the roadmap. This is because most netflow implementations do not export mac address information, which means that they cannot provide workable mac layer peer-to-peer statistics.</p>
 <h3 id="cisco-switches">Cisco Switches<a class="headerlink" href="#cisco-switches" title="Permanent link"></a></h3>
 <p>Of Cisco's entire product range, only the Nexus 3000 and Nexus 9000 product range support sflow. Also, the sflow support on the Cisco Nexus 3k range is crippled due to the NX-OS software implementation, which forces ingress+egress sflow to be configured on specified ports rather than ingress-only.  Functional accounting requires ingress-only or egress-only sflow to be configured on a per-port basis: ingress + egress causes double-counting of packets.  It may be possible to work around this limitation using the broadcom shell using something like the following untested configuration:</p>
-<div class="highlight"><pre><span></span>n3k# conf t
+<div class="highlight"><pre>n3k# conf t
 n3k(config)# feature sflow
 n3k(config)# sflow data-source interface Ethernet1/1
 n3k(config)# ^Z
@@ -422,7 +422,7 @@ n3k#
 <p>Note that this command is not reboot persistent, and any time a TIX24X is rebooted, the command needs to be re-entered manually.  Note also that this configuration is untested.</p>
 <h3 id="brocade-turboiron-24x">Brocade TurboIron 24X<a class="headerlink" href="#brocade-turboiron-24x" title="Permanent link"></a></h3>
 <p>By default a TIX24X will export 100 sflow records per second.  This can be changed using the following command:</p>
-<div class="highlight"><pre><span></span>SSH@Switch# dm device-command 2762233
+<div class="highlight"><pre>SSH@Switch# dm device-command 2762233
 SSH@Switch# tor modreg CPUPKTMAXBUCKETCONFIG(3) PKT_MAX_REFRESH=0xHHHH
 </pre></div>
 
