@@ -138,6 +138,12 @@ And you can get shell access to the container with:
 docker exec -it ixpm_mysql_1 bash
 ```
 
+You can also connect to the MySQL server from your local machine using tools such as the standard MySQL client, [TablePlus](https://tableplus.io/) or [Sequel Pro](https://www.sequelpro.com/) with the following settings:
+
+```sh
+mysql --protocol=TCP --port 33060 -u root
+```
+
 ### Web Server
 
  Note that the `www` container mounts the IXP Manager development directory under `/srv/ixpmanager`. This means all local code changes are immediately reflected on the Docker web server.

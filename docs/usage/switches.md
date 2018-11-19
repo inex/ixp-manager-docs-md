@@ -1,11 +1,146 @@
 # Switches
 
-Switch functionality is currently being migrated in development from Zend Framework to Laravel. Once that is complete, this documentation will be updated.
+The central element of an IXP is the switches. **IXP Manager** provides comprehensive management features for switches (and more complex configurations such as VXLAN overlay networks).
 
-In the meantime see: https://github.com/inex/IXP-Manager/wiki/Switch-and-Switch-Port-Management
+We strongly advise trying to add and manage switches in IXP Manager without SNMP. SNMP v2 is a core element of how switches work within IXP Manager including accurate port discovery, graphing, port states, optic availability, etc.
+
+## Listing Switches
+
+You access the switch management functionality in IXP Manager via the *Switches* menu option under *IXP Admin Actions* in the left hand side control menu. The default action is to list the configured switches:
+
+![Listing Switches](img/switches-list.png)
+
+From the above screenshot, you will notice a number of features:
+
+1. There is a toggle button *Show Active Only* which will toggle the list views to show all switches (default) or only active switches.
+2. The default switch information view is shown. There are two additional list views under the top right *List Mode:* dropdown:
+    * **OS View:** shows information (where available via SNMP) about the switch software, its version, the serial number, etc. This view is useful for planning software upgrades.
+    * **L3 View:** when running your exchange using an overlay network such as VXLAN, this view shows the layer 3 details of your switches including AS number, loopback address, etc.
+3. The *Help* button on the top right links to this documentation.
+4. The *plus* icon on the top right is used to add new switches.
+
+In the list view above, you will also notice that there are per row / per switch options on the right:
+
+![Listing Switches](img/switches-list-dd.png)
+
+1. The *eye* (view) button shows the complete database record for a switch including all the SNMP discovered information from the *Iface* and *MAU* SNMP MIBs.
+2. The *pencil* button allows you to edit a switch's details.
+3. The *trashcan* button allows you to delete a switch. **NB:** a switch can only be deleted if there are no associated ports, patch panel connections, etc. Switches can alternativily be made inactive by editing it and unchecking the *Active* checkbox.
+2. Under *SNMP Actions* there are two options and the resulting view is made from a live/immediate SNMP poll:
+    * **View / Edit Ports:** Allows you to edit port type, port active status, etc. Please see documentation below for details.
+    * **Live Port States:** Shows the current port states including: name, alias/description, LAG, speed / duplex, MTU, administrative and operational state.
+3. Under *Database Actions* you can get information on the switches ports as recorded in the database (usualy from the last time the switch was polled):
+    * **View / Edit Ports:** Allows you to edit port type, port active status, etc. Please see documentation below for details. Where SNMP is available, the above SNMP version of this has more features and is preferrred.
+    * **Port MAU Detail:** MAU (Medium Attachment Units) - provides information on the XFP / SFP / etc. optics installed in a switch. If the option is disabled then it means the switch does not support the SNMP MAU MIB.
+    * **Port Report:** a simple report listing who is connected to each port in a switch. E.g. useful as a hardcopy when going to a datacentre.
+
+## Adding and Editing Switches
+
+From the [list view described above](#Listing-Switches), click the *plus* button in the top right to add a switch. Switches are added by SNMP poll so the first step is to provide a hostname and SNMP v2 community:
+
+![Adding a Switch - SNMP](img/switches-add-snmp.png)
+
+The switch must respond to SNMP queries from the server on which IXP Manager is installed. This can be testing on the command line as follows:
+
+```sh
+root@ixpmanager:~# snmpget -c yourcommunity -v 2c switch01.mgmt.example.com .1.3.6.1.2.1.1.1.0
+iso.3.6.1.2.1.1.1.0 = STRING: "Arista Networks EOS version 4.18.0F running on an Arista Networks DCS-7280SR-48C6"
+```
+
+After completing the details and clicking *Next >>*, IXP Manager will poll the switch and present you with the second (and last) stage in adding a switch:
+
+![Adding a Switch](img/switches-add.png)
+
+The important things to note about this are:
+
+1. Clicking the green *Help* button will show individual help / instructions for each field.
+2. The hostname and SNMP community are read only here as they were entered in the previous step and the additional details pre-filled were discovered by a SNMP poll.
+3. The name of the switch is how you want it shown in various sections of IXP Manager. We recommend using the hostname of the fully-qualified-domain-name of the switch. Regardless of what you use, please do not use periods, spaces or non-alphanumeric characters besides dashes and underscores.
+4. The vendor and model are prefilled where IXP Manager could successfully identify them based on [platform discovery - see below](#Platform-Discovery). If the vendor does not exist in the dropdown, it can be added via the *Vendors* option in the left-hand menu.
+5. The elements under *Management Configuration* are not used directly by IXP Manager but can be used for orchestration and automated provisioning (as it used by INEX - [see here](https://github.com/inex/ixp-manager-provisioning)).
+6. The elements under *Layer 3 Configuration* are not used directly by IXP Manager but can be used for orchestration and automated provisioning of overlay networks such as VXLAN (as it used by INEX - [see here](https://github.com/inex/ixp-manager-provisioning)).
 
 
-## Port Audit
+### Platform Discovery
+
+The discovery of a switches vendor, model, operating system details and serial number - as well as MAU details - is achieved via a third party package called [OSS_SNMP](https://github.com/opensolutions/OSS_SNMP). While this shares an author in common with IXP Manager, it is a separate project.
+
+If your switch is not discovered automatically, you can open a ticket [with the OSS_SNMP project **directly**](https://github.com/opensolutions/OSS_SNMP/issues) and ensure you [provide the details requested here](https://github.com/opensolutions/OSS_SNMP/wiki/Device-Discovery#adding-new-devices).
+
+## Managing Switch Ports
+
+Recall the per row / per switch options on the right hand side of each switch's row when listing switches:
+
+![Listing Switches](img/switches-list-dd.png)
+
+These options allow you to list and manage switch ports. Of these, the most relevant is the *View / Edit Ports* under *SNMP Actions* which leads to a page as follows:
+
+![Switch Port Management](img/switches-port-mgmt.png)
+
+The page allows you to:
+
+* Change the port type dynamically via AJAX on a per port basis (the column of *Unset / Unknown* dropdowns).
+* Select a group of ports (and optionally invert the selection via the *square refresh* icon) or select all ports. Then, with the selected ports:
+    * delete them
+    * change their type
+    * set them as active / inactive
+
+Note that deleting ports is not a permanent action if the port physically exists and is discovered in a subsequent SNMP poll.
+
+### Switch Port Types
+
+While some of these are clear from the name, we will explain each type here for completeness:
+
+* **Unset / Unknown:** no type has been set. A port is automtaically set to **Peering** or **Core** when it is assigned to a customer / core bundle.
+* **Peering:** peering port assigned to a customer. Automatically set when the port is assigned to a customer.
+* **Monitor:** a port used for monitoring / mirroring traffic from another port. These ports are used by INEX when provisioning a new customer during what we call our *quarantine process*. This allows us to ensure the customer end is configured correctly without discovery protocols (CDP, LLDP, etc.), keepalives, no unexpected tagged packets, etc.
+* **Core:** a core / interswitch link port. This is automatically set when a port is added to a core bundle.
+* **Other:** a purpose other than what we have provided options for.
+* **Management:** management access to a switch.
+* **Fanout** and **Reseller**: used for [reseller functionality](../features/reseller.md).
+
+## Automated Polling / SNMP Updates
+
+Swicth and switch port information in the database can go stale very quickly. As such, IXP Manager will poll switches using SNMP routinely. This needs to be set-up using an hourly crob job such as the following:
+
+```
+10 * * * *    www-data    /srv/ixpmanager/artisan switch:snmp-poll -q
+```
+
+The command signature is:
+
+```
+switch:snmp-poll [--log] [--noflush] [-q, --quiet] [<switch>]
+```
+
+where:
+
+* `[-q, --quiet]` does not output anything unless there is an error. Should be used for cron jobs.
+* `[--log]` outputs detailed SNMP polling information to `/srv/ixpmanager/storage/logs/laravel.log`. You can tail this file when running it to help diagnose any issues.
+* `[--noflush]` polls the switch but does not write anything to the database.
+* `[<switch>]` allows you to optionally limit the polling to a single named switch (the switch's name, not hostname). If not specified, all switches are polled.
+
+Not that inactive switches are not polled unless an inactive switch name is explicitly specified.
+
+
+## Migrating Customers to a New Switch
+
+When moving IXP customers from one switch to another, add the new switch into the IXP Manager as described above. The customer port assignments can easily be changed to the new switch using the IXP Manager web interface. It is advisable not to delete the old port assignment and create a new one, because if this happens, then the old customer port graphs will not be preserved.
+
+The process is, for each customer:
+
+* find the customer's overview page on IXP Manager (chose customer from top right dropdown)
+* find and edit the relevant port under the *Ports*
+* edit the physical interface of each port being moved
+* chose the new switch and switch port
+* save the changes
+
+When the switch port updates have been completed, it's advisable to rebuild the mrtg configuration using the CLI tool and (if using dynamically discovered MAC addresses) also to update the layer 2 database, otherwise some MRTG and sflow stats may be lost.
+
+
+## Related Tools
+
+### Port Audit
 
 A new feature (adding in v4.9.0) allows **IXP Manager** administrators to audit port speeds as configured in [physical interfaces](interfaces.md#physical-interface-settings) against what has been discovered in the last SNMP run.
 

@@ -502,6 +502,11 @@ docker volume ls -f <span class="nv">dangling</span><span class="o">=</span><spa
 </pre></div>
 
 
+<p>You can also connect to the MySQL server from your local machine using tools such as the standard MySQL client, <a href="https://tableplus.io/">TablePlus</a> or <a href="https://www.sequelpro.com/">Sequel Pro</a> with the following settings:</p>
+<div class="highlight"><pre>mysql --protocol<span class="o">=</span>TCP --port <span class="m">33060</span> -u root
+</pre></div>
+
+
 <h3 id="web-server">Web Server<a class="headerlink" href="#web-server" title="Permanent link"></a></h3>
 <p>Note that the <code>www</code> container mounts the IXP Manager development directory under <code>/srv/ixpmanager</code>. This means all local code changes are immediately reflected on the Docker web server.</p>
 <p>The Dockerfile used to build the <code>www</code> container can be found at <code>tools/docker/containers/www/Dockerfile</code>.</p>
