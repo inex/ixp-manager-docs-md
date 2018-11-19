@@ -25,12 +25,12 @@ In the list view above, you will also notice that there are per row / per switch
 
 1. The *eye* (view) button shows the complete database record for a switch including all the SNMP discovered information from the *Iface* and *MAU* SNMP MIBs.
 2. The *pencil* button allows you to edit a switch's details.
-3. The *trashcan* button allows you to delete a switch. **NB:** a switch can only be deleted if there are no associated ports, patch panel connections, etc. Switches can alternativily be made inactive by editing it and unchecking the *Active* checkbox.
-2. Under *SNMP Actions* there are two options and the resulting view is made from a live/immediate SNMP poll:
+3. The *trashcan* button allows you to delete a switch. **NB:** a switch can only be deleted if there are no associated ports, patch panel connections, etc. Switches can alternatively be made inactive by editing it and unchecking the *Active* checkbox.
+4. Under *SNMP Actions* there are two options and the resulting view is made from a live/immediate SNMP poll:
     * **View / Edit Ports:** Allows you to edit port type, port active status, etc. Please see documentation below for details.
     * **Live Port States:** Shows the current port states including: name, alias/description, LAG, speed / duplex, MTU, administrative and operational state.
-3. Under *Database Actions* you can get information on the switches ports as recorded in the database (usualy from the last time the switch was polled):
-    * **View / Edit Ports:** Allows you to edit port type, port active status, etc. Please see documentation below for details. Where SNMP is available, the above SNMP version of this has more features and is preferrred.
+5. Under *Database Actions* you can get information on the switches ports as recorded in the database (usually from the last time the switch was polled):
+    * **View / Edit Ports:** Allows you to edit port type, port active status, etc. Please see documentation below for details. Where SNMP is available, the above SNMP version of this has more features and is preferred.
     * **Port MAU Detail:** MAU (Medium Attachment Units) - provides information on the XFP / SFP / etc. optics installed in a switch. If the option is disabled then it means the switch does not support the SNMP MAU MIB.
     * **Port Report:** a simple report listing who is connected to each port in a switch. E.g. useful as a hardcopy when going to a datacentre.
 
@@ -91,10 +91,10 @@ Note that deleting ports is not a permanent action if the port physically exists
 
 While some of these are clear from the name, we will explain each type here for completeness:
 
-* **Unset / Unknown:** no type has been set. A port is automtaically set to **Peering** or **Core** when it is assigned to a customer / core bundle.
+* **Unset / Unknown:** no type has been set. A port is automatically set to **Peering** or **Core** when it is assigned to a customer / core bundle.
 * **Peering:** peering port assigned to a customer. Automatically set when the port is assigned to a customer.
 * **Monitor:** a port used for monitoring / mirroring traffic from another port. These ports are used by INEX when provisioning a new customer during what we call our *quarantine process*. This allows us to ensure the customer end is configured correctly without discovery protocols (CDP, LLDP, etc.), keepalives, no unexpected tagged packets, etc.
-* **Core:** a core / interswitch link port. This is automatically set when a port is added to a core bundle.
+* **Core:** a core / inter-switch link port. This is automatically set when a port is added to a core bundle.
 * **Other:** a purpose other than what we have provided options for.
 * **Management:** management access to a switch.
 * **Fanout** and **Reseller**: used for [reseller functionality](../features/reseller.md).
