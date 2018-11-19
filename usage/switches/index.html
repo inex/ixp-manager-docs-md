@@ -405,14 +405,14 @@
 <ol>
 <li>The <em>eye</em> (view) button shows the complete database record for a switch including all the SNMP discovered information from the <em>Iface</em> and <em>MAU</em> SNMP MIBs.</li>
 <li>The <em>pencil</em> button allows you to edit a switch's details.</li>
-<li>The <em>trashcan</em> button allows you to delete a switch. <strong>NB:</strong> a switch can only be deleted if there are no associated ports, patch panel connections, etc. Switches can alternativily be made inactive by editing it and unchecking the <em>Active</em> checkbox.</li>
+<li>The <em>trashcan</em> button allows you to delete a switch. <strong>NB:</strong> a switch can only be deleted if there are no associated ports, patch panel connections, etc. Switches can alternatively be made inactive by editing it and unchecking the <em>Active</em> checkbox.</li>
 <li>Under <em>SNMP Actions</em> there are two options and the resulting view is made from a live/immediate SNMP poll:<ul>
 <li><strong>View / Edit Ports:</strong> Allows you to edit port type, port active status, etc. Please see documentation below for details.</li>
 <li><strong>Live Port States:</strong> Shows the current port states including: name, alias/description, LAG, speed / duplex, MTU, administrative and operational state.</li>
 </ul>
 </li>
-<li>Under <em>Database Actions</em> you can get information on the switches ports as recorded in the database (usualy from the last time the switch was polled):<ul>
-<li><strong>View / Edit Ports:</strong> Allows you to edit port type, port active status, etc. Please see documentation below for details. Where SNMP is available, the above SNMP version of this has more features and is preferrred.</li>
+<li>Under <em>Database Actions</em> you can get information on the switches ports as recorded in the database (usually from the last time the switch was polled):<ul>
+<li><strong>View / Edit Ports:</strong> Allows you to edit port type, port active status, etc. Please see documentation below for details. Where SNMP is available, the above SNMP version of this has more features and is preferred.</li>
 <li><strong>Port MAU Detail:</strong> MAU (Medium Attachment Units) - provides information on the XFP / SFP / etc. optics installed in a switch. If the option is disabled then it means the switch does not support the SNMP MAU MIB.</li>
 <li><strong>Port Report:</strong> a simple report listing who is connected to each port in a switch. E.g. useful as a hardcopy when going to a datacentre.</li>
 </ul>
@@ -460,10 +460,10 @@ iso.3.6.1.2.1.1.1.0 <span class="o">=</span> STRING: <span class="s2">&quot;Aris
 <h3 id="switch-port-types">Switch Port Types<a class="headerlink" href="#switch-port-types" title="Permanent link"></a></h3>
 <p>While some of these are clear from the name, we will explain each type here for completeness:</p>
 <ul>
-<li><strong>Unset / Unknown:</strong> no type has been set. A port is automtaically set to <strong>Peering</strong> or <strong>Core</strong> when it is assigned to a customer / core bundle.</li>
+<li><strong>Unset / Unknown:</strong> no type has been set. A port is automatically set to <strong>Peering</strong> or <strong>Core</strong> when it is assigned to a customer / core bundle.</li>
 <li><strong>Peering:</strong> peering port assigned to a customer. Automatically set when the port is assigned to a customer.</li>
 <li><strong>Monitor:</strong> a port used for monitoring / mirroring traffic from another port. These ports are used by INEX when provisioning a new customer during what we call our <em>quarantine process</em>. This allows us to ensure the customer end is configured correctly without discovery protocols (CDP, LLDP, etc.), keepalives, no unexpected tagged packets, etc.</li>
-<li><strong>Core:</strong> a core / interswitch link port. This is automatically set when a port is added to a core bundle.</li>
+<li><strong>Core:</strong> a core / inter-switch link port. This is automatically set when a port is added to a core bundle.</li>
 <li><strong>Other:</strong> a purpose other than what we have provided options for.</li>
 <li><strong>Management:</strong> management access to a switch.</li>
 <li><strong>Fanout</strong> and <strong>Reseller</strong>: used for <a href="../../features/reseller/">reseller functionality</a>.</li>
