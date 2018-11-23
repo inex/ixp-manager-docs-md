@@ -40,6 +40,7 @@ pages:
     - 'Mailing List Management': 'features/mailing-lists.md'
     - 'Nagios': 'features/nagios.md'
     - 'Patch Panels': 'features/patch-panels.md'
+    - 'Peering Manager': 'features/peering-manager.md'
     - 'Reseller Functionality': 'features/reseller.md'
     - 'Route Collectors': 'features/route-collectors.md'
     - 'Route Servers': 'features/route-servers.md'
