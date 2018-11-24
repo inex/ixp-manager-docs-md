@@ -79,3 +79,31 @@ Earlier versions of FTOS only support egress sflow, but support for ingress sflo
 ### Cumulus Linux
 
 Cumulus Linux uses hsflowd, which does not allow the operator to enable or disable sflow on a per-port basis, nor does it permit the operator to configure ports to use ingress-only sflow.  This configuration needs to be handled using the `/usr/lib/cumulus/portsamp` command, which is not reboot persistent.  It is strongly recommended to handle this configuration using orchestration, as it is not feasible to manually maintain this configuration.
+
+## Fanout
+
+### Configuring sflowtool fan-out
+
+The sflow data from all the IXP switches will normally be directed at a single sflow collector.  Often it is useful to have multiple copies of this sflow data stream so that the sflow data can be processed in different ways.
+
+IXP Manager uses sflow data for two separate components:
+
+1. point-to-point ixp traffic graphs
+2. detecting BGP live sessions on the exchange and using the info to update the peering matrix
+
+This means that IXP Manager needs two separate sflow feeds.  This can be achieved by using the `sflowtool` fanout facility, which sends an exact copy of all incoming sflow records to a list of destinations.  For example, the following command listens for incoming sflow data on port 6343 and send three copies out.  Two copies are directed to different ports on the same server, on ports 5500 and 5501.  The third copy is sent to 192.0.2.20, port 6343.
+
+```
+# sflowtool -4 -p 6343 -f 127.0.0.1/5500 -f 127.0.0.1/5501 -f 192.0.2.20/6343
+```
+
+This example could be used for handling P2P traffic graphs and BGP session detection on one machine, while sending a third sflow data feed to a separate server for IXP development or debugging.  The two local sflow feeds can be read using `sflowtool`:
+
+```
+# sflowtool -4 -p 5500 -l
+# sflowtool -4 -p 5501 -l
+```
+
+The `sflowtool` fanout daemon should be started by the normal operating system daemon startup mechanism, e.g. script in a `rc.d` or `init.d` directory, or by a manual entry in `/etc/rc.local`.
+
+If running `sflowtool` version 3.23 or greater, it is important to use the `-4` command-line parameter in sflowtool because otherwise it will listen on both ipv4 and ipv6 sockets. If you have an `sflowtool` process attempting to listen on a wildcard socket, it will stop other `sflowtool` processes from starting.

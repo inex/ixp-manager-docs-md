@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Route Servers - IXP Manager Documentation</title>
+  <title>Peering Matrix - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Route Servers";
-    var mkdocs_page_input_path = "features/route-servers.md";
-    var mkdocs_page_url = "/features/route-servers/";
+    var mkdocs_page_name = "Peering Matrix";
+    var mkdocs_page_input_path = "features/peering-matrix.md";
+    var mkdocs_page_url = "/features/peering-matrix/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -194,9 +194,25 @@
                     
     <a class="" href="../peering-manager/">Peering Manager</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../peering-matrix/">Peering Matrix</a>
+    <a class="current" href="./">Peering Matrix</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#peering-matrix">Peering Matrix</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#overview">Overview</a></li>
+        
+            <li><a class="toctree-l4" href="#controlling-access-to-the-peering-matrix">Controlling Access to the Peering Matrix</a></li>
+        
+            <li><a class="toctree-l4" href="#troubleshooting">Troubleshooting</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
@@ -206,23 +222,9 @@
                     
     <a class="" href="../route-collectors/">Route Collectors</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Route Servers</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#route-servers">Route Servers</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#configuration-generation-features">Configuration Generation Features</a></li>
-        
-            <li><a class="toctree-l4" href="#setting-up">Setting Up</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../route-servers/">Route Servers</a>
                 </li>
                 <li class="">
                     
@@ -370,10 +372,10 @@
         
       
     
-    <li>Route Servers</li>
+    <li>Peering Matrix</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/route-servers.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/peering-matrix.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -383,41 +385,69 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="route-servers">Route Servers<a class="headerlink" href="#route-servers" title="Permanent link"></a></h1>
-<blockquote>
-<p><strong>Prerequisite Reading:</strong> Ensure you first familiarize yourself with <a href="../routers/">the generic documentation on managing and generating router configurations here</a>.</p>
-</blockquote>
-<p>Normally on a peering exchange, all connected parties will establish bilateral peering relationships with each other customer connected to the exchange. As the number of connected parties increases, it becomes increasingly more difficult to manage peering relationships with customers of the exchange. A typical peering exchange full-mesh eBGP configuration might look something similar to the diagram on the left hand side.</p>
-<p><img alt="Route Servers Diagram" src="../img/rs-diagram.png" /></p>
-<p>The full-mesh BGP session relationship scenario requires that each BGP speaker configure and manage BGP sessions to every other BGP speaker on the exchange. In this example, a full-mesh setup requires 7 BGP sessions per member router, and this increases every time a new member connects to the exchange.</p>
-<p>However, by using a route servers for peering relationships, the number of BGP sessions per router stays at two: one for each route server (assuming a resilient set up). Clearly this is a more sustainable way of maintaining IXP peering relationships with a large number of participants.</p>
-<h2 id="configuration-generation-features">Configuration Generation Features<a class="headerlink" href="#configuration-generation-features" title="Permanent link"></a></h2>
-<p>This is <a href="../routers/">covered in the router documentation here</a>. Please review that to learn how to automatically generate route server configurations. This section goes into a bit more specific detail on INEX's route server configuration (as shipped with IXP Manager) and why it's safe to use.</p>
-<p>The features of the route server configurations that IXP Manager generates include:</p>
+                <h1 id="peering-matrix">Peering Matrix<a class="headerlink" href="#peering-matrix" title="Permanent link"></a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link"></a></h2>
+<p>The peering matrix system builds up a list of who is peering with whom over your IXP.</p>
+<p><img alt="Peering Matrix" src="../img/peering-matrix.png" /></p>
+<p>There are two primary data sources: route server clients and sflow.  Currently, it is assumed that all IXP participants who connect to the route server have an open peering policy and do not filter prefixes.</p>
+<p><strong>NB:</strong> You must check the <em>Peering Matrix</em> option when editing VLANs for that VLAN to be included in the peering matrix on the frontend.</p>
+<h3 id="data-source-route-server-clients">Data Source: Route Server Clients<a class="headerlink" href="#data-source-route-server-clients" title="Permanent link"></a></h3>
+<p>Route server clients are automatically shown as peering with each other onm the peering matrix. No operator input is required for this.</p>
+<h3 id="data-source-sflow-bgp-session-detection">Data Source: sflow BGP session detection<a class="headerlink" href="#data-source-sflow-bgp-session-detection" title="Permanent link"></a></h3>
+<p>IXP Manager can pick out active BGP sessions from an sflow data feed.  This is handled using the <code>sflow-detect-ixp-bgp-sessions</code> script.  As this is a perl script, it is necessary to install all the perl modules listed in the <code>check-perl-dependencies.pl</code> script.</p>
+<p>Sflow is a packet sampling mechanism, which means that it will take some while before the peering database is populated. After 24 hours of operation, the peering database should be relatively complete.</p>
+<p><code>sflow-detect-ixp-bgp-sessions</code> needs its own dedicated sflow data feed, so it is necessary to set up sflow data fan-out using the <code>sflowtool</code> as described in the <a href="../sflow/#fanout">sflow fan-out section here</a>.  INEX normally uses udp port 5501 for its bgp detection sflow feed.</p>
+<p>For more information, see the <a href="../../grapher/sflow/">sflow documentation</a>.</p>
+<h3 id="configuring-ixpmanagerconf">Configuring ixpmanager.conf<a class="headerlink" href="#configuring-ixpmanagerconf" title="Permanent link"></a></h3>
+<p>In addition to the correct SQL configuration for the <code>&lt;sql&gt;</code> section, <code>sflow-detect-ixp-bgp-sessions</code> needs the following options set in the <code>&lt;ixp&gt;</code> section of <a href="https://github.com/inex/IXP-Manager/blob/32d6388cab1d7299f1917655b78edebf3e71181a/tools/perl-lib/IXPManager/ixpmanager.conf.dist"><code>ixpmanager.conf</code></a>:</p>
 <ul>
-<li>full prefix filtering based on IRRDB entries (can be disabled on a per member basis if required) - see <a href="../irrdb/">the IRRDB documentation here</a>;</li>
-<li>full origin ASN filtering based on IRRDB entries (can be disabled on a per member basis if required);</li>
-<li>in all cases, prefix filtering for IPv4 and v6 based on the IANA special purpose registries (also known as bogon lists);</li>
-<li>ensuring next hop is the neighbor address to ensure no next hop hijacking;</li>
-<li>max prefix limits;</li>
-<li>multiple VLAN interfaces for a single member supported;</li>
-<li>large BGP communities supported;</li>
-<li>a decade of production use and experience.</li>
+<li><code>sflowtool</code>: the location of the <code>sflowtool</code> binary.</li>
+<li><code>sflowtool_bgp_opts</code>: command line arguments for <code>sflowtool</code>.</li>
 </ul>
-<p>There are <a href="https://github.com/inex/IXP-Manager/wiki/Route-Server-Testing">some old notes on route server testing here</a> which may also be useful.</p>
-<h2 id="setting-up">Setting Up<a class="headerlink" href="#setting-up" title="Permanent link"></a></h2>
-<p>You first need to add your route servers to the <strong>IXP Manager</strong> routers database. See <a href="../routers/">this page on how to do that</a>.</p>
-<p>Typically an IXP's route server service will have a dedicated ASN that is different to the IXP's own management / route collector ASN. As such, you need to add a new <em>internal</em> customer to IXP Manager.</p>
-<p><strong>You are strongly advised to use / request a 16-bit ASN from your RIR for route server use. If you do not, you will be unable to offer your members standard community based filtering.</strong></p>
-<p>Here's an example from INEX for our <em>route server #1</em>:</p>
-<p><img alt="Route Servers INEX Customer" src="../img/rs-inex-customer.png" /></p>
-<p>You then need to create an interface for this route server on each peering LAN where the service will be offered. Here again is INEX's example from our peering LAN1 in Dublin:</p>
-<p><img alt="Route Servers INEX VLAN Interface Entry" src="../img/rs-inex-vli.png" /></p>
-<p>There's a couple things to note in the above:</p>
-<ol>
-<li><em>AS112 Client</em> is checked which means (so long as <em>Route Server Client</em> is checked on the <a href="../as112/">AS112 service</a>) the AS112 service will peer with the route servers.</li>
-<li><em>Apply IRRDB Filtering</em> has no meaning here as this is the route server rather than the route server client.</li>
-</ol>
+<h3 id="sample-ixpmanagerconf">Sample ixpmanager.conf<a class="headerlink" href="#sample-ixpmanagerconf" title="Permanent link"></a></h3>
+<div class="highlight"><pre>&lt;ixp&gt;
+  # location of sflow executable
+  sflowtool = /usr/local/bin/sflowtool
+
+  # sflow listener to p2p rrd exporter, listening on udp port 5500
+  sflowtool_opts = -4 -p 5500 -l
+
+  # sflow listener for BGP peering matrix, listening on udp port 5501
+  sflowtool_bgp_opts = -4 -p 5501 -l
+&lt;/ixp&gt;
+</pre></div>
+
+
+<h3 id="testing-the-daemon">Testing the daemon<a class="headerlink" href="#testing-the-daemon" title="Permanent link"></a></h3>
+<p>The system can be tested using <code>sflow-detect-ixp-bgp-sessions --debug</code>.  If it starts up correctly, the script should occasionally print out peering sessions like this:</p>
+<div class="highlight"><pre>DEBUG: [2001:db8::ff]:64979 - [2001:db8::7]:179 tcpflags 000010000: ack. database updated.
+DEBUG: [192.0.2.126]:30502 - [192.0.2.44]:179 tcpflags 000010000: ack. database updated.
+DEBUG: [2001:db8::5:0:1]:179 - [2001:db8::4:0:2]:32952 tcpflags 000011000: ack psh. database updated.
+</pre></div>
+
+
+<h3 id="running-the-daemon-in-production">Running the daemon in production<a class="headerlink" href="#running-the-daemon-in-production" title="Permanent link"></a></h3>
+<p>The script <code>control-sflow-detect-ixp-bgp-sessions</code> should be copied (and edited if necessary) to the operating system startup directory so that <code>sflow-detect-ixp-bgp-sessions</code> is started as a normal daemon.</p>
+<h2 id="controlling-access-to-the-peering-matrix">Controlling Access to the Peering Matrix<a class="headerlink" href="#controlling-access-to-the-peering-matrix" title="Permanent link"></a></h2>
+<p>The peering matrix is publically available by default. However you can limit access to a minimum user privilege by setting <code>PEERING_MATRIX_MIN_AUTH</code> to an integer from 0 to 3 in your <code>.env</code>. See <a href="../../usage/users/#types-of-users">here for what these integers mean</a>. For example, to limit access to any logged in user, set the following:</p>
+<div class="highlight"><pre>PEERING_MATRIX_MIN_AUTH=1
+</pre></div>
+
+
+<p>You can disable the peering matrix by setting the following in <code>.env</code>:</p>
+<div class="highlight"><pre>IXP_FE_FRONTEND_DISABLED_PEERING_MATRIX=true
+</pre></div>
+
+
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link"></a></h2>
+<ul>
+<li>The script doesn't print anything when in debug mode</li>
+</ul>
+<p>This probably means that it's not getting an sflow feed.  Check to ensure that sflowtool is feeding the script correctly by using the <code>sflow-detect-ixp-bgp-sessions --insanedebug</code>.  This should print out what the script is reading from sflowtool.  Under normal circumstances, this will be very noisy.</p>
+<ul>
+<li>The script prints <code>ignored - no address match in database</code> when in debug mode</li>
+</ul>
+<p>If the IP addresses match those on the IXP's peering LAN, then the IP address database is not populated correctly.  This can be fixed by entering the IXP's addresses in the <code>IP Addressing</code> menu of the web UI.</p>
               
             </div>
           </div>
@@ -425,10 +455,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../routers/" class="btn btn-neutral float-right" title="Router Configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../reseller/" class="btn btn-neutral float-right" title="Reseller Functionality">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../route-collectors/" class="btn btn-neutral" title="Route Collectors"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../peering-manager/" class="btn btn-neutral" title="Peering Manager"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -458,10 +488,10 @@
           <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../route-collectors/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../peering-manager/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../routers/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../reseller/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
