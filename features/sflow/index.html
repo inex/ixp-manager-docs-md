@@ -196,6 +196,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../peering-matrix/">Peering Matrix</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../reseller/">Reseller Functionality</a>
                 </li>
                 <li class="">
@@ -276,6 +280,8 @@
         <ul>
         
             <li><a class="toctree-l4" href="#switch-implementation-limitations">Switch Implementation Limitations</a></li>
+        
+            <li><a class="toctree-l4" href="#fanout">Fanout</a></li>
         
         </ul>
     
@@ -436,6 +442,27 @@ SSH@Switch# tor modreg CPUPKTMAXBUCKETCONFIG(3) PKT_MAX_REFRESH=0xHHHH
 <p>Earlier versions of FTOS only support egress sflow, but support for ingress sflow was added in 2014.  If you intend to deploy IXP Manager sflow accounting on a Dell F10 switch, then you should upgrade to a software release which supports ingress sflow.</p>
 <h3 id="cumulus-linux">Cumulus Linux<a class="headerlink" href="#cumulus-linux" title="Permanent link"></a></h3>
 <p>Cumulus Linux uses hsflowd, which does not allow the operator to enable or disable sflow on a per-port basis, nor does it permit the operator to configure ports to use ingress-only sflow.  This configuration needs to be handled using the <code>/usr/lib/cumulus/portsamp</code> command, which is not reboot persistent.  It is strongly recommended to handle this configuration using orchestration, as it is not feasible to manually maintain this configuration.</p>
+<h2 id="fanout">Fanout<a class="headerlink" href="#fanout" title="Permanent link"></a></h2>
+<h3 id="configuring-sflowtool-fan-out">Configuring sflowtool fan-out<a class="headerlink" href="#configuring-sflowtool-fan-out" title="Permanent link"></a></h3>
+<p>The sflow data from all the IXP switches will normally be directed at a single sflow collector.  Often it is useful to have multiple copies of this sflow data stream so that the sflow data can be processed in different ways.</p>
+<p>IXP Manager uses sflow data for two separate components:</p>
+<ol>
+<li>point-to-point ixp traffic graphs</li>
+<li>detecting BGP live sessions on the exchange and using the info to update the peering matrix</li>
+</ol>
+<p>This means that IXP Manager needs two separate sflow feeds.  This can be achieved by using the <code>sflowtool</code> fanout facility, which sends an exact copy of all incoming sflow records to a list of destinations.  For example, the following command listens for incoming sflow data on port 6343 and send three copies out.  Two copies are directed to different ports on the same server, on ports 5500 and 5501.  The third copy is sent to 192.0.2.20, port 6343.</p>
+<div class="highlight"><pre># sflowtool -4 -p 6343 -f 127.0.0.1/5500 -f 127.0.0.1/5501 -f 192.0.2.20/6343
+</pre></div>
+
+
+<p>This example could be used for handling P2P traffic graphs and BGP session detection on one machine, while sending a third sflow data feed to a separate server for IXP development or debugging.  The two local sflow feeds can be read using <code>sflowtool</code>:</p>
+<div class="highlight"><pre># sflowtool -4 -p 5500 -l
+# sflowtool -4 -p 5501 -l
+</pre></div>
+
+
+<p>The <code>sflowtool</code> fanout daemon should be started by the normal operating system daemon startup mechanism, e.g. script in a <code>rc.d</code> or <code>init.d</code> directory, or by a manual entry in <code>/etc/rc.local</code>.</p>
+<p>If running <code>sflowtool</code> version 3.23 or greater, it is important to use the <code>-4</code> command-line parameter in sflowtool because otherwise it will listen on both ipv4 and ipv6 sockets. If you have an <code>sflowtool</code> process attempting to listen on a wildcard socket, it will stop other <code>sflowtool</code> processes from starting.</p>
               
             </div>
           </div>

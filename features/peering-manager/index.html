@@ -201,12 +201,18 @@
         
             <li><a class="toctree-l4" href="#required-configuration-settings">Required Configuration Settings</a></li>
         
+            <li><a class="toctree-l4" href="#disabling-the-peering-manager">Disabling the Peering Manager</a></li>
+        
             <li><a class="toctree-l4" href="#peering-manager-test-mode">Peering Manager Test Mode</a></li>
         
         </ul>
     
 
     </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../peering-matrix/">Peering Matrix</a>
                 </li>
                 <li class="">
                     
@@ -388,7 +394,7 @@
 <li><strong>Peers:</strong> Fellow IXP members that you peer with via the route servers, bilaterally or both;</li>
 <li><strong>Rejected / Ignored:</strong> You can move members from any of the other tabs to this tab if you wish to ignore them, or if they have refused peering. This allows you to keep the other lists clean.</li>
 </ul>
-<p>The mechanism for detecting bilateral peers is by by observing established TCP sessions between member peering IP addresses on port 179 using <a href="../../grapher/sflow.md]">sflow</a>.</p>
+<p>The mechanism for detecting bilateral peers is by by observing established TCP sessions between member peering IP addresses on port 179 using <a href="../../grapher/sflow.md]">sflow</a>. See the <a href="../peering-matrix/">peering matrix documentation</a> as setting up the peering matrix will provide all the data needed for the peering manager.</p>
 <p><strong>NB: You must check the <em>Peering Manager</em> option when editing VLANs for that VLAN to be included in the peering manager.</strong></p>
 <p>The features of the peering manager include:</p>
 <ul>
@@ -409,6 +415,12 @@
 
 
 <p>The default peering request email template can be found at <code>resources/views/peering-manager/peering-message.foil.php</code>. You can <a href="../skinning/">skin</a> this if you wish but it is generic enough to use as is.</p>
+<h2 id="disabling-the-peering-manager">Disabling the Peering Manager<a class="headerlink" href="#disabling-the-peering-manager" title="Permanent link"></a></h2>
+<p>You can disable the peering manager by setting the following in <code>.env</code>:</p>
+<div class="highlight"><pre>IXP_FE_FRONTEND_DISABLED_PEERING_MANAGER=true
+</pre></div>
+
+
 <h2 id="peering-manager-test-mode">Peering Manager Test Mode<a class="headerlink" href="#peering-manager-test-mode" title="Permanent link"></a></h2>
 <p>For testing / experimentation purposes, you can enable a test mode which, when enabled, will send all peering requests to the defined test email.</p>
 <p>To enable test mode, just set the following in <code>.env</code>:</p>
@@ -429,7 +441,7 @@ PEERING_MANAGER_TESTDATE=true
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../reseller/" class="btn btn-neutral float-right" title="Reseller Functionality">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../peering-matrix/" class="btn btn-neutral float-right" title="Peering Matrix">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../patch-panels/" class="btn btn-neutral" title="Patch Panels"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -465,7 +477,7 @@ PEERING_MANAGER_TESTDATE=true
         <span><a href="../patch-panels/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../reseller/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../peering-matrix/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
