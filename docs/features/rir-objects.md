@@ -33,6 +33,7 @@ Arguments:
 
 Options:
       --send-email      Rather than printing to screen, sends and email for updating a RIR automatically
+      --force           Send email even if it matches the cached version
       --to[=TO]         The email address to send the object to (if not specified then uses IXP_API_RIR_EMAIL_TO)
       --from[=FROM]     The email address from which the email is sent (if not specified, tries IXP_API_RIR_EMAIL_FROM and then defaults to IDENTITY_EMAIL)
   -h, --help            Display this help message
@@ -43,6 +44,8 @@ Help:
 ```
 
 You will note that without the `--send-email` switch, the command will print to standard output allowing you to consume the object and use it on another way.
+
+**NB:** the generated object is stored in the cache when it is generated with `--send-email` for the first time. Future runs with `--send-email` will only resend the email if the generated object differs from the cached version. You can force an email to be sent with `--force`. Secondly, the cache used is a file system based cache irrespective of the `CACHE_DRIVER` `.env` settings. To wipe it, run: `artisan cache:clear file`.
 
 The following options are available for use in the `.env` file:
 
