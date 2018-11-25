@@ -42,6 +42,7 @@ pages:
     - 'Patch Panels': 'features/patch-panels.md'
     - 'Peering Manager': 'features/peering-manager.md'
     - 'Peering Matrix': 'features/peering-matrix.md'
+    - 'RIR Objects': 'features/rir-objects.md'
     - 'Reseller Functionality': 'features/reseller.md'
     - 'Route Collectors': 'features/route-collectors.md'
     - 'Route Servers': 'features/route-servers.md'
