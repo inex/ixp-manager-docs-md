@@ -419,6 +419,7 @@ Arguments:
 
 Options:
       --send-email      Rather than printing to screen, sends and email <span class="k">for</span> updating a RIR automatically
+      --force           Send email even <span class="k">if</span> it matches the cached version
       --to<span class="o">[=</span>TO<span class="o">]</span>         The email address to send the object to <span class="o">(</span><span class="k">if</span> not specified <span class="k">then</span> uses IXP_API_RIR_EMAIL_TO<span class="o">)</span>
       --from<span class="o">[=</span>FROM<span class="o">]</span>     The email address from which the email is sent <span class="o">(</span><span class="k">if</span> not specified, tries IXP_API_RIR_EMAIL_FROM and <span class="k">then</span> defaults to IDENTITY_EMAIL<span class="o">)</span>
   -h, --help            Display this <span class="nb">help </span>message
@@ -430,6 +431,7 @@ Help:
 
 
 <p>You will note that without the <code>--send-email</code> switch, the command will print to standard output allowing you to consume the object and use it on another way.</p>
+<p><strong>NB:</strong> the generated object is stored in the cache when it is generated with <code>--send-email</code> for the first time. Future runs with <code>--send-email</code> will only resend the email if the generated object differs from the cached version. You can force an email to be sent with <code>--force</code>. Secondly, the cache used is a file system based cache irrespective of the <code>CACHE_DRIVER</code> <code>.env</code> settings. To wipe it, run: <code>artisan cache:clear file</code>.</p>
 <p>The following options are available for use in the <code>.env</code> file:</p>
 <div class="highlight"><pre>#######################################################################################
 # Options for updating RIR Objects - see https://docs.ixpmanager.org/features/rir-objects/
