@@ -16,11 +16,12 @@ pages:
     - 'Upgrade From v3': 'install/upgrade-v3.md'
     - 'Runtime Configuration': 'install/runtime.md'
 - General Usage:
+    - 'Contacts': 'usage/contacts.md'
     - 'Customers / Members': 'usage/customers.md'
     - 'Customer Notes': 'usage/customer-notes.md'
     - 'Customer Tags': 'usage/customer-tags.md'
     - 'Customer Connections': 'usage/interfaces.md'
-    - 'Users & Contacts': 'usage/users.md'
+    - 'Users': 'usage/users.md'
     - 'Switches': 'usage/switches.md'
 - Features:
     - 'API': 'features/api.md'
