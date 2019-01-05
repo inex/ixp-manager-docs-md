@@ -17,21 +17,21 @@ protected function _feInit()
     $this->view->feParams = $this->_feParams = (object)[
 
         // the ORM entity object that CRUD operations will affect:
-        'entity'            => InfrastructureEntity::class,  
+        'entity'            => InfrastructureEntity::class,
 
-        'pagetitle'         => 'Infrastructures',     
+        'pagetitle'         => 'Infrastructures',
 
         // default is false. If true, add / edit / delete will be disabled
         'readonly'          => false,
 
-        'titleSingular'     => 'Infrastructure',   
-        'nameSingular'      => 'an infrastructure',   
+        'titleSingular'     => 'Infrastructure',
+        'nameSingular'      => 'an infrastructure',
 
         'viewFolderName'    => 'infrastructure',
 
         'readonly'          => self::$read_only,
 
-        'listColumns' => [                    
+        'listColumns' => [
             // what columns to display in the list view
             'id'         => [ 'title' => 'DB ID', 'display' => true ],
             'name'       => 'Name',
@@ -367,6 +367,7 @@ The following hooks are available:
 
 * `protected function postStoreRedirect() {}` - the *Doctrine2Frontend* class returns null. Override it to return
     a valid route name to have the post store redirect go somewhere besides `/list`.
+* you can override the default *Object added/edited* success block by setting `$this->store_alert_success_message` (string) in `doStore()`.
 
 ## Delete
 

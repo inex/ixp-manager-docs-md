@@ -407,21 +407,21 @@
     <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">view</span><span class="o">-&gt;</span><span class="na">feParams</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_feParams</span> <span class="o">=</span> <span class="p">(</span><span class="nx">object</span><span class="p">)[</span>
 
         <span class="c1">// the ORM entity object that CRUD operations will affect:</span>
-        <span class="s1">&#39;entity&#39;</span>            <span class="o">=&gt;</span> <span class="nx">InfrastructureEntity</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>  
+        <span class="s1">&#39;entity&#39;</span>            <span class="o">=&gt;</span> <span class="nx">InfrastructureEntity</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
 
-        <span class="s1">&#39;pagetitle&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;Infrastructures&#39;</span><span class="p">,</span>     
+        <span class="s1">&#39;pagetitle&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;Infrastructures&#39;</span><span class="p">,</span>
 
         <span class="c1">// default is false. If true, add / edit / delete will be disabled</span>
         <span class="s1">&#39;readonly&#39;</span>          <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
 
-        <span class="s1">&#39;titleSingular&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Infrastructure&#39;</span><span class="p">,</span>   
-        <span class="s1">&#39;nameSingular&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;an infrastructure&#39;</span><span class="p">,</span>   
+        <span class="s1">&#39;titleSingular&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Infrastructure&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;nameSingular&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;an infrastructure&#39;</span><span class="p">,</span>
 
         <span class="s1">&#39;viewFolderName&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;infrastructure&#39;</span><span class="p">,</span>
 
         <span class="s1">&#39;readonly&#39;</span>          <span class="o">=&gt;</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$read_only</span><span class="p">,</span>
 
-        <span class="s1">&#39;listColumns&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>                    
+        <span class="s1">&#39;listColumns&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
             <span class="c1">// what columns to display in the list view</span>
             <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span> <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;DB ID&#39;</span><span class="p">,</span> <span class="s1">&#39;display&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span> <span class="p">],</span>
             <span class="s1">&#39;name&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;Name&#39;</span><span class="p">,</span>
@@ -717,6 +717,7 @@ when a table is empty (<a href="https://github.com/inex/IXP-Manager/blob/master/
 <ul>
 <li><code>protected function postStoreRedirect() {}</code> - the <em>Doctrine2Frontend</em> class returns null. Override it to return
     a valid route name to have the post store redirect go somewhere besides <code>/list</code>.</li>
+<li>you can override the default <em>Object added/edited</em> success block by setting <code>$this-&gt;store_alert_success_message</code> (string) in <code>doStore()</code>.</li>
 </ul>
 <h2 id="delete">Delete<a class="headerlink" href="#delete" title="Permanent link"></a></h2>
 <p>Deletes are handled via posts and so have Laravel's built in CSRF protection. The logic is quiet simple:</p>
