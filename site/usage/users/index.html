@@ -116,17 +116,19 @@
     <a class="current" href="./">Users</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#users-contacts">Users &amp; Contacts</a></li>
+    <li class="toctree-l3"><a href="#users">Users</a></li>
     
         <ul>
-        
-            <li><a class="toctree-l4" href="#historical-perspective">Historical Perspective</a></li>
         
             <li><a class="toctree-l4" href="#types-of-users">Types of Users</a></li>
         
             <li><a class="toctree-l4" href="#logging-in-as-another-user">Logging in as Another User</a></li>
         
-            <li><a class="toctree-l4" href="#password-hashing">Password Hashing</a></li>
+            <li><a class="toctree-l4" href="#planned-work">Planned Work</a></li>
+        
+            <li><a class="toctree-l4" href="#passwords-and-password-hashing">Passwords and Password Hashing</a></li>
+        
+            <li><a class="toctree-l4" href="#historical-perspective">Historical Perspective</a></li>
         
         </ul>
     
@@ -395,35 +397,44 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="users-contacts">Users &amp; Contacts<a class="headerlink" href="#users-contacts" title="Permanent link"></a></h1>
-<h2 id="historical-perspective">Historical Perspective<a class="headerlink" href="#historical-perspective" title="Permanent link"></a></h2>
-<p>IXP Manager's database schema has been in use in production at INEX since the mid-2000's. Since then, how users are represented in web-based applications has evolved and we have some work to do on IXP Manager in this regard.</p>
-<p>IXP Manager of pre-April 2013 had separate <em>contacts</em> and <em>users</em> which was quite confusing. <a href="http://www.lonap.net/">LONAP</a> sponsored a rework of this and now all users are contacts with login privileges. The interface still allows listing of these separately but all links for adding / editing / deleting will <em>do the right thing</em>.</p>
-<p>As IXP Manager v4 evolves, we would like to make a number of changes:</p>
+                <h1 id="users">Users<a class="headerlink" href="#users" title="Permanent link"></a></h1>
+<p>The IXP Manager Users feature allows you to add and manage users (people who can login to IXP Manager) on a per customer basis including:</p>
 <ul>
-<li>reconsider the need for <em>users</em> and <em>contacts</em> - can these be collapsed to one table, be split again or stay as is;</li>
-<li>remove usernames and have users log in with email addresses;</li>
-<li>allow a user to be associated with more than one customer;</li>
-<li>look at OAuth2 with links to PeeringDB as well as allowing people to log in / link OAuth supported social media accounts;</li>
-<li>rework the standard <em>CUSTUSER</em> and <em>CUSTADMIN</em> privileges into (perhaps) a read-only and a read-write model;</li>
-<li>add 2fa.</li>
+<li>name / email / phone number</li>
+<li>username</li>
+<li>permissions (see below)</li>
 </ul>
 <h2 id="types-of-users">Types of Users<a class="headerlink" href="#types-of-users" title="Permanent link"></a></h2>
 <p>See the entity definitions <a href="https://github.com/inex/IXP-Manager/blob/master/database/Entities/User.php">here</a>.</p>
-<p>There are four types of user:</p>
+<p>There are three types of user:</p>
 <ul>
-<li><code>AUTH_PUBLIC</code> - a visitor who has not logged into IXP Manager (<code>priv == 0</code>).</li>
-<li><code>AUTH_CUSTUSER</code> - a standard customer user with portal access (<code>priv == 1</code>).</li>
+<li><code>AUTH_CUSTUSER</code> - a standard customer user with portal access to a specific customer's dashboard (<code>priv == 1</code>).</li>
 <li><code>AUTH_CUSTADMIN</code> - a customer administrative user. The only purpose of this account is to allow customers to create, edit and remove their own users. No other access is available through a CUSTADMIN login (<code>priv == 2</code>).</li>
 <li><code>AUTH_SUPERUSER</code> - IXP staff only. <strong>FULL ACCESS TO ALL CUSTOMERS AND FUNCTIONS</strong>. This is only for your IXP staff! (<code>priv == 3</code>)</li>
+</ul>
+<p>There is a fourth internal permission but no user record exists for it:</p>
+<ul>
+<li><code>AUTH_PUBLIC</code> - a visitor who has not logged into IXP Manager (<code>priv == 0</code>).</li>
 </ul>
 <p><strong>Additional Historical Perspective:</strong> the use of <em>AUTH_CUSTADMIN</em> was modeled on RIPE's equivalent model at the time. RIPE have since abandoned this model and it is our intention to do likewise.</p>
 <h2 id="logging-in-as-another-user">Logging in as Another User<a class="headerlink" href="#logging-in-as-another-user" title="Permanent link"></a></h2>
 <p>Administrative users (<em>AUTH_SUPERUSER</em>) can <em>switch to</em> other users to <em>see what they see</em> via the user list or the customer overview page.</p>
 <p>The purpose of this is for both development and for support staff to replicate issues as reported by users.</p>
-<h2 id="password-hashing">Password Hashing<a class="headerlink" href="#password-hashing" title="Permanent link"></a></h2>
+<h2 id="planned-work">Planned Work<a class="headerlink" href="#planned-work" title="Permanent link"></a></h2>
+<p>As IXP Manager v5 evolves, we would like to make a number of changes:</p>
+<ul>
+<li>possibly remove usernames and have users log in with email addresses;</li>
+<li>allow a user to be associated with more than one customer;</li>
+<li>look at OAuth2 with links to PeeringDB as well as allowing people to log in / link OAuth supported social media accounts;</li>
+<li>rework the standard <em>CUSTUSER</em> and <em>CUSTADMIN</em> privileges into (perhaps) a read-only and a read-write model;</li>
+<li>add 2fa.</li>
+</ul>
+<h2 id="passwords-and-password-hashing">Passwords and Password Hashing<a class="headerlink" href="#passwords-and-password-hashing" title="Permanent link"></a></h2>
 <p>Prior to <strong>IXP Manager</strong> v4.5, we supported both plaintext and bcrypt password hashing. There was a historical justification at INEX for support plaintext (this <a href="https://github.com/inex/IXP-Manager/wiki/Password-Hashing">may still be documented here</a>). However, IXP Manager is meant to represent the best practices for managing IXP's. As such, plaintext support was removed in v4.5.</p>
 <p><strong>As of v4.5, all passwords are stored as bcrypt with a cost &gt;=10.</strong></p>
+<p>Prior to <strong>IXP Manager v4.9</strong>, we allowed administrative users to set a user's password. This has been removed as we believe it to be bad practice - only a user should know their own password. User's can set (and reset) their passwords via their <em>Profile</em> page or using the password reset functionality.</p>
+<h2 id="historical-perspective">Historical Perspective<a class="headerlink" href="#historical-perspective" title="Permanent link"></a></h2>
+<p>IXP Manager of pre-April 2013 had separate <em>contacts</em> and <em>users</em> which - at the time - we felt was quite confusing. <a href="http://www.lonap.net/">LONAP</a> sponsored a rework of this in 2013 to merge the concept of users and contacts with login privileges. Strangely, this actually caused more confusion and also was a developer nightmare with hacked in code to handle the database tables in multiple places. As such, in 2019 with release v4.9, this was undone and contacts and users are now separate entities again.</p>
               
             </div>
           </div>
