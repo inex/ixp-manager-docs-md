@@ -22,9 +22,11 @@ The IX-F ID is mandatory. You will find yours by searching [the IX-F providers d
 
 **Create Network Info**
 
-The second bit is a little hacky and we apologize for this. We are working to put a more appropriate UI (and database schema) around this in a future version. There is a database table called `networkinfo` that requires you to manually insert some detail on your peering LAN.
+From **IXP Manager** v4.9 and above, click *VLANs* on the left-hand-side menu and then chose *Network Information*. Once there, add the network address and network mask length for IPv4 and IPv6 for your peering LAN(s).
 
-The first thing you need is the peering VLAN ID. *[clarification note: this is nothing to do with PeeringDB but the VLAN created within IXP Manager].* For this, select *VLANs* under the left hand side *IXP ADMIN ACTIONS* menu in IXP Manager. Locate your peering VLAN *DB ID* and note it.
+Prior to v4.9, this was a little hacky: there is a database table called `networkinfo` that requires you to manually insert some detail on your peering LAN.
+
+The first thing you need is the peering VLAN DB ID. *[clarification note: this is nothing to do with PeeringDB but the VLAN created within IXP Manager].* For this, select *VLANs* under the left hand side *IXP ADMIN ACTIONS* menu in IXP Manager. Locate your peering VLAN *DB ID* and note it.
 
 For our example, we will use the following sample data:
 
