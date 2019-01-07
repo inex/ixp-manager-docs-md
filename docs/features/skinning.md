@@ -4,7 +4,7 @@
 
 **IXP Manager** supports template/view skinning allowing users to substitute any of their own templates in place of the default ones shipped with IXP Manager.
 
-## Skinning in Version 4+
+## Skinning in Version >=v4
 
 First, set the following parameter in `.env`:
 
@@ -87,7 +87,7 @@ where the second parameter is a default option if the requested configuration se
 <?= config( "custom.example.key", "default" ) ?>
 ```
 
-## Skinning Old Templates
+## Skinning Old Templates (<v4.9)
 
 This is still important as **IXP Manager** v4 still uses most of the previous templates.
 

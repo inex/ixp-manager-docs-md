@@ -411,19 +411,19 @@
 <p>Documentation by real example can be found via the <a href="https://github.com/inex/IXP-Manager/blob/master/.travis.yml">.travis.yml</a> file and <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci">the Travis data directory</a> which contains scripts, database dumps and configurations.</p>
 <p>Testing assumes <em>a known good sample database</em> which contains a small mix of customers with different configuration options. The files generated from this database are tested against <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci/known-good">known good</a> configuration files. You first need to create a database, add a database user, import this testing database and then configure a <code>.env</code> section for testing.</p>
 <p>In MySQL:</p>
-<div class="highlight"><pre><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">ixp_ci</span> <span class="k">CHARACTER</span> <span class="kt">SET</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4&#39;</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">ixp_ci</span> <span class="k">CHARACTER</span> <span class="kt">SET</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4&#39;</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="ss">`ixp_ci`</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="ss">`ixp_ci`</span><span class="o">@</span><span class="ss">`localhost`</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;somepassword&#39;</span><span class="p">;</span>
-<span class="n">FLUSH</span> <span class="n">PRIVILEGES</span><span class="p">;</span>
+<span class="k">FLUSH</span> <span class="n">PRIVILEGES</span><span class="p">;</span>
 </pre></div>
 
 
 <p>Then import the sample database:</p>
-<div class="highlight"><pre>bzcat data/travis-ci/travis_ci_test_db.sql.bz2  <span class="p">|</span> mysql -h localhost -u ixp_ci -psomepassword ixp_ci
+<div class="highlight"><pre><span></span>bzcat data/travis-ci/travis_ci_test_db.sql.bz2  <span class="p">|</span> mysql -h localhost -u ixp_ci -psomepassword ixp_ci
 </pre></div>
 
 
 <p>Now, create your <code>.env</code> for testing, such as:</p>
-<div class="highlight"><pre><span class="na">DB_HOST</span><span class="o">=</span><span class="s">localhost</span>
+<div class="highlight"><pre><span></span><span class="na">DB_HOST</span><span class="o">=</span><span class="s">localhost</span>
 <span class="na">DB_DATABASE</span><span class="o">=</span><span class="s">ixp_ci</span>
 <span class="na">DB_USERNAME</span><span class="o">=</span><span class="s">ixp_ci</span>
 <span class="na">DB_PASSWORD</span><span class="o">=</span><span class="s">somepassword</span>
@@ -435,7 +435,7 @@
 <h2 id="setting-up-laravel-dusk">Setting Up Laravel Dusk<a class="headerlink" href="#setting-up-laravel-dusk" title="Permanent link"></a></h2>
 <p>Please review the <a href="https://laravel.com/docs/5.6/dusk">official documentation here</a>.</p>
 <p>You need to ensure the development packages for IXP Manager are installed via:</p>
-<div class="highlight"><pre><span class="c"># move to the root directory of IXP Manager</span>
+<div class="highlight"><pre><span></span><span class="c1"># move to the root directory of IXP Manager</span>
 <span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 composer install --dev
 </pre></div>
@@ -450,19 +450,19 @@ composer install --dev
 </ol>
 <h2 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link"></a></h2>
 <p>In one console session, start the artisan / Laravel web server:</p>
-<div class="highlight"><pre><span class="c"># move to the root directory of IXP Manager</span>
+<div class="highlight"><pre><span></span><span class="c1"># move to the root directory of IXP Manager</span>
 <span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 php artisan serve
 </pre></div>
 
 
 <p>And then kick off <strong>all the tests</strong> which includes PHPUnit and Laravel Dusk tests, run:</p>
-<div class="highlight"><pre>phpunit
+<div class="highlight"><pre><span></span>phpunit
 </pre></div>
 
 
 <p>Sample output:</p>
-<div class="highlight"><pre>PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
+<div class="highlight"><pre><span></span>PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
 
 ...............................................................  63 / 144 ( 43%)
 ............................................................... 126 / 144 ( 87%)
@@ -473,7 +473,7 @@ Time: 1.86 minutes, Memory: 103.73MB
 
 
 <p>If you only want to run Laravel Dusk / browser tests, run the following (shown with sample output):</p>
-<div class="highlight"><pre><span class="nv">$ </span>php artisan dusk
+<div class="highlight"><pre><span></span>$ php artisan dusk
 PHPUnit 6.5.8 by Sebastian Bergmann and contributors.
 
 ..                                                                  <span class="m">2</span> / <span class="m">2</span> <span class="o">(</span>100%<span class="o">)</span>
@@ -483,7 +483,7 @@ Time: 12.73 seconds, Memory: 24.00MB
 
 
 <p>If you want to exclude the browser based tests, just exclude that directory as follows:</p>
-<div class="highlight"><pre><span class="nv">$ </span>phpunit --filter <span class="s1">&#39;/^((?!Tests\\Browser).)*$/&#39;</span>
+<div class="highlight"><pre><span></span>$ phpunit --filter <span class="s1">&#39;/^((?!Tests\\Browser).)*$/&#39;</span>
 PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
 
 ...............................................................  <span class="m">63</span> / <span class="m">142</span> <span class="o">(</span> 44%<span class="o">)</span>

@@ -22,6 +22,11 @@ There is a fourth internal permission but no user record exists for it:
 
 **Additional Historical Perspective:** the use of *AUTH_CUSTADMIN* was modeled on RIPE's equivalent model at the time. RIPE have since abandoned this model and it is our intention to do likewise.
 
+## Welcome Email
+
+**IXP Manager** sends a welcome email to all newly created users. The default template for this can be found at `resources/views/user/emails/welcome.blade.php`. If you wish to change this, you can do so via the [standard skinning mechanism](../features/skinning.md).
+
+
 ## Logging in as Another User
 
 Administrative users (*AUTH_SUPERUSER*) can *switch to* other users to *see what they see* via the user list or the customer overview page.
