@@ -411,7 +411,7 @@
             <div class="section">
               
                 <h1 id="configuring-peer-to-peer-statistics">Configuring peer-to-peer statistics<a class="headerlink" href="#configuring-peer-to-peer-statistics" title="Permanent link"></a></h1>
-<p>The IXP Manager sflow peer-to-peer graphing system depends on the <a href="../layer2-addresses/">MAC address database</a> system so that point to point traffic flows can be identified.  Before proceeding further, this should be configured so that when you click on <code>MAC Addresses | Discovered Addresses</code> from the admin portal, you should see a MAC address associated with each port.  If you cannot see any Discovered MAC address, then the sflow peer-to-peer graphing mechanism will not work. This needs to be working properly before any attempt is made to configure sflow peer-to-peer graphing.</p>
+<p>The IXP Manager sflow peer-to-peer graphing system depends on the <a href="../layer2-addresses/">MAC address database</a> system so that point to point traffic flows can be identified.  Before proceeding further, this should be configured so that when you click on either the <code>MAC Addresses | Discovered Addresses</code> or <code>MAC Addresses | Configured Addresses</code> links from the admin portal, you should see a MAC address associated with each port.  If you cannot see any MAC address in either database, then the sflow peer-to-peer graphing mechanism will not work. This needs to be working properly before any attempt is made to configure sflow peer-to-peer graphing. The sflow p2p graphing system can use either discovered MAC addresses or configured MAC addresses, but not both.</p>
 <h1 id="server-overview">Server Overview<a class="headerlink" href="#server-overview" title="Permanent link"></a></h1>
 <p>As sflow can put a reasonably high load on a server due to disk I/O for RRD file updates - it is recommended practice to use a separate server (or virtual server) to handle the IXP's sflow system. The sflow server will need:</p>
 <ul>
@@ -452,8 +452,9 @@
 <li><code>sflow_rrddir</code>: the directory where all the sflow .rrd files will be stored.</li>
 <li><code>apikey</code>: a valid API key.  Instructions for configuring this can be found in the <a href="../api/">API configuration</a> documentation.</li>
 <li><code>apibaseurl</code>: the base URL of the IXP Manager API.  E.g. if you log into IXP Manager using <code>http://www.example.com/ixp/</code>, then <code>apibaseurl</code> will be <code>http://www.example.com/ixp/api/v4</code>.</li>
+<li><code>macdbtype</code>: <code>configured|discovered</code> - specifies whether the sflow p2p graphing system should pull MAC address information from the Configured MAC address database or the Discovered MAC address database.  By default, it uses the Discovered MAC address database.  If you wish to use the Configured MAC address database, then this should be set to <code>configured</code>.</li>
 </ul>
-<p>Note that the <sql> section of <code>ixpmanager.conf</code> will need to be configured either if you are running <code>update-l2database.pl</code> or the sflow BGP peering matrix system on the same server as the p2p sflow system.</p>
+<p>Note that the <code>&lt;sql&gt;</code> section of <code>ixpmanager.conf</code> will need to be configured either if you are running <code>update-l2database.pl</code> or the sflow BGP peering matrix system on the same server as the p2p sflow system.</p>
 <p>An example ixpmanager.conf might look like this:</p>
 <div class="highlight"><pre>&lt;sql&gt;
         dbase_type      = mysql
@@ -468,8 +469,10 @@
         sflowtool_opts = -4 -p 6343 -l
         sflow_rrdcached = 1
         sflow_rrddir = /data/ixpmatrix
+
         apikey = APIKeyFromIXPManager
         apibaseurl = http://www.example.com/ixp/api/v4
+        macdbtype = configured
 &lt;/ixp&gt;
 </pre></div>
 
@@ -511,7 +514,7 @@ If IXP Manager is configured with more than one component which requires an sflo
 <h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link"></a></h1>
 <p>There are plenty of things which could go wrong in a way which would stop the sflow mechanism from working properly.</p>
 <ul>
-<li>the Mac Address table in IXP manager is populated correctly with all customer MAC addresses using the <code>update-l2database.pl</code> script</li>
+<li>the Mac Address table in IXP manager is populated correctly with all customer MAC addresses using the <code>update-l2database.pl</code> script, if you are using discovered MAC addresses. If you're using configured MAC addresses, you can ignore <code>update-l2database.pl</code> script completed but you should make sure that there are valid MAC addresses associated with each port you're attempting to monitor.</li>
 <li>ensuring that all switch ports are set up correctly in IXP Manager, i.e. Core ports and Peering ports are configured as such</li>
 <li>ensuring that sflow accounting is configured on peering ports and is disabled on all core ports</li>
 <li>ensuring that sflow accounting is as ingress-only</li>
