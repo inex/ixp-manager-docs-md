@@ -415,7 +415,7 @@
 <li>IPv6 peering network: <code>2001:db8:1000::/64</code> with route servers on <code>.8</code> and <code>.9</code></li>
 </ul>
 <p>You need need to add this data to <code>networkinfo</code> with the following sample SQL commands:</p>
-<div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="ss">`networkinfo`</span>
+<div class="highlight"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="ss">`networkinfo`</span>
     <span class="p">(</span> <span class="ss">`vlanid`</span><span class="p">,</span> <span class="ss">`protocol`</span><span class="p">,</span> <span class="ss">`network`</span><span class="p">,</span> <span class="ss">`masklen`</span><span class="p">,</span> <span class="ss">`rs1address`</span><span class="p">,</span> <span class="ss">`rs2address`</span><span class="p">),</span>
 <span class="k">VALUES</span>
     <span class="p">(</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;192.0.2.0&#39;</span><span class="p">,</span> <span class="s1">&#39;25&#39;</span><span class="p">,</span> <span class="s1">&#39;192.0.2.8&#39;</span><span class="p">,</span> <span class="s1">&#39;192.0.2.9&#39;</span> <span class="p">);</span>
@@ -504,7 +504,7 @@
 <p>We we say <em>from the Infrastructure object</em> above, we mean that when you are logged into IXP Manager as an admin, it's the <em>Infrastructures</em> menu option under <em>IXP Admin Actions</em> on the left hand side.</p>
 <h2 id="accessing-the-ix-f-member-list">Accessing the IX-F Member List<a class="headerlink" href="#accessing-the-ix-f-member-list" title="Permanent link"></a></h2>
 <p>If your version of IXP Manager is installed at, say, <em>https://ixp.example.com/</em>, then the IX-F Member List export can be accessed at:</p>
-<div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/member-export/ixf/0.7
+<div class="highlight"><pre>https://ixp.example.com/api/v4/member-export/ixf/0.7
 </pre></div>
 
 
@@ -514,14 +514,14 @@
 <p>IXPDB requires two pieces of information to fully integrate with the IXPDB. You can provide this information to <code>secretariat (at) euro-ix (dot) net</code> or - if you have a login to the Euro-IX website, you should be able to login and edit your own IXP directly on IXPDB.</p>
 <p>The first element needed is the API endpoint as described above in <em>Accessing the IX-F Member List</em>.</p>
 <p>The second is the API endpoint to export your statistics. This is:</p>
-<div class="highlight"><pre><span></span>https://ixp.example.com/grapher/infrastructure?id=1&amp;type=log&amp;period=day
+<div class="highlight"><pre>https://ixp.example.com/grapher/infrastructure?id=1&amp;type=log&amp;period=day
 </pre></div>
 
 
 <p>where <code>id=1</code> is the infrastructure DB ID (see <em>Infrastructures</em> under the left hand side <em>IXP ADMIN ACTIONS</em> menu).</p>
 <h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Permanent link"></a></h2>
 <p>There is only one configuration option presently available. To disable public access to the restricted member export, set the following in your <code>.env</code> file:</p>
-<div class="highlight"><pre><span></span>IXP_API_JSONEXPORTSCHEMA_PUBLIC=false
+<div class="highlight"><pre>IXP_API_JSONEXPORTSCHEMA_PUBLIC=false
 </pre></div>
 
 
@@ -547,25 +547,25 @@
 <h2 id="example-member-lists">Example: Member Lists<a class="headerlink" href="#example-member-lists" title="Permanent link"></a></h2>
 <p>A common requirement of IXPs is to create a public member list on their official website. This can be done with the IX-F Member Export quite easily. The below HTML and JavaScript is a way to do it with INEX's endpoint. There's a <a href="https://jsfiddle.net/barryo/2tzuypf9/">live JSFiddle which demonstrates this also</a> - <a href="https://jsfiddle.net/barryo/2tzuypf9/">https://jsfiddle.net/barryo/2tzuypf9/</a>.</p>
 <p>The HTML requires just a table with a placeholder and an <code>id</code> on the <code>body</code>:</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;table table-bordered&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;margin: 10px&quot;</span><span class="p">&gt;</span>
- <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
-   <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
-     <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Company<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
-     <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>ASN<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
-     <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Connections<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
-   <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
- <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
- <span class="p">&lt;</span><span class="nt">tbody</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;list-members&quot;</span><span class="p">&gt;</span>
-     <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
-         <span class="p">&lt;</span><span class="nt">td</span> <span class="na">colspan</span><span class="o">=</span><span class="s">&quot;3&quot;</span><span class="p">&gt;</span>Please wait, loading...<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
-     <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
- <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">&quot;table table-bordered&quot;</span> <span class="na">style=</span><span class="s">&quot;margin: 10px&quot;</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;thead&gt;</span>
+   <span class="nt">&lt;tr&gt;</span>
+     <span class="nt">&lt;th&gt;</span>Company<span class="nt">&lt;/th&gt;</span>
+     <span class="nt">&lt;th&gt;</span>ASN<span class="nt">&lt;/th&gt;</span>
+     <span class="nt">&lt;th&gt;</span>Connections<span class="nt">&lt;/th&gt;</span>
+   <span class="nt">&lt;/tr&gt;</span>
+ <span class="nt">&lt;/thead&gt;</span>
+ <span class="nt">&lt;tbody</span> <span class="na">id=</span><span class="s">&quot;list-members&quot;</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;tr&gt;</span>
+         <span class="nt">&lt;td</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>Please wait, loading...<span class="nt">&lt;/td&gt;</span>
+     <span class="nt">&lt;/tr&gt;</span>
+ <span class="nt">&lt;/tbody&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
 </pre></div>
 
 
 <p>The JavaScript loads the member list via the IX-F Export and processes it into the table above:</p>
-<div class="highlight"><pre><span></span><span class="c1">// Sample IX-F Member Export to Member List script</span>
+<div class="highlight"><pre><span class="c1">// Sample IX-F Member Export to Member List script</span>
 <span class="c1">//</span>
 <span class="c1">// License: MIT (https://en.wikipedia.org/wiki/MIT_License)</span>
 <span class="c1">// By @yannrobin and @barryo</span>
@@ -602,16 +602,16 @@
     <span class="kd">let</span> <span class="nx">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
 
     <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span> <span class="nx">json</span><span class="p">[</span> <span class="s1">&#39;member_list&#39;</span> <span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">member</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">html</span> <span class="o">+=</span> <span class="sb">`&lt;tr&gt;</span>
-<span class="sb">                     &lt;td&gt;</span>
-<span class="sb">                         &lt;a target=&quot;_blank&quot; href=&quot;</span><span class="si">${</span><span class="nx">member</span><span class="p">.</span><span class="nx">url</span><span class="si">}</span><span class="sb">&quot;&gt;</span><span class="si">${</span><span class="nx">member</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/a&gt;</span>
-<span class="sb">                     &lt;/td&gt;</span>
-<span class="sb">                     &lt;td&gt;</span>
-<span class="sb">                         &lt;a target=&quot;_blank&quot;</span>
-<span class="sb">                             href=&quot;http://www.ripe.net/perl/whois?searchtext=</span><span class="si">${</span><span class="nx">member</span><span class="p">.</span><span class="nx">asnum</span><span class="si">}</span><span class="sb">&amp;form_type=simple&quot;&gt;</span>
-<span class="sb">                             </span><span class="si">${</span><span class="nx">member</span><span class="p">.</span><span class="nx">asnum</span><span class="si">}</span><span class="sb"></span>
-<span class="sb">                         &lt;/a&gt;</span>
-<span class="sb">                     &lt;/td&gt;`</span><span class="p">;</span>
+        <span class="nx">html</span> <span class="o">+=</span> <span class="err">`</span><span class="o">&lt;</span><span class="nx">tr</span><span class="o">&gt;</span>
+                     <span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;</span>
+                         <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">target</span><span class="o">=</span><span class="s2">&quot;_blank&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;${member.url}&quot;</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">{</span><span class="nx">member</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/a&gt;</span>
+                     <span class="o">&lt;</span><span class="err">/td&gt;</span>
+                     <span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;</span>
+                         <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">target</span><span class="o">=</span><span class="s2">&quot;_blank&quot;</span>
+                             <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;http://www.ripe.net/perl/whois?searchtext=${member.asnum}&amp;form_type=simple&quot;</span><span class="o">&gt;</span>
+                             <span class="nx">$</span><span class="p">{</span><span class="nx">member</span><span class="p">.</span><span class="nx">asnum</span><span class="p">}</span>
+                         <span class="o">&lt;</span><span class="err">/a&gt;</span>
+                     <span class="o">&lt;</span><span class="err">/td&gt;`;</span>
 
         <span class="kd">let</span> <span class="nx">connection</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
         <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span> <span class="nx">member</span><span class="p">[</span> <span class="s1">&#39;connection_list&#39;</span> <span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">conn</span> <span class="p">)</span> <span class="p">{</span>
@@ -625,7 +625,7 @@
             <span class="p">}</span>
         <span class="p">});</span>
 
-        <span class="nx">html</span> <span class="o">+=</span> <span class="sb">`&lt;td&gt;</span><span class="si">${</span><span class="nx">connection</span><span class="si">}</span><span class="sb">&lt;/td&gt;&lt;/tr&gt;</span><span class="err">\</span><span class="sb">n`</span><span class="p">;</span>
+        <span class="nx">html</span> <span class="o">+=</span> <span class="err">`</span><span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">{</span><span class="nx">connection</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/td&gt;&lt;/tr&gt;\n`;</span>
     <span class="p">});</span>
 
     <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#list-members&quot;</span> <span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">html</span><span class="p">);</span>
