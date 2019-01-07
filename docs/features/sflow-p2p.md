@@ -1,6 +1,6 @@
 # Configuring peer-to-peer statistics
 
-The IXP Manager sflow peer-to-peer graphing system depends on the [MAC address database](layer2-addresses.md) system so that point to point traffic flows can be identified.  Before proceeding further, this should be configured so that when you click on `MAC Addresses | Discovered Addresses` from the admin portal, you should see a MAC address associated with each port.  If you cannot see any Discovered MAC address, then the sflow peer-to-peer graphing mechanism will not work. This needs to be working properly before any attempt is made to configure sflow peer-to-peer graphing.
+The IXP Manager sflow peer-to-peer graphing system depends on the [MAC address database](layer2-addresses.md) system so that point to point traffic flows can be identified.  Before proceeding further, this should be configured so that when you click on either the `MAC Addresses | Discovered Addresses` or `MAC Addresses | Configured Addresses` links from the admin portal, you should see a MAC address associated with each port.  If you cannot see any MAC address in either database, then the sflow peer-to-peer graphing mechanism will not work. This needs to be working properly before any attempt is made to configure sflow peer-to-peer graphing. The sflow p2p graphing system can use either discovered MAC addresses or configured MAC addresses, but not both.
 
 # Server Overview
 
@@ -47,8 +47,9 @@ The following sflow parameters must be set in the `<ixp>` section:
 * `sflow_rrddir`: the directory where all the sflow .rrd files will be stored.
 * `apikey`: a valid API key.  Instructions for configuring this can be found in the [API configuration](api.md) documentation.
 * `apibaseurl`: the base URL of the IXP Manager API.  E.g. if you log into IXP Manager using `http://www.example.com/ixp/`, then `apibaseurl` will be `http://www.example.com/ixp/api/v4`.
+* `macdbtype`: `configured|discovered` - specifies whether the sflow p2p graphing system should pull MAC address information from the Configured MAC address database or the Discovered MAC address database.  By default, it uses the Discovered MAC address database.  If you wish to use the Configured MAC address database, then this should be set to `configured`.
 
-Note that the <sql> section of `ixpmanager.conf` will need to be configured either if you are running `update-l2database.pl` or the sflow BGP peering matrix system on the same server as the p2p sflow system.
+Note that the `<sql>` section of `ixpmanager.conf` will need to be configured either if you are running `update-l2database.pl` or the sflow BGP peering matrix system on the same server as the p2p sflow system.
 
 An example ixpmanager.conf might look like this:
 
@@ -66,8 +67,10 @@ An example ixpmanager.conf might look like this:
         sflowtool_opts = -4 -p 6343 -l
         sflow_rrdcached = 1
         sflow_rrddir = /data/ixpmatrix
+
         apikey = APIKeyFromIXPManager
         apibaseurl = http://www.example.com/ixp/api/v4
+        macdbtype = configured
 </ixp>
 ```
 
@@ -119,7 +122,7 @@ Each IXP edge port will have 4 separate RRD files for recording traffic to each 
 
 There are plenty of things which could go wrong in a way which would stop the sflow mechanism from working properly.
 
-* the Mac Address table in IXP manager is populated correctly with all customer MAC addresses using the `update-l2database.pl` script
+* the Mac Address table in IXP manager is populated correctly with all customer MAC addresses using the `update-l2database.pl` script, if you are using discovered MAC addresses. If you're using configured MAC addresses, you can ignore `update-l2database.pl` script completed but you should make sure that there are valid MAC addresses associated with each port you're attempting to monitor.
 * ensuring that all switch ports are set up correctly in IXP Manager, i.e. Core ports and Peering ports are configured as such
 * ensuring that sflow accounting is configured on peering ports and is disabled on all core ports
 * ensuring that sflow accounting is as ingress-only
