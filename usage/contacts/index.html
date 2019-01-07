@@ -102,9 +102,13 @@
         
             <li><a class="toctree-l4" href="#contact-groups">Contact Groups</a></li>
         
+            <li><a class="toctree-l4" href="#creating-editing-deleting-groups">Creating / Editing / Deleting Groups</a></li>
+        
             <li><a class="toctree-l4" href="#assigning-contacts-to-groups">Assigning Contacts to Groups</a></li>
         
             <li><a class="toctree-l4" href="#exporting-contact-groups">Exporting Contact Groups</a></li>
+        
+            <li><a class="toctree-l4" href="#special-group-roles">Special Group: Roles</a></li>
         
             <li><a class="toctree-l4" href="#historical-perspective">Historical Perspective</a></li>
         
@@ -155,10 +159,6 @@
                 <li class="">
                     
     <a class="" href="../../features/console-servers/">Console Servers</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/contact-groups/">Contact Groups</a>
                 </li>
                 <li class="">
                     
@@ -427,9 +427,24 @@
 </pre></div>
 
 
+<p>To activate this feature, you just need to create the configuration file. From the root directory of IXP Manager just:</p>
+<div class="highlight"><pre><span></span>cp config/contact_group.php.dist config/contact_group.php
+</pre></div>
+
+
 <p>Note that <em>Role</em> is a default option and should not be removed.</p>
 <p>In these examples, <code>ROLE</code> will be entered in the database column and <em>Role</em> will be displayed in the interface.</p>
 <p>Group options can then be added / edited / deleted via the web interface. This can be reached by clicking <em>Contacts</em> in the left-hand side menu and then the sub-menu option that appears called <em>Contact Groups</em>.</p>
+<h2 id="creating-editing-deleting-groups">Creating / Editing / Deleting Groups<a class="headerlink" href="#creating-editing-deleting-groups" title="Permanent link"></a></h2>
+<p>A group is defined by:</p>
+<ul>
+<li>a name (e.g. beer);</li>
+<li>a type (e.g. Likes); and</li>
+<li>a description (e.g. Contacts in this group like to drink beer).</li>
+</ul>
+<p>You define the group types in <code>config/contact_group.php</code>.</p>
+<p>In these examples, <code>ROLE</code> will be entered in the database column and <em>Role</em> will be displayed in the interface.</p>
+<p>Groups can then be added / edited / deleted via <code>https://www.example/com/ixp-manager/contact-group</code>. This can be reached by clicking <em>Contacts</em> and then <em>Contact Groups</em> in the left menu.</p>
 <h2 id="assigning-contacts-to-groups">Assigning Contacts to Groups<a class="headerlink" href="#assigning-contacts-to-groups" title="Permanent link"></a></h2>
 <p>Assigning contacts to groups is done in the contact add / edit page.</p>
 <h2 id="exporting-contact-groups">Exporting Contact Groups<a class="headerlink" href="#exporting-contact-groups" title="Permanent link"></a></h2>
@@ -454,6 +469,9 @@ Help:
 </pre></div>
 
 
+<h2 id="special-group-roles">Special Group: <em>Roles</em><a class="headerlink" href="#special-group-roles" title="Permanent link"></a></h2>
+<p>The default sample configuration file (<code>config/contact_group.php</code>) and the database seeds create a <code>ROLE</code> group type populated with groups <em>Admin</em>, <em>Billing</em>, <em>Technical</em> and <em>Marketing</em>. There is a dedicated form element when editing contacts for any groups defined in the Role type.</p>
+<p>If the role type is removed from the configuration, the form element for the contact's roles will not be shown.</p>
 <h2 id="historical-perspective">Historical Perspective<a class="headerlink" href="#historical-perspective" title="Permanent link"></a></h2>
 <p>IXP Manager of pre-April 2013 had separate <em>contacts</em> and <em>users</em> which - at the time - we felt was quite confusing. <a href="http://www.lonap.net/">LONAP</a> sponsored a rework of this in 2013 to merge the concept of users and contacts with login privileges. Strangely, this actually caused more confusion and also was a developer nightmare with hacked in code to handle the database tables in multiple places. As such, in 2019 with release v4.9, this was undone and contacts and users are now separate entities again.</p>
               
