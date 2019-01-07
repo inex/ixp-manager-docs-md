@@ -24,7 +24,7 @@ The general process is:
     IXPROOT=/srv/ixpmanager
 
     # fix as appropriate to your operating system
-    MY_WWW_USER=www-data  
+    MY_WWW_USER=www-data
 
     # ensure the web server daemon user can write to necessary directories:
     chown -R $MY_WWW_USER: $IXPROOT/public/bower_components ${IXPROOT}/bower.json \
@@ -103,13 +103,31 @@ The general process is:
         ${IXPROOT}/storage $IXPROOT/vendor $IXPROOT/var $IXPROOT/bootstrap/cache
     ```
 
-11. Disable maintenance mode:
+11. For IXP Manager v4.9 (including upgrading to v4.9) and later:
+
+    ```sh
+    ${IXPROOT}/artisan migrate
+    ```
+
+12. Clear out all caches:
+
+    ```sh
+    ${IXPROOT}/artisan cache:clear
+    ${IXPROOT}/artisan config:clear
+    ${IXPROOT}/artisan doctrine:clear:metadata:cache
+    ${IXPROOT}/artisan doctrine:clear:query:cache
+    ${IXPROOT}/artisan doctrine:clear:result:cache
+    ${IXPROOT}/artisan route:clear
+    ${IXPROOT}/artisan view:clear
+    ```
+
+13. Disable maintenance mode:
 
     ```sh
     # (assuming we're still in $IXPROOT)
     ./artisan up
     ```
-12. Recreate SQL views
+14. Recreate SQL views
 
     Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them:
 

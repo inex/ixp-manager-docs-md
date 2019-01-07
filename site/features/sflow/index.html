@@ -419,7 +419,7 @@
 <p>IXP Manager does not support netflow and support is not on the roadmap. This is because most netflow implementations do not export mac address information, which means that they cannot provide workable mac layer peer-to-peer statistics.</p>
 <h3 id="cisco-switches">Cisco Switches<a class="headerlink" href="#cisco-switches" title="Permanent link"></a></h3>
 <p>Of Cisco's entire product range, only the Nexus 3000 and Nexus 9000 product range support sflow. Also, the sflow support on the Cisco Nexus 3k range is crippled due to the NX-OS software implementation, which forces ingress+egress sflow to be configured on specified ports rather than ingress-only.  Functional accounting requires ingress-only or egress-only sflow to be configured on a per-port basis: ingress + egress causes double-counting of packets.  It may be possible to work around this limitation using the broadcom shell using something like the following untested configuration:</p>
-<div class="highlight"><pre><span></span>n3k# conf t
+<div class="highlight"><pre>n3k# conf t
 n3k(config)# feature sflow
 n3k(config)# sflow data-source interface Ethernet1/1
 n3k(config)# ^Z
@@ -436,7 +436,7 @@ n3k#
 <p>Note that this command is not reboot persistent, and any time a TIX24X is rebooted, the command needs to be re-entered manually.  Note also that this configuration is untested.</p>
 <h3 id="brocade-turboiron-24x">Brocade TurboIron 24X<a class="headerlink" href="#brocade-turboiron-24x" title="Permanent link"></a></h3>
 <p>By default a TIX24X will export 100 sflow records per second.  This can be changed using the following command:</p>
-<div class="highlight"><pre><span></span>SSH@Switch# dm device-command 2762233
+<div class="highlight"><pre>SSH@Switch# dm device-command 2762233
 SSH@Switch# tor modreg CPUPKTMAXBUCKETCONFIG(3) PKT_MAX_REFRESH=0xHHHH
 </pre></div>
 
@@ -455,12 +455,12 @@ SSH@Switch# tor modreg CPUPKTMAXBUCKETCONFIG(3) PKT_MAX_REFRESH=0xHHHH
 <li>detecting BGP live sessions on the exchange and using the info to update the peering matrix</li>
 </ol>
 <p>This means that IXP Manager needs two separate sflow feeds.  This can be achieved by using the <code>sflowtool</code> fanout facility, which sends an exact copy of all incoming sflow records to a list of destinations.  For example, the following command listens for incoming sflow data on port 6343 and send three copies out.  Two copies are directed to different ports on the same server, on ports 5500 and 5501.  The third copy is sent to 192.0.2.20, port 6343.</p>
-<div class="highlight"><pre><span></span># sflowtool -4 -p 6343 -f 127.0.0.1/5500 -f 127.0.0.1/5501 -f 192.0.2.20/6343
+<div class="highlight"><pre># sflowtool -4 -p 6343 -f 127.0.0.1/5500 -f 127.0.0.1/5501 -f 192.0.2.20/6343
 </pre></div>
 
 
 <p>This example could be used for handling P2P traffic graphs and BGP session detection on one machine, while sending a third sflow data feed to a separate server for IXP development or debugging.  The two local sflow feeds can be read using <code>sflowtool</code>:</p>
-<div class="highlight"><pre><span></span># sflowtool -4 -p 5500 -l
+<div class="highlight"><pre># sflowtool -4 -p 5500 -l
 # sflowtool -4 -p 5501 -l
 </pre></div>
 
