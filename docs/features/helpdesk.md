@@ -31,9 +31,9 @@ Work that is in progress includes:
 You need to enable API access to Zendesk as follows:
 
 1. Log into your Zendesk account
-2. On the bottom left, click the Settings icon
+2. On the bottom left, click the Admin icon
 3. Under *Channels* select *API*
-4. Enable the API here and add a token
+4. Enable the Token Access and add a token
 
 With your Zendesk login and the token from above, edit the `.env` file in the base directory of IXP Manager and set:
 
