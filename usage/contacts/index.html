@@ -404,7 +404,7 @@
 <li>roles (billing / techical / admin / marketing)</li>
 </ul>
 <p>If the roles are not shown when you are editing / adding contacts, ensure you copy the following file to a local version:</p>
-<div class="highlight"><pre>cp <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/config/contact_group.php.dist <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/config/contact_group.php
+<div class="highlight"><pre><span></span>cp <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/config/contact_group.php.dist <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/config/contact_group.php
 </pre></div>
 
 
@@ -418,7 +418,7 @@
 <li>a description (e.g. <em>how the contact would like us to communicate marketing materials with them</em>).</li>
 </ul>
 <p>You define the group types in <code>config/contact_group.php</code> such as:</p>
-<div class="highlight"><pre><span class="x">return [</span>
+<div class="highlight"><pre><span></span><span class="x">return [</span>
 <span class="x">    &#39;types&#39; =&gt; [</span>
 <span class="x">        &#39;ROLE&#39;                   =&gt; &#39;Role&#39;,</span>
 <span class="x">        &#39;MARKETING_PREFERENCES&#39;  =&gt; &#39;Marketing Preferences&#39;,</span>
@@ -428,7 +428,7 @@
 
 
 <p>To activate this feature, you just need to create the configuration file. From the root directory of IXP Manager just:</p>
-<div class="highlight"><pre>cp config/contact_group.php.dist config/contact_group.php
+<div class="highlight"><pre><span></span>cp config/contact_group.php.dist config/contact_group.php
 </pre></div>
 
 
@@ -449,12 +449,12 @@
 <p>Assigning contacts to groups is done in the contact add / edit page.</p>
 <h2 id="exporting-contact-groups">Exporting Contact Groups<a class="headerlink" href="#exporting-contact-groups" title="Permanent link"></a></h2>
 <p>Contact groups can be exported using the <code>artisan</code> command, for example:</p>
-<div class="highlight"><pre>./artisan contact:export-group --type<span class="o">=</span>ROLE --cid<span class="o">=</span><span class="m">1</span> --format<span class="o">=</span>csv
+<div class="highlight"><pre><span></span>./artisan contact:export-group --type<span class="o">=</span>ROLE --cid<span class="o">=</span><span class="m">1</span> --format<span class="o">=</span>csv
 </pre></div>
 
 
 <p>where the possible options are (from <code>./artisan contact:export-group --help</code>:</p>
-<div class="highlight"><pre>$ ./artisan contact:export-group --help
+<div class="highlight"><pre><span></span>$ ./artisan contact:export-group --help
 Usage:
   contact:export-group [options]
 
