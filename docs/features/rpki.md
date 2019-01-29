@@ -75,7 +75,7 @@ Note that in the above we are using the (sensible) configuration defaults. Read 
 Start Routinator's RTR service with:
 
 ```
-/srv/routinator/.cargo/bin/routinator rtrd -a -l 192.0.2.13:3323 -l [2001:0DB8::13]:3323
+/srv/routinator/.cargo/bin/routinator rtrd -a -l 192.0.2.13:3323 -l [2001:db8::13]:3323
 ```
 
 It will immediately start in the background. The `-a` switch will keep it in the foreground. You can see log messages using:
@@ -91,7 +91,7 @@ cat <<ENDL >/etc/rc.local
 #! /bin/bash
 
 # Start Routinator
-/usr/bin/sudo -iu routinator /srv/routinator/.cargo/bin/routinator rtrd -l 10.39.5.123:3323 -l [2001:7f8:18:5::123]:3323
+/usr/bin/sudo -iu routinator /srv/routinator/.cargo/bin/routinator rtrd -l 192.0.2.13:3323 -l [2001:db8::13]:3323
 
 ENDL
 
@@ -108,7 +108,7 @@ We also use a simple watcher script to restart Routinator in case it dies during
 
 if [[ "X$(/bin/netstat -lpn | grep 3323 | grep routinator | wc -l)X" != "X2X" ]]; then
     echo Routinater not running! Restarting it...
-    /srv/routinator/.cargo/bin/routinator rtrd -l 10.39.5.123:3323 -l [2001:7f8:18:5::123]:3323
+    /srv/routinator/.cargo/bin/routinator rtrd -l 192.0.2.13:3323 -l [2001:db8::13]:3323
 fi
 ```
 
