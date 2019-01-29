@@ -47,6 +47,7 @@ pages:
     - 'Route Collectors': 'features/route-collectors.md'
     - 'Route Servers': 'features/route-servers.md'
     - 'Router Configuration': 'features/routers.md'
+    - 'RPKI': 'features/rpki.md'
     - 'Skinning': 'features/skinning.md'
     - 'Smokeping': 'grapher/smokeping.md'
     - 'Static Content': 'features/static-content.md'
