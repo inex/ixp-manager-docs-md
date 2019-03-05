@@ -27,6 +27,7 @@ pages:
     - 'API': 'features/api.md'
     - 'AS112': 'features/as112.md'
     - 'Console Servers': 'features/console-servers.md'
+    - 'Cron Jobs': 'features/cronjobs.md'
     - 'Cross Connects': 'features/patch-panels.md'
     - 'DNS / ARPA': 'features/dns-arpa.md'
     - 'Grapher': 'grapher/introduction.md'
