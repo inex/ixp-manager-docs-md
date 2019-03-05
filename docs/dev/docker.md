@@ -221,7 +221,7 @@ docker exec -it ixpm_cust-as112_1 birdc
 docker exec -it ixpm_cust-as112_1 birdc show protocols
 ```
 
-The route server runs an IPv4 and an IPv6 daemon. These can be accessed via the looking glass at http://127.0.0.1:8880/lg or on the command line via:
+The route server runs an IPv4 and an IPv6 daemon. These can be accessed via the looking glass at http://127.0.0.1:8881/ or on the command line via:
 
 ```sh
 # ipv4 daemon:
