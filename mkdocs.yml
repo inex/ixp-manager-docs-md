@@ -5,7 +5,7 @@ edit_uri: edit/master/docs
 theme: readthedocs
 repo_name: GitHub
 copyright: '&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.'
-pages:
+nav:
 - Home: 'index.md'
 - Installation:
     - 'Introduction': 'install/index.md'
@@ -13,7 +13,6 @@ pages:
     - 'Maintenance Mode': 'install/maint-mode.md'
     - 'Manual Installation': 'install/manually.md'
     - 'Upgrading': 'install/upgrading.md'
-    - 'Upgrade From v3': 'install/upgrade-v3.md'
     - 'Runtime Configuration': 'install/runtime.md'
 - General Usage:
     - 'Contacts': 'usage/contacts.md'

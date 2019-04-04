@@ -1,13 +1,6 @@
-# Upgrading IXP Manager
+# Upgrading IXP Manager - V4.x
 
-
-**These upgrade instructions relate to upgrading when you are already using IXP Manager v5.x.**
-
-* for instructions on how to upgrade within the v4.x releases, please [see this page](upgrade-v4.md).
-* for instructions on how to upgrade from v3.x to v4, please [see this page](upgrade-v3.md).
-* for instructions on how to upgrade from v4.9.x to v5.0, please see [the v5.0 release notes](https://github.com/inex/IXP-Manager/releases).
-
-
+> These upgrade instructions relate to upgrading when you are already using IXP Manager v4.x.
 
 We track [releases on GitHub](https://github.com/inex/IXP-Manager/releases).
 
@@ -44,7 +37,7 @@ The general process is:
 
     ```sh
     cd $IXPROOT
-    php artisan down
+    ./artisan down
     ```
 
 3. Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v4.
@@ -54,7 +47,7 @@ The general process is:
     # pull the latest code
     git fetch
     # check out the version you are upgrading to
-    git checkout v5.x.y
+    git checkout v4.x.y
     ```
 
 4. Install latest required libraries from composer [**(see notes below)**](#updating-composer-dependancies):
@@ -64,7 +57,17 @@ The general process is:
     sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && php ./composer.phar install --no-dev --prefer-dist"
     ```
 
-5. Restart Memcached and clear the cache. Do not forget / skip this step!
+5. Install latest frontend dependencies [**(see notes below)**](#updating-bower-dependancies):
+
+    ```sh
+    # if asked to chose a jquery version, chose the latest / highest version offered
+    sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && \
+        bower --config.interactive=false -f prune"
+    sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && \
+        bower --config.interactive=false -f update"
+    ```
+
+6. Restart Memcached and clear the cache. Do not forget / skip this step!
 
     ```sh
     # (assuming we're still in $IXPROOT)
@@ -72,25 +75,26 @@ The general process is:
     ./artisan cache:clear
     ```
 
-6. Update the database schema:
+7. Update the database schema:
 
     ```sh
     # (assuming we're still in $IXPROOT)
-    # (you really should take a mysqldump of your database first)
+    # review / sanity check first:
+    ./artisan doctrine:schema:update --sql
+    # If in doubt, take a mysqldump of your database first.
     # migrate:
-    php artisan doctrine:schema:update --force
-    php migrate
+    ./artisan doctrine:schema:update --force
     ```
 
-7. Restart Memcached (yes, again). Do not forget / skip this step!
+8. Restart Memcached (yes, again). Do not forget / skip this step!
 
     ```sh
     systemctl restart memcached.service
     ```
 
-8. Ensure there are no version specific changes required in the release notes.
+9. Ensure there are no version specific changes required in the release notes.
 
-9. Ensure file permissions are still correct.
+10. Ensure file permissions are correct.
 
     ```sh
     chown -R $MY_WWW_USER: $IXPROOT/public/bower_components ${IXPROOT}/bower.json \
@@ -99,7 +103,13 @@ The general process is:
         ${IXPROOT}/storage $IXPROOT/vendor $IXPROOT/var $IXPROOT/bootstrap/cache
     ```
 
-10. Clear out all caches:
+11. For IXP Manager v4.9 (including upgrading to v4.9) and later:
+
+    ```sh
+    ${IXPROOT}/artisan migrate
+    ```
+
+12. Clear out all caches:
 
     ```sh
     ${IXPROOT}/artisan cache:clear
@@ -111,13 +121,13 @@ The general process is:
     ${IXPROOT}/artisan view:clear
     ```
 
-11. Disable maintenance mode:
+13. Disable maintenance mode:
 
     ```sh
     # (assuming we're still in $IXPROOT)
     ./artisan up
     ```
-12. Recreate SQL views
+14. Recreate SQL views
 
     Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them:
 
@@ -125,12 +135,34 @@ The general process is:
     mysql -u ixp -p ixp < $IXPROOT/tools/sql/views.sql
     ```
 
+## Updating Bower Dependancies
 
+It is not advisable to run bower as root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the bower commands themselves will be run as `$MY_WWW_USER`):
+
+```sh
+# set this to your IXP Manager installation directory
+IXPROOT=/srv/ixpmanager
+
+MY_WWW_USER=www-data  # fix as appropriate to your operating system
+
+# ensure www-data can write to bower:
+chown -R $MY_WWW_USER: $IXPROOT/public/bower_components ${IXPROOT}/bower.json ${IXPROOT}/storage
+chmod -R u+rwX $IXPROOT/public/bower_components ${IXPROOT}/bower.json ${IXPROOT}/storage
+
+# update bower
+sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && bower --config.interactive=false -f update"
+```
+
+The above command is structured as it is because typically the `www-data` user has a `nologin` shell specified.
 
 
 ## Updating Composer Dependancies
 
-It is not advisable to run composer as root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the composer commands themselves will be run as `$MY_WWW_USER`). Note that we assume here what you have installed Composer (see: https://getcomposer.org/ ) in the `${IXPROOT}` directory as `composer.phar`. This is where and how the IXP Manager installation scripts and documentation instructions install it.
+This is similar to the bower section above so please read that if you have not already.
+
+Note that we assume here what you have installed Composer (see: https://getcomposer.org/ ) in the `${IXPROOT}` directory as `composer.phar`. This is where and how the IXP Manager installation scripts and documentation instructions install it.
+
+The following options would work on Ubuntu (run these as root and the composer commands themselves will be run as `$MY_WWW_USER`):
 
 ```sh
 # set this to your IXP Manager installation directory
