@@ -175,6 +175,8 @@
     
         <ul>
         
+            <li><a class="toctree-l4" href="#choose-the-correct-version-of-birds-eye-to-use">Choose the Correct Version of Bird's Eye to Use</a></li>
+        
             <li><a class="toctree-l4" href="#example-router-configuration">Example Router Configuration</a></li>
         
             <li><a class="toctree-l4" href="#looking-glass-pass-thru-api-calls">Looking Glass 'Pass Thru' API Calls</a></li>
@@ -399,6 +401,12 @@
 <li>the API endpoint must be accessible from the server running IXP Manager and this endpoint must be set correctly in the router's configuration (see <a href="../routers/">router(s)</a> page) (along with an appropriate setting for <em>LG Access Privileges</em>). Note that the Birdseye API end points do not need to be publicly accessible - just from the IXP Manager server.</li>
 <li>set the <code>.env</code> option: <code>IXP_FE_FRONTEND_DISABLED_LOOKING_GLASS=false</code> (in IXP Manager's <code>.env</code> and add it if it's missing as it defaults to <code>true</code>).</li>
 </ol>
+<h3 id="choose-the-correct-version-of-birds-eye-to-use">Choose the Correct Version of Bird's Eye to Use<a class="headerlink" href="#choose-the-correct-version-of-birds-eye-to-use" title="Permanent link"></a></h3>
+<ul>
+<li>For IXP Manager v4.x.y, choose the latest version of <strong>Bird's Eye v1.1.x</strong>.</li>
+<li>For IXP Manager v5.x.y, choose the latest version of <strong>Bird's Eye v1.2.x</strong>.</li>
+</ul>
+<p>The looking glass will not work if the versions are not matched correctly as above.</p>
 <h2 id="example-router-configuration">Example Router Configuration<a class="headerlink" href="#example-router-configuration" title="Permanent link"></a></h2>
 <p>See this screenshot for an appropriately configured INEX router with Bird's Eye:</p>
 <p><img alt="Router Configuration for LG" src="../img/lg-router-conf.png" /></p>
@@ -514,6 +522,13 @@ tail -f storage/log/laravel.log
 <p>If there are error messages in the above log as you try and access the looking glass, include them when emailing the mailing list for help.</p>
 <p>Then on the router (the server running Bird's Eye), you need to provide the following answers when seeking help:</p>
 <div class="highlight"><pre><span></span>###############################################################################
+# Are you running the correct version of Bird&#39;s Eye for IXP Manager?
+
+cat /srv/birdseye/version.php
+
+# see the documentation above for the correct versions to match to IXP Manager.
+
+###############################################################################
 # Is Bird actually running and what are the names of its sockets:
 $ ls -la /var/run/bird
 
@@ -536,6 +551,11 @@ $ ls -la /srv/birdseye/*env
 
 ###############################################################################
 # Let&#39;s see the contents of these:
+#
+# NB: when specifying the BIRDC parameter below, for Bird v1.x.y, use the -4/-6
+# switch when querying the ipv4/6 daemon respectively. For Bird v2.x.y, use
+# the -2 switch.
+#
 $ cat /srv/birdseye/*env | egrep -v &#39;(^#)|(^\s*$)&#39;
 
 BIRDC=&quot;/usr/bin/sudo /srv/birdseye/bin/birdc -4 -s /var/run/bird/bird-as112-lan1-ipv4.ctl&quot;
