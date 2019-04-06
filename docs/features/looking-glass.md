@@ -12,6 +12,13 @@ Enabling the looking glass just requires:
 4. set the `.env` option: `IXP_FE_FRONTEND_DISABLED_LOOKING_GLASS=false` (in IXP Manager's `.env` and add it if it's missing as it defaults to `true`).
 
 
+### Choose the Correct Version of Bird's Eye to Use
+
+* For IXP Manager v4.x.y, choose the latest version of **Bird's Eye v1.1.x**.
+* For IXP Manager v5.x.y, choose the latest version of **Bird's Eye v1.2.x**.
+
+The looking glass will not work if the versions are not matched correctly as above.
+
 ## Example Router Configuration
 
 See this screenshot for an appropriately configured INEX router with Bird's Eye:
@@ -146,6 +153,13 @@ Then on the router (the server running Bird's Eye), you need to provide the foll
 
 ```
 ###############################################################################
+# Are you running the correct version of Bird's Eye for IXP Manager?
+
+cat /srv/birdseye/version.php
+
+# see the documentation above for the correct versions to match to IXP Manager.
+
+###############################################################################
 # Is Bird actually running and what are the names of its sockets:
 $ ls -la /var/run/bird
 
@@ -168,6 +182,11 @@ $ ls -la /srv/birdseye/*env
 
 ###############################################################################
 # Let's see the contents of these:
+#
+# NB: when specifying the BIRDC parameter below, for Bird v1.x.y, use the -4/-6
+# switch when querying the ipv4/6 daemon respectively. For Bird v2.x.y, use
+# the -2 switch.
+#
 $ cat /srv/birdseye/*env | egrep -v '(^#)|(^\s*$)'
 
 BIRDC="/usr/bin/sudo /srv/birdseye/bin/birdc -4 -s /var/run/bird/bird-as112-lan1-ipv4.ctl"
