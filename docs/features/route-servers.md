@@ -12,10 +12,11 @@ However, by using a route servers for peering relationships, the number of BGP s
 
 ## Configuration Generation Features
 
-This is [covered in the router documentation here](routers.md). Please review that to learn how to automatically generate route server configurations. This section goes into a bit more specific detail on INEX's route server configuration (as shipped with IXP Manager) and why it's safe to use.
+Please [review the generic router documentation](routers.md) to learn how to automatically generate route server configurations. This section goes into a bit more specific detail on INEX's route server configuration (as shipped with IXP Manager) and why it's safe to use.
 
 The features of the route server configurations that IXP Manager generates include:
 
+* [RPKI support](rpki.md) when using the Bird v2 templates;
 * full prefix filtering based on IRRDB entries (can be disabled on a per member basis if required) - see [the IRRDB documentation here](irrdb.md);
 * full origin ASN filtering based on IRRDB entries (can be disabled on a per member basis if required);
 * in all cases, prefix filtering for IPv4 and v6 based on the IANA special purpose registries (also known as bogon lists);
@@ -23,9 +24,22 @@ The features of the route server configurations that IXP Manager generates inclu
 * max prefix limits;
 * multiple VLAN interfaces for a single member supported;
 * large BGP communities supported;
-* a decade of production use and experience.
+* over a decade of production use and experience.
 
-There are [some old notes on route server testing here](https://github.com/inex/IXP-Manager/wiki/Route-Server-Testing) which may also be useful.
+With Bird v2 support in IXP Manager v5, we provide better looking glass integration and other tooling to show members which prefixes are filtered and why. The Bird v2 filtering mechanism is as follows:
+
+1. Filter small prefixes (default is > /24 / /48 for ipv4 / ipv6).
+2. Filter martians / bogons prefixes ([see this template](https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/server/bird2/header.foil.php)).
+3. Sanity check - filter prefixes with no AS path or > 64 ASNs in AS path.
+4. Sanity check to ensure peer AS is the same as first AS in the prefix’s AS path.
+5. Prevent next-hop hijacking. This occurs when a participant advertises a prefix with a next hop IP other than their own. An exception exists to allow participants with multiple connections advertise their other router (next-hop within the same AS).
+6. Filter known transit networks - see FIXME
+7. IRRDB filtering: ensure origin AS is in set of ASNs from member AS-SET.
+8. RPKI:
+    * Valid -> accept
+    * Invalid -> drop
+9. RPKI Unknown -> revert to standard IRRDB prefix filtering.
+
 
 ## Setting Up
 
