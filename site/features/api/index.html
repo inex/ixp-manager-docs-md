@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/features/api/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -151,6 +148,10 @@
                 <li class="">
                     
     <a class="" href="../console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cronjobs/">Cron Jobs</a>
                 </li>
                 <li class="">
                     
@@ -231,6 +232,10 @@
                 <li class="">
                     
     <a class="" href="../routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -404,13 +409,11 @@
 <div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/test
 </pre></div>
 
-
 <p>The plaintext response will also indicate if you are authenticated or not (which can be via existing session or API key).</p>
 <h3 id="1-http-header-parameter">1. HTTP Header Parameter<a class="headerlink" href="#1-http-header-parameter" title="Permanent link"></a></h3>
 <p>You can pass your API key in the HTTP request as a request header parameter called <code>X-IXP-Manager-API-Key</code>. For example:</p>
 <div class="highlight"><pre><span></span>curl -X GET -H <span class="s2">&quot;X-IXP-Manager-API-Key: my-api-key&quot;</span> https://ixp.example.com/api/v4/test
 </pre></div>
-
 
 <h3 id="2-as-a-url-parameter">2. As a URL Parameter<a class="headerlink" href="#2-as-a-url-parameter" title="Permanent link"></a></h3>
 <p>This is a legacy method that is still supported. You can tack your key on as follows:</p>
@@ -442,18 +445,18 @@
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../../usage/switches/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -463,7 +466,9 @@
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

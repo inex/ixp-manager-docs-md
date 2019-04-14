@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Upgrading IXP Manager - V4.x - IXP Manager Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Upgrading IXP Manager - V4.x";
+    var mkdocs_page_input_path = "install/upgrade-v4.md";
+    var mkdocs_page_url = "/install/upgrade-v4/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../runtime/">Runtime Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/contacts/">Contacts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/customers/">Customers / Members</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/customer-notes/">Customer Notes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/customer-tags/">Customer Tags</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/interfaces/">Customer Connections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/switches/">Switches</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../features/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/as112/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/dns-arpa/">DNS / ARPA</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/introduction/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/irrdb/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/ixf-export/">IX-F Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/member-export/">Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/mailing-lists/">Mailing List Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/nagios/">Nagios</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/peering-manager/">Peering Manager</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/peering-matrix/">Peering Matrix</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/rir-objects/">RIR Objects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/reseller/">Reseller Functionality</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/route-collectors/">Route Collectors</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/route-servers/">Route Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/rpki/">RPKI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/skinning/">Skinning</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/smokeping/">Smokeping</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/static-content/">Static Content</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/tacacs/">TACACS</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Grapher</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../grapher/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/api/">API &amp; Permissions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/mrtg/">Backend: MRTG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/sflow/">Backend: sflow</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/smokeping/">Backend: Smokeping</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sflow Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../features/sflow/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/sflow-p2p/">Peer-to-peer Graphs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/ci/">Continuous Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/cla/">Contributer License Agreement</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docker/">Docker</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/forms/">Forms</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/frontend-crud/">Frontend CRUD</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/release-procedure/">Release Procedure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Upgrading IXP Manager - V4.x</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/install/upgrade-v4.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="upgrading-ixp-manager-v4x">Upgrading IXP Manager - V4.x<a class="headerlink" href="#upgrading-ixp-manager-v4x" title="Permanent link"></a></h1>
+<blockquote>
+<p>These upgrade instructions relate to upgrading when you are already using IXP Manager v4.x.</p>
+</blockquote>
+<p>We track <a href="https://github.com/inex/IXP-Manager/releases">releases on GitHub</a>.</p>
+<p>You will find standard instructions for upgrading IXP Manager below. Note that the release notes for each version may contain specific upgrade instructions including schema changes.</p>
+<p>If you have missed some versions, the most sensible approach is to upgrade to each minor release in sequence (4.5.0 -&gt; 4.6.0 -&gt; 4.7.0 -&gt; ...) and then to the latest patch version in the latest minor version.</p>
+<p>In the below, we assume the following installation directory - alter this to suit your own situation:</p>
+<div class="highlight"><pre><span></span>IXPROOT=/srv/ixpmanager
+</pre></div>
+
+<p>The general process is:</p>
+<ol>
+<li>
+<p>Set up some variables and ensure directory permissions are okay:</p>
+<div class="highlight"><pre><span></span><span class="c1"># set this to your IXP Manager installation directory</span>
+<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+
+<span class="c1"># fix as appropriate to your operating system</span>
+<span class="nv">MY_WWW_USER</span><span class="o">=</span>www-data
+
+<span class="c1"># ensure the web server daemon user can write to necessary directories:</span>
+chown -R <span class="nv">$MY_WWW_USER</span>: <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json <span class="se">\</span>
+    <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage <span class="nv">$IXPROOT</span>/vendor
+chmod -R u+rwX <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json         <span class="se">\</span>
+    <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage <span class="nv">$IXPROOT</span>/vendor
+</pre></div>
+
+</li>
+<li>
+<p>Enable maintenance mode:</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+./artisan down
+</pre></div>
+
+</li>
+<li>
+<p>Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v4.</p>
+<div class="highlight"><pre><span></span><span class="c1"># (assuming we&#39;re still in $IXPROOT)</span>
+<span class="c1"># pull the latest code</span>
+git fetch
+<span class="c1"># check out the version you are upgrading to</span>
+git checkout v4.x.y
+</pre></div>
+
+</li>
+<li>
+<p>Install latest required libraries from composer <a href="#updating-composer-dependancies"><strong>(see notes below)</strong></a>:</p>
+<div class="highlight"><pre><span></span><span class="c1"># this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.</span>
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; php ./composer.phar install --no-dev --prefer-dist&quot;</span>
+</pre></div>
+
+</li>
+<li>
+<p>Install latest frontend dependencies <a href="#updating-bower-dependancies"><strong>(see notes below)</strong></a>:</p>
+<div class="highlight"><pre><span></span><span class="c1"># if asked to chose a jquery version, chose the latest / highest version offered</span>
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; \</span>
+<span class="s2">    bower --config.interactive=false -f prune&quot;</span>
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; \</span>
+<span class="s2">    bower --config.interactive=false -f update&quot;</span>
+</pre></div>
+
+</li>
+<li>
+<p>Restart Memcached and clear the cache. Do not forget / skip this step!</p>
+<div class="highlight"><pre><span></span><span class="c1"># (assuming we&#39;re still in $IXPROOT)</span>
+systemctl restart memcached.service
+./artisan cache:clear
+</pre></div>
+
+</li>
+<li>
+<p>Update the database schema:</p>
+<div class="highlight"><pre><span></span><span class="c1"># (assuming we&#39;re still in $IXPROOT)</span>
+<span class="c1"># review / sanity check first:</span>
+./artisan doctrine:schema:update --sql
+<span class="c1"># If in doubt, take a mysqldump of your database first.</span>
+<span class="c1"># migrate:</span>
+./artisan doctrine:schema:update --force
+</pre></div>
+
+</li>
+<li>
+<p>Restart Memcached (yes, again). Do not forget / skip this step!</p>
+<div class="highlight"><pre><span></span>systemctl restart memcached.service
+</pre></div>
+
+</li>
+<li>
+<p>Ensure there are no version specific changes required in the release notes.</p>
+</li>
+<li>
+<p>Ensure file permissions are correct.</p>
+<div class="highlight"><pre><span></span>chown -R <span class="nv">$MY_WWW_USER</span>: <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json <span class="se">\</span>
+    <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage <span class="nv">$IXPROOT</span>/vendor <span class="nv">$IXPROOT</span>/var <span class="nv">$IXPROOT</span>/bootstrap/cache
+chmod -R u+rwX <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json         <span class="se">\</span>
+    <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage <span class="nv">$IXPROOT</span>/vendor <span class="nv">$IXPROOT</span>/var <span class="nv">$IXPROOT</span>/bootstrap/cache
+</pre></div>
+
+</li>
+<li>
+<p>For IXP Manager v4.9 (including upgrading to v4.9) and later:</p>
+<div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan migrate
+</pre></div>
+
+</li>
+<li>
+<p>Clear out all caches:</p>
+<div class="highlight"><pre><span></span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan cache:clear
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan config:clear
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan doctrine:clear:metadata:cache
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan doctrine:clear:query:cache
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan doctrine:clear:result:cache
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan route:clear
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan view:clear
+</pre></div>
+
+</li>
+<li>
+<p>Disable maintenance mode:</p>
+<p><div class="highlight"><pre><span></span><span class="c1"># (assuming we&#39;re still in $IXPROOT)</span>
+./artisan up
+</pre></div>
+14. Recreate SQL views</p>
+<p>Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them:</p>
+<div class="highlight"><pre><span></span>mysql -u ixp -p ixp &lt; <span class="nv">$IXPROOT</span>/tools/sql/views.sql
+</pre></div>
+
+</li>
+</ol>
+<h2 id="updating-bower-dependancies">Updating Bower Dependancies<a class="headerlink" href="#updating-bower-dependancies" title="Permanent link"></a></h2>
+<p>It is not advisable to run bower as root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the bower commands themselves will be run as <code>$MY_WWW_USER</code>):</p>
+<div class="highlight"><pre><span></span><span class="c1"># set this to your IXP Manager installation directory</span>
+<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+
+<span class="nv">MY_WWW_USER</span><span class="o">=</span>www-data  <span class="c1"># fix as appropriate to your operating system</span>
+
+<span class="c1"># ensure www-data can write to bower:</span>
+chown -R <span class="nv">$MY_WWW_USER</span>: <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage
+chmod -R u+rwX <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage
+
+<span class="c1"># update bower</span>
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; bower --config.interactive=false -f update&quot;</span>
+</pre></div>
+
+<p>The above command is structured as it is because typically the <code>www-data</code> user has a <code>nologin</code> shell specified.</p>
+<h2 id="updating-composer-dependancies">Updating Composer Dependancies<a class="headerlink" href="#updating-composer-dependancies" title="Permanent link"></a></h2>
+<p>This is similar to the bower section above so please read that if you have not already.</p>
+<p>Note that we assume here what you have installed Composer (see: https://getcomposer.org/ ) in the <code>${IXPROOT}</code> directory as <code>composer.phar</code>. This is where and how the IXP Manager installation scripts and documentation instructions install it.</p>
+<p>The following options would work on Ubuntu (run these as root and the composer commands themselves will be run as <code>$MY_WWW_USER</code>):</p>
+<div class="highlight"><pre><span></span><span class="c1"># set this to your IXP Manager installation directory</span>
+<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+
+<span class="nv">MY_WWW_USER</span><span class="o">=</span>www-data  <span class="c1"># fix as appropriate to your operating system</span>
+
+<span class="c1"># ensure www-data can write to vendor:</span>
+chown -R <span class="nv">$MY_WWW_USER</span>: <span class="nv">$IXPROOT</span>/vendor <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage
+chmod -R u+rwX <span class="nv">$IXPROOT</span>/vendor <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage
+
+<span class="c1"># update composer</span>
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; php ./composer.phar install&quot;</span>
+</pre></div>
+
+<p>NB: If composer is not managed by your package management system, you should keep it up to date via the following (using the same definitions from the composer update example above):</p>
+<div class="highlight"><pre><span></span>chown -R <span class="nv">$MY_WWW_USER</span>: <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/composer.phar
+chmod -R u+rwx <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/composer.phar
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; php ./composer.phar selfupdate&quot;</span>
+</pre></div>
+
+<h2 id="correcting-database-issues-verifying-your-schema">Correcting Database Issues / Verifying Your Schema<a class="headerlink" href="#correcting-database-issues-verifying-your-schema" title="Permanent link"></a></h2>
+<p>Because of the manual process of database updates, it is possible your database schema may fall out of sync.</p>
+<p>If you are having issues, first and foremost, restart Memcached. Doctrine2 caches entities and schema information in Memcached so, after an upgrade, you must restart Memcached.</p>
+<p>You can verify and update your schema using the <code>artisan</code> script. The first action should be validation - here is a working example with no database issues:</p>
+<div class="highlight"><pre><span></span>cd $IXPROOT
+./artisan doctrine:schema:validate
+
+Validating for default entity manager...
+[Mapping]  OK - The mapping files are correct.
+[Database] OK - The database schema is in sync with the mapping files.
+</pre></div>
+
+<p>If there are issues, you can use the following to show what SQL commands are required to bring your schema into line:</p>
+<div class="highlight"><pre><span></span>./artisan doctrine:schema:update --sql
+</pre></div>
+
+<p>And you can let Doctrine make the changes for you via:</p>
+<div class="highlight"><pre><span></span>./artisan doctrine:schema:update --force
+</pre></div>
+
+<p>Doctrine2 maintains the entities, proxies and repository classes. Ideally you should never need to do the following on a production installation - as we maintain these files with Git - but if you're developing / testing IXP Manager, you may need to.</p>
+<p>The process for updating these files with schema changes / updates is:</p>
+<div class="highlight"><pre><span></span>cd $IXPROOT
+systemctl restart memcached.service           # (or as appropriate for your system)
+./artisan doctrine:generate:entities database
+./artisan doctrine:generate:proxies
+</pre></div>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

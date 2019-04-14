@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>RPKI - IXP Manager Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "RPKI";
+    var mkdocs_page_input_path = "features/rpki.md";
+    var mkdocs_page_url = "/features/rpki/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/runtime/">Runtime Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/contacts/">Contacts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/customers/">Customers / Members</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/customer-notes/">Customer Notes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/customer-tags/">Customer Tags</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/interfaces/">Customer Connections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/switches/">Switches</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../as112/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../dns-arpa/">DNS / ARPA</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/introduction/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../irrdb/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ixf-export/">IX-F Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../member-export/">Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../mailing-lists/">Mailing List Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../nagios/">Nagios</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../peering-manager/">Peering Manager</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../peering-matrix/">Peering Matrix</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../rir-objects/">RIR Objects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../reseller/">Reseller Functionality</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../route-collectors/">Route Collectors</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../route-servers/">Route Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../routers/">Router Configuration</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">RPKI</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#rpki">RPKI</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#installing-an-rpki-server">Installing an RPKI Server</a></li>
+        
+            <li><a class="toctree-l4" href="#ripe-ncc-rpki-validator-3">RIPE NCC RPKI Validator 3</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../skinning/">Skinning</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/smokeping/">Smokeping</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../static-content/">Static Content</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../tacacs/">TACACS</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Grapher</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../grapher/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/api/">API &amp; Permissions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/mrtg/">Backend: MRTG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/sflow/">Backend: sflow</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/smokeping/">Backend: Smokeping</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sflow Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../sflow/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sflow-p2p/">Peer-to-peer Graphs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/ci/">Continuous Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/cla/">Contributer License Agreement</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docker/">Docker</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/forms/">Forms</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/frontend-crud/">Frontend CRUD</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/release-procedure/">Release Procedure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Features &raquo;</li>
+        
+      
+    
+    <li>RPKI</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/rpki.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="rpki">RPKI<a class="headerlink" href="#rpki" title="Permanent link"></a></h1>
+<p><strong><em>DEVELOPMENT NOTES</em></strong></p>
+<h2 id="installing-an-rpki-server">Installing an RPKI Server<a class="headerlink" href="#installing-an-rpki-server" title="Permanent link"></a></h2>
+<p>Standard Ubuntu 18.04 install (minimal virtual server, 2 vCPUs, 2GB RAM, 10GB LVM hard drive).</p>
+<h3 id="routinator-3000">Routinator 3000<a class="headerlink" href="#routinator-3000" title="Permanent link"></a></h3>
+<p><strong>Routinator 3000</strong> is a RPKI relying party software (aka RPKI Validator) written in Rust by the good folks at <a href="https://www.nlnetlabs.nl/projects/rpki/routinator/">NLnet Labs</a>. To install this we mostly follow <a href="https://github.com/NLnetLabs/routinator">their own GitHub instructions</a>.</p>
+<p>Rather than running Routinator as the root user, we create a dedicated user:</p>
+<div class="highlight"><pre><span></span>useradd -c <span class="s1">&#39;Routinator 3000&#39;</span> -d /srv/routinator -m -s /bin/bash -u <span class="m">1100</span> routinator
+</pre></div>
+
+<p>We then install the required software. <code>build-essential</code> is a Ubuntu alias package that installs the common C software build suite. <code>cargo</code> is Rust's package manager and installing that automatically installs other Rust dependancies.</p>
+<div class="highlight"><pre><span></span>apt install -y build-essential cargo
+</pre></div>
+
+<p>To install Routinator, we then switch to the <code>routinator</code> user and use Cargo to build and install it:</p>
+<div class="highlight"><pre><span></span>sudo su - routinator
+cargo install routinator
+</pre></div>
+
+<p>To check if this works, run the following (and note the path to the <code>routinator</code> binary):</p>
+<div class="highlight"><pre><span></span>routinator@rpki01:~$ /srv/routinator/.cargo/bin/routinator -V
+Routinator 0.2.1
+</pre></div>
+
+<p>Also run the following to get instructions for downloading and installing the ARIN TAL:</p>
+<div class="highlight"><pre><span></span>/srv/routinator/.cargo/bin/routinator vrps
+</pre></div>
+
+<p>Installing the ARIN file is done by:</p>
+<ol>
+<li>Visiting https://www.arin.net/resources/rpki/tal.html</li>
+<li>Downloading the TAL in RFC 7730 format</li>
+<li>Placing it in <code>/srv/routinator/.rpki-cache/tals/arin.tal</code></li>
+</ol>
+<p>You can then test by running the following again (this command prints the validated ROA payloads):</p>
+<div class="highlight"><pre><span></span>/srv/routinator/.cargo/bin/routinator vrps
+</pre></div>
+
+<p>To upgrade Routinator, you reinstall it (<code>-f</code> to overwrite the older version):</p>
+<div class="highlight"><pre><span></span>cargo install -f routinator
+</pre></div>
+
+<p>After you upgrade, kill the running version of Routinator and start it again.</p>
+<p>Note that in the above we are using the (sensible) configuration defaults. Read Routinator's own documentation if you want to change these.</p>
+<p>Start Routinator's RTR service with:</p>
+<div class="highlight"><pre><span></span>/srv/routinator/.cargo/bin/routinator rtrd -a -l 192.0.2.13:3323 -l [2001:db8::13]:3323
+</pre></div>
+
+<p>It will immediately start in the background. The <code>-a</code> switch will keep it in the foreground. You can see log messages using:</p>
+<div class="highlight"><pre><span></span>cat /var/log/syslog <span class="p">|</span> grep routinator
+</pre></div>
+
+<p>To have the service start at boot, we do the following (<strong>NB:</strong> ensure you have nothing in <code>rc.local</code> as the following overwrites it):</p>
+<div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;ENDL &gt;/etc/rc.local</span>
+<span class="s">#! /bin/bash</span>
+
+<span class="s"># Start Routinator</span>
+<span class="s">/usr/bin/sudo -iu routinator /srv/routinator/.cargo/bin/routinator rtrd -l 192.0.2.13:3323 -l [2001:db8::13]:3323</span>
+
+<span class="s">ENDL</span>
+
+chmod a+x /etc/rc.local
+</pre></div>
+
+<p>We also use a simple watcher script to restart Routinator in case it dies during production use. Here's a simple example:</p>
+<div class="highlight"><pre><span></span><span class="ch">#! /bin/bash</span>
+
+<span class="c1"># Simple script to make sure Routinator stays running.</span>
+<span class="c1"># Note we test for X2X as we expect a socket for ipv4 and ipv6 at INEX</span>
+
+<span class="k">if</span> <span class="o">[[</span> <span class="s2">&quot;X</span><span class="k">$(</span>/bin/netstat -lpn <span class="p">|</span> grep <span class="m">3323</span> <span class="p">|</span> grep routinator <span class="p">|</span> wc -l<span class="k">)</span><span class="s2">X&quot;</span> !<span class="o">=</span> <span class="s2">&quot;X2X&quot;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> Routinator not running! Restarting it...
+    /srv/routinator/.cargo/bin/routinator rtrd -l 192.0.2.13:3323 -l <span class="o">[</span>2001:db8::13<span class="o">]</span>:3323
+<span class="k">fi</span>
+</pre></div>
+
+<p>We save this as <code>/usr/local/bin/watch-routinator.sh</code> and <code>chmod a+x</code>. We then run it hourly via the following entry in <code>/etc/crontab</code>:</p>
+<div class="highlight"><pre><span></span>13 *    * * *   routinator      /usr/local/bin/watch-routinator.sh
+</pre></div>
+
+<h2 id="ripe-ncc-rpki-validator-3">RIPE NCC RPKI Validator 3<a class="headerlink" href="#ripe-ncc-rpki-validator-3" title="Permanent link"></a></h2>
+<p>The second RPKI-RTR implementation we have tested and support is RIPE's <a href="https://github.com/RIPE-NCC/rpki-validator-3">RPKI Validator 3</a>.</p>
+<p>RIPE provides CentOS7 RPMs for production builds but as we tend to use Ubuntu LTS for our servers, we will describe an installation using the generic builds here. You can read RIPE's <a href="https://github.com/RIPE-NCC/rpki-validator-3/wiki/RIPE-NCC-RPKI-Validator-3-Production">CentOS7 installation details here</a> and their <a href="https://github.com/RIPE-NCC/rpki-validator-3/wiki/Running-the-generic-builds">own generic install details here</a> (which are the ones we worked from for these Ubuntu 18.04 LTS instructions).</p>
+<p>Like with Routinator above, we will use a non-root user to run the daemons.</p>
+<div class="highlight"><pre><span></span>useradd -c <span class="s1">&#39;RIPE NCC RPKI Validator&#39;</span> -d /srv/ripe-rpki-validator -m -s /bin/bash -u <span class="m">1100</span> ripe
+</pre></div>
+
+<p>Download and extract the latest production releases <a href="https://ftp.ripe.net/tools/rpki/validator3/prod/generic/">from here</a>:</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> /srv/ripe-rpki-validator
+wget https://ftp.ripe.net/tools/rpki/validator3/prod/generic/rpki-rtr-server-latest-dist.tar.gz
+tar zxf rpki-rtr-server-latest-dist.tar.gz
+wget https://ftp.ripe.net/tools/rpki/validator3/prod/generic/rpki-validator-3-latest-dist.tar.gz
+tar zxf rpki-validator-3-latest-dist.tar.gz
+</pre></div>
+
+<p>When you extract these, you'll find they create directories named by their version. As we will reference these in various scripts, we will alias these directories so we do not need to update the scripts on an upgrade of the software. In our example case, the version was <code>3.0-255</code> so we do the following (and also ensure the permissions are correct):</p>
+<div class="highlight"><pre><span></span>ln -s rpki-rtr-server-3.0-355 rpki-rtr-server-3
+ln -s rpki-validator-3.0-355 rpki-validator-3
+chown -R ripe: /srv/ripe-rpki-validator
+</pre></div>
+
+<p>The requirements for RPKI Validator 3 are OpenJDK and rsync. For Ubuntu 18.04 that means:</p>
+<div class="highlight"><pre><span></span>apt install -y openjdk-8-jre rsync curl
+</pre></div>
+
+<p>We will want to keep configuration changes and the database across upgrades. For this we:</p>
+<div class="highlight"><pre><span></span><span class="c1"># move the config and replace it with a link:</span>
+<span class="nb">cd</span> /srv/ripe-rpki-validator
+mv rpki-validator-3/conf/application.properties rpki-validator-3.conf
+ln -s /srv/ripe-rpki-validator/rpki-validator-3.conf <span class="se">\</span>
+    /srv/ripe-rpki-validator/rpki-validator-3/conf/application.properties
+
+<span class="c1"># And do the same for the datebase:</span>
+mv rpki-validator-3/db .
+ln -s /srv/ripe-rpki-validator/db /srv/ripe-rpki-validator/rpki-validator-3/db
+
+<span class="c1"># And do the same for rpki-rtr-server-3:</span>
+mv rpki-rtr-server-3/conf/application.properties rpki-rtr-server-3.conf
+ln -s /srv/ripe-rpki-validator/rpki-rtr-server-3.conf <span class="se">\</span>
+    /srv/ripe-rpki-validator/rpki-rtr-server-3/conf/application.properties
+
+<span class="c1"># again, ensure file ownership is okay</span>
+chown -R ripe: /srv/ripe-rpki-validator
+</pre></div>
+
+<p>We then edit <code>/srv/ripe-rpki-validator/rpki-validator-3.conf</code> and change the following configuration options:</p>
+<ol>
+<li><code>server.port</code> and <code>server.address</code> if you want to access the web interface directly. Commenting <code>server.address</code> out makes it listen on all interfaces.</li>
+<li><code>spring.datasource.url</code> to <code>/srv/ripe-rpki-validator/db/rpki-validator.h2</code>.</li>
+</ol>
+<p>And we edit <code>`/srv/ripe-rpki-validator/rpki-rtr-server-3.conf</code> and set:
+1. set <code>server.port</code> and <code>server.address</code> as required (note this is for the API, not the RTR protocol). <code>server.address=</code> listens on all interfaces.
+2. set <code>rtr.server.address</code> and <code>rtr.server.port</code> as required (this is the RTR protocol). <code>rtr.server.address=::</code> listens on all interfaces.</p>
+<p>You should now be able to start the Validator and RTR daemons:</p>
+<div class="highlight"><pre><span></span><span class="c1"># as the RIPE user</span>
+su - ripe
+
+<span class="nb">cd</span> /srv/ripe-rpki-validator/rpki-validator-3
+./rpki-validator-3.sh
+
+<span class="nb">cd</span> /srv/ripe-rpki-validator/rpki-rtr-server-3
+./rpki-rtr-server.sh
+</pre></div>
+
+<p>Like Routinator, we need to manually install the ARIN TAL by:</p>
+<ol>
+<li>Visiting https://www.arin.net/resources/rpki/tal.html</li>
+<li>Downloading the TAL in <em>RIPE NCC RPKI Validator format</em> format</li>
+<li>Installing it using the command:
+    <div class="highlight"><pre><span></span>/srv/ripe-rpki-validator/rpki-validator-3/upload-tal.sh arin-ripevalidator.tal http://localhost:8080/
+</pre></div></li>
+</ol>
+<p>We use systemd to ensure both daemons start automatically:</p>
+<div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/rpki-validator-3.service</span>
+<span class="s">[Unit]</span>
+<span class="s">Description=RPKI Validator</span>
+<span class="s">After=network.target</span>
+
+<span class="s">[Service]</span>
+<span class="s">Environment=JAVA_CMD=/usr/bin/java</span>
+<span class="s">ExecStart=/srv/ripe-rpki-validator/rpki-validator-3/rpki-validator-3.sh</span>
+
+<span class="s"># prevent restart in case there&#39;s a problem</span>
+<span class="s"># with the database or binding to socket</span>
+<span class="s">RestartPreventExitStatus=7</span>
+
+<span class="s">User=ripe</span>
+
+<span class="s">[Install]</span>
+<span class="s">WantedBy=multi-user.target</span>
+<span class="s">ENDL</span>
+
+systemctl <span class="nb">enable</span> rpki-validator-3.service
+systemctl start rpki-validator-3.service
+
+
+cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/rpki-rtr-server-3.service</span>
+<span class="s">[Unit]</span>
+<span class="s">Description=RPKI RTR</span>
+<span class="s">After=rpki-validator-3.service</span>
+
+<span class="s">[Service]</span>
+<span class="s">Environment=JAVA_CMD=/usr/bin/java</span>
+<span class="s">ExecStart=/srv/ripe-rpki-validator/rpki-rtr-server-3/rpki-rtr-server.sh</span>
+
+<span class="s"># prevent restart in case there&#39;s a problem</span>
+<span class="s"># with the database or binding to socket</span>
+<span class="s">RestartPreventExitStatus=7</span>
+
+<span class="s">User=ripe</span>
+
+<span class="s">[Install]</span>
+<span class="s">WantedBy=multi-user.target</span>
+<span class="s">ENDL</span>
+
+systemctl <span class="nb">enable</span> rpki-rtr-server-3.service
+systemctl start rpki-rtr-server-3.service
+</pre></div>
+
+<p>You can see log messages using:</p>
+<div class="highlight"><pre><span></span>cat /var/log/syslog <span class="p">|</span> grep rpki-validator
+cat /var/log/syslog <span class="p">|</span> grep rpki-rtr
+</pre></div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../skinning/" class="btn btn-neutral float-right" title="Skinning">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../routers/" class="btn btn-neutral" title="Router Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../routers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../skinning/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

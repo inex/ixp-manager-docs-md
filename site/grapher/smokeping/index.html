@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/grapher/smokeping/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -137,6 +134,10 @@
                 <li class="">
                     
     <a class="" href="../../features/console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/cronjobs/">Cron Jobs</a>
                 </li>
                 <li class="">
                     
@@ -217,6 +218,10 @@
                 <li class="">
                     
     <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -422,7 +427,6 @@
 <div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/grapher/config?backend=smokeping&amp;vlanid=10&amp;protocol=ipv4
 </pre></div>
 
-
 <p><em>Note that in versions of IXP Manager between v4.5 and v4.7.3, this was: <code>https://ixp.example.com/api/v4/vlan/smokeping/{vlanid}/{protocol}</code>.</em></p>
 <p>In the above, the parameters are:</p>
 <ul>
@@ -439,7 +443,6 @@ probe = FPing
 host = 185.6.36.6
 </pre></div>
 
-
 <h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link"></a></h3>
 <p>You can optionally POST any of the above parameters and none, one or both of the following to change elements of the default template:</p>
 <ul>
@@ -453,7 +456,6 @@ host = 185.6.36.6
     https://ixpexample.com/api/v4/grapher/config
 </pre></div>
 
-
 <h3 id="templates-skinning">Templates / Skinning<a class="headerlink" href="#templates-skinning" title="Permanent link"></a></h3>
 <p>You can use <a href="../../features/skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
 <p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
@@ -462,7 +464,6 @@ mkdir -p resources/skins/myskin/services/grapher/smokeping
 cp resources/views/services/grapher/smokeping/default.foil.php <span class="se">\</span>
     resources/skins/myskin/services/grapher/smokeping/mytemplate1.foil.php
 </pre></div>
-
 
 <p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
 <p>The following variables are available in the template:</p>
@@ -485,7 +486,6 @@ cp resources/views/services/grapher/smokeping/default.foil.php <span class="se">
 <span class="nv">VLANS</span><span class="o">=</span><span class="s2">&quot;1 2&quot;</span>
 <span class="nv">PROTOCOLS</span><span class="o">=</span><span class="s2">&quot;ipv4 ipv6&quot;</span>
 </pre></div>
-
 
 <p>where:</p>
 <ul>
@@ -514,7 +514,6 @@ title = IXP Infra 1 :: Peering VLAN 1
 @include targets-vlan1-ipv6.cfg
 </pre></div>
 
-
 <h2 id="apache-configuration">Apache Configuration<a class="headerlink" href="#apache-configuration" title="Permanent link"></a></h2>
 <p>You need to be able to configure IXP Manager with the base Smokeping URL such as <code>http://www.example.com/smokeping</code>. This should be the URL to the standard entry page to Smokeping.</p>
 <p>IXP Manager will add the trailing slash and assume the directory index is configured for the CGI script. Thus you need an Apache configuration such as:</p>
@@ -527,7 +526,6 @@ Alias /smokeping /usr/share/smokeping/www
 &lt;/Directory&gt;
 </pre></div>
 
-
 <h2 id="ixp-manager-configuration">IXP Manager Configuration<a class="headerlink" href="#ixp-manager-configuration" title="Permanent link"></a></h2>
 <p>Once you have configured Smokeping and Apache/web server as above, you really just need to set the following in your IXP Manager <code>.env</code> file:</p>
 <div class="highlight"><pre><span></span># Add smokeping to the grapher backends:
@@ -539,7 +537,6 @@ GRAPHER_BACKEND_SMOKEPING_ENABLED=true
 # And set the default location to fetch the Smokeping graphs from:
 GRAPHER_BACKEND_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
 </pre></div>
-
 
 <p>where the URL is as you set up in Apache above.</p>
 <p>There may be instances where you have multiple VLANs where it is not possible to have a single Smokeping instance graph latency for all of them. Particularly as the Smokeping daemon for a given VLAN needs to have an interface / IP address on that VLAN.</p>
@@ -556,7 +553,6 @@ GRAPHER_BACKEND_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
 <span class="p">];</span>
 </pre></div>
 
-
 <p>where the array index (<code>2</code> and <code>4</code> in the above example) is the VLAN DB ID as explained above.</p>
 <p>Any VLANs without a specific override configured in this way will fall back to the <code>GRAPHER_BACKEND_SMOKEPING_URL</code> setting.</p>
 <h2 id="viewing-smokeping-in-ixp-manager">Viewing Smokeping in IXP Manager<a class="headerlink" href="#viewing-smokeping-in-ixp-manager" title="Permanent link"></a></h2>
@@ -566,7 +562,6 @@ GRAPHER_BACKEND_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
 <p>IXP Manager will call something like the following to fetch graphs from Smokeping:</p>
 <div class="highlight"><pre><span></span><span class="x">file_get_contents( &#39;https://www.example.com/smokeping/?.....&#39; )</span>
 </pre></div>
-
 
 <p>You should see these requests to Smokeping in your Smokeping web server log files. Find these and compare them to the URLs that Smokeping itself generates for its own display of the images to ensure you have everything - and especially the Smokeping URL in IXP configuration set up correctly.</p>
 <p>Also, try testing these URLs directly on the IXP Manager server via:</p>
@@ -598,18 +593,18 @@ GRAPHER_BACKEND_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../sflow/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -619,7 +614,9 @@ GRAPHER_BACKEND_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

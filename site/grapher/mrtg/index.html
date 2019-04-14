@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/grapher/mrtg/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -137,6 +134,10 @@
                 <li class="">
                     
     <a class="" href="../../features/console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/cronjobs/">Cron Jobs</a>
                 </li>
                 <li class="">
                     
@@ -217,6 +218,10 @@
                 <li class="">
                     
     <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -422,11 +427,9 @@
 <div class="highlight"><pre><span></span>apt install rrdtool mrtg
 </pre></div>
 
-
 <p>You also need a folder to store all MRTG files. For example:</p>
 <div class="highlight"><pre><span></span>mkdir -p /srv/mrtg
 </pre></div>
-
 
 <p>In your `.env, you need to set the following options:</p>
 <div class="highlight"><pre><span></span># The MRTG database type to use - either log or rrd:
@@ -445,7 +448,6 @@ GRAPHER_BACKEND_MRTG_LOGDIR=&quot;/srv/mrtg&quot;
 # GRAPHER_BACKEND_MRTG_LOGDIR=&quot;http://collector.example.com/mrtg&quot;
 </pre></div>
 
-
 <h2 id="generating-mrtg-configuration">Generating MRTG Configuration<a class="headerlink" href="#generating-mrtg-configuration" title="Permanent link"></a></h2>
 <p>You can now generate a MRTG configuration by executing a command such as:</p>
 <div class="highlight"><pre><span></span><span class="c1"># Move to the directory where you have installed IXP Manager (typically: /srv/ixpmanager)</span>
@@ -457,7 +459,6 @@ php artisan grapher:generate-configuration -B mrtg
 <span class="c1"># Generate MRTG configuration and output to a named file:</span>
 php artisan grapher:generate-configuration -B mrtg -O /tmp/mrtg.cfg.candidate
 </pre></div>
-
 
 <p>You could also combine a syntax check before putting the resultant file live. Here's a complete example that could be run via cron:</p>
 <div class="highlight"><pre><span></span><span class="ch">#! /usr/bin/env bash</span>
@@ -489,7 +490,6 @@ rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</
 
 /usr/bin/mrtg --check <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> <span class="o">&amp;&amp;</span> /bin/mv <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> /etc/mrtg.cfg
 </pre></div>
-
 
 <p>If your MRTG collector is on a different server, you could use a script such as the following to safely update MRTG via <a href="../../features/api/">IXP Manager's API</a>.</p>
 <div class="highlight"><pre><span></span><span class="ch">#! /usr/bin/env bash</span>
@@ -525,15 +525,13 @@ rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</
     <span class="nb">exit</span> 0
 <span class="k">fi</span>
 
-/usr/bin/mrtg --check <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> <span class="o">&amp;&amp;</span> /bin/mv <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> /etc/mrtg.cfg     
+/usr/bin/mrtg --check <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> <span class="o">&amp;&amp;</span> /bin/mv <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> /etc/mrtg.cfg
 </pre></div>
-
 
 <p>Note that the MRTG configuration that IXP Manager generates instructs MRTG to run as a daemon. On FreeBSD, MRTG comes with an initd script by default and you can kick it off on boot with something like the following in <code>/etc/rc.conf</code>:</p>
 <div class="highlight"><pre><span></span>mrtg_daemon_enable=&quot;YES&quot;
 mrtg_daemon_config=&quot;/etc/mrtg.cfg&quot;
 </pre></div>
-
 
 <p>However, on Ubuntu it does not but it comes with a <code>/etc/cron.d/mrtg</code> file which kicks it off every five minutes (it will daemonize the first time and further cron jobs will have no effect).</p>
 <p>To start and stop it via standard initd scripts on Ubuntu, use an initd script such as this: <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/mrtg/ubuntu-mrtg-initd">ubuntu-mrtg-initd</a>  (<a href="http://www.iceflatline.com/2009/08/how-to-install-and-configure-mrtg-on-ubuntu-server/">source</a>):</p>
@@ -543,16 +541,14 @@ update-rc.d mrtg defaults
 /etc/init.d/mrtg start
 </pre></div>
 
-
 <p>And disable the default cron job for MRTG on Ubuntu (<code>/etc/cron.d/mrtg</code>).</p>
 <h2 id="customising-the-configuration">Customising the Configuration<a class="headerlink" href="#customising-the-configuration" title="Permanent link"></a></h2>
 <p>Generally speaking, you should not customize the way IXP Manager generates MRTG configuration as the naming conventions are tightly coupled to how IXP Manager fetches the graphs. However, if there are bits of the MRTG configuration you need to alter, you can do it via <a href="../../features/skinning/">skinning</a>. <em>The skinning documentation actually uses MRTG as an example.</em></p>
 <h2 id="inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails<a class="headerlink" href="#inserting-traffic-data-into-the-database-reporting-emails" title="Permanent link"></a></h2>
 <p>The MRTG backend inserts daily summaries into MySQL for reporting. See the <code>traffic_daily</code> database table for this. Essentially, there is a row per day per customer for traffic types <em>bits, discards, errors, broadcasts and packets</em>. Each row has a daily, weekly, monthly and yearly value for average, max and total.</p>
-<p>An example crontab for collecting and storing <em>yesterday's</em> data is as follows. <strong>This should run everyday.</strong></p>
+<p>From IXP Manager &gt;= v5.0, the <a href="crontabs.md">task scheduler</a> handles collecting and storing <em>yesterday's</em> data. If you are using an older version, create a cron job such as:</p>
 <div class="highlight"><pre><span></span>0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
 </pre></div>
-
 
 <p>In the IXP Manager application, this data powers the <em>League Table</em> function on the left hand menu.</p>
 <p>This data is also used to send email reports / notifications of various traffic events. A sample crontab for this would look like the following:</p>
@@ -568,7 +564,6 @@ update-rc.d mrtg defaults
 32 10 * * *   www-data        /srv/ixpmanager/artisan grapher:email-ports-with-counts \
                                 --errors user1@example.com,user2@example.com
 </pre></div>
-
 
 <p>Which, in the order above, do:</p>
 <ol>
@@ -634,18 +629,18 @@ update-rc.d mrtg defaults
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../api/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -655,7 +650,9 @@ update-rc.d mrtg defaults
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

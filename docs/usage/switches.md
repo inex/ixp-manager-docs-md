@@ -101,7 +101,7 @@ While some of these are clear from the name, we will explain each type here for 
 
 ## Automated Polling / SNMP Updates
 
-Switch and switch port information in the database can go stale very quickly. As such, IXP Manager will poll switches using SNMP hourly via the [task scheduler](cronjobs.md). You can do it manually via the Artisan command:
+Switch and switch port information in the database can go stale very quickly. As such, IXP Manager will poll switches using SNMP hourly via the [task scheduler](/features/cronjobs.md). You can do it manually via the Artisan command:
 
 ```
 /srv/ixpmanager/artisan switch:snmp-poll

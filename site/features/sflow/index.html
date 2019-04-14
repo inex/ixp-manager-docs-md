@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/features/sflow/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -137,6 +134,10 @@
                 <li class="">
                     
     <a class="" href="../console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cronjobs/">Cron Jobs</a>
                 </li>
                 <li class="">
                     
@@ -217,6 +218,10 @@
                 <li class="">
                     
     <a class="" href="../routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -432,14 +437,12 @@ bcm-shell.0&gt; quit
 n3k#
 </pre></div>
 
-
 <p>Note that this command is not reboot persistent, and any time a TIX24X is rebooted, the command needs to be re-entered manually.  Note also that this configuration is untested.</p>
 <h3 id="brocade-turboiron-24x">Brocade TurboIron 24X<a class="headerlink" href="#brocade-turboiron-24x" title="Permanent link"></a></h3>
 <p>By default a TIX24X will export 100 sflow records per second.  This can be changed using the following command:</p>
 <div class="highlight"><pre><span></span>SSH@Switch# dm device-command 2762233
 SSH@Switch# tor modreg CPUPKTMAXBUCKETCONFIG(3) PKT_MAX_REFRESH=0xHHHH
 </pre></div>
-
 
 <p>... where HHHH is the hex representation of the number of sflow records per second.  INEX has done some very primitive usage profiling which suggests that going above ~3000 sflow records per second will trash the management CPU too hard, so we use PKT_MAX_REFRESH=0x0BB8.  Note that this command is not reboot persistent, and any time a TIX24X is rebooted, the command needs to be re-entered manually.</p>
 <h3 id="dell-force10">Dell Force10<a class="headerlink" href="#dell-force10" title="Permanent link"></a></h3>
@@ -458,12 +461,10 @@ SSH@Switch# tor modreg CPUPKTMAXBUCKETCONFIG(3) PKT_MAX_REFRESH=0xHHHH
 <div class="highlight"><pre><span></span># sflowtool -4 -p 6343 -f 127.0.0.1/5500 -f 127.0.0.1/5501 -f 192.0.2.20/6343
 </pre></div>
 
-
 <p>This example could be used for handling P2P traffic graphs and BGP session detection on one machine, while sending a third sflow data feed to a separate server for IXP development or debugging.  The two local sflow feeds can be read using <code>sflowtool</code>:</p>
 <div class="highlight"><pre><span></span># sflowtool -4 -p 5500 -l
 # sflowtool -4 -p 5501 -l
 </pre></div>
-
 
 <p>The <code>sflowtool</code> fanout daemon should be started by the normal operating system daemon startup mechanism, e.g. script in a <code>rc.d</code> or <code>init.d</code> directory, or by a manual entry in <code>/etc/rc.local</code>.</p>
 <p>If running <code>sflowtool</code> version 3.23 or greater, it is important to use the <code>-4</code> command-line parameter in sflowtool because otherwise it will listen on both ipv4 and ipv6 sockets. If you have an <code>sflowtool</code> process attempting to listen on a wildcard socket, it will stop other <code>sflowtool</code> processes from starting.</p>
@@ -493,18 +494,18 @@ SSH@Switch# tor modreg CPUPKTMAXBUCKETCONFIG(3) PKT_MAX_REFRESH=0xHHHH
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../../grapher/smokeping/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -514,7 +515,9 @@ SSH@Switch# tor modreg CPUPKTMAXBUCKETCONFIG(3) PKT_MAX_REFRESH=0xHHHH
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

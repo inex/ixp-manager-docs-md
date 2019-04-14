@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/features/ixf-export/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -137,6 +134,10 @@
                 <li class="">
                     
     <a class="" href="../console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cronjobs/">Cron Jobs</a>
                 </li>
                 <li class="">
                     
@@ -237,6 +238,10 @@
                 <li class="">
                     
     <a class="" href="../routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -426,7 +431,6 @@
     <span class="p">(</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;2001:db8:1000::&#39;</span><span class="p">,</span> <span class="s1">&#39;64&#39;</span><span class="p">,</span> <span class="s1">&#39;2001:db8:1000::8&#39;</span><span class="p">,</span> <span class="s1">&#39;2001:db8:1000::9&#39;</span> <span class="p">);</span>
 </pre></div>
 
-
 <p><strong>Set Your IXP's Name / Country / etc</strong></p>
 <p>The third task is to ensure your IXP's details are correct in the IX-F export.</p>
 <p>You will most likely have nothing to do here as it would have been done on installation but this reference may prove useful if there are any issues.</p>
@@ -507,7 +511,6 @@
 <div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/member-export/ixf/0.7
 </pre></div>
 
-
 <p>where <em>0.7</em> is a version parameter which allows for support of potential future versions.</p>
 <p>Note that the publicly accessible version does not include individual member details such as name (ASN is provided), max prefixes, contact email and phone, when the member joined, member's web address, peering policy, NOC website, NOC hours or member type. This information is available to any logged in users or users querying <a href="../api/">the API with an API key</a>.</p>
 <h2 id="registering-your-api-endpoint-with-ixpdb">Registering Your API Endpoint With IXPDB<a class="headerlink" href="#registering-your-api-endpoint-with-ixpdb" title="Permanent link"></a></h2>
@@ -517,13 +520,11 @@
 <div class="highlight"><pre><span></span>https://ixp.example.com/grapher/infrastructure?id=1&amp;type=log&amp;period=day
 </pre></div>
 
-
 <p>where <code>id=1</code> is the infrastructure DB ID (see <em>Infrastructures</em> under the left hand side <em>IXP ADMIN ACTIONS</em> menu).</p>
 <h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Permanent link"></a></h2>
 <p>There is only one configuration option presently available. To disable public access to the restricted member export, set the following in your <code>.env</code> file:</p>
 <div class="highlight"><pre><span></span>IXP_API_JSONEXPORTSCHEMA_PUBLIC=false
 </pre></div>
-
 
 <p><strong>We strongly advise you not to disable public access if you are a standard IXP.</strong> Remember, the public version is essentially the same list as you would provide on your standard website's list of members.</p>
 <p>In addition, membership of an IXP is easily discernible from a number of other sources including:</p>
@@ -562,7 +563,6 @@
  <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
 </pre></div>
-
 
 <p>The JavaScript loads the member list via the IX-F Export and processes it into the table above:</p>
 <div class="highlight"><pre><span></span><span class="c1">// Sample IX-F Member Export to Member List script</span>
@@ -632,34 +632,12 @@
 <span class="p">});</span>
 </pre></div>
 
-
 <p>The end result is a table that looks like:</p>
-<table>
-<thead>
-<tr>
-<th>Company</th>
-<th>ASN</th>
-<th>Connections</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>3 Ireland</td>
-<td>34218</td>
-<td>2*10Gb + 2*10Gb</td>
-</tr>
-<tr>
-<td>Afilias</td>
-<td>12041</td>
-<td>1Gb</td>
-</tr>
-<tr>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-</tbody>
-</table>
+<p>Company             | ASN         | Connections        |
+--------------------|----------------------------------|
+3 Ireland           | 34218       | 2*10Gb + 2*10Gb  |
+Afilias             | 12041       | 1Gb                |
+...                 | ...         | ...                |</p>
               
             </div>
           </div>
@@ -686,18 +664,18 @@
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../irrdb/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -707,7 +685,9 @@
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

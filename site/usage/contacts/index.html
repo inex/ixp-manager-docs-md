@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/usage/contacts/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -162,6 +159,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../features/cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../features/patch-panels/">Cross Connects</a>
                 </li>
                 <li class="">
@@ -239,6 +240,10 @@
                 <li class="">
                     
     <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -407,7 +412,6 @@
 <div class="highlight"><pre><span></span>cp <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/config/contact_group.php.dist <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/config/contact_group.php
 </pre></div>
 
-
 <p>The latest version of the automatic installation script takes care of this but older versions did not.</p>
 <h2 id="contact-groups">Contact Groups<a class="headerlink" href="#contact-groups" title="Permanent link"></a></h2>
 <p><strong>INTRODUCED:</strong> 20130410 - V3.0.9 (sponsored by <a href="http://www.lonap.net/">LONAP</a>)</p>
@@ -426,11 +430,9 @@
 <span class="x">];</span>
 </pre></div>
 
-
 <p>To activate this feature, you just need to create the configuration file. From the root directory of IXP Manager just:</p>
 <div class="highlight"><pre><span></span>cp config/contact_group.php.dist config/contact_group.php
 </pre></div>
-
 
 <p>Note that <em>Role</em> is a default option and should not be removed.</p>
 <p>In these examples, <code>ROLE</code> will be entered in the database column and <em>Role</em> will be displayed in the interface.</p>
@@ -452,7 +454,6 @@
 <div class="highlight"><pre><span></span>./artisan contact:export-group --type<span class="o">=</span>ROLE --cid<span class="o">=</span><span class="m">1</span> --format<span class="o">=</span>csv
 </pre></div>
 
-
 <p>where the possible options are (from <code>./artisan contact:export-group --help</code>:</p>
 <div class="highlight"><pre><span></span>$ ./artisan contact:export-group --help
 Usage:
@@ -467,7 +468,6 @@ Options:
 Help:
   Export contacts based on group information
 </pre></div>
-
 
 <h2 id="special-group-roles">Special Group: <em>Roles</em><a class="headerlink" href="#special-group-roles" title="Permanent link"></a></h2>
 <p>The default sample configuration file (<code>config/contact_group.php</code>) and the database seeds create a <code>ROLE</code> group type populated with groups <em>Admin</em>, <em>Billing</em>, <em>Technical</em> and <em>Marketing</em>. There is a dedicated form element when editing contacts for any groups defined in the Role type.</p>
@@ -500,18 +500,18 @@ Help:
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../../install/runtime/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -521,7 +521,9 @@ Help:
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

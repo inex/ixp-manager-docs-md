@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/usage/switches/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -162,6 +159,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../features/cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../features/patch-panels/">Cross Connects</a>
                 </li>
                 <li class="">
@@ -239,6 +240,10 @@
                 <li class="">
                     
     <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -438,7 +443,6 @@
 iso.3.6.1.2.1.1.1.0 <span class="o">=</span> STRING: <span class="s2">&quot;Arista Networks EOS version 4.18.0F running on an Arista Networks DCS-7280SR-48C6&quot;</span>
 </pre></div>
 
-
 <p>After completing the details and clicking <em>Next &gt;&gt;</em>, IXP Manager will poll the switch and present you with the second (and last) stage in adding a switch:</p>
 <p><img alt="Adding a Switch" src="../img/switches-add.png" /></p>
 <p>The important things to note about this are:</p>
@@ -481,15 +485,13 @@ iso.3.6.1.2.1.1.1.0 <span class="o">=</span> STRING: <span class="s2">&quot;Aris
 <li><strong>Fanout</strong> and <strong>Reseller</strong>: used for <a href="../../features/reseller/">reseller functionality</a>.</li>
 </ul>
 <h2 id="automated-polling-snmp-updates">Automated Polling / SNMP Updates<a class="headerlink" href="#automated-polling-snmp-updates" title="Permanent link"></a></h2>
-<p>Switch and switch port information in the database can go stale very quickly. As such, IXP Manager will poll switches using SNMP routinely. This needs to be set-up using an hourly crob job such as the following:</p>
-<div class="highlight"><pre><span></span>10 * * * *    www-data    /srv/ixpmanager/artisan switch:snmp-poll -q
+<p>Switch and switch port information in the database can go stale very quickly. As such, IXP Manager will poll switches using SNMP hourly via the <a href="cronjobs.md">task scheduler</a>. You can do it manually via the Artisan command:</p>
+<div class="highlight"><pre><span></span>/srv/ixpmanager/artisan switch:snmp-poll
 </pre></div>
-
 
 <p>The command signature is:</p>
 <div class="highlight"><pre><span></span>switch:snmp-poll [--log] [--noflush] [-q, --quiet] [&lt;switch&gt;]
 </pre></div>
-
 
 <p>where:</p>
 <ul>
@@ -530,7 +532,6 @@ Audit of Configured Physical Interface Port Speeds Against SNMP Discovered Speed
 +------------------------------+----------+----------------+-----------------------+----------+------------+
 </pre></div>
 
-
 <p>The above examples are edge cases as they are not physically connected devices but rather virtual machines. This audit can be added to cron such that it will only make noise if an issue is found with something like:</p>
 <div class="highlight"><pre><span></span>13 9 * * *   www-data     /srv/ixpmanager/artisan audit:port-speeds \
                             --cron --ignore-pids 14,15,16,21,357,590
@@ -561,18 +562,18 @@ Audit of Configured Physical Interface Port Speeds Against SNMP Discovered Speed
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../users/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -582,7 +583,9 @@ Audit of Configured Physical Interface Port Speeds Against SNMP Discovered Speed
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

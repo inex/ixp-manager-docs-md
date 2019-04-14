@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/features/layer2-addresses/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -140,6 +137,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../patch-panels/">Cross Connects</a>
                 </li>
                 <li class="">
@@ -165,6 +166,24 @@
                 <li class="">
                     
     <a class="" href="./">MAC Addresses</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#mac-addresses">MAC Addresses</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#configured-addresses">Configured Addresses</a></li>
+        
+            <li><a class="toctree-l4" href="#discovered-mac-addresses">Discovered MAC Addresses</a></li>
+        
+            <li><a class="toctree-l4" href="#oui-database">OUI Database</a></li>
+        
+            <li><a class="toctree-l4" href="#end-user-access">End User Access</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
@@ -235,6 +254,10 @@
                 <li class="">
                     
     <a class="" href="../routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -438,7 +461,6 @@
 <div class="highlight"><pre><span></span>php <span class="nv">$IXPROOT</span>/artisan l2addresses:populate
 </pre></div>
 
-
 <p>You will be prompted as follows:</p>
 <blockquote>
 <p>Are you sure you wish to proceed? This command will CLEAR the layer2address table and then copy addresses from the read-only macaddress table. Generally, this command should only ever be run once when initially populating the new table.</p>
@@ -457,7 +479,6 @@
 <p>A useful SQL command to double check the results for me was:</p>
 <div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">mac</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">mac</span><span class="p">)</span> <span class="k">AS</span> <span class="k">c</span> <span class="k">FROM</span> <span class="n">l2address</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">mac</span> <span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">mac</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span>
 </pre></div>
-
 
 <h2 id="discovered-mac-addresses">Discovered MAC Addresses<a class="headerlink" href="#discovered-mac-addresses" title="Permanent link"></a></h2>
 <p>This was the original functionality - a read-only table via an admin menu option called <em>MAC Addresses -&gt; Discovered Addresses</em> which lists entries from a database of MAC addresses which are sourced via a script from the IXP's switches directly.</p>
@@ -480,14 +501,12 @@ cp <span class="nv">$IXPROOT</span>/tools/runtime/l2database/update-l2database.p
 /usr/local/bin/update-l2database.pl
 </pre></div>
 
-
 <h2 id="oui-database">OUI Database<a class="headerlink" href="#oui-database" title="Permanent link"></a></h2>
 <p>IXP Manager can store the IEEE OUI database and reference it to show the manufacturer behind a MAC address.</p>
 <h3 id="populating-and-updating-the-oui-database">Populating and Updating the OUI Database<a class="headerlink" href="#populating-and-updating-the-oui-database" title="Permanent link"></a></h3>
-<p>You would typically set a weekly cron job to call:</p>
+<p>The OUI is updated weekly by the <a href="../cronjobs/">task scheduler</a>. You can force an update with the following Artisan command:</p>
 <div class="highlight"><pre><span></span>php <span class="nv">$IXPROOT</span>/artisan utils:oui-update
 </pre></div>
-
 
 <p>which will populate / update the OUI database directly from the latest IEEE file from their website.</p>
 <p>A specific file can be passed via the <code>file</code> parameter. You can also force a database reset (drop all OUI entries and re-populate) via the <code>--refresh</code> option.</p>
@@ -503,7 +522,6 @@ IXP_FE_LAYER2_ADDRESSES_CUST_PARAMS_MIN_ADDRESSES=1
 IXP_FE_LAYER2_ADDRESSES_CUST_PARAMS_MAX_ADDRESSES=2
 </pre></div>
 
-
 <p>When a MAC is added, a <code>IXP\Events\Layer2Address\Added</code> event is triggered and, similarly, when a MAC is deleted a <code>IXP\Events\Layer2Address\Deleted</code> event is triggered. We have created an event listener for these to fire off an email in both cases. To enable this listener, set the following <code>.env</code> settings:</p>
 <div class="highlight"><pre><span></span># Trigger an email when a superuser adds/deletes a MAC:
 IXP_FE_LAYER2_ADDRESSES_EMAIL_ON_SUPERUSER_CHANGE=true
@@ -514,7 +532,6 @@ IXP_FE_LAYER2_ADDRESSES_EMAIL_ON_CUSTOMER_CHANGE=true
 # Destination address of the email:
 IXP_FE_LAYER2_ADDRESSES_EMAIL_ON_CHANGE_DEST=ops@ixp.example.net
 </pre></div>
-
 
 <p>There are two files you can consider <a href="../skinning/">skinning</a> with this functionality:</p>
 <ol>
@@ -547,18 +564,18 @@ IXP_FE_LAYER2_ADDRESSES_EMAIL_ON_CHANGE_DEST=ops@ixp.example.net
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../looking-glass/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -568,7 +585,9 @@ IXP_FE_LAYER2_ADDRESSES_EMAIL_ON_CHANGE_DEST=ops@ixp.example.net
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/features/routers/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -137,6 +134,10 @@
                 <li class="">
                     
     <a class="" href="../console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cronjobs/">Cron Jobs</a>
                 </li>
                 <li class="">
                     
@@ -237,6 +238,10 @@
     
 
     </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -431,7 +436,6 @@
 curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span class="si">${</span><span class="nv">KEY</span><span class="si">}</span><span class="s2">&quot;</span> <span class="si">${</span><span class="nv">URL</span><span class="si">}</span>/<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span> &gt;<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span>.conf
 </pre></div>
 
-
 <p>Configurations for the route server and AS112 templates can be configured just as easily.</p>
 <p>The stock templates for both are secure and well tested and can be used by setting the <code>template</code> element of the router to one of the following:</p>
 <ul>
@@ -454,7 +458,6 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
     https://ixp.example.com/api/v4/router/updated/{handle}
 </pre></div>
 
-
 <p>where <code>{handle}</code> should be replaced with the route handle as described above.</p>
 <p>The result is a JSON object with the datetime as set and is equivalent to the result of the following API call which fetchs the <em>last updated</em> field without setting it:</p>
 <div class="highlight"><pre><span></span>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
@@ -462,7 +465,6 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
 
 {&quot;last_updated&quot;:&quot;2017-05-21T19:14:43+00:00&quot;,&quot;last_updated_unix&quot;:1495394083}
 </pre></div>
-
 
 <p>There are two useful additional API endpoints. To get the last updated time of <strong>all</strong> routers, use:</p>
 <div class="highlight"><pre><span></span>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
@@ -473,7 +475,6 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
  ...}
 </pre></div>
 
-
 <p>The above output shows the format of the reply as well as the fact that routers without a last updated value set will be included as null values.</p>
 <p>Lastly, you can request the last updated time of routers where that time exceeds a given number of seconds. <em>In this call, routers without a last updated time will not be returned.</em> This is useful for monitoring applications such as Nagios where you would want a warning / alert on any routers that have not updated in the last day for example:</p>
 <div class="highlight"><pre><span></span>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
@@ -482,11 +483,9 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
 []
 </pre></div>
 
-
 <p>This example also shows that an empty JSON object is returned for an empty result. Otherwise the format of the reply is the same as for the call above for all routers:</p>
 <div class="highlight"><pre><span></span>{&quot;handle1&quot;:{&quot;last_updated&quot;:&quot;2017-05-21T19:14:43+00:00&quot;,&quot;last_updated_unix&quot;:1495394083},...}
 </pre></div>
-
 
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link"></a></h2>
 <p>We use <a href="../../dev/ci/">Travis CI</a> to test IXP Manager before pushing new releases. The primary purpose of this is to ensure that the configuration for routers generated matches known good configurations from the same sample database.</p>
@@ -515,7 +514,7 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../skinning/" class="btn btn-neutral float-right" title="Skinning">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../rpki/" class="btn btn-neutral float-right" title="RPKI">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../route-servers/" class="btn btn-neutral" title="Route Servers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -534,28 +533,30 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../route-servers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../skinning/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../rpki/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

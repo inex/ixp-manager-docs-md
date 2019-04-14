@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/features/looking-glass/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -140,6 +137,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../patch-panels/">Cross Connects</a>
                 </li>
                 <li class="">
@@ -174,6 +175,8 @@
     <li class="toctree-l3"><a href="#looking-glass">Looking Glass</a></li>
     
         <ul>
+        
+            <li><a class="toctree-l4" href="#choose-the-correct-version-of-birds-eye-to-use">Choose the Correct Version of Bird's Eye to Use</a></li>
         
             <li><a class="toctree-l4" href="#example-router-configuration">Example Router Configuration</a></li>
         
@@ -233,6 +236,10 @@
                 <li class="">
                     
     <a class="" href="../routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -399,6 +406,12 @@
 <li>the API endpoint must be accessible from the server running IXP Manager and this endpoint must be set correctly in the router's configuration (see <a href="../routers/">router(s)</a> page) (along with an appropriate setting for <em>LG Access Privileges</em>). Note that the Birdseye API end points do not need to be publicly accessible - just from the IXP Manager server.</li>
 <li>set the <code>.env</code> option: <code>IXP_FE_FRONTEND_DISABLED_LOOKING_GLASS=false</code> (in IXP Manager's <code>.env</code> and add it if it's missing as it defaults to <code>true</code>).</li>
 </ol>
+<h3 id="choose-the-correct-version-of-birds-eye-to-use">Choose the Correct Version of Bird's Eye to Use<a class="headerlink" href="#choose-the-correct-version-of-birds-eye-to-use" title="Permanent link"></a></h3>
+<ul>
+<li>For IXP Manager v4.x.y, choose the latest version of <strong>Bird's Eye v1.1.x</strong>.</li>
+<li>For IXP Manager v5.x.y, choose the latest version of <strong>Bird's Eye v1.2.x</strong>.</li>
+</ul>
+<p>The looking glass will not work if the versions are not matched correctly as above.</p>
 <h2 id="example-router-configuration">Example Router Configuration<a class="headerlink" href="#example-router-configuration" title="Permanent link"></a></h2>
 <p>See this screenshot for an appropriately configured INEX router with Bird's Eye:</p>
 <p><img alt="Router Configuration for LG" src="../img/lg-router-conf.png" /></p>
@@ -444,7 +457,6 @@
     skip_md5: 1
 last_updated: 2018-02-03 14:26:15
 </pre></div>
-
 
 <p>From the server running IXP Manager:</p>
 <div class="highlight"><pre><span></span>###############################################################################
@@ -504,16 +516,21 @@ $ curl -v http://as112-lan1-ipv4.mgmt.inex.ie/api/status
 }
 </pre></div>
 
-
 <p>If all of the above checks out, watch the log file while you try and access the looking glass:</p>
 <div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 tail -f storage/log/laravel.log
 </pre></div>
 
-
 <p>If there are error messages in the above log as you try and access the looking glass, include them when emailing the mailing list for help.</p>
 <p>Then on the router (the server running Bird's Eye), you need to provide the following answers when seeking help:</p>
 <div class="highlight"><pre><span></span>###############################################################################
+# Are you running the correct version of Bird&#39;s Eye for IXP Manager?
+
+cat /srv/birdseye/version.php
+
+# see the documentation above for the correct versions to match to IXP Manager.
+
+###############################################################################
 # Is Bird actually running and what are the names of its sockets:
 $ ls -la /var/run/bird
 
@@ -536,6 +553,11 @@ $ ls -la /srv/birdseye/*env
 
 ###############################################################################
 # Let&#39;s see the contents of these:
+#
+# NB: when specifying the BIRDC parameter below, for Bird v1.x.y, use the -4/-6
+# switch when querying the ipv4/6 daemon respectively. For Bird v2.x.y, use
+# the -2 switch.
+#
 $ cat /srv/birdseye/*env | egrep -v &#39;(^#)|(^\s*$)&#39;
 
 BIRDC=&quot;/usr/bin/sudo /srv/birdseye/bin/birdc -4 -s /var/run/bird/bird-as112-lan1-ipv4.ctl&quot;
@@ -641,18 +663,18 @@ mysql&gt; SELECT * FROM routers\G
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../layer2-addresses/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -662,7 +684,9 @@ mysql&gt; SELECT * FROM routers\G
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

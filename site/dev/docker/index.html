@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/dev/docker/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -137,6 +134,10 @@
                 <li class="">
                     
     <a class="" href="../../features/console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/cronjobs/">Cron Jobs</a>
                 </li>
                 <li class="">
                     
@@ -217,6 +218,10 @@
                 <li class="">
                     
     <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -407,19 +412,16 @@
 <p><div class="highlight"><pre><span></span>git clone https://github.com/inex/IXP-Manager.git ixpmanager
 <span class="nb">cd</span> ixpmanager
 </pre></div>
-
 3. Copy the stock Docker/IXP Manager configuration file and default database:</p>
 <div class="highlight"><pre><span></span>cp .env.docker .env
 cp tools/docker/containers/mysql/docker.sql.dist tools/docker/containers/mysql/docker.sql
 </pre></div>
-
 
 </li>
 <li>
 <p>Spin up the Docker containers</p>
 <div class="highlight"><pre><span></span>docker-compose -p ixpm up
 </pre></div>
-
 
 </li>
 <li>
@@ -481,18 +483,15 @@ docker volume prune
 docker volume ls -f <span class="nv">dangling</span><span class="o">=</span><span class="nb">true</span>
 </pre></div>
 
-
 <h2 id="development-use">Development Use<a class="headerlink" href="#development-use" title="Permanent link"></a></h2>
 <p>As above, please note that in our examples, we set the Docker project name to <code>ixpm</code> and so that prefix is used in some of the below. We also assume that only one IXP Manager Docker environments is running and so we complete Docker container names with <code>_1</code>.</p>
 <p>For most routine development use, you only need two containers usually:</p>
 <div class="highlight"><pre><span></span>docker-compose -p ixpm up mysql www
 </pre></div>
 
-
 <p>If you are sending emails as part of your development process, include the mail catcher:</p>
 <div class="highlight"><pre><span></span>docker-compose -p ixpm up mysql www mailcatcher
 </pre></div>
-
 
 <h3 id="mysql-database">MySQL Database<a class="headerlink" href="#mysql-database" title="Permanent link"></a></h3>
 <p>When the mysql container builds, it pre-populates the database with the contents of the SQL file found at <code>tools/docker/containers/mysql/docker.sql</code>. This is not present by default and is ignored by Git (to ensure you do not accidentally commit a production database!).</p>
@@ -500,26 +499,21 @@ docker volume ls -f <span class="nv">dangling</span><span class="o">=</span><spa
 <div class="highlight"><pre><span></span>cp tools/docker/containers/mysql/docker.sql.dist tools/docker/containers/mysql/docker.sql
 </pre></div>
 
-
 <p>You can put your own database here also. If you do, you will need to rebuilt the mysql contain:</p>
 <div class="highlight"><pre><span></span>docker-compose build mysql
 </pre></div>
-
 
 <p>You can access the MySQL database via:</p>
 <div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it ixpm_mysql_1 mysql -i ixpmanager
 </pre></div>
 
-
 <p>And you can get shell access to the container with:</p>
 <div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it ixpm_mysql_1 bash
 </pre></div>
 
-
 <p>You can also connect to the MySQL server from your local machine using tools such as the standard MySQL client, <a href="https://tableplus.io/">TablePlus</a> or <a href="https://www.sequelpro.com/">Sequel Pro</a> with the following settings:</p>
 <div class="highlight"><pre><span></span>mysql --protocol<span class="o">=</span>TCP --port <span class="m">33060</span> -u root
 </pre></div>
-
 
 <h3 id="web-server">Web Server<a class="headerlink" href="#web-server" title="Permanent link"></a></h3>
 <p>Note that the <code>www</code> container mounts the IXP Manager development directory under <code>/srv/ixpmanager</code>. This means all local code changes are immediately reflected on the Docker web server.</p>
@@ -527,7 +521,6 @@ docker volume ls -f <span class="nv">dangling</span><span class="o">=</span><spa
 <p>You can access the container with:</p>
 <div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it ixpm_www_1 bash
 </pre></div>
-
 
 <h3 id="mailcatcher">Mailcatcher<a class="headerlink" href="#mailcatcher" title="Permanent link"></a></h3>
 <p>We include a mailcatcher container which catches all emails IXP Manager sends and displays them on a web frontend. Ensure this container is started by either:</p>
@@ -537,12 +530,10 @@ docker-compose -p ixpm up
 docker-compose -p ixpm up mysql www mailcatcher
 </pre></div>
 
-
 <p>The <code>.env.docker</code> config contains the following SMTP / mail settings which ensure emails get send to the mailcatcher:</p>
 <div class="highlight"><pre><span></span>MAIL_HOST=172.30.201.11
 MAIL_PORT=1025
 </pre></div>
-
 
 <p>You can then view emails sent on: http://localhost:1080/</p>
 <h3 id="emulating-switches">Emulating Switches<a class="headerlink" href="#emulating-switches" title="Permanent link"></a></h3>
@@ -565,7 +556,6 @@ MAIL_PORT=1025
 .1.3.6.1.2.1.1.5.0 <span class="o">=</span> STRING: <span class="s2">&quot;switch2&quot;</span>
 </pre></div>
 
-
 <p>You'll note from the above that the hostnames <code>switch1</code> and <code>switch2</code> work from the <code>www</code> container. Note also that the SNMP community is the hostname (<code>switch1</code> or <code>switch2</code> as appropriate).</p>
 <p>The packaged database only contains <code>switch1</code>. This allows you can add the second switch via http://localhost:8880/switch/add-by-snmp by setting the hostname and community to <code>switch2</code>.</p>
 <p>If you want to add new customers for testing, add <code>switch2</code> and then use interfaces <code>Ethernet 2, 8, 13</code> and <code>6 and 7</code> as a lag as these have been preset to provide dynamic stats.</p>
@@ -579,15 +569,13 @@ docker <span class="nb">exec</span> -it ixpm_cust-as112_1 birdc
 docker <span class="nb">exec</span> -it ixpm_cust-as112_1 birdc show protocols
 </pre></div>
 
-
-<p>The route server runs an IPv4 and an IPv6 daemon. These can be accessed via the looking glass at http://127.0.0.1:8880/lg or on the command line via:</p>
+<p>The route server runs an IPv4 and an IPv6 daemon. These can be accessed via the looking glass at http://127.0.0.1:8881/ or on the command line via:</p>
 <div class="highlight"><pre><span></span><span class="c1"># ipv4 daemon:</span>
 docker <span class="nb">exec</span> -it ixpm_rs1_1 birdc -s /var/run/bird/bird-rs1-ipv4.ctl
 
 <span class="c1"># ipv6 daemon:</span>
 docker <span class="nb">exec</span> -it ixpm_rs1_1 birdc6 -s /var/run/bird/bird-rs1-ipv6.ctl
 </pre></div>
-
 
 <p>In this container, Bird's Eye can be found at <code>/srv/birdseye</code> with the web server config under <code>/etc/lighttpd/lighttpd.conf</code>.</p>
 <p>We include the IXP Manager scripts for updating the route server configuration and reconfiguring Bird:</p>
@@ -604,19 +592,16 @@ docker <span class="nb">exec</span> -it ixpm_rs1_1 bash
 ./api-reconfigure-v4.sh -d -h rs1-ipv4
 </pre></div>
 
-
 <h3 id="mrtg-grapher">Mrtg / Grapher<a class="headerlink" href="#mrtg-grapher" title="Permanent link"></a></h3>
 <p>For developing / testing Grapher with Mrtg, we include a container that runs Mrtg via cron from a pre-configured <code>mrtg.conf</code> file.</p>
 <p><strong>NB: please ensure to update the <code>GRAPHER_BACKENDS</code> option in <code>.env</code> so it includes <code>mrtg</code> as follows:</strong></p>
 <div class="highlight"><pre><span></span>GRAPHER_BACKENDS=&quot;mrtg|dummy&quot;
 </pre></div>
 
-
 <p>The configuration file matches the <code>docker.sql</code> configuration and can be seen in the IXP Manager source directory at <code>tools/docker/mrtg/mrtg.cfg</code>.</p>
 <p>You can access the Mrtg container via:</p>
 <div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it ixpm_mrtg_1 sh
 </pre></div>
-
 
 <p>We also install a script in the root directory of the container that will pull a new configuration from IXP Manager. Run it via:</p>
 <div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it ixpm_mrtg_1 sh
@@ -626,7 +611,6 @@ docker <span class="nb">exec</span> -it ixpm_rs1_1 bash
 <span class="c1"># or without entering the container:</span>
 docker <span class="nb">exec</span> -it ixpm_mrtg_1 /update-mrtg-conf.sh
 </pre></div>
-
 
 <p>It will replace <code>/etc/mrtg.conf</code> for the next cron run. It also sets the configuration not to run as a daemon as cron is more useful for development.</p>
 <h2 id="managing-dockerfile">Managing Dockerfile<a class="headerlink" href="#managing-dockerfile" title="Permanent link"></a></h2>
@@ -641,7 +625,6 @@ docker build .
 docker push
 <span class="c1"># if you&#39;re not logged in, use: docker login</span>
 </pre></div>
-
 
 <p>Do not forget to update your docker-compose.yml files to reference the new tag.</p>
 <h2 id="dev-tool-integrations">Dev Tool Integrations<a class="headerlink" href="#dev-tool-integrations" title="Permanent link"></a></h2>
@@ -676,19 +659,16 @@ xdebug.trace_enable_trigger=1
 xdebug.trace_output_dir=/srv/ixpmanager/storage/tmp
 </pre></div>
 
-
 <p>Note that the <code>zend_extension</code> may change as it is dynamically set by the build script. We also chose port 9001 rather than the default of 9000 <a href="https://www.barryodonovan.com/2017/01/05/phpstorm-and-xdebug-macos-homebrew">due to local conflicts with common tool chains</a>.</p>
 <p>The <strong>one key element that is missing in the INI is the remote debugger IP address</strong>. This needs to be set to your development computer's LAN address (there are other options but this works best in practice). Once you know this address (say it's <code>192.0.2.23</code>), set the following in the <code>${IXPROOT}/.env</code>:</p>
 <div class="highlight"><pre><span></span># For PHP xdebug, put in the IP address of your host
 DOCKER_XDEBUG_CONFIG_REMOTE_HOST=192.0.2.23
 </pre></div>
 
-
 <p>When you start the Docker environment from <code>$IXPROOT</code> using <code>docker-compose</code> with something like:</p>
 <div class="highlight"><pre><span></span>cd $IXPROOT
 docker-compose -p ixpm up mysql www
 </pre></div>
-
 
 <p>then <code>docker-compose</code> will use this setting from the <code>.env</code> file and it will be passed through the Xdebug.</p>
 <p><strong>2. Install a Xdebug Plugin on Your Browser</strong></p>
@@ -748,18 +728,18 @@ docker-compose -p ixpm up mysql www
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../cla/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -769,7 +749,9 @@ docker-compose -p ixpm up mysql www
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>
