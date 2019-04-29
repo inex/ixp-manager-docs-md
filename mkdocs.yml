@@ -75,6 +75,7 @@ nav:
     - 'Release Procedure': 'dev/release-procedure.md'
     - 'Vagrant': 'dev/vagrant.md'
 markdown_extensions:
+  - pymdownx.details
   - pymdownx.superfences
   - toc:
       permalink: 
