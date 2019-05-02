@@ -1,10 +1,10 @@
 # IX-F Member List Export
 
-The [IX-F Member Export](http://ml.ix-f.net/) is an agreed and standardized JSON schema which allows IXPs to make their member lists available for consumption by tools such as [PeeringDB](https://www.peeringdb.com/), networks with automated peering managers, prospective members and the many other tools appearing in the peering eco-system.
+The [IX-F Member Export](http://www.ix-f.net/ixp-database.html) is an agreed and standardized JSON schema which allows IXPs to make their member lists available for consumption by tools such as [PeeringDB](https://www.peeringdb.com/), networks with automated peering managers, prospective members and the many other tools appearing in the peering eco-system.
 
 The key element of the IX-F Member Export is it makes you, the individual IXP, the canonical trusted source for data about *your own IXP*. Data that has the best chance of being correct and up to date.
 
-To find out more about the JSON schema and see examples, you can [read more here](https://ixpdb.euro-ix.net/en/), [explore many of the public IXP end points available here](https://ixpdb.euro-ix.net/en/ixpdb/providers/) or see the GitHub [euro-ix/json-schemas](https://github.com/euro-ix/json-schemas) repository.
+To find out more about the JSON schema and see examples, you can [read more here](https://ixpdb.euro-ix.net/en/), [explore many of the public IXP end points available here](https://ixpdb.euro-ix.net/en/ixpdb/ixps/?reverse=&sort=name&q=&api=on) or see the GitHub [euro-ix/json-schemas](https://github.com/euro-ix/json-schemas) repository.
 
 **IXP Manager** supports the IX-F Member List Export out of the box. It previously supported all versions from 0.3 to 0.5 but as of May 2017, we now only support 0.6 and 0.7. This is because these have become the stable common versions (as at time of writing, November 2018).
 
@@ -18,7 +18,7 @@ There are a small number of things you should do to ensure your IX-F export is c
 
 The first is to ensure you have correctly set the PeeringDB ID and IX-F ID in your infrastructure (see *Infrastructures* under the left hand side *IXP ADMIN ACTIONS* menu).
 
-The IX-F ID is mandatory. You will find yours by searching [the IX-F providers database here](https://ixpdb.euro-ix.net/en/ixpdb/providers/). If you are a new IXP that is not registered here, please email your IXP's: full name, short name, city / region / country, GPS co-ordinates and website URL to `secretariat (at) euro-ix (dot) net` so they can register it in the IXPDB.
+The IX-F ID is mandatory. You will find yours by searching [the IX-F providers database here](https://ixpdb.euro-ix.net/en/ixpdb/ixps/). If you are a new IXP that is not registered here, please email your IXP's: full name, short name, city / region / country, GPS co-ordinates and website URL to `ixpdb-admin (at) euro-ix (dot) net` so they can register it in the IXPDB.
 
 **Create Network Info**
 
@@ -94,7 +94,7 @@ Note that the publicly accessible version does not include individual member det
 
 ## Registering Your API Endpoint With IXPDB
 
-IXPDB requires two pieces of information to fully integrate with the IXPDB. You can provide this information to `secretariat (at) euro-ix (dot) net` or - if you have a login to the Euro-IX website, you should be able to login and edit your own IXP directly on IXPDB.
+IXPDB requires two pieces of information to fully integrate with the IXPDB. You can provide this information to `ixpdb-admin (at) euro-ix (dot) net` or - if you have a login to the Euro-IX website, you should be able to login and edit your own IXP directly on IXPDB.
 
 The first element needed is the API endpoint as described above in *Accessing the IX-F Member List*.
 
@@ -122,7 +122,7 @@ In addition, membership of an IXP is easily discernible from a number of other s
 * Route collectors (your own, PCH, members’ own, ...)
 * Looking glasses
 * Traceroutes (and tools such as: https://www.inex.ie/ard/ )
-* RIPE RRC’s / RIS, RIPE Atlas
+* RIPE RRCs / RIS, RIPE Atlas
 * Commercial products (Noction, ...)
 
 Leave public access available, own your own data, ensure it's validity and advertise it!
