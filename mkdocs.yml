@@ -4,7 +4,7 @@ repo_url: https://github.com/inex/ixp-manager-docs-md
 edit_uri: edit/master/docs
 theme: readthedocs
 repo_name: GitHub
-copyright: '&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.'
+copyright: '&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.'
 nav:
 - Home: 'index.md'
 - Installation:
@@ -33,15 +33,16 @@ nav:
     - 'Helpdesk Integration': 'features/helpdesk.md'
     - 'IRRDB': 'features/irrdb.md'
     - 'IX-F Member Export': 'features/ixf-export.md'
-    - 'MAC Addresses': 'features/layer2-addresses.md'
     - 'Looking Glass': 'features/looking-glass.md'
     - 'MAC Addresses': 'features/layer2-addresses.md'
+    - 'MANRS': 'features/manrs.md'
     - 'Member Export': 'features/member-export.md'
     - 'Mailing List Management': 'features/mailing-lists.md'
     - 'Nagios': 'features/nagios.md'
     - 'Patch Panels': 'features/patch-panels.md'
     - 'Peering Manager': 'features/peering-manager.md'
     - 'Peering Matrix': 'features/peering-matrix.md'
+    - 'PeeringDB': 'features/peeringdb.md'
     - 'RIR Objects': 'features/rir-objects.md'
     - 'Reseller Functionality': 'features/reseller.md'
     - 'Route Collectors': 'features/route-collectors.md'

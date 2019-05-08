@@ -2,7 +2,7 @@
 
 The [IX-F Member Export](http://ml.ix-f.net/) is an agreed and standardized JSON schema which allows IXPs to make their member lists available for consumption by tools such as [PeeringDB](https://www.peeringdb.com/), networks with automated peering managers, prospective members and the many other tools appearing in the peering eco-system.
 
-The key element of the IX-F Member Export is it makes you, the individual IXP, the canonical trusted source for data about *your own IXP*. Data that has the best chance of being correct and up to date.
+The key element of the IX-F Member Export is it makes you, the individual IXP, the canonical trusted source for data about *your own IXP*. Data that has the best chance of being correct and up to date. Particularly, PeeringDB has the option of allowing network data to be updated from IX records - [see our documentation on this here](peeringdb.md#syncing-ixp-owned-data-to-peeringdb-customer-records).
 
 To find out more about the JSON schema and see examples, you can [read more here](https://ixpdb.euro-ix.net/en/), [explore many of the public IXP end points available here](https://ixpdb.euro-ix.net/en/ixpdb/providers/) or see the GitHub [euro-ix/json-schemas](https://github.com/euro-ix/json-schemas) repository.
 
