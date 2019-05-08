@@ -142,6 +142,14 @@
             
     <li class="toctree-l3"><a href="#cron-jobs-task-scheduling">Cron Jobs - Task Scheduling</a></li>
     
+        <ul>
+        
+            <li><a class="toctree-l4" href="#tasks-referenced-elsewhere">Tasks Referenced Elsewhere</a></li>
+        
+            <li><a class="toctree-l4" href="#other-tasks">Other Tasks</a></li>
+        
+        </ul>
+    
 
     </ul>
                 </li>
@@ -171,15 +179,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
@@ -204,6 +212,10 @@
                 <li class="">
                     
     <a class="" href="../peering-matrix/">Peering Matrix</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../peeringdb/">PeeringDB</a>
                 </li>
                 <li class="">
                     
@@ -386,11 +398,26 @@
               
                 <h1 id="cron-jobs-task-scheduling">Cron Jobs - Task Scheduling<a class="headerlink" href="#cron-jobs-task-scheduling" title="Permanent link"></a></h1>
 <p>Prior to IXP Manager v5, a number of cron jobs had to be configured manually. From v5.0 onwards, cron jobs are handled by <a href="https://laravel.com/docs/5.8/scheduling">Laravel's task scheduler</a>. As such, you just need a single cron job entry such as:</p>
-<div class="highlight"><pre><span></span>* * * * *    www-data    cd /path-to-your-ixp-manager &amp;&amp; php artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1
-</pre></div>
+<pre class="highlight"><code>* * * * *    www-data    cd /path-to-your-ixp-manager &amp;&amp; php artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1</code></pre>
 
+<h2 id="tasks-referenced-elsewhere">Tasks Referenced Elsewhere<a class="headerlink" href="#tasks-referenced-elsewhere" title="Permanent link"></a></h2>
+<p>The following tasks are run via this mechanism and are referenced elsewhere in the documentation:</p>
+<ul>
+<li>Uploading MRTG traffic data to the database - documented <a href="../../grapher/mrtg/#inserting-traffic-data-into-the-database-reporting-emails">in the Grapher MRTG backend page</a> - and runs nightly at 02:00. <strong>NB:</strong> there are email reports that can be added to cron that are not part of the scheduler - see the same page for details on this.</li>
+<li>IRRDB prefix and ASN database for generating route server filters - this is all documented <a href="../irrdb/">on the IRRDB page</a>. <strong>NB:</strong> the scheduler will not run unless you have configured the location of BGPQ3 as per the instructions. Runs every 6 hours.</li>
+<li><a href="../../dev/telescope/">Telescope</a> is a debugging / error tracking tool within IXP Manager. In production, it is limited to recording exceptions and other errors. It puts data into a database table of which anything over three days is expunged via the Artisan command <code>telescope:prune</code> daily.</li>
+<li>The <a href="../layer2-addresses/#oui-database">OUI database</a> is updated weekly (Mondays at 09:15).</li>
+<li>Polling / updating switch and switch port details (<a href="../../usage/switches/#automated-polling-snmp-updates">see documentation here</a>) happens hourly at 10 past the hour.</li>
+<li>Update the record of which customers have / have not <a href="../peeringdb/#existence-of-peeringdb-records">PeeringDB records</a>.</li>
+<li>Update the record of which customers are / are not <a href="../manrs/">participating in MANRS</a>.</li>
+</ul>
+<h2 id="other-tasks">Other Tasks<a class="headerlink" href="#other-tasks" title="Permanent link"></a></h2>
+<h3 id="expunging-logs">Expunging Logs<a class="headerlink" href="#expunging-logs" title="Permanent link"></a></h3>
+<p>Some data should not be retained indefinitely for user privacy / GDPR reasons. The <code>utils:expunge-logs</code> command runs daily at 03:04 and currently:</p>
+<ol>
+<li>removes user login history older than 6 months.</li>
+</ol>
 <p><strong>FIXME</strong> Add to installation script</p>
-<p><strong>FIXME</strong> Instructions to disable scheduled tasks.</p>
               
             </div>
           </div>
@@ -411,7 +438,7 @@
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 

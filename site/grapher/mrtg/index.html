@@ -165,15 +165,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../../features/looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
@@ -198,6 +198,10 @@
                 <li class="">
                     
     <a class="" href="../../features/peering-matrix/">Peering Matrix</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/peeringdb/">PeeringDB</a>
                 </li>
                 <li class="">
                     
@@ -424,135 +428,126 @@
 <p>MRTG creates: per port (physical interface); per LAG (virtual interface); and per customer aggregate graphs for each member / customer.</p>
 <h2 id="mrtg-setup-and-configuration">MRTG Setup and Configuration<a class="headerlink" href="#mrtg-setup-and-configuration" title="Permanent link"></a></h2>
 <p>You need to install some basic packages for MRTG to work - on Ubuntu for example, install:</p>
-<div class="highlight"><pre><span></span>apt install rrdtool mrtg
-</pre></div>
+<pre class="highlight"><code class="language-sh">apt install rrdtool mrtg</code></pre>
 
 <p>You also need a folder to store all MRTG files. For example:</p>
-<div class="highlight"><pre><span></span>mkdir -p /srv/mrtg
-</pre></div>
+<pre class="highlight"><code class="language-sh">mkdir -p /srv/mrtg</code></pre>
 
 <p>In your `.env, you need to set the following options:</p>
-<div class="highlight"><pre><span></span># The MRTG database type to use - either log or rrd:
-GRAPHER_BACKEND_MRTG_DBTYPE=&quot;rrd&quot;
+<pre class="highlight"><code># The MRTG database type to use - either log or rrd:
+GRAPHER_BACKEND_MRTG_DBTYPE="rrd"
 
 # Where to store log/rrd/png files. This is from the perspective
 # of the mrtg daemon and it is only used when generating the mrtg configuration
 # file so this should be a local path on whatever server mrtg will run:
-GRAPHER_BACKEND_MRTG_WORKDIR=&quot;/srv/mrtg&quot;
+GRAPHER_BACKEND_MRTG_WORKDIR="/srv/mrtg"
 
 # Where IXP Manager can fine the GRAPHER_BACKEND_MRTG_WORKDIR above. If mrtg is
 # running on the same server as IXP Manager, this this would just be the same:
-GRAPHER_BACKEND_MRTG_LOGDIR=&quot;/srv/mrtg&quot;
+GRAPHER_BACKEND_MRTG_LOGDIR="/srv/mrtg"
 # Note that if you wish to run MRTG on another server, you can expose the
 # WORKDIR on a HTTP server and provide a URL to this option:
-# GRAPHER_BACKEND_MRTG_LOGDIR=&quot;http://collector.example.com/mrtg&quot;
-</pre></div>
+# GRAPHER_BACKEND_MRTG_LOGDIR="http://collector.example.com/mrtg"</code></pre>
 
 <h2 id="generating-mrtg-configuration">Generating MRTG Configuration<a class="headerlink" href="#generating-mrtg-configuration" title="Permanent link"></a></h2>
 <p>You can now generate a MRTG configuration by executing a command such as:</p>
-<div class="highlight"><pre><span></span><span class="c1"># Move to the directory where you have installed IXP Manager (typically: /srv/ixpmanager)</span>
-<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<pre class="highlight"><code class="language-sh"># Move to the directory where you have installed IXP Manager (typically: /srv/ixpmanager)
+cd $IXPROOT
 
-<span class="c1"># Generate MRTG configuration and output to stdout:</span>
+# Generate MRTG configuration and output to stdout:
 php artisan grapher:generate-configuration -B mrtg
 
-<span class="c1"># Generate MRTG configuration and output to a named file:</span>
-php artisan grapher:generate-configuration -B mrtg -O /tmp/mrtg.cfg.candidate
-</pre></div>
+# Generate MRTG configuration and output to a named file:
+php artisan grapher:generate-configuration -B mrtg -O /tmp/mrtg.cfg.candidate</code></pre>
 
 <p>You could also combine a syntax check before putting the resultant file live. Here's a complete example that could be run via cron:</p>
-<div class="highlight"><pre><span></span><span class="ch">#! /usr/bin/env bash</span>
+<pre class="highlight"><code class="language-sh">#! /usr/bin/env bash
 
-<span class="c1"># Set this to the directory where you have installed IXP Manager (typically: /srv/ixpmanager)</span>
-<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+# Set this to the directory where you have installed IXP Manager (typically: /srv/ixpmanager)
+IXPROOT=/srv/ixpmanager
 
-<span class="c1"># Temporary configuration file:</span>
-<span class="nv">TMPCONF</span><span class="o">=</span>/tmp/mrtg.cfg.<span class="nv">$$</span>
+# Temporary configuration file:
+TMPCONF=/tmp/mrtg.cfg.$$
 
-<span class="c1"># Synchronize configuration files</span>
-<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan grapher:generate-configuration -B mrtg -O <span class="nv">$TMPCONF</span>
+# Synchronize configuration files
+${IXPROOT}/artisan grapher:generate-configuration -B mrtg -O $TMPCONF
 
-<span class="c1"># Remove comments and date/time stamps for before comparing for differences</span>
-cat /etc/mrtg.cfg    <span class="p">|</span> egrep -v <span class="s1">&#39;^#.*$&#39;</span> <span class="p">|</span> <span class="se">\</span>
-    egrep -v <span class="s1">&#39;^[ ]+Based on configuration last generated by.*$&#39;</span> &gt;/tmp/mrtg.cfg.filtered
-cat <span class="nv">$TMPCONF</span>         <span class="p">|</span> egrep -v <span class="s1">&#39;^#.*$&#39;</span> <span class="p">|</span> <span class="se">\</span>
-    egrep -v <span class="s1">&#39;^[ ]+Based on configuration last generated by.*$&#39;</span> &gt;<span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered
-diff /tmp/mrtg.cfg.filtered <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered &gt;/dev/null
-<span class="nv">DIFF</span><span class="o">=</span><span class="nv">$?</span>
+# Remove comments and date/time stamps for before comparing for differences
+cat /etc/mrtg.cfg    | egrep -v '^#.*$' | \
+    egrep -v '^[ ]+Based on configuration last generated by.*$' &gt;/tmp/mrtg.cfg.filtered
+cat $TMPCONF         | egrep -v '^#.*$' | \
+    egrep -v '^[ ]+Based on configuration last generated by.*$' &gt;${TMPCONF}.filtered
+diff /tmp/mrtg.cfg.filtered ${TMPCONF}.filtered &gt;/dev/null
+DIFF=$?
 
 rm /tmp/mrtg.cfg.filtered
-rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered
+rm ${TMPCONF}.filtered
 
-<span class="k">if</span> <span class="o">[[</span> <span class="nv">$DIFF</span> -eq <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-    rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>
-    <span class="nb">exit</span> 0
-<span class="k">fi</span>
+if [[ $DIFF -eq 0 ]]; then
+    rm ${TMPCONF}
+    exit 0
+fi
 
-/usr/bin/mrtg --check <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> <span class="o">&amp;&amp;</span> /bin/mv <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> /etc/mrtg.cfg
-</pre></div>
+/usr/bin/mrtg --check ${TMPCONF} &amp;&amp; /bin/mv ${TMPCONF} /etc/mrtg.cfg</code></pre>
 
 <p>If your MRTG collector is on a different server, you could use a script such as the following to safely update MRTG via <a href="../../features/api/">IXP Manager's API</a>.</p>
-<div class="highlight"><pre><span></span><span class="ch">#! /usr/bin/env bash</span>
+<pre class="highlight"><code class="language-sh">#! /usr/bin/env bash
 
-<span class="c1"># Temporary configuration file:</span>
-<span class="nv">TMPCONF</span><span class="o">=</span>/etc/mrtg.cfg.<span class="nv">$$</span>
+# Temporary configuration file:
+TMPCONF=/etc/mrtg.cfg.$$
 
-<span class="c1"># Download the configuration via the API. Be sure to replace &#39;your_api_key&#39;</span>
-<span class="c1"># with your actual API key (see API documenation).</span>
-curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: your_api_key&quot;</span> <span class="se">\</span>
-    https://ixp.example.com/api/v4/grapher/mrtg-config &gt;<span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>
+# Download the configuration via the API. Be sure to replace 'your_api_key'
+# with your actual API key (see API documenation).
+curl --fail -s -H "X-IXP-Manager-API-Key: your_api_key" \
+    https://ixp.example.com/api/v4/grapher/mrtg-config &gt;${TMPCONF}
 
-<span class="k">if</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-    <span class="nb">echo</span> <span class="s2">&quot;WARNING: COULD NOT FETCH UP TO DATE MRTG CONFIGURATION!&quot;</span>
-    <span class="nb">exit</span> -1
-<span class="k">fi</span>
+if [[ $? -ne 0 ]]; then
+    echo "WARNING: COULD NOT FETCH UP TO DATE MRTG CONFIGURATION!"
+    exit -1
+fi
 
-<span class="nb">cd</span> /etc
+cd /etc
 
-<span class="c1"># Remove comments and date/time stamps for before comparing for differences</span>
-cat mrtg.cfg    <span class="p">|</span> egrep -v <span class="s1">&#39;^#.*$&#39;</span> <span class="p">|</span> <span class="se">\</span>
-    egrep -v <span class="s1">&#39;^[ ]+Based on configuration last generated by.*$&#39;</span> &gt;mrtg.cfg.filtered
-cat <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>  <span class="p">|</span> egrep -v <span class="s1">&#39;^#.*$&#39;</span> <span class="p">|</span> <span class="se">\</span>
-    egrep -v <span class="s1">&#39;^[ ]+Based on configuration last generated by.*$&#39;</span> &gt;<span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered
-diff mrtg.cfg.filtered <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered &gt;/dev/null
-<span class="nv">DIFF</span><span class="o">=</span><span class="nv">$?</span>
+# Remove comments and date/time stamps for before comparing for differences
+cat mrtg.cfg    | egrep -v '^#.*$' | \
+    egrep -v '^[ ]+Based on configuration last generated by.*$' &gt;mrtg.cfg.filtered
+cat ${TMPCONF}  | egrep -v '^#.*$' | \
+    egrep -v '^[ ]+Based on configuration last generated by.*$' &gt;${TMPCONF}.filtered
+diff mrtg.cfg.filtered ${TMPCONF}.filtered &gt;/dev/null
+DIFF=$?
 
 rm mrtg.cfg.filtered
-rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered
+rm ${TMPCONF}.filtered
 
-<span class="k">if</span> <span class="o">[[</span> <span class="nv">$DIFF</span> -eq <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-    rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>
-    <span class="nb">exit</span> 0
-<span class="k">fi</span>
+if [[ $DIFF -eq 0 ]]; then
+    rm ${TMPCONF}
+    exit 0
+fi
 
-/usr/bin/mrtg --check <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> <span class="o">&amp;&amp;</span> /bin/mv <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> /etc/mrtg.cfg
-</pre></div>
+/usr/bin/mrtg --check ${TMPCONF} &amp;&amp; /bin/mv ${TMPCONF} /etc/mrtg.cfg</code></pre>
 
 <p>Note that the MRTG configuration that IXP Manager generates instructs MRTG to run as a daemon. On FreeBSD, MRTG comes with an initd script by default and you can kick it off on boot with something like the following in <code>/etc/rc.conf</code>:</p>
-<div class="highlight"><pre><span></span>mrtg_daemon_enable=&quot;YES&quot;
-mrtg_daemon_config=&quot;/etc/mrtg.cfg&quot;
-</pre></div>
+<pre class="highlight"><code>mrtg_daemon_enable="YES"
+mrtg_daemon_config="/etc/mrtg.cfg"</code></pre>
 
 <p>However, on Ubuntu it does not but it comes with a <code>/etc/cron.d/mrtg</code> file which kicks it off every five minutes (it will daemonize the first time and further cron jobs will have no effect).</p>
 <p>To start and stop it via standard initd scripts on Ubuntu, use an initd script such as this: <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/mrtg/ubuntu-mrtg-initd">ubuntu-mrtg-initd</a>  (<a href="http://www.iceflatline.com/2009/08/how-to-install-and-configure-mrtg-on-ubuntu-server/">source</a>):</p>
-<div class="highlight"><pre><span></span>cp ${IXPROOT}/tools/runtime/mrtg/ubuntu-mrtg-initd /etc/init.d/mrtg
+<pre class="highlight"><code>cp ${IXPROOT}/tools/runtime/mrtg/ubuntu-mrtg-initd /etc/init.d/mrtg
 chmod +x /etc/init.d/mrtg
 update-rc.d mrtg defaults
-/etc/init.d/mrtg start
-</pre></div>
+/etc/init.d/mrtg start</code></pre>
 
 <p>And disable the default cron job for MRTG on Ubuntu (<code>/etc/cron.d/mrtg</code>).</p>
 <h2 id="customising-the-configuration">Customising the Configuration<a class="headerlink" href="#customising-the-configuration" title="Permanent link"></a></h2>
 <p>Generally speaking, you should not customize the way IXP Manager generates MRTG configuration as the naming conventions are tightly coupled to how IXP Manager fetches the graphs. However, if there are bits of the MRTG configuration you need to alter, you can do it via <a href="../../features/skinning/">skinning</a>. <em>The skinning documentation actually uses MRTG as an example.</em></p>
 <h2 id="inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails<a class="headerlink" href="#inserting-traffic-data-into-the-database-reporting-emails" title="Permanent link"></a></h2>
 <p>The MRTG backend inserts daily summaries into MySQL for reporting. See the <code>traffic_daily</code> database table for this. Essentially, there is a row per day per customer for traffic types <em>bits, discards, errors, broadcasts and packets</em>. Each row has a daily, weekly, monthly and yearly value for average, max and total.</p>
-<p>From IXP Manager &gt;= v5.0, the <a href="crontabs.md">task scheduler</a> handles collecting and storing <em>yesterday's</em> data. If you are using an older version, create a cron job such as:</p>
-<div class="highlight"><pre><span></span>0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
-</pre></div>
+<p>From IXP Manager &gt;= v5.0, the <a href="/features/crontabs.md">task scheduler</a> handles collecting and storing <em>yesterday's</em> data. If you are using an older version, create a cron job such as:</p>
+<pre class="highlight"><code>0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db</code></pre>
 
 <p>In the IXP Manager application, this data powers the <em>League Table</em> function on the left hand menu.</p>
 <p>This data is also used to send email reports / notifications of various traffic events. A sample crontab for this would look like the following:</p>
-<div class="highlight"><pre><span></span>0 4   * * *   www-data        /srv/ixpmanager/artisan grapher:email-traffic-deltas    \
+<pre class="highlight"><code>0 4   * * *   www-data        /srv/ixpmanager/artisan grapher:email-traffic-deltas    \
                                 --stddev=1.5 -v user1@example.com,user2@example.com
 
 30 10 * * tue www-data        /srv/ixpmanager/artisan grapher:email-port-utilisations \
@@ -562,8 +557,7 @@ update-rc.d mrtg defaults
                                 --discards user1@example.com,user2@example.com
 
 32 10 * * *   www-data        /srv/ixpmanager/artisan grapher:email-ports-with-counts \
-                                --errors user1@example.com,user2@example.com
-</pre></div>
+                                --errors user1@example.com,user2@example.com</code></pre>
 
 <p>Which, in the order above, do:</p>
 <ol>
@@ -623,7 +617,7 @@ update-rc.d mrtg defaults
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
