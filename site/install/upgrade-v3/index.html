@@ -165,15 +165,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../../features/looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
@@ -198,6 +198,10 @@
                 <li class="">
                     
     <a class="" href="../../features/peering-matrix/">Peering Matrix</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/peeringdb/">PeeringDB</a>
                 </li>
                 <li class="">
                     
@@ -413,15 +417,14 @@
 <h2 id="duplicating-the-database">Duplicating the Database<a class="headerlink" href="#duplicating-the-database" title="Permanent link"></a></h2>
 <p>As we're installing in parallel, we want to duplicate the database.</p>
 <p>When granting permissions on the new database, use your existing IXP Manager database credentials for ease of configuration.</p>
-<div class="highlight"><pre><span></span>mysql -u root -pXXX -e <span class="s1">&#39;CREATE DATABASE ixp4 CHARACTER SET = &quot;utf8mb4&quot; COLLATE = &quot;utf8mb4_unicode_ci&quot;;&#39;</span>
+<pre class="highlight"><code class="language-sh">mysql -u root -pXXX -e 'CREATE DATABASE ixp4 CHARACTER SET = "utf8mb4" COLLATE = "utf8mb4_unicode_ci";'
 
-mysqldump -u root -pXXX ixp <span class="p">|</span> mysql -u root -pXXX ixp4
+mysqldump -u root -pXXX ixp | mysql -u root -pXXX ixp4
 
-mysql -u root -pXXX -e <span class="s1">&#39;GRANT ALL ON ixp4.* TO `ixp`@`localhost` IDENTIFIED BY &quot;YYY&quot;;&#39;</span>
+mysql -u root -pXXX -e 'GRANT ALL ON ixp4.* TO `ixp`@`localhost` IDENTIFIED BY "YYY";'
 
-<span class="c1"># and test:</span>
-mysql -u ixp -pYYY -h localhost ixp4
-</pre></div>
+# and test:
+mysql -u ixp -pYYY -h localhost ixp4</code></pre>
 
 <h2 id="install-ixp-manager">Install IXP Manager<a class="headerlink" href="#install-ixp-manager" title="Permanent link"></a></h2>
 <p>This is very much a tl;dr version of <a href="../manually/">the official installation instructions</a> which you should review if you need additional help.</p>
@@ -429,30 +432,29 @@ mysql -u ixp -pYYY -h localhost ixp4
 <p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
 <p>Log into the server where you wish to install IXP Manager and move to the directory where you wish to install (we use <code>/srv/ixpmanager</code> here as an example and which will be referred to as <code>$IXPROOT</code> below).</p>
 <p>Note that it should not be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>).</p>
-<div class="highlight"><pre><span></span><span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+<pre class="highlight"><code class="language-sh">IXPROOT=/srv/ixpmanager
 
-<span class="c1"># get the source / application</span>
-git clone https://github.com/inex/IXP-Manager.git <span class="nv">$IXPROOT</span>
-<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+# get the source / application
+git clone https://github.com/inex/IXP-Manager.git $IXPROOT
+cd $IXPROOT
 git checkout v4.5.0
 
-<span class="c1"># Using https://getcomposer.org/</span>
+# Using https://getcomposer.org/
 composer.phar install
 
-<span class="c1"># Using https://bower.io/</span>
+# Using https://bower.io/
 bower install
 
-<span class="c1"># Start with the example configuration and edit.</span>
-<span class="c1"># Read the official documentation for help.</span>
-<span class="c1"># Ensure you configure the database.</span>
-<span class="c1"># More notes on this follow below.</span>
+# Start with the example configuration and edit.
+# Read the official documentation for help.
+# Ensure you configure the database.
+# More notes on this follow below.
 cp .env.example .env
 php artisan key:generate
 joe .env
 
-<span class="c1"># File system permissions</span>
-chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
-</pre></div>
+# File system permissions
+chown -R www-data: var/ storage/ bootstrap/cache database/Proxies</code></pre>
 
 <h2 id="initial-configuration-tasks">Initial Configuration Tasks<a class="headerlink" href="#initial-configuration-tasks" title="Permanent link"></a></h2>
 <h3 id="new-local-settings-configuration-laravel">New Local Settings / Configuration (Laravel)<a class="headerlink" href="#new-local-settings-configuration-laravel" title="Permanent link"></a></h3>
@@ -460,32 +462,28 @@ chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
 <p>The <a href="https://github.com/vlucas/phpdotenv">php dotenv</a> file (<code>.env</code>) is where all the new configuration options go. These in turn are used by the configuration files under <code>config/</code>.</p>
 <p><strong>NB: Where possible, place local changes into <code>.env</code> rather than changing the config files as these files are under version control. See <a href="http://laravel.com/docs/5.4/installation#configuration">Laravel's documentation on this</a> and email the mailing list for help.</strong></p>
 <p>Once you have worked your way through <code>.env</code>, move into the <code>$IXPROOT/config</code> directory and - as appropriate for your own installation - examine each config file that ends in <code>.dist</code>. If you use / need any features in these files, copy then such as:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>/config
-cp xxxx.php.dist xxxx.php
-</pre></div>
+<pre class="highlight"><code class="language-sh">cd $IXPROOT/config
+cp xxxx.php.dist xxxx.php</code></pre>
 
 <p>Then edit the resultant <code>.php</code> file (or, better, where <code>config()</code> options exist, add them to <code>.env</code>).</p>
 <p>These <code>.dist</code> files represent v3 funtionality that has not yet been fully ported to v4/Laravel.</p>
 <h3 id="update-the-database-schema">Update the Database Schema<a class="headerlink" href="#update-the-database-schema" title="Permanent link"></a></h3>
 <p>There's about 50 schema changed between the end of v3 and v4.4.</p>
 <p>View the required changes with:</p>
-<div class="highlight"><pre><span></span>./artisan doctrine:schema:update --sql
-</pre></div>
+<pre class="highlight"><code>./artisan doctrine:schema:update --sql</code></pre>
 
 <p>And apply with:</p>
-<p><div class="highlight"><pre><span></span>./artisan doctrine:schema:update --force
-</pre></div>
+<p><pre class="highlight"><code>./artisan doctrine:schema:update --force</code></pre>
  Note that this may take a few minutes if you have a lot of data such as BGP session data.</p>
 <h3 id="migrate-plaintext-passwords-to-bcrypt">Migrate Plaintext Passwords to Bcrypt<a class="headerlink" href="#migrate-plaintext-passwords-to-bcrypt" title="Permanent link"></a></h3>
 <p>Since v4.5, we <a href="../../usage/users/#password-hashing">no longer allow plaintext passwords</a>. If you were using plaintext passwords, you need to convert them to bcrypt as follows:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<pre class="highlight"><code class="language-sh">cd $IXPROOT
 
-<span class="c1"># dummy run to see what happens:</span>
+# dummy run to see what happens:
 php artisan utils:convert-plaintext-password
 
-<span class="c1"># really convert passwords and save to database:</span>
-php artisan utils:convert-plaintext-password --force
-</pre></div>
+# really convert passwords and save to database:
+php artisan utils:convert-plaintext-password --force</code></pre>
 
 <h3 id="stage-one-complete">Stage One Complete<a class="headerlink" href="#stage-one-complete" title="Permanent link"></a></h3>
 <p>You should be able to point Apache / your web server at the new IXP Manager installation and log in.</p>
@@ -495,100 +493,95 @@ php artisan utils:convert-plaintext-password --force
 <p><strong>It is strongly recommended you copy your existing files and do this in parallel or, at least keep a backup.</strong> Also, stop the MRTG daemon before starting.</p>
 <h3 id="performing-the-migration">Performing the Migration<a class="headerlink" href="#performing-the-migration" title="Permanent link"></a></h3>
 <p>First, you'll need to update your local configuration in <code>.env</code> by setting something like:</p>
-<div class="highlight"><pre><span></span>GRAPHER_BACKENDS=&quot;mrtg&quot;
-GRAPHER_BACKEND_MRTG_LOGDIR=&quot;/path/to/new/mrtg/data&quot;
-GRAPHER_BACKEND_MRTG_WORKDIR=&quot;/path/to/new/mrtg/data&quot;
-GRAPHER_CACHE_ENABLED=true
-</pre></div>
+<pre class="highlight"><code>GRAPHER_BACKENDS="mrtg"
+GRAPHER_BACKEND_MRTG_LOGDIR="/path/to/new/mrtg/data"
+GRAPHER_BACKEND_MRTG_WORKDIR="/path/to/new/mrtg/data"
+GRAPHER_CACHE_ENABLED=true</code></pre>
 
 <p>See the <a href="../../grapher/introduction/">Grapher</a> documentation for full details of what these mean.</p>
 <p>You'll then need to migrate all your MRTG files to the new naming scheme. Run the commands below twice. Once to verify the output and a second time piped to sh (<code>| sh</code>) to actually execute the commands.</p>
-<div class="highlight"><pre><span></span><span class="c1"># set a variable for what will become the &#39;old&#39; files for convenience</span>
-<span class="nv">OLDMRTG</span><span class="o">=</span>/srv/old-mrtg
+<pre class="highlight"><code class="language-sh"># set a variable for what will become the 'old' files for convenience
+OLDMRTG=/srv/old-mrtg
 
-<span class="c1"># position ourselves in the IXP Manager root directory</span>
-<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+# position ourselves in the IXP Manager root directory
+cd $IXPROOT
 
-<span class="c1"># stop mrtg</span>
-service mrtg stop  <span class="c1"># or as appropriate for your platform</span>
+# stop mrtg
+service mrtg stop  # or as appropriate for your platform
 
-<span class="c1"># Migrate IXP graphs.</span>
-<span class="c1">#</span>
-<span class="c1"># In v3 of IXP Manager, the name of this was set by a database</span>
-<span class="c1"># parameter in the IXP table called &#39;aggregate graph name&#39;.</span>
-<span class="c1"># You will be able to spot it in the old MRTG files where the</span>
-<span class="c1"># old IXP file is named something like: &#39;ixp_peering-XXXXX-bits.log&#39;.</span>
-<span class="c1"># The &#39;XXXXXX&#39; bit is the aggregate name you need to replace in the below:</span>
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -X --agg-name<span class="o">=</span>XXXXXX
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -X --agg-name<span class="o">=</span>XXXXXX <span class="p">|</span> sh
+# Migrate IXP graphs.
+#
+# In v3 of IXP Manager, the name of this was set by a database
+# parameter in the IXP table called 'aggregate graph name'.
+# You will be able to spot it in the old MRTG files where the
+# old IXP file is named something like: 'ixp_peering-XXXXX-bits.log'.
+# The 'XXXXXX' bit is the aggregate name you need to replace in the below:
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -X --agg-name=XXXXXX
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -X --agg-name=XXXXXX | sh
 
-<span class="c1"># Migrate infrastructure graphs.</span>
-<span class="c1">#</span>
-<span class="c1"># In v3 of IXP Manager, the name of this was set by a database</span>
-<span class="c1"># parameter in the infrastructure table called &#39;aggregate graph name&#39;.</span>
-<span class="c1"># You will be able to spot it in the old MRTG files where the</span>
-<span class="c1"># old IXP file is named something like: &#39;ixp_peering-XXXXX-bits.log&#39;.</span>
-<span class="c1"># The &#39;XXXXXX&#39; bit is the aggregate name you need to replace in the below:</span>
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -I
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -I <span class="p">|</span> sh
+# Migrate infrastructure graphs.
+#
+# In v3 of IXP Manager, the name of this was set by a database
+# parameter in the infrastructure table called 'aggregate graph name'.
+# You will be able to spot it in the old MRTG files where the
+# old IXP file is named something like: 'ixp_peering-XXXXX-bits.log'.
+# The 'XXXXXX' bit is the aggregate name you need to replace in the below:
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -I
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -I | sh
 
-<span class="c1"># Migrate switch graphs</span>
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -S
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -S <span class="p">|</span> sh
+# Migrate switch graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -S
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -S | sh
 
-<span class="c1"># Migrate trunk graphs and configuration.</span>
-<span class="c1"># If you had not configured trunk graphs you can skip this. We are</span>
-<span class="c1"># planning to (very soon - Q2/3 2017) fully integrate this into IXP</span>
-<span class="c1"># Manager.</span>
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -T
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -T <span class="p">|</span> sh
+# Migrate trunk graphs and configuration.
+# If you had not configured trunk graphs you can skip this. We are
+# planning to (very soon - Q2/3 2017) fully integrate this into IXP
+# Manager.
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -T
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -T | sh
 php artisan grapher:backend:mrtg:upgrade migrate-trunk-config
 
-<span class="c1"># Create member directories</span>
-php artisan grapher:backend:mrtg:upgrade mkdir -L <span class="nv">$OLDMRTG</span> -M
-php artisan grapher:backend:mrtg:upgrade mkdir -L <span class="nv">$OLDMRTG</span> -M <span class="p">|</span> sh
+# Create member directories
+php artisan grapher:backend:mrtg:upgrade mkdir -L $OLDMRTG -M
+php artisan grapher:backend:mrtg:upgrade mkdir -L $OLDMRTG -M | sh
 
-<span class="c1"># Migrate member physical interface graphs</span>
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -P
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -P <span class="p">|</span> sh
+# Migrate member physical interface graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -P
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -P | sh
 
-<span class="c1"># Migrate member LAG graphs</span>
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -Q
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -Q <span class="p">|</span> sh
+# Migrate member LAG graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -Q
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -Q | sh
 
-<span class="c1"># Migrate member aggregate graphs</span>
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -C
-php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -C <span class="p">|</span> sh
+# Migrate member aggregate graphs
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -C
+php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -C | sh
 
-<span class="c1"># Regenerate mrtg configuration</span>
+# Regenerate mrtg configuration
 php artisan grapher:generate-configuration -B mrtg &gt; path/to/mrtg.conf
 
-<span class="c1"># Start mrtg</span>
-service mrtg start  <span class="c1"># or as appropriate for your platform</span>
-</pre></div>
+# Start mrtg
+service mrtg start  # or as appropriate for your platform</code></pre>
 
 <h2 id="peer-to-peer-sflow-changes">Peer to Peer / sflow Changes<a class="headerlink" href="#peer-to-peer-sflow-changes" title="Permanent link"></a></h2>
 <p>The previous version of IXP Manager used a script called <code>sflow-graph.php</code> which was installed on the sflow server to create graphs on demand. IXP Manager v4 does not use this but pulls the required RRD files directly.</p>
 <p>If you have this on the same server or can expose it using NFS for example, then set the path accordingly in <code>.env</code>:</p>
-<div class="highlight"><pre><span></span>GRAPHER_BACKEND_SFLOW_ROOT=&quot;/srv/ixpmatrix&quot;
-</pre></div>
+<pre class="highlight"><code>GRAPHER_BACKEND_SFLOW_ROOT="/srv/ixpmatrix"</code></pre>
 
 <p>If you have implemented this via a web server on the sflow server (as we typically do at INEX), then you need to expose the RRD data directory to IXP Manager using an Apache config such as:</p>
-<div class="highlight"><pre><span></span>Alias /grapher-sflow /srv/ixpmatrix
+<pre class="highlight"><code>Alias /grapher-sflow /srv/ixpmatrix
 
-&lt;Directory &quot;/srv/ixpmatrix&quot;&gt;
+&lt;Directory "/srv/ixpmatrix"&gt;
     Options None
     AllowOverride None
     &lt;RequireAny&gt;
             Require ip 192.0.2.0/24
             Require ip 2001:db8::/32
     &lt;/RequireAny&gt;
-&lt;/Directory&gt;
-</pre></div>
+&lt;/Directory&gt;</code></pre>
 
 <p>and update <code>.env</code> for this with something like:</p>
-<div class="highlight"><pre><span></span>GRAPHER_BACKEND_SFLOW_ROOT=&quot;http://www.example.com/grapher-sflow&quot;
-</pre></div>
+<pre class="highlight"><code>GRAPHER_BACKEND_SFLOW_ROOT="http://www.example.com/grapher-sflow"</code></pre>
               
             </div>
           </div>
@@ -600,7 +593,7 @@ service mrtg start  <span class="c1"># or as appropriate for your platform</span
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 

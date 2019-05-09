@@ -165,15 +165,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../../features/looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
@@ -198,6 +198,10 @@
                 <li class="">
                     
     <a class="" href="../../features/peering-matrix/">Peering Matrix</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/peeringdb/">PeeringDB</a>
                 </li>
                 <li class="">
                     
@@ -397,20 +401,18 @@
 <p><strong>IXP Manager</strong> uses the library <a href="https://github.com/formers/former">Former</a> to generate forms. <a href="https://github.com/formers/former/wiki/Usage-and-Examples">Here are some examples</a> of how to use Former.</p>
 <h2 id="html5-validation">HTML5 Validation<a class="headerlink" href="#html5-validation" title="Permanent link"></a></h2>
 <p>Former adds HTML5 validation tags when it created forms. If you wish to test the PHP code's validation rules, you will need to disable this is development by setting the following <code>.env</code> setting:</p>
-<div class="highlight"><pre><span></span>FORMER_LIVE_VALIDATION=false
-</pre></div>
+<pre class="highlight"><code>FORMER_LIVE_VALIDATION=false</code></pre>
 
 <h2 id="checkboxes">Checkboxes<a class="headerlink" href="#checkboxes" title="Permanent link"></a></h2>
 <p>We had some issues using Former's checkboxes correctly - this is why we are providing the <em>correct</em> way to use them.</p>
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h3>
 <p>First make sure that the Former configuration file (<code>config/former.php</code>) is correctly configured:</p>
-<div class="highlight"><pre><span></span><span class="x">// Whether checkboxes should always be present in the POST data,</span>
-<span class="x">// no matter if you checked them or not</span>
-<span class="x">&#39;push_checkboxes&#39;         =&gt; true,</span>
+<pre class="highlight"><code class="language-php">// Whether checkboxes should always be present in the POST data,
+// no matter if you checked them or not
+'push_checkboxes'         =&gt; true,
 
-<span class="x">// The value a checkbox will have in the POST array if unchecked</span>
-<span class="x">&#39;unchecked_value&#39;         =&gt; 0,</span>
-</pre></div>
+// The value a checkbox will have in the POST array if unchecked
+'unchecked_value'         =&gt; 0,</code></pre>
 
 <h3 id="view">View<a class="headerlink" href="#view" title="Permanent link"></a></h3>
 <p>The following is the structure of a checkbox input:</p>
@@ -423,29 +425,25 @@
 <li><code>-&gt;blockHelp( "help text”)</code> will be the help text of the checkbox.</li>
 </ul>
 <p><strong>Note:</strong> in this example the checkbox will be unchecked:</p>
-<div class="highlight"><pre><span></span><span class="x">Former::checkbox( &#39;checkbox-name&#39; )</span>
-<span class="x">    -&gt;id( &#39;checkbox-id&#39; )</span>
-<span class="x">    -&gt;label( &#39;my-label&#39; )</span>
-<span class="x">    -&gt;text( &#39;my-text&#39; )</span>
-<span class="x">    -&gt;value( 1 )</span>
-<span class="x">    -&gt;blockHelp( &quot;Help text” );</span>
-</pre></div>
+<pre class="highlight"><code class="language-php">Former::checkbox( 'checkbox-name' )
+    -&gt;id( 'checkbox-id' )
+    -&gt;label( 'my-label' )
+    -&gt;text( 'my-text' )
+    -&gt;value( 1 )
+    -&gt;blockHelp( "Help text” );</code></pre>
 
 <p>To check a checkbox by default add the following function to the checkbox structure above:</p>
-<div class="highlight"><pre><span></span><span class="x">    -&gt;check()</span>
-</pre></div>
+<pre class="highlight"><code class="language-php">    -&gt;check()</code></pre>
 
 <p>If the checkbox has to be checked depending on a variable:</p>
-<div class="highlight"><pre><span></span><span class="x">    -&gt;check( $myVariableIsChecked ? 1 : 0 )</span>
-</pre></div>
+<pre class="highlight"><code class="language-php">    -&gt;check( $myVariableIsChecked ? 1 : 0 )</code></pre>
 
 <p><strong>Note:</strong> The above case should be an exception and not a common way to populate the checkboxes. To populate the checkboxes correctly you have to do it via the controller as explained below.</p>
 <h3 id="controller">Controller<a class="headerlink" href="#controller" title="Permanent link"></a></h3>
 <p>You can populate a form via the controller with the function <code>Former::populate()</code> by the usual method of passing an array of values:</p>
-<div class="highlight"><pre><span></span><span class="x">Former::populate([</span>
-<span class="x">    &#39;my-checkbox&#39; =&gt; $object-&gt;isChecked() ? 1 : 0,</span>
-<span class="x">]);</span>
-</pre></div>
+<pre class="highlight"><code class="language-php">Former::populate([
+    'my-checkbox' =&gt; $object-&gt;isChecked() ? 1 : 0,
+]);</code></pre>
               
             </div>
           </div>
@@ -466,7 +464,7 @@
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 

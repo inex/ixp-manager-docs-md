@@ -181,15 +181,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
@@ -214,6 +214,10 @@
                 <li class="">
                     
     <a class="" href="../peering-matrix/">Peering Matrix</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../peeringdb/">PeeringDB</a>
                 </li>
                 <li class="">
                     
@@ -401,26 +405,22 @@
 <p>IXP Manager can maintain a list of member route:/route6: prefixes and origin ASNs as registered in IRRDBs in its database and then use these to, for example, generate strict inbound filters on route servers.</p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link"></a></h2>
 <p>You need to have set up some IRRDB sources (e.g. RIPE's whois service) under the <em>IXP Admin Actions / IRRDB Configuration</em> on the left hand side menu. If you do not have any entries here, there is a database seeder you can use to install some to start you off:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-./artisan db:seed --class<span class="o">=</span>IRRDBs
-</pre></div>
+<pre class="highlight"><code class="language-sh">cd $IXPROOT
+./artisan db:seed --class=IRRDBs</code></pre>
 
 <p><a href="https://github.com/snar/bgpq3">BGPQ3</a> is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On Ubuntu 16.04/18.04 this is as easy as:</p>
-<div class="highlight"><pre><span></span>apt install bgpq3
-</pre></div>
+<pre class="highlight"><code class="language-sh">apt install bgpq3</code></pre>
 
 <p>Then configure the path to it in your <code>.env</code> file.</p>
-<div class="highlight"><pre><span></span><span class="x"># Absolute path to run the bgpq3 utility</span>
-<span class="x"># e.g. IXP_IRRDB_BGPQ3_PATH=/usr/local/bin/bgpq3</span>
-<span class="x">IXP_IRRDB_BGPQ3_PATH=/usr/bin/bgpq3</span>
-</pre></div>
+<pre class="highlight"><code class="language-php"># Absolute path to run the bgpq3 utility
+# e.g. IXP_IRRDB_BGPQ3_PATH=/usr/local/bin/bgpq3
+IXP_IRRDB_BGPQ3_PATH=/usr/bin/bgpq3</code></pre>
 
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link"></a></h2>
 <p>To populate (and update) your local IRRDB, run the following commands:</p>
-<div class="highlight"><pre><span></span>cd $IXPROOT
+<pre class="highlight"><code>cd $IXPROOT
 php artisan irrdb:update-prefix-db
-php artisan irrdb:update-asn-db
-</pre></div>
+php artisan irrdb:update-asn-db</code></pre>
 
 <p>From IXP Manager v5 onwards, and so long as your bgpq3 path is set as above and is executable, the <a href="../cronjobs/">task scheduler</a> will take care of updating your local IRRDB a number of times a day. If you are using a version of IXP Manager before v5, then the above commands should be added to cron to run ~once per day (using the --quiet flag).</p>
 <p>There are four levels of verbosity:</p>
@@ -431,19 +431,16 @@ php artisan irrdb:update-asn-db
 <li><code>-vvv</code> (debug): show prefixes/ASNs added remove also.</li>
 </ol>
 <p>You can also specify a specific customer to update (rather than all) with an additional free form parameter. The database is searched for a matching customer in the order: customer ASN; customer ID (database primary key); and customer shortname. E.g.:</p>
-<div class="highlight"><pre><span></span>php artisan irrdb:update-prefix-db 64511
-</pre></div>
+<pre class="highlight"><code class="language-sh">php artisan irrdb:update-prefix-db 64511</code></pre>
 
 <h3 id="internal-workings">Internal Workings<a class="headerlink" href="#internal-workings" title="Permanent link"></a></h3>
 <p>Essentially, based on a customers AS number / IPv4/6 Peering Macro, IXP Manager <a href="https://github.com/snar/bgpq3">uses bgpq3</a> to query IRRDBs as follows:</p>
-<div class="highlight"><pre><span></span>bgpq3 -S <span class="nv">$sources</span> -l pl -j <span class="o">[</span>-6<span class="o">]</span> <span class="nv">$asn</span>/macro
-</pre></div>
+<pre class="highlight"><code class="language-bash">bgpq3 -S $sources -l pl -j [-6] $asn/macro</code></pre>
 
 <p>where <code>$sources</code> come from the IRRDB sources entries.</p>
 <p>Or, a real example:</p>
-<div class="highlight"><pre><span></span>bgpq3 -S RIPE -l pl -j AS-BTIRE
-bgpq3 -S RIPE -l pl -j -6 AS-BTIRE
-</pre></div>
+<pre class="highlight"><code class="language-bash">bgpq3 -S RIPE -l pl -j AS-BTIRE
+bgpq3 -S RIPE -l pl -j -6 AS-BTIRE</code></pre>
 
 <h2 id="details">Details<a class="headerlink" href="#details" title="Permanent link"></a></h2>
 <p>The IRRDB update commands will:</p>
@@ -477,7 +474,7 @@ bgpq3 -S RIPE -l pl -j -6 AS-BTIRE
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
