@@ -66,8 +66,10 @@ We then edit `/srv/ripe-rpki-validator/rpki-validator-3.conf` and change the fol
 
 And we edit `/srv/ripe-rpki-validator/rpki-rtr-server-3.conf` and:
 
-1. set `server.port` and `server.address` as required (note this is for the API, not the RTR protocol). `server.address=` listens on all interfaces.
-2. set `rtr.server.address` and `rtr.server.port` as required (this is the RTR protocol). `rtr.server.address=::` listens on all interfaces.
+1. set `server.port` and `server.address` as required (note this is for the API, not the RTR protocol). 
+`server.address=` listens on all interfaces.
+2. set `rtr.server.address` and `rtr.server.port` as required (this is the RTR protocol).  
+`rtr.server.address=::` listens on all interfaces.
 
 
 You should now be able to start the Validator and RTR daemons:
