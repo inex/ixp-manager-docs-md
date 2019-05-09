@@ -1,12 +1,12 @@
 # RPKI
 
-**IXP Manager** V5 supports RPKI validation on the router configuration generated for Bird v2. The best way to fully understand RPKI with IXP Manager is to watch our presentation from APRICOT 2019 or read this article on INEX's website.
+**IXP Manager** V5 supports RPKI validation on the router configuration generated for Bird v2. The best way to fully understand RPKI with IXP Manager is to [watch our presentation](https://www.inex.ie/inex-news/shiny-new-route-servers/) from APRICOT 2019 or [read this article]( https://youtu.be/cqhJwuBaxxQ?t=1549) on INEX's website.
 
 
 
 ## RPKI Validator / Local Cache
 
-IXP Manager uses the RPKI-RTR protocol to feed ROAs to the Bird router instances. We recommend you install two of these from different vendors.
+IXP Manager uses the RPKI-RTR protocol to feed ROAs to the Bird router instances. We recommend you install two of these validators/local caches from different vendors.
 
 Let IXP Manager know where they are by setting the following `.env` settings:
 
