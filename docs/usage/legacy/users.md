@@ -27,7 +27,7 @@ There is a fourth internal permission but no user record exists for it:
 
 ## Welcome Email
 
-**IXP Manager** sends a welcome email to all newly created users. The default template for this can be found at `resources/views/user/emails/welcome.blade.php`. If you wish to change this, you can do so via the [standard skinning mechanism](../features/skinning.md).
+**IXP Manager** sends a welcome email to all newly created users. The default template for this can be found at `resources/views/user/emails/welcome.blade.php`. If you wish to change this, you can do so via the [standard skinning mechanism](../../features/skinning.md).
 
 
 ## Logging in as Another User
