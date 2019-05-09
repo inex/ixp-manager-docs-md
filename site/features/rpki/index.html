@@ -350,6 +350,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../dev/users/">Users</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/vagrant/">Vagrant</a>
                 </li>
     </ul>
@@ -399,13 +403,14 @@
 <h2 id="rpki-validator-local-cache">RPKI Validator / Local Cache<a class="headerlink" href="#rpki-validator-local-cache" title="Permanent link"></a></h2>
 <p>IXP Manager uses the RPKI-RTR protocol to feed ROAs to the Bird router instances. We recommend you install two of these from different vendors.</p>
 <p>Let IXP Manager know where they are by setting the following <code>.env</code> settings:</p>
-<pre class="highlight"><code># IP address and port of the first RPKI local cache:
+<div class="highlight"><pre><span></span># IP address and port of the first RPKI local cache:
 IXP_RPKI_RTR1_HOST=192.0.2.11
 IXP_RPKI_RTR1_PORT=3323
 
 # While not required, we recommend you also install a second validator:
 # IXP_RPKI_RTR2_HOST=192.0.2.12
-# IXP_RPKI_RTR2_PORT=3323</code></pre>
+# IXP_RPKI_RTR2_PORT=3323
+</pre></div>
 
 <p>INEX has installed three local caches. As of May 2019, we would recommend Cloudflare's GoRTR and NLnetLabs Routinator 3000. We had a number of issues with the current implementation of RIPE's version (excessive disk usage, regularly crashing).</p>
 <p>See our installation notes for these:</p>
