@@ -1,11 +1,14 @@
-# Upgrading IXP Manager
+# Upgrading IXP Manager - v5.x
+
+???+ note "**These upgrade instructions relate to upgrading when you are already using IXP Manager v5.x.**"
+
+    * For instructions on how to upgrade within the v4.x releases, please [see this page](upgrade-v4.md).
+
+    * For instructions on how to upgrade from v3.x to v4, please [see this page](upgrade-v3.md).
+
+    * For instructions on how to upgrade from v4.9.x to v5.0, please see [the v5.0 release notes](https://github.com/inex/IXP-Manager/releases).
 
 
-**These upgrade instructions relate to upgrading when you are already using IXP Manager v5.x.**
-
-* for instructions on how to upgrade within the v4.x releases, please [see this page](upgrade-v4.md).
-* for instructions on how to upgrade from v3.x to v4, please [see this page](upgrade-v3.md).
-* for instructions on how to upgrade from v4.9.x to v5.0, please see [the v5.0 release notes](https://github.com/inex/IXP-Manager/releases).
 
 
 
@@ -13,7 +16,7 @@ We track [releases on GitHub](https://github.com/inex/IXP-Manager/releases).
 
 You will find standard instructions for upgrading IXP Manager below. Note that the release notes for each version may contain specific upgrade instructions including schema changes.
 
-If you have missed some versions, the most sensible approach is to upgrade to each minor release in sequence (4.5.0 -> 4.6.0 -> 4.7.0 -> ...) and then to the latest patch version in the latest minor version.
+If you have missed some versions, the most sensible approach is to upgrade to each minor release in sequence (5.0.0 -> 5.1.0 -> 5.2.0 -> ...) and then to the latest patch version in the latest minor version.
 
 In the below, we assume the following installation directory - alter this to suit your own situation:
 
