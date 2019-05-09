@@ -21,7 +21,7 @@ There are three types of user:
 
 If you are a Superuser, you can manage users in one of two ways:
 
-1. Via the user controller by clicking on *Users* under **IXP CUSTOMER ACTIONS** in the left hand menu. This will should all users on the system.
+1. Via the user controller by clicking on *Users* under **IXP CUSTOMER ACTIONS** in the left hand menu. This will show all users on the system.
 2. For a per customer view, you can click on the *Users* tab in the standard customer overview page.
 
 If you are a customer administrator user, you can manage your own users via the *Users* menu in the top menu bar. In all cases, you will be given a list of users such as:
