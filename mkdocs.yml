@@ -74,6 +74,7 @@ nav:
     - 'Helpers': 'dev/helpders.md'
     - 'Looking Glass': 'dev/looking-glass.md'
     - 'Release Procedure': 'dev/release-procedure.md'
+    - 'Users': 'dev/users.md'
     - 'Vagrant': 'dev/vagrant.md'
 markdown_extensions:
   - pymdownx.details
