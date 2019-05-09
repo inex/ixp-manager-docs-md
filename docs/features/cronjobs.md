@@ -11,7 +11,7 @@ Prior to IXP Manager v5, a number of cron jobs had to be configured manually. Fr
 The following tasks are run via this mechanism and are referenced elsewhere in the documentation:
 
 * Uploading MRTG traffic data to the database - documented [in the Grapher MRTG backend page](../grapher/mrtg.md#inserting-traffic-data-into-the-database-reporting-emails) - and runs nightly at 02:00. **NB:** there are email reports that can be added to cron that are not part of the scheduler - see the same page for details on this.
-* IRRDB prefix and ASN database for generating route server filters - this is all documented [on the IRRDB page](irrdb.md). **NB:** the scheduler will not run unless you have configured the location of BGPQ3 as per the instructions. Runs every 6 hours.
+* IRRDB prefix and ASN database for generating route server filters - this is all documented [on the IRRDB page](irrdb.md). **NB:** the scheduler will not run unless you have configured the location of BGPQ3 as per the instructions. This runs every 6 hours.
 * [Telescope](../dev/telescope.md) is a debugging / error tracking tool within IXP Manager. In production, it is limited to recording exceptions and other errors. It puts data into a database table of which anything over three days is expunged via the Artisan command `telescope:prune` daily.
 * The [OUI database](layer2-addresses.md#oui-database) is updated weekly (Mondays at 09:15).
 * Polling / updating switch and switch port details ([see documentation here](../usage/switches.md#automated-polling-snmp-updates)) happens hourly at 10 past the hour.
