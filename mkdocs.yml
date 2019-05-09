@@ -4,8 +4,8 @@ repo_url: https://github.com/inex/ixp-manager-docs-md
 edit_uri: edit/master/docs
 theme: readthedocs
 repo_name: GitHub
-copyright: '&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.'
-pages:
+copyright: '&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.'
+nav:
 - Home: 'index.md'
 - Installation:
     - 'Introduction': 'install/index.md'
@@ -13,7 +13,6 @@ pages:
     - 'Maintenance Mode': 'install/maint-mode.md'
     - 'Manual Installation': 'install/manually.md'
     - 'Upgrading': 'install/upgrading.md'
-    - 'Upgrade From v3': 'install/upgrade-v3.md'
     - 'Runtime Configuration': 'install/runtime.md'
 - General Usage:
     - 'Contacts': 'usage/contacts.md'
@@ -27,26 +26,29 @@ pages:
     - 'API': 'features/api.md'
     - 'AS112': 'features/as112.md'
     - 'Console Servers': 'features/console-servers.md'
+    - 'Cron Jobs': 'features/cronjobs.md'
     - 'Cross Connects': 'features/patch-panels.md'
     - 'DNS / ARPA': 'features/dns-arpa.md'
     - 'Grapher': 'grapher/introduction.md'
     - 'Helpdesk Integration': 'features/helpdesk.md'
     - 'IRRDB': 'features/irrdb.md'
     - 'IX-F Member Export': 'features/ixf-export.md'
-    - 'MAC Addresses': 'features/layer2-addresses.md'
     - 'Looking Glass': 'features/looking-glass.md'
     - 'MAC Addresses': 'features/layer2-addresses.md'
+    - 'MANRS': 'features/manrs.md'
     - 'Member Export': 'features/member-export.md'
     - 'Mailing List Management': 'features/mailing-lists.md'
     - 'Nagios': 'features/nagios.md'
     - 'Patch Panels': 'features/patch-panels.md'
     - 'Peering Manager': 'features/peering-manager.md'
     - 'Peering Matrix': 'features/peering-matrix.md'
+    - 'PeeringDB': 'features/peeringdb.md'
     - 'RIR Objects': 'features/rir-objects.md'
     - 'Reseller Functionality': 'features/reseller.md'
     - 'Route Collectors': 'features/route-collectors.md'
     - 'Route Servers': 'features/route-servers.md'
     - 'Router Configuration': 'features/routers.md'
+    - 'RPKI': 'features/rpki.md'
     - 'Skinning': 'features/skinning.md'
     - 'Smokeping': 'grapher/smokeping.md'
     - 'Static Content': 'features/static-content.md'
@@ -72,8 +74,10 @@ pages:
     - 'Helpers': 'dev/helpders.md'
     - 'Looking Glass': 'dev/looking-glass.md'
     - 'Release Procedure': 'dev/release-procedure.md'
+    - 'Users': 'dev/users.md'
     - 'Vagrant': 'dev/vagrant.md'
 markdown_extensions:
+  - pymdownx.details
   - pymdownx.superfences
   - toc:
       permalink: 

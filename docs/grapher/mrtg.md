@@ -147,7 +147,7 @@ if [[ $DIFF -eq 0 ]]; then
     exit 0
 fi
 
-/usr/bin/mrtg --check ${TMPCONF} && /bin/mv ${TMPCONF} /etc/mrtg.cfg     
+/usr/bin/mrtg --check ${TMPCONF} && /bin/mv ${TMPCONF} /etc/mrtg.cfg
 ```
 
 Note that the MRTG configuration that IXP Manager generates instructs MRTG to run as a daemon. On FreeBSD, MRTG comes with an initd script by default and you can kick it off on boot with something like the following in `/etc/rc.conf`:
@@ -180,7 +180,7 @@ Generally speaking, you should not customize the way IXP Manager generates MRTG 
 
 The MRTG backend inserts daily summaries into MySQL for reporting. See the `traffic_daily` database table for this. Essentially, there is a row per day per customer for traffic types *bits, discards, errors, broadcasts and packets*. Each row has a daily, weekly, monthly and yearly value for average, max and total.
 
- An example crontab for collecting and storing *yesterday's* data is as follows. **This should run everyday.**
+From IXP Manager >= v5.0, the [task scheduler](/features/crontabs.md) handles collecting and storing *yesterday's* data. If you are using an older version, create a cron job such as:
 
 ```
 0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db

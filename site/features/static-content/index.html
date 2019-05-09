@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/features/static-content/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -140,6 +137,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../patch-panels/">Cross Connects</a>
                 </li>
                 <li class="">
@@ -164,15 +165,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
@@ -200,6 +201,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../peeringdb/">PeeringDB</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../rir-objects/">RIR Objects</a>
                 </li>
                 <li class="">
@@ -217,6 +222,10 @@
                 <li class="">
                     
     <a class="" href="../routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -399,43 +408,31 @@
 <p>In IXP Manager, there are four types of users as described <a href="../../usage/users/">in the users page</a>. Static contact can be added which requires a minimum user privilege to access (e.g. <code>priv == 0</code> would be publicly accessible through to <code>priv == 3</code> which would require a superadmin).</p>
 <p>To create static content, you should first <a href="../skinning/">set up skinning</a> for your installation. Let's assume you called your skin <code>example</code>.</p>
 <p>To create a publically accessible static content page called <code>misc-benefits</code>, you would first create a content directory in your skin as follows:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-mkdir -p resources/skins/example/content/<span class="o">{</span>0,1,2,3<span class="o">}</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-sh">cd $IXPROOT
+mkdir -p resources/skins/example/content/{0,1,2,3}</code></pre>
 
 <p>where the directories <code>0, 1, 2, 3</code> represent the <em>minimum required user privilege</em> to access the content. You can now create your content page as follows:</p>
-<div class="highlight"><pre><span></span>cp resources/views/content/0/example.foil.php resources/skins/example/content/0/misc-benefits.foil.php
-</pre></div>
-
+<pre class="highlight"><code class="language-sh">cp resources/views/content/0/example.foil.php resources/skins/example/content/0/misc-benefits.foil.php</code></pre>
 
 <p>and then edit that page.</p>
 <p>It can be accessed using a URL such as: <code>https://ixp.example.com/content/0/misc-benefits</code> where the route template is: <code>content/{priv}/{page}</code>.</p>
 <ul>
 <li><code>{priv}</code> is the <em>minimum required user privilege</em> required to access the page and is used first for testing the user's permissions and second as the directory to check for the file.</li>
 <li><code>{page}</code> is the name of the file to load (less <code>.foil.php</code>) and <strong>please be aware that this is normalised as follows:</strong>
-<div class="highlight"><pre><span></span><span class="x">preg_replace( &#39;/[^a-z0-9\-_]/&#39;, &#39;&#39;, strtolower( $page ) )</span>
-</pre></div>
-
+<pre class="highlight"><code class="language-php">preg_replace( '/[^a-z0-9\-_]/', '', strtolower( $page ) )</code></pre>
 i.e. the file name can only contain characters from the class <code>[a-z0-9\-_]</code> and all lower case. <em>Prior to v4.8.0 the <code>strtolower()</code> mistakenly occurred after the <code>preg_replace()</code>.</em></li>
 </ul>
 <p>The <code>example.foil.php</code> template copied above should provide the necessary structure for you. Essentially just replace the title and the content.</p>
 <p>For publically accessible documents, there is an alias route:</p>
-<div class="highlight"><pre><span></span>/public-content/{page}  -&gt; treated as: /content/0/{page}
-</pre></div>
-
+<pre class="highlight"><code>/public-content/{page}  -&gt; treated as: /content/0/{page}</code></pre>
 
 <h2 id="support-contact-template">Support / Contact Template<a class="headerlink" href="#support-contact-template" title="Permanent link"></a></h2>
 <p>IXP Manager ships with a link to <em>Support</em> in the main title menu. You should copy and adjust this as neccessary via skinning:</p>
-<div class="highlight"><pre><span></span>cp resources/views/content/0/support.foil.php resources/skins/example/content/0/support.foil.php
-</pre></div>
-
+<pre class="highlight"><code class="language-sh">cp resources/views/content/0/support.foil.php resources/skins/example/content/0/support.foil.php</code></pre>
 
 <h2 id="documentation-menu">Documentation Menu<a class="headerlink" href="#documentation-menu" title="Permanent link"></a></h2>
 <p>You can link to your own static contact pages using the <em>Documentation</em> menu by skinning this file:</p>
-<div class="highlight"><pre><span></span>cp resources/views/header-documentation.foil.php resources/skins/example/header-documentation.foil.php
-</pre></div>
-
+<pre class="highlight"><code class="language-sh">cp resources/views/header-documentation.foil.php resources/skins/example/header-documentation.foil.php</code></pre>
 
 <p>The stock version includes a link to the example page and a external link to the IXP Manager website <em>(we would be much obliged if you left this in place!)</em>.</p>
 <p>INEX's own version of this can be found in the shipped <code>resources/skins/inex/header-documentation.foil.php</code> file which shows how we use it.</p>
@@ -459,24 +456,24 @@ i.e. the file name can only contain characters from the class <code>[a-z0-9\-_]<
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../../grapher/smokeping/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -486,7 +483,9 @@ i.e. the file name can only contain characters from the class <code>[a-z0-9\-_]<
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

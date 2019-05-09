@@ -9,7 +9,7 @@ The Peering Manager is a fantastic tool that allows your members to view and tra
 * **Peers:** Fellow IXP members that you peer with via the route servers, bilaterally or both;
 * **Rejected / Ignored:** You can move members from any of the other tabs to this tab if you wish to ignore them, or if they have refused peering. This allows you to keep the other lists clean.
 
-The mechanism for detecting bilateral peers is by by observing established TCP sessions between member peering IP addresses on port 179 using [sflow](../grapher/sflow.md]). See the [peering matrix documentation](peering-matrix.md) as setting up the peering matrix will provide all the data needed for the peering manager.
+The mechanism for detecting bilateral peers is by by observing established TCP sessions between member peering IP addresses on port 179 using [sflow](/grapher/sflow.md]). See the [peering matrix documentation](peering-matrix.md) as setting up the peering matrix will provide all the data needed for the peering manager.
 
 **NB: You must check the *Peering Manager* option when editing VLANs for that VLAN to be included in the peering manager.**
 

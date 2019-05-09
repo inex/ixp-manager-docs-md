@@ -37,7 +37,7 @@ php artisan irrdb:update-prefix-db
 php artisan irrdb:update-asn-db
 ```
 
-These should be added to cron to run ~once per day (using the --quiet flag).
+From IXP Manager v5 onwards, and so long as your bgpq3 path is set as above and is executable, the [task scheduler](cronjobs.md) will take care of updating your local IRRDB a number of times a day. If you are using a version of IXP Manager before v5, then the above commands should be added to cron to run ~once per day (using the --quiet flag).
 
 There are four levels of verbosity:
 

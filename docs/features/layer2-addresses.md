@@ -116,7 +116,7 @@ IXP Manager can store the IEEE OUI database and reference it to show the manufac
 
 ### Populating and Updating the OUI Database
 
-You would typically set a weekly cron job to call:
+The OUI is updated weekly by the [task scheduler](cronjobs.md). You can force an update with the following Artisan command:
 
 ```sh
 php $IXPROOT/artisan utils:oui-update
