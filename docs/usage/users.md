@@ -50,7 +50,7 @@ If the user does not exist, you will be invited to complete the rest of the stan
 
 Note that, as always, the *[Help]* button will provide context help for each input field. Once you successfully complete the details, the new user will be sent a welcome email ([see below for details](#welcome-email)) and invited to set their password.
 
-If any users do exist with this email, you will be shown the user's name, username (and, if a superadmin, the other customer(s) the user is associated with). Note that it is possible for an email to be associated with more than one username but this should only happen for legacy users that predate this m:n functionality.
+If any users do exist with this email, you will be shown the user's name, username (and, if a superadmin, the other customer(s) the user is associated with). Note that it is possible for an email to be associated with more than one username but this should only happen for legacy users that predate the ability to assign a user to more than one customer.
 
 ![Adding Users](img/user-add-exists.png)
 
