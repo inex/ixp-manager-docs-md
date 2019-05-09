@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Users - IXP Manager Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Users";
+    var mkdocs_page_input_path = "dev/users.md";
+    var mkdocs_page_url = "/dev/users/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../install/runtime/">Runtime Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../usage/contacts/">Contacts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/customers/">Customers / Members</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/customer-notes/">Customer Notes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/customer-tags/">Customer Tags</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/interfaces/">Customer Connections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/users/">Users</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../usage/switches/">Switches</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../features/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/as112/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/dns-arpa/">DNS / ARPA</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/introduction/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/irrdb/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/ixf-export/">IX-F Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/manrs/">MANRS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/member-export/">Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/mailing-lists/">Mailing List Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/nagios/">Nagios</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/peering-manager/">Peering Manager</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/peering-matrix/">Peering Matrix</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/peeringdb/">PeeringDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/rir-objects/">RIR Objects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/reseller/">Reseller Functionality</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/route-collectors/">Route Collectors</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/route-servers/">Route Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/rpki/">RPKI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/skinning/">Skinning</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/smokeping/">Smokeping</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/static-content/">Static Content</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/tacacs/">TACACS</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Grapher</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../grapher/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/api/">API &amp; Permissions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/mrtg/">Backend: MRTG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/sflow/">Backend: sflow</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../grapher/smokeping/">Backend: Smokeping</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sflow Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../features/sflow/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/sflow-p2p/">Peer-to-peer Graphs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ci/">Continuous Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cla/">Contributer License Agreement</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../docker/">Docker</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../forms/">Forms</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../frontend-crud/">Frontend CRUD</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../release-procedure/">Release Procedure</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Users</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#development-notes-for-user-management">Development Notes for User Management</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">IXP Manager Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Development &raquo;</li>
+        
+      
+    
+    <li>Users</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/dev/users.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="development-notes-for-user-management">Development Notes for User Management<a class="headerlink" href="#development-notes-for-user-management" title="Permanent link"></a></h1>
+<p>The project management of this m:n (customer:user) enhancement is an internal Island Bridge Networks issue and this page serves to expose that and more information publicly.</p>
+<p>Read the <a href="../../usage/users/">official user documentation</a> first as that will answer questions around how it is meant to work.</p>
+<p>Here is the schema for customers / users around the time of the v5 release:</p>
+<p><img alt="Customer / User Schema" src="../img/user-customer-schema.png" /></p>
+<p>One for the goals of this enhancement was to try to not break as much existing functionality as possible. As an example, we would typically get the user's customer relation using <code>$user-&gt;getCustomer()</code> and this was linked via the <code>user.custid</code> column.</p>
+<p>In developing this enhancement, we needed to track two things:</p>
+<ol>
+<li>the customer the user was currently logged in for;</li>
+<li>the customer the user was last logged in for so on the next login, we could return to that customer by default.</li>
+</ol>
+<p>By using the <code>user.custid</code> for this purpose, we retained the ability to call <code>$user-&gt;getCustomer()</code> which meant the vast majority of existing code continued to work as expected.</p>
+<p>So, the mechanism for switching a user from one customer to another is:</p>
+<ol>
+<li>authorization: does a c2u (customer to user) record exist for the user/customer combination;</li>
+<li>update <code>user.custid</code> to the target customer ID;</li>
+<li>issue a redirect to the home page as the new customer.</li>
+</ol>
+<p>When logging in, the system will:</p>
+<ul>
+<li>log you is as the last customer you acted for so long as that c2u link still exists; or</li>
+<li>pick any customer where the c2u link does not exist / no previous customer set; or</li>
+<li>errors if no c2u entries exist.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../vagrant/" class="btn btn-neutral float-right" title="Vagrant">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../release-procedure/" class="btn btn-neutral" title="Release Procedure"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../release-procedure/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../vagrant/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

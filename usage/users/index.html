@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/usage/users/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -122,6 +119,10 @@
         
             <li><a class="toctree-l4" href="#types-of-users">Types of Users</a></li>
         
+            <li><a class="toctree-l4" href="#managing-users">Managing Users</a></li>
+        
+            <li><a class="toctree-l4" href="#users-with-multiple-customers">Users With Multiple Customers</a></li>
+        
             <li><a class="toctree-l4" href="#welcome-email">Welcome Email</a></li>
         
             <li><a class="toctree-l4" href="#logging-in-as-another-user">Logging in as Another User</a></li>
@@ -129,8 +130,6 @@
             <li><a class="toctree-l4" href="#planned-work">Planned Work</a></li>
         
             <li><a class="toctree-l4" href="#passwords-and-password-hashing">Passwords and Password Hashing</a></li>
-        
-            <li><a class="toctree-l4" href="#historical-perspective">Historical Perspective</a></li>
         
         </ul>
     
@@ -162,6 +161,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../features/cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../features/patch-panels/">Cross Connects</a>
                 </li>
                 <li class="">
@@ -186,15 +189,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../../features/looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
@@ -222,6 +225,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../features/peeringdb/">PeeringDB</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../features/rir-objects/">RIR Objects</a>
                 </li>
                 <li class="">
@@ -239,6 +246,10 @@
                 <li class="">
                     
     <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -351,6 +362,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../dev/users/">Users</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/vagrant/">Vagrant</a>
                 </li>
     </ul>
@@ -396,6 +411,8 @@
             <div class="section">
               
                 <h1 id="users">Users<a class="headerlink" href="#users" title="Permanent link"></a></h1>
+<details class="note" open="open"><summary><strong>This page refers to IXP Manager &gt;= v5.0</strong></summary><p>User management prior to v5.0 was handled differently - please see <a href="../legacy/users/">this page</a> for the legacy usage.</p>
+</details>
 <p>The IXP Manager Users feature allows you to add and manage users (people who can login to IXP Manager) on a per customer basis including:</p>
 <ul>
 <li>name / email / phone number</li>
@@ -403,38 +420,65 @@
 <li>permissions (see below)</li>
 </ul>
 <h2 id="types-of-users">Types of Users<a class="headerlink" href="#types-of-users" title="Permanent link"></a></h2>
-<p>See the entity definitions <a href="https://github.com/inex/IXP-Manager/blob/master/database/Entities/User.php">here</a>.</p>
 <p>There are three types of user:</p>
 <ul>
-<li><code>AUTH_CUSTUSER</code> - a standard customer user with portal access to a specific customer's dashboard (<code>priv == 1</code>).</li>
-<li><code>AUTH_CUSTADMIN</code> - a customer administrative user. The only purpose of this account is to allow customers to create, edit and remove their own users. No other access is available through a CUSTADMIN login (<code>priv == 2</code>).</li>
-<li><code>AUTH_SUPERUSER</code> - IXP staff only. <strong>FULL ACCESS TO ALL CUSTOMERS AND FUNCTIONS</strong>. This is only for your IXP staff! (<code>priv == 3</code>)</li>
+<li><strong>Customer User</strong> - a standard customer user with <strong>read only</strong> portal access to a specific customer's dashboard.</li>
+<li><strong>Customer Administrator</strong> - a customer administrative user. This account allows users to make changes as well as manage users for their organisation.</li>
+<li><strong>Superuser</strong> - IXP staff only. <strong>FULL ACCESS TO ALL CUSTOMERS AND FUNCTIONS</strong>. This is only for your IXP staff!</li>
 </ul>
-<p>There is a fourth internal permission but no user record exists for it:</p>
+<h2 id="managing-users">Managing Users<a class="headerlink" href="#managing-users" title="Permanent link"></a></h2>
+<p>If you are a Superuser, you can manage users in one of two ways:</p>
+<ol>
+<li>Via the user controller by clicking on <em>Users</em> under <strong>IXP CUSTOMER ACTIONS</strong> in the left hand menu. This will should all users on the system.</li>
+<li>For a per customer view, you can click on the <em>Users</em> tab in the standard customer overview page.</li>
+</ol>
+<p>If you are a customer administrator user, you can manage your own users via the <em>Users</em> menu in the top menu bar. In all cases, you will be given a list of users such as:</p>
+<p><img alt="User Management" src="../img/user-mgmt.png" /></p>
+<p>The available actions include:</p>
 <ul>
-<li><code>AUTH_PUBLIC</code> - a visitor who has not logged into IXP Manager (<code>priv == 0</code>).</li>
+<li>a documentation link on the top right - that links to this page;</li>
+<li>to add a new user, click on the <em>[+]</em> button next to the documentation link;</li>
+<li>the view (eye) icon will show you more information about a specific user;</li>
+<li>the edit (pencil) icon will allow you to edit users;</li>
+<li>the delete (trashcan) icon will allow you to delete a user.</li>
 </ul>
-<p><strong>Additional Historical Perspective:</strong> the use of <em>AUTH_CUSTADMIN</em> was modeled on RIPE's equivalent model at the time. RIPE have since abandoned this model and it is our intention to do likewise.</p>
+<h3 id="adding-users">Adding Users<a class="headerlink" href="#adding-users" title="Permanent link"></a></h3>
+<p>Since a user can be associated with multiple customers, the new user you wish to add may already exist on the system. For this reason, the first step of adding a user is to just provide and email address:</p>
+<p><img alt="Adding Users" src="../img/user-add.png" /></p>
+<p>If the user does not exist, you will be invited to complete the rest of the standard details:</p>
+<p><img alt="Adding Users" src="../img/user-add-new.png" /></p>
+<p>Note that, as always, the <em>[Help]</em> button will provide context help for each input field. Once you successfully complete the details, the new user will be sent a welcome email (<a href="#welcome-email">see below for details</a>) and invited to set their password.</p>
+<p>If any users do exist with this email, you will be shown the user's name, username (and, if a superadmin, the other customer(s) the user is associated with). Note that it is possible for an email to be associated with more than one username but this should only happen for legacy users that predate this m:n functionality.</p>
+<p><img alt="Adding Users" src="../img/user-add-exists.png" /></p>
+<p>Select the user you wish to add to the customer and set the desired privilege and click <em>[Add User]</em>. The new user will be sent a specific welcome email for users that already exist on the system to let them know they have been added to a new customer account (<a href="#welcome-email">see below for details</a>).</p>
+<h3 id="deleting-users">Deleting Users<a class="headerlink" href="#deleting-users" title="Permanent link"></a></h3>
+<p>Note that <em>deleting</em> a user results in one of two actions:</p>
+<ol>
+<li>if the user is only linked to a single customer (probably the most likely case), the user will be fully deleted and removed from the system.</li>
+<li>if the user is linked to more than one customer, then only the link to this customer will be removed.</li>
+</ol>
+<h2 id="users-with-multiple-customers">Users With Multiple Customers<a class="headerlink" href="#users-with-multiple-customers" title="Permanent link"></a></h2>
+<p>This section explains the handling around users with multiple customers.</p>
+<p>When logging in, the last customer that the user acted for will be selected. If this customer does not exist / the relationship no longer exists / no previous customer set then a customer will be chosen at random.</p>
+<p>If a user is associated with more than one customer, then the facility to switch users can be found under the <em>My Account</em> menu on the top right:</p>
+<p><img alt="Switching Customers" src="../img/users-switchto.png" /></p>
+<p>The current customer is highlighted.</p>
 <h2 id="welcome-email">Welcome Email<a class="headerlink" href="#welcome-email" title="Permanent link"></a></h2>
-<p><strong>IXP Manager</strong> sends a welcome email to all newly created users. The default template for this can be found at <code>resources/views/user/emails/welcome.blade.php</code>. If you wish to change this, you can do so via the <a href="../../features/skinning/">standard skinning mechanism</a>.</p>
+<p><strong>IXP Manager</strong> sends a welcome email to all newly created users.</p>
+<p>The default template for <strong>new users</strong> this can be found at <code>resources/views/user/emails/welcome.blade.php</code>. When an existing user is associated with an additional customer, the following template is used: <code>resources/views/user/emails/welcome-existing.blade.php</code>.</p>
+<p>If you wish to change these templates, you can do so via the <a href="../../features/skinning/">standard skinning mechanism</a>.</p>
 <h2 id="logging-in-as-another-user">Logging in as Another User<a class="headerlink" href="#logging-in-as-another-user" title="Permanent link"></a></h2>
 <p>Administrative users (<em>AUTH_SUPERUSER</em>) can <em>switch to</em> other users to <em>see what they see</em> via the user list or the customer overview page.</p>
 <p>The purpose of this is for both development and for support staff to replicate issues as reported by users.</p>
 <h2 id="planned-work">Planned Work<a class="headerlink" href="#planned-work" title="Permanent link"></a></h2>
 <p>As IXP Manager v5 evolves, we would like to make a number of changes:</p>
 <ul>
-<li>possibly remove usernames and have users log in with email addresses;</li>
-<li>allow a user to be associated with more than one customer;</li>
 <li>look at OAuth2 with links to PeeringDB as well as allowing people to log in / link OAuth supported social media accounts;</li>
-<li>rework the standard <em>CUSTUSER</em> and <em>CUSTADMIN</em> privileges into (perhaps) a read-only and a read-write model;</li>
 <li>add 2fa.</li>
 </ul>
 <h2 id="passwords-and-password-hashing">Passwords and Password Hashing<a class="headerlink" href="#passwords-and-password-hashing" title="Permanent link"></a></h2>
-<p>Prior to <strong>IXP Manager</strong> v4.5, we supported both plaintext and bcrypt password hashing. There was a historical justification at INEX for support plaintext (this <a href="https://github.com/inex/IXP-Manager/wiki/Password-Hashing">may still be documented here</a>). However, IXP Manager is meant to represent the best practices for managing IXP's. As such, plaintext support was removed in v4.5.</p>
 <p><strong>As of v4.5, all passwords are stored as bcrypt with a cost &gt;=10.</strong></p>
-<p>Prior to <strong>IXP Manager v4.9</strong>, we allowed administrative users to set a user's password. This has been removed as we believe it to be bad practice - only a user should know their own password. User's can set (and reset) their passwords via their <em>Profile</em> page or using the password reset functionality.</p>
-<h2 id="historical-perspective">Historical Perspective<a class="headerlink" href="#historical-perspective" title="Permanent link"></a></h2>
-<p>IXP Manager of pre-April 2013 had separate <em>contacts</em> and <em>users</em> which - at the time - we felt was quite confusing. <a href="http://www.lonap.net/">LONAP</a> sponsored a rework of this in 2013 to merge the concept of users and contacts with login privileges. Strangely, this actually caused more confusion and also was a developer nightmare with hacked in code to handle the database tables in multiple places. As such, in 2019 with release v4.9, this was undone and contacts and users are now separate entities again.</p>
+<p>As of v4.9, administrative users are unable to set a user's password. User's can set (and reset) their passwords via their <em>Profile</em> page or using the password reset functionality.</p>
               
             </div>
           </div>
@@ -455,24 +499,24 @@
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../interfaces/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -482,7 +526,9 @@
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

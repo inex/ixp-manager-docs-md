@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>Ripe - IXP Manager Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Ripe";
+    var mkdocs_page_input_path = "features/rpki/ripe.md";
+    var mkdocs_page_url = "/features/rpki/ripe/";
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> IXP Manager Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../install/runtime/">Runtime Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../usage/contacts/">Contacts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../usage/customers/">Customers / Members</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../usage/customer-notes/">Customer Notes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../usage/customer-tags/">Customer Tags</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../usage/interfaces/">Customer Connections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../usage/users/">Users</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../usage/switches/">Switches</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../as112/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dns-arpa/">DNS / ARPA</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../grapher/introduction/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../irrdb/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../ixf-export/">IX-F Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../manrs/">MANRS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../member-export/">Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mailing-lists/">Mailing List Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../nagios/">Nagios</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../peering-manager/">Peering Manager</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../peering-matrix/">Peering Matrix</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../peeringdb/">PeeringDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../rir-objects/">RIR Objects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../reseller/">Reseller Functionality</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../route-collectors/">Route Collectors</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../route-servers/">Route Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../">RPKI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../skinning/">Skinning</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../grapher/smokeping/">Smokeping</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../static-content/">Static Content</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../tacacs/">TACACS</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Grapher</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../grapher/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../grapher/api/">API &amp; Permissions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../grapher/mrtg/">Backend: MRTG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../grapher/sflow/">Backend: sflow</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../grapher/smokeping/">Backend: Smokeping</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sflow Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sflow/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sflow-p2p/">Peer-to-peer Graphs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/ci/">Continuous Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/cla/">Contributer License Agreement</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/docker/">Docker</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/forms/">Forms</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/frontend-crud/">Frontend CRUD</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/release-procedure/">Release Procedure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/users/">Users</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">IXP Manager Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Ripe</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/rpki/ripe.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="ripe-ncc-rpki-validator-3">RIPE NCC RPKI Validator 3<a class="headerlink" href="#ripe-ncc-rpki-validator-3" title="Permanent link"></a></h2>
+<p>The <strong>RIPE NCC RPKI Validator 3</strong> is a <a href="/features/rpki.md">RPKI</a> relying party software (aka RPKI Validator). While  RIPE's <a href="https://github.com/RIPE-NCC/rpki-validator-3">RPKI Validator 3</a> is a RPKI-RTR implementation we have tested and support, we found it buggy in production (as of April 2019 it consumed increasing amounts of disk space and crashed regularly). These instructions reflect INEX's production installation from early 2019.</p>
+<p>RIPE provides CentOS7 RPMs for production builds but as we tend to use Ubuntu LTS for our servers, we will describe an installation using the generic builds here. You can read RIPE's <a href="https://github.com/RIPE-NCC/rpki-validator-3/wiki/RIPE-NCC-RPKI-Validator-3-Production">CentOS7 installation details here</a> and their <a href="https://github.com/RIPE-NCC/rpki-validator-3/wiki/Running-the-generic-builds">own generic install details here</a> (which are the ones we worked from for these Ubuntu 18.04 LTS instructions).</p>
+<p>We use a standard Ubuntu 18.04 installation (selecting the minimal virtual server option), 2 vCPUs, 2GB RAM, 10GB LVM hard drive.</p>
+<p>We will use a non-root user to run the daemons:</p>
+<div class="highlight"><pre><span></span>useradd -c <span class="s1">&#39;RIPE NCC RPKI Validator&#39;</span> -d /srv/ripe-rpki-validator <span class="se">\</span>
+    -m -s /bin/bash -u <span class="m">1100</span> ripe
+</pre></div>
+
+<p>Download and extract the latest production releases <a href="https://ftp.ripe.net/tools/rpki/validator3/prod/generic/">from here</a>:</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> /srv/ripe-rpki-validator
+wget https://ftp.ripe.net/tools/rpki/validator3/prod/generic/rpki-rtr-server-latest-dist.tar.gz
+tar zxf rpki-rtr-server-latest-dist.tar.gz
+wget https://ftp.ripe.net/tools/rpki/validator3/prod/generic/rpki-validator-3-latest-dist.tar.gz
+tar zxf rpki-validator-3-latest-dist.tar.gz
+</pre></div>
+
+<p>When you extract these, you'll find they create directories named by their version. As we will reference these in various scripts, we will alias these directories so we do not need to update the scripts on an upgrade of the software. In our example case, the version was <code>3.0-255</code> so we do the following (and also ensure the permissions are correct):</p>
+<div class="highlight"><pre><span></span>ln -s rpki-rtr-server-3.0-355 rpki-rtr-server-3
+ln -s rpki-validator-3.0-355 rpki-validator-3
+chown -R ripe: /srv/ripe-rpki-validator
+</pre></div>
+
+<p>The requirements for RPKI Validator 3 are OpenJDK and rsync. For Ubuntu 18.04 that means:</p>
+<div class="highlight"><pre><span></span>apt install -y openjdk-8-jre rsync curl
+</pre></div>
+
+<p>We will want to keep configuration changes and the database across upgrades. For this we:</p>
+<div class="highlight"><pre><span></span><span class="c1"># move the config and replace it with a link:</span>
+<span class="nb">cd</span> /srv/ripe-rpki-validator
+mv rpki-validator-3/conf/application.properties rpki-validator-3.conf
+ln -s /srv/ripe-rpki-validator/rpki-validator-3.conf <span class="se">\</span>
+    /srv/ripe-rpki-validator/rpki-validator-3/conf/application.properties
+
+<span class="c1"># And do the same for the datebase:</span>
+mv rpki-validator-3/db .
+ln -s /srv/ripe-rpki-validator/db /srv/ripe-rpki-validator/rpki-validator-3/db
+
+<span class="c1"># And do the same for rpki-rtr-server-3:</span>
+mv rpki-rtr-server-3/conf/application.properties rpki-rtr-server-3.conf
+ln -s /srv/ripe-rpki-validator/rpki-rtr-server-3.conf <span class="se">\</span>
+    /srv/ripe-rpki-validator/rpki-rtr-server-3/conf/application.properties
+
+<span class="c1"># again, ensure file ownership is okay</span>
+chown -R ripe: /srv/ripe-rpki-validator
+</pre></div>
+
+<p>We then edit <code>/srv/ripe-rpki-validator/rpki-validator-3.conf</code> and change the following configuration options:</p>
+<ol>
+<li><code>server.port</code> and <code>server.address</code> if you want to access the web interface directly. Commenting <code>server.address</code> out makes it listen on all interfaces.</li>
+<li><code>spring.datasource.url</code> to <code>/srv/ripe-rpki-validator/db/rpki-validator.h2</code>.</li>
+</ol>
+<p>And we edit <code>/srv/ripe-rpki-validator/rpki-rtr-server-3.conf</code> and:</p>
+<ol>
+<li>set <code>server.port</code> and <code>server.address</code> as required (note this is for the API, not the RTR protocol). <code>server.address=</code> listens on all interfaces.</li>
+<li>set <code>rtr.server.address</code> and <code>rtr.server.port</code> as required (this is the RTR protocol). <code>rtr.server.address=::</code> listens on all interfaces.</li>
+</ol>
+<p>You should now be able to start the Validator and RTR daemons:</p>
+<div class="highlight"><pre><span></span><span class="c1"># as the RIPE user</span>
+su - ripe
+
+<span class="nb">cd</span> /srv/ripe-rpki-validator/rpki-validator-3
+./rpki-validator-3.sh
+
+<span class="nb">cd</span> /srv/ripe-rpki-validator/rpki-rtr-server-3
+./rpki-rtr-server.sh
+</pre></div>
+
+<p>We need to manually install the ARIN TAL by:</p>
+<ol>
+<li>Visiting https://www.arin.net/resources/rpki/tal.html</li>
+<li>Downloading the TAL in <em>RIPE NCC RPKI Validator format</em> format</li>
+<li>Installing it using the command:
+    <div class="highlight"><pre><span></span>/srv/ripe-rpki-validator/rpki-validator-3/upload-tal.sh arin-ripevalidator.tal http://localhost:8080/
+</pre></div></li>
+</ol>
+<p>We use systemd to ensure both daemons start automatically:</p>
+<div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/rpki-validator-3.service</span>
+<span class="s">[Unit]</span>
+<span class="s">Description=RPKI Validator</span>
+<span class="s">After=network.target</span>
+
+<span class="s">[Service]</span>
+<span class="s">Environment=JAVA_CMD=/usr/bin/java</span>
+<span class="s">ExecStart=/srv/ripe-rpki-validator/rpki-validator-3/rpki-validator-3.sh</span>
+
+<span class="s"># prevent restart in case there&#39;s a problem</span>
+<span class="s"># with the database or binding to socket</span>
+<span class="s">RestartPreventExitStatus=7</span>
+
+<span class="s">User=ripe</span>
+
+<span class="s">[Install]</span>
+<span class="s">WantedBy=multi-user.target</span>
+<span class="s">ENDL</span>
+
+systemctl <span class="nb">enable</span> rpki-validator-3.service
+systemctl start rpki-validator-3.service
+
+
+cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/rpki-rtr-server-3.service</span>
+<span class="s">[Unit]</span>
+<span class="s">Description=RPKI RTR</span>
+<span class="s">After=rpki-validator-3.service</span>
+
+<span class="s">[Service]</span>
+<span class="s">Environment=JAVA_CMD=/usr/bin/java</span>
+<span class="s">ExecStart=/srv/ripe-rpki-validator/rpki-rtr-server-3/rpki-rtr-server.sh</span>
+
+<span class="s"># prevent restart in case there&#39;s a problem</span>
+<span class="s"># with the database or binding to socket</span>
+<span class="s">RestartPreventExitStatus=7</span>
+
+<span class="s">User=ripe</span>
+
+<span class="s">[Install]</span>
+<span class="s">WantedBy=multi-user.target</span>
+<span class="s">ENDL</span>
+
+systemctl <span class="nb">enable</span> rpki-rtr-server-3.service
+systemctl start rpki-rtr-server-3.service
+</pre></div>
+
+<p>You can see log messages using:</p>
+<div class="highlight"><pre><span></span>cat /var/log/syslog <span class="p">|</span> grep rpki-validator
+cat /var/log/syslog <span class="p">|</span> grep rpki-rtr
+</pre></div>
+
+<p>We separately add the server and the RIPE daemons to our standard monitoring and alerting tools.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+
+</body>
+</html>

@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/features/routers/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -140,6 +137,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../patch-panels/">Cross Connects</a>
                 </li>
                 <li class="">
@@ -164,15 +165,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
@@ -197,6 +198,10 @@
                 <li class="">
                     
     <a class="" href="../peering-matrix/">Peering Matrix</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../peeringdb/">PeeringDB</a>
                 </li>
                 <li class="">
                     
@@ -237,6 +242,10 @@
     
 
     </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -349,6 +358,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../dev/users/">Users</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/vagrant/">Vagrant</a>
                 </li>
     </ul>
@@ -403,7 +416,7 @@
 <p>See the above pages for specific information on each of those use cases and below for instructions on how to generate configuration.</p>
 <h2 id="managing-routers">Managing Routers<a class="headerlink" href="#managing-routers" title="Permanent link"></a></h2>
 <p>The basic elements of <em>a router</em> are configured in <strong>IXP Manager</strong> under the <em>IXP Admin Actions - Routers</em> option on the left hand menu.</p>
-<p>When you goto add / edit a router, the green help button willl provide explanatory details on each field of information required:</p>
+<p>When you goto add / edit a router, the green help button will provide explanatory details on each field of information required:</p>
 <p><img alt="Routers - Add/Edit" src="../img/routers.png" /></p>
 <p>From the router management page, you can:</p>
 <ul>
@@ -413,7 +426,7 @@
 </ul>
 <h2 id="configuration-generation-overview">Configuration Generation Overview<a class="headerlink" href="#configuration-generation-overview" title="Permanent link"></a></h2>
 <p>The simplest configuration to generate is the route collector configuration. A route collector is an IXP router which serves only to <em>accept all routes and export no routes</em>. It is used for problem diagnosis, to aid customer monitoring and for looking glasses (see <a href="https://www.inex.ie/ixp/lg/rc1-lan1-ipv4">INEX's here</a>).</p>
-<p>The <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird/standard.foil.php">standard configuration</a> simply pulls in a fairly standard header (sets up router ID, listening address and - for the collector at least - some unused filters) and creates a session for all customer routers on the given VLAN.</p>
+<p>The <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird2/standard.foil.php">standard configuration</a> simply pulls in a fairly standard header (sets up router ID, listening address and some filters) and creates a session for all customer routers on the given VLAN.</p>
 <p>When adding a router, you give it a <em>handle</em>. For example: <code>rc1-lan1-ipv4</code> which, for INEX, would mean a route collector on peering LAN1 using IPv4. Then - for the given router handle - the configuration can be generated and pulled using the API as follows:</p>
 <div class="highlight"><pre><span></span><span class="ch">#! /bin/sh</span>
 
@@ -431,13 +444,24 @@
 curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span class="si">${</span><span class="nv">KEY</span><span class="si">}</span><span class="s2">&quot;</span> <span class="si">${</span><span class="nv">URL</span><span class="si">}</span>/<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span> &gt;<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span>.conf
 </pre></div>
 
-
 <p>Configurations for the route server and AS112 templates can be configured just as easily.</p>
 <p>The stock templates for both are secure and well tested and can be used by setting the <code>template</code> element of the router to one of the following:</p>
 <ul>
-<li>AS112: <code>'api/v4/router/as112/bird/standard'</code></li>
-<li>Route Collector: <code>'api/v4/router/collector/bird/standard'</code></li>
-<li>Route Server: <code>'api/v4/router/server/bird/standard'</code></li>
+<li>AS112:<ul>
+<li><code>'api/v4/router/as112/bird/standard'</code></li>
+<li><code>'api/v4/router/as112/bird2/standard'</code></li>
+</ul>
+</li>
+<li>Route Collector:<ul>
+<li><code>'api/v4/router/collector/bird/standard'</code></li>
+<li><code>'api/v4/router/collector/bird2/standard'</code></li>
+</ul>
+</li>
+<li>Route Server:<ul>
+<li><code>'api/v4/router/server/bird/standard'</code></li>
+<li><code>'api/v4/router/server/bird2/standard'</code></li>
+</ul>
+</li>
 </ul>
 <p>We also provide sample scripts for automating the re-configuration of these services by cron:</p>
 <ul>
@@ -445,7 +469,7 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
 <li>Route collector scripts <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-collectors">can be found here</a>.</li>
 <li>Route server scripts - see the <code>-v4</code> scripts <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-servers">in this directory</a>. These are quite robust and have been in production for ~3 years at INEX (as of Jan 2017).</li>
 </ul>
-<p>All of these scripts have been written defensivily such that if there is any issue getting the configuring or validating the configuration then the running router instance should be unaffected. This has worked in practice at INEX when IXP Manager was under maintenance, when there were management connectivity issues and when there were database issues. They also use the <em>updated API</em> (see below) to mark when the router configuration update script ran successfully.</p>
+<p>All of these scripts have been written defensively such that if there is any issue getting the configuring or validating the configuration then the running router instance should be unaffected. This has worked in practice at INEX when IXP Manager was under maintenance, when there were management connectivity issues and when there were database issues. They also use the <em>updated API</em> (see below) to mark when the router configuration update script ran successfully.</p>
 <h2 id="updated-api">Updated API<a class="headerlink" href="#updated-api" title="Permanent link"></a></h2>
 <p>It can be useful to know that the scripts for updating the router configuration for AS112, route collector and route server BGP daemons run successfully. At INEX for example, we have three LANs and so 10 individual servers running a total of 30 Bird instances which is unwieldy to check and monitor manually.</p>
 <p>When viewing routers in IXP Manager, you may have noticed the <em>Last Updated</em> column which will initially show <em>(unknown)</em>. All our update scripts (see above) trigger the updated API call when a route configuration run has completed successfully. Note that this does not mean that a configuration has necessarily changed but rather that the update script ran and executed correctly. In other words: <em>the configuration was successfully pulled from IXP Manager, compared to the running configuration and, if changed, successfully applied</em>.</p>
@@ -454,7 +478,6 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
     https://ixp.example.com/api/v4/router/updated/{handle}
 </pre></div>
 
-
 <p>where <code>{handle}</code> should be replaced with the route handle as described above.</p>
 <p>The result is a JSON object with the datetime as set and is equivalent to the result of the following API call which fetchs the <em>last updated</em> field without setting it:</p>
 <div class="highlight"><pre><span></span>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
@@ -462,7 +485,6 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
 
 {&quot;last_updated&quot;:&quot;2017-05-21T19:14:43+00:00&quot;,&quot;last_updated_unix&quot;:1495394083}
 </pre></div>
-
 
 <p>There are two useful additional API endpoints. To get the last updated time of <strong>all</strong> routers, use:</p>
 <div class="highlight"><pre><span></span>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
@@ -473,7 +495,6 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
  ...}
 </pre></div>
 
-
 <p>The above output shows the format of the reply as well as the fact that routers without a last updated value set will be included as null values.</p>
 <p>Lastly, you can request the last updated time of routers where that time exceeds a given number of seconds. <em>In this call, routers without a last updated time will not be returned.</em> This is useful for monitoring applications such as Nagios where you would want a warning / alert on any routers that have not updated in the last day for example:</p>
 <div class="highlight"><pre><span></span>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
@@ -482,11 +503,9 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
 []
 </pre></div>
 
-
 <p>This example also shows that an empty JSON object is returned for an empty result. Otherwise the format of the reply is the same as for the call above for all routers:</p>
 <div class="highlight"><pre><span></span>{&quot;handle1&quot;:{&quot;last_updated&quot;:&quot;2017-05-21T19:14:43+00:00&quot;,&quot;last_updated_unix&quot;:1495394083},...}
 </pre></div>
-
 
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link"></a></h2>
 <p>We use <a href="../../dev/ci/">Travis CI</a> to test IXP Manager before pushing new releases. The primary purpose of this is to ensure that the configuration for routers generated matches known good configurations from the same sample database.</p>
@@ -515,7 +534,7 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../skinning/" class="btn btn-neutral float-right" title="Skinning">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../rpki/" class="btn btn-neutral float-right" title="RPKI">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../route-servers/" class="btn btn-neutral" title="Route Servers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -528,34 +547,36 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../route-servers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../skinning/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../rpki/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

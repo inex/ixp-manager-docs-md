@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/dev/forms/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -140,6 +137,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../features/cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../features/patch-panels/">Cross Connects</a>
                 </li>
                 <li class="">
@@ -164,15 +165,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../../features/looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
@@ -200,6 +201,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../features/peeringdb/">PeeringDB</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../features/rir-objects/">RIR Objects</a>
                 </li>
                 <li class="">
@@ -217,6 +222,10 @@
                 <li class="">
                     
     <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -343,6 +352,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../users/">Users</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../vagrant/">Vagrant</a>
                 </li>
     </ul>
@@ -395,7 +408,6 @@
 <div class="highlight"><pre><span></span>FORMER_LIVE_VALIDATION=false
 </pre></div>
 
-
 <h2 id="checkboxes">Checkboxes<a class="headerlink" href="#checkboxes" title="Permanent link"></a></h2>
 <p>We had some issues using Former's checkboxes correctly - this is why we are providing the <em>correct</em> way to use them.</p>
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h3>
@@ -407,7 +419,6 @@
 <span class="x">// The value a checkbox will have in the POST array if unchecked</span>
 <span class="x">&#39;unchecked_value&#39;         =&gt; 0,</span>
 </pre></div>
-
 
 <h3 id="view">View<a class="headerlink" href="#view" title="Permanent link"></a></h3>
 <p>The following is the structure of a checkbox input:</p>
@@ -428,16 +439,13 @@
 <span class="x">    -&gt;blockHelp( &quot;Help text” );</span>
 </pre></div>
 
-
 <p>To check a checkbox by default add the following function to the checkbox structure above:</p>
 <div class="highlight"><pre><span></span><span class="x">    -&gt;check()</span>
 </pre></div>
 
-
 <p>If the checkbox has to be checked depending on a variable:</p>
 <div class="highlight"><pre><span></span><span class="x">    -&gt;check( $myVariableIsChecked ? 1 : 0 )</span>
 </pre></div>
-
 
 <p><strong>Note:</strong> The above case should be an exception and not a common way to populate the checkboxes. To populate the checkboxes correctly you have to do it via the controller as explained below.</p>
 <h3 id="controller">Controller<a class="headerlink" href="#controller" title="Permanent link"></a></h3>
@@ -466,24 +474,24 @@
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../docs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -493,7 +501,9 @@
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

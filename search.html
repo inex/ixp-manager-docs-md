@@ -13,14 +13,12 @@
 
   <link rel="stylesheet" href="./css/theme.css" type="text/css" />
   <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="./css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
-  <script src="./js/jquery-2.1.1.min.js"></script>
-  <script src="./js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="./js/highlight.pack.js"></script>
-  <script>var base_url = '.';</script>
-  <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
-
+  <script src="./js/jquery-2.1.1.min.js" defer></script>
+  <script src="./js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -31,10 +29,10 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="." class="icon icon-home"> IXP Manager Documentation</a>
+        <a href="./." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -45,7 +43,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href=".">Home</a>
+    <a class="" href="./.">Home</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -54,31 +52,27 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="install/">Introduction</a>
+    <a class="" href="./install/">Introduction</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="install/automated-script/">Automated Script</a>
+    <a class="" href="./install/automated-script/">Automated Script</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="install/maint-mode/">Maintenance Mode</a>
+    <a class="" href="./install/maint-mode/">Maintenance Mode</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="install/manually/">Manual Installation</a>
+    <a class="" href="./install/manually/">Manual Installation</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="install/upgrading/">Upgrading</a>
+    <a class="" href="./install/upgrading/">Upgrading</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="install/upgrade-v3/">Upgrade From v3</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="install/runtime/">Runtime Configuration</a>
+    <a class="" href="./install/runtime/">Runtime Configuration</a>
                 </li>
     </ul>
 	    </li>
@@ -89,31 +83,31 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="usage/contacts/">Contacts</a>
+    <a class="" href="./usage/contacts/">Contacts</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="usage/customers/">Customers / Members</a>
+    <a class="" href="./usage/customers/">Customers / Members</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="usage/customer-notes/">Customer Notes</a>
+    <a class="" href="./usage/customer-notes/">Customer Notes</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="usage/customer-tags/">Customer Tags</a>
+    <a class="" href="./usage/customer-tags/">Customer Tags</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="usage/interfaces/">Customer Connections</a>
+    <a class="" href="./usage/interfaces/">Customer Connections</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="usage/users/">Users</a>
+    <a class="" href="./usage/users/">Users</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="usage/switches/">Switches</a>
+    <a class="" href="./usage/switches/">Switches</a>
                 </li>
     </ul>
 	    </li>
@@ -124,111 +118,123 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="features/api/">API</a>
+    <a class="" href="./features/api/">API</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/as112/">AS112</a>
+    <a class="" href="./features/as112/">AS112</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/console-servers/">Console Servers</a>
+    <a class="" href="./features/console-servers/">Console Servers</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/patch-panels/">Cross Connects</a>
+    <a class="" href="./features/cronjobs/">Cron Jobs</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/dns-arpa/">DNS / ARPA</a>
+    <a class="" href="./features/patch-panels/">Cross Connects</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="grapher/introduction/">Grapher</a>
+    <a class="" href="./features/dns-arpa/">DNS / ARPA</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/helpdesk/">Helpdesk Integration</a>
+    <a class="" href="./grapher/introduction/">Grapher</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/irrdb/">IRRDB</a>
+    <a class="" href="./features/helpdesk/">Helpdesk Integration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/ixf-export/">IX-F Member Export</a>
+    <a class="" href="./features/irrdb/">IRRDB</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/layer2-addresses/">MAC Addresses</a>
+    <a class="" href="./features/ixf-export/">IX-F Member Export</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/looking-glass/">Looking Glass</a>
+    <a class="" href="./features/looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/layer2-addresses/">MAC Addresses</a>
+    <a class="" href="./features/layer2-addresses/">MAC Addresses</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/member-export/">Member Export</a>
+    <a class="" href="./features/manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/mailing-lists/">Mailing List Management</a>
+    <a class="" href="./features/member-export/">Member Export</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/nagios/">Nagios</a>
+    <a class="" href="./features/mailing-lists/">Mailing List Management</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/patch-panels/">Patch Panels</a>
+    <a class="" href="./features/nagios/">Nagios</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/peering-manager/">Peering Manager</a>
+    <a class="" href="./features/patch-panels/">Patch Panels</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/peering-matrix/">Peering Matrix</a>
+    <a class="" href="./features/peering-manager/">Peering Manager</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/rir-objects/">RIR Objects</a>
+    <a class="" href="./features/peering-matrix/">Peering Matrix</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/reseller/">Reseller Functionality</a>
+    <a class="" href="./features/peeringdb/">PeeringDB</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/route-collectors/">Route Collectors</a>
+    <a class="" href="./features/rir-objects/">RIR Objects</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/route-servers/">Route Servers</a>
+    <a class="" href="./features/reseller/">Reseller Functionality</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/routers/">Router Configuration</a>
+    <a class="" href="./features/route-collectors/">Route Collectors</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/skinning/">Skinning</a>
+    <a class="" href="./features/route-servers/">Route Servers</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="grapher/smokeping/">Smokeping</a>
+    <a class="" href="./features/routers/">Router Configuration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/static-content/">Static Content</a>
+    <a class="" href="./features/rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/tacacs/">TACACS</a>
+    <a class="" href="./features/skinning/">Skinning</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="./grapher/smokeping/">Smokeping</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="./features/static-content/">Static Content</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="./features/tacacs/">TACACS</a>
                 </li>
     </ul>
 	    </li>
@@ -239,23 +245,23 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="grapher/introduction/">Introduction</a>
+    <a class="" href="./grapher/introduction/">Introduction</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="grapher/api/">API &amp; Permissions</a>
+    <a class="" href="./grapher/api/">API &amp; Permissions</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="grapher/mrtg/">Backend: MRTG</a>
+    <a class="" href="./grapher/mrtg/">Backend: MRTG</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="grapher/sflow/">Backend: sflow</a>
+    <a class="" href="./grapher/sflow/">Backend: sflow</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="grapher/smokeping/">Backend: Smokeping</a>
+    <a class="" href="./grapher/smokeping/">Backend: Smokeping</a>
                 </li>
     </ul>
 	    </li>
@@ -266,11 +272,11 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="features/sflow/">Introduction</a>
+    <a class="" href="./features/sflow/">Introduction</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="features/sflow-p2p/">Peer-to-peer Graphs</a>
+    <a class="" href="./features/sflow-p2p/">Peer-to-peer Graphs</a>
                 </li>
     </ul>
 	    </li>
@@ -281,51 +287,55 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="dev/api/">API</a>
+    <a class="" href="./dev/api/">API</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="dev/ci/">Continuous Integration</a>
+    <a class="" href="./dev/ci/">Continuous Integration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="dev/cla/">Contributer License Agreement</a>
+    <a class="" href="./dev/cla/">Contributer License Agreement</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="dev/docker/">Docker</a>
+    <a class="" href="./dev/docker/">Docker</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="dev/docs/">Documentation</a>
+    <a class="" href="./dev/docs/">Documentation</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="dev/forms/">Forms</a>
+    <a class="" href="./dev/forms/">Forms</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="dev/frontend-crud/">Frontend CRUD</a>
+    <a class="" href="./dev/frontend-crud/">Frontend CRUD</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="dev/grapher/">Grapher</a>
+    <a class="" href="./dev/grapher/">Grapher</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="dev/helpders/">Helpers</a>
+    <a class="" href="./dev/helpders/">Helpers</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="dev/looking-glass/">Looking Glass</a>
+    <a class="" href="./dev/looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="dev/release-procedure/">Release Procedure</a>
+    <a class="" href="./dev/release-procedure/">Release Procedure</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="dev/vagrant/">Vagrant</a>
+    <a class="" href="./dev/users/">Users</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="./dev/vagrant/">Vagrant</a>
                 </li>
     </ul>
 	    </li>
@@ -340,7 +350,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href=".">IXP Manager Documentation</a>
+        <a href="./.">IXP Manager Documentation</a>
       </nav>
 
       
@@ -348,7 +358,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".">Docs</a> &raquo;</li>
+    <li><a href="./.">Docs</a> &raquo;</li>
     
     
     <li class="wy-breadcrumbs-aside">
@@ -365,7 +375,7 @@
 
   <form id="content_search" action="search.html">
     <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-    <input name="q" id="mkdocs-search-query" type="text" class="search_input search-query ui-autocomplete-input" placeholder="Search the Docs" autocomplete="off" autofocus>
+    <input name="q" id="mkdocs-search-query" type="text" class="search_input search-query ui-autocomplete-input" placeholder="Search the Docs" autocomplete="off" autofocus title="Type search term here">
   </form>
 
   <div id="mkdocs-search-results" class="search-results">
@@ -383,30 +393,32 @@
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
       
     </span>
 </div>
-    <script src="./js/theme.js"></script>
+    <script>var base_url = '.';</script>
+    <script src="./js/theme.js" defer></script>
+      <script src="./search/main.js" defer></script>
 
 </body>
 </html>

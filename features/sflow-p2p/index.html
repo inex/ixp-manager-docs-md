@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/features/sflow-p2p/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -140,6 +137,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../patch-panels/">Cross Connects</a>
                 </li>
                 <li class="">
@@ -164,15 +165,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
@@ -200,6 +201,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../peeringdb/">PeeringDB</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../rir-objects/">RIR Objects</a>
                 </li>
                 <li class="">
@@ -217,6 +222,10 @@
                 <li class="">
                     
     <a class="" href="../routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -366,6 +375,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../dev/users/">Users</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/vagrant/">Vagrant</a>
                 </li>
     </ul>
@@ -428,11 +441,9 @@
 <div class="highlight"><pre><span></span>pkg install apache24 sflowtool git databases/rrdtool mrtg
 </pre></div>
 
-
 <h3 id="ubuntu">Ubuntu<a class="headerlink" href="#ubuntu" title="Permanent link"></a></h3>
 <div class="highlight"><pre><span></span>apt-get install apache2 git rrdtool rrdcached mrtg
 </pre></div>
-
 
 <p><code>sflowtool</code> is not part of the Ubuntu / Debian package archive and must be compiled from source if running on these systems.  The source code can be found on Github:  https://github.com/sflow/sflowtool.</p>
 <p>Once the required packages are installed, the IXP Manager peer-to-peer graphing system can be configured as follows:</p>
@@ -476,14 +487,12 @@
 &lt;/ixp&gt;
 </pre></div>
 
-
 <p>This file should be placed in <code>/usr/local/etc/ixpmanager.conf</code></p>
 <h1 id="starting-sflow-to-rrd-handler">Starting sflow-to-rrd-handler<a class="headerlink" href="#starting-sflow-to-rrd-handler" title="Permanent link"></a></h1>
 <p>The <code>tools/runtime/sflow/sflow-to-rrd-handler</code> command processes the output from sflowtool and injects it into the RRD archive.  This command should be configured to start on system bootup.</p>
 <p>If you are running on FreeBSD, this command can be started on system bootup by copying the <code>tools/runtime/sflow/sflow_rrd_handler</code> script into <code>/usr/local/etc/rc.d</code> and modifying the <code>/etc/rc.conf</code> command to include:</p>
 <div class="highlight"><pre><span></span>sflow_bgp_handler_enable=&quot;YES&quot;
 </pre></div>
-
 
 <h1 id="displaying-the-graphs">Displaying the Graphs<a class="headerlink" href="#displaying-the-graphs" title="Permanent link"></a></h1>
 <p>The IXP Manager web GUI requires access to the sflow p2p .rrd files over http or https.  This means that the sflow server must run a web server (e.g. Apache), and the IXP Manager GUI must be configured with the URL of the RRD archive on the sflow server.</p>
@@ -495,13 +504,11 @@
 &lt;/Directory&gt;
 </pre></div>
 
-
 <p>The IXP Manager <code>.env</code> file must be configured with parameters both to enable sflow and to provide the front-end with the HTTP URL of the back-end server.  Assuming that the sflow p2p server has IP address 10.0.0.1, then the following lines should be added to <code>.env</code>:</p>
 <div class="highlight"><pre><span></span>GRAPHER_BACKENDS=&quot;mrtg|sflow|smokeping&quot;
 GRAPHER_BACKEND_SFLOW_ENABLED=true
 GRAPHER_BACKEND_SFLOW_ROOT=&quot;http://10.0.0.1/grapher-sflow&quot;
 </pre></div>
-
 
 <!--
 # Sflowtool fanout
@@ -546,24 +553,24 @@ If IXP Manager is configured with more than one component which requires an sflo
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../sflow/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -573,7 +580,9 @@ If IXP Manager is configured with more than one component which requires an sflo
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

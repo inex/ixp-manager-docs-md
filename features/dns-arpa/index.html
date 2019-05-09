@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/features/dns-arpa/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -140,6 +137,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../patch-panels/">Cross Connects</a>
                 </li>
                 <li class=" current">
@@ -178,15 +179,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
@@ -214,6 +215,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../peeringdb/">PeeringDB</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../rir-objects/">RIR Objects</a>
                 </li>
                 <li class="">
@@ -231,6 +236,10 @@
                 <li class="">
                     
     <a class="" href="../routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -343,6 +352,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../dev/users/">Users</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/vagrant/">Vagrant</a>
                 </li>
     </ul>
@@ -406,7 +419,6 @@
 <div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}
 </pre></div>
 
-
 <p>where:</p>
 <ul>
 <li><code>vlanid</code> is the database ID (<em>DB ID</em>) of the VLAN. You can find the DB ID in IXP Manager in the VLAN table (select <em>VLANs</em> from the left hand side menu).</li>
@@ -424,7 +436,6 @@
     <span class="err">...</span>
 <span class="p">]</span>
 </pre></div>
-
 
 <p>where:</p>
 <ul>
@@ -463,13 +474,11 @@
 <span class="k">done</span>
 </pre></div>
 
-
 <h2 id="from-templates">From Templates<a class="headerlink" href="#from-templates" title="Permanent link"></a></h2>
 <p>Rather than writing your own scripts to consume the JSON object as above, it may be easier to use the bundled ISC Bind templates or to write your own template for IXP Manager.</p>
 <p>You can use the <strong>IXP Manager</strong> API to get all ARPA entries for a given VLAN and protocol as plain text based on a template by using the following API endpoint:</p>
 <div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}/{template}
 </pre></div>
-
 
 <p>where:</p>
 <ul>
@@ -480,7 +489,6 @@
 <p>The bundled ISC Bind templates can be used by setting <code>{template}</code> to <code>bind</code> or <code>bind-full</code> in the above URL. For the example interface in the JSON above, the ISC Bind <code>bind</code> template would yield:</p>
 <div class="highlight"><pre><span></span>67.2.0.192.in-addr.arpa.       IN   PTR     cherrie.example.com.
 </pre></div>
-
 
 <p><em>(note that the terminated period on the hostname is added by the template)</em></p>
 <p>The two bundled templates are:</p>
@@ -495,7 +503,6 @@
 mkdir -p resources/skins/myskin/api/v4/dns
 cp resources/views/api/v4/dns/bind.foil.php resources/skins/myskin/api/v4/dns/mytemplate1.foil.php
 </pre></div>
-
 
 <p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
 <blockquote>
@@ -514,7 +521,6 @@ cp resources/views/api/v4/dns/bind.foil.php resources/skins/myskin/api/v4/dns/my
 <span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 
-
 <h3 id="sample-script">Sample Script<a class="headerlink" href="#sample-script" title="Permanent link"></a></h3>
 <p>At INEX, we have (for example) one peering LAN that is a /25 IPv4 network and so is not a zone file in its own right. As such, we make up the zone file using includes. The main zone file looks like:</p>
 <div class="highlight"><pre><span></span>$TTL 86400
@@ -527,7 +533,6 @@ $INCLUDE zones/reverse-mgmt-hosts-ipv4.include
 $INCLUDE zones/reverse-vlan-12-ipv4.include
 </pre></div>
 
-
 <p>The SOA file looks like (as you might expect):</p>
 <div class="highlight"><pre><span></span>@               IN      SOA     ns.example.come.     hostmaster.example.com. (
                         2017051701      ; Serial
@@ -536,7 +541,6 @@ $INCLUDE zones/reverse-vlan-12-ipv4.include
                         1209600         ; Expire
                         7200 )          ; Minimum
 </pre></div>
-
 
 <p>The <code>reverse-vlan-12-ipv4.include</code> is the output of the ISC Bind <code>bind</code> template above for a given VLAN ID.</p>
 <p>We use the sample script <code>update-dns-from-ixp-manager.sh</code> which can be found <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/dns-arpa">in this directory</a> to keep this updated ourselves.</p>
@@ -560,24 +564,24 @@ $INCLUDE zones/reverse-vlan-12-ipv4.include
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../patch-panels/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -587,7 +591,9 @@ $INCLUDE zones/reverse-vlan-12-ipv4.include
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

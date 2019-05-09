@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/features/tacacs/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,10 +76,6 @@
                 <li class="">
                     
     <a class="" href="../../install/upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../install/upgrade-v3/">Upgrade From v3</a>
                 </li>
                 <li class="">
                     
@@ -140,6 +137,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../patch-panels/">Cross Connects</a>
                 </li>
                 <li class="">
@@ -164,15 +165,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
@@ -200,6 +201,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../peeringdb/">PeeringDB</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../rir-objects/">RIR Objects</a>
                 </li>
                 <li class="">
@@ -217,6 +222,10 @@
                 <li class="">
                     
     <a class="" href="../routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -343,6 +352,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../dev/users/">Users</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/vagrant/">Vagrant</a>
                 </li>
     </ul>
@@ -403,7 +416,6 @@ https://ixp.example.com/api/v4/user/formatted/{priv}
 https://ixp.example.com/api/v4/user/formatted/{priv}/{template}
 </pre></div>
 
-
 <p>where:</p>
 <ul>
 <li><code>priv</code> is an optional user privilege to limit the user selection to. See <a href="https://github.com/inex/IXP-Manager/blob/master/database/Entities/User.php">the available integer values on the <code>AUTH_</code> constants here</a>. You typically want <code>3</code>.</li>
@@ -415,7 +427,6 @@ https://ixp.example.com/api/v4/user/formatted/{priv}/{template}
     login = des &quot;$2y$10$pHln5b4DrPj3uuhgfg45HeWEQLK/3ngRxYgYppbnYzleJ.9EpLAN.&quot;
 }
 </pre></div>
-
 
 <h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link"></a></h3>
 <p>You can optionally POST any of the following to change elements of the default template:</p>
@@ -433,7 +444,6 @@ https://ixp.example.com/api/v4/user/formatted/{priv}/{template}
     https://ixpexample.com/api/v4/user/formatted
 </pre></div>
 
-
 <h3 id="templates-skinning">Templates / Skinning<a class="headerlink" href="#templates-skinning" title="Permanent link"></a></h3>
 <p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
 <p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
@@ -441,7 +451,6 @@ https://ixp.example.com/api/v4/user/formatted/{priv}/{template}
 mkdir -p resources/skins/myskin/api/v4/user/formatted
 cp resources/views/api/v4/user/formatted/default.foil.php resources/skins/myskin/api/v4/user/formatted/mytemplate1.foil.php
 </pre></div>
-
 
 <p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
 <p>All variables available in the template can be <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/user/formatted/default.foil.php">seen in the default template</a>.</p>
@@ -477,24 +486,24 @@ cp resources/views/api/v4/user/formatted/default.foil.php resources/skins/myskin
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../static-content/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -504,7 +513,9 @@ cp resources/views/api/v4/user/formatted/default.foil.php resources/skins/myskin
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

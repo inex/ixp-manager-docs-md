@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
@@ -22,9 +22,10 @@
     var mkdocs_page_url = "/install/upgrade-v3/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -75,34 +76,6 @@
                 <li class="">
                     
     <a class="" href="../upgrading/">Upgrading</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">Upgrade From v3</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#upgrade-from-v3">Upgrade From v3</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#overview">Overview</a></li>
-        
-            <li><a class="toctree-l4" href="#deprecations-removed-features">Deprecations / Removed Features</a></li>
-        
-            <li><a class="toctree-l4" href="#duplicating-the-database">Duplicating the Database</a></li>
-        
-            <li><a class="toctree-l4" href="#install-ixp-manager">Install IXP Manager</a></li>
-        
-            <li><a class="toctree-l4" href="#initial-configuration-tasks">Initial Configuration Tasks</a></li>
-        
-            <li><a class="toctree-l4" href="#mrtg-graphing-migration">MRTG Graphing Migration</a></li>
-        
-            <li><a class="toctree-l4" href="#peer-to-peer-sflow-changes">Peer to Peer / sflow Changes</a></li>
-        
-        </ul>
-    
-
-    </ul>
                 </li>
                 <li class="">
                     
@@ -164,6 +137,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../features/cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../features/patch-panels/">Cross Connects</a>
                 </li>
                 <li class="">
@@ -188,15 +165,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../../features/looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
     <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
@@ -224,6 +201,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../features/peeringdb/">PeeringDB</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../features/rir-objects/">RIR Objects</a>
                 </li>
                 <li class="">
@@ -241,6 +222,10 @@
                 <li class="">
                     
     <a class="" href="../../features/routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
@@ -353,6 +338,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../dev/users/">Users</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/vagrant/">Vagrant</a>
                 </li>
     </ul>
@@ -378,10 +367,6 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../..">Docs</a> &raquo;</li>
     
-      
-        
-          <li>Installation &raquo;</li>
-        
       
     
     <li>Upgrade From v3</li>
@@ -446,7 +431,6 @@ mysql -u root -pXXX -e <span class="s1">&#39;GRANT ALL ON ixp4.* TO `ixp`@`local
 mysql -u ixp -pYYY -h localhost ixp4
 </pre></div>
 
-
 <h2 id="install-ixp-manager">Install IXP Manager<a class="headerlink" href="#install-ixp-manager" title="Permanent link"></a></h2>
 <p>This is very much a tl;dr version of <a href="../manually/">the official installation instructions</a> which you should review if you need additional help.</p>
 <p><strong>Critically, these upgrade instructions were designed and tested against IXP Manager v4.5.0. You need to upgrade to this version first and then <a href="../upgrading/">follow the v4 upgrade instructions from there</a>.</strong></p>
@@ -478,7 +462,6 @@ joe .env
 chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
 </pre></div>
 
-
 <h2 id="initial-configuration-tasks">Initial Configuration Tasks<a class="headerlink" href="#initial-configuration-tasks" title="Permanent link"></a></h2>
 <h3 id="new-local-settings-configuration-laravel">New Local Settings / Configuration (Laravel)<a class="headerlink" href="#new-local-settings-configuration-laravel" title="Permanent link"></a></h3>
 <p>IXP Manager v4 uses a new PHP framework (Zend Framework swapped for Laravel). As such, all the older configuration options (from <code>application/configs/application.ini</code>) need to be ported to <code>.env</code>.</p>
@@ -489,7 +472,6 @@ chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
 cp xxxx.php.dist xxxx.php
 </pre></div>
 
-
 <p>Then edit the resultant <code>.php</code> file (or, better, where <code>config()</code> options exist, add them to <code>.env</code>).</p>
 <p>These <code>.dist</code> files represent v3 funtionality that has not yet been fully ported to v4/Laravel.</p>
 <h3 id="update-the-database-schema">Update the Database Schema<a class="headerlink" href="#update-the-database-schema" title="Permanent link"></a></h3>
@@ -498,11 +480,9 @@ cp xxxx.php.dist xxxx.php
 <div class="highlight"><pre><span></span>./artisan doctrine:schema:update --sql
 </pre></div>
 
-
 <p>And apply with:</p>
 <p><div class="highlight"><pre><span></span>./artisan doctrine:schema:update --force
 </pre></div>
-
  Note that this may take a few minutes if you have a lot of data such as BGP session data.</p>
 <h3 id="migrate-plaintext-passwords-to-bcrypt">Migrate Plaintext Passwords to Bcrypt<a class="headerlink" href="#migrate-plaintext-passwords-to-bcrypt" title="Permanent link"></a></h3>
 <p>Since v4.5, we <a href="../../usage/users/#password-hashing">no longer allow plaintext passwords</a>. If you were using plaintext passwords, you need to convert them to bcrypt as follows:</p>
@@ -514,7 +494,6 @@ php artisan utils:convert-plaintext-password
 <span class="c1"># really convert passwords and save to database:</span>
 php artisan utils:convert-plaintext-password --force
 </pre></div>
-
 
 <h3 id="stage-one-complete">Stage One Complete<a class="headerlink" href="#stage-one-complete" title="Permanent link"></a></h3>
 <p>You should be able to point Apache / your web server at the new IXP Manager installation and log in.</p>
@@ -529,7 +508,6 @@ GRAPHER_BACKEND_MRTG_LOGDIR=&quot;/path/to/new/mrtg/data&quot;
 GRAPHER_BACKEND_MRTG_WORKDIR=&quot;/path/to/new/mrtg/data&quot;
 GRAPHER_CACHE_ENABLED=true
 </pre></div>
-
 
 <p>See the <a href="../../grapher/introduction/">Grapher</a> documentation for full details of what these mean.</p>
 <p>You'll then need to migrate all your MRTG files to the new naming scheme. Run the commands below twice. Once to verify the output and a second time piped to sh (<code>| sh</code>) to actually execute the commands.</p>
@@ -597,13 +575,11 @@ php artisan grapher:generate-configuration -B mrtg &gt; path/to/mrtg.conf
 service mrtg start  <span class="c1"># or as appropriate for your platform</span>
 </pre></div>
 
-
 <h2 id="peer-to-peer-sflow-changes">Peer to Peer / sflow Changes<a class="headerlink" href="#peer-to-peer-sflow-changes" title="Permanent link"></a></h2>
 <p>The previous version of IXP Manager used a script called <code>sflow-graph.php</code> which was installed on the sflow server to create graphs on demand. IXP Manager v4 does not use this but pulls the required RRD files directly.</p>
 <p>If you have this on the same server or can expose it using NFS for example, then set the path accordingly in <code>.env</code>:</p>
 <div class="highlight"><pre><span></span>GRAPHER_BACKEND_SFLOW_ROOT=&quot;/srv/ixpmatrix&quot;
 </pre></div>
-
 
 <p>If you have implemented this via a web server on the sflow server (as we typically do at INEX), then you need to expose the RRD data directory to IXP Manager using an Apache config such as:</p>
 <div class="highlight"><pre><span></span>Alias /grapher-sflow /srv/ixpmatrix
@@ -618,7 +594,6 @@ service mrtg start  <span class="c1"># or as appropriate for your platform</span
 &lt;/Directory&gt;
 </pre></div>
 
-
 <p>and update <code>.env</code> for this with something like:</p>
 <div class="highlight"><pre><span></span>GRAPHER_BACKEND_SFLOW_ROOT=&quot;http://www.example.com/grapher-sflow&quot;
 </pre></div>
@@ -627,49 +602,38 @@ service mrtg start  <span class="c1"># or as appropriate for your platform</span
           </div>
           <footer>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../runtime/" class="btn btn-neutral float-right" title="Runtime Configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../upgrading/" class="btn btn-neutral" title="Upgrading"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>&copy; 2017-2018, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/inex/ixp-manager-docs-md" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../upgrading/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../runtime/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>
