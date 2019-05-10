@@ -437,7 +437,8 @@ chown -R ripe: /srv/ripe-rpki-validator
 <p>And we edit <code>/srv/ripe-rpki-validator/rpki-rtr-server-3.conf</code> and:</p>
 <ol>
 <li>set <code>server.port</code> and <code>server.address</code> as required (note this is for the API, not the RTR protocol). <code>server.address=</code> listens on all interfaces.</li>
-<li>set <code>rtr.server.address</code> and <code>rtr.server.port</code> as required (this is the RTR protocol). <code>rtr.server.address=::</code> listens on all interfaces.</li>
+<li>set <code>rtr.server.address</code> and <code>rtr.server.port</code> as required (this is the RTR protocol).<br />
+<code>rtr.server.address=::</code> listens on all interfaces.</li>
 </ol>
 <p>You should now be able to start the Validator and RTR daemons:</p>
 <div class="highlight"><pre><span></span><span class="c1"># as the RIPE user</span>

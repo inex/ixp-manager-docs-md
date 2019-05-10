@@ -409,7 +409,7 @@
 <p>The following tasks are run via this mechanism and are referenced elsewhere in the documentation:</p>
 <ul>
 <li>Uploading MRTG traffic data to the database - documented <a href="../../grapher/mrtg/#inserting-traffic-data-into-the-database-reporting-emails">in the Grapher MRTG backend page</a> - and runs nightly at 02:00. <strong>NB:</strong> there are email reports that can be added to cron that are not part of the scheduler - see the same page for details on this.</li>
-<li>IRRDB prefix and ASN database for generating route server filters - this is all documented <a href="../irrdb/">on the IRRDB page</a>. <strong>NB:</strong> the scheduler will not run unless you have configured the location of BGPQ3 as per the instructions. Runs every 6 hours.</li>
+<li>IRRDB prefix and ASN database for generating route server filters - this is all documented <a href="../irrdb/">on the IRRDB page</a>. <strong>NB:</strong> the scheduler will not run unless you have configured the location of BGPQ3 as per the instructions. This runs every 6 hours.</li>
 <li><a href="../../dev/telescope/">Telescope</a> is a debugging / error tracking tool within IXP Manager. In production, it is limited to recording exceptions and other errors. It puts data into a database table of which anything over three days is expunged via the Artisan command <code>telescope:prune</code> daily.</li>
 <li>The <a href="../layer2-addresses/#oui-database">OUI database</a> is updated weekly (Mondays at 09:15).</li>
 <li>Polling / updating switch and switch port details (<a href="../../usage/switches/#automated-polling-snmp-updates">see documentation here</a>) happens hourly at 10 past the hour.</li>
