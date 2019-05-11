@@ -20,9 +20,10 @@ IXP_RPKI_RTR1_PORT=3323
 # IXP_RPKI_RTR2_PORT=3323
 ```
 
-INEX has installed three local caches. As of May 2019, we would recommend Cloudflare's GoRTR and NLnetLabs Routinator 3000. We had a number of issues with the current implementation of RIPE's version (excessive disk usage, regularly crashing).
+INEX has installed three local caches. As of May 2019, we would recommend Cloudflare's RPKI Toolkit and NLnetLabs Routinator 3000. We had a number of issues with the current implementation of RIPE's version (excessive disk usage, regularly crashing).
 
 See our installation notes for these:
 
-1. [Routinator 3000](/features/rpki/routinator.md).
+1. [Cloudflare's RPKI Toolkit](rpki/cloudflare.md).
 2. [RIPE NCC RPKI Validator 3](/features/rpki/ripe.md).
+3. [Routinator 3000](/features/rpki/routinator.md).

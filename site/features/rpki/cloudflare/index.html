@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>Cloudflare's RPKI Toolkit - IXP Manager Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Cloudflare's RPKI Toolkit";
+    var mkdocs_page_input_path = "features/rpki/cloudflare.md";
+    var mkdocs_page_url = "/features/rpki/cloudflare/";
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> IXP Manager Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Installation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../install/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../install/automated-script/">Automated Script</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../install/maint-mode/">Maintenance Mode</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../install/manually/">Manual Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../install/upgrading/">Upgrading</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../install/runtime/">Runtime Configuration</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">General Usage</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../usage/contacts/">Contacts</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../usage/customers/">Customers / Members</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../usage/customer-notes/">Customer Notes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../usage/customer-tags/">Customer Tags</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../usage/interfaces/">Customer Connections</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../usage/users/">Users</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../usage/switches/">Switches</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../as112/">AS112</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../console-servers/">Console Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../cronjobs/">Cron Jobs</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../dns-arpa/">DNS / ARPA</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../grapher/introduction/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../helpdesk/">Helpdesk Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../irrdb/">IRRDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../ixf-export/">IX-F Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layer2-addresses/">MAC Addresses</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../manrs/">MANRS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../member-export/">Member Export</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mailing-lists/">Mailing List Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../nagios/">Nagios</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../patch-panels/">Patch Panels</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../peering-manager/">Peering Manager</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../peering-matrix/">Peering Matrix</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../peeringdb/">PeeringDB</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../rir-objects/">RIR Objects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../reseller/">Reseller Functionality</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../route-collectors/">Route Collectors</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../route-servers/">Route Servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../routers/">Router Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../">RPKI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../skinning/">Skinning</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../grapher/smokeping/">Smokeping</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../static-content/">Static Content</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../tacacs/">TACACS</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Grapher</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../grapher/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../grapher/api/">API &amp; Permissions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../grapher/mrtg/">Backend: MRTG</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../grapher/sflow/">Backend: sflow</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../grapher/smokeping/">Backend: Smokeping</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Sflow Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../sflow/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../sflow-p2p/">Peer-to-peer Graphs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Development</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../dev/api/">API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/ci/">Continuous Integration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/cla/">Contributer License Agreement</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/docker/">Docker</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/docs/">Documentation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/forms/">Forms</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/frontend-crud/">Frontend CRUD</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/grapher/">Grapher</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/helpders/">Helpers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/looking-glass/">Looking Glass</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/release-procedure/">Release Procedure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/users/">Users</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../dev/vagrant/">Vagrant</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">IXP Manager Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Cloudflare's RPKI Toolkit</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/rpki/cloudflare.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="cloudflares-rpki-toolkit">Cloudflare's RPKI Toolkit<a class="headerlink" href="#cloudflares-rpki-toolkit" title="Permanent link"></a></h1>
+<p>Cloudflare created their own RPKI toolkit which, similar to RIPE's, is split into two elements:</p>
+<ol>
+<li><strong>GoRTR</strong> is the damon that implements the RPKI-RTR protocol to distribute validated ROAs to your routers.</li>
+<li><strong>OctoRPKI</strong> is the validator which pulls the signed ROAs from the trust anchors and validates them and then makes them available to GoRTR.</li>
+</ol>
+<p><strong>NB:</strong> Before you proceed further, you should <a href="https://blog.cloudflare.com/cloudflares-rpki-toolkit/">read Cloudflare's own introduction to this toolkit</a>.</p>
+<p>We use a standard Ubuntu 18.04 installation (selecting the minimal virtual server option), 2 vCPUs, 2GB RAM, 10GB LVM hard drive. Not that INEX at this point has not embraced Docker for production services so our install does not use Cloudflare's docker options.</p>
+<p>Rather than running these daemons as the root user, we create a dedicated user:</p>
+<div class="highlight"><pre><span></span>useradd -c <span class="s1">&#39;cloudflare&#39;</span> -d /srv/cloudflare -m -s /bin/bash -u <span class="m">1102</span> cloudflare
+</pre></div>
+
+<p>We now install packages we need:</p>
+<div class="highlight"><pre><span></span>apt install golang git rsync ca-certificates
+</pre></div>
+
+<p>Note that in the following, we are not signing the JSON file or ROAs that OctoRPKI generates and this not validating this in GoRTR. The reason for this as primarily that it <em>just wouldn't work</em> (May 2019) but also as this is a same server operation and no other tools are using the JSON.</p>
+<h2 id="octorpki">OctoRPKI<a class="headerlink" href="#octorpki" title="Permanent link"></a></h2>
+<p>To install OctoRPKI, su to the target user and proceed as follows (we assume all  commands are executed from <code>/srv/cloudflare</code>):</p>
+<div class="highlight"><pre><span></span>sudo su - cloudflare
+
+go get github.com/cloudflare/cfrpki/cmd/octorpki
+
+<span class="c1"># test:</span>
+./go/bin/octorpki -h
+
+<span class="c1"># create the directories we need:</span>
+mkdir tals <span class="o">&amp;&amp;</span> mkdir cache <span class="o">&amp;&amp;</span> touch rrdp.json
+
+<span class="c1"># copy files we need from the OctoRPKI repository:</span>
+cp go/src/github.com/cloudflare/cfrpki/cmd/octorpki/tals/* tals/
+</pre></div>
+
+<p>You now need to install the ARIN file manually, sigh:</p>
+<ol>
+<li>Visiting https://www.arin.net/resources/rpki/tal.html</li>
+<li>Downloading the TAL in RFC 7730 format</li>
+<li>Place it in <code>/srv/cloudflare/tals/arin.tal</code></li>
+</ol>
+<p>You can now run the validator via the following command <em>(and I'm showing the start of some of the sample output)</em>:</p>
+<div class="highlight"><pre><span></span>$ ./go/bin/octorpki -mode server -output.sign<span class="o">=</span>0
+INFO<span class="o">[</span>0000<span class="o">]</span> Validator started
+INFO<span class="o">[</span>0000<span class="o">]</span> Serving HTTP on :8080/output.json
+...
+</pre></div>
+
+<p>As it starts up, there is some info available as JSON under http://localhost:8080/infos and the ROAs can be seen as JSON via http://localhost:8080/output.json after ~5mins.</p>
+<h2 id="gortr">GoRTR<a class="headerlink" href="#gortr" title="Permanent link"></a></h2>
+<p>To install GoRTR (once OctoRPKI is installed and running), we proceed as follows and assume you are su'd to <code>cloudflare</code> and your current directory is <code>/srv/cloudflare</code>:</p>
+<div class="highlight"><pre><span></span>go get github.com/cloudflare/gortr/cmd/gortr
+</pre></div>
+
+<p>You can run it now with:</p>
+<div class="highlight"><pre><span></span>./go/bin/gortr -bind :3323                                <span class="se">\</span>
+               -verify<span class="o">=</span><span class="m">0</span>                                  <span class="se">\</span>
+               -cache http://localhost:8080/output.json   <span class="se">\</span>
+               -metrics.addr :8081
+</pre></div>
+
+<p>Once GoRTR starts up, metrics are available from http://127.0.0.1:8081/metrics.</p>
+<h2 id="starting-on-boot">Starting on Boot<a class="headerlink" href="#starting-on-boot" title="Permanent link"></a></h2>
+<p>To have these services start at boot, we create systemd service files:</p>
+<div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/cloudflare-octorpki.service</span>
+<span class="s">[Unit]</span>
+<span class="s">Description=Cloudflare OctoRPKI Validator</span>
+
+<span class="s">[Service]</span>
+<span class="s">Restart=always</span>
+<span class="s">RestartSec=60</span>
+
+<span class="s">WorkingDirectory=/srv/cloudflare</span>
+
+<span class="s">User=cloudflare</span>
+
+<span class="s">StandardOutput=syslog</span>
+<span class="s">StandardError=syslog</span>
+<span class="s">SyslogIdentifier=cloudflare-octorpki</span>
+
+<span class="s">ExecStart=/srv/cloudflare/go/bin/octorpki -mode server -output.sign=0</span>
+
+
+
+<span class="s">[Install]</span>
+<span class="s">WantedBy=multi-user.target</span>
+
+<span class="s">ENDL</span>
+
+cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/cloudflare-gortr.service</span>
+<span class="s">[Unit]</span>
+<span class="s">Description=Cloudflare GoRTR</span>
+<span class="s">After=cloudflare-octorpki.service</span>
+
+<span class="s">[Service]</span>
+<span class="s">Restart=always</span>
+<span class="s">RestartSec=60</span>
+
+<span class="s">WorkingDirectory=/srv/cloudflare</span>
+
+<span class="s">User=cloudflare</span>
+
+<span class="s">StandardOutput=syslog</span>
+<span class="s">StandardError=syslog</span>
+<span class="s">SyslogIdentifier=cloudflare-gortr</span>
+
+<span class="s">ExecStartPre=/bin/sleep 30</span>
+
+<span class="s">ExecStart=/srv/cloudflare/go/bin/gortr -bind :3324 -verify=0 -cache http://localhost:8080/output.json -metrics.addr :8081 -refresh=120</span>
+
+
+<span class="s">[Install]</span>
+<span class="s">WantedBy=multi-user.target</span>
+
+<span class="s">ENDL</span>
+</pre></div>
+
+<p>And then we enable for start on boot with:</p>
+<div class="highlight"><pre><span></span>systemctl <span class="nb">enable</span> cloudflare-octorpki.service
+systemctl <span class="nb">enable</span> cloudflare-gortr.service
+</pre></div>
+
+<p>Note that:</p>
+<ul>
+<li>we have a sleep on gortr of 30 seconds to give OctoRPKI a chance to start;</li>
+<li>even still, it may not be ready in which case gortr will retry every two minutes (<code>-refresh=120</code>).</li>
+</ul>
+<h2 id="monitoring">Monitoring<a class="headerlink" href="#monitoring" title="Permanent link"></a></h2>
+<p>We add Nagios http checks for ports 8080 (OctoRPKI) and 8081 (GoRTR) to our monitoring platform. We also add a <code>check_tcp</code> test for GoRTR port 3323.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; 2017-2019, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+
+</body>
+</html>
