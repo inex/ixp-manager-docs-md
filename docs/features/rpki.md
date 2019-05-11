@@ -25,5 +25,5 @@ INEX has installed three local caches. As of May 2019, we would recommend Cloudf
 See our installation notes for these:
 
 1. [Cloudflare's RPKI Toolkit](rpki/cloudflare.md).
-2. [RIPE NCC RPKI Validator 3](/features/rpki/ripe.md).
-3. [Routinator 3000](/features/rpki/routinator.md).
+2. [RIPE NCC RPKI Validator 3](rpki/ripe.md).
+3. [Routinator 3000](rpki/routinator.md).
