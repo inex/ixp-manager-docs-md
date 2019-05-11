@@ -28,7 +28,7 @@ To check if this works, run the following (and note the path to the `routinator`
 
 ```sh
 routinator@rpki01:~$ /srv/routinator/.cargo/bin/routinator -V
-Routinator 0.2.1
+Routinator 0.3.3
 ```
 
 Also run the following to get instructions for downloading and installing the ARIN TAL:
@@ -62,7 +62,7 @@ Note that in the above we are using the (sensible) configuration defaults. Read 
 Start Routinator's RTR service with:
 
 ```
-/srv/routinator/.cargo/bin/routinator rtrd -a -l 192.0.2.13:3323 -l [2001:db8::13]:3323
+/srv/routinator/.cargo/bin/routinator rtrd -a -l 192.0.2.13:3323 -l [2001:db8::13]:3323 --listen-http 192.0.2.13:8080
 ```
 
 It will immediately start in the background. The `-a` switch will keep it in the foreground. You can see log messages using:
@@ -71,38 +71,46 @@ It will immediately start in the background. The `-a` switch will keep it in the
 cat /var/log/syslog | grep routinator
 ```
 
-To have the service start at boot, we do the following (**NB:** ensure you have nothing in `rc.local` as the following overwrites it):
+When it starts, there is a webserver on port 8080 - see [the man page for the available endpoints](https://www.nlnetlabs.nl/documentation/rpki/routinator/) (under *HTTP SERVICE*).
+
+## Starting on Boot
+
+To have this service start at boot, we create systemd service files:
+
 
 ```sh
-cat <<ENDL >/etc/rc.local
-#! /bin/bash
+cat <<ENDL >/etc/systemd/system/rpki-routinator.service
+[Unit]
+Description=RPKI Routinator
 
-# Start Routinator
-/usr/bin/sudo -iu routinator /srv/routinator/.cargo/bin/routinator rtrd -l 192.0.2.13:3323 -l [2001:db8::13]:3323
+[Service]
+Restart=always
+RestartSec=60
+
+WorkingDirectory=/srv/routinator
+
+User=routinator
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=rpki-routinator
+
+ExecStart=/srv/routinator/.cargo/bin/routinator rtrd -a -l 192.0.2.13:3323 -l [2001:db8::13]:3323 --listen-http 192.0.2.13:8080
+
+
+
+[Install]
+WantedBy=multi-user.target
 
 ENDL
-
-chmod a+x /etc/rc.local
 ```
 
-We also use a simple watcher script to restart Routinator in case it dies during production use. Here's a simple example:
+And then we enable it to start on boot:
 
 ```sh
-#! /bin/bash
-
-# Simple script to make sure Routinator stays running.
-# Note we test for X2X as we expect a socket for ipv4 and ipv6 at INEX
-
-if [[ "X$(/bin/netstat -lpn | grep 3323 | grep routinator | wc -l)X" != "X2X" ]]; then
-    echo Routinator not running! Restarting it...
-    /srv/routinator/.cargo/bin/routinator rtrd -l 192.0.2.13:3323 -l [2001:db8::13]:3323
-fi
+systemctl enable rpki-routinator.service
 ```
 
-We save this as `/usr/local/bin/watch-routinator.sh` and `chmod a+x`. We then run it hourly via the following entry in `/etc/crontab`:
+## Monitoring
 
-```
-13 *    * * *   routinator      /usr/local/bin/watch-routinator.sh
-```
-
-We separately add the server and the Routinator daemon to our standard monitoring and alerting tools.
+We add Nagios http checks for port 8080 (HTTP) to our monitoring platform. We also add a `check_tcp` test for the RPKI-RTR port 3323.
