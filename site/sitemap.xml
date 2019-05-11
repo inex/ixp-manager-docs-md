@@ -311,6 +311,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://docs.ixpmanager.org/dev/telescope/</loc>
+     <lastmod>2019-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://docs.ixpmanager.org/dev/users/</loc>
      <lastmod>2019-05-11</lastmod>
      <changefreq>daily</changefreq>
