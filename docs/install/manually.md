@@ -1,5 +1,6 @@
+# Manual Installation
 
-# Requirements
+## Requirements
 
 IXP Manager tries to stay current in terms of technology. Typically, this means some element of framework refresh(es) every couple of years and other more incremental package upgrades with minor version upgrades. As well as the obvious reasons for this, there is also the requirement to prevent developer apathy - insisting on legacy frameworks and packages that have been EOL'd provides a major stumbling block for bringing on new developers and contributors.
 
@@ -8,33 +9,39 @@ The current requirements for the web application are:
 * a Linux / BSD host.
 * MySQL version 5.7 or later.
 * Apache / Nginx / etc.
-* PHP >= 7.0. **Note that IXP Manager will not run on older versions of PHP.**
-* Memcached - optional but highly recommended.
+* PHP >= 7.3. **Note that IXP Manager will not run on older versions of PHP.**
+* Memcached - optional but recommended.
 
 To complete the installation using the included config/scripts, you will also need to have installed git (`apt-get install git`) and a number of PHP extensions (see the example `apt-get install` below).
 
 Regrettably the potential combinations of operating systems, versions of
 same and then versions of PHP are too numerous to provide individual
-support. As such, we recommend installing IXP Manager on Ubuntu LTS 16.04 and we officially support this platform.
+support. As such, we recommend installing IXP Manager on Ubuntu LTS 18.04 and we officially support this platform.
 
 In fact we provide a complete installation script for this - see [the automated installation page](automated-script.md) for details. If you have any issues with the manual installation, the automated script should be your first reference to compare what you are doing to what we recommend.
 
-For completeness, the IXP Manager installation script for Ubuntu 16.04 LTS installs:
+For completeness, the IXP Manager installation script for Ubuntu 18.04 LTS installs:
 
 ```sh
-apt-get install -qy apache2 php7.0 php7.0-intl php-rrd php7.0-cgi php7.0-cli       \
-    php7.0-snmp php7.0-curl php7.0-mcrypt php-memcached libapache2-mod-php7.0      \
-    mysql-server mysql-client php7.0-mysql memcached snmp nodejs nodejs-legacy npm \
-    php7.0-mbstring php7.0-xml php7.0-gd php7.0-bcmath php-gettext bgpq3           \
-    php-memcache unzip php7.0-zip git php-yaml php-ds libconfig-general-perl       \
-    libnetaddr-ip-perl mrtg  libconfig-general-perl libnetaddr-ip-perl rrdtool     \
-    librrds-perl
+apt-get install -qy apache2 php7.3 php7.3-intl php-rrd php7.3-cgi php7.3-cli      \
+    php7.3-snmp php7.3-curl  php-memcached libapache2-mod-php7.3 mysql-server     \
+    mysql-client php7.3-mysql memcached snmp php7.3-mbstring php7.3-xml php7.3-gd \
+    php7.3-bcmath php-gettext bgpq3 php-memcache unzip php7.3-zip git php-yaml    \
+    php-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl \
+    libnetaddr-ip-perl rrdtool librrds-perl curl
 ```
 
 If you are using a different platform, you will need to replicate the above as appropriate for your chosen platform.
 
+Note particularly that Ubuntu 18.04 does not ship with php 7.3 and you will need to add the following PPA for the above installation line to work:
 
-# Get the IXP Manager Source
+```
+apt-get install -yq software-properties-common
+add-apt-repository -y ppa:ondrej/php
+apt-get update -q
+```
+
+### Get the IXP Manager Source
 
 
 The code for IXP Manager is maintained on GitHub and the canonical repository is [inex/IXP-Manager](https://github.com/inex/IXP-Manager).
@@ -47,17 +54,17 @@ cd /srv
 git clone https://github.com/inex/IXP-Manager.git ixpmanager
 cd $IXPROOT   # /srv/ixpmanager
 git checkout master
-chown -R www-data: $IXPROOT
+chown -R www-data: bootstrap/cache storage
 ```
 
 
-# Install Composer and Bower
+### Install Composer
 
 
 IXP Manager uses [Composer](http://getcomposer.org/) to manage its PHP dependencies. First, download a copy of the composer.phar. Once you have the PHAR archive, you can either keep it in your local project directory or move to `/usr/local/bin` to use it globally on your system.
 
 
-The installation script for Ubuntu 16.04 LTS installs these via:
+The installation script for Ubuntu 18.04 LTS installs these via:
 
 ```sh
 cd $IXPROOT
@@ -75,29 +82,22 @@ else
 fi
 ```
 
-and:
 
-```sh
-npm install -g bower
-```
+## Initial Setup and Dependancies
 
 
-# Initial Setup and Dependancies
+### Dependencies
 
-
-## Dependencies
-
-Install the required PHP libraries and frontend CSS/JS packages:
+Install the required PHP libraries:
 
 ```sh
 cd $IXPROOT
 php composer.phar install --no-dev --prefer-dist
-bower install
 cp .env.example .env
 php artisan key:generate
 ```
 
-# Database Setup
+## Database Setup
 
 
 Use whatever means you like to create a database and user for IXP Manager. For example:
@@ -182,7 +182,11 @@ INSERT INTO user ( custid, username, password, email, privs, disabled, created )
     VALUES ( @custid, '${USERNAME}', ${HASH_PW}, '${USEREMAIL}', 3, 0, NOW() );
 SET @userid = LAST_INSERT_ID();
 
-INSERT INTO contact ( custid, name, email, created, user_id ) VALUES ( @custid, '${NAME}', '${USEREMAIL}', NOW(), @userid );
+INSERT INTO customer_to_users ( customer_id, user_id, privs, created_at )
+    VALUES ( @custid, @userid, 3, NOW() );
+
+INSERT INTO contact ( custid, name, email, created )
+    VALUES ( @custid, '${NAME}', '${USEREMAIL}', NOW() );
 END_SQL
 ```
 
