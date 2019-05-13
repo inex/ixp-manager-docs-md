@@ -14,6 +14,12 @@ However, by using a route servers for peering relationships, the number of BGP s
 
 Please [review the generic router documentation](routers.md) to learn how to automatically generate route server configurations. This section goes into a bit more specific detail on INEX's route server configuration (as shipped with IXP Manager) and why it's safe to use.
 
+You should also look at the following resources:
+
+*  watch the *IXP Manager Update & Route Server Configuration* presentation from the 32nd Euro-IX Forum held in Galway, Ireland, April 2018: [[pdf](https://www.ixpmanager.org/media/2018/20180417-euroix-ixpmanager.pdf)] [[video](https://www.ixpmanager.org/videos/201804-euroix.mp4)].
+* to fully understand RPKI with IXP Manager, [watch our presentation](https://www.inex.ie/inex-news/shiny-new-route-servers/) from APRICOT 2019.
+*  [read this article]( https://youtu.be/cqhJwuBaxxQ?t=1549) on INEX's website.
+
 The features of the route server configurations that IXP Manager generates include:
 
 * [RPKI support](rpki.md) when using the Bird v2 templates;

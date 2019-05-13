@@ -26,7 +26,7 @@ From the router management page, you can:
 
 The simplest configuration to generate is the route collector configuration. A route collector is an IXP router which serves only to *accept all routes and export no routes*. It is used for problem diagnosis, to aid customer monitoring and for looking glasses (see [INEX's here](https://www.inex.ie/ixp/lg/rc1-lan1-ipv4)).
 
-The [standard configuration](https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird2/standard.foil.php) simply pulls in a fairly standard header (sets up router ID, listening address and some filters) and creates a session for all customer routers on the given VLAN.
+The [original Bird v1 configuration](https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird/standard.foil.php) simply pulls in a fairly standard header (sets up router ID, listening address and some filters) and creates a session for all customer routers on the given VLAN. The [new Bird v2 configuration](https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird2/standard.foil.php) has more features and replicates the route server filtering mechanism but tags and accepts all routes for diagnosis.
 
 When adding a router, you give it a *handle*. For example: `rc1-lan1-ipv4` which, for INEX, would mean a route collector on peering LAN1 using IPv4. Then - for the given router handle - the configuration can be generated and pulled using the API as follows:
 
@@ -49,7 +49,7 @@ curl --fail -s -H "X-IXP-Manager-API-Key: ${KEY}" ${URL}/${HANDLE} >${HANDLE}.co
 
 Configurations for the route server and AS112 templates can be configured just as easily.
 
- The stock templates for both are secure and well tested and can be used by setting the `template` element of the router to one of the following:
+ The stock templates for both are secure and well tested and can be used by setting the `template` element of the router to one of the following. **NB:** from May 2019, we recommend you use IXP Manager v5 and Bird2 templates.
 
 * AS112:
     * `'api/v4/router/as112/bird/standard'`
@@ -65,7 +65,7 @@ We also provide sample scripts for automating the re-configuration of these serv
 
 * AS112 scripts [can be found here](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/as112).
 * Route collector scripts [can be found here](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-collectors).
-* Route server scripts - see the `-v4` scripts [in this directory](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-servers). These are quite robust and have been in production for ~3 years at INEX (as of Jan 2017).
+* Route server scripts [in this directory](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-servers). These are quite robust and have been in production for ~5 years at INEX (as of Jan 2019).
 
 All of these scripts have been written defensively such that if there is any issue getting the configuring or validating the configuration then the running router instance should be unaffected. This has worked in practice at INEX when IXP Manager was under maintenance, when there were management connectivity issues and when there were database issues. They also use the *updated API* (see below) to mark when the router configuration update script ran successfully.
 
