@@ -67,3 +67,17 @@ There's a couple things to note in the above:
 
 1. *AS112 Client* is checked which means (so long as *Route Server Client* is checked on the [AS112 service](as112.md)) the AS112 service will peer with the route servers.
 2. *Apply IRRDB Filtering* has no meaning here as this is the route server rather than the route server client.
+
+
+## Per ASN Import / Export Filters
+
+There are occasions where you may need to override the default filtering mechanism for some members. IXP Manager allows you to create custom Bird2 checks at the **start** of the standard import / export filters when using **Bird2** (not supported on the older Bird v1 configuration).
+
+To do this, you must [create skinned files](skinning.md) named after the ASN. For example, let's assume your skin name is `example` and the ASN of the member you want to apply custom filtering to is `65500`; then you would an export and/or import filter in files named:
+
+* `$IXPROOT/resources/skins/example/api/v4/router/server/bird2/f_import_as65500.foil.php`
+* `$IXPROOT/resources/skins/example/api/v4/router/server/bird2/f_export_as65500.foil.php`
+
+You'll see [real examples from INEX here](https://github.com/inex/IXP-Manager/tree/master/resources/skins/inex/api/v4/router/server/bird2). Remember that these are placed at the *beginning of the standard filters* allowing you to explicitly `accept` or `reject` the prefix. However, remember that INEX `accepts` prefixes on import always but tags prefixes for filtering with large community `routerasn:1101:x` - please see the resources referenced above for details on this.
+
+ 
