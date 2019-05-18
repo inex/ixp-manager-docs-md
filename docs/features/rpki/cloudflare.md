@@ -112,7 +112,9 @@ ExecStart=/srv/cloudflare/go/bin/octorpki -mode server -output.sign=0
 WantedBy=multi-user.target
 
 ENDL
+```
 
+```
 cat <<ENDL >/etc/systemd/system/cloudflare-gortr.service
 [Unit]
 Description=Cloudflare GoRTR

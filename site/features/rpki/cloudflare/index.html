@@ -472,33 +472,34 @@ INFO<span class="o">[</span>0000<span class="o">]</span> Serving HTTP on :8080/o
 <span class="s">WantedBy=multi-user.target</span>
 
 <span class="s">ENDL</span>
+</pre></div>
 
-cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/cloudflare-gortr.service</span>
-<span class="s">[Unit]</span>
-<span class="s">Description=Cloudflare GoRTR</span>
-<span class="s">After=cloudflare-octorpki.service</span>
+<div class="highlight"><pre><span></span>cat &lt;&lt;ENDL &gt;/etc/systemd/system/cloudflare-gortr.service
+[Unit]
+Description=Cloudflare GoRTR
+After=cloudflare-octorpki.service
 
-<span class="s">[Service]</span>
-<span class="s">Restart=always</span>
-<span class="s">RestartSec=60</span>
+[Service]
+Restart=always
+RestartSec=60
 
-<span class="s">WorkingDirectory=/srv/cloudflare</span>
+WorkingDirectory=/srv/cloudflare
 
-<span class="s">User=cloudflare</span>
+User=cloudflare
 
-<span class="s">StandardOutput=syslog</span>
-<span class="s">StandardError=syslog</span>
-<span class="s">SyslogIdentifier=cloudflare-gortr</span>
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=cloudflare-gortr
 
-<span class="s">ExecStartPre=/bin/sleep 30</span>
+ExecStartPre=/bin/sleep 30
 
-<span class="s">ExecStart=/srv/cloudflare/go/bin/gortr -bind :3324 -verify=0 -cache http://localhost:8080/output.json -metrics.addr :8081 -refresh=120</span>
+ExecStart=/srv/cloudflare/go/bin/gortr -bind :3324 -verify=0 -cache http://localhost:8080/output.json -metrics.addr :8081 -refresh=120
 
 
-<span class="s">[Install]</span>
-<span class="s">WantedBy=multi-user.target</span>
+[Install]
+WantedBy=multi-user.target
 
-<span class="s">ENDL</span>
+ENDL
 </pre></div>
 
 <p>And then we enable for start on boot with:</p>
