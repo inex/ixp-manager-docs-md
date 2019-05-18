@@ -114,7 +114,7 @@ WantedBy=multi-user.target
 ENDL
 ```
 
-```
+```sh
 cat <<ENDL >/etc/systemd/system/cloudflare-gortr.service
 [Unit]
 Description=Cloudflare GoRTR
