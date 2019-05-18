@@ -127,11 +127,11 @@ We use [Travis CI](../dev/ci.md) to test IXP Manager before pushing new releases
 
 These known good configurations also serve as useful examples of what the standard IXP Manager configuration generates.
 
-See [these known good configurations here](https://github.com/inex/IXP-Manager/tree/master/data/travis-ci/known-good) with the prefix `ci-apiv4-` and:
+See [these known good configurations here](https://github.com/inex/IXP-Manager/tree/master/data/travis-ci/known-good) and:
 
 * `as112`: AS112 router configurations conforming to [rfc7534](https://tools.ietf.org/html/rfc7534) (AS112 Nameserver Operations) and implementing [rfc7535](https://tools.ietf.org/html/rfc7535) (AS112 Redirection Using DNAME). There are configs to serve queries over both IPv4 and IPv6. See [the AS112 documentation for more details](as112.md).
-* `rc1`: route collector configurations. Peering with the route collector is mandatory at many IXPs including INEX. These are incredably useful for monitoring, diagnosing issues and providing looking glasses. We also use the quarantine version of these for turning up new member connections.
-* `rs1`: route collector configurations. See below for full details of what these implement. Note also that the `ci-apiv4-rs1-lan2-ipv4.conf` file includes BGP large communities ([rfc8092](https://tools.ietf.org/html/rfc8092)). See [the route servers documentation for more details](route-servers.md).
+* `rc1`: route collector configurations. Peering with the route collector is mandatory at many IXPs including INEX. These are incredibly useful for monitoring, diagnosing issues and providing looking glasses. We also use the quarantine version of these for turning up new member connections.
+* `rs1`: route collector configurations. See below for full details of what these implement. See [the route servers documentation for more details](route-servers.md).
 
 
 ## Live Status

@@ -74,31 +74,15 @@
     <a class="current" href="./">Manual Installation</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#requirements">Requirements</a></li>
-    
-
-    <li class="toctree-l3"><a href="#get-the-ixp-manager-source">Get the IXP Manager Source</a></li>
-    
-
-    <li class="toctree-l3"><a href="#install-composer-and-bower">Install Composer and Bower</a></li>
-    
-
-    <li class="toctree-l3"><a href="#initial-setup-and-dependancies">Initial Setup and Dependancies</a></li>
+    <li class="toctree-l3"><a href="#manual-installation">Manual Installation</a></li>
     
         <ul>
         
-            <li><a class="toctree-l4" href="#dependencies">Dependencies</a></li>
+            <li><a class="toctree-l4" href="#requirements">Requirements</a></li>
         
-        </ul>
-    
-
-    <li class="toctree-l3"><a href="#database-setup">Database Setup</a></li>
-    
-        <ul>
+            <li><a class="toctree-l4" href="#initial-setup-and-dependancies">Initial Setup and Dependancies</a></li>
         
-            <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
-        
-            <li><a class="toctree-l4" href="#initial-database-objects">Initial Database Objects</a></li>
+            <li><a class="toctree-l4" href="#database-setup">Database Setup</a></li>
         
             <li><a class="toctree-l4" href="#file-permissions">File Permissions</a></li>
         
@@ -429,33 +413,39 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link"></a></h1>
+                <h1 id="manual-installation">Manual Installation<a class="headerlink" href="#manual-installation" title="Permanent link"></a></h1>
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link"></a></h2>
 <p>IXP Manager tries to stay current in terms of technology. Typically, this means some element of framework refresh(es) every couple of years and other more incremental package upgrades with minor version upgrades. As well as the obvious reasons for this, there is also the requirement to prevent developer apathy - insisting on legacy frameworks and packages that have been EOL'd provides a major stumbling block for bringing on new developers and contributors.</p>
 <p>The current requirements for the web application are:</p>
 <ul>
 <li>a Linux / BSD host.</li>
 <li>MySQL version 5.7 or later.</li>
 <li>Apache / Nginx / etc.</li>
-<li>PHP &gt;= 7.0. <strong>Note that IXP Manager will not run on older versions of PHP.</strong></li>
-<li>Memcached - optional but highly recommended.</li>
+<li>PHP &gt;= 7.3. <strong>Note that IXP Manager will not run on older versions of PHP.</strong></li>
+<li>Memcached - optional but recommended.</li>
 </ul>
 <p>To complete the installation using the included config/scripts, you will also need to have installed git (<code>apt-get install git</code>) and a number of PHP extensions (see the example <code>apt-get install</code> below).</p>
 <p>Regrettably the potential combinations of operating systems, versions of
 same and then versions of PHP are too numerous to provide individual
-support. As such, we recommend installing IXP Manager on Ubuntu LTS 16.04 and we officially support this platform.</p>
+support. As such, we recommend installing IXP Manager on Ubuntu LTS 18.04 and we officially support this platform.</p>
 <p>In fact we provide a complete installation script for this - see <a href="../automated-script/">the automated installation page</a> for details. If you have any issues with the manual installation, the automated script should be your first reference to compare what you are doing to what we recommend.</p>
-<p>For completeness, the IXP Manager installation script for Ubuntu 16.04 LTS installs:</p>
-<div class="highlight"><pre><span></span>apt-get install -qy apache2 php7.0 php7.0-intl php-rrd php7.0-cgi php7.0-cli       <span class="se">\</span>
-    php7.0-snmp php7.0-curl php7.0-mcrypt php-memcached libapache2-mod-php7.0      <span class="se">\</span>
-    mysql-server mysql-client php7.0-mysql memcached snmp nodejs nodejs-legacy npm <span class="se">\</span>
-    php7.0-mbstring php7.0-xml php7.0-gd php7.0-bcmath php-gettext bgpq3           <span class="se">\</span>
-    php-memcache unzip php7.0-zip git php-yaml php-ds libconfig-general-perl       <span class="se">\</span>
-    libnetaddr-ip-perl mrtg  libconfig-general-perl libnetaddr-ip-perl rrdtool     <span class="se">\</span>
-    librrds-perl
+<p>For completeness, the IXP Manager installation script for Ubuntu 18.04 LTS installs:</p>
+<div class="highlight"><pre><span></span>apt-get install -qy apache2 php7.3 php7.3-intl php-rrd php7.3-cgi php7.3-cli      <span class="se">\</span>
+    php7.3-snmp php7.3-curl  php-memcached libapache2-mod-php7.3 mysql-server     <span class="se">\</span>
+    mysql-client php7.3-mysql memcached snmp php7.3-mbstring php7.3-xml php7.3-gd <span class="se">\</span>
+    php7.3-bcmath php-gettext bgpq3 php-memcache unzip php7.3-zip git php-yaml    <span class="se">\</span>
+    php-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl <span class="se">\</span>
+    libnetaddr-ip-perl rrdtool librrds-perl curl
 </pre></div>
 
 <p>If you are using a different platform, you will need to replicate the above as appropriate for your chosen platform.</p>
-<h1 id="get-the-ixp-manager-source">Get the IXP Manager Source<a class="headerlink" href="#get-the-ixp-manager-source" title="Permanent link"></a></h1>
+<p>Note particularly that Ubuntu 18.04 does not ship with php 7.3 and you will need to add the following PPA for the above installation line to work:</p>
+<div class="highlight"><pre><span></span>apt-get install -yq software-properties-common
+add-apt-repository -y ppa:ondrej/php
+apt-get update -q
+</pre></div>
+
+<h3 id="get-the-ixp-manager-source">Get the IXP Manager Source<a class="headerlink" href="#get-the-ixp-manager-source" title="Permanent link"></a></h3>
 <p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
 <p>Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source (our examples use <code>/srv/ixpmanager</code> which we refer to as <code>$IXPROOT</code>). Note that it <strong>should not</strong> be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>).</p>
 <div class="highlight"><pre><span></span><span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
@@ -463,12 +453,12 @@ support. As such, we recommend installing IXP Manager on Ubuntu LTS 16.04 and we
 git clone https://github.com/inex/IXP-Manager.git ixpmanager
 <span class="nb">cd</span> <span class="nv">$IXPROOT</span>   <span class="c1"># /srv/ixpmanager</span>
 git checkout master
-chown -R www-data: <span class="nv">$IXPROOT</span>
+chown -R www-data: bootstrap/cache storage
 </pre></div>
 
-<h1 id="install-composer-and-bower">Install Composer and Bower<a class="headerlink" href="#install-composer-and-bower" title="Permanent link"></a></h1>
+<h3 id="install-composer">Install Composer<a class="headerlink" href="#install-composer" title="Permanent link"></a></h3>
 <p>IXP Manager uses <a href="http://getcomposer.org/">Composer</a> to manage its PHP dependencies. First, download a copy of the composer.phar. Once you have the PHAR archive, you can either keep it in your local project directory or move to <code>/usr/local/bin</code> to use it globally on your system.</p>
-<p>The installation script for Ubuntu 16.04 LTS installs these via:</p>
+<p>The installation script for Ubuntu 18.04 LTS installs these via:</p>
 <div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 <span class="nv">EXPECTED_SIGNATURE</span><span class="o">=</span><span class="k">$(</span>wget https://composer.github.io/installer.sig -O - -q<span class="k">)</span>
 php -r <span class="s2">&quot;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&quot;</span>
@@ -484,21 +474,16 @@ php -r <span class="s2">&quot;copy(&#39;https://getcomposer.org/installer&#39;, 
 <span class="k">fi</span>
 </pre></div>
 
-<p>and:</p>
-<div class="highlight"><pre><span></span>npm install -g bower
-</pre></div>
-
-<h1 id="initial-setup-and-dependancies">Initial Setup and Dependancies<a class="headerlink" href="#initial-setup-and-dependancies" title="Permanent link"></a></h1>
-<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link"></a></h2>
-<p>Install the required PHP libraries and frontend CSS/JS packages:</p>
+<h2 id="initial-setup-and-dependancies">Initial Setup and Dependancies<a class="headerlink" href="#initial-setup-and-dependancies" title="Permanent link"></a></h2>
+<h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link"></a></h3>
+<p>Install the required PHP libraries:</p>
 <div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 php composer.phar install --no-dev --prefer-dist
-bower install
 cp .env.example .env
 php artisan key:generate
 </pre></div>
 
-<h1 id="database-setup">Database Setup<a class="headerlink" href="#database-setup" title="Permanent link"></a></h1>
+<h2 id="database-setup">Database Setup<a class="headerlink" href="#database-setup" title="Permanent link"></a></h2>
 <p>Use whatever means you like to create a database and user for IXP Manager. For example:</p>
 <div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="ss">`ixp`</span> <span class="k">CHARACTER</span> <span class="kt">SET</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4&#39;</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="ss">`ixp`</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="ss">`ixp`</span><span class="o">@</span><span class="ss">`localhost`</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;&lt;pick a password!&gt;&#39;</span><span class="p">;</span>
@@ -563,7 +548,11 @@ DB_PASSWORD=password
     <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">custid</span><span class="p">,</span> <span class="s1">&#39;${USERNAME}&#39;</span><span class="p">,</span> <span class="err">${</span><span class="n">HASH_PW</span><span class="err">}</span><span class="p">,</span> <span class="s1">&#39;${USEREMAIL}&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nf">NOW</span><span class="p">()</span> <span class="p">);</span>
 <span class="kt">SET</span> <span class="o">@</span><span class="n">userid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
 
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">contact</span> <span class="p">(</span> <span class="n">custid</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">created</span><span class="p">,</span> <span class="n">user_id</span> <span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">custid</span><span class="p">,</span> <span class="s1">&#39;${NAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${USEREMAIL}&#39;</span><span class="p">,</span> <span class="nf">NOW</span><span class="p">(),</span> <span class="o">@</span><span class="n">userid</span> <span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">customer_to_users</span> <span class="p">(</span> <span class="n">customer_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">privs</span><span class="p">,</span> <span class="n">created_at</span> <span class="p">)</span>
+    <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">custid</span><span class="p">,</span> <span class="o">@</span><span class="n">userid</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="nf">NOW</span><span class="p">()</span> <span class="p">);</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">contact</span> <span class="p">(</span> <span class="n">custid</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">created</span> <span class="p">)</span>
+    <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">custid</span><span class="p">,</span> <span class="s1">&#39;${NAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${USEREMAIL}&#39;</span><span class="p">,</span> <span class="nf">NOW</span><span class="p">()</span> <span class="p">);</span>
 <span class="n">END_SQL</span>
 </pre></div>
 

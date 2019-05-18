@@ -228,6 +228,8 @@
         
             <li><a class="toctree-l4" href="#setting-up">Setting Up</a></li>
         
+            <li><a class="toctree-l4" href="#per-asn-import-export-filters">Per ASN Import / Export Filters</a></li>
+        
         </ul>
     
 
@@ -414,6 +416,12 @@
 <p>However, by using a route servers for peering relationships, the number of BGP sessions per router stays at two: one for each route server (assuming a resilient set up). Clearly this is a more sustainable way of maintaining IXP peering relationships with a large number of participants.</p>
 <h2 id="configuration-generation-features">Configuration Generation Features<a class="headerlink" href="#configuration-generation-features" title="Permanent link"></a></h2>
 <p>Please <a href="../routers/">review the generic router documentation</a> to learn how to automatically generate route server configurations. This section goes into a bit more specific detail on INEX's route server configuration (as shipped with IXP Manager) and why it's safe to use.</p>
+<p>You should also look at the following resources:</p>
+<ul>
+<li>watch the <em>IXP Manager Update &amp; Route Server Configuration</em> presentation from the 32nd Euro-IX Forum held in Galway, Ireland, April 2018: [<a href="https://www.ixpmanager.org/media/2018/20180417-euroix-ixpmanager.pdf">pdf</a>] [<a href="https://www.ixpmanager.org/videos/201804-euroix.mp4">video</a>].</li>
+<li>to fully understand RPKI with IXP Manager, <a href="https://www.inex.ie/inex-news/shiny-new-route-servers/">watch our presentation</a> from APRICOT 2019.</li>
+<li><a href="https://youtu.be/cqhJwuBaxxQ?t=1549">read this article</a> on INEX's website.</li>
+</ul>
 <p>The features of the route server configurations that IXP Manager generates include:</p>
 <ul>
 <li><a href="../rpki/">RPKI support</a> when using the Bird v2 templates;</li>
@@ -455,6 +463,14 @@
 <li><em>AS112 Client</em> is checked which means (so long as <em>Route Server Client</em> is checked on the <a href="../as112/">AS112 service</a>) the AS112 service will peer with the route servers.</li>
 <li><em>Apply IRRDB Filtering</em> has no meaning here as this is the route server rather than the route server client.</li>
 </ol>
+<h2 id="per-asn-import-export-filters">Per ASN Import / Export Filters<a class="headerlink" href="#per-asn-import-export-filters" title="Permanent link"></a></h2>
+<p>There are occasions where you may need to override the default filtering mechanism for some members. IXP Manager allows you to create custom Bird2 checks at the <strong>start</strong> of the standard import / export filters when using <strong>Bird2</strong> (not supported on the older Bird v1 configuration).</p>
+<p>To do this, you must <a href="../skinning/">create skinned files</a> named after the ASN. For example, let's assume your skin name is <code>example</code> and the ASN of the member you want to apply custom filtering to is <code>65500</code>; then you would an export and/or import filter in files named:</p>
+<ul>
+<li><code>$IXPROOT/resources/skins/example/api/v4/router/server/bird2/f_import_as65500.foil.php</code></li>
+<li><code>$IXPROOT/resources/skins/example/api/v4/router/server/bird2/f_export_as65500.foil.php</code></li>
+</ul>
+<p>You'll see <a href="https://github.com/inex/IXP-Manager/tree/master/resources/skins/inex/api/v4/router/server/bird2">real examples from INEX here</a>. Remember that these are placed at the <em>beginning of the standard filters</em> allowing you to explicitly <code>accept</code> or <code>reject</code> the prefix. However, remember that INEX <code>accepts</code> prefixes on import always but tags prefixes for filtering with large community <code>routerasn:1101:x</code> - please see the resources referenced above for details on this.</p>
               
             </div>
           </div>
