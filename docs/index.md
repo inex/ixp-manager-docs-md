@@ -26,28 +26,27 @@ Additional information: [http://www.ixpmanager.org/](http://www.ixpmanager.org/)
 * Follow [@ixpmanager](https://twitter.com/ixpmanager) on Twitter
 
 
-[INEX](https://www.inex.ie/) is an Internet eXchange Point and Ireland's IP peering hub. It is a neutral, industry-owned Association, founded in 1996, that provides IP peering facilities for its members. INEX membership is open to all organisations that can benefit from peering their IP traffic.
+## People Behind IXP Manager
 
-See: https://www.inex.ie/
+[INEX](https://www.inex.ie/) is an Internet eXchange Point and Ireland's IP peering hub. It is a neutral, industry-owned Association, founded in 1996, that provides IP peering facilities for its members. INEX membership is open to all organisations that can benefit from peering their IP traffic. See: https://www.inex.ie/
 
 Authors:
 
 * [Barry O'Donovan](https://www.barryodonovan.com/contact) / [@barryo79](https://twitter.com/#!/barryo79)
 * Nick Hilliard
-* Contact us via: operations (at) inex.ie
 
-Since the end of 2016, IXP Manager has a new full time developer: **Yann Robin**.
+Since the end of 2016, IXP Manager has a full time developer through [the sponsorship program](https://www.ixpmanager.org/sponsors): **Yann Robin**.
 
-We are also grateful [for all the individuals who have contributing code](https://github.com/inex/IXP-Manager/graphs/contributors), issues, mailing list help and feature requests.
+We are also grateful [for all the individuals who have contributed code](https://github.com/inex/IXP-Manager/graphs/contributors), issues, mailing list help and feature requests.
 
 
-Copyright (C) 2009-2017 Internet Neutral Exchange Association Company Limited By Guarantee.
+Copyright (C) 2009-2019 Internet Neutral Exchange Association Company Limited By Guarantee.
 All Rights Reserved.
 
 
 ## Sponsors
 
-IXP Manager is extremely grateful to its [existing sponsors](http://www.ixpmanager.org/sponsors.php) and continues to seek sponsors for on going development. If you are interested, please [see out call for sponsorship](https://www.ixpmanager.org/sponsorship.php).
+IXP Manager is extremely grateful to its [existing sponsors](http://www.ixpmanager.org/sponsors) and continues to seek sponsors for on going development. If you are interested, please [see out call for sponsorship](https://www.ixpmanager.org/sponsorship).
 
 
 ## License
