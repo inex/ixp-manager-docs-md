@@ -230,6 +230,8 @@
         
             <li><a class="toctree-l4" href="#per-asn-import-export-filters">Per ASN Import / Export Filters</a></li>
         
+            <li><a class="toctree-l4" href="#displaying-filtered-prefixes">Displaying Filtered Prefixes</a></li>
+        
         </ul>
     
 
@@ -471,6 +473,29 @@
 <li><code>$IXPROOT/resources/skins/example/api/v4/router/server/bird2/f_export_as65500.foil.php</code></li>
 </ul>
 <p>You'll see <a href="https://github.com/inex/IXP-Manager/tree/master/resources/skins/inex/api/v4/router/server/bird2">real examples from INEX here</a>. Remember that these are placed at the <em>beginning of the standard filters</em> allowing you to explicitly <code>accept</code> or <code>reject</code> the prefix. However, remember that INEX <code>accepts</code> prefixes on import always but tags prefixes for filtering with large community <code>routerasn:1101:x</code> - please see the resources referenced above for details on this.</p>
+<h2 id="displaying-filtered-prefixes">Displaying Filtered Prefixes<a class="headerlink" href="#displaying-filtered-prefixes" title="Permanent link"></a></h2>
+<p>Using Bird v2 and internal large communities, we have completely overhauled how we show end users what prefixes are filtered by the route servers.</p>
+<p>If you are running route servers using the Bird v2 configuration and if you have installed <a href="../looking-glass/">the looking glass</a> then you should set the following in your <code>.env</code> file:</p>
+<pre class="highlight"><code>IXP_FE_FRONTEND_DISABLED_FILTERED_PREFIXES=false</code></pre>
+
+<p><img alt="Route Servers Filtered Prefixes" src="../img/rs-filtered-prefixes.png" /></p>
+<p>This is a live view gathered from each Bird v2 route server with a looking glass.</p>
+<h3 id="legacy-prefix-analysis-tool">Legacy Prefix Analysis Tool<a class="headerlink" href="#legacy-prefix-analysis-tool" title="Permanent link"></a></h3>
+<p>The older but deprecated means of viewing filtered prefixes was the <em>Route Server Prefix Analysis tool</em> which allows your members to examine what routes they are advertising to the route servers, which are being accepted and which are being rejected.</p>
+<h4 id="limits-caveats">Limits / Caveats<a class="headerlink" href="#limits-caveats" title="Permanent link"></a></h4>
+<p>Implemented as a Perl script which accesses the database directly. The script can also only be used on one LAN and one route server. Thus, pick you most popular LAN and route server.</p>
+<h4 id="setting-up_1">Setting Up<a class="headerlink" href="#setting-up_1" title="Permanent link"></a></h4>
+<ul>
+<li>Download <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/route-servers/compare-route-server-prefixes.pl">this script</a> to your route server;</li>
+<li>Ensure you install and configure the IXP Manager Perl library on this route server also;</li>
+<li>Edit the <code>compare-route-server-prefixes.pl</code> script and set the Bird configuration file and socket (you can find the position in the file by searching for <code>XXX-SET-ME</code>);</li>
+<li>See also <a href="https://www.inex.ie/pipermail/ixpmanager/2015-May/000558.html">this diff</a> for further hints;</li>
+<li>Execute the <code>compare-route-server-prefixes.pl</code> script a few times a day as you think appropriate;</li>
+<li>In your <code>.env</code> file, ensure the following is set:</li>
+</ul>
+<pre class="highlight"><code class="language-ini">IXP_FE_FRONTEND_DISABLED_RS_PREFIXES=false</code></pre>
+
+<p>Once you make the last change above, the prefix analysis tool will be available to administrators and members on IXP Manager.</p>
               
             </div>
           </div>

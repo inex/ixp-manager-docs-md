@@ -80,4 +80,42 @@ To do this, you must [create skinned files](skinning.md) named after the ASN. Fo
 
 You'll see [real examples from INEX here](https://github.com/inex/IXP-Manager/tree/master/resources/skins/inex/api/v4/router/server/bird2). Remember that these are placed at the *beginning of the standard filters* allowing you to explicitly `accept` or `reject` the prefix. However, remember that INEX `accepts` prefixes on import always but tags prefixes for filtering with large community `routerasn:1101:x` - please see the resources referenced above for details on this.
 
- 
+
+## Displaying Filtered Prefixes
+
+Using Bird v2 and internal large communities, we have completely overhauled how we show end users what prefixes are filtered by the route servers.
+
+If you are running route servers using the Bird v2 configuration and if you have installed [the looking glass](looking-glass.md) then you should set the following in your `.env` file:
+
+```
+IXP_FE_FRONTEND_DISABLED_FILTERED_PREFIXES=false
+```
+
+![Route Servers Filtered Prefixes](img/rs-filtered-prefixes.png)
+
+This is a live view gathered from each Bird v2 route server with a looking glass.
+
+
+### Legacy Prefix Analysis Tool
+
+The older but deprecated means of viewing filtered prefixes was the *Route Server Prefix Analysis tool* which allows your members to examine what routes they are advertising to the route servers, which are being accepted and which are being rejected.
+
+#### Limits / Caveats
+
+Implemented as a Perl script which accesses the database directly. The script can also only be used on one LAN and one route server. Thus, pick you most popular LAN and route server.
+
+#### Setting Up
+
+
+* Download [this script](https://github.com/inex/IXP-Manager/blob/master/tools/runtime/route-servers/compare-route-server-prefixes.pl) to your route server;
+* Ensure you install and configure the IXP Manager Perl library on this route server also;
+* Edit the `compare-route-server-prefixes.pl` script and set the Bird configuration file and socket (you can find the position in the file by searching for `XXX-SET-ME`);
+* See also [this diff](https://www.inex.ie/pipermail/ixpmanager/2015-May/000558.html) for further hints;
+* Execute the `compare-route-server-prefixes.pl` script a few times a day as you think appropriate;
+* In your `.env` file, ensure the following is set:
+
+```ini
+IXP_FE_FRONTEND_DISABLED_RS_PREFIXES=false
+```
+
+Once you make the last change above, the prefix analysis tool will be available to administrators and members on IXP Manager.
