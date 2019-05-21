@@ -6,6 +6,8 @@ Prior to IXP Manager v5, a number of cron jobs had to be configured manually. Fr
 * * * * *    www-data    cd /path-to-your-ixp-manager && php artisan schedule:run >> /dev/null 2>&1
 ```
 
+You can see the [full schedule in code here](https://github.com/inex/IXP-Manager/blob/master/app/Console/Kernel.php) (look for the function `protected function schedule(Schedule $schedule)`).
+
 ## Tasks Referenced Elsewhere
 
 The following tasks are run via this mechanism and are referenced elsewhere in the documentation:
@@ -25,8 +27,4 @@ The following tasks are run via this mechanism and are referenced elsewhere in t
 Some data should not be retained indefinitely for user privacy / GDPR reasons. The `utils:expunge-logs` command runs daily at 03:04 and currently:
 
 1. removes user login history older than 6 months.
-
-
-
-
-**FIXME** Add to installation script
+2. eh, no that's it for now!
