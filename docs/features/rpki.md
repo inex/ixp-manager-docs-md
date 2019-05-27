@@ -1,6 +1,6 @@
 # RPKI
 
-**IXP Manager** V5 supports RPKI validation on the router configuration generated for Bird v2. The best way to fully understand RPKI with IXP Manager is to [watch our presentation](https://www.inex.ie/inex-news/shiny-new-route-servers/) from APRICOT 2019 or [read this article]( https://youtu.be/cqhJwuBaxxQ?t=1549) on INEX's website.
+**IXP Manager** V5 supports RPKI validation on the router configuration generated for Bird v2. The best way to fully understand RPKI with IXP Manager is to [watch our presentation](https://youtu.be/cqhJwuBaxxQ?t=1549) from APRICOT 2019 or [read this article](https://www.inex.ie/inex-news/shiny-new-route-servers/) on INEX's website.
 
 
 
