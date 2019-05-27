@@ -486,7 +486,7 @@ SyslogIdentifier=cloudflare-gortr
 
 ExecStartPre=/bin/sleep 30
 
-ExecStart=/srv/cloudflare/go/bin/gortr -bind :3324 -verify=0 -cache http://localhost:8080/output.json -metrics.addr :8081 -refresh=120
+ExecStart=/srv/cloudflare/go/bin/gortr -bind :3323 -verify=0 -cache http://localhost:8080/output.json -metrics.addr :8081 -refresh=120
 
 
 [Install]
