@@ -415,28 +415,34 @@
 </ol>
 <h2 id="building-locally">Building Locally<a class="headerlink" href="#building-locally" title="Permanent link"></a></h2>
 <p>If you haven't already, install MkDocs:</p>
-<pre class="highlight"><code class="language-sh">pip install mkdocs
-pip install pymdown-extensions</code></pre>
+<div class="highlight"><pre><span></span>pip install mkdocs
+pip install pymdown-extensions
+</pre></div>
 
 <p>The documentation can then be built locally as follows:</p>
-<pre class="highlight"><code class="language-sh">git clone https://github.com/inex/ixp-manager-docs-md.git
-cd ixp-manager-docs-md
-mkdocs build</code></pre>
+<div class="highlight"><pre><span></span>git clone https://github.com/inex/ixp-manager-docs-md.git
+<span class="nb">cd</span> ixp-manager-docs-md
+mkdocs build
+</pre></div>
 
 <p>You can <em>serve</em> them locally with the following and then access them via http://127.0.0.1:8000 -</p>
-<pre class="highlight"><code class="language-sh">mkdocs serve</code></pre>
+<div class="highlight"><pre><span></span>mkdocs serve
+</pre></div>
 
 <p>To automatically deploy to GitHub and make live:</p>
-<pre class="highlight"><code class="language-sh">mkdocs gh-deploy</code></pre>
+<div class="highlight"><pre><span></span>mkdocs gh-deploy
+</pre></div>
 
 <p>You must be an authorised user for this but we <strong>welcome pull requests against the documentation repository!</strong></p>
 <p><strong>Do not forget to push your changes to GutHub</strong> (if you have push permissions):</p>
-<pre class="highlight"><code class="language-sh">git add .
-git commit -am "your commit message"
-git push</code></pre>
+<div class="highlight"><pre><span></span>git add .
+git commit -am <span class="s2">&quot;your commit message&quot;</span>
+git push
+</pre></div>
 
 <p>There is a simple script in the documentation root directory that combiles these deploy and commit steps:</p>
-<pre class="highlight"><code class="language-sh">./build-deploy-push.sh "your commit message"</code></pre>
+<div class="highlight"><pre><span></span>./build-deploy-push.sh <span class="s2">&quot;your commit message&quot;</span>
+</pre></div>
               
             </div>
           </div>
