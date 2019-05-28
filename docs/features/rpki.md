@@ -29,6 +29,14 @@ See our installation notes for these:
 3. [Routinator 3000](rpki/routinator.md).
 
 
+## Revalidation
+
+As it stands, Bird v2.0.4 does not support revalidation of prefixes following ROA updates (i.e. a prefix that was accepted as ROA valid that subsequently becomes ROA unknown / invalid will remain learnt as ROA valid). The Bird developers are working on fixing this. In the interim, you need to schedule a revalidation via cron using a `/etc/crontab` entry such as:
+
+```
+20 11,23 * * *   root    /usr/sbin/birdc -s /var/run/bird/bird-rs1-ipv4.ctl reload in all >/dev/null
+```
+
 ## Enabling RPKI
 
 The outline procedure to enable RPKI is below. These notes are written from the perspective that you have existing IXP Manager Bird v1 route servers. If this is a green field site, these notes will work just as well by ignoring the upgrade bits. **In either case, it's vital you already understand [how to configure routers in IXP Manager](routers.md).**
