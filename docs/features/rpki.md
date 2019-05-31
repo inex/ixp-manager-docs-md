@@ -65,7 +65,7 @@ make -j2
 checkinstall -y
 ```
 
-The `checkinstall` tool creates a deb package file: `/usr/local/src/bird-2.0.3/bird_2.0.3-1_amd64.deb`
+The `checkinstall` tool creates a deb package file: `/usr/local/src/bird-2.0.4/bird_2.0.4-1_amd64.deb`
 
 **NB: for this method to work, you must be running the same operating system and version on the target servers as the build box.** For us, it was Ubuntu 18.04 LTS on all systems.
 
@@ -73,11 +73,11 @@ To install on a target machine:
 
 ```sh
 # from build machine
-scp bird_2.0.3-1_amd64.deb target-machine:/tmp
+scp bird_2.0.4-1_amd64.deb target-machine:/tmp
 
 # on target machine
 apt install -y libssh-dev libreadline-dev libncurses-dev
-dpkg -i /tmp/bird_2.0.3-1_amd64.deb
+dpkg -i /tmp/bird_2.0.4-1_amd64.deb
 ```
 
 You now need to update your route server record in IXP Manager:

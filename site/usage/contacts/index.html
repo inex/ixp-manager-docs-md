@@ -421,7 +421,8 @@
 <li>roles (billing / techical / admin / marketing)</li>
 </ul>
 <p>If the roles are not shown when you are editing / adding contacts, ensure you copy the following file to a local version:</p>
-<pre class="highlight"><code class="language-sh">cp ${IXPROOT}/config/contact_group.php.dist ${IXPROOT}/config/contact_group.php</code></pre>
+<div class="highlight"><pre><span></span>cp <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/config/contact_group.php.dist <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/config/contact_group.php
+</pre></div>
 
 <p>The latest version of the automatic installation script takes care of this but older versions did not.</p>
 <h2 id="contact-groups">Contact Groups<a class="headerlink" href="#contact-groups" title="Permanent link"></a></h2>
@@ -433,15 +434,17 @@
 <li>a description (e.g. <em>how the contact would like us to communicate marketing materials with them</em>).</li>
 </ul>
 <p>You define the group types in <code>config/contact_group.php</code> such as:</p>
-<pre class="highlight"><code class="language-php">return [
-    'types' =&gt; [
-        'ROLE'                   =&gt; 'Role',
-        'MARKETING_PREFERENCES'  =&gt; 'Marketing Preferences',
-    ],
-];</code></pre>
+<div class="highlight"><pre><span></span><span class="x">return [</span>
+<span class="x">    &#39;types&#39; =&gt; [</span>
+<span class="x">        &#39;ROLE&#39;                   =&gt; &#39;Role&#39;,</span>
+<span class="x">        &#39;MARKETING_PREFERENCES&#39;  =&gt; &#39;Marketing Preferences&#39;,</span>
+<span class="x">    ],</span>
+<span class="x">];</span>
+</pre></div>
 
 <p>To activate this feature, you just need to create the configuration file. From the root directory of IXP Manager just:</p>
-<pre class="highlight"><code>cp config/contact_group.php.dist config/contact_group.php</code></pre>
+<div class="highlight"><pre><span></span>cp config/contact_group.php.dist config/contact_group.php
+</pre></div>
 
 <p>Note that <em>Role</em> is a default option and should not be removed.</p>
 <p>In these examples, <code>ROLE</code> will be entered in the database column and <em>Role</em> will be displayed in the interface.</p>
@@ -460,21 +463,23 @@
 <p>Assigning contacts to groups is done in the contact add / edit page.</p>
 <h2 id="exporting-contact-groups">Exporting Contact Groups<a class="headerlink" href="#exporting-contact-groups" title="Permanent link"></a></h2>
 <p>Contact groups can be exported using the <code>artisan</code> command, for example:</p>
-<pre class="highlight"><code class="language-sh">./artisan contact:export-group --type=ROLE --cid=1 --format=csv</code></pre>
+<div class="highlight"><pre><span></span>./artisan contact:export-group --type<span class="o">=</span>ROLE --cid<span class="o">=</span><span class="m">1</span> --format<span class="o">=</span>csv
+</pre></div>
 
 <p>where the possible options are (from <code>./artisan contact:export-group --help</code>:</p>
-<pre class="highlight"><code>$ ./artisan contact:export-group --help
+<div class="highlight"><pre><span></span>$ ./artisan contact:export-group --help
 Usage:
   contact:export-group [options]
 
 Options:
       --type[=TYPE]      Contact group type (e.g. ROLE)
       --name[=NAME]      Contact group name (e.g. beer)
-      --format[=FORMAT]  Output format - one of json (default) or csv [default: "json"]
+      --format[=FORMAT]  Output format - one of json (default) or csv [default: &quot;json&quot;]
       --cid[=CID]        Optionally limit results to given customer id
 
 Help:
-  Export contacts based on group information</code></pre>
+  Export contacts based on group information
+</pre></div>
 
 <h2 id="special-group-roles">Special Group: <em>Roles</em><a class="headerlink" href="#special-group-roles" title="Permanent link"></a></h2>
 <p>The default sample configuration file (<code>config/contact_group.php</code>) and the database seeds create a <code>ROLE</code> group type populated with groups <em>Admin</em>, <em>Billing</em>, <em>Technical</em> and <em>Marketing</em>. There is a dedicated form element when editing contacts for any groups defined in the Role type.</p>
