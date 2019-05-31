@@ -436,7 +436,7 @@
 <p>IXP Manager does not support netflow and support is not on the roadmap. This is because most netflow implementations do not export mac address information, which means that they cannot provide workable mac layer peer-to-peer statistics.</p>
 <h3 id="cisco-switches">Cisco Switches<a class="headerlink" href="#cisco-switches" title="Permanent link"></a></h3>
 <p>Of Cisco's entire product range, only the Nexus 3000 and Nexus 9000 product range support sflow. Also, the sflow support on the Cisco Nexus 3k range is crippled due to the NX-OS software implementation, which forces ingress+egress sflow to be configured on specified ports rather than ingress-only.  Functional accounting requires ingress-only or egress-only sflow to be configured on a per-port basis: ingress + egress causes double-counting of packets.  It may be possible to work around this limitation using the broadcom shell using something like the following untested configuration:</p>
-<pre class="highlight"><code>n3k# conf t
+<div class="highlight"><pre><span></span>n3k# conf t
 n3k(config)# feature sflow
 n3k(config)# sflow data-source interface Ethernet1/1
 n3k(config)# ^Z
@@ -446,13 +446,15 @@ bcm-shell.0&gt; PortSampRate xe0 4096 0
 bcm-shell.0&gt; PortSampRate xe0
  xe0:   ingress: 1 out of 4096 packets, egress: not sampling,
 bcm-shell.0&gt; quit
-n3k#</code></pre>
+n3k#
+</pre></div>
 
 <p>Note that this command is not reboot persistent, and any time a TIX24X is rebooted, the command needs to be re-entered manually.  Note also that this configuration is untested.</p>
 <h3 id="brocade-turboiron-24x">Brocade TurboIron 24X<a class="headerlink" href="#brocade-turboiron-24x" title="Permanent link"></a></h3>
 <p>By default a TIX24X will export 100 sflow records per second.  This can be changed using the following command:</p>
-<pre class="highlight"><code>SSH@Switch# dm device-command 2762233
-SSH@Switch# tor modreg CPUPKTMAXBUCKETCONFIG(3) PKT_MAX_REFRESH=0xHHHH</code></pre>
+<div class="highlight"><pre><span></span>SSH@Switch# dm device-command 2762233
+SSH@Switch# tor modreg CPUPKTMAXBUCKETCONFIG(3) PKT_MAX_REFRESH=0xHHHH
+</pre></div>
 
 <p>... where HHHH is the hex representation of the number of sflow records per second.  INEX has done some very primitive usage profiling which suggests that going above ~3000 sflow records per second will trash the management CPU too hard, so we use PKT_MAX_REFRESH=0x0BB8.  Note that this command is not reboot persistent, and any time a TIX24X is rebooted, the command needs to be re-entered manually.</p>
 <h3 id="dell-force10">Dell Force10<a class="headerlink" href="#dell-force10" title="Permanent link"></a></h3>
@@ -468,11 +470,13 @@ SSH@Switch# tor modreg CPUPKTMAXBUCKETCONFIG(3) PKT_MAX_REFRESH=0xHHHH</code></p
 <li>detecting BGP live sessions on the exchange and using the info to update the peering matrix</li>
 </ol>
 <p>This means that IXP Manager needs two separate sflow feeds.  This can be achieved by using the <code>sflowtool</code> fanout facility, which sends an exact copy of all incoming sflow records to a list of destinations.  For example, the following command listens for incoming sflow data on port 6343 and send three copies out.  Two copies are directed to different ports on the same server, on ports 5500 and 5501.  The third copy is sent to 192.0.2.20, port 6343.</p>
-<pre class="highlight"><code># sflowtool -4 -p 6343 -f 127.0.0.1/5500 -f 127.0.0.1/5501 -f 192.0.2.20/6343</code></pre>
+<div class="highlight"><pre><span></span># sflowtool -4 -p 6343 -f 127.0.0.1/5500 -f 127.0.0.1/5501 -f 192.0.2.20/6343
+</pre></div>
 
 <p>This example could be used for handling P2P traffic graphs and BGP session detection on one machine, while sending a third sflow data feed to a separate server for IXP development or debugging.  The two local sflow feeds can be read using <code>sflowtool</code>:</p>
-<pre class="highlight"><code># sflowtool -4 -p 5500 -l
-# sflowtool -4 -p 5501 -l</code></pre>
+<div class="highlight"><pre><span></span># sflowtool -4 -p 5500 -l
+# sflowtool -4 -p 5501 -l
+</pre></div>
 
 <p>The <code>sflowtool</code> fanout daemon should be started by the normal operating system daemon startup mechanism, e.g. script in a <code>rc.d</code> or <code>init.d</code> directory, or by a manual entry in <code>/etc/rc.local</code>.</p>
 <p>If running <code>sflowtool</code> version 3.23 or greater, it is important to use the <code>-4</code> command-line parameter in sflowtool because otherwise it will listen on both ipv4 and ipv6 sockets. If you have an <code>sflowtool</code> process attempting to listen on a wildcard socket, it will stop other <code>sflowtool</code> processes from starting.</p>

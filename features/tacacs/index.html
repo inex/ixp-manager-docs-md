@@ -415,9 +415,10 @@
 <p><strong>IXP Manager</strong> comes with a flexible template for generating the user section of a TACACS file.</p>
 <h2 id="generating-tacacs-configuration">Generating TACACS Configuration<a class="headerlink" href="#generating-tacacs-configuration" title="Permanent link"></a></h2>
 <p>You can use the <strong>IXP Manager</strong> API to get the user section of a TACACS file using the following endpoint formats (both GET and POST requests work):</p>
-<pre class="highlight"><code>https://ixp.example.com/api/v4/user/formatted
+<div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/user/formatted
 https://ixp.example.com/api/v4/user/formatted/{priv}
-https://ixp.example.com/api/v4/user/formatted/{priv}/{template}</code></pre>
+https://ixp.example.com/api/v4/user/formatted/{priv}/{template}
+</pre></div>
 
 <p>where:</p>
 <ul>
@@ -425,10 +426,11 @@ https://ixp.example.com/api/v4/user/formatted/{priv}/{template}</code></pre>
 <li><code>template</code> is an optional template (rather than <code>$IXPROOT/resources/views/api/v4/user/formatted/default</code>). See below.</li>
 </ul>
 <p>And example of a user in the reponse is:</p>
-<pre class="highlight"><code>user=joebloggs {
+<div class="highlight"><pre><span></span>user=joebloggs {
     member=admin
-    login = des "$2y$10$pHln5b4DrPj3uuhgfg45HeWEQLK/3ngRxYgYppbnYzleJ.9EpLAN."
-}</code></pre>
+    login = des &quot;$2y$10$pHln5b4DrPj3uuhgfg45HeWEQLK/3ngRxYgYppbnYzleJ.9EpLAN.&quot;
+}
+</pre></div>
 
 <h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link"></a></h3>
 <p>You can optionally POST any of the following to change elements of the default template:</p>
@@ -440,17 +442,19 @@ https://ixp.example.com/api/v4/user/formatted/{priv}/{template}</code></pre>
 <li><code>group</code>: we put all users in the <code>admin</code> group in the default template. You can change that here.</li>
 </ul>
 <p>An example of changing these parameters is:</p>
-<pre class="highlight"><code class="language-sh">curl --data "users=bob,alice&amp;group=god&amp;bcrypt=2a" -X POST \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
-    https://ixpexample.com/api/v4/user/formatted</code></pre>
+<div class="highlight"><pre><span></span>curl --data <span class="s2">&quot;users=bob,alice&amp;group=god&amp;bcrypt=2a&quot;</span> -X POST <span class="se">\</span>
+    -H <span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span> <span class="se">\</span>
+    -H <span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span> <span class="se">\</span>
+    https://ixpexample.com/api/v4/user/formatted
+</pre></div>
 
 <h3 id="templates-skinning">Templates / Skinning<a class="headerlink" href="#templates-skinning" title="Permanent link"></a></h3>
 <p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
 <p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
-<pre class="highlight"><code class="language-sh">cd $IXPROOT
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 mkdir -p resources/skins/myskin/api/v4/user/formatted
-cp resources/views/api/v4/user/formatted/default.foil.php resources/skins/myskin/api/v4/user/formatted/mytemplate1.foil.php</code></pre>
+cp resources/views/api/v4/user/formatted/default.foil.php resources/skins/myskin/api/v4/user/formatted/mytemplate1.foil.php
+</pre></div>
 
 <p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
 <p>All variables available in the template can be <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/user/formatted/default.foil.php">seen in the default template</a>.</p>
