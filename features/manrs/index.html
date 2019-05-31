@@ -401,9 +401,8 @@
 <p>IXP Manager &gt;=v5.0 rewards networks that have joined the MANRS program by highlighting this on the customer's public and internal pages - for example:</p>
 <p><img alt="MANRS Example" src="../img/manrs-google.png" /></p>
 <p>This information is updated daily via the <a href="task scheduler">cronjobs.md</a>. If you want to run it manually, run this Artisan command:</p>
-<div class="highlight"><pre><span></span>$ php artisan ixp-manager:update-in-manrs -vv
-MANRS membership updated - before/after/missing: 5/5/104
-</pre></div>
+<pre class="highlight"><code class="language-sh">$ php artisan ixp-manager:update-in-manrs -vv
+MANRS membership updated - before/after/missing: 5/5/104</code></pre>
 
 <p>As you'll see from the output, it will show you the results. We will provide more tooling within IXP Manager to show this information in time.</p>
               
