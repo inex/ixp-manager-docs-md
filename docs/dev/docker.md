@@ -45,7 +45,7 @@ As the IXP Manager ecosystem grows, it becomes harder and harder to maintain ubi
 The multi-container Docker environment for developing IXP Manager builds an IXP Manager system which includes:
 
 * a custom MySQL database container (from [mysql/5.7](https://hub.docker.com/_/mysql/)).
-* the complete IXP Manager application built on the [php/7.0-apache](https://hub.docker.com/r/library/php/) base. This has been preconfigured with some customers, routers, switches, etc. to match the following containers.
+* the complete IXP Manager application built on the [php/7.3-apache](https://hub.docker.com/r/library/php/) base. This has been preconfigured with some customers, routers, switches, etc. to match the following containers.
 * two emulated switches via SNMP endpoints (using the excellent [SNMP Agent Simulator](http://snmplabs.com/snmpsim/) via [tandrup/snmpsim](https://hub.docker.com/r/tandrup/snmpsim/));
 * a mail trap with a web-based frontend to capture and analyse all emails sent by IXP Manager (thanks to [schickling/mailcatcher](https://hub.docker.com/r/schickling/mailcatcher/)).
 * a mrtg container to query the switches and build up mrtg log files / graphs (via [cityhawk/mrtg](https://hub.docker.com/r/cityhawk/mrtg/)).

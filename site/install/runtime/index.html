@@ -412,9 +412,8 @@
 <ol>
 <li>
 <p>Publish the default trusted proxies configuration file:
-    <div class="highlight"><pre><span></span>cd $IXPROOT
-./artisan vendor:publish --provider=&quot;Fideloper\Proxy\TrustedProxyServiceProvider&quot;
-</pre></div></p>
+    <pre class="highlight"><code>cd $IXPROOT
+./artisan vendor:publish --provider="Fideloper\Proxy\TrustedProxyServiceProvider"</code></pre></p>
 </li>
 <li>
 <p>The above will create a file <code>${IXPROOT}/config/trustedproxy.php</code>. For the most part, you now just need to change the IP address(es) in the array <code>proxies</code> to those of your own proxy/proxies.</p>
@@ -423,17 +422,16 @@
 <p><strong>NB:</strong> as well as the above, it is also critical that your have correctly set <code>APP_URL</code> in the <code>.env</code> file for URL generation to correctly work.</p>
 <h2 id="disabling-controllers">Disabling Controllers<a class="headerlink" href="#disabling-controllers" title="Permanent link"></a></h2>
 <p>Controllers can be disabled by setting the following config item in <code>config/ixp_fe.php</code>:</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-<span class="p">[</span>
-    <span class="c1">// ...,</span>
+<pre class="highlight"><code class="language-php">&lt;?php
+[
+    // ...,
 
-    <span class="s1">&#39;frontend&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">&#39;disabled&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-            <span class="s1">&#39;xxx&#39;</span>   <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
-        <span class="p">],</span>
-    <span class="p">],</span>
-<span class="p">];</span>
-</pre></div>
+    'frontend' =&gt; [
+        'disabled' =&gt; [
+            'xxx'   =&gt; true,
+        ],
+    ],
+];</code></pre>
 
 <p>where <code>xxx</code> is the controller name. This name is in kebab-case format including any non-<code>IXP\Http\Controllers</code> namespace. Here are some controller - xxx examples:</p>
 <ul>

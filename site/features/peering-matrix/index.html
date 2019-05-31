@@ -426,7 +426,7 @@
 <li><code>sflowtool_bgp_opts</code>: command line arguments for <code>sflowtool</code>.</li>
 </ul>
 <h3 id="sample-ixpmanagerconf">Sample ixpmanager.conf<a class="headerlink" href="#sample-ixpmanagerconf" title="Permanent link"></a></h3>
-<div class="highlight"><pre><span></span>&lt;ixp&gt;
+<pre class="highlight"><code>&lt;ixp&gt;
   # location of sflow executable
   sflowtool = /usr/local/bin/sflowtool
 
@@ -435,26 +435,22 @@
 
   # sflow listener for BGP peering matrix, listening on udp port 5501
   sflowtool_bgp_opts = -4 -p 5501 -l
-&lt;/ixp&gt;
-</pre></div>
+&lt;/ixp&gt;</code></pre>
 
 <h3 id="testing-the-daemon">Testing the daemon<a class="headerlink" href="#testing-the-daemon" title="Permanent link"></a></h3>
 <p>The system can be tested using <code>sflow-detect-ixp-bgp-sessions --debug</code>.  If it starts up correctly, the script should occasionally print out peering sessions like this:</p>
-<div class="highlight"><pre><span></span>DEBUG: [2001:db8::ff]:64979 - [2001:db8::7]:179 tcpflags 000010000: ack. database updated.
+<pre class="highlight"><code>DEBUG: [2001:db8::ff]:64979 - [2001:db8::7]:179 tcpflags 000010000: ack. database updated.
 DEBUG: [192.0.2.126]:30502 - [192.0.2.44]:179 tcpflags 000010000: ack. database updated.
-DEBUG: [2001:db8::5:0:1]:179 - [2001:db8::4:0:2]:32952 tcpflags 000011000: ack psh. database updated.
-</pre></div>
+DEBUG: [2001:db8::5:0:1]:179 - [2001:db8::4:0:2]:32952 tcpflags 000011000: ack psh. database updated.</code></pre>
 
 <h3 id="running-the-daemon-in-production">Running the daemon in production<a class="headerlink" href="#running-the-daemon-in-production" title="Permanent link"></a></h3>
 <p>The script <code>control-sflow-detect-ixp-bgp-sessions</code> should be copied (and edited if necessary) to the operating system startup directory so that <code>sflow-detect-ixp-bgp-sessions</code> is started as a normal daemon.</p>
 <h2 id="controlling-access-to-the-peering-matrix">Controlling Access to the Peering Matrix<a class="headerlink" href="#controlling-access-to-the-peering-matrix" title="Permanent link"></a></h2>
 <p>The peering matrix is publically available by default. However you can limit access to a minimum user privilege by setting <code>PEERING_MATRIX_MIN_AUTH</code> to an integer from 0 to 3 in your <code>.env</code>. See <a href="../../usage/users/#types-of-users">here for what these integers mean</a>. For example, to limit access to any logged in user, set the following:</p>
-<div class="highlight"><pre><span></span>PEERING_MATRIX_MIN_AUTH=1
-</pre></div>
+<pre class="highlight"><code>PEERING_MATRIX_MIN_AUTH=1</code></pre>
 
 <p>You can disable the peering matrix by setting the following in <code>.env</code>:</p>
-<div class="highlight"><pre><span></span>IXP_FE_FRONTEND_DISABLED_PEERING_MATRIX=true
-</pre></div>
+<pre class="highlight"><code>IXP_FE_FRONTEND_DISABLED_PEERING_MATRIX=true</code></pre>
 
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link"></a></h2>
 <ul>
