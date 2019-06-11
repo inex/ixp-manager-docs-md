@@ -325,6 +325,8 @@
         
             <li><a class="toctree-l4" href="#checkboxes">Checkboxes</a></li>
         
+            <li><a class="toctree-l4" href="#mardown-textarea">Mardown Textarea</a></li>
+        
         </ul>
     
 
@@ -452,6 +454,108 @@
 <pre class="highlight"><code class="language-php">Former::populate([
     'my-checkbox' =&gt; $object-&gt;isChecked() ? 1 : 0,
 ]);</code></pre>
+
+<h2 id="mardown-textarea">Mardown Textarea<a class="headerlink" href="#mardown-textarea" title="Permanent link"></a></h2>
+<p><strong>IXP Manager</strong> uses the library <a href="https://github.com/erusev/parsedown">Mardown</a> to edit notes input field. <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Here are some examples</a> of how to use Markdown.</p>
+<h3 id="view_1">View<a class="headerlink" href="#view_1" title="Permanent link"></a></h3>
+<p>You will have to use the following HTML structure to be able to add markdown to your textrea :</p>
+<p><pre class="highlight"><code class="language-html">&lt;div class="form-group"&gt;
+    &lt;label for="notes" class="control-label col-lg-2 col-sm-4"&gt;Notes&lt;/label&gt;
+    &lt;div class="col-sm-8"&gt;
+        &lt;ul class="nav nav-tabs"&gt;
+            &lt;li role="presentation" class="active"&gt;
+                &lt;a class="tab-link-body-note" href="#body"&gt;Body&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li role="presentation"&gt;
+                &lt;a class="tab-link-preview-note" href="#preview"&gt;Preview&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;br&gt;
+        &lt;div class="tab-content"&gt;
+            &lt;div role="tabpanel" class="tab-pane active" id="body"&gt;
+                &lt;textarea class="form-control" style="font-family:monospace;" rows="20" id="notes" name="notes"&gt;&lt;?= $note_value ?&gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+            &lt;div role="tabpanel" class="tab-pane" id="preview"&gt;
+                &lt;div class="well well-preview" style="background: rgb(255,255,255);"&gt;
+                    Loading...
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;br&gt;&lt;br&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+The <code>href="#body"</code> from <code>&lt;a id="tab-link-body" class="tab-link-body-note" href="#body"&gt;Body&lt;/a&gt;</code> have to match with the <code>id="body"</code> from <code>&lt;div role="tabpanel" class="tab-pane active" id="body"&gt;</code>.</p>
+<p>The same for <code>&lt;a  id="tab-link-preview" class="tab-link-preview-note" href="#preview"&gt;Preview&lt;/a&gt;</code> and <code>&lt;div role="tabpanel" class="tab-pane" id="preview"&gt;</code>.</p>
+<p>If you want to add <strong>more than one</strong> textarea with markdown to your page you will have to make sure that the HTML ID of the inputs are different like on the following example :</p>
+<pre class="highlight"><code class="language-html">
+&lt;div class="form-group"&gt;
+    &lt;label for="notes" class="control-label col-lg-2 col-sm-4"&gt;Public Notes&lt;/label&gt;
+    &lt;div class="col-sm-8"&gt;
+
+        &lt;ul class="nav nav-tabs"&gt;
+            &lt;li role="presentation" class="active"&gt;
+                &lt;a class="tab-link-body-note" href="#body1"&gt;Body&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li role="presentation"&gt;
+                &lt;a class="tab-link-preview-note" href="#preview1"&gt;Preview&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;br&gt;
+
+        &lt;div class="tab-content"&gt;
+            &lt;div role="tabpanel" class="tab-pane active" id="body1"&gt;
+                &lt;textarea class="form-control" style="font-family:monospace;" rows="20" id="notes" name="notes"&gt;&lt;?= $t-&gt;notes ?&gt;&lt;/textarea&gt;
+                &lt;p class="help-block"&gt;These notes are visible (but not editable) to the member. You can use markdown here.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div role="tabpanel" class="tab-pane" id="preview1"&gt;
+                &lt;div class="well well-preview" style="background: rgb(255,255,255);"&gt;
+                    Loading...
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;br&gt;&lt;br&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class="form-group"&gt;
+
+    &lt;label for="private_notes" class="control-label col-lg-2 col-sm-4"&gt;Private Notes&lt;/label&gt;
+    &lt;div class="col-sm-8"&gt;
+
+        &lt;ul class="nav nav-tabs"&gt;
+            &lt;li role="presentation" class="active"&gt;
+                &lt;a class="tab-link-body-note" href="#body2"&gt;Body&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li role="presentation"&gt;
+                &lt;a class="tab-link-preview-note" href="#preview2"&gt;Preview&lt;/a&gt;    
+            &lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;br&gt;
+
+        &lt;div class="tab-content"&gt;
+            &lt;div role="tabpanel" class="tab-pane active" id="body2"&gt;
+                &lt;textarea class="form-control" style="font-family:monospace;" rows="20" id="private_notes" name="private_notes"&gt;&lt;?= $t-&gt;private_notes ?&gt;&lt;/textarea&gt;
+                &lt;p class="help-block"&gt;These notes are &lt;b&gt;NOT&lt;/b&gt; visible to the member. You can use markdown here.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div role="tabpanel" class="tab-pane" id="preview2"&gt;
+                &lt;div class="well well-preview" style="background: rgb(255,255,255);"&gt;
+                    Loading...
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;br&gt;&lt;br&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<p><strong>Note:</strong> Please <strong>do not</strong> change the HTML <strong>class</strong> of the elements!</p>
               
             </div>
           </div>
