@@ -11,16 +11,30 @@ Rather than running Routinator as the root user, we create a dedicated user:
 useradd -c 'Routinator 3000' -d /srv/routinator -m -s /bin/bash -u 1100 routinator
 ```
 
-We then install the required software. `build-essential` is a Ubuntu alias package that installs the common C software build suite. `cargo` is Rust's package manager and installing that automatically installs other Rust dependancies.
+We then install the required software. `build-essential` is a Ubuntu alias package that installs the common C software build suite. 
 
 ```sh
-apt install -y build-essential cargo
+apt install -y build-essential
 ```
 
-To install Routinator, we then switch to the `routinator` user and use Cargo to build and install it:
+While some system distributions include Rust as system packages, Routinator relies on a relatively new version of Rust, currently 1.34 or newer. We therefore use the canonical Rust installation via a tool called `rustup`. 
+
+To install `rustup`, Rust and its package manager `cargo`, switch to the `routinator` user and run:
 
 ```sh
 sudo su - routinator
+curl https://sh.rustup.rs -sSf | sh
+```
+
+We can update the Rust installation later by running:
+
+```sh
+rustup update
+```
+
+We can now use Cargo to build and install Routinator:
+
+```sh
 cargo install routinator
 ```
 
