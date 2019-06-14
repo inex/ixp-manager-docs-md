@@ -1,7 +1,7 @@
 
 # Routinator 3000
 
-**Routinator 3000** is a [RPKI](/features/rpki.md) relying party software (aka RPKI Validator) written in Rust by the good folks at [NLnet Labs](https://www.nlnetlabs.nl/projects/rpki/routinator/). These instructions reflect INEX's production installation from early 2019 - where we mostly follow [their own GitHub instructions](https://github.com/NLnetLabs/routinator).
+**Routinator 3000** is a [RPKI](/features/rpki.md) relying party software (aka RPKI Validator) written in Rust by the good folks at [NLnet Labs](https://www.nlnetlabs.nl/projects/rpki/routinator/). These instructions reflect Routinator 0.4, which is set up and started differently than older versions. This mostly follows [their own GitHub instructions](https://github.com/NLnetLabs/routinator) and [documentation](https://rpki.readthedocs.io/en/latest/routinator/).
 
 We use a standard Ubuntu 18.04 installation (selecting the minimal virtual server option), 2 vCPUs, 2GB RAM, 10GB LVM hard drive.
 
@@ -28,25 +28,28 @@ To check if this works, run the following (and note the path to the `routinator`
 
 ```sh
 routinator@rpki01:~$ /srv/routinator/.cargo/bin/routinator -V
-Routinator 0.3.3
+Routinator 0.4
 ```
-
-Also run the following to get instructions for downloading and installing the ARIN TAL:
+Routinator needs to prepare its working environment via the `init` command, which will set up both
+the directory for the local RPKI cache as well as the TAL directory. Running it will prompt you to 
+agree to the [ARIN Relying Party Agreement (RPA)](https://www.arin.net/resources/manage/rpki/tal/) 
+so it can install the ARIN TAL along with the other four RIR TALs:
 
 ```sh
-/srv/routinator/.cargo/bin/routinator vrps
+/srv/routinator/.cargo/bin/routinator init
 ```
 
-Installing the ARIN file is done by:
-
-1. Visiting https://www.arin.net/resources/rpki/tal.html
-2. Downloading the TAL in RFC 7730 format
-3. Placing it in `/srv/routinator/.rpki-cache/tals/arin.tal`
-
-You can then test by running the following again (this command prints the validated ROA payloads):
+To agree with the ARIN RPA, run:
 
 ```sh
-/srv/routinator/.cargo/bin/routinator vrps
+/srv/routinator/.cargo/bin/routinator init --accept-arin-rpa
+```
+
+You can then test by running the following (this command prints the validated ROA payloads
+and increases the log level to show the process in detail at least once):
+
+```sh
+/srv/routinator/.cargo/bin/routinator -v vrps
 ```
 
 To upgrade Routinator, you reinstall it (`-f` to overwrite the older version):
@@ -57,21 +60,21 @@ cargo install -f routinator
 
 After you upgrade, kill the running version of Routinator and start it again.
 
-Note that in the above we are using the (sensible) configuration defaults. Read Routinator's own documentation if you want to change these.
+Note that in the above we are using the (sensible) configuration defaults. Read Routinator's own [documentation](https://rpki.readthedocs.io/en/latest/routinator/) if you want to change these.
 
-Start Routinator's RTR service with:
+Start Routinator's RTR and HTTP service with:
 
 ```
-/srv/routinator/.cargo/bin/routinator rtrd -a -l 192.0.2.13:3323 -l [2001:db8::13]:3323 --listen-http 192.0.2.13:8080
+/srv/routinator/.cargo/bin/routinator server --rtr 192.0.2.13:3323 --rtr [2001:db8::13]:3323 --http 192.0.2.13:8080
 ```
 
-It will immediately start in the background. The `-a` switch will keep it in the foreground. You can see log messages using:
+It will stay attached unless you run it with `-d` (for daemon) to start in the background. You can see log messages using:
 
 ```sh
 cat /var/log/syslog | grep routinator
 ```
 
-When it starts, there is a webserver on port 8080 - see [the man page for the available endpoints](https://www.nlnetlabs.nl/documentation/rpki/routinator/) (under *HTTP SERVICE*).
+When it starts, there is a webserver on port 8080 - see [the documentation for the available endpoints](https://rpki.readthedocs.io/en/latest/routinator/running.html#running-the-http-service).
 
 ## Starting on Boot
 
@@ -95,7 +98,7 @@ StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=rpki-routinator
 
-ExecStart=/srv/routinator/.cargo/bin/routinator rtrd -a -l 192.0.2.13:3323 -l [2001:db8::13]:3323 --listen-http 192.0.2.13:8080
+ExecStart=/srv/routinator/.cargo/bin/routinator server --rtr 192.0.2.13:3323 --rtr [2001:db8::13]:3323 --http 192.0.2.13:8080
 
 
 
