@@ -7,8 +7,6 @@ For development purposes, we have both [Docker](docker.md) and Vagrant build fil
 
 ## Quick Vagrant
 
-> **Temporary issue:** Ubuntu Xenial has a known issue and a couple extra steps are required right now (in the `nf-graphs-decix` branch): https://github.com/inex/IXP-Manager/commit/dd8d256712ec2564eee29aab7cc2eabdf33466d6
-
 If you want to get IXP Manager with Vagrant up and running quickly, follow these steps:
 
 1. Install Vagrant (see: http://docs.vagrantup.com/v2/installation/index.html)
