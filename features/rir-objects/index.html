@@ -312,6 +312,10 @@
     <ul class="subnav">
                 <li class="">
                     
+    <a class="" href="../../dev/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/api/">API</a>
                 </li>
                 <li class="">
@@ -420,33 +424,35 @@
 <p>Some RIRs, such as RIPE, has <a href="https://www.ripe.net/manage-ips-and-asns/db/support/documentation/ripe-database-documentation/updating-objects-in-the-ripe-database/6-4-email-updates">a facility to update these objects by email</a>.</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h2>
 <p>The general form of the Artisan command is:</p>
-<pre class="highlight"><code class="language-sh">$ php artisan rir:generate-object --send-email      \
-    --to=test-dbm@ripe.net                        \
-    --from me@example.com  autnum</code></pre>
+<div class="highlight"><pre><span></span>$ php artisan rir:generate-object --send-email      <span class="se">\</span>
+    --to<span class="o">=</span>test-dbm@ripe.net                        <span class="se">\</span>
+    --from me@example.com  autnum
+</pre></div>
 
 <p>You can see the options by using the standard <code>-h</code> help switch with Artisan:</p>
-<pre class="highlight"><code class="language-sh">$ php artisan rir:generate-object -h
+<div class="highlight"><pre><span></span>$ php artisan rir:generate-object -h
 Usage:
-  rir:generate-object [options] [--] &lt;object&gt;
+  rir:generate-object <span class="o">[</span>options<span class="o">]</span> <span class="o">[</span>--<span class="o">]</span> &lt;object&gt;
 
 Arguments:
   object                The RIR object template to use
 
 Options:
-      --send-email      Rather than printing to screen, sends and email for updating a RIR automatically
-      --force           Send email even if it matches the cached version
-      --to[=TO]         The email address to send the object to (if not specified then uses IXP_API_RIR_EMAIL_TO)
-      --from[=FROM]     The email address from which the email is sent (if not specified, tries IXP_API_RIR_EMAIL_FROM and then defaults to IDENTITY_EMAIL)
-  -h, --help            Display this help message
+      --send-email      Rather than printing to screen, sends and email <span class="k">for</span> updating a RIR automatically
+      --force           Send email even <span class="k">if</span> it matches the cached version
+      --to<span class="o">[=</span>TO<span class="o">]</span>         The email address to send the object to <span class="o">(</span><span class="k">if</span> not specified <span class="k">then</span> uses IXP_API_RIR_EMAIL_TO<span class="o">)</span>
+      --from<span class="o">[=</span>FROM<span class="o">]</span>     The email address from which the email is sent <span class="o">(</span><span class="k">if</span> not specified, tries IXP_API_RIR_EMAIL_FROM and <span class="k">then</span> defaults to IDENTITY_EMAIL<span class="o">)</span>
+  -h, --help            Display this <span class="nb">help</span> message
   -q, --quiet           Do not output any message
 
 Help:
-  This command will generate and display a RIR object (and optionally send by email)</code></pre>
+  This <span class="nb">command</span> will generate and display a RIR object <span class="o">(</span>and optionally send by email<span class="o">)</span>
+</pre></div>
 
 <p>You will note that without the <code>--send-email</code> switch, the command will print to standard output allowing you to consume the object and use it on another way.</p>
 <p><strong>NB:</strong> the generated object is stored in the cache when it is generated with <code>--send-email</code> for the first time. Future runs with <code>--send-email</code> will only resend the email if the generated object differs from the cached version. You can force an email to be sent with <code>--force</code>. Secondly, the cache used is a file system based cache irrespective of the <code>CACHE_DRIVER</code> <code>.env</code> settings. To wipe it, run: <code>artisan cache:clear file</code>.</p>
 <p>The following options are available for use in the <code>.env</code> file:</p>
-<pre class="highlight"><code>#######################################################################################
+<div class="highlight"><pre><span></span>#######################################################################################
 # Options for updating RIR Objects - see https://docs.ixpmanager.org/features/rir-objects/
 
 # Your RIR password to allow the updating of a RIR object by email:
@@ -458,12 +464,14 @@ IXP_API_RIR_EMAIL_TO=test-dbm@ripe.net
 
 # Rather than specifiying the from address on the command line, you can set it here
 # (useful for cronjobs and required for use with artisan schedule:run in &gt;=v5.0)
-IXP_API_RIR_EMAIL_FROM=ixp@example.com</code></pre>
+IXP_API_RIR_EMAIL_FROM=ixp@example.com
+</pre></div>
 
 <h2 id="objects-and-templates">Objects and Templates<a class="headerlink" href="#objects-and-templates" title="Permanent link"></a></h2>
 <p>There are a number of predefined objects available under <code>resources/views/api/v4/rir</code> and <a href="../skinning/">skinning</a> is the recommended way to add / edit these objects.</p>
 <p>You can copy an existing template or create a new one. For example, if you wanted a template called <code>my-as-set</code>, you would create it under <code>resources/skins/example/api/v4/rir/my-as-set.foil.php</code> and then specify it to the Artisan command as:</p>
-<pre class="highlight"><code class="language-sh">$ php artisan rir:generate-object my-as-set</code></pre>
+<div class="highlight"><pre><span></span>$ php artisan rir:generate-object my-as-set
+</pre></div>
 
 <p>The template name must be lowercase, and contain only the characters: <code>0-9 a-z _ -</code>.</p>
 <h3 id="available-template-variables">Available Template Variables<a class="headerlink" href="#available-template-variables" title="Permanent link"></a></h3>

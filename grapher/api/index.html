@@ -310,6 +310,10 @@
     <ul class="subnav">
                 <li class="">
                     
+    <a class="" href="../../dev/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/api/">API</a>
                 </li>
                 <li class="">
@@ -426,20 +430,23 @@
 <li><code>GRAPHER_ACCESS_TRUNK</code></li>
 </ol>
 <p>For example to limit <code>GRAPHER_ACCESS_TRUNK</code> to logged in users, set:</p>
-<pre class="highlight"><code>GRAPHER_ACCESS_TRUNK=1</code></pre>
+<div class="highlight"><pre><span></span>GRAPHER_ACCESS_TRUNK=1
+</pre></div>
 
 <p>If you would like to make the aggregate graphs available to logged in users only, set the following <code>.env</code> options:</p>
-<pre class="highlight"><code>GRAPHER_ACCESS_IXP=1
+<div class="highlight"><pre><span></span>GRAPHER_ACCESS_IXP=1
 GRAPHER_ACCESS_INFRASTRUCTURE=1
 GRAPHER_ACCESS_VLAN=1
 GRAPHER_ACCESS_SWITCH=1
-GRAPHER_ACCESS_TRUNK=1</code></pre>
+GRAPHER_ACCESS_TRUNK=1
+</pre></div>
 
 <p>If you would prefer to restrict access to these to superusers / admins only, replace <code>=1</code> above with <code>=3</code>.</p>
 <h2 id="api-access">API Access<a class="headerlink" href="#api-access" title="Permanent link"></a></h2>
 <p><em>Grapher</em> allows API access to graphs via a base URL of the form:</p>
-<pre class="highlight"><code>https://ixp.example.com/grapher/{graph}[?id=x][&amp;period=x][&amp;type=x][&amp;category=x] \
-    [&amp;protocol=x][&amp;backend=x]</code></pre>
+<div class="highlight"><pre><span></span>https://ixp.example.com/grapher/{graph}[?id=x][&amp;period=x][&amp;type=x][&amp;category=x] \
+    [&amp;protocol=x][&amp;backend=x]
+</pre></div>
 
 <p>Here's two quick examples from INEX's production system:</p>
 <ol>
@@ -447,56 +454,57 @@ GRAPHER_ACCESS_TRUNK=1</code></pre>
 <li>Aggregate exchange traffic PNG: <a href="https://www.inex.ie/ixp/grapher/ixp">https://www.inex.ie/ixp/grapher/ixp</a> (as you'll learn below, the defaults are <code>id=1&amp;type=png</code>).</li>
 </ol>
 <p>A sample of the JSON output is:</p>
-<pre class="highlight"><code class="language-json">{
-    "class": "ixp",
-    "urls": {
-        "png": "https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&amp;type=png&amp;category=bits&amp;protocol=all&amp;id=1",
-        "log": "https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&amp;type=log&amp;category=bits&amp;protocol=all&amp;id=1",
-        "json": "https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&amp;type=json&amp;category=bits&amp;protocol=all&amp;id=1"
-    },
-    "base_url": "https:\/\/www.inex.ie\/ixp\/grapher\/ixp",
-    "statistics": {
-        "totalin": 15013439801606864,
-        "totalout": 15013959560329200,
-        "curin": 158715231920,
-        "curout": 158713872624,
-        "averagein": 125566129180.59367,
-        "averageout": 125570476225.09074,
-        "maxin": 222438012592,
-        "maxout": 222348641336
-    },
-    "params": {
-        "type": "json",
-        "category": "bits",
-        "period": "day",
-        "protocol": "all",
-        "id": 1
-    },
-    "supports": {
-        "protocols": {
-            "all": "all"
-        },
-        "categories": {
-            "bits": "bits",
-            "pkts": "pkts"
-        },
-        "periods": {
-            "day": "day",
-            "week": "week",
-            "month": "month",
-            "year": "year"
-        },
-        "types": {
-            "png": "png",
-            "log": "log",
-            "json": "json"
-        }
-    },
-    "backends": {
-        "mrtg": "mrtg"
-    },
-    "backend": "mrtg"
-}</code></pre>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;ixp&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;urls&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;png&quot;</span><span class="p">:</span> <span class="s2">&quot;https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&amp;type=png&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;log&quot;</span><span class="p">:</span> <span class="s2">&quot;https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&amp;type=log&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;json&quot;</span><span class="p">:</span> <span class="s2">&quot;https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&amp;type=json&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;base_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https:\/\/www.inex.ie\/ixp\/grapher\/ixp&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;statistics&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;totalin&quot;</span><span class="p">:</span> <span class="mi">15013439801606864</span><span class="p">,</span>
+        <span class="nt">&quot;totalout&quot;</span><span class="p">:</span> <span class="mi">15013959560329200</span><span class="p">,</span>
+        <span class="nt">&quot;curin&quot;</span><span class="p">:</span> <span class="mi">158715231920</span><span class="p">,</span>
+        <span class="nt">&quot;curout&quot;</span><span class="p">:</span> <span class="mi">158713872624</span><span class="p">,</span>
+        <span class="nt">&quot;averagein&quot;</span><span class="p">:</span> <span class="mf">125566129180.59367</span><span class="p">,</span>
+        <span class="nt">&quot;averageout&quot;</span><span class="p">:</span> <span class="mf">125570476225.09074</span><span class="p">,</span>
+        <span class="nt">&quot;maxin&quot;</span><span class="p">:</span> <span class="mi">222438012592</span><span class="p">,</span>
+        <span class="nt">&quot;maxout&quot;</span><span class="p">:</span> <span class="mi">222348641336</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;bits&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;period&quot;</span><span class="p">:</span> <span class="s2">&quot;day&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;supports&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;protocols&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;all&quot;</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;categories&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;bits&quot;</span><span class="p">:</span> <span class="s2">&quot;bits&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;pkts&quot;</span><span class="p">:</span> <span class="s2">&quot;pkts&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;periods&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;day&quot;</span><span class="p">:</span> <span class="s2">&quot;day&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;week&quot;</span><span class="p">:</span> <span class="s2">&quot;week&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;month&quot;</span><span class="p">:</span> <span class="s2">&quot;month&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="s2">&quot;year&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;types&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;png&quot;</span><span class="p">:</span> <span class="s2">&quot;png&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;log&quot;</span><span class="p">:</span> <span class="s2">&quot;log&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;json&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;backends&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;mrtg&quot;</span><span class="p">:</span> <span class="s2">&quot;mrtg&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;backend&quot;</span><span class="p">:</span> <span class="s2">&quot;mrtg&quot;</span>
+<span class="p">}</span>
+</pre></div>
 
 <p>You can see from the above what <code>params</code> were used to create the <code>statistics</code> (and would be used for the image if <code>type=png</code>), what parameters are supported (<code>supports</code>), what backends are available for the given graph type and mix of parameters, etc.</p>
 <p><strong>Notes:</strong></p>
@@ -634,9 +642,10 @@ GRAPHER_ACCESS_TRUNK=1</code></pre>
 <h3 id="access-to-member-graphs">Access to Member Graphs<a class="headerlink" href="#access-to-member-graphs" title="Permanent link"></a></h3>
 <p><strong>NB: before you read this section, please first read and be familiar with the <em>Accessibility of Aggregate Graphs</em> section above.</strong></p>
 <p>A number of IXPs have requested a feature to allow public access to member / customer graphs. To support this we have added the following <code>.env</code> options (beginning in v4.8) with the default value as shown:</p>
-<pre class="highlight"><code>GRAPHER_ACCESS_CUSTOMER="own_graphs_only"
-GRAPHER_ACCESS_P2P="own_graphs_only"
-GRAPHER_ACCESS_LATENCY="own_graphs_only"</code></pre>
+<div class="highlight"><pre><span></span>GRAPHER_ACCESS_CUSTOMER=&quot;own_graphs_only&quot;
+GRAPHER_ACCESS_P2P=&quot;own_graphs_only&quot;
+GRAPHER_ACCESS_LATENCY=&quot;own_graphs_only&quot;
+</pre></div>
 
 <p>The <code>own_graphs_only</code> setting just means <em>perform the default access checks</em> which are: access is granted to a superuser or a user who belongs to the customer which owns the respective graph. I.e. no one but the customer or a superadmin can access the respective graph.</p>
 <p>If you wish to allow access to these to a <em>less than or equal</em> <a href="../../usage/users/">user permission</a>, set the above in <code>.env</code> appropriately.</p>
@@ -647,8 +656,9 @@ GRAPHER_ACCESS_LATENCY="own_graphs_only"</code></pre>
 <li>to continue to restrict latency graph access to superadmins and the owning customer</li>
 </ul>
 <p>then set the following in <code>.env</code>:</p>
-<pre class="highlight"><code>GRAPHER_ACCESS_CUSTOMER=0
-GRAPHER_ACCESS_P2P=1</code></pre>
+<div class="highlight"><pre><span></span>GRAPHER_ACCESS_CUSTOMER=0
+GRAPHER_ACCESS_P2P=1
+</pre></div>
 
 <p><em>Note that <code>GRAPHER_ACCESS_LATENCY</code> is omitted as we are not changing the default.</em></p>
 <p>Please note the following:</p>
