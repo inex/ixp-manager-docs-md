@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Runtime Configuration - IXP Manager Documentation</title>
+  <title>Introduction - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Runtime Configuration";
-    var mkdocs_page_input_path = "install/runtime.md";
-    var mkdocs_page_url = "/install/runtime/";
+    var mkdocs_page_name = "Introduction";
+    var mkdocs_page_input_path = "dev/introduction.md";
+    var mkdocs_page_url = "/dev/introduction/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -59,41 +59,27 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../">Introduction</a>
+    <a class="" href="../../install/">Introduction</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../automated-script/">Automated Script</a>
+    <a class="" href="../../install/automated-script/">Automated Script</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../maint-mode/">Maintenance Mode</a>
+    <a class="" href="../../install/maint-mode/">Maintenance Mode</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../manually/">Manual Installation</a>
+    <a class="" href="../../install/manually/">Manual Installation</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../upgrading/">Upgrading</a>
+    <a class="" href="../../install/upgrading/">Upgrading</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Runtime Configuration</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#runtime-configuration">Runtime Configuration</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#behind-a-https-proxy">Behind a HTTP[S] Proxy</a></li>
-        
-            <li><a class="toctree-l4" href="#disabling-controllers">Disabling Controllers</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../../install/runtime/">Runtime Configuration</a>
                 </li>
     </ul>
 	    </li>
@@ -306,65 +292,79 @@
 		
     <span class="caption-text">Development</span>
     <ul class="subnav">
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../dev/introduction/">Introduction</a>
+    <a class="current" href="./">Introduction</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#development-introduction">Development Introduction</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#core-vs-packages">Core vs Packages</a></li>
+        
+            <li><a class="toctree-l4" href="#database-orms">Database / ORMs</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/api/">API</a>
+    <a class="" href="../api/">API</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/ci/">Continuous Integration</a>
+    <a class="" href="../ci/">Continuous Integration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/cla/">Contributer License Agreement</a>
+    <a class="" href="../cla/">Contributer License Agreement</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/docker/">Docker</a>
+    <a class="" href="../docker/">Docker</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/docs/">Documentation</a>
+    <a class="" href="../docs/">Documentation</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/forms/">Forms</a>
+    <a class="" href="../forms/">Forms</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/frontend-crud/">Frontend CRUD</a>
+    <a class="" href="../frontend-crud/">Frontend CRUD</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/grapher/">Grapher</a>
+    <a class="" href="../grapher/">Grapher</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/helpders/">Helpers</a>
+    <a class="" href="../helpders/">Helpers</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/looking-glass/">Looking Glass</a>
+    <a class="" href="../looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/release-procedure/">Release Procedure</a>
+    <a class="" href="../release-procedure/">Release Procedure</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/telescope/">Telescope</a>
+    <a class="" href="../telescope/">Telescope</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/users/">Users</a>
+    <a class="" href="../users/">Users</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../dev/vagrant/">Vagrant</a>
+    <a class="" href="../vagrant/">Vagrant</a>
                 </li>
     </ul>
 	    </li>
@@ -391,14 +391,14 @@
     
       
         
-          <li>Installation &raquo;</li>
+          <li>Development &raquo;</li>
         
       
     
-    <li>Runtime Configuration</li>
+    <li>Introduction</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/install/runtime.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/dev/introduction.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -408,45 +408,41 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="runtime-configuration">Runtime Configuration<a class="headerlink" href="#runtime-configuration" title="Permanent link"></a></h1>
-<h2 id="behind-a-https-proxy">Behind a HTTP[S] Proxy<a class="headerlink" href="#behind-a-https-proxy" title="Permanent link"></a></h2>
-<p>If you are running IXP Manager behind a load balancer / proxy that terminates TLS / SSL connections, you may notice your application sometimes does not generate HTTPS links. Typically this is because your application is being forwarded traffic from your load balancer on port 80 and does not know it should generate secure links.</p>
-<p>From <a href="https://github.com/inex/IXP-Manager/releases/tag/v4.7.2">v4.7.2</a>, IXP Manager supports trusted proxies via <a href="https://laravel.com/docs/5.5/requests#configuring-trusted-proxies">Laravel's support</a> for <a href="https://github.com/fideloper/TrustedProxy">fideloper/TrustedProxy</a>.</p>
-<p>See the above links for complete documentation. To just get it working, you need to:</p>
+                <h1 id="development-introduction">Development Introduction<a class="headerlink" href="#development-introduction" title="Permanent link"></a></h1>
+<p>We welcome contributions to IXP Manager from the community. The main requirement is that you sign the <a href="../cla/">contributor's license agreement</a>.</p>
+<h2 id="core-vs-packages">Core vs Packages<a class="headerlink" href="#core-vs-packages" title="Permanent link"></a></h2>
+<p>If you plan to add a significant / large piece of functionality, then please come and talk to us first via the <a href="https://www.ixpmanager.org/support">mailing lists</a>. There are two ways to get such contributions into IXP Manager:</p>
 <ol>
-<li>
-<p>Publish the default trusted proxies configuration file:
-    <div class="highlight"><pre><span></span>cd $IXPROOT
-./artisan vendor:publish --provider=&quot;Fideloper\Proxy\TrustedProxyServiceProvider&quot;
-</pre></div></p>
-</li>
-<li>
-<p>The above will create a file <code>${IXPROOT}/config/trustedproxy.php</code>. For the most part, you now just need to change the IP address(es) in the array <code>proxies</code> to those of your own proxy/proxies.</p>
-</li>
+<li>added to the core code with our help and guidance; or</li>
+<li>as a optional package.</li>
 </ol>
-<p><strong>NB:</strong> as well as the above, it is also critical that your have correctly set <code>APP_URL</code> in the <code>.env</code> file for URL generation to correctly work.</p>
-<h2 id="disabling-controllers">Disabling Controllers<a class="headerlink" href="#disabling-controllers" title="Permanent link"></a></h2>
-<p>Controllers can be disabled by setting the following config item in <code>config/ixp_fe.php</code>:</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-<span class="p">[</span>
-    <span class="c1">// ...,</span>
-
-    <span class="s1">&#39;frontend&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">&#39;disabled&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-            <span class="s1">&#39;xxx&#39;</span>   <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
-        <span class="p">],</span>
-    <span class="p">],</span>
-<span class="p">];</span>
-</pre></div>
-
-<p>where <code>xxx</code> is the controller name. This name is in kebab-case format including any non-<code>IXP\Http\Controllers</code> namespace. Here are some controller - xxx examples:</p>
-<ul>
-<li>\IXP\Http\Controllers\InfrastructureController =&gt; infrastructure</li>
-<li>\IXP\Http\Controllers\CustKitController =&gt; cust-kit</li>
-<li>\IXP\Http\Controllers\Interfaces\PhysicalInterfaceController =&gt; interfaces-physical-interface</li>
-</ul>
-<p>This action is controlled by the <code>IXP\Http\Middleware\ControllerEnabled</code> middleware.</p>
-<p>Note that in the configuration file, we have some pre-defined dotenv settings for commonly disabled controllers. It is a bad idea to manually edit the configuration files. If you find a controller than should be disabled and there there is no dotenv option, please <a href="https://github.com/inex/IXP-Manager/issues">open an issue</a>.</p>
+<p>The following is a reply to someone looking to contribute something that didn't fit with what IXP Manager's mission was which may also help anyone considering contributing.</p>
+<blockquote>
+<p>We have learned the very (very) hard way to avoid adding non-core functionality into the core of IXP Manager. At INEX, we won't be using XXX in the short to medium term and nor are we aware of IX's that use it.</p>
+<p>This means that XXX code will be non-core and not used or tested (or testable easily) by the core IXP Manager developers. This creates a bunch of issues including:</p>
+<p>a) becomes a new consideration for IXP Manager updates and schema changes;</p>
+<p>b) the IXP Manager issue tracker and mailing list will be the goto place for people seeking help with this functionality and we will not be able to provide that;</p>
+<p>c) would require assurances of maintainers and support for XXX to the project - I'm not sure that can be given at this stage;</p>
+<p>d) large features require documentation: https://docs.ixpmanager.org/</p>
+<p>e) past experience has shown us that we often end up having to remove chunks of non-core functionality due to (a), (b) and (c) above and this is also costly on time.</p>
+<p>Now, we <em>really</em> do not want to discourage adding XXX support to IXP Manager - I like the project and you have shown it can work at an IX. It'd be great to have it as part of the IXP Manager tool chain.</p>
+<p>One of the advantages of switching from Zend Framework to Laravel has been the ability to have add on functionality by way of packages:</p>
+<p>https://laravel.com/docs/5.6/packages</p>
+<p>I think this is a perfect way to add XXX support and we can help ensuring UI hooks by detecting the packet and adding menu options.</p>
+<p>This also solves all the issues above:</p>
+<p>a) is not an impediment to upgrades: if the XXX package falls behind the pace of IXP Manager development and someone wants XXX support, they just install a version of IXP Manager that is aligned with the XXX package.</p>
+<p>b) issue and support wise, having XXX as a package creates a clean line of delineation between IXP Manager and XXX code bases so people can raise issues and questions with the correct project.</p>
+<p>c) is mostly answered by (a).</p>
+<p>d) documentation becomes the purview of the XXX team and we can provide the appropriate links from ours.</p>
+</blockquote>
+<h2 id="database-orms">Database / ORMs<a class="headerlink" href="#database-orms" title="Permanent link"></a></h2>
+<p>Another answer to the question of Laravel Eloquent vs Doctrine ORM:</p>
+<blockquote>
+<p>We don't use Laravel Eloquent as the project has historically always used Doctrine ORM. It's far too much work to try and swap that out for Eloquent.</p>
+<p>That's not to say there is any issue with you using Eloquent with the following notes and provisions:</p>
+<p>a) do not change the schema of any existing table. This would need to be done in IXP Manager core via Doctrine as part of a new release and should be discussed with the core developers.</p>
+<p>b) ideally schema changes would be limited to namespaced (xxx_*) tables where xxx represents your package / feature.</p>
+</blockquote>
               
             </div>
           </div>
@@ -454,10 +450,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../usage/contacts/" class="btn btn-neutral float-right" title="Contacts">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../api/" class="btn btn-neutral float-right" title="API">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../upgrading/" class="btn btn-neutral" title="Upgrading"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../features/sflow-p2p/" class="btn btn-neutral" title="Peer-to-peer Graphs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -487,10 +483,10 @@
           <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../upgrading/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../features/sflow-p2p/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../usage/contacts/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../api/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

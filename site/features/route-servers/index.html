@@ -312,6 +312,10 @@
     <ul class="subnav">
                 <li class="">
                     
+    <a class="" href="../../dev/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/api/">API</a>
                 </li>
                 <li class="">
@@ -476,7 +480,8 @@
 <h2 id="displaying-filtered-prefixes">Displaying Filtered Prefixes<a class="headerlink" href="#displaying-filtered-prefixes" title="Permanent link"></a></h2>
 <p>Using Bird v2 and internal large communities, we have completely overhauled how we show end users what prefixes are filtered by the route servers.</p>
 <p>If you are running route servers using the Bird v2 configuration and if you have installed <a href="../looking-glass/">the looking glass</a> then you should set the following in your <code>.env</code> file:</p>
-<pre class="highlight"><code>IXP_FE_FRONTEND_DISABLED_FILTERED_PREFIXES=false</code></pre>
+<div class="highlight"><pre><span></span>IXP_FE_FRONTEND_DISABLED_FILTERED_PREFIXES=false
+</pre></div>
 
 <p><img alt="Route Servers Filtered Prefixes" src="../img/rs-filtered-prefixes.png" /></p>
 <p>This is a live view gathered from each Bird v2 route server with a looking glass.</p>
@@ -493,7 +498,8 @@
 <li>Execute the <code>compare-route-server-prefixes.pl</code> script a few times a day as you think appropriate;</li>
 <li>In your <code>.env</code> file, ensure the following is set:</li>
 </ul>
-<pre class="highlight"><code class="language-ini">IXP_FE_FRONTEND_DISABLED_RS_PREFIXES=false</code></pre>
+<div class="highlight"><pre><span></span><span class="na">IXP_FE_FRONTEND_DISABLED_RS_PREFIXES</span><span class="o">=</span><span class="s">false</span>
+</pre></div>
 
 <p>Once you make the last change above, the prefix analysis tool will be available to administrators and members on IXP Manager.</p>
               
