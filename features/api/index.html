@@ -136,6 +136,8 @@
         
             <li><a class="toctree-l4" href="#api-authentication">API Authentication</a></li>
         
+            <li><a class="toctree-l4" href="#api-key-management">API Key Management</a></li>
+        
         </ul>
     
 
@@ -435,6 +437,16 @@
 <p>This is a legacy method that is still supported. You can tack your key on as follows:</p>
 <div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/test?apikey=my-api-key
 </pre></div>
+
+<h2 id="api-key-management">API Key Management<a class="headerlink" href="#api-key-management" title="Permanent link"></a></h2>
+<p>In <strong>IXP Manager v5.1</strong> we introduced some new API Key management features:</p>
+<ul>
+<li>You can now add an optional description to an API key. This allows you to record where the key is used for example.</li>
+<li>You can set an optional expiry date for the key. The key may be used <em>upto</em> that date but not on the date. The expiry date can be added / edited  /removed when editing an API key.</li>
+<li>Expired API keys are automatically deleted after one week (<a href="../cronjobs/">via the scheduler</a>).</li>
+</ul>
+<p>API keys are not shown by default but require a password to be entered to show them. If you wish to show the keys <strong>(inadvisable)</strong>, you can set <code>IXP_FE_API_KEYS_SHOW=true</code> in <code>.env</code>. This is only available to mimic historic functionality and will be removed in the future.</p>
+<p>By default, a user can create no more than 10 keys. If you wish to change this, set <code>IXP_FE_API_KEYS_MAX=n</code> in <code>.env</code> where <code>n</code> is an integer value &gt; 0.</p>
               
             </div>
           </div>
