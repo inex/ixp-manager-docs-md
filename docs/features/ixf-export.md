@@ -8,7 +8,7 @@ The key element of the IX-F Member Export is it makes you, the individual IXP, t
 
 To find out more about the JSON schema and see examples, you can [read more here](https://ixpdb.euro-ix.net/en/), [explore many of the public IXP end points available here](https://ixpdb.euro-ix.net/en/ixpdb/ixps/?reverse=&sort=name&q=&api=on) or see the GitHub [euro-ix/json-schemas](https://github.com/euro-ix/json-schemas) repository.
 
-**IXP Manager** supports the IX-F Member List Export out of the box. It previously supported all versions from 0.3 to 0.5 but as of May 2017, we now only support 0.6 and 0.7. This is because these have become the stable common versions (as at time of writing, November 2018).
+**IXP Manager** supports the IX-F Member List Export out of the box. It previously supported all versions from 0.3 to 0.5 but we now only support 0.6, 0.7 and 1.0 (for >=v5.1). We plan to deprecate support for 0.6 during 2019.
 
 *Sometimes you may need something more customized than the the IX-F Member Export. For that, see [the other member export feature](member-export.md) if IXP Manager.*
 
@@ -87,12 +87,12 @@ We we say *from the Infrastructure object* above, we mean that when you are logg
 If your version of IXP Manager is installed at, say, *https://ixp.example.com/*, then the IX-F Member List export can be accessed at:
 
 ```
-https://ixp.example.com/api/v4/member-export/ixf/0.7
+https://ixp.example.com/api/v4/member-export/ixf/1.0
 ```
 
-where *0.7* is a version parameter which allows for support of potential future versions.
+where *1.0* is a version parameter which allows for support of potential future versions.
 
-Note that the publicly accessible version does not include individual member details such as name (ASN is provided), max prefixes, contact email and phone, when the member joined, member's web address, peering policy, NOC website, NOC hours or member type. This information is available to any logged in users or users querying [the API with an API key](api.md).
+Note that the publicly accessible version does not include individual member details such as name, max prefixes, contact email and phone, when the member joined, member's web address, peering policy, NOC website, NOC hours or member type. This information is available to any logged in users or users querying [the API with an API key](api.md).
 
 ## Registering Your API Endpoint With IXPDB
 
@@ -110,7 +110,7 @@ where `id=1` is the infrastructure DB ID (see *Infrastructures* under the left h
 
 ## Configuration Options
 
-There is only one configuration option presently available. To disable public access to the restricted member export, set the following in your `.env` file:
+To disable public access to the restricted member export, set the following in your `.env` file:
 
 ```
 IXP_API_JSONEXPORTSCHEMA_PUBLIC=false
@@ -128,6 +128,19 @@ In addition, membership of an IXP is easily discernible from a number of other s
 * Commercial products (Noction, ...)
 
 Leave public access available, own your own data, ensure it's validity and advertise it!
+
+If you must disable public access but would still like to provide IX-F (or others) with access, you can set a static access key in your `.env` file such as:
+
+```
+IXP_API_JSONEXPORTSCHEMA_ACCESS_KEY="super-secret-access-key"
+```
+
+and then provide the URL in the format:
+
+```
+https://ixp.example.com/api/v4/member-export/ixf/1.0?access_key=super-secret-access-key
+```
+
 
 If you wish to control access to the infrastructure statistics, see [the Grapher API documentation](../grapher/api.md). The statistics data is a JSON object representing each line of [a *the rest of the file* from a standard MRTG log file](https://oss.oetiker.ch/mrtg/doc/mrtg-logfile.en.html). This means the per-line array elements are:
 
