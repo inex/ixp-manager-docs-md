@@ -417,8 +417,7 @@
 <p><strong>IXP Manager</strong> supports template/view skinning allowing users to substitute any of their own templates in place of the default ones shipped with IXP Manager.</p>
 <h2 id="skinning-in-version-v4">Skinning in Version &gt;=v4<a class="headerlink" href="#skinning-in-version-v4" title="Permanent link"></a></h2>
 <p>First, set the following parameter in <code>.env</code>:</p>
-<div class="highlight"><pre><span></span>VIEW_SKIN=&quot;example&quot;
-</pre></div>
+<pre class="highlight"><code>VIEW_SKIN="example"</code></pre>
 
 <p>Skins should then be placed in the <code>resources/skins/example</code> directory (<code>example</code> should be substituted for whatever you want to call your own skin). The default templates can be found in <code>resources/views</code> directory. INEX bundles its own skinned templates in <code>resources/skins/inex</code> as an example.</p>
 <p>Once a skin is enabled from <code>.env</code>, then any templates found in the skin directory <em>(using the same directory structure as found under <code>resouces/views</code>)</em> will take precedence over the default template file. This means you do not need to recreate / copy all the default files - just replace the ones you want.</p>
@@ -427,7 +426,7 @@
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link"></a></h3>
 <p>The <a href="../../grapher/introduction/">graphing</a> MRTG configuration generator allows for custom configuration content at the top and bottom of the file. In order to have your custom configuration enabled, you need to skin two files.</p>
 <p>Here's an example:</p>
-<div class="highlight"><pre><span></span># position ourselves in the IXP Manager root directory
+<pre class="highlight"><code># position ourselves in the IXP Manager root directory
 cd ${IXPROOT}
 
 # make the skin directory
@@ -442,35 +441,29 @@ cp views/services/grapher/mrtg/custom-footer.foil.php resources/skins/example/se
 
 # edit the above files as required
 vi resources/skins/example/services/grapher/mrtg/custom-header.plates.php
-vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
-</pre></div>
+vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php</code></pre>
 
 <p>Then, finally, edit <code>.env</code> and set the skin to use:</p>
-<div class="highlight"><pre><span></span>VIEW_SKIN=&quot;example&quot;
-</pre></div>
+<pre class="highlight"><code>VIEW_SKIN="example"</code></pre>
 
 <p>You can of course skin any file including the non-custom MRTG files as suits your needs.</p>
 <h3 id="custom-variables-configuration-options">Custom Variables / Configuration Options<a class="headerlink" href="#custom-variables-configuration-options" title="Permanent link"></a></h3>
 <p>When you are skinning your own templates, you may find you need to create custom configuration options for values you do not want to store directly in your own templates. For this, we have a configuration file which is excluded from Git. Initiate it via::</p>
-<div class="highlight"><pre><span></span>cp config/custom.php.dist config/custom.php
-</pre></div>
+<pre class="highlight"><code>cp config/custom.php.dist config/custom.php</code></pre>
 
 <p>This is <a href="https://laravel.com/docs/5.3/configuration">Laravel's standard configuration file format</a> (which is an associative PHP array). You can also use Laravel's dotenv variables here too.</p>
 <p>As an example, if you were to create a configuration option:</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-<span class="s1">&#39;example&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
-    <span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my own config value&#39;</span><span class="p">,</span>
-<span class="p">],</span>
-</pre></div>
+<pre class="highlight"><code class="language-php">&lt;?php
+'example' =&gt; [
+    'key' =&gt; 'my own config value',
+],</code></pre>
 
 <p>then in code this would be accessible as:</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-<span class="nx">config</span><span class="p">(</span> <span class="s2">&quot;custom.example.key&quot;</span><span class="p">,</span> <span class="s2">&quot;default value if not set|null&quot;</span> <span class="p">)</span>
-</pre></div>
+<pre class="highlight"><code class="language-php">&lt;?php
+config( "custom.example.key", "default value if not set|null" )</code></pre>
 
 <p>where the second parameter is a default option if the requested configuration setting has not been defined (which defaults to <code>null</code>). In templates, this can be accessed the same way or rendered in the template with::</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">config</span><span class="p">(</span> <span class="s2">&quot;custom.example.key&quot;</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="x"></span>
-</pre></div>
+<pre class="highlight"><code class="language-php">&lt;?= config( "custom.example.key", "default" ) ?&gt;</code></pre>
 
 <h2 id="skinning-old-templates-v49">Skinning Old Templates (&lt;v4.9)<a class="headerlink" href="#skinning-old-templates-v49" title="Permanent link"></a></h2>
 <p>This is still important as <strong>IXP Manager</strong> v4 still uses most of the previous templates.</p>
@@ -478,8 +471,7 @@ vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
 <ol>
 <li>
 <p>set a skin name in <code>.env</code>:
-   <div class="highlight"><pre><span></span>VIEW_SMARTY_SKIN=&quot;myskin&quot;
-</pre></div></p>
+   <pre class="highlight"><code>VIEW_SMARTY_SKIN="myskin"</code></pre></p>
 </li>
 <li>
 <p>create a directory with a matching name: <code>application/views/_skins/myskin</code>.</p>
@@ -508,14 +500,12 @@ vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
 <ul>
 <li>
 <p>For &gt;=v4 (new codebase):</p>
-<div class="highlight"><pre><span></span><span class="c">&lt;!--  IXP MANAGER - template directory: resources/[views|skins] --&gt;</span>
-</pre></div>
+<pre class="highlight"><code class="language-html">&lt;!--  IXP MANAGER - template directory: resources/[views|skins] --&gt;</code></pre>
 
 </li>
 <li>
 <p>For &lt;v4 (old codebase):</p>
-<div class="highlight"><pre><span></span><span class="c">&lt;!--  IXP MANAGER - template directory: application/views --&gt;</span>
-</pre></div>
+<pre class="highlight"><code class="language-html">&lt;!--  IXP MANAGER - template directory: application/views --&gt;</code></pre>
 
 </li>
 </ul>
