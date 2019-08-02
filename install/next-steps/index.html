@@ -419,11 +419,11 @@
 <p>There are basic elements you need to add to IXP Manager which describe your IXP and are required for standard usage. Most of these actions can be found under the <strong>IXP ADMIN ACTIONS</strong> on the left hand side menu.</p>
 <p><strong>Remember:</strong> most of the forms for adding and editing the following entities have context help on each input field via the green <em>Help</em> button.</p>
 <ol>
-<li>create your <strong>infrastructures</strong>. Generally, an infrastructure represents a collection of switches which form an IXP's peering LAN. The best way to think of an infrastructure is to think of it as <em>an IXP</em>.</li>
-</ol>
+<li>
+<p>create your <strong>infrastructures</strong>. Generally, an infrastructure represents a collection of switches which form an IXP's peering LAN. The best way to think of an infrastructure is to think of it as <em>an IXP</em>.</p>
 <p>For example, INEX runs three infrastructures - INEX LAN1, INEX LAN2 and INEX Cork. Each of these consist of a unique set of switches and these infrastructures are not interconnected. They also have unique PeeringDB entries (<a href="https://www.peeringdb.com/api/ix/48">INEX LAN1</a>, <a href="https://www.peeringdb.com/api/ix/387">INEX LAN2</a>, <a href="https://www.peeringdb.com/api/ix/1262">INEX Cork</a>) and IX-F entries (<a href="https://db.ix-f.net/api/ixp/20">INEX LAN1</a>, <a href="https://db.ix-f.net/api/ixp/645">INEX LAN2</a>, <a href="https://db.ix-f.net/api/ixp/646">INEX Cork</a>) for each infrastructure.</p>
 <p>If you do not have a PeeringDB entry yet, then <a href="https://www.peeringdb.com/">register and create one</a>. Similarly, if you do not have an IX-F entry, email the IXPDB admins via <code>ixpdb-admin &lt;at&gt; euro-ix.net</code> with your IX's full name, short name, city / region / country, GPS co-ordinates and website URL.</p>
-<ol>
+</li>
 <li>
 <p>Add your <strong>facilities</strong> (points of presence - the data centres where networks can connect to one of your IX switches).</p>
 </li>
@@ -432,22 +432,20 @@
 </li>
 <li>
 <p>You can now add switches. We have <a href="https://docs.ixpmanager.org/usage/switches/">good documentation for this here</a>. It is important to note that the <strong>IXP Manager</strong> server will need SNMP (v2) access to your switches and your switches should have a domain name registered in DNS. Avoid using IP addresses here.</p>
-</li>
-</ol>
 <p>IXP Manager will query your switch via SNMP and discover its details as well as setting up all the switch ports in the database.</p>
-<ol>
+</li>
 <li>
 <p>Add your VLAN(s). We would recommend two VLANs per infrastructure for peering purposes:</p>
-</li>
-<li>
-<p>your production VLAN where your members will peer with each other.</p>
-</li>
+<ul>
+<li>your production VLAN where your members will peer with each other.</li>
 <li>a quarantine VLAN where you connect members initially for testing and also to move members to when your need to perform diagnostics away from the production LAN.</li>
-</ol>
+</ul>
 <p>When adding your production peering VLAN, you will want to check the <em>Include VLAN in the peering matrix (see help)</em> option and the <em>Include VLAN in the peering manager (see help)</em> option.</p>
 <p>Add <em>Network Information</em> for the peering LAN also. The <em>Network Information</em> is a submenu under the VLANs menu option.</p>
-<ol>
-<li>Add your peering IP addresses. IXP Manager will let you add complete ranges (e.g. /24) and more sensible ranges of IPv6 (i.e. not an entire /64!).</li>
+</li>
+<li>
+<p>Add your peering IP addresses. IXP Manager will let you add complete ranges (e.g. /24) and more sensible ranges of IPv6 (i.e. not an entire /64!).</p>
+</li>
 </ol>
 <p>The above constitutes the basic elements that are required to provision a customer.</p>
 <p>For documentation on <a href="https://docs.ixpmanager.org/usage/customers/">adding and managing customers, see here</a>. And for details on <a href="https://docs.ixpmanager.org/usage/interfaces/">provisioning interfaces for your customers, see here</a>.</p>
