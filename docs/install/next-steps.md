@@ -12,9 +12,9 @@ There are basic elements you need to add to IXP Manager which describe your IXP 
 
 1. create your **infrastructures**. Generally, an infrastructure represents a collection of switches which form an IXP's peering LAN. The best way to think of an infrastructure is to think of it as *an IXP*.
 
-   For example, INEX runs three infrastructures - INEX LAN1, INEX LAN2 and INEX Cork. Each of these consist of a unique set of switches and these infrastructures are not interconnected. They also have unique PeeringDB entries ([INEX LAN1](https://www.peeringdb.com/api/ix/48), [INEX LAN2](https://www.peeringdb.com/api/ix/387), [INEX Cork](https://www.peeringdb.com/api/ix/1262)) and IX-F entries ([INEX LAN1](https://db.ix-f.net/api/ixp/20), [INEX LAN2](https://db.ix-f.net/api/ixp/645), [INEX Cork](https://db.ix-f.net/api/ixp/646)) for each infrastructure.
+    For example, INEX runs three infrastructures - INEX LAN1, INEX LAN2 and INEX Cork. Each of these consist of a unique set of switches and these infrastructures are not interconnected. They also have unique PeeringDB entries ([INEX LAN1](https://www.peeringdb.com/api/ix/48), [INEX LAN2](https://www.peeringdb.com/api/ix/387), [INEX Cork](https://www.peeringdb.com/api/ix/1262)) and IX-F entries ([INEX LAN1](https://db.ix-f.net/api/ixp/20), [INEX LAN2](https://db.ix-f.net/api/ixp/645), [INEX Cork](https://db.ix-f.net/api/ixp/646)) for each infrastructure.
 
-   If you do not have a PeeringDB entry yet, then [register and create one](https://www.peeringdb.com/). Similarly, if you do not have an IX-F entry, email the IXPDB admins via `ixpdb-admin <at> euro-ix.net` with your IX's full name, short name, city / region / country, GPS co-ordinates and website URL.
+    If you do not have a PeeringDB entry yet, then [register and create one](https://www.peeringdb.com/). Similarly, if you do not have an IX-F entry, email the IXPDB admins via `ixpdb-admin <at> euro-ix.net` with your IX's full name, short name, city / region / country, GPS co-ordinates and website URL.
 
 2. Add your **facilities** (points of presence - the data centres where networks can connect to one of your IX switches).
 
@@ -22,16 +22,16 @@ There are basic elements you need to add to IXP Manager which describe your IXP 
 
 4. You can now add switches. We have [good documentation for this here](https://docs.ixpmanager.org/usage/switches/). It is important to note that the **IXP Manager** server will need SNMP (v2) access to your switches and your switches should have a domain name registered in DNS. Avoid using IP addresses here.
 
-   IXP Manager will query your switch via SNMP and discover its details as well as setting up all the switch ports in the database.
+    IXP Manager will query your switch via SNMP and discover its details as well as setting up all the switch ports in the database.
 
 5. Add your VLAN(s). We would recommend two VLANs per infrastructure for peering purposes:
 
-   * your production VLAN where your members will peer with each other.
-   * a quarantine VLAN where you connect members initially for testing and also to move members to when your need to perform diagnostics away from the production LAN.
+    * your production VLAN where your members will peer with each other.
+    * a quarantine VLAN where you connect members initially for testing and also to move members to when your need to perform diagnostics away from the production LAN.
 
-   When adding your production peering VLAN, you will want to check the *Include VLAN in the peering matrix (see help)* option and the *Include VLAN in the peering manager (see help)* option.
+    When adding your production peering VLAN, you will want to check the *Include VLAN in the peering matrix (see help)* option and the *Include VLAN in the peering manager (see help)* option.
 
-   Add *Network Information* for the peering LAN also. The *Network Information* is a submenu under the VLANs menu option.
+    Add *Network Information* for the peering LAN also. The *Network Information* is a submenu under the VLANs menu option.
 
 6. Add your peering IP addresses. IXP Manager will let you add complete ranges (e.g. /24) and more sensible ranges of IPv6 (i.e. not an entire /64!).
 
