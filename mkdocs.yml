@@ -14,6 +14,7 @@ nav:
     - 'Manual Installation': 'install/manually.md'
     - 'Upgrading': 'install/upgrading.md'
     - 'Runtime Configuration': 'install/runtime.md'
+    - 'Post-Install Steps': 'install/next-steps.md'
 - General Usage:
     - 'Contacts': 'usage/contacts.md'
     - 'Customers / Members': 'usage/customers.md'

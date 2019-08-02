@@ -252,3 +252,6 @@ If you plan to use this in production, you should:
 * install an SSL certificate and redirect HTTP access to HTTPS
 * complete the installation of the many features of IXP Manager such as route server generation, member stats, peer to peer graphs, etc.
 * PLEASE TELL US! We'd like to add you to the users list at http://www.ixpmanager.org/users.php - just drop us an email to `operations <at> inex <dot> ie`.
+
+
+**What next? See our [post-install / next steps document here](next-steps.md).**
