@@ -82,7 +82,7 @@ The above section lists the essential set-up elements. Beyond those, IXP Manager
 * Automation - if you're so inclined to look at switch automation, see INEX's [templates here](https://github.com/inex/ixp-manager-provisioning) (Arista and Cumulus).
 
 
-As you look through the above, do please note that we have giving a lot of presentations over the years and many are linked [here with video](https://www.ixpmanager.org/presentations).
+As you look through the above, do please note that we have given a lot of presentations over the years and many are linked [here with video](https://www.ixpmanager.org/presentations).
 
 
 **Happy peering!**
