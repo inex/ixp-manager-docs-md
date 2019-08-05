@@ -459,8 +459,9 @@
 <p>From the <a href="#Listing-Switches">list view described above</a>, click the <em>plus</em> button in the top right to add a switch. Switches are added by SNMP poll so the first step is to provide a hostname and SNMP v2 community:</p>
 <p><img alt="Adding a Switch - SNMP" src="../img/switches-add-snmp.png" /></p>
 <p>The switch must respond to SNMP queries from the server on which IXP Manager is installed. This can be testing on the command line as follows:</p>
-<pre class="highlight"><code class="language-sh">root@ixpmanager:~# snmpget -c yourcommunity -v 2c switch01.mgmt.example.com .1.3.6.1.2.1.1.1.0
-iso.3.6.1.2.1.1.1.0 = STRING: "Arista Networks EOS version 4.18.0F running on an Arista Networks DCS-7280SR-48C6"</code></pre>
+<div class="highlight"><pre><span></span>root@ixpmanager:~# snmpget -c yourcommunity -v 2c switch01.mgmt.example.com .1.3.6.1.2.1.1.1.0
+iso.3.6.1.2.1.1.1.0 <span class="o">=</span> STRING: <span class="s2">&quot;Arista Networks EOS version 4.18.0F running on an Arista Networks DCS-7280SR-48C6&quot;</span>
+</pre></div>
 
 <p>After completing the details and clicking <em>Next &gt;&gt;</em>, IXP Manager will poll the switch and present you with the second (and last) stage in adding a switch:</p>
 <p><img alt="Adding a Switch" src="../img/switches-add.png" /></p>
@@ -505,10 +506,12 @@ iso.3.6.1.2.1.1.1.0 = STRING: "Arista Networks EOS version 4.18.0F running on an
 </ul>
 <h2 id="automated-polling-snmp-updates">Automated Polling / SNMP Updates<a class="headerlink" href="#automated-polling-snmp-updates" title="Permanent link"></a></h2>
 <p>Switch and switch port information in the database can go stale very quickly. As such, IXP Manager will poll switches using SNMP hourly via the <a href="/features/cronjobs.md">task scheduler</a>. You can do it manually via the Artisan command:</p>
-<pre class="highlight"><code>/srv/ixpmanager/artisan switch:snmp-poll</code></pre>
+<div class="highlight"><pre><span></span>/srv/ixpmanager/artisan switch:snmp-poll
+</pre></div>
 
 <p>The command signature is:</p>
-<pre class="highlight"><code>switch:snmp-poll [--log] [--noflush] [-q, --quiet] [&lt;switch&gt;]</code></pre>
+<div class="highlight"><pre><span></span>switch:snmp-poll [--log] [--noflush] [-q, --quiet] [&lt;switch&gt;]
+</pre></div>
 
 <p>where:</p>
 <ul>
@@ -533,7 +536,7 @@ iso.3.6.1.2.1.1.1.0 = STRING: "Arista Networks EOS version 4.18.0F running on an
 <h3 id="port-audit">Port Audit<a class="headerlink" href="#port-audit" title="Permanent link"></a></h3>
 <p>A new feature (adding in v4.9.0) allows <strong>IXP Manager</strong> administrators to audit port speeds as configured in <a href="../interfaces/#physical-interface-settings">physical interfaces</a> against what has been discovered in the last SNMP run.</p>
 <p>You can run it from Artisan such as the following example:</p>
-<pre class="highlight"><code>./artisan audit:port-speeds
+<div class="highlight"><pre><span></span>./artisan audit:port-speeds
 
 Audit of Configured Physical Interface Port Speeds Against SNMP Discovered Speeds
 
@@ -546,11 +549,13 @@ Audit of Configured Physical Interface Port Speeds Against SNMP Discovered Speed
 | AS112 Reverse DNS [AS112]    | 21       | swi2-nwb1-1    | X670G2-48x-4q Port 15 | 0        | 1000       |
 | INEX [AS2128]                | 357      | swic-cix-2     | GigabitEthernet27     | 100      | 1000       |
 | AS112 Reverse DNS [AS112]    | 590      | swt-cwt1-edge1 | swp3                  | 10000    | 1000       |
-+------------------------------+----------+----------------+-----------------------+----------+------------+</code></pre>
++------------------------------+----------+----------------+-----------------------+----------+------------+
+</pre></div>
 
 <p>The above examples are edge cases as they are not physically connected devices but rather virtual machines. This audit can be added to cron such that it will only make noise if an issue is found with something like:</p>
-<pre class="highlight"><code>13 9 * * *   www-data     /srv/ixpmanager/artisan audit:port-speeds \
-                            --cron --ignore-pids 14,15,16,21,357,590</code></pre>
+<div class="highlight"><pre><span></span>13 9 * * *   www-data     /srv/ixpmanager/artisan audit:port-speeds \
+                            --cron --ignore-pids 14,15,16,21,357,590
+</pre></div>
               
             </div>
           </div>
