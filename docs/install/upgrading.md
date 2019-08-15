@@ -82,7 +82,7 @@ The general process is:
     # (you really should take a mysqldump of your database first)
     # migrate:
     php artisan doctrine:schema:update --force
-    php migrate
+    php artisan migrate
     ```
 
 7. Restart Memcached (yes, again). Do not forget / skip this step!
