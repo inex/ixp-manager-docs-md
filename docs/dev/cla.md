@@ -19,7 +19,7 @@ Company Limited By Guarantee, hereinafter known as "INEX".
 
 Please complete the following information about You and the Contributions.
 If You have questions about these terms, please contact us at
-manager@inex.ie.
+operations@inex.ie.
 
 You accept and agree to the following terms and conditions for Your present
 and future Contributions submitted to INEX.  Except for the license granted
