@@ -4,6 +4,10 @@
 
 IXP Manager uses PeeringDB in a number of current (and planned) ways.
 
+## OAuth - User Authentication
+
+IXP Manager can authenticate users via their PeeringDB account and affiliations. Please [see this page for full details and instructions](peeringdb-oauth.md).
+
 ## Population of Data When Adding Customers
 
 Much of the information required to add new customers to IXP Manager can be prepopulated from PeeringDB by entering the customer's ASN into the box provided on the add customer page:
