@@ -397,17 +397,20 @@
                 <h1 id="peeringdb-oauth">PeeringDB - OAuth<a class="headerlink" href="#peeringdb-oauth" title="Permanent link"></a></h1>
 <p>IXP Manager can authenticate users via their PeeringDB account and affiliations (from V5.2.0). This is hugely beneficial for your customers who are members of multiple IXPs which use IXP Manager - it means they only need their PeeringDB account to access their portal at each of those IXs.</p>
 <p><strong>NB:</strong> this feature is not set up by default as it requires some configuration on both PeeringDB and your IXP Manager installation.</p>
-<p><strong>Is there a security risk?</strong> Well, we at INEX do not think so and have developed and enabled this feature for our members. Our considerations included:</p>
-<ul>
-<li>the default access permission is <a href="../../usage/users/"><em>customer user</em></a> which is read-only access.</li>
-<li>the good people at PeeringDB do a good job at verifying that the users they add to a network / organisation is associated with that organisation.</li>
-</ul>
+<h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link"></a></h3>
+<p><strong>Is there a security risk?</strong></p>
+<p>Well, we at INEX do not think so and we have developed and enabled this feature for our members.</p>
+<p>By enabling PeeringDB OAuth, you are creating a path that delegates authentication and authorization of users on your platform. This is not a decision that was rushed into. PeeringDB has become the industry standard database for network operators and the PeeringDB team take the job of assessing whether someone should be affiliated with a network seriously.</p>
+<p>We at INEX also discussed this functionality with a wide variety of people in our industry and the opinion was overwhelmingly in favor with no known dissenters.</p>
+<p>Lastly, we have developed this in a security-conscious way. New users get read-only access by default. All information from PeeringDB is validated and a number of other confirmatory steps are taken. You can read all about this in the <a href="./#oauth-user-creation">OAuth User Creation</a> section below.</p>
 <h2 id="configuring-peeringdb-for-oauth">Configuring PeeringDB for OAuth<a class="headerlink" href="#configuring-peeringdb-for-oauth" title="Permanent link"></a></h2>
+<p>There are two steps to configuring OAuth for PeeringDB - first set it up on PeeringDB and then, using the tokens generated there, configure IXP Manager.</p>
+<h3 id="configuring-peeringdb">Configuring PeeringDB<a class="headerlink" href="#configuring-peeringdb" title="Permanent link"></a></h3>
 <p>The first step is to create your IXP Manager OAuth <em>application</em> through your PeeringDB account:</p>
 <ol>
 <li>Log into your PeeringDB account at https://www.peeringdb.com/login</li>
 <li>Access the OAuth applications page by either:<ul>
-<li>browsing directly to: https://www.peeringdb.com/oauth2/applications/; or</li>
+<li>browsing directly to: https://www.peeringdb.com/oauth2/applications/ after logging in; or</li>
 <li>access your profile by clicking on your username on the top right and then click on <em>Manage OAuth Applications</em> on the bottom left.</li>
 </ul>
 </li>
@@ -425,19 +428,21 @@
 </ol>
 <p>Here is a sample form on PeeringDB:</p>
 <p><img alt="Adding IXP Manager to PeeringDB's OAuth Applications" src="../img/peeringdb-oauth-pdb-setup.png" /></p>
-<h2 id="configuring-ixp-manager-for-peeringdb-oauth">Configuring IXP Manager for PeeringDB OAuth<a class="headerlink" href="#configuring-ixp-manager-for-peeringdb-oauth" title="Permanent link"></a></h2>
+<h2 id="configuring-ixp-manager">Configuring IXP Manager<a class="headerlink" href="#configuring-ixp-manager" title="Permanent link"></a></h2>
 <p>To enable OAuth with PeeringDB on IXP Manager, set the following options in your <code>.env</code> file:</p>
-<pre class="highlight"><code>AUTH_PEERINGDB_ENABLED=true
+<div class="highlight"><pre><span></span>AUTH_PEERINGDB_ENABLED=true
 
-PEERINGDB_OAUTH_CLIENT_ID="xxx"
-PEERINGDB_OAUTH_CLIENT_SECRET="xxx"
-PEERINGDB_OAUTH_REDIRECT="https://www.example.com/auth/login/peeringdb/callback"</code></pre>
+PEERINGDB_OAUTH_CLIENT_ID=&quot;xxx&quot;
+PEERINGDB_OAUTH_CLIENT_SECRET=&quot;xxx&quot;
+PEERINGDB_OAUTH_REDIRECT=&quot;https://www.example.com/auth/login/peeringdb/callback&quot;
+</pre></div>
 
-<p>while replacing the values for the those from the PeeringDB set-up above.</p>
+<p>while replacing the configuration values for the those from the PeeringDB set-up above.</p>
 <p>Once this is complete, you'll find a new option on IXP Manager's login form:</p>
 <p><img alt="IXP Manager with PeeringDB's OAuth Option" src="../img/peeringdb-oauth-pdb-login.png" /></p>
 <p>By default, new users are created on IXP Manager as read-only <em>customer users</em>. You can change this to read-write <em>customer admin</em> users by additionally setting the following option:</p>
-<pre class="highlight"><code>AUTH_PEERINGDB_PRIVS=2</code></pre>
+<div class="highlight"><pre><span></span>AUTH_PEERINGDB_PRIVS=2
+</pre></div>
 
 <h2 id="oauth-user-creation">OAuth User Creation<a class="headerlink" href="#oauth-user-creation" title="Permanent link"></a></h2>
 <p>When IXP Manager receives an OAuth login request from PeeringDB, it goes through a number of validation, creation and deletion steps:</p>
@@ -448,13 +453,13 @@ PEERINGDB_OAUTH_REDIRECT="https://www.example.com/auth/login/peeringdb/callback"
 <li>Load or create a user on IXP Manager with a matching PeeringDB user ID. Whether the user already existed or needs to be created, the name and email are updated to match PeeringDB. If the user is to be created then:<ul>
 <li>username is set from the PeeringDB provided name (or <code>unknownpdbuser</code>) using <code>s/[^a-z0-9\._\-]/./</code> with an incrementing integer concatenated as necessary for uniqueness.</li>
 <li>database column <code>user.peeringdb_id</code> set to PeeringDB's user ID.</li>
-<li>cryptographically secure random password set (user not provided with this - will need to do a password reset to set their own password).</li>
+<li>cryptographically secure random password set (user not provided with this - they will need to do a password reset to set their own password if so desired).</li>
 <li>database column <code>user.creator</code> set to <code>OAuth-PeeringDB</code>.</li>
 </ul>
 </li>
 <li>Iterate through the user's current affiliated customers on IXP Manager and remove <em>any that were previously added by the PeeringDB OAuth process</em> but are no longer in PeeringDB's affiliated networks list.</li>
 <li>Iterate through PeeringDB's affiliated networks list and identify those that are not already linked in IXP Manager - the potential new networks list.</li>
-<li>For each network in the potential new networks list, add it to the user if:<ul>
+<li>For each network in the potential new networks list, affiliate it with the user if:<ul>
 <li>the network exists on IXP Manager;</li>
 <li>the network is a peering network (customer type full or pro-bono);</li>
 <li>the network state in IXP Manager is <em>Normal</em>; and</li>
@@ -465,11 +470,14 @@ PEERINGDB_OAUTH_REDIRECT="https://www.example.com/auth/login/peeringdb/callback"
 </ol>
 <h2 id="identifying-oauth-users">Identifying OAuth Users<a class="headerlink" href="#identifying-oauth-users" title="Permanent link"></a></h2>
 <p>If <code>AUTH_PEERINGDB_ENABLED</code> is enabled in your <code>.env</code>, you will see a column called <em>OAuth</em> in the <em>Users</em> list table (accessed via the left hand side menu). This will indicate if the user was created by OAuth (Y) or not (N).</p>
-<p>When viewing a user's details (<em>eye button</em> on the users list), it will show how the user was created and also how the user was associated with a particular customer. The same is also shown when editing users.</p>
+<p>When viewing a user's details (<em>eye button</em> on the users list), it will show how the user was created and also how the user was affiliated with a particular customer. The same is also shown when editing users.</p>
 <h2 id="historical-notes">Historical Notes<a class="headerlink" href="#historical-notes" title="Permanent link"></a></h2>
-<p>PeeringDB OAuth with IXP Manager as an idea dates from early 2017 when Jon Snijders proposed it in GitHub issue <a href="https://github.com/peeringdb/peeringdb/issues/131">peeringdb/peeringdb#131</a>. We recognised the benefits immediately and opened a parallel ticket at <a href="https://github.com/inex/IXP-Manager/issues/322">inex/IXP-Manager#322</a>. The back ground discussions at this point were that PeeringDB would be prepared to invest developer time if IXP Manager committed to implementing it.</p>
+<p>PeeringDB OAuth with IXP Manager as an idea dates from early 2017 when Job Snijders proposed it in GitHub issue <a href="https://github.com/peeringdb/peeringdb/issues/131">peeringdb/peeringdb#131</a>. We recognized the benefits immediately and opened a parallel ticket at <a href="https://github.com/inex/IXP-Manager/issues/322">inex/IXP-Manager#322</a>. The background discussions at this point were that PeeringDB would be prepared to invest developer time if IXP Manager committed to implementing it. We both did.</p>
 <p>PeeringDB's <a href="https://docs.peeringdb.com/oauth/">OAuth documenation can be found here</a>.</p>
-<p>As part of the development process, we wrote a provider for the Laravel Socialite package which was merged into that package via the <a href="https://github.com/SocialiteProviders/Providers/pull/310">SocialiteProviders/Providers#310</a> pull request.</p>
+<p>As part of the development process, we wrote a provider for the <a href="https://laravel.com/docs/6.0/socialite">Laravel Socialite</a> package which was merged into that package via the <a href="https://github.com/SocialiteProviders/Providers/pull/310">SocialiteProviders/Providers#310</a> pull request.</p>
+<h2 id="development-notes">Development Notes<a class="headerlink" href="#development-notes" title="Permanent link"></a></h2>
+<p>Testing in development needs to be setup following the instructions above. While PeeringDB has a <a href="https://beta.peeringdb.com/">beta site</a>, the actual OAuth URL is hard coded into Socialite. You can test against production or edit the two URLs in this file: <code>data/SocialiteProviders/src/PeeringDB/Provider.php</code>.</p>
+<p>For local testing, you'll need both SSL and a way for PeeringDB to redirect back to you. <code>valet share</code> from <a href="https://laravel.com/docs/6.0/valet">Laravel Valet</a> is perfect for this.</p>
               
             </div>
           </div>

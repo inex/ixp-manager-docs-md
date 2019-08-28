@@ -421,13 +421,14 @@
 <h2 id="rpki-validator-local-cache">RPKI Validator / Local Cache<a class="headerlink" href="#rpki-validator-local-cache" title="Permanent link"></a></h2>
 <p>IXP Manager uses the RPKI-RTR protocol to feed ROAs to the Bird router instances. We recommend you install two of these validators/local caches from different vendors.</p>
 <p>Let IXP Manager know where they are by setting the following <code>.env</code> settings:</p>
-<pre class="highlight"><code># IP address and port of the first RPKI local cache:
+<div class="highlight"><pre><span></span># IP address and port of the first RPKI local cache:
 IXP_RPKI_RTR1_HOST=192.0.2.11
 IXP_RPKI_RTR1_PORT=3323
 
 # While not required, we recommend you also install a second validator:
 # IXP_RPKI_RTR2_HOST=192.0.2.12
-# IXP_RPKI_RTR2_PORT=3323</code></pre>
+# IXP_RPKI_RTR2_PORT=3323
+</pre></div>
 
 <p>INEX has installed three local caches. As of May 2019, we would recommend Cloudflare's RPKI Toolkit and NLnetLabs Routinator 3000. We had a number of issues with the current implementation of RIPE's version (excessive disk usage, regularly crashing).</p>
 <p>See our installation notes for these:</p>
@@ -438,7 +439,8 @@ IXP_RPKI_RTR1_PORT=3323
 </ol>
 <h2 id="revalidation">Revalidation<a class="headerlink" href="#revalidation" title="Permanent link"></a></h2>
 <p>As it stands, Bird v2.0.4 does not support revalidation of prefixes following ROA updates (i.e. a prefix that was accepted as ROA valid that subsequently becomes ROA unknown / invalid will remain learnt as ROA valid). The Bird developers are working on fixing this. In the interim, you need to schedule a revalidation via cron using a <code>/etc/crontab</code> entry such as:</p>
-<pre class="highlight"><code>20 11,23 * * *   root    /usr/sbin/birdc -s /var/run/bird/bird-rs1-ipv4.ctl reload in all &gt;/dev/null</code></pre>
+<div class="highlight"><pre><span></span>20 11,23 * * *   root    /usr/sbin/birdc -s /var/run/bird/bird-rs1-ipv4.ctl reload in all &gt;/dev/null
+</pre></div>
 
 <h2 id="enabling-rpki">Enabling RPKI<a class="headerlink" href="#enabling-rpki" title="Permanent link"></a></h2>
 <p>The outline procedure to enable RPKI is below. These notes are written from the perspective that you have existing IXP Manager Bird v1 route servers. If this is a green field site, these notes will work just as well by ignoring the upgrade bits. <strong>In either case, it's vital you already understand <a href="../routers/">how to configure routers in IXP Manager</a>.</strong></p>
@@ -446,29 +448,31 @@ IXP_RPKI_RTR1_PORT=3323
 <p>Start by installing two local caches / validator services as linked above. INEX uses Cloudflare's and Routinator 3000. You should also add these to your production monitoring service.</p>
 <p>Once your maintenance window starts, stop the target route server you plan to upgrade. You'll then need to to remove the Bird v1 package (<code>dpkg -r bird</code> on Ubuntu). Once the Bird package is removed, you can perform a distribution upgrade if you wish.</p>
 <p>At time of writing (May 2019), there are no Bird v2 packages for Debian or Ubuntu. As such, you need to install from source. Rather than installing a build environment and compiling on each server, you can do this on a single server (a dedicated build box / admin server / etc) and then distribute the package across your route servers / collector:</p>
-<pre class="highlight"><code class="language-sh"># Install Ubuntu build packages and libraries Bird requires:
-apt install -y build-essential libssh-dev libreadline-dev \
+<div class="highlight"><pre><span></span><span class="c1"># Install Ubuntu build packages and libraries Bird requires:</span>
+apt install -y build-essential libssh-dev libreadline-dev <span class="se">\</span>
     libncurses-dev flex bison checkinstall
 
-# At time of writing, the latest release was v2.0.4.
-# Check for newer versions!
-cd /usr/src
+<span class="c1"># At time of writing, the latest release was v2.0.4.</span>
+<span class="c1"># Check for newer versions!</span>
+<span class="nb">cd</span> /usr/src
 wget ftp://bird.network.cz/pub/bird/bird-2.0.4.tar.gz
 tar zxf  bird-2.0.4.tar.gz
-cd bird-2.0.4/
-./configure  --prefix=/usr --sysconfdir=/etc
+<span class="nb">cd</span> bird-2.0.4/
+./configure  --prefix<span class="o">=</span>/usr --sysconfdir<span class="o">=</span>/etc
 make -j2
-checkinstall -y</code></pre>
+checkinstall -y
+</pre></div>
 
 <p>The <code>checkinstall</code> tool creates a deb package file: <code>/usr/local/src/bird-2.0.4/bird_2.0.4-1_amd64.deb</code></p>
 <p><strong>NB: for this method to work, you must be running the same operating system and version on the target servers as the build box.</strong> For us, it was Ubuntu 18.04 LTS on all systems.</p>
 <p>To install on a target machine:</p>
-<pre class="highlight"><code class="language-sh"># from build machine
+<div class="highlight"><pre><span></span><span class="c1"># from build machine</span>
 scp bird_2.0.4-1_amd64.deb target-machine:/tmp
 
-# on target machine
+<span class="c1"># on target machine</span>
 apt install -y libssh-dev libreadline-dev libncurses-dev
-dpkg -i /tmp/bird_2.0.4-1_amd64.deb</code></pre>
+dpkg -i /tmp/bird_2.0.4-1_amd64.deb
+</pre></div>
 
 <p>You now need to update your route server record in IXP Manager:</p>
 <ul>
@@ -478,13 +482,14 @@ dpkg -i /tmp/bird_2.0.4-1_amd64.deb</code></pre>
 </ul>
 <p>Note that the Bird v2 template uses large BGP communities extensively internally. The option <em>Enable Large BGP Communities / RFC8092</em> only controls whether your members can use large communities for filtering. <em>It's 2019 - you should really enable this.</em></p>
 <p>As mentioned above, you need to let IXP Manager know where your local caching / validators are by setting the following <code>.env</code> settings:</p>
-<pre class="highlight"><code># IP address and port of the first RPKI local cache:
+<div class="highlight"><pre><span></span># IP address and port of the first RPKI local cache:
 IXP_RPKI_RTR1_HOST=192.0.2.11
 IXP_RPKI_RTR1_PORT=3323
 
 # While not required, we recommend you also install a second validator:
 IXP_RPKI_RTR2_HOST=192.0.2.12
-IXP_RPKI_RTR2_PORT=3323</code></pre>
+IXP_RPKI_RTR2_PORT=3323
+</pre></div>
 
 <p>Take a look at the generated configuration within IXP Manager now and sanity check it.</p>
 <p>If you have been using <a href="https://github.com/inex/IXP-Manager/tree/release-v5/tools/runtime/route-servers">our scripts</a> to reload route server configurations, you will need to download <a href="https://github.com/inex/IXP-Manager/blob/release-v5/tools/runtime/route-servers/api-reconfigure-example-birdv2.sh">the new one</a> (and edit the lines at the top) or update your existing one. The main elements that need to be changed is that the daemon name is not longer named differently for IPv6 (Bird v1 had <code>bird/birdc</code> and <code>bird6/bird6c</code> where as Bird v2 only has <code>bird/birdc</code>).</p>
@@ -493,13 +498,14 @@ IXP_RPKI_RTR2_PORT=3323</code></pre>
 <h2 id="bird-operational-notes">Bird Operational Notes<a class="headerlink" href="#bird-operational-notes" title="Permanent link"></a></h2>
 <p>These notes are valid when using IXP Manager's Bird v2 with RPKI route server configuration.</p>
 <p>You can see the status of the RPKI-RTR protocol with:</p>
-<pre class="highlight"><code>bird&gt; show protocols "rpki*"
+<div class="highlight"><pre><span></span>bird&gt; show protocols &quot;rpki*&quot;
 Name       Proto      Table      State  Since         Info
 rpki1      RPKI       ---        up     2019-05-11 14:51:40  Established
-rpki2      RPKI       ---        up     2019-05-11 12:44:25  Established</code></pre>
+rpki2      RPKI       ---        up     2019-05-11 12:44:25  Established
+</pre></div>
 
 <p>And you can see detailed information with:</p>
-<pre class="highlight"><code>bird&gt; show protocols all rpki1
+<div class="highlight"><pre><span></span>bird&gt; show protocols all rpki1
 Name       Proto      Table      State  Since         Info
 rpki1      RPKI       ---        up     2019-05-11 14:51:40  Established
   Cache server:     10.39.5.123:3323
@@ -524,23 +530,26 @@ rpki1      RPKI       ---        up     2019-05-11 14:51:40  Established
       Import withdraws:         2519          0        ---          0       3367
       Export updates:              0          0          0        ---          0
       Export withdraws:            0        ---        ---        ---          0
-  No roa6 channel</code></pre>
+  No roa6 channel
+</pre></div>
 
 <p>You can examine the ROA table with:</p>
-<pre class="highlight"><code>bird&gt; show route table t_roa
+<div class="highlight"><pre><span></span>bird&gt; show route table t_roa
 Table t_roa:
 58.69.253.0/24-24 AS36776  [rpki1 2019-05-11 14:51:40] * (100)
-                           [rpki2 2019-05-11 12:45:45] (100)</code></pre>
+                           [rpki2 2019-05-11 12:45:45] (100)
+</pre></div>
 
 <p>Now, using INEX's route collector ASN (<code>2128</code>) as an example here - change for your own collector/server ASN - you can find RPKI invalid and filtered routes via:</p>
-<pre class="highlight"><code>bird&gt; show route  where bgp_large_community ~ [(2128,1101,13)]
+<div class="highlight"><pre><span></span>bird&gt; show route  where bgp_large_community ~ [(2128,1101,13)]
 Table master4:
 136.146.52.0/22      unicast [pb_as15169_vli99_ipv4 2019-05-11 01:00:17] * (100) [AS396982e]
         via 185.6.36.57 on eth1
-...</code></pre>
+...
+</pre></div>
 
 <p>At time of writing, the filtered reason communities are:</p>
-<pre class="highlight"><code>define IXP_LC_FILTERED_PREFIX_LEN_TOO_LONG      = ( routeserverasn, 1101, 1  );
+<div class="highlight"><pre><span></span>define IXP_LC_FILTERED_PREFIX_LEN_TOO_LONG      = ( routeserverasn, 1101, 1  );
 define IXP_LC_FILTERED_PREFIX_LEN_TOO_SHORT     = ( routeserverasn, 1101, 2  );
 define IXP_LC_FILTERED_BOGON                    = ( routeserverasn, 1101, 3  );
 define IXP_LC_FILTERED_BOGON_ASN                = ( routeserverasn, 1101, 4  );
@@ -554,18 +563,20 @@ define IXP_LC_FILTERED_PREFIX_NOT_IN_ORIGIN_AS  = ( routeserverasn, 1101, 11 );
 define IXP_LC_FILTERED_RPKI_UNKNOWN             = ( routeserverasn, 1101, 12 );
 define IXP_LC_FILTERED_RPKI_INVALID             = ( routeserverasn, 1101, 13 );
 define IXP_LC_FILTERED_TRANSIT_FREE_ASN         = ( routeserverasn, 1101, 14 );
-define IXP_LC_FILTERED_TOO_MANY_COMMUNITIES     = ( routeserverasn, 1101, 15 );</code></pre>
+define IXP_LC_FILTERED_TOO_MANY_COMMUNITIES     = ( routeserverasn, 1101, 15 );
+</pre></div>
 
 <p>Check the route server configuration as generated by IXP Manager for the current list if you are reading this on a version later than v5.0.</p>
 <p>If you want to see if a specific IP is covered by a ROA, use:</p>
-<pre class="highlight"><code>bird&gt; show route table t_roa where 45.114.234.0 ~ net
+<div class="highlight"><pre><span></span>bird&gt; show route table t_roa where 45.114.234.0 ~ net
 Table t_roa:
 45.114.234.0/24-24 AS59347  [rpki1 2019-05-11 14:51:40] * (100)
                             [rpki2 2019-05-11 12:45:45] (100)
 45.114.232.0/22-24 AS59347  [rpki1 2019-05-11 14:51:40] * (100)
                             [rpki2 2019-05-11 12:45:45] (100)
 45.114.232.0/22-22 AS59347  [rpki1 2019-05-11 14:51:41] * (100)
-                            [rpki2 2019-05-11 12:45:45] (100)</code></pre>
+                            [rpki2 2019-05-11 12:45:45] (100)
+</pre></div>
               
             </div>
           </div>
