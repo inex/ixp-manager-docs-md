@@ -10,7 +10,7 @@ IXP Manager can authenticate users via their PeeringDB account and affiliations 
 
 Well, we at INEX do not think so and we have developed and enabled this feature for our members.
 
-By enabling PeeringDB OAuth, you are creating a path that delegates authentication and authorization of users on your platform. This is not a decision that was rushed into. PeeringDB has become the industry standard database for network operators and the PeeringDB team take the job of assessing whether someone should be affiliated with a network seriously.
+By enabling PeeringDB OAuth, you are creating a path that delegates authentication and authorization of users on your platform to PeeringDB. This is not a decision that was rushed into. It is particularly notable that PeeringDB is the industry-standard database for network operators and the PeeringDB team take the job of assessing whether someone should be affiliated with a network seriously.
 
 We at INEX also discussed this functionality with a wide variety of people in our industry and the opinion was overwhelmingly in favor with no known dissenters.
 
