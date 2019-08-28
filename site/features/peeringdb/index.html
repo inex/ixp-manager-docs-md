@@ -431,15 +431,16 @@
 <p>Much of the information required to add new customers to IXP Manager can be prepopulated from PeeringDB by entering the customer's ASN into the box provided on the add customer page:</p>
 <p><img alt="Adding customers with PeeringDB" src="../img/peeringdb-add-customer.png" /></p>
 <p>For maximum benefit, you should configure a user on PeeringDB for your IXP Manager installation and set these details in the <code>.env</code> file:</p>
-<pre class="highlight"><code>#######################################################################################
+<div class="highlight"><pre><span></span>#######################################################################################
 # PeeringDB Authentication
 #
-# PeeringDb's API is used, for example, to pre-populate new customer details. If you
+# PeeringDb&#39;s API is used, for example, to pre-populate new customer details. If you
 # provide a working PeeringDb username/password then these will be used to get more
 # complete information.
 #
 IXP_API_PEERING_DB_USERNAME=username
-IXP_API_PEERING_DB_PASSWORD=password</code></pre>
+IXP_API_PEERING_DB_PASSWORD=password
+</pre></div>
 
 <h2 id="syncing-ixp-owned-data-to-peeringdb-customer-records">Syncing IXP Owned Data to PeeringDB Customer Records<a class="headerlink" href="#syncing-ixp-owned-data-to-peeringdb-customer-records" title="Permanent link"></a></h2>
 <p>PeeringDB can take data from your IXP Manager installation via the <a href="../ixf-export/">IX-F Export</a> schema that is part of IXP Manager. PeeringDB requires two things for this to work:</p>
@@ -454,8 +455,9 @@ IXP_API_PEERING_DB_PASSWORD=password</code></pre>
 <h2 id="existence-of-peeringdb-records">Existence of PeeringDB Records<a class="headerlink" href="#existence-of-peeringdb-records" title="Permanent link"></a></h2>
 <p>On the customer overview page from IXP Manager v5.0, we provide an indication (yes/no) as to whether a customer has a PeeringDB record. Generally it is important for IXPs to encourage their members to create PeeringDB entries to ensure your IXP is properly represented on their database.</p>
 <p>Whether a customer has a PeeringDB entry is updated daily via the <a href="task scheduler">cronjobs.md</a>. If you want to run it manually, run this Artisan command:</p>
-<pre class="highlight"><code class="language-sh">$ php artisan ixp-manager:update-in-peeringdb -vv
-PeeringDB membership updated - before/after/missing: 92/92/17</code></pre>
+<div class="highlight"><pre><span></span>$ php artisan ixp-manager:update-in-peeringdb -vv
+PeeringDB membership updated - before/after/missing: 92/92/17
+</pre></div>
 
 <p>As you'll see from the output, it will show you the results. We will provide more tooling within IXP Manager to show this information in time.</p>
 <h2 id="facilities">Facilities<a class="headerlink" href="#facilities" title="Permanent link"></a></h2>
