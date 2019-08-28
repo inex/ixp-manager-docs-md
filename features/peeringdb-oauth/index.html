@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>PeeringDB - IXP Manager Documentation</title>
+  <title>PeeringDB - OAuth - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "PeeringDB";
-    var mkdocs_page_input_path = "features/peeringdb.md";
-    var mkdocs_page_url = "/features/peeringdb/";
+    var mkdocs_page_name = "PeeringDB - OAuth";
+    var mkdocs_page_input_path = "features/peeringdb-oauth.md";
+    var mkdocs_page_url = "/features/peeringdb-oauth/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -203,33 +203,9 @@
                     
     <a class="" href="../peering-matrix/">Peering Matrix</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">PeeringDB</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#peeringdb">PeeringDB</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#oauth-user-authentication">OAuth - User Authentication</a></li>
-        
-            <li><a class="toctree-l4" href="#population-of-data-when-adding-customers">Population of Data When Adding Customers</a></li>
-        
-            <li><a class="toctree-l4" href="#syncing-ixp-owned-data-to-peeringdb-customer-records">Syncing IXP Owned Data to PeeringDB Customer Records</a></li>
-        
-            <li><a class="toctree-l4" href="#asn-detail">ASN Detail</a></li>
-        
-            <li><a class="toctree-l4" href="#existence-of-peeringdb-records">Existence of PeeringDB Records</a></li>
-        
-            <li><a class="toctree-l4" href="#facilities">Facilities</a></li>
-        
-            <li><a class="toctree-l4" href="#infrastructures-and-peeringdb-ixp-entry">Infrastructures and PeeringDB IXP Entry</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../peeringdb/">PeeringDB</a>
                 </li>
                 <li class="">
                     
@@ -404,15 +380,11 @@
     <li><a href="../..">Docs</a> &raquo;</li>
     
       
-        
-          <li>Features &raquo;</li>
-        
-      
     
-    <li>PeeringDB</li>
+    <li>PeeringDB - OAuth</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/peeringdb.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/peeringdb-oauth.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -422,62 +394,86 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="peeringdb">PeeringDB<a class="headerlink" href="#peeringdb" title="Permanent link"></a></h1>
-<p><a href="https://www.peeringdb.com/">PeeringDB</a> is a freely available, user-maintained, database of networks and interconnection data. The database facilitates the global interconnection of networks at Internet Exchange Points (IXPs), data centers, and other interconnection facilities. The database is a non-profit, community-driven initiative run and promoted by volunteers. It is a public tool for the growth and good of the internet.</p>
-<p>IXP Manager uses PeeringDB in a number of current (and planned) ways.</p>
-<h2 id="oauth-user-authentication">OAuth - User Authentication<a class="headerlink" href="#oauth-user-authentication" title="Permanent link"></a></h2>
-<p>IXP Manager can authenticate users via their PeeringDB account and affiliations. Please <a href="../peeringdb-oauth/">see this page for full details and instructions</a>.</p>
-<h2 id="population-of-data-when-adding-customers">Population of Data When Adding Customers<a class="headerlink" href="#population-of-data-when-adding-customers" title="Permanent link"></a></h2>
-<p>Much of the information required to add new customers to IXP Manager can be prepopulated from PeeringDB by entering the customer's ASN into the box provided on the add customer page:</p>
-<p><img alt="Adding customers with PeeringDB" src="../img/peeringdb-add-customer.png" /></p>
-<p>For maximum benefit, you should configure a user on PeeringDB for your IXP Manager installation and set these details in the <code>.env</code> file:</p>
-<pre class="highlight"><code>#######################################################################################
-# PeeringDB Authentication
-#
-# PeeringDb's API is used, for example, to pre-populate new customer details. If you
-# provide a working PeeringDb username/password then these will be used to get more
-# complete information.
-#
-IXP_API_PEERING_DB_USERNAME=username
-IXP_API_PEERING_DB_PASSWORD=password</code></pre>
+                <h1 id="peeringdb-oauth">PeeringDB - OAuth<a class="headerlink" href="#peeringdb-oauth" title="Permanent link"></a></h1>
+<p>IXP Manager can authenticate users via their PeeringDB account and affiliations (from V5.2.0). This is hugely beneficial for your customers who are members of multiple IXPs which use IXP Manager - it means they only need their PeeringDB account to access their portal at each of those IXs.</p>
+<p><strong>NB:</strong> this feature is not set up by default as it requires some configuration on both PeeringDB and your IXP Manager installation.</p>
+<p><strong>Is there a security risk?</strong> Well, we at INEX do not think so and have developed and enabled this feature for our members. Our considerations included:</p>
+<ul>
+<li>the default access permission is <a href="../../usage/users/"><em>customer user</em></a> which is read-only access.</li>
+<li>the good people at PeeringDB do a good job at verifying that the users they add to a network / organisation is associated with that organisation.</li>
+</ul>
+<h2 id="configuring-peeringdb-for-oauth">Configuring PeeringDB for OAuth<a class="headerlink" href="#configuring-peeringdb-for-oauth" title="Permanent link"></a></h2>
+<p>The first step is to create your IXP Manager OAuth <em>application</em> through your PeeringDB account:</p>
+<ol>
+<li>Log into your PeeringDB account at https://www.peeringdb.com/login</li>
+<li>Access the OAuth applications page by either:<ul>
+<li>browsing directly to: https://www.peeringdb.com/oauth2/applications/; or</li>
+<li>access your profile by clicking on your username on the top right and then click on <em>Manage OAuth Applications</em> on the bottom left.</li>
+</ul>
+</li>
+<li>Click <em>[New Application]</em>.</li>
+<li>Complete the form as follows:<ul>
+<li>Set the name (e.g. <em>IXP Manager</em>).</li>
+<li>Record the client ID (needed for IXP Manager's configuration).</li>
+<li>Record the client secret (needed for IXP Manager's configuration).</li>
+<li>Set <em>Client type</em> to <em>Public</em>.</li>
+<li>Set <em>Authorization grant type</em> to <em>Authorization code</em>.</li>
+<li>For <em>Redirect urls</em>, you need to provide the fully qualified path to the <code>/auth/login/peeringdb/callback</code> action on your IXP Manager installation. For example, if the base URL of your IXP Manager installation is <code>https://www.example.com</code> then set redirect URL to <code>https://www.example.com/auth/login/peeringdb/callback</code>. <em>Note that for OAuth, it is mandatory to use https:// (encryption).</em></li>
+</ul>
+</li>
+<li>Click <em>[Save]</em>.</li>
+</ol>
+<p>Here is a sample form on PeeringDB:</p>
+<p><img alt="Adding IXP Manager to PeeringDB's OAuth Applications" src="../img/peeringdb-oauth-pdb-setup.png" /></p>
+<h2 id="configuring-ixp-manager-for-peeringdb-oauth">Configuring IXP Manager for PeeringDB OAuth<a class="headerlink" href="#configuring-ixp-manager-for-peeringdb-oauth" title="Permanent link"></a></h2>
+<p>To enable OAuth with PeeringDB on IXP Manager, set the following options in your <code>.env</code> file:</p>
+<pre class="highlight"><code>AUTH_PEERINGDB_ENABLED=true
 
-<h2 id="syncing-ixp-owned-data-to-peeringdb-customer-records">Syncing IXP Owned Data to PeeringDB Customer Records<a class="headerlink" href="#syncing-ixp-owned-data-to-peeringdb-customer-records" title="Permanent link"></a></h2>
-<p>PeeringDB can take data from your IXP Manager installation via the <a href="../ixf-export/">IX-F Export</a> schema that is part of IXP Manager. PeeringDB requires two things for this to work:</p>
-<p>First, you need to add your IX-F Export URL to your PeeringDB IX LAN entry:</p>
-<p><img alt="PeeringDB IX-F Export LAN Entry" src="../img/peeringdb-ixf-lans.png" /></p>
-<p>Secondly, and unfortunately, each individual network must opt in to having their data updated by this mechanism (data meaning connection to the exchange, peering IPs and port speeds). They do this via this option on their network page:</p>
-<p><img alt="PeeringDB IX-F Export Network Entry" src="../img/peeringdb-ixf-update.png" /></p>
-<h2 id="asn-detail">ASN Detail<a class="headerlink" href="#asn-detail" title="Permanent link"></a></h2>
-<p>In most places in IXP Manager, you can click on an ASN number. This uses PeeringDB's whois service to provide a quick view of that network's PeeringDB record.</p>
-<p>Here's a squashed screen shot just to illustrate the feature:</p>
-<p><img alt="PeeringDB Whois" src="../img/peeringdb-whois.png" /></p>
-<h2 id="existence-of-peeringdb-records">Existence of PeeringDB Records<a class="headerlink" href="#existence-of-peeringdb-records" title="Permanent link"></a></h2>
-<p>On the customer overview page from IXP Manager v5.0, we provide an indication (yes/no) as to whether a customer has a PeeringDB record. Generally it is important for IXPs to encourage their members to create PeeringDB entries to ensure your IXP is properly represented on their database.</p>
-<p>Whether a customer has a PeeringDB entry is updated daily via the <a href="task scheduler">cronjobs.md</a>. If you want to run it manually, run this Artisan command:</p>
-<pre class="highlight"><code class="language-sh">$ php artisan ixp-manager:update-in-peeringdb -vv
-PeeringDB membership updated - before/after/missing: 92/92/17</code></pre>
+PEERINGDB_OAUTH_CLIENT_ID="xxx"
+PEERINGDB_OAUTH_CLIENT_SECRET="xxx"
+PEERINGDB_OAUTH_REDIRECT="https://www.example.com/auth/login/peeringdb/callback"</code></pre>
 
-<p>As you'll see from the output, it will show you the results. We will provide more tooling within IXP Manager to show this information in time.</p>
-<h2 id="facilities">Facilities<a class="headerlink" href="#facilities" title="Permanent link"></a></h2>
-<p>When you add facilities (locations / points of presence / data centers) to IXP Manager, it pulls a list of known facilities from PeeringDB. You should select the correct one from the list (or add a missing one to PeeringDB) when you add/edit your facilities.</p>
-<p><img alt="PeeringDB Facility Add" src="../img/peeringdb-facility-add.png" /></p>
-<p>Note that this list is cached for two hours.</p>
-<h2 id="infrastructures-and-peeringdb-ixp-entry">Infrastructures and PeeringDB IXP Entry<a class="headerlink" href="#infrastructures-and-peeringdb-ixp-entry" title="Permanent link"></a></h2>
-<p>Similarly to adding facilities above, when you add an infrastructure (IXP) to IXP Manager, it pulls a list of known IXPs from PeeringDB. You should select the correct one from the list (or add a missing one to PeeringDB) when you add/edit your infrastructures.</p>
-<p>Note that this list is cached for two hours.</p>
+<p>while replacing the values for the those from the PeeringDB set-up above.</p>
+<p>Once this is complete, you'll find a new option on IXP Manager's login form:</p>
+<p><img alt="IXP Manager with PeeringDB's OAuth Option" src="../img/peeringdb-oauth-pdb-login.png" /></p>
+<p>By default, new users are created on IXP Manager as read-only <em>customer users</em>. You can change this to read-write <em>customer admin</em> users by additionally setting the following option:</p>
+<pre class="highlight"><code>AUTH_PEERINGDB_PRIVS=2</code></pre>
+
+<h2 id="oauth-user-creation">OAuth User Creation<a class="headerlink" href="#oauth-user-creation" title="Permanent link"></a></h2>
+<p>When IXP Manager receives an OAuth login request from PeeringDB, it goes through a number of validation, creation and deletion steps:</p>
+<ol>
+<li>Ensure there is a valid and properly formatted user data object from PeeringDB.</li>
+<li>Ensure that both the PeeringDB user account and the PeeringDB email address is verified.</li>
+<li>Validate the set of affiliated ASNs from PeeringDB and ensure at least one matching network configured on IXP Manager.</li>
+<li>Load or create a user on IXP Manager with a matching PeeringDB user ID. Whether the user already existed or needs to be created, the name and email are updated to match PeeringDB. If the user is to be created then:<ul>
+<li>username is set from the PeeringDB provided name (or <code>unknownpdbuser</code>) using <code>s/[^a-z0-9\._\-]/./</code> with an incrementing integer concatenated as necessary for uniqueness.</li>
+<li>database column <code>user.peeringdb_id</code> set to PeeringDB's user ID.</li>
+<li>cryptographically secure random password set (user not provided with this - will need to do a password reset to set their own password).</li>
+<li>database column <code>user.creator</code> set to <code>OAuth-PeeringDB</code>.</li>
+</ul>
+</li>
+<li>Iterate through the user's current affiliated customers on IXP Manager and remove <em>any that were previously added by the PeeringDB OAuth process</em> but are no longer in PeeringDB's affiliated networks list.</li>
+<li>Iterate through PeeringDB's affiliated networks list and identify those that are not already linked in IXP Manager - the potential new networks list.</li>
+<li>For each network in the potential new networks list, add it to the user if:<ul>
+<li>the network exists on IXP Manager;</li>
+<li>the network is a peering network (customer type full or pro-bono);</li>
+<li>the network state in IXP Manager is <em>Normal</em>; and</li>
+<li>the network is active (not cancelled).</li>
+</ul>
+</li>
+<li>If at the end of this process, the user is left with no affiliated networks, the user is deleted.</li>
+</ol>
+<h2 id="identifying-oauth-users">Identifying OAuth Users<a class="headerlink" href="#identifying-oauth-users" title="Permanent link"></a></h2>
+<p>If <code>AUTH_PEERINGDB_ENABLED</code> is enabled in your <code>.env</code>, you will see a column called <em>OAuth</em> in the <em>Users</em> list table (accessed via the left hand side menu). This will indicate if the user was created by OAuth (Y) or not (N).</p>
+<p>When viewing a user's details (<em>eye button</em> on the users list), it will show how the user was created and also how the user was associated with a particular customer. The same is also shown when editing users.</p>
+<h2 id="historical-notes">Historical Notes<a class="headerlink" href="#historical-notes" title="Permanent link"></a></h2>
+<p>PeeringDB OAuth with IXP Manager as an idea dates from early 2017 when Jon Snijders proposed it in GitHub issue <a href="https://github.com/peeringdb/peeringdb/issues/131">peeringdb/peeringdb#131</a>. We recognised the benefits immediately and opened a parallel ticket at <a href="https://github.com/inex/IXP-Manager/issues/322">inex/IXP-Manager#322</a>. The back ground discussions at this point were that PeeringDB would be prepared to invest developer time if IXP Manager committed to implementing it.</p>
+<p>PeeringDB's <a href="https://docs.peeringdb.com/oauth/">OAuth documenation can be found here</a>.</p>
+<p>As part of the development process, we wrote a provider for the Laravel Socialite package which was merged into that package via the <a href="https://github.com/SocialiteProviders/Providers/pull/310">SocialiteProviders/Providers#310</a> pull request.</p>
               
             </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../rir-objects/" class="btn btn-neutral float-right" title="RIR Objects">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../peering-matrix/" class="btn btn-neutral" title="Peering Matrix"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
@@ -505,10 +501,6 @@ PeeringDB membership updated - before/after/missing: 92/92/17</code></pre>
           <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../peering-matrix/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../rir-objects/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
