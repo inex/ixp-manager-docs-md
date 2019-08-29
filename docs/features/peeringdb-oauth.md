@@ -68,6 +68,14 @@ AUTH_PEERINGDB_PRIVS=2
 ```
 
 
+### Disabling On a Per-Customer Basis
+
+If PeeringDB OAuth is configured and enabled (`AUTH_PEERINGDB_ENABLED=true`) then it is enabled for all customers. However you may encounter a customer who does not want OAuth access enabled on their account. In this situation, IXP Manager allows you to disabled OAuth on a per-customer basis when adding or editing customers.
+
+Just uncheck the following option on the add / edit customer page:
+
+![IXP Manager with PeeringDB's Opt Out](img/peeringdb-oauth-pdb-opt-out.png)
+
 
 ## OAuth User Creation
 
