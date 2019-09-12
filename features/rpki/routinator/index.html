@@ -402,9 +402,10 @@
 </pre></div>
 
 <p>We then install the required software. <code>build-essential</code> is a Ubuntu alias package that installs the common C software build suite. <code>cargo</code> is Rust's package manager and installing that automatically installs other Rust dependancies.</p>
-<div class="highlight"><pre><span></span>apt install -y build-essential cargo
+<div class="highlight"><pre><span></span>apt install -y build-essential cargo rsync
 </pre></div>
 
+<p>You should have rust version &gt;=1.36.0 installed (check with <code>rustc -V</code>).</p>
 <p>To install Routinator, we then switch to the <code>routinator</code> user and use Cargo to build and install it:</p>
 <div class="highlight"><pre><span></span>sudo su - routinator
 cargo install routinator
@@ -412,11 +413,11 @@ cargo install routinator
 
 <p>To check if this works, run the following (and note the path to the <code>routinator</code> binary):</p>
 <p><div class="highlight"><pre><span></span>routinator@rpki01:~$ /srv/routinator/.cargo/bin/routinator -V
-Routinator 0.4
+Routinator 0.6.1
 </pre></div>
 Routinator needs to prepare its working environment via the <code>init</code> command, which will set up both
-the directory for the local RPKI cache as well as the TAL directory. Running it will prompt you to 
-agree to the <a href="https://www.arin.net/resources/manage/rpki/tal/">ARIN Relying Party Agreement (RPA)</a> 
+the directory for the local RPKI cache as well as the TAL directory. Running it will prompt you to
+agree to the <a href="https://www.arin.net/resources/manage/rpki/tal/">ARIN Relying Party Agreement (RPA)</a>
 so it can install the ARIN TAL along with the other four RIR TALs:</p>
 <div class="highlight"><pre><span></span>/srv/routinator/.cargo/bin/routinator init
 </pre></div>
@@ -479,6 +480,58 @@ and increases the log level to show the process in detail at least once):</p>
 
 <h2 id="monitoring">Monitoring<a class="headerlink" href="#monitoring" title="Permanent link"></a></h2>
 <p>We add Nagios http checks for port 8080 (HTTP) to our monitoring platform. We also add a <code>check_tcp</code> test for the RPKI-RTR port 3323.</p>
+<h2 id="http-interface">HTTP Interface<a class="headerlink" href="#http-interface" title="Permanent link"></a></h2>
+<p>The following is copied <a href="https://nlnetlabs.nl/documentation/rpki/routinator/">from Routinator's man page</a>. As a future work fixme, this should be used for better monitoring that just <code>check_tcp</code> above.</p>
+<div class="highlight"><pre><span></span>HTTP SERVICE
+       Routinator can provide an HTTP service allowing to fetch the  Validated
+       ROA  Payload in various formats. The service does not support HTTPS and
+       should only be used within the local network.
+
+       The service only supports GET requests with the following paths:
+
+
+       /csv   Returns the current set of VRPs in csv output format.
+
+       /json  Returns the current set of VRPs in json output format.
+
+       /metrics
+              Returns a set of  monitoring  metrics  in  the  format  used  by
+              Prometheus.
+
+       /openbgpd
+              Returns the current set of VRPs in openbgpd output format.
+
+       /rpsl  Returns the current set of VRPs in rpsl output format.
+
+       /status
+              Returns  the  current status of the Routinator instance. This is
+              similar to the output of the /metrics endpoint  but  in  a  more
+              human friendly format.
+
+       /version
+              Returns the version of the Routinator instance.
+
+       /api/v1/validity/as-number/prefix
+              Returns  a JSON object describing whether the route announcement
+              given by its origin AS number and address preifx is RPKI  valid,
+              invalid,  or  not found.  The returned object is compatible with
+              that provided by the RIPE NCC RPKI Validator. For more  informa-
+              tion,  see https://www.ripe.net/support/documentation/developer-
+              documentation/rpki-validator-api
+
+       /validity?asn=as-number&amp;prefix;=prefix
+              Same as above but with a more form-friendly calling convention.
+
+
+       The paths that output the current set of VRPs accept filter expressions
+       to  limit  the  VRPs  returned in the form of a query string. The field
+       filter-asn can be used to filter for ASNs and the  field  filter-prefix
+       can be used to filter for prefixes. The fields can be repeated multiple
+       times.
+
+       This works in the same way as the options of the same name to the  vrps
+       command.
+</pre></div>
               
             </div>
           </div>
