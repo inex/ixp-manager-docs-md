@@ -14,8 +14,10 @@ useradd -c 'Routinator 3000' -d /srv/routinator -m -s /bin/bash -u 1100 routinat
 We then install the required software. `build-essential` is a Ubuntu alias package that installs the common C software build suite. `cargo` is Rust's package manager and installing that automatically installs other Rust dependancies.
 
 ```sh
-apt install -y build-essential cargo
+apt install -y build-essential cargo rsync
 ```
+
+You should have rust version >=1.36.0 installed (check with `rustc -V`).
 
 To install Routinator, we then switch to the `routinator` user and use Cargo to build and install it:
 
@@ -28,11 +30,11 @@ To check if this works, run the following (and note the path to the `routinator`
 
 ```sh
 routinator@rpki01:~$ /srv/routinator/.cargo/bin/routinator -V
-Routinator 0.4
+Routinator 0.6.1
 ```
 Routinator needs to prepare its working environment via the `init` command, which will set up both
-the directory for the local RPKI cache as well as the TAL directory. Running it will prompt you to 
-agree to the [ARIN Relying Party Agreement (RPA)](https://www.arin.net/resources/manage/rpki/tal/) 
+the directory for the local RPKI cache as well as the TAL directory. Running it will prompt you to
+agree to the [ARIN Relying Party Agreement (RPA)](https://www.arin.net/resources/manage/rpki/tal/)
 so it can install the ARIN TAL along with the other four RIR TALs:
 
 ```sh
@@ -117,3 +119,59 @@ systemctl enable rpki-routinator.service
 ## Monitoring
 
 We add Nagios http checks for port 8080 (HTTP) to our monitoring platform. We also add a `check_tcp` test for the RPKI-RTR port 3323.
+
+## HTTP Interface
+
+The following is copied [from Routinator's man page](https://nlnetlabs.nl/documentation/rpki/routinator/). As a future work fixme, this should be used for better monitoring that just `check_tcp` above.
+
+```
+HTTP SERVICE
+       Routinator can provide an HTTP service allowing to fetch the  Validated
+       ROA  Payload in various formats. The service does not support HTTPS and
+       should only be used within the local network.
+
+       The service only supports GET requests with the following paths:
+
+
+       /csv   Returns the current set of VRPs in csv output format.
+
+       /json  Returns the current set of VRPs in json output format.
+
+       /metrics
+              Returns a set of  monitoring  metrics  in  the  format  used  by
+              Prometheus.
+
+       /openbgpd
+              Returns the current set of VRPs in openbgpd output format.
+
+       /rpsl  Returns the current set of VRPs in rpsl output format.
+
+       /status
+              Returns  the  current status of the Routinator instance. This is
+              similar to the output of the /metrics endpoint  but  in  a  more
+              human friendly format.
+
+       /version
+              Returns the version of the Routinator instance.
+
+       /api/v1/validity/as-number/prefix
+              Returns  a JSON object describing whether the route announcement
+              given by its origin AS number and address preifx is RPKI  valid,
+              invalid,  or  not found.  The returned object is compatible with
+              that provided by the RIPE NCC RPKI Validator. For more  informa-
+              tion,  see https://www.ripe.net/support/documentation/developer-
+              documentation/rpki-validator-api
+
+       /validity?asn=as-number&prefix;=prefix
+              Same as above but with a more form-friendly calling convention.
+
+
+       The paths that output the current set of VRPs accept filter expressions
+       to  limit  the  VRPs  returned in the form of a query string. The field
+       filter-asn can be used to filter for ASNs and the  field  filter-prefix
+       can be used to filter for prefixes. The fields can be repeated multiple
+       times.
+
+       This works in the same way as the options of the same name to the  vrps
+       command.
+```
