@@ -452,26 +452,26 @@ IXP_RPKI_RTR1_PORT=3323
 apt install -y build-essential libssh-dev libreadline-dev <span class="se">\</span>
     libncurses-dev flex bison checkinstall
 
-<span class="c1"># At time of writing, the latest release was v2.0.4.</span>
+<span class="c1"># At time of writing, the latest release was v2.0.6.</span>
 <span class="c1"># Check for newer versions!</span>
 <span class="nb">cd</span> /usr/src
-wget ftp://bird.network.cz/pub/bird/bird-2.0.4.tar.gz
-tar zxf  bird-2.0.4.tar.gz
-<span class="nb">cd</span> bird-2.0.4/
+wget ftp://bird.network.cz/pub/bird/bird-2.0.6.tar.gz
+tar zxf  bird-2.0.6.tar.gz
+<span class="nb">cd</span> bird-2.0.6/
 ./configure  --prefix<span class="o">=</span>/usr --sysconfdir<span class="o">=</span>/etc
 make -j2
 checkinstall -y
 </pre></div>
 
-<p>The <code>checkinstall</code> tool creates a deb package file: <code>/usr/local/src/bird-2.0.4/bird_2.0.4-1_amd64.deb</code></p>
+<p>The <code>checkinstall</code> tool creates a deb package file: <code>/usr/local/src/bird-2.0.6/bird_2.0.6-1_amd64.deb</code></p>
 <p><strong>NB: for this method to work, you must be running the same operating system and version on the target servers as the build box.</strong> For us, it was Ubuntu 18.04 LTS on all systems.</p>
 <p>To install on a target machine:</p>
 <div class="highlight"><pre><span></span><span class="c1"># from build machine</span>
-scp bird_2.0.4-1_amd64.deb target-machine:/tmp
+scp bird_2.0.6-1_amd64.deb target-machine:/tmp
 
 <span class="c1"># on target machine</span>
 apt install -y libssh-dev libreadline-dev libncurses-dev
-dpkg -i /tmp/bird_2.0.4-1_amd64.deb
+dpkg -i /tmp/bird_2.0.6-1_amd64.deb
 </pre></div>
 
 <p>You now need to update your route server record in IXP Manager:</p>
