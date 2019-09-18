@@ -54,18 +54,18 @@ At time of writing (May 2019), there are no Bird v2 packages for Debian or Ubunt
 apt install -y build-essential libssh-dev libreadline-dev \
     libncurses-dev flex bison checkinstall
 
-# At time of writing, the latest release was v2.0.4.
+# At time of writing, the latest release was v2.0.6.
 # Check for newer versions!
 cd /usr/src
-wget ftp://bird.network.cz/pub/bird/bird-2.0.4.tar.gz
-tar zxf  bird-2.0.4.tar.gz
-cd bird-2.0.4/
+wget ftp://bird.network.cz/pub/bird/bird-2.0.6.tar.gz
+tar zxf  bird-2.0.6.tar.gz
+cd bird-2.0.6/
 ./configure  --prefix=/usr --sysconfdir=/etc
 make -j2
 checkinstall -y
 ```
 
-The `checkinstall` tool creates a deb package file: `/usr/local/src/bird-2.0.4/bird_2.0.4-1_amd64.deb`
+The `checkinstall` tool creates a deb package file: `/usr/local/src/bird-2.0.6/bird_2.0.6-1_amd64.deb`
 
 **NB: for this method to work, you must be running the same operating system and version on the target servers as the build box.** For us, it was Ubuntu 18.04 LTS on all systems.
 
@@ -73,11 +73,11 @@ To install on a target machine:
 
 ```sh
 # from build machine
-scp bird_2.0.4-1_amd64.deb target-machine:/tmp
+scp bird_2.0.6-1_amd64.deb target-machine:/tmp
 
 # on target machine
 apt install -y libssh-dev libreadline-dev libncurses-dev
-dpkg -i /tmp/bird_2.0.4-1_amd64.deb
+dpkg -i /tmp/bird_2.0.6-1_amd64.deb
 ```
 
 You now need to update your route server record in IXP Manager:
