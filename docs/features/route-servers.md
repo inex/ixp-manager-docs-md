@@ -30,7 +30,8 @@ The features of the route server configurations that IXP Manager generates inclu
 * max prefix limits;
 * multiple VLAN interfaces for a single member supported;
 * large BGP communities supported;
-* over a decade of production use and experience.
+* [rfc1997 passthru / interpretation](#rfc1997-passthru) switch (>= v5.2.0);
+* nearly 15 years of production use and experience.
 
 With Bird v2 support in IXP Manager v5, we provide better looking glass integration and other tooling to show members which prefixes are filtered and why. The Bird v2 filtering mechanism is as follows:
 
@@ -95,6 +96,14 @@ IXP_FE_FRONTEND_DISABLED_FILTERED_PREFIXES=false
 
 This is a live view gathered from each Bird v2 route server with a looking glass.
 
+
+### RFC1997 Passthru
+
+[RFC1997](https://tools.ietf.org/html/rfc1997) defines some well-known communities including `NO_EXPORT` (`0xFFFFFF01 / 65535:65281`) and `NO_ADVERTISE` and states that they *have global significance and their operations shall be implemented in any community-attribute-aware BGP speaker*.
+
+According to [RFC7947](https://tools.ietf.org/html/rfc7947), it is a matter of local policy whether these well-known communities are interpreted or passed through. Historically, some IXP route servers interpret them and some pass them through. As such the behaviour of these well-known communities is not well-understood when it comes to route servers and this topic has been the subject of a good deal of debate in the IXP community over the years.
+
+In 2017, INEX and LONAP published [draft-hilliard-grow-no-export-via-rs-00](https://www.ietf.org/archive/id/draft-hilliard-grow-no-export-via-rs-00.txt) to try and create some consensus on this. While the draft was not accepted as a standard, the discussion drew a conclusion that these well-known communities should not be interpreted by the route server but passed through.
 
 ### Legacy Prefix Analysis Tool
 
