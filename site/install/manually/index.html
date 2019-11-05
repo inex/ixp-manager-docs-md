@@ -438,171 +438,156 @@ same and then versions of PHP are too numerous to provide individual
 support. As such, we recommend installing IXP Manager on Ubuntu LTS 18.04 and we officially support this platform.</p>
 <p>In fact we provide a complete installation script for this - see <a href="../automated-script/">the automated installation page</a> for details. If you have any issues with the manual installation, the automated script should be your first reference to compare what you are doing to what we recommend.</p>
 <p>For completeness, the IXP Manager installation script for Ubuntu 18.04 LTS installs:</p>
-<div class="highlight"><pre><span></span>apt-get install -qy apache2 php7.3 php7.3-intl php-rrd php7.3-cgi php7.3-cli      <span class="se">\</span>
-    php7.3-snmp php7.3-curl  php-memcached libapache2-mod-php7.3 mysql-server     <span class="se">\</span>
-    mysql-client php7.3-mysql memcached snmp php7.3-mbstring php7.3-xml php7.3-gd <span class="se">\</span>
-    php7.3-bcmath php-gettext bgpq3 php-memcache unzip php7.3-zip git php-yaml    <span class="se">\</span>
-    php-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl <span class="se">\</span>
-    libnetaddr-ip-perl rrdtool librrds-perl curl
-</pre></div>
+<pre class="highlight"><code class="language-sh">apt-get install -qy apache2 php7.3 php7.3-intl php-rrd php7.3-cgi php7.3-cli      \
+    php7.3-snmp php7.3-curl  php-memcached libapache2-mod-php7.3 mysql-server     \
+    mysql-client php7.3-mysql memcached snmp php7.3-mbstring php7.3-xml php7.3-gd \
+    php7.3-bcmath php-gettext bgpq3 php-memcache unzip php7.3-zip git php-yaml    \
+    php-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl \
+    libnetaddr-ip-perl rrdtool librrds-perl curl</code></pre>
 
 <p>If you are using a different platform, you will need to replicate the above as appropriate for your chosen platform.</p>
 <p>Note particularly that Ubuntu 18.04 does not ship with php 7.3 and you will need to add the following PPA for the above installation line to work:</p>
-<div class="highlight"><pre><span></span>apt-get install -yq software-properties-common
+<pre class="highlight"><code>apt-get install -yq software-properties-common
 add-apt-repository -y ppa:ondrej/php
-apt-get update -q
-</pre></div>
+apt-get update -q</code></pre>
 
 <h3 id="get-the-ixp-manager-source">Get the IXP Manager Source<a class="headerlink" href="#get-the-ixp-manager-source" title="Permanent link"></a></h3>
 <p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
 <p>Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source (our examples use <code>/srv/ixpmanager</code> which we refer to as <code>$IXPROOT</code>). Note that it <strong>should not</strong> be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>).</p>
-<div class="highlight"><pre><span></span><span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
-<span class="nb">cd</span> /srv
+<pre class="highlight"><code class="language-sh">IXPROOT=/srv/ixpmanager
+cd /srv
 git clone https://github.com/inex/IXP-Manager.git ixpmanager
-<span class="nb">cd</span> <span class="nv">$IXPROOT</span>   <span class="c1"># /srv/ixpmanager</span>
+cd $IXPROOT   # /srv/ixpmanager
 git checkout master
-chown -R www-data: bootstrap/cache storage
-</pre></div>
+chown -R www-data: bootstrap/cache storage</code></pre>
 
 <h3 id="install-composer">Install Composer<a class="headerlink" href="#install-composer" title="Permanent link"></a></h3>
 <p>IXP Manager uses <a href="http://getcomposer.org/">Composer</a> to manage its PHP dependencies. First, download a copy of the composer.phar. Once you have the PHAR archive, you can either keep it in your local project directory or move to <code>/usr/local/bin</code> to use it globally on your system.</p>
 <p>The installation script for Ubuntu 18.04 LTS installs these via:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-<span class="nv">EXPECTED_SIGNATURE</span><span class="o">=</span><span class="k">$(</span>wget https://composer.github.io/installer.sig -O - -q<span class="k">)</span>
-php -r <span class="s2">&quot;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&quot;</span>
-<span class="nv">ACTUAL_SIGNATURE</span><span class="o">=</span><span class="k">$(</span>php -r <span class="s2">&quot;echo hash_file(&#39;SHA384&#39;, &#39;composer-setup.php&#39;);&quot;</span><span class="k">)</span>
+<pre class="highlight"><code class="language-sh">cd $IXPROOT
+EXPECTED_SIGNATURE=$(wget https://composer.github.io/installer.sig -O - -q)
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
 
-<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$EXPECTED_SIGNATURE</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="nv">$ACTUAL_SIGNATURE</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-    sudo -u www-data bash -c <span class="s2">&quot;HOME=</span><span class="nv">$IXPROOT</span><span class="s2"> &amp;&amp; cd </span><span class="nv">$IXPROOT</span><span class="s2"> &amp;&amp; php composer-setup.php --quiet&quot;</span>
-    rm <span class="nv">$IXPROOT</span>/composer-setup.php
-<span class="k">else</span>
-    <span class="nb">echo</span> -e <span class="s2">&quot;\n\nERROR: Invalid installer signature for composer installation&quot;</span>
-    rm <span class="nv">$IXPROOT</span>/composer-setup.php
-    <span class="nb">exit</span> 1
-<span class="k">fi</span>
-</pre></div>
+if [ "$EXPECTED_SIGNATURE" = "$ACTUAL_SIGNATURE" ]; then
+    sudo -u www-data bash -c "HOME=$IXPROOT &amp;&amp; cd $IXPROOT &amp;&amp; php composer-setup.php --quiet"
+    rm $IXPROOT/composer-setup.php
+else
+    echo -e "\n\nERROR: Invalid installer signature for composer installation"
+    rm $IXPROOT/composer-setup.php
+    exit 1
+fi</code></pre>
 
 <h2 id="initial-setup-and-dependancies">Initial Setup and Dependancies<a class="headerlink" href="#initial-setup-and-dependancies" title="Permanent link"></a></h2>
 <h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link"></a></h3>
 <p>Install the required PHP libraries:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<pre class="highlight"><code class="language-sh">cd $IXPROOT
 php composer.phar install --no-dev --prefer-dist
 cp .env.example .env
-php artisan key:generate
-</pre></div>
+php artisan key:generate</code></pre>
 
 <h2 id="database-setup">Database Setup<a class="headerlink" href="#database-setup" title="Permanent link"></a></h2>
 <p>Use whatever means you like to create a database and user for IXP Manager. For example:</p>
-<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="ss">`ixp`</span> <span class="k">CHARACTER</span> <span class="kt">SET</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4&#39;</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
-<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="ss">`ixp`</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="ss">`ixp`</span><span class="o">@</span><span class="ss">`localhost`</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;&lt;pick a password!&gt;&#39;</span><span class="p">;</span>
-<span class="k">FLUSH</span> <span class="n">PRIVILEGES</span><span class="p">;</span>
-</pre></div>
+<pre class="highlight"><code class="language-mysql">CREATE DATABASE `ixp` CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci';
+GRANT ALL ON `ixp`.* TO `ixp`@`localhost` IDENTIFIED BY '&lt;pick a password!&gt;';
+FLUSH PRIVILEGES;</code></pre>
 
 <p>Then edit <code>$IXPROOT/.env</code> and set the database options:</p>
-<div class="highlight"><pre><span></span>DB_HOST=localhost
+<pre class="highlight"><code class="language-dotenv">DB_HOST=localhost
 DB_DATABASE=ixp
 DB_USERNAME=ixp
-DB_PASSWORD=password
-</pre></div>
+DB_PASSWORD=password</code></pre>
 
 <p>Now create the database schema:</p>
-<div class="highlight"><pre><span></span>php artisan doctrine:schema:create
-</pre></div>
+<pre class="highlight"><code class="language-sh">php artisan doctrine:schema:create</code></pre>
 
 <p>Some older scripts still rely on MySQL view tables. Create these with:</p>
-<div class="highlight"><pre><span></span>mysql -u ixp -p ixp &lt; <span class="nv">$IXPROOT</span>/tools/sql/views.sql
-</pre></div>
+<pre class="highlight"><code class="language-sh">mysql -u ixp -p ixp &lt; $IXPROOT/tools/sql/views.sql</code></pre>
 
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h3>
 <p>Edit <code>$IXPROOT/.env</code> and review and set/change all parameters. Hopefully this is mostly documented or clear but please start a discussion on the mailing list if you have difficultly and we'll update this and the example file's documentation as appropriate.</p>
 <h3 id="initial-database-objects">Initial Database Objects<a class="headerlink" href="#initial-database-objects" title="Permanent link"></a></h3>
 <p>Using the settings you edited in <code>.env</code> we'll create some database objects. [Yes, a setup wizard needs to be built!].</p>
 <p>First let's create the password for the admin user. The following will create a secure random password and hash it with bcrypt:</p>
-<div class="highlight"><pre><span></span><span class="nv">USERNAME</span><span class="o">=</span>admin
-<span class="nv">USEREMAIL</span><span class="o">=</span>your@email.address
-<span class="nv">IXPM_ADMIN_PW</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span> openssl rand -base64 <span class="m">12</span> <span class="k">)</span><span class="s2">&quot;</span>
-<span class="nv">ADMIN_PW_SALT</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span> openssl rand -base64 <span class="m">16</span> <span class="k">)</span><span class="s2">&quot;</span>
-<span class="nv">HASH_PW</span><span class="o">=</span><span class="k">$(</span> php -r <span class="s2">&quot;echo escapeshellarg( crypt( &#39;</span><span class="si">${</span><span class="nv">IXPM_ADMIN_PW</span><span class="si">}</span><span class="s2">&#39;, sprintf( &#39;\$2a\$%02d\$%s&#39;, 10, substr( &#39;</span><span class="si">${</span><span class="nv">ADMIN_PW_SALT</span><span class="si">}</span><span class="s2">&#39;, 0, 22 ) ) ) );&quot;</span> <span class="k">)</span>
-<span class="nb">echo</span> Your password is: <span class="nv">$IXPM_ADMIN_PW</span>
-</pre></div>
+<pre class="highlight"><code class="language-sh">USERNAME=admin
+USEREMAIL=your@email.address
+IXPM_ADMIN_PW="$( openssl rand -base64 12 )"
+ADMIN_PW_SALT="$( openssl rand -base64 16 )"
+HASH_PW=$( php -r "echo escapeshellarg( crypt( '${IXPM_ADMIN_PW}', sprintf( '\$2a\$%02d\$%s', 10, substr( '${ADMIN_PW_SALT}', 0, 22 ) ) ) );" )
+echo Your password is: $IXPM_ADMIN_PW</code></pre>
 
 <p>The following is taken from the IXP Manager installation script:</p>
-<div class="highlight"><pre><span></span><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">root</span> <span class="s2">&quot;-p${MYSQL_ROOT_PW}&quot;</span> <span class="err">$</span><span class="n">DBNAME</span> <span class="o">&lt;&lt;</span><span class="n">END_SQL</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">ixp</span> <span class="p">(</span> <span class="n">name</span><span class="p">,</span> <span class="n">shortname</span><span class="p">,</span> <span class="n">address1</span><span class="p">,</span> <span class="n">country</span> <span class="p">)</span>
-    <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">&#39;${IXPNAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPSNAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPCITY}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPCOUNTRY}&#39;</span> <span class="p">);</span>
-<span class="kt">SET</span> <span class="o">@</span><span class="n">ixpid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
+<pre class="highlight"><code class="language-mysql">mysql -u root "-p${MYSQL_ROOT_PW}" $DBNAME &lt;&lt;END_SQL
+INSERT INTO ixp ( name, shortname, address1, country )
+    VALUES ( '${IXPNAME}', '${IXPSNAME}', '${IXPCITY}', '${IXPCOUNTRY}' );
+SET @ixpid = LAST_INSERT_ID();
 
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">infrastructure</span> <span class="p">(</span> <span class="n">ixp_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">shortname</span><span class="p">,</span> <span class="n">isPrimary</span> <span class="p">)</span>
-    <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">ixpid</span><span class="p">,</span> <span class="s1">&#39;Infrastructure #1&#39;</span><span class="p">,</span> <span class="s1">&#39;#1&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="p">);</span>
-<span class="kt">SET</span> <span class="o">@</span><span class="n">infraid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
+INSERT INTO infrastructure ( ixp_id, name, shortname, isPrimary )
+    VALUES ( @ixpid, 'Infrastructure #1', '#1', 1 );
+SET @infraid = LAST_INSERT_ID();
 
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">company_registration_detail</span> <span class="p">(</span> <span class="n">registeredName</span> <span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">&#39;${IXPNAME}&#39;</span> <span class="p">);</span>
-<span class="kt">SET</span> <span class="o">@</span><span class="n">crdid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
+INSERT INTO company_registration_detail ( registeredName ) VALUES ( '${IXPNAME}' );
+SET @crdid = LAST_INSERT_ID();
 
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">company_billing_detail</span> <span class="p">(</span> <span class="n">billingContactName</span><span class="p">,</span> <span class="n">invoiceMethod</span><span class="p">,</span> <span class="n">billingFrequency</span> <span class="p">)</span>
-    <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">&#39;${NAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;EMAIL&#39;</span><span class="p">,</span> <span class="s1">&#39;NOBILLING&#39;</span> <span class="p">);</span>
-<span class="kt">SET</span> <span class="o">@</span><span class="n">cbdid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
+INSERT INTO company_billing_detail ( billingContactName, invoiceMethod, billingFrequency )
+    VALUES ( '${NAME}', 'EMAIL', 'NOBILLING' );
+SET @cbdid = LAST_INSERT_ID();
 
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">cust</span> <span class="p">(</span> <span class="n">name</span><span class="p">,</span> <span class="n">shortname</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">abbreviatedName</span><span class="p">,</span> <span class="n">autsys</span><span class="p">,</span> <span class="n">maxprefixes</span><span class="p">,</span> <span class="n">peeringemail</span><span class="p">,</span> <span class="n">nocphone</span><span class="p">,</span> <span class="n">noc24hphone</span><span class="p">,</span>
-        <span class="n">nocemail</span><span class="p">,</span> <span class="n">nochours</span><span class="p">,</span> <span class="n">nocwww</span><span class="p">,</span> <span class="n">peeringpolicy</span><span class="p">,</span> <span class="n">corpwww</span><span class="p">,</span> <span class="n">datejoin</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">activepeeringmatrix</span><span class="p">,</span> <span class="n">isReseller</span><span class="p">,</span>
-        <span class="n">company_registered_detail_id</span><span class="p">,</span> <span class="n">company_billing_details_id</span> <span class="p">)</span>
-    <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">&#39;${IXPNAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPSNAME}&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;${IXPSNAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPASN}&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;${IXPPEEREMAIL}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPNOCPHONE}&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;${IXPNOCPHONE}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPNOCEMAIL}&#39;</span><span class="p">,</span> <span class="s1">&#39;24x7&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mandatory&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPWWW}&#39;</span><span class="p">,</span> <span class="nf">NOW</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">@</span><span class="n">crdid</span><span class="p">,</span> <span class="o">@</span><span class="n">cbdid</span> <span class="p">);</span>
-<span class="kt">SET</span> <span class="o">@</span><span class="n">custid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
+INSERT INTO cust ( name, shortname, type, abbreviatedName, autsys, maxprefixes, peeringemail, nocphone, noc24hphone,
+        nocemail, nochours, nocwww, peeringpolicy, corpwww, datejoin, status, activepeeringmatrix, isReseller,
+        company_registered_detail_id, company_billing_details_id )
+    VALUES ( '${IXPNAME}', '${IXPSNAME}', 3, '${IXPSNAME}', '${IXPASN}', 100, '${IXPPEEREMAIL}', '${IXPNOCPHONE}',
+        '${IXPNOCPHONE}', '${IXPNOCEMAIL}', '24x7', '', 'mandatory', '${IXPWWW}', NOW(), 1, 1, 0, @crdid, @cbdid );
+SET @custid = LAST_INSERT_ID();
 
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">customer_to_ixp</span> <span class="p">(</span> <span class="n">customer_id</span><span class="p">,</span> <span class="n">ixp_id</span> <span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">custid</span><span class="p">,</span> <span class="o">@</span><span class="n">ixpid</span> <span class="p">);</span>
+INSERT INTO customer_to_ixp ( customer_id, ixp_id ) VALUES ( @custid, @ixpid );
 
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">user</span> <span class="p">(</span> <span class="n">custid</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">privs</span><span class="p">,</span> <span class="n">disabled</span><span class="p">,</span> <span class="n">created</span> <span class="p">)</span>
-    <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">custid</span><span class="p">,</span> <span class="s1">&#39;${USERNAME}&#39;</span><span class="p">,</span> <span class="err">${</span><span class="n">HASH_PW</span><span class="err">}</span><span class="p">,</span> <span class="s1">&#39;${USEREMAIL}&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nf">NOW</span><span class="p">()</span> <span class="p">);</span>
-<span class="kt">SET</span> <span class="o">@</span><span class="n">userid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
+INSERT INTO user ( custid, username, password, email, privs, disabled, created )
+    VALUES ( @custid, '${USERNAME}', ${HASH_PW}, '${USEREMAIL}', 3, 0, NOW() );
+SET @userid = LAST_INSERT_ID();
 
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">customer_to_users</span> <span class="p">(</span> <span class="n">customer_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">privs</span><span class="p">,</span> <span class="n">created_at</span> <span class="p">)</span>
-    <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">custid</span><span class="p">,</span> <span class="o">@</span><span class="n">userid</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="nf">NOW</span><span class="p">()</span> <span class="p">);</span>
+INSERT INTO customer_to_users ( customer_id, user_id, privs, created_at )
+    VALUES ( @custid, @userid, 3, NOW() );
 
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">contact</span> <span class="p">(</span> <span class="n">custid</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">created</span> <span class="p">)</span>
-    <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">custid</span><span class="p">,</span> <span class="s1">&#39;${NAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${USEREMAIL}&#39;</span><span class="p">,</span> <span class="nf">NOW</span><span class="p">()</span> <span class="p">);</span>
-<span class="n">END_SQL</span>
-</pre></div>
+INSERT INTO contact ( custid, name, email, created )
+    VALUES ( @custid, '${NAME}', '${USEREMAIL}', NOW() );
+END_SQL</code></pre>
 
 <p>And finally seed the database:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-php artisan db:seed --class<span class="o">=</span>IRRDBs
-php artisan db:seed --class<span class="o">=</span>Vendors
-php artisan db:seed --class<span class="o">=</span>ContactGroups
-</pre></div>
+<pre class="highlight"><code class="language-sh">cd $IXPROOT
+php artisan db:seed --class=IRRDBs
+php artisan db:seed --class=Vendors
+php artisan db:seed --class=ContactGroups</code></pre>
 
 <h2 id="file-permissions">File Permissions<a class="headerlink" href="#file-permissions" title="Permanent link"></a></h2>
 <p>The web server needs write access to some directories:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<pre class="highlight"><code class="language-sh">cd $IXPROOT
 chown -R www-data: var/ storage/ bootstrap/cache/ database/Proxies/
-chmod -R u+rwX var/ storage/ bootstrap/cache/ database/Proxies/
-</pre></div>
+chmod -R u+rwX var/ storage/ bootstrap/cache/ database/Proxies/</code></pre>
 
 <h2 id="setting-up-apache">Setting Up Apache<a class="headerlink" href="#setting-up-apache" title="Permanent link"></a></h2>
 <p>Here is a sample virtual hosts file for IXP Manager (replace <code>{$IXPROOT}</code> as appropriate!):</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
-    <span class="nb">ServerAdmin</span> webmaster@localhost
-    <span class="nb">DocumentRoot</span> ${IXPROOT}/public
-    <span class="nt">&lt;Directory</span> <span class="s">${IXPROOT}/public</span><span class="nt">&gt;</span>
-        <span class="nb">Options</span> FollowSymLinks
-        <span class="nb">AllowOverride</span> <span class="k">None</span>
-        <span class="nb">Require</span> <span class="k">all</span> granted
-        <span class="nb">RewriteEngine</span> <span class="k">On</span>
-        <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} -s [OR]
-        <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} -l [OR]
-        <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} -d
-        <span class="nb">RewriteRule</span> ^.*$ - [NC,L]
-        <span class="nb">RewriteRule</span> ^.*$ <span class="sx">/index.php</span> [NC,L]
-    <span class="nt">&lt;/Directory&gt;</span>
-    <span class="nb">ErrorLog</span> \${APACHE_LOG_DIR}/error.log
-    <span class="nb">CustomLog</span> \${APACHE_LOG_DIR}/access.log combined
-<span class="nt">&lt;/VirtualHost&gt;</span>
-</pre></div>
+<pre class="highlight"><code class="language-apache">&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@localhost
+    DocumentRoot ${IXPROOT}/public
+    &lt;Directory ${IXPROOT}/public&gt;
+        Options FollowSymLinks
+        AllowOverride None
+        Require all granted
+        RewriteEngine On
+        RewriteCond %{REQUEST_FILENAME} -s [OR]
+        RewriteCond %{REQUEST_FILENAME} -l [OR]
+        RewriteCond %{REQUEST_FILENAME} -d
+        RewriteRule ^.*$ - [NC,L]
+        RewriteRule ^.*$ /index.php [NC,L]
+    &lt;/Directory&gt;
+    ErrorLog \${APACHE_LOG_DIR}/error.log
+    CustomLog \${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;</code></pre>
 
 <p>You also need to enable rewrite:</p>
-<div class="highlight"><pre><span></span>a2enmod rewrite
-service apache2 restart
-</pre></div>
+<pre class="highlight"><code class="language-sh">a2enmod rewrite
+service apache2 restart</code></pre>
 
 <h1 id="congratulations">Congratulations!<a class="headerlink" href="#congratulations" title="Permanent link"></a></h1>
 <p>Your new IXP Manager installation should be accessible via your server's IP address using the username (<code>$USERNAME</code>) and password (<code>$IXPM_ADMIN_PW</code>) you set above.</p>

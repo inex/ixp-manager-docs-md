@@ -96,8 +96,23 @@ IXP_FE_FRONTEND_DISABLED_FILTERED_PREFIXES=false
 
 This is a live view gathered from each Bird v2 route server with a looking glass.
 
+Please see [our presentations from 2019](https://www.ixpmanager.org/presentations) for more information on this. Particularly the UKNOF one from September 2019 would be the most up to date.
 
-### RFC1997 Passthru
+For a route server to be polled for a customer by this tool, the following conditions must be met:
+
+1. the customer must be a route server client and the vlan cannot be a private vlan;
+2. only enabled IP protocols are queried for a vlan interface;
+3. the router server must be allocated to the same vlan and have a instance for the IP protocol;
+4. the route server cannot be marked as quarantine;
+5. the route server muct have an API configured;
+6. the route server must be *a route server* (remember you can provision collectors and AS112 routers via IXP Manager also);
+7. the route server must have large communities enabled;
+
+It is also critical that the [looking glass](looking-glass.md) for the route server works.
+
+**Caching:** for large members with tens of thousands of routes, gathering filtered prefixes can be an expensive task for IXP Manager and the route server (expensive in terms of time and CPU cycles). As such, this feature of IXP Manager **requires** the use of a persistent cache. We recommend memcached for this which is installed and enabled by default with the automated installer.
+
+## RFC1997 Passthru
 
 [RFC1997](https://tools.ietf.org/html/rfc1997) defines some well-known communities including `NO_EXPORT` (`0xFFFFFF01 / 65535:65281`) and `NO_ADVERTISE` and states that they *have global significance and their operations shall be implemented in any community-attribute-aware BGP speaker*.
 
@@ -105,15 +120,15 @@ According to [RFC7947](https://tools.ietf.org/html/rfc7947), it is a matter of l
 
 In 2017, INEX and LONAP published [draft-hilliard-grow-no-export-via-rs-00](https://www.ietf.org/archive/id/draft-hilliard-grow-no-export-via-rs-00.txt) to try and create some consensus on this. While the draft was not accepted as a standard, the discussion drew a conclusion that these well-known communities should not be interpreted by the route server but passed through.
 
-### Legacy Prefix Analysis Tool
+## Legacy Prefix Analysis Tool
 
 The older but deprecated means of viewing filtered prefixes was the *Route Server Prefix Analysis tool* which allows your members to examine what routes they are advertising to the route servers, which are being accepted and which are being rejected.
 
-#### Limits / Caveats
+### Limitations and Caveats
 
 Implemented as a Perl script which accesses the database directly. The script can also only be used on one LAN and one route server. Thus, pick you most popular LAN and route server.
 
-#### Setting Up
+### Setting Up
 
 
 * Download [this script](https://github.com/inex/IXP-Manager/blob/master/tools/runtime/route-servers/compare-route-server-prefixes.pl) to your route server;
