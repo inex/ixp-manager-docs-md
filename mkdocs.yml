@@ -16,6 +16,7 @@ nav:
     - 'Runtime Configuration': 'install/runtime.md'
     - 'Post-Install Steps': 'install/next-steps.md'
 - General Usage:
+    - 'Authentication': 'usage/authentication.md'
     - 'Contacts': 'usage/contacts.md'
     - 'Customers / Members': 'usage/customers.md'
     - 'Customer Notes': 'usage/customer-notes.md'
@@ -66,6 +67,7 @@ nav:
 - Development:
     - 'Introduction': 'dev/introduction.md'
     - 'API': 'dev/api.md'
+    - 'Authentication': 'dev/authentication.md'
     - 'Continuous Integration': 'dev/ci.md'
     - 'Contributer License Agreement': 'dev/cla.md'
     - 'Docker': 'dev/docker.md'
