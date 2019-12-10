@@ -324,6 +324,9 @@
     <li class="toctree-l3"><a href="#freebsd-really">FreeBSD, really?</a></li>
     
 
+    <li class="toctree-l3"><a href="#api-endpoints">API Endpoints</a></li>
+    
+
     </ul>
                 </li>
     </ul>
@@ -450,10 +453,12 @@
 </ul>
 <h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h1>
 <h3 id="freebsd">FreeBSD<a class="headerlink" href="#freebsd" title="Permanent link"></a></h3>
-<pre class="highlight"><code>pkg install apache24 sflowtool git databases/rrdtool mrtg</code></pre>
+<div class="highlight"><pre><span></span>pkg install apache24 sflowtool git databases/rrdtool mrtg
+</pre></div>
 
 <h3 id="ubuntu">Ubuntu<a class="headerlink" href="#ubuntu" title="Permanent link"></a></h3>
-<pre class="highlight"><code>apt-get install apache2 git rrdtool rrdcached mrtg</code></pre>
+<div class="highlight"><pre><span></span>apt-get install apache2 git rrdtool rrdcached mrtg
+</pre></div>
 
 <p><code>sflowtool</code> is not part of the Ubuntu / Debian package archive and must be compiled from source if running on these systems.  The source code can be found on Github:  https://github.com/sflow/sflowtool.</p>
 <p>Once the required packages are installed, the IXP Manager peer-to-peer graphing system can be configured as follows:</p>
@@ -472,12 +477,12 @@
 <li><code>sflowtool_opts</code>: command-line options to pass to sflowtool</li>
 <li><code>sflow_rrddir</code>: the directory where all the sflow .rrd files will be stored.</li>
 <li><code>apikey</code>: a valid API key.  Instructions for configuring this can be found in the <a href="../api/">API configuration</a> documentation.</li>
-<li><code>apibaseurl</code>: the base URL of the IXP Manager API.  E.g. if you log into IXP Manager using <code>http://www.example.com/ixp/</code>, then <code>apibaseurl</code> will be <code>http://www.example.com/ixp/api/v4</code>.</li>
+<li><code>apibaseurl</code>: the base URL of the IXP Manager API.  E.g. if you log into IXP Manager using <code>https://ixp.example.com/</code>, then <code>apibaseurl</code> will be <code>https://ixp.example.com/api/v4</code>.</li>
 <li><code>macdbtype</code>: <code>configured|discovered</code> - specifies whether the sflow p2p graphing system should pull MAC address information from the Configured MAC address database or the Discovered MAC address database.  By default, it uses the Discovered MAC address database.  If you wish to use the Configured MAC address database, then this should be set to <code>configured</code>.</li>
 </ul>
 <p>Note that the <code>&lt;sql&gt;</code> section of <code>ixpmanager.conf</code> will need to be configured either if you are running <code>update-l2database.pl</code> or the sflow BGP peering matrix system on the same server as the p2p sflow system.</p>
 <p>An example ixpmanager.conf might look like this:</p>
-<pre class="highlight"><code>&lt;sql&gt;
+<div class="highlight"><pre><span></span>&lt;sql&gt;
         dbase_type      = mysql
         dbase_database  = ixpmanager
         dbase_username  = ixpmanager_user
@@ -494,27 +499,31 @@
         apikey = APIKeyFromIXPManager
         apibaseurl = http://www.example.com/ixp/api/v4
         macdbtype = configured
-&lt;/ixp&gt;</code></pre>
+&lt;/ixp&gt;
+</pre></div>
 
 <p>This file should be placed in <code>/usr/local/etc/ixpmanager.conf</code></p>
 <h1 id="starting-sflow-to-rrd-handler">Starting sflow-to-rrd-handler<a class="headerlink" href="#starting-sflow-to-rrd-handler" title="Permanent link"></a></h1>
 <p>The <code>tools/runtime/sflow/sflow-to-rrd-handler</code> command processes the output from sflowtool and injects it into the RRD archive.  This command should be configured to start on system bootup.</p>
 <p>If you are running on FreeBSD, this command can be started on system bootup by copying the <code>tools/runtime/sflow/sflow_rrd_handler</code> script into <code>/usr/local/etc/rc.d</code> and modifying the <code>/etc/rc.conf</code> command to include:</p>
-<pre class="highlight"><code>sflow_bgp_handler_enable="YES"</code></pre>
+<div class="highlight"><pre><span></span>sflow_bgp_handler_enable=&quot;YES&quot;
+</pre></div>
 
 <h1 id="displaying-the-graphs">Displaying the Graphs<a class="headerlink" href="#displaying-the-graphs" title="Permanent link"></a></h1>
 <p>The IXP Manager web GUI requires access to the sflow p2p .rrd files over http or https.  This means that the sflow server must run a web server (e.g. Apache), and the IXP Manager GUI must be configured with the URL of the RRD archive on the sflow server.</p>
 <p>Assuming that <code>ixpmanager.conf</code> is configured to use <code>/data/ixpmatrix</code> for the RRD directory, these files can be server over HTTP using the following Apache configuration:</p>
-<pre class="highlight"><code>Alias /grapher-sflow /data/ixpmatrix
-&lt;Directory "/data/ixpmatrix"&gt;
+<div class="highlight"><pre><span></span>Alias /grapher-sflow /data/ixpmatrix
+&lt;Directory &quot;/data/ixpmatrix&quot;&gt;
         Options None
         AllowOverride None
-&lt;/Directory&gt;</code></pre>
+&lt;/Directory&gt;
+</pre></div>
 
 <p>The IXP Manager <code>.env</code> file must be configured with parameters both to enable sflow and to provide the front-end with the HTTP URL of the back-end server.  Assuming that the sflow p2p server has IP address 10.0.0.1, then the following lines should be added to <code>.env</code>:</p>
-<pre class="highlight"><code>GRAPHER_BACKENDS="mrtg|sflow|smokeping"
+<div class="highlight"><pre><span></span>GRAPHER_BACKENDS=&quot;mrtg|sflow|smokeping&quot;
 GRAPHER_BACKEND_SFLOW_ENABLED=true
-GRAPHER_BACKEND_SFLOW_ROOT="http://10.0.0.1/grapher-sflow"</code></pre>
+GRAPHER_BACKEND_SFLOW_ROOT=&quot;http://10.0.0.1/grapher-sflow&quot;
+</pre></div>
 
 <!--
 # Sflowtool fanout
@@ -539,6 +548,32 @@ If IXP Manager is configured with more than one component which requires an sflo
 <h1 id="freebsd-really">FreeBSD, really?<a class="headerlink" href="#freebsd-really" title="Permanent link"></a></h1>
 <p>No.  All of this runs perfectly well on Ubuntu (or your favourite Linux distribution).</p>
 <p>INEX runs its sflow back-end on FreeBSD because we found that the UFS filesystem performs better than the Linux ext3 filesystem when handling large RRD archives.  If you run <code>rrdcached</code>, it's unlikely that you will run into performance problems.  If you do, you can engineer around them by running the RRD archive on a PCIe SSD.</p>
+<h1 id="api-endpoints">API Endpoints<a class="headerlink" href="#api-endpoints" title="Permanent link"></a></h1>
+<p>The <code>tools/runtime/sflow/sflow-to-rrd-handler</code> script from <strong>IXP Manager</strong> referenced above uses an IXP Manager API endpoint to associate sflow samples (based on source and destination MAC addreesses) with VLAN interfaces.</p>
+<p>As IXP Manager <a href="../layer2-addresses/">supports layer2 / MAC addresses</a> in two ways (learned versus configured), there are two endpoints (using <code>https://ixp.example.com</code> as your IXP Manager installation):</p>
+<ol>
+<li>Learned: <code>https://ixp.example.com/api/v4/sflow-db-mapper/learned-macs</code></li>
+<li>Configured: <code>https://ixp.example.com/api/v4/sflow-db-mapper/configured-macs</code></li>
+</ol>
+<p>The JSON output is structured as per the following example:</p>
+<div class="highlight"><pre><span></span>{
+    &quot;infrastructure id&quot;: {
+        &quot;vlan tag&quot;: {
+            &quot;mac address&quot;: &quot;vlan interface id&quot;,
+            ...
+        },
+        ...
+    },
+    ...
+}
+</pre></div>
+
+<p>where:</p>
+<ul>
+<li>the outer objects are indexed by an infrastructure ID</li>
+<li>each infrastructure object has VLAN objects indexed by the VLAN <strong>tag</strong> <em>(this is not the VLAN database ID but the VLAN tag)</em></li>
+<li>each VLAN object has key/value pairs of <code>"macaddress": "vlaninterfaceid"</code></li>
+</ul>
               
             </div>
           </div>
