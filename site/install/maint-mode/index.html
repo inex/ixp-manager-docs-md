@@ -100,6 +100,10 @@
     <ul class="subnav">
                 <li class="">
                     
+    <a class="" href="../../usage/authentication/">Authentication</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../usage/contacts/">Contacts</a>
                 </li>
                 <li class="">
@@ -312,6 +316,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../dev/authentication/">Authentication</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/ci/">Continuous Integration</a>
                 </li>
                 <li class="">
@@ -409,13 +417,16 @@
 <p>Maintenance mode is now handled by Laravel's built in tool for this. You can review <a href="https://laravel.com/docs/5.3/configuration#maintenance-mode">their own documentation for this</a> which us copied here.</p>
 <p>When your application is in maintenance mode, a custom view will be displayed for all requests into your application. This makes it easy to "disable" your application while it is updating or when you are performing maintenance. A maintenance mode check is included in the default middleware stack for your application. If the application is in maintenance mode, a <code>MaintenanceModeException</code> will be thrown with a status code of 503.</p>
 <p>To enable maintenance mode, simply execute the down Artisan command:</p>
-<pre class="highlight"><code>php artisan down</code></pre>
+<div class="highlight"><pre><span></span>php artisan down
+</pre></div>
 
 <p>You may also provide message and retry options to the down command. The message value may be used to display or log a custom message, while the retry value will be set as the Retry-After HTTP header's value::</p>
-<pre class="highlight"><code>php artisan down --message='Upgrading Database' --retry=60</code></pre>
+<div class="highlight"><pre><span></span>php artisan down --message=&#39;Upgrading Database&#39; --retry=60
+</pre></div>
 
 <p>To disable maintenance mode, use the up command::</p>
-<pre class="highlight"><code>php artisan up</code></pre>
+<div class="highlight"><pre><span></span>php artisan up
+</pre></div>
               
             </div>
           </div>

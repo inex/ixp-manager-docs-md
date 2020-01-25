@@ -9,6 +9,8 @@ The IXP Manager Users feature allows you to add and manage users (people who can
 * username
 * permissions (see below)
 
+For details on session management and two-factor authentication, please see [this page](authentication.md). For logging in with PeeringDB OAuth, please see [this page](../features/peeringdb-oauth.md).
+
 ## Types of Users
 
 There are three types of user:
@@ -93,12 +95,6 @@ Administrative users (*AUTH_SUPERUSER*) can *switch to* other users to *see what
 
 The purpose of this is for both development and for support staff to replicate issues as reported by users.
 
-## Planned Work
-
-As IXP Manager v5 evolves, we would like to make a number of changes:
-
-* look at OAuth2 with links to PeeringDB as well as allowing people to log in / link OAuth supported social media accounts;
-* add 2fa.
 
 ## Passwords and Password Hashing
 

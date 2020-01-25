@@ -94,6 +94,10 @@
     <ul class="subnav">
                 <li class="">
                     
+    <a class="" href="../../usage/authentication/">Authentication</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../usage/contacts/">Contacts</a>
                 </li>
                 <li class="">
@@ -322,6 +326,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../dev/authentication/">Authentication</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/ci/">Continuous Integration</a>
                 </li>
                 <li class="">
@@ -435,27 +443,31 @@
 </ul>
 <h2 id="required-configuration-settings">Required Configuration Settings<a class="headerlink" href="#required-configuration-settings" title="Permanent link"></a></h2>
 <p>This feature requires some settings in your <code>.env</code> which you may have already set:</p>
-<pre class="highlight"><code class="language-ini">;; the various identity settings
-IDENTITY_...
+<div class="highlight"><pre><span></span><span class="c1">;; the various identity settings</span>
+<span class="err">IDENTITY_...</span>
 
-;; the default VLAN's database ID (get this from the DB ID column in VLANs)
-IDENTITY_DEFAULT_VLAN=1</code></pre>
+<span class="c1">;; the default VLAN&#39;s database ID (get this from the DB ID column in VLANs)</span>
+<span class="na">IDENTITY_DEFAULT_VLAN</span><span class="o">=</span><span class="s">1</span>
+</pre></div>
 
 <p>The default peering request email template can be found at <code>resources/views/peering-manager/peering-message.foil.php</code>. You can <a href="../skinning/">skin</a> this if you wish but it is generic enough to use as is.</p>
 <h2 id="disabling-the-peering-manager">Disabling the Peering Manager<a class="headerlink" href="#disabling-the-peering-manager" title="Permanent link"></a></h2>
 <p>You can disable the peering manager by setting the following in <code>.env</code>:</p>
-<pre class="highlight"><code>IXP_FE_FRONTEND_DISABLED_PEERING_MANAGER=true</code></pre>
+<div class="highlight"><pre><span></span>IXP_FE_FRONTEND_DISABLED_PEERING_MANAGER=true
+</pre></div>
 
 <h2 id="peering-manager-test-mode">Peering Manager Test Mode<a class="headerlink" href="#peering-manager-test-mode" title="Permanent link"></a></h2>
 <p>For testing / experimentation purposes, you can enable a test mode which, when enabled, will send all peering requests to the defined test email.</p>
 <p>To enable test mode, just set the following in <code>.env</code>:</p>
-<pre class="highlight"><code>PEERING_MANAGER_TESTMODE=true
-PEERING_MANAGER_TESTEMAIL=user@example.com</code></pre>
+<div class="highlight"><pre><span></span>PEERING_MANAGER_TESTMODE=true
+PEERING_MANAGER_TESTEMAIL=user@example.com
+</pre></div>
 
 <p>When test mode is enabled, there will be a clear alert displayed at the top of the peering manager page.</p>
 <p>Normally, the peering manager adds a note to the peer's notes and sets a request last sent date when a peering request is sent. In test mode, this will not happen. If you want this to happen in test mode, set these to true:</p>
-<pre class="highlight"><code>PEERING_MANAGER_TESTNOTE=true
-PEERING_MANAGER_TESTDATE=true</code></pre>
+<div class="highlight"><pre><span></span>PEERING_MANAGER_TESTNOTE=true
+PEERING_MANAGER_TESTDATE=true
+</pre></div>
               
             </div>
           </div>

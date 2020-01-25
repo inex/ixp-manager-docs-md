@@ -1,10 +1,28 @@
-# Authentication
+# Authentication & Session Management
 
-Sessions stored in database (new) and encrypted (new).
-
-
+???+ note "**This page refers to features introduced in IXP Manager v5.3**"
 
 
+## Session Management
+
+IXP Manager allows users to login and remain logged in for up to 30 days (by default). Users may also have and maintain multiple login sessions from different browsers.
+
+To enable such a session, the user must check the *Remember me* checkbox when logging in.
+
+Active sessions can be seen (and deleted) via the *Active Sessions* option in the user's *My Account* menu (top right of screen).
+
+
+
+## Two-Factor Authentication (2FA)
+
+
+### Lifetime
+
+A user will not be asked to revalidate their 2fa code during the lifetime of a session. 2fa lifetimes will be determined by the user's session. Remember that you can set the maximum session lifetime (see above) upon which time a user will need to revalidate with 2fa when logging back in.
+
+### Recovery/Backup Codes
+
+We have opted not to implement recovery / backup codes as they are not particularly appropriate to the scope of IXP Manager.
 
 # Testing Issues
 

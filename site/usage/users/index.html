@@ -94,6 +94,10 @@
     <ul class="subnav">
                 <li class="">
                     
+    <a class="" href="../authentication/">Authentication</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../contacts/">Contacts</a>
                 </li>
                 <li class="">
@@ -130,8 +134,6 @@
             <li><a class="toctree-l4" href="#welcome-email">Welcome Email</a></li>
         
             <li><a class="toctree-l4" href="#logging-in-as-another-user">Logging in as Another User</a></li>
-        
-            <li><a class="toctree-l4" href="#planned-work">Planned Work</a></li>
         
             <li><a class="toctree-l4" href="#passwords-and-password-hashing">Passwords and Password Hashing</a></li>
         
@@ -330,6 +332,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../dev/authentication/">Authentication</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/ci/">Continuous Integration</a>
                 </li>
                 <li class="">
@@ -431,6 +437,7 @@
 <li>username</li>
 <li>permissions (see below)</li>
 </ul>
+<p>For details on session management and two-factor authentication, please see <a href="../authentication/">this page</a>. For logging in with PeeringDB OAuth, please see <a href="../../features/peeringdb-oauth/">this page</a>.</p>
 <h2 id="types-of-users">Types of Users<a class="headerlink" href="#types-of-users" title="Permanent link"></a></h2>
 <p>There are three types of user:</p>
 <ul>
@@ -482,12 +489,6 @@
 <h2 id="logging-in-as-another-user">Logging in as Another User<a class="headerlink" href="#logging-in-as-another-user" title="Permanent link"></a></h2>
 <p>Administrative users (<em>AUTH_SUPERUSER</em>) can <em>switch to</em> other users to <em>see what they see</em> via the user list or the customer overview page.</p>
 <p>The purpose of this is for both development and for support staff to replicate issues as reported by users.</p>
-<h2 id="planned-work">Planned Work<a class="headerlink" href="#planned-work" title="Permanent link"></a></h2>
-<p>As IXP Manager v5 evolves, we would like to make a number of changes:</p>
-<ul>
-<li>look at OAuth2 with links to PeeringDB as well as allowing people to log in / link OAuth supported social media accounts;</li>
-<li>add 2fa.</li>
-</ul>
 <h2 id="passwords-and-password-hashing">Passwords and Password Hashing<a class="headerlink" href="#passwords-and-password-hashing" title="Permanent link"></a></h2>
 <p><strong>As of v4.5, all passwords are stored as bcrypt with a cost &gt;=10.</strong></p>
 <p>As of v4.9, administrative users are unable to set a user's password. User's can set (and reset) their passwords via their <em>Profile</em> page or using the password reset functionality.</p>
