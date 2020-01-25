@@ -132,3 +132,11 @@ This can be useful to alert your accounts / billing staff of these changes autom
 If you need multiple people notified, use an alias address encompassing all the users.
 
 *Prior to v4.8, you had to edit the `config/ixp_tools.php` configuration file and set the `billing_updates_notify` array element. If this file does not exist, create it from the suggested template: `cp config/ixp_tools.php.dist config/ixp_tools.php`.*
+
+## Public Customer Details
+
+**IXP Manager** makes customer/member details available publicly (without login) through the *Member Information* menu item. To disable this, set the following in your `.env`:
+
+```
+IXP_FE_CUSTOMER_DETAILS_PUBLIC=false
+```
