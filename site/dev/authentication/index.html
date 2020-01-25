@@ -313,7 +313,13 @@
     <a class="current" href="./">Authentication</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#authentication-development-notes">Authentication (Development Notes)</a></li>
+    <li class="toctree-l3"><a href="#authentication-session-management-development-notes">Authentication &amp; Session Management (Development Notes)</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#two-factor-authentication">Two-Factor Authentication</a></li>
+        
+        </ul>
     
 
     </ul>
@@ -412,8 +418,11 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="authentication-development-notes">Authentication (Development Notes)<a class="headerlink" href="#authentication-development-notes" title="Permanent link"></a></h1>
+                <h1 id="authentication-session-management-development-notes">Authentication &amp; Session Management (Development Notes)<a class="headerlink" href="#authentication-session-management-development-notes" title="Permanent link"></a></h1>
 <p>Please read the <a href="../../usage/authentication/">authentication usage instructions first</a>.</p>
+<p>IXP Manager uses Laravel's standard authentication framework but with the <a href="http://www.laraveldoctrine.org/">Laravel Doctrine ORM</a> <a href="http://www.laraveldoctrine.org/docs/1.4/orm/auth">authentication</a> rather than Eloquent.</p>
+<h2 id="two-factor-authentication">Two-Factor Authentication<a class="headerlink" href="#two-factor-authentication" title="Permanent link"></a></h2>
+<p>Two-factor authentication (2fa) is implemented using the <a href="https://github.com/antonioribeiro/google2fa">pragmarx/google2fa</a> package via its Laravel bridge <a href="https://github.com/antonioribeiro/google2fa-laravel">antonioribeiro/google2fa-laravel</a>.</p>
               
             </div>
           </div>

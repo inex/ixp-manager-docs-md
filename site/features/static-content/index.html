@@ -432,37 +432,31 @@
 <p>In IXP Manager, there are four types of users as described <a href="../../usage/users/">in the users page</a>. Static contact can be added which requires a minimum user privilege to access (e.g. <code>priv == 0</code> would be publicly accessible through to <code>priv == 3</code> which would require a superadmin).</p>
 <p>To create static content, you should first <a href="../skinning/">set up skinning</a> for your installation. Let's assume you called your skin <code>example</code>.</p>
 <p>To create a publically accessible static content page called <code>misc-benefits</code>, you would first create a content directory in your skin as follows:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-mkdir -p resources/skins/example/content/<span class="o">{</span>0,1,2,3<span class="o">}</span>
-</pre></div>
+<pre class="highlight"><code class="language-sh">cd $IXPROOT
+mkdir -p resources/skins/example/content/{0,1,2,3}</code></pre>
 
 <p>where the directories <code>0, 1, 2, 3</code> represent the <em>minimum required user privilege</em> to access the content. You can now create your content page as follows:</p>
-<div class="highlight"><pre><span></span>cp resources/views/content/0/example.foil.php resources/skins/example/content/0/misc-benefits.foil.php
-</pre></div>
+<pre class="highlight"><code class="language-sh">cp resources/views/content/0/example.foil.php resources/skins/example/content/0/misc-benefits.foil.php</code></pre>
 
 <p>and then edit that page.</p>
 <p>It can be accessed using a URL such as: <code>https://ixp.example.com/content/0/misc-benefits</code> where the route template is: <code>content/{priv}/{page}</code>.</p>
 <ul>
 <li><code>{priv}</code> is the <em>minimum required user privilege</em> required to access the page and is used first for testing the user's permissions and second as the directory to check for the file.</li>
 <li><code>{page}</code> is the name of the file to load (less <code>.foil.php</code>) and <strong>please be aware that this is normalised as follows:</strong>
-<div class="highlight"><pre><span></span><span class="x">preg_replace( &#39;/[^a-z0-9\-_]/&#39;, &#39;&#39;, strtolower( $page ) )</span>
-</pre></div>
+<pre class="highlight"><code class="language-php">preg_replace( '/[^a-z0-9\-_]/', '', strtolower( $page ) )</code></pre>
 i.e. the file name can only contain characters from the class <code>[a-z0-9\-_]</code> and all lower case. <em>Prior to v4.8.0 the <code>strtolower()</code> mistakenly occurred after the <code>preg_replace()</code>.</em></li>
 </ul>
 <p>The <code>example.foil.php</code> template copied above should provide the necessary structure for you. Essentially just replace the title and the content.</p>
 <p>For publically accessible documents, there is an alias route:</p>
-<div class="highlight"><pre><span></span>/public-content/{page}  -&gt; treated as: /content/0/{page}
-</pre></div>
+<pre class="highlight"><code>/public-content/{page}  -&gt; treated as: /content/0/{page}</code></pre>
 
 <h2 id="support-contact-template">Support / Contact Template<a class="headerlink" href="#support-contact-template" title="Permanent link"></a></h2>
 <p>IXP Manager ships with a link to <em>Support</em> in the main title menu. You should copy and adjust this as neccessary via skinning:</p>
-<div class="highlight"><pre><span></span>cp resources/views/content/0/support.foil.php resources/skins/example/content/0/support.foil.php
-</pre></div>
+<pre class="highlight"><code class="language-sh">cp resources/views/content/0/support.foil.php resources/skins/example/content/0/support.foil.php</code></pre>
 
 <h2 id="documentation-menu">Documentation Menu<a class="headerlink" href="#documentation-menu" title="Permanent link"></a></h2>
 <p>You can link to your own static contact pages using the <em>Documentation</em> menu by skinning this file:</p>
-<div class="highlight"><pre><span></span>cp resources/views/header-documentation.foil.php resources/skins/example/header-documentation.foil.php
-</pre></div>
+<pre class="highlight"><code class="language-sh">cp resources/views/header-documentation.foil.php resources/skins/example/header-documentation.foil.php</code></pre>
 
 <p>The stock version includes a link to the example page and a external link to the IXP Manager website <em>(we would be much obliged if you left this in place!)</em>.</p>
 <p>INEX's own version of this can be found in the shipped <code>resources/skins/inex/header-documentation.foil.php</code> file which shows how we use it.</p>

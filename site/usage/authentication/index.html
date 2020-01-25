@@ -97,7 +97,15 @@
     <a class="current" href="./">Authentication</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#authentication">Authentication</a></li>
+    <li class="toctree-l3"><a href="#authentication-session-management">Authentication &amp; Session Management</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#session-management">Session Management</a></li>
+        
+            <li><a class="toctree-l4" href="#two-factor-authentication-2fa">Two-Factor Authentication (2FA)</a></li>
+        
+        </ul>
     
 
     <li class="toctree-l3"><a href="#testing-issues">Testing Issues</a></li>
@@ -415,8 +423,17 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link"></a></h1>
-<p>Sessions stored in database (new) and encrypted (new).</p>
+                <h1 id="authentication-session-management">Authentication &amp; Session Management<a class="headerlink" href="#authentication-session-management" title="Permanent link"></a></h1>
+<details class="note" open="open"><summary><strong>This page refers to features introduced in IXP Manager v5.3</strong></summary></details>
+<h2 id="session-management">Session Management<a class="headerlink" href="#session-management" title="Permanent link"></a></h2>
+<p>IXP Manager allows users to login and remain logged in for up to 30 days (by default). Users may also have and maintain multiple login sessions from different browsers.</p>
+<p>To enable such a session, the user must check the <em>Remember me</em> checkbox when logging in.</p>
+<p>Active sessions can be seen (and deleted) via the <em>Active Sessions</em> option in the user's <em>My Account</em> menu (top right of screen).</p>
+<h2 id="two-factor-authentication-2fa">Two-Factor Authentication (2FA)<a class="headerlink" href="#two-factor-authentication-2fa" title="Permanent link"></a></h2>
+<h3 id="lifetime">Lifetime<a class="headerlink" href="#lifetime" title="Permanent link"></a></h3>
+<p>A user will not be asked to revalidate their 2fa code during the lifetime of a session. 2fa lifetimes will be determined by the user's session. Remember that you can set the maximum session lifetime (see above) upon which time a user will need to revalidate with 2fa when logging back in.</p>
+<h3 id="recoverybackup-codes">Recovery/Backup Codes<a class="headerlink" href="#recoverybackup-codes" title="Permanent link"></a></h3>
+<p>We have opted not to implement recovery / backup codes as they are not particularly appropriate to the scope of IXP Manager.</p>
 <h1 id="testing-issues">Testing Issues<a class="headerlink" href="#testing-issues" title="Permanent link"></a></h1>
 <p>When enabling 2fa for the first time via the profile page:</p>
 <ol>

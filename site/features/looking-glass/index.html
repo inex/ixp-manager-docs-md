@@ -462,7 +462,7 @@
 <p>Generally speaking, if you carefully read the above and the <a href="https://github.com/inex/birdseye/blob/master/README.md">Bird's Eye README file</a>, you should be able to get IXP Manager / Bird's Eye integration working.</p>
 <p>If you do not, try all of the following and solve any elements that fail. If you still have issues, email the <a href="https://www.inex.ie/mailman/listinfo/ixpmanager">IXP Manager mailing list</a> <strong>with the output of all of the following commands from both sections</strong>.</p>
 <p>For the following examples, we will use a real INEX example router with these settings:</p>
-<div class="highlight"><pre><span></span>mysql&gt; SELECT * FROM routers WHERE id = 17\G
+<pre class="highlight"><code>mysql&gt; SELECT * FROM routers WHERE id = 17\G
 *************************** 1. row ***************************
           id: 17
      vlan_id: 2
@@ -483,11 +483,10 @@
       bgp_lc: 0
     template: api/v4/router/as112/bird/standard
     skip_md5: 1
-last_updated: 2018-02-03 14:26:15
-</pre></div>
+last_updated: 2018-02-03 14:26:15</code></pre>
 
 <p>From the server running IXP Manager:</p>
-<div class="highlight"><pre><span></span>###############################################################################
+<pre class="highlight"><code>###############################################################################
 # Does the API hostname resolve?
 $ dig +short as112-lan1-ipv4.mgmt.inex.ie
 
@@ -507,7 +506,7 @@ rtt min/avg/max/mdev = 0.103/0.103/0.103/0.000 ms
 
 
 ###############################################################################
-# Is the Bird&#39;s Eye service available?
+# Is the Bird's Eye service available?
 $ curl -v http://as112-lan1-ipv4.mgmt.inex.ie/api/status
 
 *   Trying 10.39.5.6...
@@ -527,32 +526,30 @@ $ curl -v http://as112-lan1-ipv4.mgmt.inex.ie/api/status
 * Connection #0 to host as112-lan1-ipv4.mgmt.inex.ie left intact
 
 {
-    &quot;api&quot;: {
-        &quot;from_cache&quot;:true,
-        &quot;ttl_mins&quot;:1,
-        &quot;version&quot;:&quot;1.1.0&quot;,
-        &quot;max_routes&quot;:1000
+    "api": {
+        "from_cache":true,
+        "ttl_mins":1,
+        "version":"1.1.0",
+        "max_routes":1000
     },
-    &quot;status&quot;: {
-        &quot;version&quot;:&quot;1.6.3&quot;,
-        &quot;router_id&quot;:&quot;185.6.36.6&quot;,
-        &quot;server_time&quot;:&quot;2018-02-12T16:29:48+00:00&quot;,
-        &quot;last_reboot&quot;:&quot;2017-11-09T00:23:24+00:00&quot;,
-        &quot;last_reconfig&quot;:&quot;2018-02-12T16:26:14+00:00&quot;,
-        &quot;message&quot;:&quot;Daemon is up and running&quot;
+    "status": {
+        "version":"1.6.3",
+        "router_id":"185.6.36.6",
+        "server_time":"2018-02-12T16:29:48+00:00",
+        "last_reboot":"2017-11-09T00:23:24+00:00",
+        "last_reconfig":"2018-02-12T16:26:14+00:00",
+        "message":"Daemon is up and running"
     }
-}
-</pre></div>
+}</code></pre>
 
 <p>If all of the above checks out, watch the log file while you try and access the looking glass:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-tail -f storage/log/laravel.log
-</pre></div>
+<pre class="highlight"><code class="language-sh">cd $IXPROOT
+tail -f storage/log/laravel.log</code></pre>
 
 <p>If there are error messages in the above log as you try and access the looking glass, include them when emailing the mailing list for help.</p>
 <p>Then on the router (the server running Bird's Eye), you need to provide the following answers when seeking help:</p>
-<div class="highlight"><pre><span></span>###############################################################################
-# Are you running the correct version of Bird&#39;s Eye for IXP Manager?
+<pre class="highlight"><code>###############################################################################
+# Are you running the correct version of Bird's Eye for IXP Manager?
 
 cat /srv/birdseye/version.php
 
@@ -580,24 +577,24 @@ $ ls -la /srv/birdseye/*env
 -rw-r--r-- 1 root root 2833 Dec  5  2016 /srv/birdseye/birdseye-as112-lan2-ipv6.env
 
 ###############################################################################
-# Let&#39;s see the contents of these:
+# Let's see the contents of these:
 #
 # NB: when specifying the BIRDC parameter below, for Bird v1.x.y, use the -4/-6
 # switch when querying the ipv4/6 daemon respectively. For Bird v2.x.y, use
 # the -2 switch.
 #
-$ cat /srv/birdseye/*env | egrep -v &#39;(^#)|(^\s*$)&#39;
+$ cat /srv/birdseye/*env | egrep -v '(^#)|(^\s*$)'
 
-BIRDC=&quot;/usr/bin/sudo /srv/birdseye/bin/birdc -4 -s /var/run/bird/bird-as112-lan1-ipv4.ctl&quot;
+BIRDC="/usr/bin/sudo /srv/birdseye/bin/birdc -4 -s /var/run/bird/bird-as112-lan1-ipv4.ctl"
 CACHE_DRIVER=file
 LOOKING_GLASS_ENABLED=true
-BIRDC=&quot;/usr/bin/sudo /srv/birdseye/bin/birdc -6 -s /var/run/bird/bird-as112-lan1-ipv6.ctl&quot;
+BIRDC="/usr/bin/sudo /srv/birdseye/bin/birdc -6 -s /var/run/bird/bird-as112-lan1-ipv6.ctl"
 CACHE_DRIVER=file
 LOOKING_GLASS_ENABLED=true
-BIRDC=&quot;/usr/bin/sudo /srv/birdseye/bin/birdc -4 -s /var/run/bird/bird-as112-lan2-ipv4.ctl&quot;
+BIRDC="/usr/bin/sudo /srv/birdseye/bin/birdc -4 -s /var/run/bird/bird-as112-lan2-ipv4.ctl"
 CACHE_DRIVER=file
 LOOKING_GLASS_ENABLED=true
-BIRDC=&quot;/usr/bin/sudo /srv/birdseye/bin/birdc -6 -s /var/run/bird/bird-as112-lan2-ipv6.ctl&quot;
+BIRDC="/usr/bin/sudo /srv/birdseye/bin/birdc -6 -s /var/run/bird/bird-as112-lan2-ipv6.ctl"
 CACHE_DRIVER=file
 LOOKING_GLASS_ENABLED=true
 
@@ -621,7 +618,7 @@ $ cat /etc/sudoers /etc/sudoers.d/* | grep birdseye
 www-data        ALL=(ALL)       NOPASSWD: /srv/birdseye/bin/birdc
 
 ###############################################################################
-# Does the Bird&#39;s Eye client work?
+# Does the Bird's Eye client work?
 # Run for each socket found above with the appropriate protocol (-4/-6):
 # (only one shown here for brevity - include all in your request for help!)
 
@@ -652,7 +649,7 @@ $ netstat -lpn | grep php
 unix  2      [ ACC ]     STREAM     LISTENING     13970    635/php-cgi         /var/run/lighttpd/php.socket-0
 
 ###############################################################################
-# what&#39;s the web server configuration
+# what's the web server configuration
 # NB: make sure you have compared it to:
 #   https://github.com/inex/birdseye/blob/master/data/configs/lighttpd.conf
 $ cat /etc/lighttpd/lighttpd.conf
@@ -663,8 +660,7 @@ $ cat /etc/lighttpd/lighttpd.conf
 # provide the IXP Manager configuration of your router(s):
 mysql&gt; SELECT * FROM routers\G
 
-&lt;not included - see example at start of this section&gt;
-</pre></div>
+&lt;not included - see example at start of this section&gt;</code></pre>
               
             </div>
           </div>
