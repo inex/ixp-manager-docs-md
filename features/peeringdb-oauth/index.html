@@ -430,19 +430,17 @@
 <p><img alt="Adding IXP Manager to PeeringDB's OAuth Applications" src="../img/peeringdb-oauth-pdb-setup.png" /></p>
 <h2 id="configuring-ixp-manager">Configuring IXP Manager<a class="headerlink" href="#configuring-ixp-manager" title="Permanent link"></a></h2>
 <p>To enable OAuth with PeeringDB on IXP Manager, set the following options in your <code>.env</code> file:</p>
-<div class="highlight"><pre><span></span>AUTH_PEERINGDB_ENABLED=true
+<pre class="highlight"><code>AUTH_PEERINGDB_ENABLED=true
 
-PEERINGDB_OAUTH_CLIENT_ID=&quot;xxx&quot;
-PEERINGDB_OAUTH_CLIENT_SECRET=&quot;xxx&quot;
-PEERINGDB_OAUTH_REDIRECT=&quot;https://www.example.com/auth/login/peeringdb/callback&quot;
-</pre></div>
+PEERINGDB_OAUTH_CLIENT_ID="xxx"
+PEERINGDB_OAUTH_CLIENT_SECRET="xxx"
+PEERINGDB_OAUTH_REDIRECT="https://www.example.com/auth/login/peeringdb/callback"</code></pre>
 
 <p>while replacing the configuration values for the those from the PeeringDB set-up above.</p>
 <p>Once this is complete, you'll find a new option on IXP Manager's login form:</p>
 <p><img alt="IXP Manager with PeeringDB's OAuth Option" src="../img/peeringdb-oauth-pdb-login.png" /></p>
 <p>By default, new users are created on IXP Manager as read-only <em>customer users</em>. You can change this to read-write <em>customer admin</em> users by additionally setting the following option:</p>
-<div class="highlight"><pre><span></span>AUTH_PEERINGDB_PRIVS=2
-</pre></div>
+<pre class="highlight"><code>AUTH_PEERINGDB_PRIVS=2</code></pre>
 
 <h3 id="disabling-on-a-per-customer-basis">Disabling On a Per-Customer Basis<a class="headerlink" href="#disabling-on-a-per-customer-basis" title="Permanent link"></a></h3>
 <p>If PeeringDB OAuth is configured and enabled (<code>AUTH_PEERINGDB_ENABLED=true</code>) then it is enabled for all customers. However you may encounter a customer who does not want OAuth access enabled on their account. In this situation, IXP Manager allows you to disabled OAuth on a per-customer basis when adding or editing customers.</p>
