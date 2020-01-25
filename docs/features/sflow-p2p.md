@@ -46,7 +46,7 @@ The following sflow parameters must be set in the `<ixp>` section:
 * `sflowtool_opts`: command-line options to pass to sflowtool
 * `sflow_rrddir`: the directory where all the sflow .rrd files will be stored.
 * `apikey`: a valid API key.  Instructions for configuring this can be found in the [API configuration](api.md) documentation.
-* `apibaseurl`: the base URL of the IXP Manager API.  E.g. if you log into IXP Manager using `http://www.example.com/ixp/`, then `apibaseurl` will be `http://www.example.com/ixp/api/v4`.
+* `apibaseurl`: the base URL of the IXP Manager API.  E.g. if you log into IXP Manager using `https://ixp.example.com/`, then `apibaseurl` will be `https://ixp.example.com/api/v4`.
 * `macdbtype`: `configured|discovered` - specifies whether the sflow p2p graphing system should pull MAC address information from the Configured MAC address database or the Discovered MAC address database.  By default, it uses the Discovered MAC address database.  If you wish to use the Configured MAC address database, then this should be set to `configured`.
 
 Note that the `<sql>` section of `ixpmanager.conf` will need to be configured either if you are running `update-l2database.pl` or the sflow BGP peering matrix system on the same server as the p2p sflow system.
@@ -136,3 +136,33 @@ There are plenty of things which could go wrong in a way which would stop the sf
 No.  All of this runs perfectly well on Ubuntu (or your favourite Linux distribution).
 
 INEX runs its sflow back-end on FreeBSD because we found that the UFS filesystem performs better than the Linux ext3 filesystem when handling large RRD archives.  If you run `rrdcached`, it's unlikely that you will run into performance problems.  If you do, you can engineer around them by running the RRD archive on a PCIe SSD.
+
+# API Endpoints
+
+The `tools/runtime/sflow/sflow-to-rrd-handler` script from **IXP Manager** referenced above uses an IXP Manager API endpoint to associate sflow samples (based on source and destination MAC addreesses) with VLAN interfaces.
+
+As IXP Manager [supports layer2 / MAC addresses](layer2-addresses.md) in two ways (learned versus configured), there are two endpoints (using `https://ixp.example.com` as your IXP Manager installation):
+
+1. Learned: `https://ixp.example.com/api/v4/sflow-db-mapper/learned-macs`
+2. Configured: `https://ixp.example.com/api/v4/sflow-db-mapper/configured-macs`
+
+The JSON output is structured as per the following example:
+
+```
+{
+    "infrastructure id": {
+        "vlan tag": {
+            "mac address": "vlan interface id",
+            ...
+        },
+        ...
+    },
+    ...
+}
+```
+
+where:
+
+* the outer objects are indexed by an infrastructure ID
+* each infrastructure object has VLAN objects indexed by the VLAN **tag** *(this is not the VLAN database ID but the VLAN tag)*
+* each VLAN object has key/value pairs of `"macaddress": "vlaninterfaceid"`
