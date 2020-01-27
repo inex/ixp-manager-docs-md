@@ -15,6 +15,34 @@ Active sessions can be seen (and deleted) via the *Active Sessions* option in th
 
 ## Two-Factor Authentication (2FA)
 
+Two factor authentication (2FA) strengthens access security by requiring two methods (also referred to as factors) to verify your identity. Two factor authentication protects against phishing, social engineering and password brute force attacks and secures your logins from attackers exploiting weak or stolen credentials.
+
+**IXP Manager** supports a Google Authenticator compatible HMAC-Based One-time Password (HOTP) algorithm as specified in [RFC 4226](https://tools.ietf.org/html/rfc4226) and the Time-based One-time Password (TOTP) algorithm specified in [RFC 6238](https://tools.ietf.org/html/rfc6238). In other words, *the standard* 2fa system that is support by most apps such as [Authy](https://www.authy.com/), Google Authenticator, [LastPass](https://lastpass.com/auth/), [1Password](https://1password.com/), etc.
+
+
+User's can enable / view (and test) / disable 2fa via the *My Account -> Profile* page.
+
+2FA is enabled by default (only for those users that have configured it). To globally disable it set the following `.env` option:
+
+```
+2FA_ENABLED=false
+```
+
+### Enforcing 2FA for Users
+
+You can enforce the user of 2FA for some (or all) categories of users. Set the following configuration option:
+
+```
+2FA_ENFORCE_FOR_USERS=n
+```
+
+where *n* is the privilege level of the user (see `privs=` [here](users.md)). For example to force 2fa for:
+
+* all superusers, set *n* to `3`;
+* all custadmins and superusers, set *n* to `2`; or
+* all users, set *n* to `1`.
+
+If a user without 2fa enabled tries to login from a privilege category that has been configured to enforce 2fa, they will be required to configure 2fa immediately before being granted access to IXP Manager.
 
 ### Lifetime
 

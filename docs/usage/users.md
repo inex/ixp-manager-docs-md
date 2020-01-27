@@ -15,9 +15,9 @@ For details on session management and two-factor authentication, please see [thi
 
 There are three types of user:
 
-* **Customer User** - a standard customer user with **read only** portal access to a specific customer's dashboard.
-* **Customer Administrator** - a customer administrative user. This account allows users to make changes as well as manage users for their organisation.
-* **Superuser** - IXP staff only. **FULL ACCESS TO ALL CUSTOMERS AND FUNCTIONS**. This is only for your IXP staff!
+* **Customer User** - a standard customer user with **read only** portal access to a specific customer's dashboard (`privs = 1`).
+* **Customer Administrator** - a customer administrative user. This account allows users to make changes as well as manage users for their organisation (`privs = 2`).
+* **Superuser** - IXP staff only (`privs = 3`). **FULL ACCESS TO ALL CUSTOMERS AND FUNCTIONS**. This is only for your IXP staff!
 
 ## Managing Users
 
