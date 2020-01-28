@@ -77,6 +77,6 @@ We have opted not to implement recovery / backup codes as they are not particula
 
 If a user needs to have their 2fa removed (indefinitely or so they can reconfigure it), superadmins can do this via the standard user listing (the *Users* option in the left hand menu).
 
-Identity the user you wish to remove 2fa from, dropdown the additional actions menu on the far right of the table row and select *Remove 2FA*.
+Identify the user you wish to remove 2fa from, dropdown the additional actions menu on the far right of the table row and select *Remove 2FA*.
 
-Once you confirm this action, that user's 2fa configuration will be deleted. The next time they log in, they will either be granted access without 2fe or forced to reconfigure 2fa if you have enforced 2fa for the user's category.
+Once you confirm this action, that user's 2fa configuration will be deleted. The next time they log in, they will either be granted access without 2fa or forced to reconfigure 2fa if you have enforced 2fa for the user's category.
