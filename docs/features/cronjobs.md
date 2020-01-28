@@ -24,7 +24,8 @@ The following tasks are run via this mechanism and are referenced elsewhere in t
 
 ### Expunging Logs
 
-Some data should not be retained indefinitely for user privacy / GDPR reasons. The `utils:expunge-logs` command runs daily at 03:04 and currently:
+Some data should not be retained indefinitely for user privacy / GDPR / housekeeping reasons. The `utils:expunge-logs` command runs daily at 03:04 and currently:
 
-1. removes user login history older than 6 months.
-2. eh, no that's it for now!
+1. removes user login history older than 6 months;
+2. removes user API keys that expired >3 months ago;
+3. removes expired user remember tokens.

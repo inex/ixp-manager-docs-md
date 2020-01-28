@@ -7,22 +7,45 @@
 
 IXP Manager allows users to login and remain logged in for up to 30 days (by default). Users may also have and maintain multiple login sessions from different browsers.
 
-To enable such a session, the user must check the *Remember me* checkbox when logging in.
+To enable such a long-lived session, the user must check the *Remember me* checkbox when logging in.
 
 Active sessions can be seen (and deleted) via the *Active Sessions* option in the user's *My Account* menu (top right of screen).
 
 
+### Session Lifetimes
+
+There are two configurable options here - **both in minutes**. The first is the session lifetime which is how long a browser session will stay valid since the last activity. The default value is defined in `.env` as:
+
+```
+SESSION_LIFETIME=120
+```
+
+In other words, your login session (when you do not check *remember me*) will stay valid for 120 minutes / 2 hours by default. This is two hours *since the last request* - i.e. the session expiry time updates on each request. If you are curious, the browser cookie managing this is called `laravel_session` by default.
+
+
+If the user checks *remember me*, then a second cookie is sent to and stored on your browser (called `remember_web_xxx` where `xxx` is a random string). This references an entry in the user's `user_remember_tokens` database table.
+
+The default lifetime of this *remember me* session is defined in `.env` as:
+
+```
+AUTH_TOKEN_EXPIRE=43200
+```
+
+So, your *remember me* session will last 30 days before you will be forced to login again from a particular browser.
+
+You may notice that the cookie sent to the browser for this has an indefinite lifetime - the expiry is actually controlled by the `user_remember_tokens.expires` database column.
 
 ## Two-Factor Authentication (2FA)
 
 Two factor authentication (2FA) strengthens access security by requiring two methods (also referred to as factors) to verify your identity. Two factor authentication protects against phishing, social engineering and password brute force attacks and secures your logins from attackers exploiting weak or stolen credentials.
 
-**IXP Manager** supports a Google Authenticator compatible HMAC-Based One-time Password (HOTP) algorithm as specified in [RFC 4226](https://tools.ietf.org/html/rfc4226) and the Time-based One-time Password (TOTP) algorithm specified in [RFC 6238](https://tools.ietf.org/html/rfc6238). In other words, *the standard* 2fa system that is support by most apps such as [Authy](https://www.authy.com/), Google Authenticator, [LastPass](https://lastpass.com/auth/), [1Password](https://1password.com/), etc.
+**For the avoidance of doubt, 2fa does not apply to API keys or API requests. Treat your API keys with extreme care.**
 
+**IXP Manager** supports a Google Authenticator compatible HMAC-Based One-time Password (HOTP) algorithm as specified in [RFC 4226](https://tools.ietf.org/html/rfc4226) and the Time-based One-time Password (TOTP) algorithm specified in [RFC 6238](https://tools.ietf.org/html/rfc6238). In other words, *the standard* 2fa system that is supported by most apps such as [Authy](https://www.authy.com/), Google Authenticator, [LastPass](https://lastpass.com/auth/), [1Password](https://1password.com/), etc.
 
-User's can enable / view (and test) / disable 2fa via the *My Account -> Profile* page.
+User's can enable, view (and test) and disable 2fa via the *My Account -> Profile* page.
 
-2FA is enabled by default (only for those users that have configured it). To globally disable it set the following `.env` option:
+2FA support in IXP Manager is enabled by default from v5.3. To globally disable it set the following `.env` option:
 
 ```
 2FA_ENABLED=false
@@ -30,7 +53,7 @@ User's can enable / view (and test) / disable 2fa via the *My Account -> Profile
 
 ### Enforcing 2FA for Users
 
-You can enforce the user of 2FA for some (or all) categories of users. Set the following configuration option:
+You can enforce the use of 2FA for some (or all) categories of users. Set the following configuration option:
 
 ```
 2FA_ENFORCE_FOR_USERS=n
@@ -46,15 +69,14 @@ If a user without 2fa enabled tries to login from a privilege category that has 
 
 ### Lifetime
 
-A user will not be asked to revalidate their 2fa code during the lifetime of a session. 2fa lifetimes will be determined by the user's session. Remember that you can set the maximum session lifetime (see above) upon which time a user will need to revalidate with 2fa when logging back in.
+A user will not be asked to revalidate their 2fa code during the lifetime of a standard browser session or *remember me* session (see above).
 
-### Recovery/Backup Codes
+### Removing 2fa / Restoring User Access
 
 We have opted not to implement recovery / backup codes as they are not particularly appropriate to the scope of IXP Manager.
 
-# Testing Issues
+If a user needs to have their 2fa removed (indefinitely or so they can reconfigure it), superadmins can do this via the standard user listing (the *Users* option in the left hand menu).
 
-When enabling 2fa for the first time via the profile page:
+Identity the user you wish to remove 2fa from, dropdown the additional actions menu on the far right of the table row and select *Remove 2FA*.
 
-1. I put in the wrong code a couple times to make sure it works before putting in the correct code. This cases an error (Action not allows) when I eventually put in the right one.
-2. The Disable / Reset / Get 2FA QRcode buttons do not work as the JavaScript to determine the action cannot find the buttons. Don't think I broke it but I may have. The way you're doing it feels clunky - what about a per button listener to submit the form? Anyway, I just changed the form submit location manually to test.
+Once you confirm this action, that user's 2fa configuration will be deleted. The next time they log in, they will either be granted access without 2fe or forced to reconfigure 2fa if you have enforced 2fa for the user's category.
