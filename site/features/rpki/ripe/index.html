@@ -407,42 +407,47 @@
 <p>RIPE provides CentOS7 RPMs for production builds but as we tend to use Ubuntu LTS for our servers, we will describe an installation using the generic builds here. You can read RIPE's <a href="https://github.com/RIPE-NCC/rpki-validator-3/wiki/RIPE-NCC-RPKI-Validator-3-Production">CentOS7 installation details here</a> and their <a href="https://github.com/RIPE-NCC/rpki-validator-3/wiki/Running-the-generic-builds">own generic install details here</a> (which are the ones we worked from for these Ubuntu 18.04 LTS instructions).</p>
 <p>We use a standard Ubuntu 18.04 installation (selecting the minimal virtual server option), 2 vCPUs, 2GB RAM, 10GB LVM hard drive.</p>
 <p>We will use a non-root user to run the daemons:</p>
-<pre class="highlight"><code class="language-sh">useradd -c 'RIPE NCC RPKI Validator' -d /srv/ripe-rpki-validator \
-    -m -s /bin/bash -u 1100 ripe</code></pre>
+<div class="highlight"><pre><span></span>useradd -c <span class="s1">&#39;RIPE NCC RPKI Validator&#39;</span> -d /srv/ripe-rpki-validator <span class="se">\</span>
+    -m -s /bin/bash -u <span class="m">1100</span> ripe
+</pre></div>
 
 <p>Download and extract the latest production releases <a href="https://ftp.ripe.net/tools/rpki/validator3/prod/generic/">from here</a>:</p>
-<pre class="highlight"><code class="language-sh">cd /srv/ripe-rpki-validator
+<div class="highlight"><pre><span></span><span class="nb">cd</span> /srv/ripe-rpki-validator
 wget https://ftp.ripe.net/tools/rpki/validator3/prod/generic/rpki-rtr-server-latest-dist.tar.gz
 tar zxf rpki-rtr-server-latest-dist.tar.gz
 wget https://ftp.ripe.net/tools/rpki/validator3/prod/generic/rpki-validator-3-latest-dist.tar.gz
-tar zxf rpki-validator-3-latest-dist.tar.gz</code></pre>
+tar zxf rpki-validator-3-latest-dist.tar.gz
+</pre></div>
 
 <p>When you extract these, you'll find they create directories named by their version. As we will reference these in various scripts, we will alias these directories so we do not need to update the scripts on an upgrade of the software. In our example case, the version was <code>3.0-255</code> so we do the following (and also ensure the permissions are correct):</p>
-<pre class="highlight"><code class="language-sh">ln -s rpki-rtr-server-3.0-355 rpki-rtr-server-3
+<div class="highlight"><pre><span></span>ln -s rpki-rtr-server-3.0-355 rpki-rtr-server-3
 ln -s rpki-validator-3.0-355 rpki-validator-3
-chown -R ripe: /srv/ripe-rpki-validator</code></pre>
+chown -R ripe: /srv/ripe-rpki-validator
+</pre></div>
 
 <p>The requirements for RPKI Validator 3 are OpenJDK and rsync. For Ubuntu 18.04 that means:</p>
-<pre class="highlight"><code class="language-sh">apt install -y openjdk-8-jre rsync curl</code></pre>
+<div class="highlight"><pre><span></span>apt install -y openjdk-8-jre rsync curl
+</pre></div>
 
 <p>We will want to keep configuration changes and the database across upgrades. For this we:</p>
-<pre class="highlight"><code class="language-sh"># move the config and replace it with a link:
-cd /srv/ripe-rpki-validator
+<div class="highlight"><pre><span></span><span class="c1"># move the config and replace it with a link:</span>
+<span class="nb">cd</span> /srv/ripe-rpki-validator
 mv rpki-validator-3/conf/application.properties rpki-validator-3.conf
-ln -s /srv/ripe-rpki-validator/rpki-validator-3.conf \
+ln -s /srv/ripe-rpki-validator/rpki-validator-3.conf <span class="se">\</span>
     /srv/ripe-rpki-validator/rpki-validator-3/conf/application.properties
 
-# And do the same for the datebase:
+<span class="c1"># And do the same for the datebase:</span>
 mv rpki-validator-3/db .
 ln -s /srv/ripe-rpki-validator/db /srv/ripe-rpki-validator/rpki-validator-3/db
 
-# And do the same for rpki-rtr-server-3:
+<span class="c1"># And do the same for rpki-rtr-server-3:</span>
 mv rpki-rtr-server-3/conf/application.properties rpki-rtr-server-3.conf
-ln -s /srv/ripe-rpki-validator/rpki-rtr-server-3.conf \
+ln -s /srv/ripe-rpki-validator/rpki-rtr-server-3.conf <span class="se">\</span>
     /srv/ripe-rpki-validator/rpki-rtr-server-3/conf/application.properties
 
-# again, ensure file ownership is okay
-chown -R ripe: /srv/ripe-rpki-validator</code></pre>
+<span class="c1"># again, ensure file ownership is okay</span>
+chown -R ripe: /srv/ripe-rpki-validator
+</pre></div>
 
 <p>We then edit <code>/srv/ripe-rpki-validator/rpki-validator-3.conf</code> and change the following configuration options:</p>
 <ol>
@@ -456,71 +461,75 @@ chown -R ripe: /srv/ripe-rpki-validator</code></pre>
 <code>rtr.server.address=::</code> listens on all interfaces.</li>
 </ol>
 <p>You should now be able to start the Validator and RTR daemons:</p>
-<pre class="highlight"><code class="language-sh"># as the RIPE user
+<div class="highlight"><pre><span></span><span class="c1"># as the RIPE user</span>
 su - ripe
 
-cd /srv/ripe-rpki-validator/rpki-validator-3
+<span class="nb">cd</span> /srv/ripe-rpki-validator/rpki-validator-3
 ./rpki-validator-3.sh
 
-cd /srv/ripe-rpki-validator/rpki-rtr-server-3
-./rpki-rtr-server.sh</code></pre>
+<span class="nb">cd</span> /srv/ripe-rpki-validator/rpki-rtr-server-3
+./rpki-rtr-server.sh
+</pre></div>
 
 <p>We need to manually install the ARIN TAL by:</p>
 <ol>
 <li>Visiting https://www.arin.net/resources/rpki/tal.html</li>
 <li>Downloading the TAL in <em>RIPE NCC RPKI Validator format</em> format</li>
 <li>Installing it using the command:
-    <pre class="highlight"><code>/srv/ripe-rpki-validator/rpki-validator-3/upload-tal.sh arin-ripevalidator.tal http://localhost:8080/</code></pre></li>
+    <div class="highlight"><pre><span></span>/srv/ripe-rpki-validator/rpki-validator-3/upload-tal.sh arin-ripevalidator.tal http://localhost:8080/
+</pre></div></li>
 </ol>
 <p>We use systemd to ensure both daemons start automatically:</p>
-<pre class="highlight"><code class="language-sh">cat &lt;&lt;ENDL &gt;/etc/systemd/system/rpki-validator-3.service
-[Unit]
-Description=RPKI Validator
-After=network.target
+<div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/rpki-validator-3.service</span>
+<span class="s">[Unit]</span>
+<span class="s">Description=RPKI Validator</span>
+<span class="s">After=network.target</span>
 
-[Service]
-Environment=JAVA_CMD=/usr/bin/java
-ExecStart=/srv/ripe-rpki-validator/rpki-validator-3/rpki-validator-3.sh
+<span class="s">[Service]</span>
+<span class="s">Environment=JAVA_CMD=/usr/bin/java</span>
+<span class="s">ExecStart=/srv/ripe-rpki-validator/rpki-validator-3/rpki-validator-3.sh</span>
 
-# prevent restart in case there's a problem
-# with the database or binding to socket
-RestartPreventExitStatus=7
+<span class="s"># prevent restart in case there&#39;s a problem</span>
+<span class="s"># with the database or binding to socket</span>
+<span class="s">RestartPreventExitStatus=7</span>
 
-User=ripe
+<span class="s">User=ripe</span>
 
-[Install]
-WantedBy=multi-user.target
-ENDL
+<span class="s">[Install]</span>
+<span class="s">WantedBy=multi-user.target</span>
+<span class="s">ENDL</span>
 
-systemctl enable rpki-validator-3.service
+systemctl <span class="nb">enable</span> rpki-validator-3.service
 systemctl start rpki-validator-3.service
 
 
-cat &lt;&lt;ENDL &gt;/etc/systemd/system/rpki-rtr-server-3.service
-[Unit]
-Description=RPKI RTR
-After=rpki-validator-3.service
+cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/rpki-rtr-server-3.service</span>
+<span class="s">[Unit]</span>
+<span class="s">Description=RPKI RTR</span>
+<span class="s">After=rpki-validator-3.service</span>
 
-[Service]
-Environment=JAVA_CMD=/usr/bin/java
-ExecStart=/srv/ripe-rpki-validator/rpki-rtr-server-3/rpki-rtr-server.sh
+<span class="s">[Service]</span>
+<span class="s">Environment=JAVA_CMD=/usr/bin/java</span>
+<span class="s">ExecStart=/srv/ripe-rpki-validator/rpki-rtr-server-3/rpki-rtr-server.sh</span>
 
-# prevent restart in case there's a problem
-# with the database or binding to socket
-RestartPreventExitStatus=7
+<span class="s"># prevent restart in case there&#39;s a problem</span>
+<span class="s"># with the database or binding to socket</span>
+<span class="s">RestartPreventExitStatus=7</span>
 
-User=ripe
+<span class="s">User=ripe</span>
 
-[Install]
-WantedBy=multi-user.target
-ENDL
+<span class="s">[Install]</span>
+<span class="s">WantedBy=multi-user.target</span>
+<span class="s">ENDL</span>
 
-systemctl enable rpki-rtr-server-3.service
-systemctl start rpki-rtr-server-3.service</code></pre>
+systemctl <span class="nb">enable</span> rpki-rtr-server-3.service
+systemctl start rpki-rtr-server-3.service
+</pre></div>
 
 <p>You can see log messages using:</p>
-<pre class="highlight"><code class="language-sh">cat /var/log/syslog | grep rpki-validator
-cat /var/log/syslog | grep rpki-rtr</code></pre>
+<div class="highlight"><pre><span></span>cat /var/log/syslog <span class="p">|</span> grep rpki-validator
+cat /var/log/syslog <span class="p">|</span> grep rpki-rtr
+</pre></div>
 
 <p>We separately add the server and the RIPE daemons to our standard monitoring and alerting tools.</p>
               
