@@ -94,6 +94,10 @@
     <ul class="subnav">
                 <li class="">
                     
+    <a class="" href="../authentication/">Authentication</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../contacts/">Contacts</a>
                 </li>
                 <li class="">
@@ -322,6 +326,10 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../../dev/authentication/">Authentication</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../../dev/ci/">Continuous Integration</a>
                 </li>
                 <li class="">
@@ -446,21 +454,24 @@
 <p>You will also find an option in the <em>Edit</em> menu of the customer overview page to <em>Manage Tags...</em>.</p>
 <h2 id="exporting-tags">Exporting Tags<a class="headerlink" href="#exporting-tags" title="Permanent link"></a></h2>
 <p>Tags can be exported as part of the <a href="../../features/ixf-export/">IX-F Member Export</a> process by adding <code>?withtags=1</code> to the API URL. For example:</p>
-<pre class="highlight"><code>https://ixp.example.com/api/v4/member-export/ixf/0.7?withtags=1</code></pre>
+<div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/member-export/ixf/0.7?withtags=1
+</pre></div>
 
 <p>You have to specify <code>?withtags=1</code> as this is not part of the official IX-F Member Export specification.</p>
 <p>When you request this, you will find an empty object with each customer that does not have tags in an <code>ixp_manager</code> namespace of the form:</p>
-<pre class="highlight"><code class="language-json">"ixp_manager": {
-    "tags": []
-}</code></pre>
+<div class="highlight"><pre><span></span><span class="s2">&quot;ixp_manager&quot;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
 
 <p>And for those that do have tags, it will be of the form:</p>
-<pre class="highlight"><code class="language-json">"ixp_manager": {
-    "tags": {
-        "test-tag1": "Test Tag1",
-        "test-tag2": "Test Tag2"
-    }
-}</code></pre>
+<div class="highlight"><pre><span></span><span class="s2">&quot;ixp_manager&quot;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;test-tag1&quot;</span><span class="p">:</span> <span class="s2">&quot;Test Tag1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;test-tag2&quot;</span><span class="p">:</span> <span class="s2">&quot;Test Tag2&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
 <p>where <code>test-tag2</code> is the tag and <code>Test Tag2</code> is the display name.</p>
               

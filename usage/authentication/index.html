@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Cron Jobs - IXP Manager Documentation</title>
+  <title>Authentication - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Cron Jobs";
-    var mkdocs_page_input_path = "features/cronjobs.md";
-    var mkdocs_page_url = "/features/cronjobs/";
+    var mkdocs_page_name = "Authentication";
+    var mkdocs_page_input_path = "usage/authentication.md";
+    var mkdocs_page_url = "/usage/authentication/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -92,37 +92,51 @@
 		
     <span class="caption-text">General Usage</span>
     <ul class="subnav">
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../usage/authentication/">Authentication</a>
+    <a class="current" href="./">Authentication</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#authentication-session-management">Authentication &amp; Session Management</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#session-management">Session Management</a></li>
+        
+            <li><a class="toctree-l4" href="#two-factor-authentication-2fa">Two-Factor Authentication (2FA)</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/contacts/">Contacts</a>
+    <a class="" href="../contacts/">Contacts</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/customers/">Customers / Members</a>
+    <a class="" href="../customers/">Customers / Members</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/customer-notes/">Customer Notes</a>
+    <a class="" href="../customer-notes/">Customer Notes</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/customer-tags/">Customer Tags</a>
+    <a class="" href="../customer-tags/">Customer Tags</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/interfaces/">Customer Connections</a>
+    <a class="" href="../interfaces/">Customer Connections</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/users/">Users</a>
+    <a class="" href="../users/">Users</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/switches/">Switches</a>
+    <a class="" href="../switches/">Switches</a>
                 </li>
     </ul>
 	    </li>
@@ -133,41 +147,27 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../api/">API</a>
+    <a class="" href="../../features/api/">API</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../as112/">AS112</a>
+    <a class="" href="../../features/as112/">AS112</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../console-servers/">Console Servers</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">Cron Jobs</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#cron-jobs-task-scheduling">Cron Jobs - Task Scheduling</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#tasks-referenced-elsewhere">Tasks Referenced Elsewhere</a></li>
-        
-            <li><a class="toctree-l4" href="#other-tasks">Other Tasks</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../../features/console-servers/">Console Servers</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../patch-panels/">Cross Connects</a>
+    <a class="" href="../../features/cronjobs/">Cron Jobs</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../dns-arpa/">DNS / ARPA</a>
+    <a class="" href="../../features/patch-panels/">Cross Connects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../features/dns-arpa/">DNS / ARPA</a>
                 </li>
                 <li class="">
                     
@@ -175,83 +175,83 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../helpdesk/">Helpdesk Integration</a>
+    <a class="" href="../../features/helpdesk/">Helpdesk Integration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../irrdb/">IRRDB</a>
+    <a class="" href="../../features/irrdb/">IRRDB</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../ixf-export/">IX-F Member Export</a>
+    <a class="" href="../../features/ixf-export/">IX-F Member Export</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../looking-glass/">Looking Glass</a>
+    <a class="" href="../../features/looking-glass/">Looking Glass</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../layer2-addresses/">MAC Addresses</a>
+    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../manrs/">MANRS</a>
+    <a class="" href="../../features/manrs/">MANRS</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../member-export/">Member Export</a>
+    <a class="" href="../../features/member-export/">Member Export</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../mailing-lists/">Mailing List Management</a>
+    <a class="" href="../../features/mailing-lists/">Mailing List Management</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../nagios/">Nagios</a>
+    <a class="" href="../../features/nagios/">Nagios</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../patch-panels/">Patch Panels</a>
+    <a class="" href="../../features/patch-panels/">Patch Panels</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../peering-manager/">Peering Manager</a>
+    <a class="" href="../../features/peering-manager/">Peering Manager</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../peering-matrix/">Peering Matrix</a>
+    <a class="" href="../../features/peering-matrix/">Peering Matrix</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../peeringdb/">PeeringDB</a>
+    <a class="" href="../../features/peeringdb/">PeeringDB</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../rir-objects/">RIR Objects</a>
+    <a class="" href="../../features/rir-objects/">RIR Objects</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../reseller/">Reseller Functionality</a>
+    <a class="" href="../../features/reseller/">Reseller Functionality</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../route-collectors/">Route Collectors</a>
+    <a class="" href="../../features/route-collectors/">Route Collectors</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../route-servers/">Route Servers</a>
+    <a class="" href="../../features/route-servers/">Route Servers</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../routers/">Router Configuration</a>
+    <a class="" href="../../features/routers/">Router Configuration</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../rpki/">RPKI</a>
+    <a class="" href="../../features/rpki/">RPKI</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../skinning/">Skinning</a>
+    <a class="" href="../../features/skinning/">Skinning</a>
                 </li>
                 <li class="">
                     
@@ -259,11 +259,11 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../static-content/">Static Content</a>
+    <a class="" href="../../features/static-content/">Static Content</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../tacacs/">TACACS</a>
+    <a class="" href="../../features/tacacs/">TACACS</a>
                 </li>
     </ul>
 	    </li>
@@ -301,11 +301,11 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../sflow/">Introduction</a>
+    <a class="" href="../../features/sflow/">Introduction</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../sflow-p2p/">Peer-to-peer Graphs</a>
+    <a class="" href="../../features/sflow-p2p/">Peer-to-peer Graphs</a>
                 </li>
     </ul>
 	    </li>
@@ -403,14 +403,14 @@
     
       
         
-          <li>Features &raquo;</li>
+          <li>General Usage &raquo;</li>
         
       
     
-    <li>Cron Jobs</li>
+    <li>Authentication</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/cronjobs.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/usage/authentication.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -420,31 +420,53 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="cron-jobs-task-scheduling">Cron Jobs - Task Scheduling<a class="headerlink" href="#cron-jobs-task-scheduling" title="Permanent link"></a></h1>
-<p>Prior to IXP Manager v5, a number of cron jobs had to be configured manually. From v5.0 onwards, cron jobs are handled by <a href="https://laravel.com/docs/5.8/scheduling">Laravel's task scheduler</a>. As such, you just need a single cron job entry such as:</p>
-<div class="highlight"><pre><span></span>* * * * *    www-data    cd /path-to-your-ixp-manager &amp;&amp; php artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1
+                <h1 id="authentication-session-management">Authentication &amp; Session Management<a class="headerlink" href="#authentication-session-management" title="Permanent link"></a></h1>
+<details class="note" open="open"><summary><strong>This page refers to features introduced in IXP Manager v5.3</strong></summary></details>
+<h2 id="session-management">Session Management<a class="headerlink" href="#session-management" title="Permanent link"></a></h2>
+<p>IXP Manager allows users to login and remain logged in for up to 30 days (by default). Users may also have and maintain multiple login sessions from different browsers.</p>
+<p>To enable such a long-lived session, the user must check the <em>Remember me</em> checkbox when logging in.</p>
+<p>Active sessions can be seen (and deleted) via the <em>Active Sessions</em> option in the user's <em>My Account</em> menu (top right of screen).</p>
+<h3 id="session-lifetimes">Session Lifetimes<a class="headerlink" href="#session-lifetimes" title="Permanent link"></a></h3>
+<p>There are two configurable options here - <strong>both in minutes</strong>. The first is the session lifetime which is how long a browser session will stay valid since the last activity. The default value is defined in <code>.env</code> as:</p>
+<div class="highlight"><pre><span></span>SESSION_LIFETIME=120
 </pre></div>
 
-<p>You can see the <a href="https://github.com/inex/IXP-Manager/blob/master/app/Console/Kernel.php">full schedule in code here</a> (look for the function <code>protected function schedule(Schedule $schedule)</code>).</p>
-<h2 id="tasks-referenced-elsewhere">Tasks Referenced Elsewhere<a class="headerlink" href="#tasks-referenced-elsewhere" title="Permanent link"></a></h2>
-<p>The following tasks are run via this mechanism and are referenced elsewhere in the documentation:</p>
+<p>In other words, your login session (when you do not check <em>remember me</em>) will stay valid for 120 minutes / 2 hours by default. This is two hours <em>since the last request</em> - i.e. the session expiry time updates on each request. If you are curious, the browser cookie managing this is called <code>laravel_session</code> by default.</p>
+<p>If the user checks <em>remember me</em>, then a second cookie is sent to and stored on your browser (called <code>remember_web_xxx</code> where <code>xxx</code> is a random string). This references an entry in the user's <code>user_remember_tokens</code> database table.</p>
+<p>The default lifetime of this <em>remember me</em> session is defined in <code>.env</code> as:</p>
+<div class="highlight"><pre><span></span>AUTH_TOKEN_EXPIRE=43200
+</pre></div>
+
+<p>So, your <em>remember me</em> session will last 30 days before you will be forced to login again from a particular browser.</p>
+<p>You may notice that the cookie sent to the browser for this has an indefinite lifetime - the expiry is actually controlled by the <code>user_remember_tokens.expires</code> database column.</p>
+<h2 id="two-factor-authentication-2fa">Two-Factor Authentication (2FA)<a class="headerlink" href="#two-factor-authentication-2fa" title="Permanent link"></a></h2>
+<p>Two factor authentication (2FA) strengthens access security by requiring two methods (also referred to as factors) to verify your identity. Two factor authentication protects against phishing, social engineering and password brute force attacks and secures your logins from attackers exploiting weak or stolen credentials.</p>
+<p><strong>For the avoidance of doubt, 2fa does not apply to API keys or API requests. Treat your API keys with extreme care.</strong></p>
+<p><strong>IXP Manager</strong> supports a Google Authenticator compatible HMAC-Based One-time Password (HOTP) algorithm as specified in <a href="https://tools.ietf.org/html/rfc4226">RFC 4226</a> and the Time-based One-time Password (TOTP) algorithm specified in <a href="https://tools.ietf.org/html/rfc6238">RFC 6238</a>. In other words, <em>the standard</em> 2fa system that is supported by most apps such as <a href="https://www.authy.com/">Authy</a>, Google Authenticator, <a href="https://lastpass.com/auth/">LastPass</a>, <a href="https://1password.com/">1Password</a>, etc.</p>
+<p>User's can enable, view (and test) and disable 2fa via the <em>My Account -&gt; Profile</em> page.</p>
+<p>2FA support in IXP Manager is enabled by default from v5.3. To globally disable it set the following <code>.env</code> option:</p>
+<div class="highlight"><pre><span></span>2FA_ENABLED=false
+</pre></div>
+
+<h3 id="enforcing-2fa-for-users">Enforcing 2FA for Users<a class="headerlink" href="#enforcing-2fa-for-users" title="Permanent link"></a></h3>
+<p>You can enforce the use of 2FA for some (or all) categories of users. Set the following configuration option:</p>
+<div class="highlight"><pre><span></span>2FA_ENFORCE_FOR_USERS=n
+</pre></div>
+
+<p>where <em>n</em> is the privilege level of the user (see <code>privs=</code> <a href="../users/">here</a>). For example to force 2fa for:</p>
 <ul>
-<li>Uploading MRTG traffic data to the database - documented <a href="../../grapher/mrtg/#inserting-traffic-data-into-the-database-reporting-emails">in the Grapher MRTG backend page</a> - and runs nightly at 02:00. <strong>NB:</strong> there are email reports that can be added to cron that are not part of the scheduler - see the same page for details on this.</li>
-<li>IRRDB prefix and ASN database for generating route server filters - this is all documented <a href="../irrdb/">on the IRRDB page</a>. <strong>NB:</strong> the scheduler will not run unless you have configured the location of BGPQ3 as per the instructions. This runs every 6 hours.</li>
-<li><a href="../../dev/telescope/">Telescope</a> is a debugging / error tracking tool within IXP Manager. In production, it is limited to recording exceptions and other errors. It puts data into a database table of which anything over three days is expunged via the Artisan command <code>telescope:prune</code> daily.</li>
-<li>The <a href="../layer2-addresses/#oui-database">OUI database</a> is updated weekly (Mondays at 09:15).</li>
-<li>Polling / updating switch and switch port details (<a href="../../usage/switches/#automated-polling-snmp-updates">see documentation here</a>) happens hourly at 10 past the hour.</li>
-<li>Update the record of which customers have / have not <a href="../peeringdb/#existence-of-peeringdb-records">PeeringDB records</a>.</li>
-<li>Update the record of which customers are / are not <a href="../manrs/">participating in MANRS</a>.</li>
+<li>all superusers, set <em>n</em> to <code>3</code>;</li>
+<li>all custadmins and superusers, set <em>n</em> to <code>2</code>; or</li>
+<li>all users, set <em>n</em> to <code>1</code>.</li>
 </ul>
-<h2 id="other-tasks">Other Tasks<a class="headerlink" href="#other-tasks" title="Permanent link"></a></h2>
-<h3 id="expunging-logs">Expunging Logs<a class="headerlink" href="#expunging-logs" title="Permanent link"></a></h3>
-<p>Some data should not be retained indefinitely for user privacy / GDPR / housekeeping reasons. The <code>utils:expunge-logs</code> command runs daily at 03:04 and currently:</p>
-<ol>
-<li>removes user login history older than 6 months;</li>
-<li>removes user API keys that expired &gt;3 months ago;</li>
-<li>removes expired user remember tokens.</li>
-</ol>
+<p>If a user without 2fa enabled tries to login from a privilege category that has been configured to enforce 2fa, they will be required to configure 2fa immediately before being granted access to IXP Manager.</p>
+<h3 id="lifetime">Lifetime<a class="headerlink" href="#lifetime" title="Permanent link"></a></h3>
+<p>A user will not be asked to revalidate their 2fa code during the lifetime of a standard browser session or <em>remember me</em> session (see above).</p>
+<h3 id="removing-2fa-restoring-user-access">Removing 2fa / Restoring User Access<a class="headerlink" href="#removing-2fa-restoring-user-access" title="Permanent link"></a></h3>
+<p>We have opted not to implement recovery / backup codes as they are not particularly appropriate to the scope of IXP Manager.</p>
+<p>If a user needs to have their 2fa removed (indefinitely or so they can reconfigure it), superadmins can do this via the standard user listing (the <em>Users</em> option in the left hand menu).</p>
+<p>Identity the user you wish to remove 2fa from, dropdown the additional actions menu on the far right of the table row and select <em>Remove 2FA</em>.</p>
+<p>Once you confirm this action, that user's 2fa configuration will be deleted. The next time they log in, they will either be granted access without 2fe or forced to reconfigure 2fa if you have enforced 2fa for the user's category.</p>
               
             </div>
           </div>
@@ -452,10 +474,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../patch-panels/" class="btn btn-neutral float-right" title="Cross Connects">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../contacts/" class="btn btn-neutral float-right" title="Contacts">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../console-servers/" class="btn btn-neutral" title="Console Servers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../install/next-steps/" class="btn btn-neutral" title="Post-Install Steps"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -485,10 +507,10 @@
           <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../console-servers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../install/next-steps/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../patch-panels/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../contacts/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
