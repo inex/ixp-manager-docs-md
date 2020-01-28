@@ -440,7 +440,7 @@
 <p>So, your <em>remember me</em> session will last 30 days before you will be forced to login again from a particular browser.</p>
 <p>You may notice that the cookie sent to the browser for this has an indefinite lifetime - the expiry is actually controlled by the <code>user_remember_tokens.expires</code> database column.</p>
 <h2 id="two-factor-authentication-2fa">Two-Factor Authentication (2FA)<a class="headerlink" href="#two-factor-authentication-2fa" title="Permanent link"></a></h2>
-<p>Two factor authentication (2FA) strengthens access security by requiring two methods (also referred to as factors) to verify your identity. Two factor authentication protects against phishing, social engineering and password brute force attacks and secures your logins from attackers exploiting weak or stolen credentials.</p>
+<p>Two factor authentication (2fa) strengthens access security by requiring two methods (also referred to as factors) to verify your identity. Two factor authentication protects against phishing, social engineering and password brute force attacks and secures your logins from attackers exploiting weak or stolen credentials.</p>
 <p><strong>For the avoidance of doubt, 2fa does not apply to API keys or API requests. Treat your API keys with extreme care.</strong></p>
 <p><strong>IXP Manager</strong> supports a Google Authenticator compatible HMAC-Based One-time Password (HOTP) algorithm as specified in <a href="https://tools.ietf.org/html/rfc4226">RFC 4226</a> and the Time-based One-time Password (TOTP) algorithm specified in <a href="https://tools.ietf.org/html/rfc6238">RFC 6238</a>. In other words, <em>the standard</em> 2fa system that is supported by most apps such as <a href="https://www.authy.com/">Authy</a>, Google Authenticator, <a href="https://lastpass.com/auth/">LastPass</a>, <a href="https://1password.com/">1Password</a>, etc.</p>
 <p>User's can enable, view (and test) and disable 2fa via the <em>My Account -&gt; Profile</em> page.</p>
@@ -449,7 +449,7 @@
 </pre></div>
 
 <h3 id="enforcing-2fa-for-users">Enforcing 2FA for Users<a class="headerlink" href="#enforcing-2fa-for-users" title="Permanent link"></a></h3>
-<p>You can enforce the use of 2FA for some (or all) categories of users. Set the following configuration option:</p>
+<p>You can enforce the use of 2fa for some (or all) categories of users. Set the following configuration option:</p>
 <div class="highlight"><pre><span></span>2FA_ENFORCE_FOR_USERS=n
 </pre></div>
 
@@ -462,7 +462,7 @@
 <p>If a user without 2fa enabled tries to login from a privilege category that has been configured to enforce 2fa, they will be required to configure 2fa immediately before being granted access to IXP Manager.</p>
 <h3 id="lifetime">Lifetime<a class="headerlink" href="#lifetime" title="Permanent link"></a></h3>
 <p>A user will not be asked to revalidate their 2fa code during the lifetime of a standard browser session or <em>remember me</em> session (see above).</p>
-<h3 id="removing-2fa-restoring-user-access">Removing 2fa / Restoring User Access<a class="headerlink" href="#removing-2fa-restoring-user-access" title="Permanent link"></a></h3>
+<h3 id="removing-2fa-restoring-user-access">Removing 2FA / Restoring User Access<a class="headerlink" href="#removing-2fa-restoring-user-access" title="Permanent link"></a></h3>
 <p>We have opted not to implement recovery / backup codes as they are not particularly appropriate to the scope of IXP Manager.</p>
 <p>If a user needs to have their 2fa removed (indefinitely or so they can reconfigure it), superadmins can do this via the standard user listing (the <em>Users</em> option in the left hand menu).</p>
 <p>Identify the user you wish to remove 2fa from, dropdown the additional actions menu on the far right of the table row and select <em>Remove 2FA</em>.</p>

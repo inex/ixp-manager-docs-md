@@ -37,7 +37,7 @@ You may notice that the cookie sent to the browser for this has an indefinite li
 
 ## Two-Factor Authentication (2FA)
 
-Two factor authentication (2FA) strengthens access security by requiring two methods (also referred to as factors) to verify your identity. Two factor authentication protects against phishing, social engineering and password brute force attacks and secures your logins from attackers exploiting weak or stolen credentials.
+Two factor authentication (2fa) strengthens access security by requiring two methods (also referred to as factors) to verify your identity. Two factor authentication protects against phishing, social engineering and password brute force attacks and secures your logins from attackers exploiting weak or stolen credentials.
 
 **For the avoidance of doubt, 2fa does not apply to API keys or API requests. Treat your API keys with extreme care.**
 
@@ -53,7 +53,7 @@ User's can enable, view (and test) and disable 2fa via the *My Account -> Profil
 
 ### Enforcing 2FA for Users
 
-You can enforce the use of 2FA for some (or all) categories of users. Set the following configuration option:
+You can enforce the use of 2fa for some (or all) categories of users. Set the following configuration option:
 
 ```
 2FA_ENFORCE_FOR_USERS=n
@@ -71,7 +71,7 @@ If a user without 2fa enabled tries to login from a privilege category that has 
 
 A user will not be asked to revalidate their 2fa code during the lifetime of a standard browser session or *remember me* session (see above).
 
-### Removing 2fa / Restoring User Access
+### Removing 2FA / Restoring User Access
 
 We have opted not to implement recovery / backup codes as they are not particularly appropriate to the scope of IXP Manager.
 
