@@ -25,7 +25,8 @@ The default Laravel fucntionality around *remember me* is a single shared token 
 
 Most of the functionality exists in the session guard and user provider classes. We have overridden these here:
 
-* s
+* `app/Services/Auth/SessionGuard.php`
+* `app/Services/Auth/DoctrineUserProvider.php`
 
 Again, the idea is to minimise the changes required to the core Laravel framework (and LaravelDoctrine).
 
