@@ -96,6 +96,13 @@ The same details apply to IPv4 and IPv6 options so we will document them togethe
 * `Can Ping`: IXP Manager generates configuration for a number of other tools such as [Smokeping](../grapher/smokeping.md) and Nagios which ping customer routers. These are invaluable tools for problem solving, monitoring and graphing long term trends. We enable this by default unless a customer specifically asks us not to.
 * `Can Monitor RC BGP`: this is more of a legacy option for configuration builders that used to check for established route collector BGP sessions and warn if not present. This is deprecated and will be removed.
 
+If you wish to make `Hostname` above optional, set the following `.env` configuration option:
+
+```
+IXP_FE_VLANINTERFACES_HOSTNAME_REQUIRED=false
+```
+
+
 ## Viewing / Editing an Interface
 
 Once an interface has been added as per the above wizard instructions, you can view and edit the interface by selecting the edit icon against the connection you are interested in from the *Ports* tab on the customer overview page. When you do that, you will see a screen such as the following:
