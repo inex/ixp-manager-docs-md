@@ -4,6 +4,7 @@ Please read the [authentication usage instructions first](../usage/authenticatio
 
 IXP Manager uses Laravel's standard authentication framework but with the [Laravel Doctrine ORM](http://www.laraveldoctrine.org/) [authentication](http://www.laraveldoctrine.org/docs/1.4/orm/auth) rather than Eloquent.
 
+See also [Barry O'Donovan's PHP write up of the 2fa and user session management changes introduced in v5.3.0](https://www.barryodonovan.com/2020/02/06/2fa-and-user-session-management-in-ixp-manager) and the [v5.2.0 to v5.3.0 diff](https://github.com/inex/IXP-Manager/compare/v5.2.0...v5.3.0). 
 
 ## Mutliple Sessions / Remember Me Cookies
 
