@@ -31,6 +31,7 @@ nav:
     - 'Cron Jobs': 'features/cronjobs.md'
     - 'Cross Connects': 'features/patch-panels.md'
     - 'DNS / ARPA': 'features/dns-arpa.md'
+    - 'Document Store': 'features/docstore.md'
     - 'Grapher': 'grapher/introduction.md'
     - 'Helpdesk Integration': 'features/helpdesk.md'
     - 'IRRDB': 'features/irrdb.md'
