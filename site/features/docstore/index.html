@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>TACACS - IXP Manager Documentation</title>
+  <title>Document Store - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "TACACS";
-    var mkdocs_page_input_path = "features/tacacs.md";
-    var mkdocs_page_url = "/features/tacacs/";
+    var mkdocs_page_name = "Document Store";
+    var mkdocs_page_input_path = "features/docstore.md";
+    var mkdocs_page_url = "/features/docstore/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -155,9 +155,29 @@
                     
     <a class="" href="../dns-arpa/">DNS / ARPA</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../docstore/">Document Store</a>
+    <a class="current" href="./">Document Store</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#document-store">Document Store</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#directories">Directories</a></li>
+        
+            <li><a class="toctree-l4" href="#files">Files</a></li>
+        
+            <li><a class="toctree-l4" href="#download-logs">Download Logs</a></li>
+        
+            <li><a class="toctree-l4" href="#access-considerations">Access Considerations</a></li>
+        
+            <li><a class="toctree-l4" href="#notes-limitations">Notes &amp; Limitations</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
@@ -251,23 +271,9 @@
                     
     <a class="" href="../static-content/">Static Content</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">TACACS</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#tacacs-user-formatting">TACACS (User Formatting)</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#generating-tacacs-configuration">Generating TACACS Configuration</a></li>
-        
-            <li><a class="toctree-l4" href="#setting-up-tacacs">Setting Up TACACS</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../tacacs/">TACACS</a>
                 </li>
     </ul>
 	    </li>
@@ -411,10 +417,10 @@
         
       
     
-    <li>TACACS</li>
+    <li>Document Store</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/tacacs.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/docstore.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -424,68 +430,110 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="tacacs-user-formatting">TACACS (User Formatting)<a class="headerlink" href="#tacacs-user-formatting" title="Permanent link"></a></h1>
-<p><strong>IXP Manager</strong> can generate formatted lists of user information. The best example of this is for TACACS.</p>
-<p>TACACS is used in most IXPs to manage access to switching and routing devices:</p>
+                <h1 id="document-store">Document Store<a class="headerlink" href="#document-store" title="Permanent link"></a></h1>
+<details class="note" open="open"><summary><strong>This page refers to features introduced in IXP Manager v5.4</strong></summary></details>
+<p><strong>IXP Manager</strong> has a <em>document store</em> allowing administrators to upload documents to be made generally available for specific <a href="../../usage/users/#types-of-users">user classes</a> (public, customer user, customer admin, superadmin). The document store supports:</p>
+<ol>
+<li>Upload any file type.</li>
+<li>Edit uploaded files including name, description, minimum access privilege and replacing the file itself.</li>
+<li>For non-public documents, logging and reporting of downloads (total downloads and unique user downloads).</li>
+<li>Display of text (<code>.txt</code>) and display and parsing of Markdown (<code>.md</code>) files within IXP Manager.</li>
+<li>Directory hierarchy allowing the categorization of files.</li>
+<li>Each directory can have explanatory text.</li>
+<li>Deletion of files and recursive deletion of directories.</li>
+<li>Logging of destructive actions.</li>
+</ol>
+<p>Please note that all actions except for viewing and downloading files are restricted to super users.</p>
+<p>The directory store is accessible:</p>
 <ul>
-<li>to allow staff access to these devices with administrative privileges;</li>
-<li>to allow limited / full access to vendor support / TAC personnel;</li>
-<li>to allow member user access to services such as the route collector.</li>
+<li>for super admins: via the <em>Directory Store</em> left-hand menu option under <em>IXP ADMIN ACTIONS</em>.</li>
+<li>for all users, via the <em>Directory Store</em> menu item in the <em>Customer / Member Information</em> menu at the top of the page.</li>
 </ul>
-<p><strong>IXP Manager</strong> comes with a flexible template for generating the user section of a TACACS file.</p>
-<h2 id="generating-tacacs-configuration">Generating TACACS Configuration<a class="headerlink" href="#generating-tacacs-configuration" title="Permanent link"></a></h2>
-<p>You can use the <strong>IXP Manager</strong> API to get the user section of a TACACS file using the following endpoint formats (both GET and POST requests work):</p>
-<pre class="highlight"><code>https://ixp.example.com/api/v4/user/formatted
-https://ixp.example.com/api/v4/user/formatted/{priv}
-https://ixp.example.com/api/v4/user/formatted/{priv}/{template}</code></pre>
+<h2 id="directories">Directories<a class="headerlink" href="#directories" title="Permanent link"></a></h2>
+<p>Directories are database entries to which uploaded files are attached (rather than actual directories on the storage media).</p>
+<p>Directories can be created via the <em>Create Directory</em> button on the top right of the document store. See the following image showing the <em>Create Directory</em> form with the contextual help shown (via the green <em>Help</em> button).</p>
+<p><img alt="Add / Edit Directories" src="../img/docstore-directory.png" /></p>
+<p>Note that you do not need to set any permissions on directories - directories (and directory hierarchy) will only be visible to each user class if they contain files that the specific user class should be able to see.</p>
+<p>If you enter a description, you will see a <em>well element</em> at the top of the directory listing as shown in the following image. The text you enter will be parsed as Markdown and displayed as HTML. If you leave the description blank, no well element will be shown. This is a useful feature to provide context to your users about the documents in a given directory.</p>
+<p><img alt="Directory Example" src="../img/docstore-directory-example.png" /></p>
+<p>When viewing directories in a directory listing, a per-directory context menu is available per the following image and with the following two options:</p>
+<p><img alt="Directory Context Menu" src="../img/docstore-directory-context-menu.png" /></p>
+<ol>
+<li><strong>Edit:</strong> allows you to edit a directory's name, location (parent directory) and / or the description.</li>
+<li><strong>Delete:</strong> this removes the directory and <strong>recursively deletes all files and folders within that directory</strong>.</li>
+</ol>
+<h2 id="files">Files<a class="headerlink" href="#files" title="Permanent link"></a></h2>
+<p>Files can be uploaded via the <em>Upload File</em> button on the top right of the document store. See the following image showing the <em>Upload File</em> form with the contextual help shown (via the green <em>Help</em> button).</p>
+<p><img alt="File Upload Example" src="../img/docstore-file-upload.png" /></p>
+<p>The various fields are well explained by the contextual help above and we will add some additional emphasis here:</p>
+<ul>
+<li>You should use an appropriate name with file extension as the download file will be given this as its filename.</li>
+<li>Minimum privilege is just that - <strong>minimum</strong>. If a document is set for public access then <strong>anyone can download it</strong>. If it is set to <em>Customer User</em> then one <strong>must</strong> be logged into IXP Manager to see the file in directory listings and to view / download it. If it is set to <em>Customer User</em> then <em>Customer Admins</em> and <em>Super Users</em> will of course also be able to view it.</li>
+</ul>
+<p>The following is how a file appears in a directory listing:</p>
+<p><img alt="File Listing with Contextual Menu" src="../img/docstore-file.png" /></p>
+<p><em>CUSTUSER</em> indicates the minimum access permissions for the file. The numbers <em>19 (10)</em> tell super admins that there have been a total of 19 downloads and 10 of those were unique to individual users in IXP Manager (i.e. some users would have downloaded this file two or more times). Note that <strong>only downloads by logged in users are counted</strong>. Publicly accessible files downloaded by non-logged in users are not recorded (if you must know this then that information is available from your web server log files). The date, <em>Feb 29, 2020</em> is the date the file itself (not metadata) was last changed via the <em>Edit</em> option.</p>
+<p>The options in the per-file context menu are:</p>
+<ul>
+<li><strong>Metadata:</strong> shows information such as file size and location on the storage media in a pop-up dialog such as the following:</li>
+</ul>
+<p><img alt="" src="../img/docstore-file-metadata.png" /></p>
+<ul>
+<li><strong>Show SHA256:</strong> show the file's sha256 checksum in a pop-up dialog. See below for more information.</li>
+<li><strong>Unique</strong> and <strong>All Downloads:</strong> show the download logs for this file which contain the date and time of download and the username.</li>
+<li><strong>Edit:</strong> edit the file.</li>
+<li><strong>Delete:</strong> deletes the file.</li>
+</ul>
+<p>If you wish to purge the download logs for a file, you will find a <em>Purge all download logs and reset download statistics</em> checkbox on the file edit form. You can check this without making any other changes except to purge the logs.</p>
+<h3 id="sha256-functionality">SHA256 Functionality<a class="headerlink" href="#sha256-functionality" title="Permanent link"></a></h3>
+<p>Checksums can be used to verify the authenticity / integrity of downloaded files. The primary use-case when developing the <em>Document Store</em> at INEX was for official documents from the INEX Board of Directors which they wished to share with the membership - for example minutes of board meetings.</p>
+<p>The INEX Board Secretary would provide the PDF documents to the operations team for upload. In parallel the Secretary would also email the members' mailing list to inform them that a new set of minutes are being uploaded and the secretary would include the sha256 checksum in that email. This is a useful way to independently verify the authenticity of official documents and the reason this feature exists.</p>
+<p>When uploading (or changing an uploaded file), if you enter a sha256 checksum, it will be verified on upload (and rejected if it does not match). If you leave it blank, the sha256 checksum will be calculated by IXP Manager.</p>
+<h2 id="download-logs">Download Logs<a class="headerlink" href="#download-logs" title="Permanent link"></a></h2>
+<p>The <em>Document Store</em> logs file downloads / views by user. The total number of downloads and the unique users download count is shown on the directory listing. You can also get access to the individual download logs for each file via its context menu.</p>
+<p>Non-unique individual download logs are expunged once they are more than six months old - except for the first download by each user. The user interface presents this information differently so that it is clear when you are looking at a file that is more than six months old.</p>
+<p>There are a number of reasons to log file downloads:</p>
+<ol>
+<li>We envisage some IXPs will use this to share official documents. E.g. AGM notices. In these cases it is important to know whether a user did - or did not - download such a document.</li>
+<li>To provide a measure of interest / feedback in making documents available and thus judge the usefulness of continuing to do so.</li>
+</ol>
+<p>However, there is no reasonable need that we can see to retain individual downloads for more than 6 months. As such, these are automatically expunged by the scheduler.</p>
+<p>Note also that all we record is user ID, file ID and time. No IP address or other infromation is recorded.</p>
+<h2 id="access-considerations">Access Considerations<a class="headerlink" href="#access-considerations" title="Permanent link"></a></h2>
+<p><strong>IXP Manager</strong> generates a complete directory hierarchy for each of the four user classes. As such, users will only see the directory hierarchies that lead to files that are accessible to them. If a leaf directory does not contain a file that a user class cannot access then they will not see the directory in the listings.</p>
+<p>Similarly, users will only see files listed that they can access.</p>
+<p>If there are no documents in the <em>Document Store</em> for a specific user class (or public user), the the <em>Document Store</em> menu item will not appear under <em>Customer / Member Information</em> at the top of the page.</p>
+<p>If you wish to complete disable the document store, set the following option in <code>.env</code>:</p>
+<pre class="highlight"><code>IXP_FE_FRONTEND_DISABLED_DOCSTORE=true</code></pre>
 
-<p>where:</p>
-<ul>
-<li><code>priv</code> is an optional user privilege to limit the user selection to. See <a href="https://github.com/inex/IXP-Manager/blob/master/database/Entities/User.php">the available integer values on the <code>AUTH_</code> constants here</a>. You typically want <code>3</code>.</li>
-<li><code>template</code> is an optional template (rather than <code>$IXPROOT/resources/views/api/v4/user/formatted/default</code>). See below.</li>
-</ul>
-<p>And example of a user in the reponse is:</p>
-<pre class="highlight"><code>user=joebloggs {
-    member=admin
-    login = des "$2y$10$pHln5b4DrPj3uuhgfg45HeWEQLK/3ngRxYgYppbnYzleJ.9EpLAN."
+<h2 id="notes-limitations">Notes &amp; Limitations<a class="headerlink" href="#notes-limitations" title="Permanent link"></a></h2>
+<p>The best way to view the limitations described herein is to understand that the development goals of the <em>document store</em> were to create something which is simple and secure while consciously avoiding a recreation of Dropbox. We discussed tens of features, dials and knobs for the document store but <strong>chose to not implement them</strong>.</p>
+<ol>
+<li>
+<p><strong>No backup / restore / undelete:</strong> if you delete a file (or directory) in the web user interface then you will also delete the file as it is stored on disk. This is not a soft-delete option and it does not include a Dropbox-esque <em>undelete for 90 days</em>. If you select and then confirm the deletion of a file or directory, then we assume you have made a deliberate and conscious decision to do just that.</p>
+<p>It should be noted that while IXP Manager does not provide this kind of functionality - it also cannot reliably provide it. As a self-hosted application, it is up to the local system administrators to ensure adequate file system and database backups are in place. Then, with adequate local backup procedures (or the developers expectations that a copy of important documents would also be kept off IXP Manager's document store), restoration of deleted documents is possible.</p>
+</li>
+<li>
+<p>No editing of files - particularly text and Markdown which are viewable within IXP Manager. We actually tried this but the code and user experience changes required pushed the complexity needle beyond where we wanted this feature to go.</p>
+</li>
+<li>
+<p>Only superusers can upload / edit / delete files. This won't change. When we look at a per-member based document store, we'll examine the possibility of allowing member users to upload files.</p>
+</li>
+<li>
+<p>Because only superusers can upload / edit files, there is no restriction on file types - we explect you to use your own good judgement here. There is also no restriction on file sizes - as a self-hosted application, storage space is your own consideration.</p>
+</li>
+</ol>
+<p>File upload size may be limited by your web server or PHP configuration. For PHP, find which <code>.ini</code> file is in use by running <code>php --ini</code> and then set the following as you wish (example values given):</p>
+<pre class="highlight"><code class="language-ini">upload_max_filesize = 100M
+post_max_size = 100M</code></pre>
+
+<p>Apache has no limit by default so if running Apache with PHP, just restart Apache (and / or PHP FPM) to apply the above. For Nginx, you need to set this as it has a default upload size of 1MB:</p>
+<pre class="highlight"><code>server {
+    ...
+    client_max_body_size 100M;
 }</code></pre>
 
-<h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link"></a></h3>
-<p>You can optionally POST any of the following to change elements of the default template:</p>
-<ul>
-<li><code>template</code>: only relavent when you want to specify a specific template without a privilege.</li>
-<li><code>priv</code>: same as above.</li>
-<li><code>users</code>: a comma-separated list of usernames to return rather than all / all based on privilege.</li>
-<li><code>bcrypt</code>: IXP Manager stores bcrypt hashes with the prefix <code>2y</code>. Some systems, such as TACACS+ on FreeBSD, require <code>2a</code>. If you set <code>bcrypt=2a</code>, this substitution will be made before the data is returned.</li>
-<li><code>group</code>: we put all users in the <code>admin</code> group in the default template. You can change that here.</li>
-</ul>
-<p>An example of changing these parameters is:</p>
-<pre class="highlight"><code class="language-sh">curl --data "users=bob,alice&amp;group=god&amp;bcrypt=2a" -X POST \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
-    https://ixpexample.com/api/v4/user/formatted</code></pre>
-
-<h3 id="templates-skinning">Templates / Skinning<a class="headerlink" href="#templates-skinning" title="Permanent link"></a></h3>
-<p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
-<p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
-<pre class="highlight"><code class="language-sh">cd $IXPROOT
-mkdir -p resources/skins/myskin/api/v4/user/formatted
-cp resources/views/api/v4/user/formatted/default.foil.php resources/skins/myskin/api/v4/user/formatted/mytemplate1.foil.php</code></pre>
-
-<p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
-<p>All variables available in the template can be <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/user/formatted/default.foil.php">seen in the default template</a>.</p>
-<h2 id="setting-up-tacacs">Setting Up TACACS<a class="headerlink" href="#setting-up-tacacs" title="Permanent link"></a></h2>
-<p>This section explains how to set up TACACS with IXP Manager. We assume you already have an understanding of TACACS.</p>
-<h3 id="generating-updating-tacacs">Generating / Updating TACACS<a class="headerlink" href="#generating-updating-tacacs" title="Permanent link"></a></h3>
-<p>At INEX, we use a script that:</p>
-<ul>
-<li>includes the header and footer information for the conf file;</li>
-<li>pulls the user details from IXP Manager (specific users);</li>
-<li>validates the config;</li>
-<li>compares to current;</li>
-<li>reloads / restarts tac_plus if required.</li>
-</ul>
-<p>You can find that script <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/tacacs">in this directory</a>. Alter it to suit your own purposes.</p>
+<p>For more information or other web server / PHP combinations, look at the specific documentation for those tools or Google it as this is a common question with many answers.</p>
               
             </div>
           </div>
@@ -493,10 +541,10 @@ cp resources/views/api/v4/user/formatted/default.foil.php resources/skins/myskin
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../grapher/introduction/" class="btn btn-neutral float-right" title="Introduction">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../grapher/introduction/" class="btn btn-neutral float-right" title="Grapher">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../static-content/" class="btn btn-neutral" title="Static Content"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dns-arpa/" class="btn btn-neutral" title="DNS / ARPA"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -526,7 +574,7 @@ cp resources/views/api/v4/user/formatted/default.foil.php resources/skins/myskin
           <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../static-content/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../dns-arpa/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../../grapher/introduction/" style="color: #fcfcfc">Next &raquo;</a></span>
