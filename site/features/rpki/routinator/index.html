@@ -410,79 +410,91 @@
 <p><strong>Routinator 3000</strong> is a <a href="/features/rpki.md">RPKI</a> relying party software (aka RPKI Validator) written in Rust by the good folks at <a href="https://www.nlnetlabs.nl/projects/rpki/routinator/">NLnet Labs</a>. These instructions reflect Routinator 0.4, which is set up and started differently than older versions. This mostly follows <a href="https://github.com/NLnetLabs/routinator">their own GitHub instructions</a> and <a href="https://rpki.readthedocs.io/en/latest/routinator/">documentation</a>.</p>
 <p>We use a standard Ubuntu 18.04 installation (selecting the minimal virtual server option), 2 vCPUs, 2GB RAM, 10GB LVM hard drive.</p>
 <p>Rather than running Routinator as the root user, we create a dedicated user:</p>
-<pre class="highlight"><code class="language-sh">useradd -c 'Routinator 3000' -d /srv/routinator -m -s /bin/bash -u 1100 routinator</code></pre>
+<div class="highlight"><pre><span></span>useradd -c <span class="s1">&#39;Routinator 3000&#39;</span> -d /srv/routinator -m -s /bin/bash -u <span class="m">1100</span> routinator
+</pre></div>
 
 <p>We then install the required software. <code>build-essential</code> is a Ubuntu alias package that installs the common C software build suite. <code>cargo</code> is Rust's package manager and installing that automatically installs other Rust dependancies.</p>
-<pre class="highlight"><code class="language-sh">apt install -y build-essential cargo rsync</code></pre>
+<div class="highlight"><pre><span></span>apt install -y build-essential cargo rsync
+</pre></div>
 
 <p>You should have rust version &gt;=1.36.0 installed (check with <code>rustc -V</code>).</p>
 <p>To install Routinator, we then switch to the <code>routinator</code> user and use Cargo to build and install it:</p>
-<pre class="highlight"><code class="language-sh">sudo su - routinator
-cargo install routinator</code></pre>
+<div class="highlight"><pre><span></span>sudo su - routinator
+cargo install routinator
+</pre></div>
 
 <p>To check if this works, run the following (and note the path to the <code>routinator</code> binary):</p>
-<p><pre class="highlight"><code class="language-sh">routinator@rpki01:~$ /srv/routinator/.cargo/bin/routinator -V
-Routinator 0.6.1</code></pre>
+<p><div class="highlight"><pre><span></span>routinator@rpki01:~$ /srv/routinator/.cargo/bin/routinator -V
+Routinator 0.6.1
+</pre></div>
 Routinator needs to prepare its working environment via the <code>init</code> command, which will set up both
 the directory for the local RPKI cache as well as the TAL directory. Running it will prompt you to
 agree to the <a href="https://www.arin.net/resources/manage/rpki/tal/">ARIN Relying Party Agreement (RPA)</a>
 so it can install the ARIN TAL along with the other four RIR TALs:</p>
-<pre class="highlight"><code class="language-sh">/srv/routinator/.cargo/bin/routinator init</code></pre>
+<div class="highlight"><pre><span></span>/srv/routinator/.cargo/bin/routinator init
+</pre></div>
 
 <p>To agree with the ARIN RPA, run:</p>
-<pre class="highlight"><code class="language-sh">/srv/routinator/.cargo/bin/routinator init --accept-arin-rpa</code></pre>
+<div class="highlight"><pre><span></span>/srv/routinator/.cargo/bin/routinator init --accept-arin-rpa
+</pre></div>
 
 <p>You can then test by running the following (this command prints the validated ROA payloads
 and increases the log level to show the process in detail at least once):</p>
-<pre class="highlight"><code class="language-sh">/srv/routinator/.cargo/bin/routinator -v vrps</code></pre>
+<div class="highlight"><pre><span></span>/srv/routinator/.cargo/bin/routinator -v vrps
+</pre></div>
 
 <p>To upgrade Routinator, you reinstall it (<code>-f</code> to overwrite the older version):</p>
-<pre class="highlight"><code class="language-sh">cargo install -f routinator</code></pre>
+<div class="highlight"><pre><span></span>cargo install -f routinator
+</pre></div>
 
 <p>After you upgrade, kill the running version of Routinator and start it again.</p>
 <p>Note that in the above we are using the (sensible) configuration defaults. Read Routinator's own <a href="https://rpki.readthedocs.io/en/latest/routinator/">documentation</a> if you want to change these.</p>
 <p>Start Routinator's RTR and HTTP service with:</p>
-<pre class="highlight"><code>/srv/routinator/.cargo/bin/routinator server --rtr 192.0.2.13:3323 --rtr [2001:db8::13]:3323 --http 192.0.2.13:8080</code></pre>
+<div class="highlight"><pre><span></span>/srv/routinator/.cargo/bin/routinator server --rtr 192.0.2.13:3323 --rtr [2001:db8::13]:3323 --http 192.0.2.13:8080
+</pre></div>
 
 <p>It will stay attached unless you run it with <code>-d</code> (for daemon) to start in the background. You can see log messages using:</p>
-<pre class="highlight"><code class="language-sh">cat /var/log/syslog | grep routinator</code></pre>
+<div class="highlight"><pre><span></span>cat /var/log/syslog <span class="p">|</span> grep routinator
+</pre></div>
 
 <p>When it starts, there is a webserver on port 8080 - see <a href="https://rpki.readthedocs.io/en/latest/routinator/running.html#running-the-http-service">the documentation for the available endpoints</a>.</p>
 <h2 id="starting-on-boot">Starting on Boot<a class="headerlink" href="#starting-on-boot" title="Permanent link"></a></h2>
 <p>To have this service start at boot, we create systemd service files:</p>
-<pre class="highlight"><code class="language-sh">cat &lt;&lt;ENDL &gt;/etc/systemd/system/rpki-routinator.service
-[Unit]
-Description=RPKI Routinator
+<div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/rpki-routinator.service</span>
+<span class="s">[Unit]</span>
+<span class="s">Description=RPKI Routinator</span>
 
-[Service]
-Restart=always
-RestartSec=60
+<span class="s">[Service]</span>
+<span class="s">Restart=always</span>
+<span class="s">RestartSec=60</span>
 
-WorkingDirectory=/srv/routinator
+<span class="s">WorkingDirectory=/srv/routinator</span>
 
-User=routinator
+<span class="s">User=routinator</span>
 
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=rpki-routinator
+<span class="s">StandardOutput=syslog</span>
+<span class="s">StandardError=syslog</span>
+<span class="s">SyslogIdentifier=rpki-routinator</span>
 
-ExecStart=/srv/routinator/.cargo/bin/routinator server --rtr 192.0.2.13:3323 --rtr [2001:db8::13]:3323 --http 192.0.2.13:8080
+<span class="s">ExecStart=/srv/routinator/.cargo/bin/routinator server --rtr 192.0.2.13:3323 --rtr [2001:db8::13]:3323 --http 192.0.2.13:8080</span>
 
 
 
-[Install]
-WantedBy=multi-user.target
+<span class="s">[Install]</span>
+<span class="s">WantedBy=multi-user.target</span>
 
-ENDL</code></pre>
+<span class="s">ENDL</span>
+</pre></div>
 
 <p>And then we enable it to start on boot:</p>
-<pre class="highlight"><code class="language-sh">systemctl enable rpki-routinator.service</code></pre>
+<div class="highlight"><pre><span></span>systemctl <span class="nb">enable</span> rpki-routinator.service
+</pre></div>
 
 <h2 id="monitoring">Monitoring<a class="headerlink" href="#monitoring" title="Permanent link"></a></h2>
 <p>We add Nagios http checks for port 8080 (HTTP) to our monitoring platform. We also add a <code>check_tcp</code> test for the RPKI-RTR port 3323.</p>
 <h2 id="http-interface">HTTP Interface<a class="headerlink" href="#http-interface" title="Permanent link"></a></h2>
 <p>The following is copied <a href="https://nlnetlabs.nl/documentation/rpki/routinator/">from Routinator's man page</a>. As a future work fixme, this should be used for better monitoring that just <code>check_tcp</code> above.</p>
-<pre class="highlight"><code>HTTP SERVICE
+<div class="highlight"><pre><span></span>HTTP SERVICE
        Routinator can provide an HTTP service allowing to fetch the  Validated
        ROA  Payload in various formats. The service does not support HTTPS and
        should only be used within the local network.
@@ -530,7 +542,8 @@ ENDL</code></pre>
        times.
 
        This works in the same way as the options of the same name to the  vrps
-       command.</code></pre>
+       command.
+</pre></div>
               
             </div>
           </div>

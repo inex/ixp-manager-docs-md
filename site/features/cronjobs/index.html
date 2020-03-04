@@ -426,7 +426,8 @@
               
                 <h1 id="cron-jobs-task-scheduling">Cron Jobs - Task Scheduling<a class="headerlink" href="#cron-jobs-task-scheduling" title="Permanent link"></a></h1>
 <p>Prior to IXP Manager v5, a number of cron jobs had to be configured manually. From v5.0 onwards, cron jobs are handled by <a href="https://laravel.com/docs/5.8/scheduling">Laravel's task scheduler</a>. As such, you just need a single cron job entry such as:</p>
-<pre class="highlight"><code>* * * * *    www-data    cd /path-to-your-ixp-manager &amp;&amp; php artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1</code></pre>
+<div class="highlight"><pre><span></span>* * * * *    www-data    cd /path-to-your-ixp-manager &amp;&amp; php artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1
+</pre></div>
 
 <p>You can see the <a href="https://github.com/inex/IXP-Manager/blob/master/app/Console/Kernel.php">full schedule in code here</a> (look for the function <code>protected function schedule(Schedule $schedule)</code>).</p>
 <h2 id="tasks-referenced-elsewhere">Tasks Referenced Elsewhere<a class="headerlink" href="#tasks-referenced-elsewhere" title="Permanent link"></a></h2>

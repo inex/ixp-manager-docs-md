@@ -37,25 +37,22 @@ The general process is:
     MY_WWW_USER=www-data
 
     # ensure the web server daemon user can write to necessary directories:
-    chown -R $MY_WWW_USER: $IXPROOT/public/bower_components ${IXPROOT}/bower.json \
-        ${IXPROOT}/storage $IXPROOT/vendor
-    chmod -R u+rwX $IXPROOT/public/bower_components ${IXPROOT}/bower.json         \
-        ${IXPROOT}/storage $IXPROOT/vendor
+    chown -R $MY_WWW_USER: ${IXPROOT}/{bootstrap/cache,composer.lock,storage,vendor}
+    chmod -R ug+rwX ${IXPROOT}/{bootstrap/cache,composer.lock,storage,vendor}
     ```
 
 2. Enable maintenance mode:
 
     ```sh
-    cd $IXPROOT
-    php artisan down
+    php $IXPROOT/artisan down --message='Please wait, currently upgrading...'
     ```
 
 3. Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v4.
 
     ```sh
-    # (assuming we're still in $IXPROOT)
+    cd $IXPROOT
     # pull the latest code
-    git fetch
+    git fetch --all
     # check out the version you are upgrading to
     git checkout v5.x.y
     ```
@@ -64,25 +61,24 @@ The general process is:
 
     ```sh
     # this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.
-    sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && php ./composer.phar install --no-dev --prefer-dist"
+    sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} \
+        && php ./composer.phar install --no-dev --prefer-dist"
     ```
 
 5. Restart Memcached and clear the cache. Do not forget / skip this step!
 
     ```sh
-    # (assuming we're still in $IXPROOT)
     systemctl restart memcached.service
-    ./artisan cache:clear
+    php $IXPROOT/artisan cache:clear
     ```
 
 6. Update the database schema:
 
     ```sh
-    # (assuming we're still in $IXPROOT)
     # (you really should take a mysqldump of your database first)
     # migrate:
-    php artisan doctrine:schema:update --force
-    php artisan migrate
+    php $IXPROOT/artisan doctrine:schema:update --force
+    php $IXPROOT/artisan migrate
     ```
 
 7. Restart Memcached (yes, again). Do not forget / skip this step!
@@ -96,33 +92,36 @@ The general process is:
 9. Ensure file permissions are still correct.
 
     ```sh
-    chown -R $MY_WWW_USER: $IXPROOT/public/bower_components ${IXPROOT}/bower.json \
-        ${IXPROOT}/storage $IXPROOT/vendor $IXPROOT/var $IXPROOT/bootstrap/cache
-    chmod -R u+rwX $IXPROOT/public/bower_components ${IXPROOT}/bower.json         \
-        ${IXPROOT}/storage $IXPROOT/vendor $IXPROOT/var $IXPROOT/bootstrap/cache
+    chown -R $MY_WWW_USER: ${IXPROOT}/{bootstrap/cache,composer.lock,storage,vendor}
+    chmod -R ug+rwX ${IXPROOT}/{bootstrap/cache,composer.lock,storage,vendor}
     ```
 
 10. Clear out all caches:
 
     ```sh
-    ${IXPROOT}/artisan cache:clear
-    ${IXPROOT}/artisan config:clear
-    ${IXPROOT}/artisan doctrine:clear:metadata:cache
-    ${IXPROOT}/artisan doctrine:clear:query:cache
-    ${IXPROOT}/artisan doctrine:clear:result:cache
-    ${IXPROOT}/artisan route:clear
-    ${IXPROOT}/artisan view:clear
+    php ${IXPROOT}/artisan cache:clear
+    php ${IXPROOT}/artisan config:clear
+    php ${IXPROOT}/artisan doctrine:clear:metadata:cache
+    php ${IXPROOT}/artisan doctrine:clear:query:cache
+    php ${IXPROOT}/artisan doctrine:clear:result:cache
+    php ${IXPROOT}/artisan route:clear
+    php ${IXPROOT}/artisan view:clear
     ```
 
 11. Disable maintenance mode:
 
     ```sh
-    # (assuming we're still in $IXPROOT)
-    ./artisan up
+    php ${IXPROOT}/artisan up
     ```
 12. Recreate SQL views
 
-    Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them:
+    Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them on versions > v5.5.0:
+
+    ```sh
+    php ${IXPROOT}/artisan update:reset-mysql-views
+    ```
+
+    If you are running <= v5.4.0 then do this as follows using the appropriate MySQL username and password:
 
     ```sh
     mysql -u ixp -p ixp < $IXPROOT/tools/sql/views.sql
@@ -141,12 +140,13 @@ IXPROOT=/srv/ixpmanager
 
 MY_WWW_USER=www-data  # fix as appropriate to your operating system
 
-# ensure www-data can write to vendor:
-chown -R $MY_WWW_USER: $IXPROOT/vendor ${IXPROOT}/storage
-chmod -R u+rwX $IXPROOT/vendor ${IXPROOT}/storage
+# ensure the web server daemon user can write to necessary directories:
+chown -R $MY_WWW_USER: ${IXPROOT}/{bootstrap/cache,composer.lock,storage,vendor}
+chmod -R ug+rwX ${IXPROOT}/{bootstrap/cache,composer.lock,storage,vendor}
 
-# update composer
-sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && php ./composer.phar install"
+# update composer packages
+sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} \
+    && php ./composer.phar install --prefer-dist --no-dev"
 ```
 
 NB: If composer is not managed by your package management system, you should keep it up to date via the following (using the same definitions from the composer update example above):
@@ -163,11 +163,11 @@ sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && php ./
 
 Because of the manual process of database updates, it is possible your database schema may fall out of sync.
 
-If you are having issues, first and foremost, restart Memcached. Doctrine2 caches entities and schema information in Memcached so, after an upgrade, you must restart Memcached.
+If you are having issues, first and foremost, restart Memcached / clear your cache (see upgrade instructions above). Doctrine2 caches entities and schema information in Memcached so, after an upgrade, you must restart Memcached.
 
 You can verify and update your schema using the `artisan` script. The first action should be validation - here is a working example with no database issues:
 
-```
+```sh
 cd $IXPROOT
 ./artisan doctrine:schema:validate
 
@@ -178,13 +178,13 @@ Validating for default entity manager...
 
 If there are issues, you can use the following to show what SQL commands are required to bring your schema into line:
 
-```
+```sh
 ./artisan doctrine:schema:update --sql
 ```
 
 And you can let Doctrine make the changes for you via:
 
-```
+```sh
 ./artisan doctrine:schema:update --force
 ```
 
@@ -192,7 +192,7 @@ Doctrine2 maintains the entities, proxies and repository classes. Ideally you sh
 
 The process for updating these files with schema changes / updates is:
 
-```
+```sh
 cd $IXPROOT
 systemctl restart memcached.service           # (or as appropriate for your system)
 ./artisan doctrine:generate:entities database
