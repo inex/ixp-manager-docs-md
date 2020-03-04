@@ -504,7 +504,8 @@
 <p>Similarly, users will only see files listed that they can access.</p>
 <p>If there are no documents in the <em>Document Store</em> for a specific user class (or public user), the the <em>Document Store</em> menu item will not appear under <em>Customer / Member Information</em> at the top of the page.</p>
 <p>If you wish to complete disable the document store, set the following option in <code>.env</code>:</p>
-<pre class="highlight"><code>IXP_FE_FRONTEND_DISABLED_DOCSTORE=true</code></pre>
+<div class="highlight"><pre><span></span>IXP_FE_FRONTEND_DISABLED_DOCSTORE=true
+</pre></div>
 
 <h2 id="notes-limitations">Notes &amp; Limitations<a class="headerlink" href="#notes-limitations" title="Permanent link"></a></h2>
 <p>The best way to view the limitations described herein is to understand that the development goals of the <em>document store</em> were to create something which is simple and secure while consciously avoiding a recreation of Dropbox. We discussed tens of features, dials and knobs for the document store but <strong>chose to not implement them</strong>.</p>
@@ -524,14 +525,16 @@
 </li>
 </ol>
 <p>File upload size may be limited by your web server or PHP configuration. For PHP, find which <code>.ini</code> file is in use by running <code>php --ini</code> and then set the following as you wish (example values given):</p>
-<pre class="highlight"><code class="language-ini">upload_max_filesize = 100M
-post_max_size = 100M</code></pre>
+<div class="highlight"><pre><span></span><span class="na">upload_max_filesize</span> <span class="o">=</span> <span class="s">100M</span>
+<span class="na">post_max_size</span> <span class="o">=</span> <span class="s">100M</span>
+</pre></div>
 
 <p>Apache has no limit by default so if running Apache with PHP, just restart Apache (and / or PHP FPM) to apply the above. For Nginx, you need to set this as it has a default upload size of 1MB:</p>
-<pre class="highlight"><code>server {
+<div class="highlight"><pre><span></span>server {
     ...
     client_max_body_size 100M;
-}</code></pre>
+}
+</pre></div>
 
 <p>For more information or other web server / PHP combinations, look at the specific documentation for those tools or Google it as this is a common question with many answers.</p>
               

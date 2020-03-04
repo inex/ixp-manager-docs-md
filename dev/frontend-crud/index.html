@@ -434,72 +434,74 @@
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h2>
 <p>In any controller using extending the <code>Doctrine2Frontend</code> class, a <code>_feInit()</code> method is required which configures the controller and, for example, allows you to set what is displayed for different levels of user privileges.</p>
 <p>The primary purpose of this function is to define the anonymous object <code>_feParams</code> (using an object ensures that the view gets a reference to the object and not a copy of a static array at a point in time):</p>
-<pre class="highlight"><code class="language-php">&lt;?php
-protected function _feInit()
-{
-    $this-&gt;view-&gt;feParams = $this-&gt;_feParams = (object)[
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">_feInit</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">view</span><span class="o">-&gt;</span><span class="na">feParams</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_feParams</span> <span class="o">=</span> <span class="p">(</span><span class="nx">object</span><span class="p">)[</span>
 
-        // the ORM entity object that CRUD operations will affect:
-        'entity'            =&gt; InfrastructureEntity::class,
+        <span class="c1">// the ORM entity object that CRUD operations will affect:</span>
+        <span class="s1">&#39;entity&#39;</span>            <span class="o">=&gt;</span> <span class="nx">InfrastructureEntity</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
 
-        'pagetitle'         =&gt; 'Infrastructures',
+        <span class="s1">&#39;pagetitle&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;Infrastructures&#39;</span><span class="p">,</span>
 
-        // default is false. If true, add / edit / delete will be disabled
-        'readonly'          =&gt; false,
+        <span class="c1">// default is false. If true, add / edit / delete will be disabled</span>
+        <span class="s1">&#39;readonly&#39;</span>          <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
 
-        'titleSingular'     =&gt; 'Infrastructure',
-        'nameSingular'      =&gt; 'an infrastructure',
+        <span class="s1">&#39;titleSingular&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Infrastructure&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;nameSingular&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;an infrastructure&#39;</span><span class="p">,</span>
 
-        'viewFolderName'    =&gt; 'infrastructure',
+        <span class="s1">&#39;viewFolderName&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;infrastructure&#39;</span><span class="p">,</span>
 
-        'readonly'          =&gt; self::$read_only,
+        <span class="s1">&#39;readonly&#39;</span>          <span class="o">=&gt;</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$read_only</span><span class="p">,</span>
 
-        'listColumns' =&gt; [
-            // what columns to display in the list view
-            'id'         =&gt; [ 'title' =&gt; 'DB ID', 'display' =&gt; true ],
-            'name'       =&gt; 'Name',
-            'shortname'  =&gt; 'Shortname'
-        ],
+        <span class="s1">&#39;listColumns&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="c1">// what columns to display in the list view</span>
+            <span class="s1">&#39;id&#39;</span>         <span class="o">=&gt;</span> <span class="p">[</span> <span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;DB ID&#39;</span><span class="p">,</span> <span class="s1">&#39;display&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span> <span class="p">],</span>
+            <span class="s1">&#39;name&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;Name&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;shortname&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Shortname&#39;</span>
+        <span class="p">],</span>
 
-        'listOrderBy'    =&gt; 'name',    // how to order columns
-        'listOrderByDir' =&gt; 'ASC',     // direction of order columns
-    ];
+        <span class="s1">&#39;listOrderBy&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>    <span class="c1">// how to order columns</span>
+        <span class="s1">&#39;listOrderByDir&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ASC&#39;</span><span class="p">,</span>     <span class="c1">// direction of order columns</span>
+    <span class="p">];</span>
 
-    // you can then override some of the above for different user privileges (for example)
-    switch( Auth::user() ? Auth::user()-&gt;getPrivs() : UserEntity::AUTH_PUBLIC ) {
+    <span class="c1">// you can then override some of the above for different user privileges (for example)</span>
+    <span class="k">switch</span><span class="p">(</span> <span class="nx">Auth</span><span class="o">::</span><span class="na">user</span><span class="p">()</span> <span class="o">?</span> <span class="nx">Auth</span><span class="o">::</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getPrivs</span><span class="p">()</span> <span class="o">:</span> <span class="nx">UserEntity</span><span class="o">::</span><span class="na">AUTH_PUBLIC</span> <span class="p">)</span> <span class="p">{</span>
 
-        case UserEntity::AUTH_SUPERUSER:
-            $this-&gt;_feParams-&gt;pagetitle = 'Infrastructures (Superuser View)';
+        <span class="k">case</span> <span class="nx">UserEntity</span><span class="o">::</span><span class="na">AUTH_SUPERUSER</span><span class="o">:</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_feParams</span><span class="o">-&gt;</span><span class="na">pagetitle</span> <span class="o">=</span> <span class="s1">&#39;Infrastructures (Superuser View)&#39;</span><span class="p">;</span>
 
-            $this-&gt;_feParams-&gt;listColumns = array_merge(
-                $this-&gt;_feParams-&gt;listColumns, [
-                    // ...
-                ];
-            );
-            break;
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_feParams</span><span class="o">-&gt;</span><span class="na">listColumns</span> <span class="o">=</span> <span class="nb">array_merge</span><span class="p">(</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_feParams</span><span class="o">-&gt;</span><span class="na">listColumns</span><span class="p">,</span> <span class="p">[</span>
+                    <span class="c1">// ...</span>
+                <span class="p">];</span>
+            <span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
 
-        default:
-            if( php_sapi_name() !== "cli" ) {
-                abort( 'error/insufficient-permissions' );
-            }
-    }
+        <span class="k">default</span><span class="o">:</span>
+            <span class="k">if</span><span class="p">(</span> <span class="nb">php_sapi_name</span><span class="p">()</span> <span class="o">!==</span> <span class="s2">&quot;cli&quot;</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nx">abort</span><span class="p">(</span> <span class="s1">&#39;error/insufficient-permissions&#39;</span> <span class="p">);</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
 
-    // display the same information in the single object view as the list of objects
-    $this-&gt;_feParams-&gt;viewColumns = $this-&gt;_feParams-&gt;listColumns;
-}</code></pre>
+    <span class="c1">// display the same information in the single object view as the list of objects</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_feParams</span><span class="o">-&gt;</span><span class="na">viewColumns</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_feParams</span><span class="o">-&gt;</span><span class="na">listColumns</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 <h3 id="access-privileges">Access Privileges<a class="headerlink" href="#access-privileges" title="Permanent link"></a></h3>
 <p>By default, all <code>Doctrine2Frontend</code> controllers can only be accessed by an authenticated super user (<code>Entities\User::AUTH_SUPERUSER</code>). You can change this by setting the following property on your implementation:</p>
-<pre class="highlight"><code class="language-php">&lt;?php
-/**
- * The minimum privileges required to access this controller.
- *
- * If you set this to less than the superuser, you need to manage privileges and access
- * within your own implementation yourself.
- *
- * @var int
- */
-public static $minimum_privilege = UserEntity::AUTH_SUPERUSER;</code></pre>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * The minimum privileges required to access this controller.</span>
+<span class="sd"> *</span>
+<span class="sd"> * If you set this to less than the superuser, you need to manage privileges and access</span>
+<span class="sd"> * within your own implementation yourself.</span>
+<span class="sd"> *</span>
+<span class="sd"> * @var int</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">static</span> <span class="nv">$minimum_privilege</span> <span class="o">=</span> <span class="nx">UserEntity</span><span class="o">::</span><span class="na">AUTH_SUPERUSER</span><span class="p">;</span>
+</pre></div>
 
 <p>If you set this to less than the superuser, you need to manage privileges and access within your own implementation yourself.</p>
 <p>This is normally handled in a number of ways:</p>
@@ -510,35 +512,37 @@ public static $minimum_privilege = UserEntity::AUTH_SUPERUSER;</code></pre>
 <li>in <code>feInit()</code></li>
 </ol>
 <p>The <code>feInit()</code> method would normally look something like the following:</p>
-<pre class="highlight"><code class="language-php">&lt;?php
-// phpunit / artisan trips up here without the cli test:
-if( php_sapi_name() !== 'cli' ) {
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="c1">// phpunit / artisan trips up here without the cli test:</span>
+<span class="k">if</span><span class="p">(</span> <span class="nb">php_sapi_name</span><span class="p">()</span> <span class="o">!==</span> <span class="s1">&#39;cli&#39;</span> <span class="p">)</span> <span class="p">{</span>
 
-    // custom access controls:
-    switch( Auth::check() ? Auth::user()-&gt;getPrivs() : UserEntity::AUTH_PUBLIC ) {
-        case UserEntity::AUTH_SUPERUSER:
-            break;
+    <span class="c1">// custom access controls:</span>
+    <span class="k">switch</span><span class="p">(</span> <span class="nx">Auth</span><span class="o">::</span><span class="na">check</span><span class="p">()</span> <span class="o">?</span> <span class="nx">Auth</span><span class="o">::</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getPrivs</span><span class="p">()</span> <span class="o">:</span> <span class="nx">UserEntity</span><span class="o">::</span><span class="na">AUTH_PUBLIC</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">UserEntity</span><span class="o">::</span><span class="na">AUTH_SUPERUSER</span><span class="o">:</span>
+            <span class="k">break</span><span class="p">;</span>
 
-        case UserEntity::AUTH_CUSTUSER:
-            switch( Route::current()-&gt;getName() ) {
-                case 'Layer2AddressController@forVlanInterface':
-                    break;
+        <span class="k">case</span> <span class="nx">UserEntity</span><span class="o">::</span><span class="na">AUTH_CUSTUSER</span><span class="o">:</span>
+            <span class="k">switch</span><span class="p">(</span> <span class="nx">Route</span><span class="o">::</span><span class="na">current</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getName</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="s1">&#39;Layer2AddressController@forVlanInterface&#39;</span><span class="o">:</span>
+                    <span class="k">break</span><span class="p">;</span>
 
-                default:
-                    $this-&gt;unauthorized();
-            }
-            break;
+                <span class="k">default</span><span class="o">:</span>
+                    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">unauthorized</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="k">break</span><span class="p">;</span>
 
-        default:
-            $this-&gt;unauthorized();
-    }
-}</code></pre>
+        <span class="k">default</span><span class="o">:</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">unauthorized</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
 <p>The <code>$this-&gt;unauthorized( $url = '', $code = 302 )</code> calls <code>abort()</code> with the given redirect code and URL. The default parameters will <em>do the right thing</em>.</p>
 <h3 id="routing">Routing<a class="headerlink" href="#routing" title="Permanent link"></a></h3>
 <p>Routes are explicitly defined in Laravel. The <code>Doctrine2Frontend</code> class sets up the standard routes automatically once you add the following to your <code>routes/web.php</code> (or as appropriate) file on a per implementation basis. E.g. for the <em>Infrastructure</em> implementation, we add to <code>routes/web-doctrine2frontend.php</code>:</p>
-<pre class="highlight"><code class="language-php">&lt;?php
-IXP\Http\Controllers\InfrastructureController::routes();</code></pre>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="nx">IXP\Http\Controllers\InfrastructureController</span><span class="o">::</span><span class="na">routes</span><span class="p">();</span>
+</pre></div>
 
 <p>Note that by placing the above in <code>routes/web-doctrine2frontend.php</code>, you ensure the appropriate middleware is attached.</p>
 <p>This <code>routes()</code> function determines the route prefix using kebab case of the controller name. That is to say: if the controller is <code>CustKitController</code>, the determined prefix is <code>cust-kit</code>. You can override this by setting a <code>$route_prefix</code> class constant in your implementation.</p>
@@ -552,8 +556,9 @@ IXP\Http\Controllers\InfrastructureController::routes();</code></pre>
 <li>POST <code>infrastructure/store</code></li>
 </ul>
 <p>If you want to create your own additional routes, create a function as follows in your implementation:</p>
-<pre class="highlight"><code class="language-php">&lt;?php
-public static function additionalRoutes( $route_prefix ) {}</code></pre>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">additionalRoutes</span><span class="p">(</span> <span class="nv">$route_prefix</span> <span class="p">)</span> <span class="p">{}</span>
+</pre></div>
 
 <p>And add routes (using the normal <code>Route::get()</code> / <code>::post()</code> / etc Laravel methods).</p>
 <p>If you want to completely change the routes, just override the <code>public static function routes() {}</code> function.</p>
@@ -561,13 +566,14 @@ public static function additionalRoutes( $route_prefix ) {}</code></pre>
 <p>All the common view templates for thss functionality can be found in <code>resources/views/frontend</code> directory. You can override any of these with your own by creating a template of the same name and placing it under <code>resources/views/xxx</code> (or <code>resources/skins/skinname/xxx</code>) where <code>xxx</code> is the <code>feParams['viewFolderName']</code>.</p>
 <h3 id="read-only">Read Only<a class="headerlink" href="#read-only" title="Permanent link"></a></h3>
 <p>If your controller should be read only (list and view actions, no add, edit or delete) then set the following static member:</p>
-<pre class="highlight"><code class="language-php">&lt;?php
-/**
- * Is this a read only controller?
- *
- * @var boolean
- */
-public static $read_only = true;</code></pre>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * Is this a read only controller?</span>
+<span class="sd"> *</span>
+<span class="sd"> * @var boolean</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">static</span> <span class="nv">$read_only</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+</pre></div>
 
 <h2 id="actions">Actions<a class="headerlink" href="#actions" title="Permanent link"></a></h2>
 <p>Each of the typical CRUD actions will be described here.</p>
@@ -575,20 +581,22 @@ public static $read_only = true;</code></pre>
 <h3 id="list">List<a class="headerlink" href="#list" title="Permanent link"></a></h3>
 <p>The list action is for listing the contents of a database table in a HTML / DataTables view.</p>
 <p>The only requirement of the list action is that the following abstract function is implemented:</p>
-<pre class="highlight"><code class="language-php">&lt;?php
-/**
- * Provide array of table rows for the list action (and view action)
- *
- * @param int $id The `id` of the row to load for `view` action. `null` if `list` action.
- * @return array
- */
-abstract protected function listGetData( $id = null );</code></pre>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * Provide array of table rows for the list action (and view action)</span>
+<span class="sd"> *</span>
+<span class="sd"> * @param int $id The `id` of the row to load for `view` action. `null` if `list` action.</span>
+<span class="sd"> * @return array</span>
+<span class="sd"> */</span>
+<span class="k">abstract</span> <span class="k">protected</span> <span class="k">function</span> <span class="nf">listGetData</span><span class="p">(</span> <span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span> <span class="p">);</span>
+</pre></div>
 
 <p>A sample implementation for the infrastructure controller just calls a Doctrine2 repository function:</p>
-<pre class="highlight"><code class="language-php">&lt;?php
-protected function listGetData( $id = null ) {
-    return D2EM::getRepository( InfrastructureEntity::class )-&gt;getAllForFeList( $this-&gt;feParams, $id );
-}</code></pre>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">listGetData</span><span class="p">(</span> <span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">D2EM</span><span class="o">::</span><span class="na">getRepository</span><span class="p">(</span> <span class="nx">InfrastructureEntity</span><span class="o">::</span><span class="na">class</span> <span class="p">)</span><span class="o">-&gt;</span><span class="na">getAllForFeList</span><span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">feParams</span><span class="p">,</span> <span class="nv">$id</span> <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
 
 <p>The table rows returned in the above array must be associatative arrays with keys matching the <code>feParams['listColumns']</code> definition.</p>
 <p>The list view template optionally includes other templates you can define (where <code>xxx</code> below is the <code>feParams['viewFolderName']</code>):</p>
@@ -619,39 +627,41 @@ when a table is empty (<a href="https://github.com/inex/IXP-Manager/blob/master/
 <h3 id="create-update-form">Create / Update Form<a class="headerlink" href="#create-update-form" title="Permanent link"></a></h3>
 <p>The presentation of the create / update (also known as add / edit) page is discussed here. Form processing and storage will be dealt with in the next section.</p>
 <p>The first required element of this functionality is the implementation of the following abstract function:</p>
-<pre class="highlight"><code class="language-php">&lt;?php
-abstract protected function addEditPrepareForm( $id = null ): array;</code></pre>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">abstract</span> <span class="k">protected</span> <span class="k">function</span> <span class="nf">addEditPrepareForm</span><span class="p">(</span> <span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span> <span class="p">)</span><span class="o">:</span> <span class="k">array</span><span class="p">;</span>
+</pre></div>
 
 <p>The use of this function is best explained with reference to an implementation from the infrastructure controller:</p>
-<pre class="highlight"><code class="language-php">&lt;?php
-/**
- * Display the form to add/edit an object
- * @param   int $id ID of the row to edit
- * @return array
- */
-protected function addEditPrepareForm( $id = null ): array {
-    if( $id !== null ) {
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * Display the form to add/edit an object</span>
+<span class="sd"> * @param   int $id ID of the row to edit</span>
+<span class="sd"> * @return array</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">addEditPrepareForm</span><span class="p">(</span> <span class="nv">$id</span> <span class="o">=</span> <span class="k">null</span> <span class="p">)</span><span class="o">:</span> <span class="k">array</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span> <span class="nv">$id</span> <span class="o">!==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
 
-        if( !( $this-&gt;object = D2EM::getRepository( InfrastructureEntity::class )-&gt;find( $id) ) ) {
-            abort(404);
-        }
+        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span> <span class="o">=</span> <span class="nx">D2EM</span><span class="o">::</span><span class="na">getRepository</span><span class="p">(</span> <span class="nx">InfrastructureEntity</span><span class="o">::</span><span class="na">class</span> <span class="p">)</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span> <span class="nv">$id</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span>
+        <span class="p">}</span>
 
-        $old = request()-&gt;old();
+        <span class="nv">$old</span> <span class="o">=</span> <span class="nx">request</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">old</span><span class="p">();</span>
 
-        // we use array_key_exists() here as the array can contain the
-        // key with a null value.
+        <span class="c1">// we use array_key_exists() here as the array can contain the</span>
+        <span class="c1">// key with a null value.</span>
 
-        Former::populate([
-            'name'             =&gt; array_key_exists( 'name',      $old ) ? $old['name']      : $this-&gt;object-&gt;getName(),
-            'shortname'        =&gt; array_key_exists( 'shortname', $old ) ? $old['shortname'] : $this-&gt;object-&gt;getShortname(),
-            'isPrimary'        =&gt; array_key_exists( 'isPrimary', $old ) ? $old['isPrimary'] : ( $this-&gt;object-&gt;getIsPrimary() ?? false ),
-        ]);
-    }
+        <span class="nx">Former</span><span class="o">::</span><span class="na">populate</span><span class="p">([</span>
+            <span class="s1">&#39;name&#39;</span>             <span class="o">=&gt;</span> <span class="nb">array_key_exists</span><span class="p">(</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>      <span class="nv">$old</span> <span class="p">)</span> <span class="o">?</span> <span class="nv">$old</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>      <span class="o">:</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span><span class="o">-&gt;</span><span class="na">getName</span><span class="p">(),</span>
+            <span class="s1">&#39;shortname&#39;</span>        <span class="o">=&gt;</span> <span class="nb">array_key_exists</span><span class="p">(</span> <span class="s1">&#39;shortname&#39;</span><span class="p">,</span> <span class="nv">$old</span> <span class="p">)</span> <span class="o">?</span> <span class="nv">$old</span><span class="p">[</span><span class="s1">&#39;shortname&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span><span class="o">-&gt;</span><span class="na">getShortname</span><span class="p">(),</span>
+            <span class="s1">&#39;isPrimary&#39;</span>        <span class="o">=&gt;</span> <span class="nb">array_key_exists</span><span class="p">(</span> <span class="s1">&#39;isPrimary&#39;</span><span class="p">,</span> <span class="nv">$old</span> <span class="p">)</span> <span class="o">?</span> <span class="nv">$old</span><span class="p">[</span><span class="s1">&#39;isPrimary&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span><span class="o">-&gt;</span><span class="na">getIsPrimary</span><span class="p">()</span> <span class="o">??</span> <span class="k">false</span> <span class="p">),</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
 
-    return [
-        'object'          =&gt; $this-&gt;object,
-    ];
-}</code></pre>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;object&#39;</span>          <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
 
 <p>Note from the above:</p>
 <ul>
@@ -669,55 +679,56 @@ protected function addEditPrepareForm( $id = null ): array {
 <p>You can query the boolean <code>$t-&gt;params['isAdd']</code> in your templates to distinguish between add and edit operations.</p>
 <h3 id="create-update-store">Create / Update Store<a class="headerlink" href="#create-update-store" title="Permanent link"></a></h3>
 <p>Storing the edited / new object requires implementing a single abstract method which manages validation and storage. This is best explained with a practical implementation:</p>
-<pre class="highlight"><code class="language-php">&lt;?php
-/**
- * Function to do the actual validation and storing of the submitted object.
- * @param Request $request
- * @return bool|RedirectResponse
- */
-public function doStore( Request $request )
-{
-    $validator = Validator::make( $request-&gt;all(), [
-        'name'                  =&gt; 'required|string|max:255',
-        'shortname'             =&gt; 'required|string|max:255',
-    ]);
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * Function to do the actual validation and storing of the submitted object.</span>
+<span class="sd"> * @param Request $request</span>
+<span class="sd"> * @return bool|RedirectResponse</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">doStore</span><span class="p">(</span> <span class="nx">Request</span> <span class="nv">$request</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$validator</span> <span class="o">=</span> <span class="nx">Validator</span><span class="o">::</span><span class="na">make</span><span class="p">(</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">(),</span> <span class="p">[</span>
+        <span class="s1">&#39;name&#39;</span>                  <span class="o">=&gt;</span> <span class="s1">&#39;required|string|max:255&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;shortname&#39;</span>             <span class="o">=&gt;</span> <span class="s1">&#39;required|string|max:255&#39;</span><span class="p">,</span>
+    <span class="p">]);</span>
 
-    if( $validator-&gt;fails() ) {
-        return Redirect::back()-&gt;withErrors($validator)-&gt;withInput();
-    }
+    <span class="k">if</span><span class="p">(</span> <span class="nv">$validator</span><span class="o">-&gt;</span><span class="na">fails</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Redirect</span><span class="o">::</span><span class="na">back</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">withErrors</span><span class="p">(</span><span class="nv">$validator</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">withInput</span><span class="p">();</span>
+    <span class="p">}</span>
 
-    if( $request-&gt;input( 'id', false ) ) {
-        if( !( $this-&gt;object = D2EM::getRepository( InfrastructureEntity::class )-&gt;find( $request-&gt;input( 'id' ) ) ) ) {
-            abort(404);
-        }
-    } else {
-        $this-&gt;object = new InfrastructureEntity;
-        D2EM::persist( $this-&gt;object );
-    }
+    <span class="k">if</span><span class="p">(</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="k">false</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span> <span class="o">=</span> <span class="nx">D2EM</span><span class="o">::</span><span class="na">getRepository</span><span class="p">(</span> <span class="nx">InfrastructureEntity</span><span class="o">::</span><span class="na">class</span> <span class="p">)</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;id&#39;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InfrastructureEntity</span><span class="p">;</span>
+        <span class="nx">D2EM</span><span class="o">::</span><span class="na">persist</span><span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span> <span class="p">);</span>
+    <span class="p">}</span>
 
-    $this-&gt;object-&gt;setName(              $request-&gt;input( 'name'         ) );
-    $this-&gt;object-&gt;setShortname(         $request-&gt;input( 'shortname'    ) );
-    $this-&gt;object-&gt;setIxfIxId(           $request-&gt;input( 'ixf_ix_id'    ) ? $request-&gt;input( 'ixf_ix_id'    ) : null );
-    $this-&gt;object-&gt;setPeeringdbIxId(     $request-&gt;input( 'pdb_ixp'      ) ? $request-&gt;input( 'pdb_ixp'      ) : null );
-    $this-&gt;object-&gt;setIsPrimary(         $request-&gt;input( 'primary'      ) ?? false );
-    $this-&gt;object-&gt;setIXP(               D2EM::getRepository( IXPEntity::class )-&gt;getDefault() );
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span><span class="o">-&gt;</span><span class="na">setName</span><span class="p">(</span>              <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;name&#39;</span>         <span class="p">)</span> <span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span><span class="o">-&gt;</span><span class="na">setShortname</span><span class="p">(</span>         <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;shortname&#39;</span>    <span class="p">)</span> <span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span><span class="o">-&gt;</span><span class="na">setIxfIxId</span><span class="p">(</span>           <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;ixf_ix_id&#39;</span>    <span class="p">)</span> <span class="o">?</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;ixf_ix_id&#39;</span>    <span class="p">)</span> <span class="o">:</span> <span class="k">null</span> <span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span><span class="o">-&gt;</span><span class="na">setPeeringdbIxId</span><span class="p">(</span>     <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;pdb_ixp&#39;</span>      <span class="p">)</span> <span class="o">?</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;pdb_ixp&#39;</span>      <span class="p">)</span> <span class="o">:</span> <span class="k">null</span> <span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span><span class="o">-&gt;</span><span class="na">setIsPrimary</span><span class="p">(</span>         <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;primary&#39;</span>      <span class="p">)</span> <span class="o">??</span> <span class="k">false</span> <span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span><span class="o">-&gt;</span><span class="na">setIXP</span><span class="p">(</span>               <span class="nx">D2EM</span><span class="o">::</span><span class="na">getRepository</span><span class="p">(</span> <span class="nx">IXPEntity</span><span class="o">::</span><span class="na">class</span> <span class="p">)</span><span class="o">-&gt;</span><span class="na">getDefault</span><span class="p">()</span> <span class="p">);</span>
 
-    D2EM::flush($this-&gt;object);
+    <span class="nx">D2EM</span><span class="o">::</span><span class="na">flush</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span><span class="p">);</span>
 
-    if( $this-&gt;object-&gt;getIsPrimary() ) {
-        // reset the rest:
-        /** @var InfrastructureEntity $i */
-        foreach( D2EM::getRepository( InfrastructureEntity::class )-&gt;findAll() as $i ) {
-            if( $i-&gt;getId() == $this-&gt;object-&gt;getId() || !$i-&gt;getIsPrimary() ) {
-                continue;
-            }
-            $i-&gt;setIsPrimary( false );
-        }
-        D2EM::flush();
-    }
+    <span class="k">if</span><span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span><span class="o">-&gt;</span><span class="na">getIsPrimary</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// reset the rest:</span>
+        <span class="sd">/** @var InfrastructureEntity $i */</span>
+        <span class="k">foreach</span><span class="p">(</span> <span class="nx">D2EM</span><span class="o">::</span><span class="na">getRepository</span><span class="p">(</span> <span class="nx">InfrastructureEntity</span><span class="o">::</span><span class="na">class</span> <span class="p">)</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$i</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span> <span class="nv">$i</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">()</span> <span class="o">==</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span><span class="o">-&gt;</span><span class="na">getId</span><span class="p">()</span> <span class="o">||</span> <span class="o">!</span><span class="nv">$i</span><span class="o">-&gt;</span><span class="na">getIsPrimary</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nv">$i</span><span class="o">-&gt;</span><span class="na">setIsPrimary</span><span class="p">(</span> <span class="k">false</span> <span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nx">D2EM</span><span class="o">::</span><span class="na">flush</span><span class="p">();</span>
+    <span class="p">}</span>
 
-    return true;
-}</code></pre>
+    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 <p>Note from this:</p>
 <ul>
@@ -732,22 +743,23 @@ public function doStore( Request $request )
 </ul>
 <h2 id="delete">Delete<a class="headerlink" href="#delete" title="Permanent link"></a></h2>
 <p>Deletes are handled via posts and so have Laravel's built in CSRF protection. The logic is quiet simple:</p>
-<pre class="highlight"><code class="language-php">&lt;?php
-public function delete( Request $request ) {
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">delete</span><span class="p">(</span> <span class="nx">Request</span> <span class="nv">$request</span> <span class="p">)</span> <span class="p">{</span>
 
-    if( !( $this-&gt;object = D2EM::getRepository( $this-&gt;feParams-&gt;entity )-&gt;find( $request-&gt;input( 'id' ) ) ) ) {
-        return abort( '404' );
-    }
+    <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span> <span class="o">=</span> <span class="nx">D2EM</span><span class="o">::</span><span class="na">getRepository</span><span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">feParams</span><span class="o">-&gt;</span><span class="na">entity</span> <span class="p">)</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span> <span class="s1">&#39;id&#39;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">abort</span><span class="p">(</span> <span class="s1">&#39;404&#39;</span> <span class="p">);</span>
+    <span class="p">}</span>
 
-    if( $this-&gt;preDelete() ) {
-        D2EM::remove( $this-&gt;object );
-        D2EM::flush();
-        $this-&gt;postFlush( 'delete' );
-        AlertContainer::push( $this-&gt;feParams-&gt;titleSingular . " deleted.", Alert::SUCCESS );
-    }
+    <span class="k">if</span><span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">preDelete</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">D2EM</span><span class="o">::</span><span class="na">remove</span><span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">object</span> <span class="p">);</span>
+        <span class="nx">D2EM</span><span class="o">::</span><span class="na">flush</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">postFlush</span><span class="p">(</span> <span class="s1">&#39;delete&#39;</span> <span class="p">);</span>
+        <span class="nx">AlertContainer</span><span class="o">::</span><span class="na">push</span><span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">feParams</span><span class="o">-&gt;</span><span class="na">titleSingular</span> <span class="o">.</span> <span class="s2">&quot; deleted.&quot;</span><span class="p">,</span> <span class="nx">Alert</span><span class="o">::</span><span class="na">SUCCESS</span> <span class="p">);</span>
+    <span class="p">}</span>
 
-    return redirect()-&gt;action( $this-&gt;feParams-&gt;defaultController.'@'.$this-&gt;feParams-&gt;defaultAction );
-}</code></pre>
+    <span class="k">return</span> <span class="nx">redirect</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">action</span><span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">feParams</span><span class="o">-&gt;</span><span class="na">defaultController</span><span class="o">.</span><span class="s1">&#39;@&#39;</span><span class="o">.</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">feParams</span><span class="o">-&gt;</span><span class="na">defaultAction</span> <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
 
 <p>As you can see, it calls a <code>protected function preDelete(): bool {}</code> hook which, if it returns <code>false</code>, the delete operation is abandoned.</p>
 <p>The following hooks are available:</p>
@@ -757,17 +769,18 @@ public function delete( Request $request ) {
 <h2 id="other-hooks">Other Hooks<a class="headerlink" href="#other-hooks" title="Permanent link"></a></h2>
 <h3 id="post-flush">Post Flush<a class="headerlink" href="#post-flush" title="Permanent link"></a></h3>
 <p>There is a <code>postFlush()</code> hook:</p>
-<pre class="highlight"><code class="language-php">&lt;?php
-/**
- * Optional method to be overridden if a D2F controllers needs to perform post-database flush actions
- *
- * @param string $action Either 'add', 'edit', 'delete'
- * @return bool
- */
-protected function postFlush( string $action ): bool
-{
-    return true;
-}</code></pre>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * Optional method to be overridden if a D2F controllers needs to perform post-database flush actions</span>
+<span class="sd"> *</span>
+<span class="sd"> * @param string $action Either &#39;add&#39;, &#39;edit&#39;, &#39;delete&#39;</span>
+<span class="sd"> * @return bool</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">postFlush</span><span class="p">(</span> <span class="nx">string</span> <span class="nv">$action</span> <span class="p">)</span><span class="o">:</span> <span class="nx">bool</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 <p>which is called during some actions with the action name as a parameter: <code>add</code>, <code>edit</code>, <code>delete</code>. This function is called just after the database flush operation.</p>
               
