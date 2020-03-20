@@ -2,7 +2,7 @@
 
 The central element of an IXP is the switches. **IXP Manager** provides comprehensive management features for switches (and more complex configurations such as VXLAN overlay networks).
 
-We strongly advise trying to add and manage switches in IXP Manager without SNMP. SNMP v2 is a core element of how switches work within IXP Manager including accurate port discovery, graphing, port states, optic availability, etc.
+We strongly advise against trying to add and manage switches in IXP Manager without SNMP. SNMP v2 is a core element of how switches work within IXP Manager including accurate port discovery, graphing, port states, optic availability, etc.
 
 ## Listing Switches
 
