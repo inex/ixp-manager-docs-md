@@ -432,14 +432,12 @@
 <p>Active sessions can be seen (and deleted) via the <em>Active Sessions</em> option in the user's <em>My Account</em> menu (top right of screen).</p>
 <h3 id="session-lifetimes">Session Lifetimes<a class="headerlink" href="#session-lifetimes" title="Permanent link"></a></h3>
 <p>There are two configurable options here - <strong>both in minutes</strong>. The first is the session lifetime which is how long a browser session will stay valid since the last activity. The default value is defined in <code>.env</code> as:</p>
-<div class="highlight"><pre><span></span>SESSION_LIFETIME=120
-</pre></div>
+<pre class="highlight"><code>SESSION_LIFETIME=120</code></pre>
 
 <p>In other words, your login session (when you do not check <em>remember me</em>) will stay valid for 120 minutes / 2 hours by default. This is two hours <em>since the last request</em> - i.e. the session expiry time updates on each request. If you are curious, the browser cookie managing this is called <code>laravel_session</code> by default.</p>
 <p>If the user checks <em>remember me</em>, then a second cookie is sent to and stored on your browser (called <code>remember_web_xxx</code> where <code>xxx</code> is a random string). This references an entry in the user's <code>user_remember_tokens</code> database table.</p>
 <p>The default lifetime of this <em>remember me</em> session is defined in <code>.env</code> as:</p>
-<div class="highlight"><pre><span></span>AUTH_TOKEN_EXPIRE=43200
-</pre></div>
+<pre class="highlight"><code>AUTH_TOKEN_EXPIRE=43200</code></pre>
 
 <p>So, your <em>remember me</em> session will last 30 days before you will be forced to login again from a particular browser.</p>
 <p>You may notice that the cookie sent to the browser for this has an indefinite lifetime - the expiry is actually controlled by the <code>user_remember_tokens.expires</code> database column.</p>
@@ -449,13 +447,11 @@
 <p><strong>IXP Manager</strong> supports a Google Authenticator compatible HMAC-Based One-time Password (HOTP) algorithm as specified in <a href="https://tools.ietf.org/html/rfc4226">RFC 4226</a> and the Time-based One-time Password (TOTP) algorithm specified in <a href="https://tools.ietf.org/html/rfc6238">RFC 6238</a>. In other words, <em>the standard</em> 2fa system that is supported by most apps such as <a href="https://www.authy.com/">Authy</a>, Google Authenticator, <a href="https://lastpass.com/auth/">LastPass</a>, <a href="https://1password.com/">1Password</a>, etc.</p>
 <p>User's can enable, view (and test) and disable 2fa via the <em>My Account -&gt; Profile</em> page.</p>
 <p>2FA support in IXP Manager is enabled by default from v5.3. To globally disable it set the following <code>.env</code> option:</p>
-<div class="highlight"><pre><span></span>2FA_ENABLED=false
-</pre></div>
+<pre class="highlight"><code>2FA_ENABLED=false</code></pre>
 
 <h3 id="enforcing-2fa-for-users">Enforcing 2FA for Users<a class="headerlink" href="#enforcing-2fa-for-users" title="Permanent link"></a></h3>
 <p>You can enforce the use of 2fa for some (or all) categories of users. Set the following configuration option:</p>
-<div class="highlight"><pre><span></span>2FA_ENFORCE_FOR_USERS=n
-</pre></div>
+<pre class="highlight"><code>2FA_ENFORCE_FOR_USERS=n</code></pre>
 
 <p>where <em>n</em> is the privilege level of the user (see <code>privs=</code> <a href="../users/">here</a>). For example to force 2fa for:</p>
 <ul>

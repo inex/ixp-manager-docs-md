@@ -426,19 +426,17 @@
 <p>Various helpers we use within IXP Manager.</p>
 <h2 id="alerts">Alerts<a class="headerlink" href="#alerts" title="Permanent link"></a></h2>
 <p>To show Bootstrap-styled alerts on view (Foil) templates, add them in your controllers as follows:</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-    <span class="k">use</span> <span class="nx">IXP\Utils\View\Alert\Container</span> <span class="k">as</span> <span class="nx">AlertContainer</span><span class="p">;</span>
-    <span class="k">use</span> <span class="nx">IXP\Utils\View\Alert\Alert</span><span class="p">;</span>
+<pre class="highlight"><code class="language-php">&lt;?php
+    use IXP\Utils\View\Alert\Container as AlertContainer;
+    use IXP\Utils\View\Alert\Alert;
 
-    <span class="o">...</span>
+    ...
 
-    <span class="nx">AlertContainer</span><span class="o">::</span><span class="na">push</span><span class="p">(</span> <span class="err">&#39;</span><span class="o">&lt;</span><span class="nx">b</span><span class="o">&gt;</span><span class="nx">Example</span><span class="o">:&lt;/</span><span class="nx">b</span><span class="o">&gt;</span> <span class="k">This</span> <span class="nx">is</span> <span class="nx">a</span> <span class="nx">success</span> <span class="nx">alert</span><span class="o">!</span><span class="p">,</span> <span class="nx">Alert</span><span class="o">::</span><span class="na">SUCCESS</span> <span class="p">);</span>
-</pre></div>
+    AlertContainer::push( '&lt;b&gt;Example:&lt;/b&gt; This is a success alert!, Alert::SUCCESS );</code></pre>
 
 <p>where the types available are: <code>SUCCESS, INFO (default), DANGER, WARNING</code>.</p>
 <p>To then display (all) the alerts, in your foil template add:</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?</span><span class="o">=</span> <span class="nv">$t</span><span class="o">-&gt;</span><span class="na">alerts</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="x"></span>
-</pre></div>
+<pre class="highlight"><code class="language-php">&lt;?= $t-&gt;alerts() ?&gt;</code></pre>
 
 <p>These alerts are HTML-safe as they display the message using HTML Purifier's ''clean()''.</p>
               

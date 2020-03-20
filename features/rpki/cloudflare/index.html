@@ -415,29 +415,26 @@
 <p><strong>NB:</strong> Before you proceed further, you should <a href="https://blog.cloudflare.com/cloudflares-rpki-toolkit/">read Cloudflare's own introduction to this toolkit</a>.</p>
 <p>We use a standard Ubuntu 18.04 installation (selecting the minimal virtual server option), 2 vCPUs, 2GB RAM, 10GB LVM hard drive. Not that INEX at this point has not embraced Docker for production services so our install does not use Cloudflare's docker options.</p>
 <p>Rather than running these daemons as the root user, we create a dedicated user:</p>
-<div class="highlight"><pre><span></span>useradd -c <span class="s1">&#39;cloudflare&#39;</span> -d /srv/cloudflare -m -s /bin/bash -u <span class="m">1102</span> cloudflare
-</pre></div>
+<pre class="highlight"><code class="language-sh">useradd -c 'cloudflare' -d /srv/cloudflare -m -s /bin/bash -u 1102 cloudflare</code></pre>
 
 <p>We now install packages we need:</p>
-<div class="highlight"><pre><span></span>apt install golang git rsync ca-certificates
-</pre></div>
+<pre class="highlight"><code class="language-sh">apt install golang git rsync ca-certificates</code></pre>
 
 <p>Note that in the following, we are not signing the JSON file or ROAs that OctoRPKI generates and this not validating this in GoRTR. The reason for this as primarily that it <em>just wouldn't work</em> (May 2019) but also as this is a same server operation and no other tools are using the JSON.</p>
 <h2 id="octorpki">OctoRPKI<a class="headerlink" href="#octorpki" title="Permanent link"></a></h2>
 <p>To install OctoRPKI, su to the target user and proceed as follows (we assume all  commands are executed from <code>/srv/cloudflare</code>):</p>
-<div class="highlight"><pre><span></span>sudo su - cloudflare
+<pre class="highlight"><code class="language-sh">sudo su - cloudflare
 
 go get github.com/cloudflare/cfrpki/cmd/octorpki
 
-<span class="c1"># test:</span>
+# test:
 ./go/bin/octorpki -h
 
-<span class="c1"># create the directories we need:</span>
-mkdir tals <span class="o">&amp;&amp;</span> mkdir cache <span class="o">&amp;&amp;</span> touch rrdp.json
+# create the directories we need:
+mkdir tals &amp;&amp; mkdir cache &amp;&amp; touch rrdp.json
 
-<span class="c1"># copy files we need from the OctoRPKI repository:</span>
-cp go/src/github.com/cloudflare/cfrpki/cmd/octorpki/tals/* tals/
-</pre></div>
+# copy files we need from the OctoRPKI repository:
+cp go/src/github.com/cloudflare/cfrpki/cmd/octorpki/tals/* tals/</code></pre>
 
 <p>You now need to install the ARIN file manually, sigh:</p>
 <ol>
@@ -446,86 +443,80 @@ cp go/src/github.com/cloudflare/cfrpki/cmd/octorpki/tals/* tals/
 <li>Place it in <code>/srv/cloudflare/tals/arin.tal</code></li>
 </ol>
 <p>You can now run the validator via the following command <em>(and I'm showing the start of some of the sample output)</em>:</p>
-<div class="highlight"><pre><span></span>$ ./go/bin/octorpki -mode server -output.sign<span class="o">=</span>0
-INFO<span class="o">[</span>0000<span class="o">]</span> Validator started
-INFO<span class="o">[</span>0000<span class="o">]</span> Serving HTTP on :8080/output.json
-...
-</pre></div>
+<pre class="highlight"><code class="language-sh">$ ./go/bin/octorpki -mode server -output.sign=0
+INFO[0000] Validator started
+INFO[0000] Serving HTTP on :8080/output.json
+...</code></pre>
 
 <p>As it starts up, there is some info available as JSON under http://localhost:8080/infos and the ROAs can be seen as JSON via http://localhost:8080/output.json after ~5mins.</p>
 <h2 id="gortr">GoRTR<a class="headerlink" href="#gortr" title="Permanent link"></a></h2>
 <p>To install GoRTR (once OctoRPKI is installed and running), we proceed as follows and assume you are su'd to <code>cloudflare</code> and your current directory is <code>/srv/cloudflare</code>:</p>
-<div class="highlight"><pre><span></span>go get github.com/cloudflare/gortr/cmd/gortr
-</pre></div>
+<pre class="highlight"><code class="language-sh">go get github.com/cloudflare/gortr/cmd/gortr</code></pre>
 
 <p>You can run it now with:</p>
-<div class="highlight"><pre><span></span>./go/bin/gortr -bind :3323                                <span class="se">\</span>
-               -verify<span class="o">=</span><span class="m">0</span>                                  <span class="se">\</span>
-               -cache http://localhost:8080/output.json   <span class="se">\</span>
-               -metrics.addr :8081
-</pre></div>
+<pre class="highlight"><code class="language-sh">./go/bin/gortr -bind :3323                                \
+               -verify=0                                  \
+               -cache http://localhost:8080/output.json   \
+               -metrics.addr :8081</code></pre>
 
 <p>Once GoRTR starts up, metrics are available from http://127.0.0.1:8081/metrics.</p>
 <h2 id="starting-on-boot">Starting on Boot<a class="headerlink" href="#starting-on-boot" title="Permanent link"></a></h2>
 <p>To have these services start at boot, we create systemd service files:</p>
-<div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/cloudflare-octorpki.service</span>
-<span class="s">[Unit]</span>
-<span class="s">Description=Cloudflare OctoRPKI Validator</span>
+<pre class="highlight"><code class="language-sh">cat &lt;&lt;ENDL &gt;/etc/systemd/system/cloudflare-octorpki.service
+[Unit]
+Description=Cloudflare OctoRPKI Validator
 
-<span class="s">[Service]</span>
-<span class="s">Restart=always</span>
-<span class="s">RestartSec=60</span>
+[Service]
+Restart=always
+RestartSec=60
 
-<span class="s">WorkingDirectory=/srv/cloudflare</span>
+WorkingDirectory=/srv/cloudflare
 
-<span class="s">User=cloudflare</span>
+User=cloudflare
 
-<span class="s">StandardOutput=syslog</span>
-<span class="s">StandardError=syslog</span>
-<span class="s">SyslogIdentifier=cloudflare-octorpki</span>
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=cloudflare-octorpki
 
-<span class="s">ExecStart=/srv/cloudflare/go/bin/octorpki -mode server -output.sign=0</span>
-
-
-
-<span class="s">[Install]</span>
-<span class="s">WantedBy=multi-user.target</span>
-
-<span class="s">ENDL</span>
-</pre></div>
-
-<div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/cloudflare-gortr.service</span>
-<span class="s">[Unit]</span>
-<span class="s">Description=Cloudflare GoRTR</span>
-<span class="s">After=cloudflare-octorpki.service</span>
-
-<span class="s">[Service]</span>
-<span class="s">Restart=always</span>
-<span class="s">RestartSec=60</span>
-
-<span class="s">WorkingDirectory=/srv/cloudflare</span>
-
-<span class="s">User=cloudflare</span>
-
-<span class="s">StandardOutput=syslog</span>
-<span class="s">StandardError=syslog</span>
-<span class="s">SyslogIdentifier=cloudflare-gortr</span>
-
-<span class="s">ExecStartPre=/bin/sleep 30</span>
-
-<span class="s">ExecStart=/srv/cloudflare/go/bin/gortr -bind :3323 -verify=0 -cache http://localhost:8080/output.json -metrics.addr :8081 -refresh=120</span>
+ExecStart=/srv/cloudflare/go/bin/octorpki -mode server -output.sign=0
 
 
-<span class="s">[Install]</span>
-<span class="s">WantedBy=multi-user.target</span>
 
-<span class="s">ENDL</span>
-</pre></div>
+[Install]
+WantedBy=multi-user.target
+
+ENDL</code></pre>
+
+<pre class="highlight"><code class="language-sh">cat &lt;&lt;ENDL &gt;/etc/systemd/system/cloudflare-gortr.service
+[Unit]
+Description=Cloudflare GoRTR
+After=cloudflare-octorpki.service
+
+[Service]
+Restart=always
+RestartSec=60
+
+WorkingDirectory=/srv/cloudflare
+
+User=cloudflare
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=cloudflare-gortr
+
+ExecStartPre=/bin/sleep 30
+
+ExecStart=/srv/cloudflare/go/bin/gortr -bind :3323 -verify=0 -cache http://localhost:8080/output.json -metrics.addr :8081 -refresh=120
+
+
+[Install]
+WantedBy=multi-user.target
+
+ENDL</code></pre>
 
 <p>And then we enable for start on boot with:</p>
-<div class="highlight"><pre><span></span>systemctl <span class="nb">enable</span> cloudflare-octorpki.service
-systemctl <span class="nb">enable</span> cloudflare-gortr.service
-</pre></div>
+<pre class="highlight"><code class="language-sh">systemctl enable cloudflare-octorpki.service
+systemctl enable cloudflare-gortr.service</code></pre>
 
 <p>Note that:</p>
 <ul>

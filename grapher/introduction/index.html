@@ -441,19 +441,18 @@
 <p>In a typical production environment, you'd implement MRTG, Smokeping and sflow to provide the complete set of features.</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h2>
 <p>There is only a handful of configuration options required and a typical and complete <code>$IXPROOT/.env</code> would look like this:</p>
-<div class="highlight"><pre><span></span>GRAPHER_BACKENDS=&quot;mrtg|sflow|smokeping&quot;
+<pre class="highlight"><code>GRAPHER_BACKENDS="mrtg|sflow|smokeping"
 GRAPHER_CACHE_ENABLED=true
 
-GRAPHER_BACKEND_MRTG_DBTYPE=&quot;rrd&quot;
-GRAPHER_BACKEND_MRTG_WORKDIR=&quot;/srv/mrtg&quot;
-GRAPHER_BACKEND_MRTG_LOGDIR=&quot;/srv/mrtg&quot;
+GRAPHER_BACKEND_MRTG_DBTYPE="rrd"
+GRAPHER_BACKEND_MRTG_WORKDIR="/srv/mrtg"
+GRAPHER_BACKEND_MRTG_LOGDIR="/srv/mrtg"
 
 GRAPHER_BACKEND_SFLOW_ENABLED=true
-GRAPHER_BACKEND_SFLOW_ROOT=&quot;http://sflow-server.example.com/grapher-sflow&quot;
+GRAPHER_BACKEND_SFLOW_ROOT="http://sflow-server.example.com/grapher-sflow"
 
 GRAPHER_BACKEND_SMOKEPING_ENABLED=true
-GRAPHER_BACKEND_SMOKEPING_URL=&quot;http://smokeping-server.example.com/smokeping&quot;
-</pre></div>
+GRAPHER_BACKEND_SMOKEPING_URL="http://smokeping-server.example.com/smokeping"</code></pre>
 
 <p>For those interested, the complete Grapher configuration file can be seen in [<code>$IXPROOT/config/grapher.php](https://github.com/inex/IXP-Manager/blob/master/config/grapher.php). Remember: put your own local changes in</code>.env` rather than editing this file directly.</p>
 <p>The global (non-backend specific) options are:</p>

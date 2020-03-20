@@ -440,19 +440,16 @@
 <h2 id="api-authentication">API Authentication<a class="headerlink" href="#api-authentication" title="Permanent link"></a></h2>
 <p>There are two ways to use your API key to authenticate to IXP Manager.</p>
 <p>You can test these using the API test endpoint at <code>api/v4/test</code>. For example:</p>
-<div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/test
-</pre></div>
+<pre class="highlight"><code>https://ixp.example.com/api/v4/test</code></pre>
 
 <p>The plaintext response will also indicate if you are authenticated or not (which can be via existing session or API key).</p>
 <h3 id="1-http-header-parameter">1. HTTP Header Parameter<a class="headerlink" href="#1-http-header-parameter" title="Permanent link"></a></h3>
 <p>You can pass your API key in the HTTP request as a request header parameter called <code>X-IXP-Manager-API-Key</code>. For example:</p>
-<div class="highlight"><pre><span></span>curl -X GET -H <span class="s2">&quot;X-IXP-Manager-API-Key: my-api-key&quot;</span> https://ixp.example.com/api/v4/test
-</pre></div>
+<pre class="highlight"><code class="language-sh">curl -X GET -H "X-IXP-Manager-API-Key: my-api-key" https://ixp.example.com/api/v4/test</code></pre>
 
 <h3 id="2-as-a-url-parameter">2. As a URL Parameter<a class="headerlink" href="#2-as-a-url-parameter" title="Permanent link"></a></h3>
 <p>This is a legacy method that is still supported. You can tack your key on as follows:</p>
-<div class="highlight"><pre><span></span>https://ixp.example.com/api/v4/test?apikey=my-api-key
-</pre></div>
+<pre class="highlight"><code>https://ixp.example.com/api/v4/test?apikey=my-api-key</code></pre>
 
 <h2 id="api-key-management">API Key Management<a class="headerlink" href="#api-key-management" title="Permanent link"></a></h2>
 <p>In <strong>IXP Manager v5.1</strong> we introduced some new API Key management features:</p>
