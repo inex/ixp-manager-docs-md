@@ -483,16 +483,14 @@
 <p><img alt="Welcome Email" src="../img/customer-welcome-email.png" /></p>
 <p>To be useful, you need to <a href="../../features/skinning/">skin</a> the welcome email.</p>
 <p>From IXP Manager v4.8.0 onwards, its format is Markdown and it is sent as a HTML email. The file you need to skin is (with an example of how to do it):</p>
-<div class="highlight"><pre><span></span>cd ${IXPROOT}
+<pre class="highlight"><code>cd ${IXPROOT}
 mkdir -p resources/skins/example/customer/emails
-cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/customer/emails/
-</pre></div>
+cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/customer/emails/</code></pre>
 
 <p>The <code>example</code> skin name in the above <em>is just an example</em>. Please read the <a href="../../features/skinning/">skinning documentation</a>.</p>
 <h2 id="customer-logos">Customer Logos<a class="headerlink" href="#customer-logos" title="Permanent link"></a></h2>
 <p>Customer users and administrators can upload and manage logos for customers. To enable this functionality, set the following in your <code>${IXPROOT}/.env</code> file:</p>
-<div class="highlight"><pre><span></span>IXP_FE_FRONTEND_DISABLED_LOGO=false
-</pre></div>
+<pre class="highlight"><code>IXP_FE_FRONTEND_DISABLED_LOGO=false</code></pre>
 
 <p>When you do this, the ability to manage logos will appear:</p>
 <ul>
@@ -507,16 +505,14 @@ cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/
 <p>All of these details are informative only and only available to administrative users.</p>
 <h3 id="notification-of-billing-details-changed">Notification of Billing Details Changed<a class="headerlink" href="#notification-of-billing-details-changed" title="Permanent link"></a></h3>
 <p>If you want notification of a customer's billing details being changed by email, set the following parameter in your <code>${IXPROOT}/.env</code> file:</p>
-<div class="highlight"><pre><span></span>IXP_FE_CUSTOMER_BILLING_UPDATES_NOTIFY=&quot;mail@example.com&quot;
-</pre></div>
+<pre class="highlight"><code>IXP_FE_CUSTOMER_BILLING_UPDATES_NOTIFY="mail@example.com"</code></pre>
 
 <p>This can be useful to alert your accounts / billing staff of these changes automatically.</p>
 <p>If you need multiple people notified, use an alias address encompassing all the users.</p>
 <p><em>Prior to v4.8, you had to edit the <code>config/ixp_tools.php</code> configuration file and set the <code>billing_updates_notify</code> array element. If this file does not exist, create it from the suggested template: <code>cp config/ixp_tools.php.dist config/ixp_tools.php</code>.</em></p>
 <h2 id="public-customer-details">Public Customer Details<a class="headerlink" href="#public-customer-details" title="Permanent link"></a></h2>
 <p><strong>IXP Manager</strong> makes customer/member details available publicly (without login) through the <em>Member Information</em> menu item. To disable this, set the following in your <code>.env</code>:</p>
-<div class="highlight"><pre><span></span>IXP_FE_CUSTOMER_DETAILS_PUBLIC=false
-</pre></div>
+<pre class="highlight"><code>IXP_FE_CUSTOMER_DETAILS_PUBLIC=false</code></pre>
               
             </div>
           </div>

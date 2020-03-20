@@ -441,69 +441,61 @@
 <p>You will find standard instructions for upgrading IXP Manager below. Note that the release notes for each version may contain specific upgrade instructions including schema changes.</p>
 <p>If you have missed some versions, the most sensible approach is to upgrade to each minor release in sequence (5.0.0 -&gt; 5.1.0 -&gt; 5.2.0 -&gt; ...) and then to the latest patch version in the latest minor version.</p>
 <p>In the below, we assume the following installation directory - alter this to suit your own situation:</p>
-<div class="highlight"><pre><span></span>IXPROOT=/srv/ixpmanager
-</pre></div>
+<pre class="highlight"><code>IXPROOT=/srv/ixpmanager</code></pre>
 
 <p>The general process is:</p>
 <ol>
 <li>
 <p>Set up some variables and ensure directory permissions are okay:</p>
-<div class="highlight"><pre><span></span><span class="c1"># set this to your IXP Manager installation directory</span>
-<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+<pre class="highlight"><code class="language-sh"># set this to your IXP Manager installation directory
+IXPROOT=/srv/ixpmanager
 
-<span class="c1"># fix as appropriate to your operating system</span>
-<span class="nv">MY_WWW_USER</span><span class="o">=</span>www-data
+# fix as appropriate to your operating system
+MY_WWW_USER=www-data
 
-<span class="c1"># ensure the web server daemon user can write to necessary directories:</span>
-chown -R <span class="nv">$MY_WWW_USER</span>: <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/<span class="o">{</span>bootstrap/cache,composer.lock,storage,vendor<span class="o">}</span>
-chmod -R ug+rwX <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/<span class="o">{</span>bootstrap/cache,composer.lock,storage,vendor<span class="o">}</span>
-</pre></div>
+# ensure the web server daemon user can write to necessary directories:
+chown -R $MY_WWW_USER: ${IXPROOT}/{bootstrap/cache,composer.lock,storage,vendor}
+chmod -R ug+rwX ${IXPROOT}/{bootstrap/cache,composer.lock,storage,vendor}</code></pre>
 
 </li>
 <li>
 <p>Enable maintenance mode:</p>
-<div class="highlight"><pre><span></span>php <span class="nv">$IXPROOT</span>/artisan down --message<span class="o">=</span><span class="s1">&#39;Please wait, currently upgrading...&#39;</span>
-</pre></div>
+<pre class="highlight"><code class="language-sh">php $IXPROOT/artisan down --message='Please wait, currently upgrading...'</code></pre>
 
 </li>
 <li>
 <p>Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v4.</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-<span class="c1"># pull the latest code</span>
+<pre class="highlight"><code class="language-sh">cd $IXPROOT
+# pull the latest code
 git fetch --all
-<span class="c1"># check out the version you are upgrading to</span>
-git checkout v5.x.y
-</pre></div>
+# check out the version you are upgrading to
+git checkout v5.x.y</code></pre>
 
 </li>
 <li>
 <p>Install latest required libraries from composer <a href="#updating-composer-dependancies"><strong>(see notes below)</strong></a>:</p>
-<div class="highlight"><pre><span></span><span class="c1"># this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.</span>
-sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> \</span>
-<span class="s2">    &amp;&amp; php ./composer.phar install --no-dev --prefer-dist&quot;</span>
-</pre></div>
+<pre class="highlight"><code class="language-sh"># this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.
+sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage &amp;&amp; cd ${IXPROOT} \
+    &amp;&amp; php ./composer.phar install --no-dev --prefer-dist"</code></pre>
 
 </li>
 <li>
 <p>Restart Memcached and clear the cache. Do not forget / skip this step!</p>
-<div class="highlight"><pre><span></span>systemctl restart memcached.service
-php <span class="nv">$IXPROOT</span>/artisan cache:clear
-</pre></div>
+<pre class="highlight"><code class="language-sh">systemctl restart memcached.service
+php $IXPROOT/artisan cache:clear</code></pre>
 
 </li>
 <li>
 <p>Update the database schema:</p>
-<div class="highlight"><pre><span></span><span class="c1"># (you really should take a mysqldump of your database first)</span>
-<span class="c1"># migrate:</span>
-php <span class="nv">$IXPROOT</span>/artisan doctrine:schema:update --force
-php <span class="nv">$IXPROOT</span>/artisan migrate
-</pre></div>
+<pre class="highlight"><code class="language-sh"># (you really should take a mysqldump of your database first)
+# migrate:
+php $IXPROOT/artisan doctrine:schema:update --force
+php $IXPROOT/artisan migrate</code></pre>
 
 </li>
 <li>
 <p>Restart Memcached (yes, again). Do not forget / skip this step!</p>
-<div class="highlight"><pre><span></span>systemctl restart memcached.service
-</pre></div>
+<pre class="highlight"><code class="language-sh">systemctl restart memcached.service</code></pre>
 
 </li>
 <li>
@@ -511,87 +503,76 @@ php <span class="nv">$IXPROOT</span>/artisan migrate
 </li>
 <li>
 <p>Ensure file permissions are still correct.</p>
-<div class="highlight"><pre><span></span>chown -R <span class="nv">$MY_WWW_USER</span>: <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/<span class="o">{</span>bootstrap/cache,composer.lock,storage,vendor<span class="o">}</span>
-chmod -R ug+rwX <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/<span class="o">{</span>bootstrap/cache,composer.lock,storage,vendor<span class="o">}</span>
-</pre></div>
+<pre class="highlight"><code class="language-sh">chown -R $MY_WWW_USER: ${IXPROOT}/{bootstrap/cache,composer.lock,storage,vendor}
+chmod -R ug+rwX ${IXPROOT}/{bootstrap/cache,composer.lock,storage,vendor}</code></pre>
 
 </li>
 <li>
 <p>Clear out all caches:</p>
-<div class="highlight"><pre><span></span>php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan cache:clear
-php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan config:clear
-php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan doctrine:clear:metadata:cache
-php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan doctrine:clear:query:cache
-php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan doctrine:clear:result:cache
-php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan route:clear
-php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan view:clear
-</pre></div>
+<pre class="highlight"><code class="language-sh">php ${IXPROOT}/artisan cache:clear
+php ${IXPROOT}/artisan config:clear
+php ${IXPROOT}/artisan doctrine:clear:metadata:cache
+php ${IXPROOT}/artisan doctrine:clear:query:cache
+php ${IXPROOT}/artisan doctrine:clear:result:cache
+php ${IXPROOT}/artisan route:clear
+php ${IXPROOT}/artisan view:clear</code></pre>
 
 </li>
 <li>
 <p>Disable maintenance mode:</p>
-<p><div class="highlight"><pre><span></span>php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan up
-</pre></div>
+<p><pre class="highlight"><code class="language-sh">php ${IXPROOT}/artisan up</code></pre>
 12. Recreate SQL views</p>
 <p>Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them on versions &gt; v5.5.0:</p>
-<div class="highlight"><pre><span></span>php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan update:reset-mysql-views
-</pre></div>
+<pre class="highlight"><code class="language-sh">php ${IXPROOT}/artisan update:reset-mysql-views</code></pre>
 
 <p>If you are running &lt;= v5.4.0 then do this as follows using the appropriate MySQL username and password:</p>
-<div class="highlight"><pre><span></span>mysql -u ixp -p ixp &lt; <span class="nv">$IXPROOT</span>/tools/sql/views.sql
-</pre></div>
+<pre class="highlight"><code class="language-sh">mysql -u ixp -p ixp &lt; $IXPROOT/tools/sql/views.sql</code></pre>
 
 </li>
 </ol>
 <h2 id="updating-composer-dependancies">Updating Composer Dependancies<a class="headerlink" href="#updating-composer-dependancies" title="Permanent link"></a></h2>
 <p>It is not advisable to run composer as root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the composer commands themselves will be run as <code>$MY_WWW_USER</code>). Note that we assume here what you have installed Composer (see: https://getcomposer.org/ ) in the <code>${IXPROOT}</code> directory as <code>composer.phar</code>. This is where and how the IXP Manager installation scripts and documentation instructions install it.</p>
-<div class="highlight"><pre><span></span><span class="c1"># set this to your IXP Manager installation directory</span>
-<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+<pre class="highlight"><code class="language-sh"># set this to your IXP Manager installation directory
+IXPROOT=/srv/ixpmanager
 
-<span class="nv">MY_WWW_USER</span><span class="o">=</span>www-data  <span class="c1"># fix as appropriate to your operating system</span>
+MY_WWW_USER=www-data  # fix as appropriate to your operating system
 
-<span class="c1"># ensure the web server daemon user can write to necessary directories:</span>
-chown -R <span class="nv">$MY_WWW_USER</span>: <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/<span class="o">{</span>bootstrap/cache,composer.lock,storage,vendor<span class="o">}</span>
-chmod -R ug+rwX <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/<span class="o">{</span>bootstrap/cache,composer.lock,storage,vendor<span class="o">}</span>
+# ensure the web server daemon user can write to necessary directories:
+chown -R $MY_WWW_USER: ${IXPROOT}/{bootstrap/cache,composer.lock,storage,vendor}
+chmod -R ug+rwX ${IXPROOT}/{bootstrap/cache,composer.lock,storage,vendor}
 
-<span class="c1"># update composer packages</span>
-sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> \</span>
-<span class="s2">    &amp;&amp; php ./composer.phar install --prefer-dist --no-dev&quot;</span>
-</pre></div>
+# update composer packages
+sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage &amp;&amp; cd ${IXPROOT} \
+    &amp;&amp; php ./composer.phar install --prefer-dist --no-dev"</code></pre>
 
 <p>NB: If composer is not managed by your package management system, you should keep it up to date via the following (using the same definitions from the composer update example above):</p>
-<div class="highlight"><pre><span></span>chown -R <span class="nv">$MY_WWW_USER</span>: <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/composer.phar
-chmod -R u+rwx <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/composer.phar
-sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; php ./composer.phar selfupdate&quot;</span>
-</pre></div>
+<pre class="highlight"><code class="language-sh">chown -R $MY_WWW_USER: ${IXPROOT}/composer.phar
+chmod -R u+rwx ${IXPROOT}/composer.phar
+sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage &amp;&amp; cd ${IXPROOT} &amp;&amp; php ./composer.phar selfupdate"</code></pre>
 
 <h2 id="correcting-database-issues-verifying-your-schema">Correcting Database Issues / Verifying Your Schema<a class="headerlink" href="#correcting-database-issues-verifying-your-schema" title="Permanent link"></a></h2>
 <p>Because of the manual process of database updates, it is possible your database schema may fall out of sync.</p>
 <p>If you are having issues, first and foremost, restart Memcached / clear your cache (see upgrade instructions above). Doctrine2 caches entities and schema information in Memcached so, after an upgrade, you must restart Memcached.</p>
 <p>You can verify and update your schema using the <code>artisan</code> script. The first action should be validation - here is a working example with no database issues:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+<pre class="highlight"><code class="language-sh">cd $IXPROOT
 ./artisan doctrine:schema:validate
 
-Validating <span class="k">for</span> default entity manager...
-<span class="o">[</span>Mapping<span class="o">]</span>  OK - The mapping files are correct.
-<span class="o">[</span>Database<span class="o">]</span> OK - The database schema is in sync with the mapping files.
-</pre></div>
+Validating for default entity manager...
+[Mapping]  OK - The mapping files are correct.
+[Database] OK - The database schema is in sync with the mapping files.</code></pre>
 
 <p>If there are issues, you can use the following to show what SQL commands are required to bring your schema into line:</p>
-<div class="highlight"><pre><span></span>./artisan doctrine:schema:update --sql
-</pre></div>
+<pre class="highlight"><code class="language-sh">./artisan doctrine:schema:update --sql</code></pre>
 
 <p>And you can let Doctrine make the changes for you via:</p>
-<div class="highlight"><pre><span></span>./artisan doctrine:schema:update --force
-</pre></div>
+<pre class="highlight"><code class="language-sh">./artisan doctrine:schema:update --force</code></pre>
 
 <p>Doctrine2 maintains the entities, proxies and repository classes. Ideally you should never need to do the following on a production installation - as we maintain these files with Git - but if you're developing / testing IXP Manager, you may need to.</p>
 <p>The process for updating these files with schema changes / updates is:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-systemctl restart memcached.service           <span class="c1"># (or as appropriate for your system)</span>
+<pre class="highlight"><code class="language-sh">cd $IXPROOT
+systemctl restart memcached.service           # (or as appropriate for your system)
 ./artisan doctrine:generate:entities database
-./artisan doctrine:generate:proxies
-</pre></div>
+./artisan doctrine:generate:proxies</code></pre>
               
             </div>
           </div>
