@@ -178,15 +178,16 @@ Generally speaking, you should not customize the way IXP Manager generates MRTG 
 
 ## Inserting Traffic Data Into the Database / Reporting Emails
 
-The MRTG backend inserts daily summaries into MySQL for reporting. See the `traffic_daily` database table for this. Essentially, there is a row per day per customer for traffic types *bits, discards, errors, broadcasts and packets*. Each row has a daily, weekly, monthly and yearly value for average, max and total.
+The MRTG backend inserts daily summaries into MySQL for reporting. See the `traffic_daily` and `traffic_daily_phys_ints` database tables for this. Essentially, there is a row per day per customer in the first and a row per physical interface in the second for traffic types *bits, discards, errors, broadcasts and packets*. Each row has a daily, weekly, monthly and yearly value for average, max and total.
 
 From IXP Manager >= v5.0, the [task scheduler](/features/crontabs.md) handles collecting and storing *yesterday's* data. If you are using an older version, create a cron job such as:
 
 ```
 0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
+5 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-pi-stats-to-db
 ```
 
-In the IXP Manager application, this data powers the *League Table* function on the left hand menu.
+In the IXP Manager application, the `traffic_daily` data powers the *League Table* function and the `traffic_daily_phys_int` data powers the *Utilisation* (since v5.5.0) function - both on the left hand menu.
 
 This data is also used to send email reports / notifications of various traffic events. A sample crontab for this would look like the following:
 
@@ -207,12 +208,26 @@ This data is also used to send email reports / notifications of various traffic 
 Which, in the order above, do:
 
 1. Email a report of members whose average traffic has changed by more than 1.5 times their standard deviation.
-3. Email a report of all ports with >=80% utilisation yesterday.
+3. Email a report of all ports with >=80% utilisation yesterday (this uses the MRTG files as it predates the `traffic_daily_phys_ints` table).
 4. Email a report of all ports with a non-zero discard count yesterday.
 5. Email a report of all ports with a non-zero error count yesterday.
 
 
 This generated emails are HTML formatted with embedded graph images.
+
+
+## Port Utilisation
+
+In IXP Manager v5.5.0, we introduced a port utilisation reporting function into IXP Manager's frontend UI. You will find it in the *IXP STATISTICS*  section of the left hand side menu.
+
+The purpose of this tool is to easily identify ports that are nearing or exceeding 80% utilisation. In its default configuration, IXP Manager will iterate over all the physical interface (switch ports) MRTG log files for every member and insert that information into the database at 02:10 (AM).
+
+In the UI, when you select a specific date and period (day/week/month/year), you are shown the maximum port utilisation (in and out) for the given period up to 02:10 on that day.
+
+This feature was introduced in March 2020 during the Coronavirus outbreak. After observing as much as 50% routine traffic increases across IXPs in areas under lock down, we needed a tool that would allow us to rapidly and easily view port utilisations across all members rather than looking at member graphs individually.
+
+
+
 
 ## Troubleshooting
 
