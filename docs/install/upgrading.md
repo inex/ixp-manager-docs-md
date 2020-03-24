@@ -24,6 +24,9 @@ In the below, we assume the following installation directory - alter this to sui
 IXPROOT=/srv/ixpmanager
 ```
 
+Before you start, **consider if you need to make a backup**. We would expect that most IXP's would have a nightly backup of all their servers at a minimum. If not, or for belt-and-braces, you may want to make a local temporary backup. See [our operational notes on backups](../usage/operational-notes.md#backup-ixp-manager) for an idea on how to do this.
+
+
 
 The general process is:
 
