@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Introduction - IXP Manager Documentation</title>
+  <title>Operational Notes - IXP Manager Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Introduction";
-    var mkdocs_page_input_path = "grapher/introduction.md";
-    var mkdocs_page_url = "/grapher/introduction/";
+    var mkdocs_page_name = "Operational Notes";
+    var mkdocs_page_input_path = "usage/operational-notes.md";
+    var mkdocs_page_url = "/usage/operational-notes/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -92,41 +92,53 @@
 		
     <span class="caption-text">General Usage</span>
     <ul class="subnav">
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../usage/operational-notes/">Operational Notes</a>
+    <a class="current" href="./">Operational Notes</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#operational-notes">Operational Notes</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#backup-ixp-manager">Backup IXP Manager</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/authentication/">Authentication</a>
+    <a class="" href="../authentication/">Authentication</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/contacts/">Contacts</a>
+    <a class="" href="../contacts/">Contacts</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/customers/">Customers / Members</a>
+    <a class="" href="../customers/">Customers / Members</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/customer-notes/">Customer Notes</a>
+    <a class="" href="../customer-notes/">Customer Notes</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/customer-tags/">Customer Tags</a>
+    <a class="" href="../customer-tags/">Customer Tags</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/interfaces/">Customer Connections</a>
+    <a class="" href="../interfaces/">Customer Connections</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/users/">Users</a>
+    <a class="" href="../users/">Users</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../usage/switches/">Switches</a>
+    <a class="" href="../switches/">Switches</a>
                 </li>
     </ul>
 	    </li>
@@ -165,7 +177,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="./">Grapher</a>
+    <a class="" href="../../grapher/introduction/">Grapher</a>
                 </li>
                 <li class="">
                     
@@ -249,7 +261,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../smokeping/">Smokeping</a>
+    <a class="" href="../../grapher/smokeping/">Smokeping</a>
                 </li>
                 <li class="">
                     
@@ -266,37 +278,25 @@
 		
     <span class="caption-text">Grapher</span>
     <ul class="subnav">
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Introduction</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#grapher-introduction">Grapher - Introduction</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../../grapher/introduction/">Introduction</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../api/">API &amp; Permissions</a>
+    <a class="" href="../../grapher/api/">API &amp; Permissions</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../mrtg/">Backend: MRTG</a>
+    <a class="" href="../../grapher/mrtg/">Backend: MRTG</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../sflow/">Backend: sflow</a>
+    <a class="" href="../../grapher/sflow/">Backend: sflow</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../smokeping/">Backend: Smokeping</a>
+    <a class="" href="../../grapher/smokeping/">Backend: Smokeping</a>
                 </li>
     </ul>
 	    </li>
@@ -409,14 +409,14 @@
     
       
         
-          <li>Grapher &raquo;</li>
+          <li>General Usage &raquo;</li>
         
       
     
-    <li>Introduction</li>
+    <li>Operational Notes</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/grapher/introduction.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/usage/operational-notes.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -426,45 +426,46 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="grapher-introduction">Grapher - Introduction<a class="headerlink" href="#grapher-introduction" title="Permanent link"></a></h1>
-<p><strong>IXP Manager</strong> generates all of its graphs using it's own graphing system called <em>Grapher</em>. This was introduced in v4.</p>
-<p><em>Grapher</em> is a complete rewrite of all previous graphing code and includes:</p>
-<ul>
-<li>API access to graphs and graph statistics</li>
-<li>multiple backends (such as MRTG, sflow, Smokeping) with dynamic resolution of appropriate backend</li>
-<li>configuration generation where required</li>
-<li>consistent and flexible OOP design</li>
-</ul>
-<p>To date, we have developed the following reference backend implementations:</p>
+                <h1 id="operational-notes">Operational Notes<a class="headerlink" href="#operational-notes" title="Permanent link"></a></h1>
+<p>This page will collect various operational notes, hints and tips and FAQs over time.</p>
+<h2 id="backup-ixp-manager">Backup IXP Manager<a class="headerlink" href="#backup-ixp-manager" title="Permanent link"></a></h2>
+<p><strong>Added 2020-03-24</strong></p>
+<p>On the mailing list, someone asked about backing up IXP Manager before an upgrade. Barry O'Donovan <a href="https://www.inex.ie/pipermail/ixpmanager/2020-March/002495.html">answered this here</a> and the advice was:</p>
+<blockquote>
+<p>It's not something I generally do as we have our production servers backed up nightly. But:</p>
+</blockquote>
+<p>Assuming you have IXP Manager installed at /srv/ixpmanager then I'd proceed as follows (replacing yyyymmdd with today's date):</p>
 <ol>
-<li><code>dummy</code> - a dummy grapher that just provides a placeholder graph for all possible graph types;</li>
-<li><code>mrtg</code> - MRTG graphing using either the log or rrd backend. Use cases for MRTG are L2 interface statistics for bits / packets / errors / discards / broadcasts per second. Aggregate graphs for customer LAGs, overall customer traffic, all traffic over a switch / infrastructure / the entire IXP are all supported.</li>
-<li><code>sflow</code> - while the MRTG backend looks at layer 2 statistics, sflow is used to provide layer 3 statistics such as per protocol (IPv4/6) graphs and peer to peer graphs.</li>
-<li><code>smokeping</code> - (available from v4.8.0) which creates latency graphs and this replaces the previous way we used to access Smokeping graphs.</li>
+<li>
+<p>Put IXP Manager in maintenance mode (<code>php /srv/ixpmanager/artisan down</code>).</p>
+</li>
+<li>
+<p>Take a MySQL dump:
+    <pre class="highlight"><code>mysqldump --lock-tables --quick --skip-events --triggers \
+    -h &lt;host&gt; -u &lt;username&gt; -p&lt;password&gt; ixpmanager |    \
+    bzip2 -9 &gt;/srv/ixpmanager/db-yyyymmdd.sql.bz2</code></pre></p>
+</li>
+<li>
+<p>Duplicate the IXP Manager directory in its entirety:
+    <pre class="highlight"><code>rsync -a /srv/ixpmanager/ /srv/ixpmanager-yyyymmdd</code></pre></p>
+</li>
+<li>
+<p>Upgrade IXP Manager per the usual instructions.</p>
+</li>
 </ol>
-<p>In a typical production environment, you'd implement MRTG, Smokeping and sflow to provide the complete set of features.</p>
-<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h2>
-<p>There is only a handful of configuration options required and a typical and complete <code>$IXPROOT/.env</code> would look like this:</p>
-<pre class="highlight"><code>GRAPHER_BACKENDS="mrtg|sflow|smokeping"
-GRAPHER_CACHE_ENABLED=true
-
-GRAPHER_BACKEND_MRTG_DBTYPE="rrd"
-GRAPHER_BACKEND_MRTG_WORKDIR="/srv/mrtg"
-GRAPHER_BACKEND_MRTG_LOGDIR="/srv/mrtg"
-
-GRAPHER_BACKEND_SFLOW_ENABLED=true
-GRAPHER_BACKEND_SFLOW_ROOT="http://sflow-server.example.com/grapher-sflow"
-
-GRAPHER_BACKEND_SMOKEPING_ENABLED=true
-GRAPHER_BACKEND_SMOKEPING_URL="http://smokeping-server.example.com/smokeping"</code></pre>
-
-<p>For those interested, the complete Grapher configuration file can be seen in [<code>$IXPROOT/config/grapher.php](https://github.com/inex/IXP-Manager/blob/master/config/grapher.php). Remember: put your own local changes in</code>.env` rather than editing this file directly.</p>
-<p>The global (non-backend specific) options are:</p>
-<ul>
-<li><code>GRAPHER_BACKENDS</code> - in a typical production environment this would be <code>"mrtg|sflow|smokeping"</code> which means <em>try the MRTG backend first, then sflow and then smokeping</em>. We ship with this set as <code>"dummy"</code> so you can see sample graphs working out of the box.</li>
-<li><code>GRAPHER_CACHE_ENABLED</code> - the IXP industry standard for graphing is to graph at 5min intervals. With the cache enabled, IXP Manager does not have to regenerate / reload / reprocess log / rrd / image files if we have cached them and they are less than 5mins old. This is enabled by default which is the recommended setting.</li>
-</ul>
-<p>Backend specific configuration and set-up instructions can be found in their own sections below.</p>
+<p>If you need to rollback then:</p>
+<ol>
+<li>
+<p>Restore the database from the dump above:
+    <pre class="highlight"><code>bzcat /srv/ixpmanager/db-yyyymmdd.sql.bz2 | \
+    mysql -h &lt;host&gt; -u &lt;username&gt; -p&lt;password&gt; ixpmanager</code></pre></p>
+</li>
+<li>
+<p>Shift the directories around:
+    <pre class="highlight"><code>mv /srv/ixpmanager /srv/ixpmanager-failed
+mv /srv/ixpmanager-yyyymmdd /srv/ixpmanager</code></pre></p>
+</li>
+</ol>
               
             </div>
           </div>
@@ -472,10 +473,10 @@ GRAPHER_BACKEND_SMOKEPING_URL="http://smokeping-server.example.com/smokeping"</c
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api/" class="btn btn-neutral float-right" title="API &amp; Permissions">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../authentication/" class="btn btn-neutral float-right" title="Authentication">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../features/tacacs/" class="btn btn-neutral" title="TACACS"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../install/next-steps/" class="btn btn-neutral" title="Post-Install Steps"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -505,10 +506,10 @@ GRAPHER_BACKEND_SMOKEPING_URL="http://smokeping-server.example.com/smokeping"</c
           <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../features/tacacs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../install/next-steps/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../api/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../authentication/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
