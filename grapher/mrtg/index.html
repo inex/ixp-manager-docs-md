@@ -576,7 +576,7 @@ update-rc.d mrtg defaults
 <p>Generally speaking, you should not customize the way IXP Manager generates MRTG configuration as the naming conventions are tightly coupled to how IXP Manager fetches the graphs. However, if there are bits of the MRTG configuration you need to alter, you can do it via <a href="../../features/skinning/">skinning</a>. <em>The skinning documentation actually uses MRTG as an example.</em></p>
 <h2 id="inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails<a class="headerlink" href="#inserting-traffic-data-into-the-database-reporting-emails" title="Permanent link"></a></h2>
 <p>The MRTG backend inserts daily summaries into MySQL for reporting. See the <code>traffic_daily</code> and <code>traffic_daily_phys_ints</code> database tables for this. Essentially, there is a row per day per customer in the first and a row per physical interface in the second for traffic types <em>bits, discards, errors, broadcasts and packets</em>. Each row has a daily, weekly, monthly and yearly value for average, max and total.</p>
-<p>From IXP Manager &gt;= v5.0, the <a href="/features/cronjobs.md">task scheduler</a> handles collecting and storing <em>yesterday's</em> data. If you are using an older version, create a cron job such as:</p>
+<p>From IXP Manager &gt;= v5.0, the <a href="../../features/cronjobs/">task scheduler</a> handles collecting and storing <em>yesterday's</em> data. If you are using an older version, create a cron job such as:</p>
 <pre class="highlight"><code>0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
 5 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-pi-stats-to-db</code></pre>
 
