@@ -180,7 +180,7 @@ Generally speaking, you should not customize the way IXP Manager generates MRTG 
 
 The MRTG backend inserts daily summaries into MySQL for reporting. See the `traffic_daily` and `traffic_daily_phys_ints` database tables for this. Essentially, there is a row per day per customer in the first and a row per physical interface in the second for traffic types *bits, discards, errors, broadcasts and packets*. Each row has a daily, weekly, monthly and yearly value for average, max and total.
 
-From IXP Manager >= v5.0, the [task scheduler](/features/crontabs.md) handles collecting and storing *yesterday's* data. If you are using an older version, create a cron job such as:
+From IXP Manager >= v5.0, the [task scheduler](/features/cronjobs.md) handles collecting and storing *yesterday's* data. If you are using an older version, create a cron job such as:
 
 ```
 0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
