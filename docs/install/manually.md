@@ -1,5 +1,11 @@
 # Manual Installation
 
+???+ note "**This page was updated in April 2020 for Ubuntu LTS 20.04.**"
+
+## Video Tutorial
+
+We created a **rough and ready** video tutorial demonstrating the manual installation process for IXP Manager v5.5.0 (April 2020) on Ubuntu LTS 20.04. *This is Barry's first attempt at video tutorials so please forgive the lighting and sound quality.* You can find the [video here](https://www.youtube.com/watch?v=qRIl1ioG6Ck) in our [YouTube channel](https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA).
+
 ## Requirements
 
 IXP Manager tries to stay current in terms of technology. Typically, this means some element of framework refresh(es) every couple of years and other more incremental package upgrades with minor version upgrades. As well as the obvious reasons for this, there is also the requirement to prevent developer apathy - insisting on legacy frameworks and packages that have been EOL'd provides a major stumbling block for bringing on new developers and contributors.
@@ -7,81 +13,44 @@ IXP Manager tries to stay current in terms of technology. Typically, this means 
 The current requirements for the web application are:
 
 * a Linux / BSD host.
-* MySQL version 5.7 or later.
+* MySQL version 5.7 or later **but you should use MySQL >=8.0 from April 2020**.
 * Apache / Nginx / etc.
-* PHP >= 7.3. **Note that IXP Manager will not run on older versions of PHP.**
+* PHP >= 7.4. **Note that IXP Manager will not run on older versions of PHP.**
 * Memcached - optional but recommended.
 
-To complete the installation using the included config/scripts, you will also need to have installed git (`apt-get install git`) and a number of PHP extensions (see the example `apt-get install` below).
+To complete the installation using the included config/scripts, you will also need to have installed git (`apt install git`) and a number of PHP extensions (see the example `apt install` below).
 
-Regrettably the potential combinations of operating systems, versions of
-same and then versions of PHP are too numerous to provide individual
-support. As such, we recommend installing IXP Manager on Ubuntu LTS 18.04 and we officially support this platform.
+Regrettably the potential combinations of operating systems, versions of same and then versions of PHP are too numerous to provide individual support. As such, we recommend installing IXP Manager on Ubuntu LTS 20.04 and we officially support this platform.
 
 In fact we provide a complete installation script for this - see [the automated installation page](automated-script.md) for details. If you have any issues with the manual installation, the automated script should be your first reference to compare what you are doing to what we recommend.
 
-For completeness, the IXP Manager installation script for Ubuntu 18.04 LTS installs:
+For completeness, the IXP Manager installation script for Ubuntu 20.04 LTS installs:
 
 ```sh
-apt-get install -qy apache2 php7.3 php7.3-intl php-rrd php7.3-cgi php7.3-cli      \
-    php7.3-snmp php7.3-curl  php-memcached libapache2-mod-php7.3 mysql-server     \
-    mysql-client php7.3-mysql memcached snmp php7.3-mbstring php7.3-xml php7.3-gd \
-    php7.3-bcmath php-gettext bgpq3 php-memcache unzip php7.3-zip git php-yaml    \
+apt install -qy apache2 php7.4 php7.4-intl php-rrd php7.4-cgi php7.4-cli          \
+    php7.4-snmp php7.4-curl  php-memcached libapache2-mod-php7.4 mysql-server     \
+    mysql-client php7.4-mysql memcached snmp php7.4-mbstring php7.4-xml php7.4-gd \
+    php7.4-bcmath bgpq3 php-memcache unzip php7.4-zip git php-yaml                \
     php-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl \
-    libnetaddr-ip-perl rrdtool librrds-perl curl
+    libnetaddr-ip-perl rrdtool librrds-perl curl composer
 ```
 
 If you are using a different platform, you will need to replicate the above as appropriate for your chosen platform.
 
-Note particularly that Ubuntu 18.04 does not ship with php 7.3 and you will need to add the following PPA for the above installation line to work:
-
-```
-apt-get install -yq software-properties-common
-add-apt-repository -y ppa:ondrej/php
-apt-get update -q
-```
-
 ### Get the IXP Manager Source
-
 
 The code for IXP Manager is maintained on GitHub and the canonical repository is [inex/IXP-Manager](https://github.com/inex/IXP-Manager).
 
-Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source (our examples use `/srv/ixpmanager` which we refer to as `$IXPROOT`). Note that it **should not** be checked out into any web exposed directory (e.g. do not checkout to `/var/www`).
+Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source (the automated script, our documentation and our examples use `/srv/ixpmanager` which we refer to as `$IXPROOT`). Note that it **should not** be cloned into any web exposed directory (e.g. do not clone to `/var/www`).
 
 ```sh
 IXPROOT=/srv/ixpmanager
 cd /srv
 git clone https://github.com/inex/IXP-Manager.git ixpmanager
 cd $IXPROOT   # /srv/ixpmanager
-git checkout master
+git checkout release-v5
 chown -R www-data: bootstrap/cache storage
 ```
-
-
-### Install Composer
-
-
-IXP Manager uses [Composer](http://getcomposer.org/) to manage its PHP dependencies. First, download a copy of the composer.phar. Once you have the PHAR archive, you can either keep it in your local project directory or move to `/usr/local/bin` to use it globally on your system.
-
-
-The installation script for Ubuntu 18.04 LTS installs these via:
-
-```sh
-cd $IXPROOT
-EXPECTED_SIGNATURE=$(wget https://composer.github.io/installer.sig -O - -q)
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
-
-if [ "$EXPECTED_SIGNATURE" = "$ACTUAL_SIGNATURE" ]; then
-    sudo -u www-data bash -c "HOME=$IXPROOT && cd $IXPROOT && php composer-setup.php --quiet"
-    rm $IXPROOT/composer-setup.php
-else
-    echo -e "\n\nERROR: Invalid installer signature for composer installation"
-    rm $IXPROOT/composer-setup.php
-    exit 1
-fi
-```
-
 
 ## Initial Setup and Dependancies
 
@@ -92,7 +61,7 @@ Install the required PHP libraries:
 
 ```sh
 cd $IXPROOT
-php composer.phar install --no-dev --prefer-dist
+composer install --no-dev --prefer-dist
 cp .env.example .env
 php artisan key:generate
 ```
@@ -103,8 +72,9 @@ php artisan key:generate
 Use whatever means you like to create a database and user for IXP Manager. For example:
 
 ```mysql
-CREATE DATABASE `ixp` CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci';
-GRANT ALL ON `ixp`.* TO `ixp`@`localhost` IDENTIFIED BY '<pick a password!>';
+CREATE DATABASE `ixpmanager` CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci';
+CREATE USER `ixpmanager`@`localhost` IDENTIFIED BY '<pick a password!>';
+GRANT ALL ON `ixpmanager`.* TO `ixpmanager`@`localhost`;
 FLUSH PRIVILEGES;
 ```
 
@@ -112,25 +82,26 @@ Then edit `$IXPROOT/.env` and set the database options:
 
 ```dotenv
 DB_HOST=localhost
-DB_DATABASE=ixp
-DB_USERNAME=ixp
-DB_PASSWORD=password
+DB_DATABASE=ixpmanager
+DB_USERNAME=ixpmanager
+DB_PASSWORD=<the password you picked above!>
 ```
 
 Now create the database schema:
 
 ```sh
 php artisan doctrine:schema:create
+php artisan migrate
 ```
 
 Some older scripts still rely on MySQL view tables. Create these with:
 
 ```sh
-mysql -u ixp -p ixp < $IXPROOT/tools/sql/views.sql
+# We use root here as the views.sql also contain triggers
+mysql -u root ixpmanager < $IXPROOT/tools/sql/views.sql
 ```
 
 ### Configuration
-
 
 Edit `$IXPROOT/.env` and review and set/change all parameters. Hopefully this is mostly documented or clear but please start a discussion on the mailing list if you have difficultly and we'll update this and the example file's documentation as appropriate.
 
@@ -152,8 +123,9 @@ echo Your password is: $IXPM_ADMIN_PW
 
 The following is taken from the IXP Manager installation script:
 
+
 ```mysql
-mysql -u root "-p${MYSQL_ROOT_PW}" $DBNAME <<END_SQL
+mysql -u ixpmanager "-p${MYSQL_ROOT_PW}" $DBNAME <<END_SQL
 INSERT INTO ixp ( name, shortname, address1, country )
     VALUES ( '${IXPNAME}', '${IXPSNAME}', '${IXPCITY}', '${IXPCOUNTRY}' );
 SET @ixpid = LAST_INSERT_ID();
@@ -194,9 +166,9 @@ And finally seed the database:
 
 ```sh
 cd $IXPROOT
-php artisan db:seed --class=IRRDBs
-php artisan db:seed --class=Vendors
-php artisan db:seed --class=ContactGroups
+php artisan db:seed --force --class=IRRDBs
+php artisan db:seed --force --class=Vendors
+php artisan db:seed --force --class=ContactGroups
 ```
 
 ## File Permissions
@@ -205,8 +177,8 @@ The web server needs write access to some directories:
 
 ```sh
 cd $IXPROOT
-chown -R www-data: var/ storage/ bootstrap/cache/ database/Proxies/
-chmod -R u+rwX var/ storage/ bootstrap/cache/ database/Proxies/
+chown -R www-data: storage/ bootstrap/cache/ database/Proxies/
+chmod -R u+rwX     storage/ bootstrap/cache/ database/Proxies/
 ```
 
 ## Setting Up Apache
