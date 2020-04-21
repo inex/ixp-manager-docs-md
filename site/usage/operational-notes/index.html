@@ -103,6 +103,8 @@
         
             <li><a class="toctree-l4" href="#backup-ixp-manager">Backup IXP Manager</a></li>
         
+            <li><a class="toctree-l4" href="#apache-vs-nginx">Apache vs Nginx</a></li>
+        
         </ul>
     
 
@@ -429,7 +431,7 @@
                 <h1 id="operational-notes">Operational Notes<a class="headerlink" href="#operational-notes" title="Permanent link"></a></h1>
 <p>This page will collect various operational notes, hints and tips and FAQs over time.</p>
 <h2 id="backup-ixp-manager">Backup IXP Manager<a class="headerlink" href="#backup-ixp-manager" title="Permanent link"></a></h2>
-<p><strong>Added 2020-03-24</strong></p>
+<p><strong>Added 2020-03-24, Barry O'Donovan</strong></p>
 <p>On the mailing list, someone asked about backing up IXP Manager before an upgrade. Barry O'Donovan <a href="https://www.inex.ie/pipermail/ixpmanager/2020-March/002495.html">answered this here</a> and the advice was:</p>
 <blockquote>
 <p>It's not something I generally do as we have our production servers backed up nightly. But:</p>
@@ -466,6 +468,11 @@
 mv /srv/ixpmanager-yyyymmdd /srv/ixpmanager</code></pre></p>
 </li>
 </ol>
+<h2 id="apache-vs-nginx">Apache vs Nginx<a class="headerlink" href="#apache-vs-nginx" title="Permanent link"></a></h2>
+<p><strong>Added 2020-04-21, Barry O'Donovan</strong></p>
+<p>A common question is will IXP Manager work with Nginx + php-fpm considering the automated installation script uses Apache. The short answer is: yes, of course! Use whichever you're most comfortable with.</p>
+<p>From experience, people who install IXP Manager <strong>and</strong> end up asking for installation help are not overly comfortable with Linux / web servers. The easiest installation and maintainable option (by a measurable distance) is Apache. This is why the installation script uses it.</p>
+<p>Do we recommend either / any advantages to one over the other? No and no.  IXP Manager is a low volume / transaction application. Whatever typical performance benefits you might expect from Nginx + php-fpm simply won't apply here.</p>
               
             </div>
           </div>

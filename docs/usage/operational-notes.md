@@ -5,7 +5,7 @@ This page will collect various operational notes, hints and tips and FAQs over t
 
 ## Backup IXP Manager
 
-**Added 2020-03-24**
+**Added 2020-03-24, Barry O'Donovan**
 
 On the mailing list, someone asked about backing up IXP Manager before an upgrade. Barry O'Donovan [answered this here](https://www.inex.ie/pipermail/ixpmanager/2020-March/002495.html) and the advice was:
 
@@ -44,3 +44,15 @@ If you need to rollback then:
     mv /srv/ixpmanager /srv/ixpmanager-failed
     mv /srv/ixpmanager-yyyymmdd /srv/ixpmanager
     ```
+
+
+
+## Apache vs Nginx
+
+**Added 2020-04-21, Barry O'Donovan**
+
+A common question is will IXP Manager work with Nginx + php-fpm considering the automated installation script uses Apache. The short answer is: yes, of course! Use whichever you're most comfortable with.
+
+From experience, people who install IXP Manager **and** end up asking for installation help are not overly comfortable with Linux / web servers. The easiest installation and maintainable option (by a measurable distance) is Apache. This is why the installation script uses it.
+
+Do we recommend either / any advantages to one over the other? No and no.  IXP Manager is a low volume / transaction application. Whatever typical performance benefits you might expect from Nginx + php-fpm simply won't apply here.
