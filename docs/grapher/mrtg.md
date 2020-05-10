@@ -157,9 +157,11 @@ mrtg_daemon_enable="YES"
 mrtg_daemon_config="/etc/mrtg.cfg"
 ```
 
-However, on Ubuntu it does not but it comes with a `/etc/cron.d/mrtg` file which kicks it off every five minutes (it will daemonize the first time and further cron jobs will have no effect).
+On Ubuntu it does not but it comes with a `/etc/cron.d/mrtg` file which kicks it off every five minutes (it will daemonize the first time and further cron jobs will have no effect).
 
-To start and stop it via standard initd scripts on Ubuntu, use an initd script such as this: [ubuntu-mrtg-initd](https://github.com/inex/IXP-Manager/blob/master/tools/runtime/mrtg/ubuntu-mrtg-initd)  ([source](http://www.iceflatline.com/2009/08/how-to-install-and-configure-mrtg-on-ubuntu-server/)):
+Marco d'Itri provided Ubuntu / Debian compatible systemd configurations for mrtg which you can find detailed in [this Github issue](https://github.com/inex/IXP-Manager/issues/627).
+
+To start and stop it via the older initd scripts on Ubuntu, use an initd script such as this: [ubuntu-mrtg-initd](https://github.com/inex/IXP-Manager/blob/master/tools/runtime/mrtg/ubuntu-mrtg-initd)  ([source](http://www.iceflatline.com/2009/08/how-to-install-and-configure-mrtg-on-ubuntu-server/)):
 
 ```
 cp ${IXPROOT}/tools/runtime/mrtg/ubuntu-mrtg-initd /etc/init.d/mrtg
