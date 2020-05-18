@@ -59,7 +59,7 @@ bcm-shell.0> quit
 n3k#
 ```
 
-Note that this command is not reboot persistent, and any time a TIX24X is rebooted, the command needs to be re-entered manually.  Note also that this configuration is untested.
+Note that this command is not reboot persistent, and any time the switch is rebooted, the command needs to be re-entered manually.  Note also that this configuration is untested.
 
 ### Brocade TurboIron 24X
 
