@@ -10,7 +10,12 @@
 
 
 
+### Video Tutorial
 
+We created a video tutorial demonstrating the upgrade process for IXP Manager. You can find the [video here](https://www.youtube.com/watch?v=FqsWCudPUak) in our [YouTube channel](https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA).
+
+
+## Instructions
 
 We track [releases on GitHub](https://github.com/inex/IXP-Manager/releases).
 

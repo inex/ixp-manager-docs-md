@@ -4,7 +4,7 @@
 
 ## Video Tutorial
 
-We created a **rough and ready** video tutorial demonstrating the manual installation process for IXP Manager v5.5.0 (April 2020) on Ubuntu LTS 20.04. *This is Barry's first attempt at video tutorials so please forgive the lighting and sound quality.* You can find the [video here](https://www.youtube.com/watch?v=qRIl1ioG6Ck) in our [YouTube channel](https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA).
+We created a video tutorial demonstrating the manual installation process for IXP Manager v5.5.0 (April 2020) on Ubuntu LTS 20.04. You can find the [video here](https://www.youtube.com/watch?v=qRIl1ioG6Ck) in our [YouTube channel](https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA).
 
 ## Requirements
 
