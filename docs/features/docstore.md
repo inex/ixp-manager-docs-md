@@ -1,36 +1,51 @@
 # Document Store
 
-???+ note "**This page refers to features introduced in IXP Manager v5.4**"
+???+ note "**This page refers to features introduced in IXP Manager v5.4 (general document store) and v5.6 (per-member document store).**"
 
-**IXP Manager** has a *document store* allowing administrators to upload documents to be made generally available for specific [user classes](../usage/users.md#types-of-users) (public, customer user, customer admin, superadmin). The document store supports:
+**IXP Manager** has two *document stores* which allow administrators to upload and manage document. The two types are:
+
+1. a *general* document store which allows administrators to make documents generally available for specific [user classes](../usage/users.md#types-of-users) (public, customer user, customer admin, superadmin). Example use cases for this are member upgrade forms, distribution of board or management minutes, etc.
+2. A per-member document store which allows administrators to upload documents on a per-member basis. These can be made visible to administrators only or also to users assigned to that specific member. Example use cases for this are member application forms / contracts, completed / signed port upgrade forms, etc.
+
+Both document stores support:
 
 1. Upload any file type.
 2. Edit uploaded files including name, description, minimum access privilege and replacing the file itself.
-3. For non-public documents, logging and reporting of downloads (total downloads and unique user downloads).
-4. Display of text (`.txt`) and display and parsing of Markdown (`.md`) files within IXP Manager.
-5. Directory hierarchy allowing the categorization of files.
-6. Each directory can have explanatory text.
+3. Display of text (`.txt`) and display and parsing of Markdown (`.md`) files within IXP Manager.
+4. Directory hierarchy allowing the categorisation of files.
+5. Each directory can have explanatory text.
 6. Deletion of files and recursive deletion of directories.
 7. Logging of destructive actions.
 
+Also for the general document store, and non-public documents within it, logging and reporting of downloads (total downloads and unique user downloads).
+
 Please note that all actions except for viewing and downloading files are restricted to super users.
 
-The directory store is accessible:
+The general directory store is accessible:
 
 * for super admins: via the *Directory Store* left-hand menu option under *IXP ADMIN ACTIONS*.
 * for all users, via the *Directory Store* menu item in the *Customer / Member Information* menu at the top of the page.
+
+The per-member directory store is accessible:
+
+* for super admins: under the *Directory Store* left-hand menu option in the *IXP ADMIN ACTIONS* section. **This is particularly useful as only members with documents will be listed.**
+* for all users, via the *Documents* tab in the member's own portal or the administrators customer overview page. The latter is where administrators would add files or directories for the first time.
+
+In the following sections, we use screenshots from the general document store but will highlight and specific differences for the per-member document store.
+
+
 
 ## Directories
 
 Directories are database entries to which uploaded files are attached (rather than actual directories on the storage media).
 
-Directories can be created via the *Create Directory* button on the top right of the document store. See the following image showing the *Create Directory* form with the contextual help shown (via the green *Help* button).
+Directories can be created via the *Create Directory* button on the top right of the document store. See the following image showing the *Create Directory* form. As usual, contextual help is available via the green *Help* button.
 
 ![Add / Edit Directories](./img/docstore-directory.png)
 
 Note that you do not need to set any permissions on directories - directories (and directory hierarchy) will only be visible to each user class if they contain files that the specific user class should be able to see.
 
-If you enter a description, you will see a *well element* at the top of the directory listing as shown in the following image. The text you enter will be parsed as Markdown and displayed as HTML. If you leave the description blank, no well element will be shown. This is a useful feature to provide context to your users about the documents in a given directory.
+If you enter a description, you will see a *gray section* at the top of the directory listing as shown in the following image. The text you enter will be parsed as Markdown and displayed as HTML. If you leave the description blank, no such section will be shown. This is a useful feature to provide context to your users about the documents in a given directory.
 
 ![Directory Example](./img/docstore-directory-example.png)
 
@@ -52,11 +67,15 @@ The various fields are well explained by the contextual help above and we will a
 * You should use an appropriate name with file extension as the download file will be given this as its filename.
 * Minimum privilege is just that - **minimum**. If a document is set for public access then **anyone can download it**. If it is set to *Customer User* then one **must** be logged into IXP Manager to see the file in directory listings and to view / download it. If it is set to *Customer User* then *Customer Admins* and *Super Users* will of course also be able to view it.
 
+**NB:** for the per-member document store, there is no option to make a file Publicly available.
+
 The following is how a file appears in a directory listing:
 
 ![File Listing with Contextual Menu](./img/docstore-file.png)
 
 *CUSTUSER* indicates the minimum access permissions for the file. The numbers *19 (10)* tell super admins that there have been a total of 19 downloads and 10 of those were unique to individual users in IXP Manager (i.e. some users would have downloaded this file two or more times). Note that **only downloads by logged in users are counted**. Publicly accessible files downloaded by non-logged in users are not recorded (if you must know this then that information is available from your web server log files). The date, *Feb 29, 2020* is the date the file itself (not metadata) was last changed via the *Edit* option.
+
+**NB:** there is no logging of files downloaded in the per-member document store. Please see below for more information.
 
 The options in the per-file context menu are:
 
@@ -81,7 +100,7 @@ When uploading (or changing an uploaded file), if you enter a sha256 checksum, i
 
 ## Download Logs
 
-The *Document Store* logs file downloads / views by user. The total number of downloads and the unique users download count is shown on the directory listing. You can also get access to the individual download logs for each file via its context menu.
+The **general** *Document Store* logs file downloads / views by user. The total number of downloads and the unique users download count is shown on the directory listing. You can also get access to the individual download logs for each file via its context menu.
 
 Non-unique individual download logs are expunged once they are more than six months old - except for the first download by each user. The user interface presents this information differently so that it is clear when you are looking at a file that is more than six months old.
 
@@ -93,7 +112,7 @@ There are a number of reasons to log file downloads:
 
 However, there is no reasonable need that we can see to retain individual downloads for more than 6 months. As such, these are automatically expunged by the scheduler.
 
-Note also that all we record is user ID, file ID and time. No IP address or other infromation is recorded.
+Note also that all we record is user ID, file ID and time. No IP address or other information is recorded.
 
 ## Access Considerations
 
@@ -103,16 +122,21 @@ Similarly, users will only see files listed that they can access.
 
 If there are no documents in the *Document Store* for a specific user class (or public user), the the *Document Store* menu item will not appear under *Customer / Member Information* at the top of the page.
 
-If you wish to complete disable the document store, set the following option in `.env`:
+If you wish to complete disable the general document store, set the following option in `.env`:
 
 ```
 IXP_FE_FRONTEND_DISABLED_DOCSTORE=true
 ```
 
+If you wish to complete disable the per-member document store, set the following option in `.env`:
+
+```
+IXP_FE_FRONTEND_DISABLED_DOCSTORE_CUSTOMER=true
+```
 
 ## Notes & Limitations
 
-The best way to view the limitations described herein is to understand that the development goals of the *document store* were to create something which is simple and secure while consciously avoiding a recreation of Dropbox. We discussed tens of features, dials and knobs for the document store but **chose to not implement them**.
+The best way to view the limitations described herein is to understand that the development goals of the *document stores* were to create something which is simple and secure while consciously avoiding a recreation of Dropbox or a CRM system. We discussed tens of features, dials and knobs for the document stores but **chose to not implement them**.
 
 1. **No backup / restore / undelete:** if you delete a file (or directory) in the web user interface then you will also delete the file as it is stored on disk. This is not a soft-delete option and it does not include a Dropbox-esque *undelete for 90 days*. If you select and then confirm the deletion of a file or directory, then we assume you have made a deliberate and conscious decision to do just that.
 
@@ -120,9 +144,9 @@ The best way to view the limitations described herein is to understand that the 
 
 2. No editing of files - particularly text and Markdown which are viewable within IXP Manager. We actually tried this but the code and user experience changes required pushed the complexity needle beyond where we wanted this feature to go.
 
-3. Only superusers can upload / edit / delete files. This won't change. When we look at a per-member based document store, we'll examine the possibility of allowing member users to upload files.
+3. Only superusers can upload / edit / delete files. This won't change for the general document store. We can review it for the per-member document store if the feature is requested.
 
-4. Because only superusers can upload / edit files, there is no restriction on file types - we explect you to use your own good judgement here. There is also no restriction on file sizes - as a self-hosted application, storage space is your own consideration.
+4. Because only superusers can upload / edit files, there is no restriction on file types - we expect you to use your own good judgement here. There is also no restriction on file sizes - as a self-hosted application, storage space is your own consideration.
 
 
 File upload size may be limited by your web server or PHP configuration. For PHP, find which `.ini` file is in use by running `php --ini` and then set the following as you wish (example values given):
