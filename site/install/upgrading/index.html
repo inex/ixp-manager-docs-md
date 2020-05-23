@@ -478,10 +478,19 @@ git checkout v5.x.y</code></pre>
 
 </li>
 <li>
-<p>Install latest required libraries from composer <a href="#updating-composer-dependancies"><strong>(see notes below)</strong></a>:</p>
-<pre class="highlight"><code class="language-sh"># this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.
+<p>Install latest required libraries from composer <a href="#updating-composer-dependancies"><strong>(see notes below)</strong></a>. Note that composer may be in different locations.</p>
+<pre class="highlight"><code class="language-sh"># This assumes composer is in the IXP Manager install directory.
+# (Typical for IXP Manager on Ubtuntu 18.04):
 sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage &amp;&amp; cd ${IXPROOT} \
-    &amp;&amp; php ./composer.phar install --no-dev --prefer-dist"</code></pre>
+    &amp;&amp; php ./composer.phar install --no-dev --prefer-dist"
+
+# OR:
+
+# This assumes composer is installed globally.
+# (Typical for IXP Manager on Ubtuntu 20.04):
+sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage &amp;&amp; cd ${IXPROOT} \
+    &amp;&amp; composer install --no-dev --prefer-dist"
+</code></pre>
 
 </li>
 <li>
@@ -493,6 +502,11 @@ php $IXPROOT/artisan cache:clear</code></pre>
 <li>
 <p>Update the database schema:</p>
 <pre class="highlight"><code class="language-sh"># (you really should take a mysqldump of your database first)
+
+# (optional) see what changes will be made:
+php $IXPROOT/artisan doctrine:schema:update --sql
+php $IXPROOT/artisan migrate:status
+
 # migrate:
 php $IXPROOT/artisan doctrine:schema:update --force
 php $IXPROOT/artisan migrate</code></pre>
@@ -525,8 +539,11 @@ php ${IXPROOT}/artisan view:clear</code></pre>
 </li>
 <li>
 <p>Disable maintenance mode:</p>
-<p><pre class="highlight"><code class="language-sh">php ${IXPROOT}/artisan up</code></pre>
-12. Recreate SQL views</p>
+<pre class="highlight"><code class="language-sh">php ${IXPROOT}/artisan up</code></pre>
+
+</li>
+<li>
+<p>Recreate SQL views</p>
 <p>Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them on versions &gt; v5.5.0:</p>
 <pre class="highlight"><code class="language-sh">php ${IXPROOT}/artisan update:reset-mysql-views</code></pre>
 

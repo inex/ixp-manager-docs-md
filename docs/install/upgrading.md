@@ -60,12 +60,21 @@ The general process is:
     git checkout v5.x.y
     ```
 
-4. Install latest required libraries from composer [**(see notes below)**](#updating-composer-dependancies):
+4. Install latest required libraries from composer [**(see notes below)**](#updating-composer-dependancies). Note that composer may be in different locations.
 
     ```sh
-    # this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.
+    # This assumes composer is in the IXP Manager install directory.
+    # (Typical for IXP Manager on Ubtuntu 18.04):
     sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} \
         && php ./composer.phar install --no-dev --prefer-dist"
+
+    # OR:
+
+    # This assumes composer is installed globally.
+    # (Typical for IXP Manager on Ubtuntu 20.04):
+    sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} \
+        && composer install --no-dev --prefer-dist"
+
     ```
 
 5. Restart Memcached and clear the cache. Do not forget / skip this step!
@@ -79,6 +88,11 @@ The general process is:
 
     ```sh
     # (you really should take a mysqldump of your database first)
+
+    # (optional) see what changes will be made:
+    php $IXPROOT/artisan doctrine:schema:update --sql
+    php $IXPROOT/artisan migrate:status
+
     # migrate:
     php $IXPROOT/artisan doctrine:schema:update --force
     php $IXPROOT/artisan migrate
@@ -116,6 +130,7 @@ The general process is:
     ```sh
     php ${IXPROOT}/artisan up
     ```
+
 12. Recreate SQL views
 
     Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them on versions > v5.5.0:
