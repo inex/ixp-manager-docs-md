@@ -114,6 +114,10 @@ However, there is no reasonable need that we can see to retain individual downlo
 
 Note also that all we record is user ID, file ID and time. No IP address or other information is recorded.
 
+## Patch Panel Files
+
+As a useful convenience, the per-member document store presents a virtual directory which collates any patch panel files that have been uploaded to a member's current or past cross connect record.
+
 ## Access Considerations
 
 **IXP Manager** generates a complete directory hierarchy for each of the four user classes. As such, users will only see the directory hierarchies that lead to files that are accessible to them. If a leaf directory does not contain a file that a user class cannot access then they will not see the directory in the listings.
