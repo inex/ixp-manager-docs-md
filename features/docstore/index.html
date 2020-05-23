@@ -435,30 +435,41 @@
             <div class="section">
               
                 <h1 id="document-store">Document Store<a class="headerlink" href="#document-store" title="Permanent link"></a></h1>
-<details class="note" open="open"><summary><strong>This page refers to features introduced in IXP Manager v5.4</strong></summary></details>
-<p><strong>IXP Manager</strong> has a <em>document store</em> allowing administrators to upload documents to be made generally available for specific <a href="../../usage/users/#types-of-users">user classes</a> (public, customer user, customer admin, superadmin). The document store supports:</p>
+<details class="note" open="open"><summary><strong>This page refers to features introduced in IXP Manager v5.4 (general document store) and v5.6 (per-member document store).</strong></summary></details>
+<p><strong>IXP Manager</strong> has two <em>document stores</em> which allow administrators to upload and manage document. The two types are:</p>
+<ol>
+<li>a <em>general</em> document store which allows administrators to make documents generally available for specific <a href="../../usage/users/#types-of-users">user classes</a> (public, customer user, customer admin, superadmin). Example use cases for this are member upgrade forms, distribution of board or management minutes, etc.</li>
+<li>A per-member document store which allows administrators to upload documents on a per-member basis. These can be made visible to administrators only or also to users assigned to that specific member. Example use cases for this are member application forms / contracts, completed / signed port upgrade forms, etc.</li>
+</ol>
+<p>Both document stores support:</p>
 <ol>
 <li>Upload any file type.</li>
 <li>Edit uploaded files including name, description, minimum access privilege and replacing the file itself.</li>
-<li>For non-public documents, logging and reporting of downloads (total downloads and unique user downloads).</li>
 <li>Display of text (<code>.txt</code>) and display and parsing of Markdown (<code>.md</code>) files within IXP Manager.</li>
-<li>Directory hierarchy allowing the categorization of files.</li>
+<li>Directory hierarchy allowing the categorisation of files.</li>
 <li>Each directory can have explanatory text.</li>
 <li>Deletion of files and recursive deletion of directories.</li>
 <li>Logging of destructive actions.</li>
 </ol>
+<p>Also for the general document store, and non-public documents within it, logging and reporting of downloads (total downloads and unique user downloads).</p>
 <p>Please note that all actions except for viewing and downloading files are restricted to super users.</p>
-<p>The directory store is accessible:</p>
+<p>The general directory store is accessible:</p>
 <ul>
 <li>for super admins: via the <em>Directory Store</em> left-hand menu option under <em>IXP ADMIN ACTIONS</em>.</li>
 <li>for all users, via the <em>Directory Store</em> menu item in the <em>Customer / Member Information</em> menu at the top of the page.</li>
 </ul>
+<p>The per-member directory store is accessible:</p>
+<ul>
+<li>for super admins: under the <em>Directory Store</em> left-hand menu option in the <em>IXP ADMIN ACTIONS</em> section. <strong>This is particularly useful as only members with documents will be listed.</strong></li>
+<li>for all users, via the <em>Documents</em> tab in the member's own portal or the administrators customer overview page. The latter is where administrators would add files or directories for the first time.</li>
+</ul>
+<p>In the following sections, we use screenshots from the general document store but will highlight and specific differences for the per-member document store.</p>
 <h2 id="directories">Directories<a class="headerlink" href="#directories" title="Permanent link"></a></h2>
 <p>Directories are database entries to which uploaded files are attached (rather than actual directories on the storage media).</p>
-<p>Directories can be created via the <em>Create Directory</em> button on the top right of the document store. See the following image showing the <em>Create Directory</em> form with the contextual help shown (via the green <em>Help</em> button).</p>
+<p>Directories can be created via the <em>Create Directory</em> button on the top right of the document store. See the following image showing the <em>Create Directory</em> form. As usual, contextual help is available via the green <em>Help</em> button.</p>
 <p><img alt="Add / Edit Directories" src="../img/docstore-directory.png" /></p>
 <p>Note that you do not need to set any permissions on directories - directories (and directory hierarchy) will only be visible to each user class if they contain files that the specific user class should be able to see.</p>
-<p>If you enter a description, you will see a <em>well element</em> at the top of the directory listing as shown in the following image. The text you enter will be parsed as Markdown and displayed as HTML. If you leave the description blank, no well element will be shown. This is a useful feature to provide context to your users about the documents in a given directory.</p>
+<p>If you enter a description, you will see a <em>gray section</em> at the top of the directory listing as shown in the following image. The text you enter will be parsed as Markdown and displayed as HTML. If you leave the description blank, no such section will be shown. This is a useful feature to provide context to your users about the documents in a given directory.</p>
 <p><img alt="Directory Example" src="../img/docstore-directory-example.png" /></p>
 <p>When viewing directories in a directory listing, a per-directory context menu is available per the following image and with the following two options:</p>
 <p><img alt="Directory Context Menu" src="../img/docstore-directory-context-menu.png" /></p>
@@ -474,9 +485,11 @@
 <li>You should use an appropriate name with file extension as the download file will be given this as its filename.</li>
 <li>Minimum privilege is just that - <strong>minimum</strong>. If a document is set for public access then <strong>anyone can download it</strong>. If it is set to <em>Customer User</em> then one <strong>must</strong> be logged into IXP Manager to see the file in directory listings and to view / download it. If it is set to <em>Customer User</em> then <em>Customer Admins</em> and <em>Super Users</em> will of course also be able to view it.</li>
 </ul>
+<p><strong>NB:</strong> for the per-member document store, there is no option to make a file Publicly available.</p>
 <p>The following is how a file appears in a directory listing:</p>
 <p><img alt="File Listing with Contextual Menu" src="../img/docstore-file.png" /></p>
 <p><em>CUSTUSER</em> indicates the minimum access permissions for the file. The numbers <em>19 (10)</em> tell super admins that there have been a total of 19 downloads and 10 of those were unique to individual users in IXP Manager (i.e. some users would have downloaded this file two or more times). Note that <strong>only downloads by logged in users are counted</strong>. Publicly accessible files downloaded by non-logged in users are not recorded (if you must know this then that information is available from your web server log files). The date, <em>Feb 29, 2020</em> is the date the file itself (not metadata) was last changed via the <em>Edit</em> option.</p>
+<p><strong>NB:</strong> there is no logging of files downloaded in the per-member document store. Please see below for more information.</p>
 <p>The options in the per-file context menu are:</p>
 <ul>
 <li><strong>Metadata:</strong> shows information such as file size and location on the storage media in a pop-up dialog such as the following:</li>
@@ -494,7 +507,7 @@
 <p>The INEX Board Secretary would provide the PDF documents to the operations team for upload. In parallel the Secretary would also email the members' mailing list to inform them that a new set of minutes are being uploaded and the secretary would include the sha256 checksum in that email. This is a useful way to independently verify the authenticity of official documents and the reason this feature exists.</p>
 <p>When uploading (or changing an uploaded file), if you enter a sha256 checksum, it will be verified on upload (and rejected if it does not match). If you leave it blank, the sha256 checksum will be calculated by IXP Manager.</p>
 <h2 id="download-logs">Download Logs<a class="headerlink" href="#download-logs" title="Permanent link"></a></h2>
-<p>The <em>Document Store</em> logs file downloads / views by user. The total number of downloads and the unique users download count is shown on the directory listing. You can also get access to the individual download logs for each file via its context menu.</p>
+<p>The <strong>general</strong> <em>Document Store</em> logs file downloads / views by user. The total number of downloads and the unique users download count is shown on the directory listing. You can also get access to the individual download logs for each file via its context menu.</p>
 <p>Non-unique individual download logs are expunged once they are more than six months old - except for the first download by each user. The user interface presents this information differently so that it is clear when you are looking at a file that is more than six months old.</p>
 <p>There are a number of reasons to log file downloads:</p>
 <ol>
@@ -502,16 +515,19 @@
 <li>To provide a measure of interest / feedback in making documents available and thus judge the usefulness of continuing to do so.</li>
 </ol>
 <p>However, there is no reasonable need that we can see to retain individual downloads for more than 6 months. As such, these are automatically expunged by the scheduler.</p>
-<p>Note also that all we record is user ID, file ID and time. No IP address or other infromation is recorded.</p>
+<p>Note also that all we record is user ID, file ID and time. No IP address or other information is recorded.</p>
 <h2 id="access-considerations">Access Considerations<a class="headerlink" href="#access-considerations" title="Permanent link"></a></h2>
 <p><strong>IXP Manager</strong> generates a complete directory hierarchy for each of the four user classes. As such, users will only see the directory hierarchies that lead to files that are accessible to them. If a leaf directory does not contain a file that a user class cannot access then they will not see the directory in the listings.</p>
 <p>Similarly, users will only see files listed that they can access.</p>
 <p>If there are no documents in the <em>Document Store</em> for a specific user class (or public user), the the <em>Document Store</em> menu item will not appear under <em>Customer / Member Information</em> at the top of the page.</p>
-<p>If you wish to complete disable the document store, set the following option in <code>.env</code>:</p>
+<p>If you wish to complete disable the general document store, set the following option in <code>.env</code>:</p>
 <pre class="highlight"><code>IXP_FE_FRONTEND_DISABLED_DOCSTORE=true</code></pre>
 
+<p>If you wish to complete disable the per-member document store, set the following option in <code>.env</code>:</p>
+<pre class="highlight"><code>IXP_FE_FRONTEND_DISABLED_DOCSTORE_CUSTOMER=true</code></pre>
+
 <h2 id="notes-limitations">Notes &amp; Limitations<a class="headerlink" href="#notes-limitations" title="Permanent link"></a></h2>
-<p>The best way to view the limitations described herein is to understand that the development goals of the <em>document store</em> were to create something which is simple and secure while consciously avoiding a recreation of Dropbox. We discussed tens of features, dials and knobs for the document store but <strong>chose to not implement them</strong>.</p>
+<p>The best way to view the limitations described herein is to understand that the development goals of the <em>document stores</em> were to create something which is simple and secure while consciously avoiding a recreation of Dropbox or a CRM system. We discussed tens of features, dials and knobs for the document stores but <strong>chose to not implement them</strong>.</p>
 <ol>
 <li>
 <p><strong>No backup / restore / undelete:</strong> if you delete a file (or directory) in the web user interface then you will also delete the file as it is stored on disk. This is not a soft-delete option and it does not include a Dropbox-esque <em>undelete for 90 days</em>. If you select and then confirm the deletion of a file or directory, then we assume you have made a deliberate and conscious decision to do just that.</p>
@@ -521,10 +537,10 @@
 <p>No editing of files - particularly text and Markdown which are viewable within IXP Manager. We actually tried this but the code and user experience changes required pushed the complexity needle beyond where we wanted this feature to go.</p>
 </li>
 <li>
-<p>Only superusers can upload / edit / delete files. This won't change. When we look at a per-member based document store, we'll examine the possibility of allowing member users to upload files.</p>
+<p>Only superusers can upload / edit / delete files. This won't change for the general document store. We can review it for the per-member document store if the feature is requested.</p>
 </li>
 <li>
-<p>Because only superusers can upload / edit files, there is no restriction on file types - we explect you to use your own good judgement here. There is also no restriction on file sizes - as a self-hosted application, storage space is your own consideration.</p>
+<p>Because only superusers can upload / edit files, there is no restriction on file types - we expect you to use your own good judgement here. There is also no restriction on file sizes - as a self-hosted application, storage space is your own consideration.</p>
 </li>
 </ol>
 <p>File upload size may be limited by your web server or PHP configuration. For PHP, find which <code>.ini</code> file is in use by running <code>php --ini</code> and then set the following as you wish (example values given):</p>
