@@ -296,7 +296,7 @@ define host     {
         host_name               bird-rc1q-cork-ipv4
         alias                   INEX Cork - Quarantine Route Collector - IPv4
         address                 10.40.5.134
-        _apiurl                 http://rc1q-ipv4.cork.inex.ie/api
+        _api_url                 http://rc1q-ipv4.cork.inex.ie/api
 }
 
 define service     {
@@ -482,7 +482,7 @@ define service {
     notification_period     24x7
     notification_options    w,u,c,r
     register                0
-    check_command           check_birdseye_bgp_session!$_SERVICEAPIURL!$_SERVICEPROTOCOL
+    check_command           check_birdseye_bgp_session!$_SERVICEAPI_URL!$_SERVICEPROTOCOL
 }
 
 define command{
