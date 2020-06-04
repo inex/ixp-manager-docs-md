@@ -21,14 +21,14 @@ Also for the general document store, and non-public documents within it, logging
 
 Please note that all actions except for viewing and downloading files are restricted to super users.
 
-The general directory store is accessible:
+The general document store is accessible:
 
-* for super admins: via the *Directory Store* left-hand menu option under *IXP ADMIN ACTIONS*.
-* for all users, via the *Directory Store* menu item in the *Customer / Member Information* menu at the top of the page.
+* for super admins: via the *Document Store* left-hand menu option under *IXP ADMIN ACTIONS*.
+* for all users, via the *Document Store* menu item in the *Customer / Member Information* menu at the top of the page.
 
-The per-member directory store is accessible:
+The per-member document store is accessible:
 
-* for super admins: under the *Directory Store* left-hand menu option in the *IXP ADMIN ACTIONS* section. **This is particularly useful as only members with documents will be listed.**
+* for super admins: under the *Document Store* left-hand menu option in the *IXP ADMIN ACTIONS* section. **This is particularly useful as only members with documents will be listed.**
 * for all users, via the *Documents* tab in the member's own portal or the administrators customer overview page. The latter is where administrators would add files or directories for the first time.
 
 In the following sections, we use screenshots from the general document store but will highlight and specific differences for the per-member document store.
@@ -40,6 +40,8 @@ In the following sections, we use screenshots from the general document store bu
 Directories are database entries to which uploaded files are attached (rather than actual directories on the storage media).
 
 Directories can be created via the *Create Directory* button on the top right of the document store. See the following image showing the *Create Directory* form. As usual, contextual help is available via the green *Help* button.
+
+**To create per-member directories**: First select the appropriate member from the Members/Customers list on the left-hand menu, then select the *Documents* tab, then select the *Create Directory* button on the top right.
 
 ![Add / Edit Directories](./img/docstore-directory.png)
 
@@ -59,6 +61,8 @@ When viewing directories in a directory listing, a per-directory context menu is
 ## Files
 
 Files can be uploaded via the *Upload File* button on the top right of the document store. See the following image showing the *Upload File* form with the contextual help shown (via the green *Help* button).
+
+**To upload per-member files**: First select the appropriate member from the Members/Customers list on the left-hand menu, then select the *Documents* tab, then select the *Upload File* button on the top right.
 
 ![File Upload Example](./img/docstore-file-upload.png)
 
