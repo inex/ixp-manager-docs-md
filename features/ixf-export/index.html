@@ -551,6 +551,15 @@ VALUES
 
 <p>where <em>1.0</em> is a version parameter which allows for support of potential future versions.</p>
 <p>Note that the publicly accessible version does not include individual member details such as name, max prefixes, contact email and phone, when the member joined, member's web address, peering policy, NOC website, NOC hours or member type. This information is available to any logged in users or users querying <a href="../api/">the API with an API key</a>.</p>
+<h3 id="access-without-ix-f-id-being-set">Access Without IX-F ID Being Set<a class="headerlink" href="#access-without-ix-f-id-being-set" title="Permanent link"></a></h3>
+<p>While the IX-F ID is officially required for &gt;= v0.7 of the schema, it may be overlooked on new installations or some IXPs may be uninterested in working with the IX-F IXP database.</p>
+<p>The schema requirement for a valid IX-F ID should not prevent the IX-F exporter from working if someone wishes to pull the information regardless of that being set. There are two ways to override this and query the API available from IXP Manager v5.7.0:</p>
+<p>The first is to pass an <code>ixfid_y</code> parameter (where <code>y</code> is the database ID of the infrastructure) <strong>every</strong> infrastructure that does not have one. Using this method will have IXP Manager set the IX-F ID in the generated JSON output suitable for processing by automated scripts. A sample URL for an IXP with two infrastructures might look like this:</p>
+<pre class="highlight"><code>https://ixpmanager.example.com/api/v4/member-export/ixf/1.0?ixfid_1=30&amp;ixfid_2=31</code></pre>
+
+<p>If you wish to just ignore the IX-F ID and have it set to zero in the JSON output, you can use the following flag:</p>
+<pre class="highlight"><code>https://ixpmanager.example.com/api/v4/member-export/ixf/1.0?ignore_missing_ixfid=1</code></pre>
+
 <h2 id="registering-your-api-endpoint-with-ixpdb">Registering Your API Endpoint With IXPDB<a class="headerlink" href="#registering-your-api-endpoint-with-ixpdb" title="Permanent link"></a></h2>
 <p>IXPDB requires two pieces of information to fully integrate with the IXPDB. You can provide this information to <code>ixpdb-admin (at) euro-ix (dot) net</code> or - if you have a login to the Euro-IX website, you should be able to login and edit your own IXP directly on IXPDB.</p>
 <p>The first element needed is the API endpoint as described above in <em>Accessing the IX-F Member List</em>.</p>
