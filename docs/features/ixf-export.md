@@ -94,6 +94,25 @@ where *1.0* is a version parameter which allows for support of potential future 
 
 Note that the publicly accessible version does not include individual member details such as name, max prefixes, contact email and phone, when the member joined, member's web address, peering policy, NOC website, NOC hours or member type. This information is available to any logged in users or users querying [the API with an API key](api.md).
 
+
+### Access Without IX-F ID Being Set
+
+While the IX-F ID is officially required for >= v0.7 of the schema, it may be overlooked on new installations or some IXPs may be uninterested in working with the IX-F IXP database.
+
+The schema requirement for a valid IX-F ID should not prevent the IX-F exporter from working if someone wishes to pull the information regardless of that being set. There are two ways to override this and query the API available from IXP Manager v5.7.0:
+
+The first is to pass an `ixfid_y` parameter (where `y` is the database ID of the infrastructure) **every** infrastructure that does not have one. Using this method will have IXP Manager set the IX-F ID in the generated JSON output suitable for processing by automated scripts. A sample URL for an IXP with two infrastructures might look like this:
+
+```
+https://ixpmanager.example.com/api/v4/member-export/ixf/1.0?ixfid_1=30&ixfid_2=31
+```
+
+If you wish to just ignore the IX-F ID and have it set to zero in the JSON output, you can use the following flag:
+
+```
+https://ixpmanager.example.com/api/v4/member-export/ixf/1.0?ignore_missing_ixfid=1
+```
+
 ## Registering Your API Endpoint With IXPDB
 
 IXPDB requires two pieces of information to fully integrate with the IXPDB. You can provide this information to `ixpdb-admin (at) euro-ix (dot) net` or - if you have a login to the Euro-IX website, you should be able to login and edit your own IXP directly on IXPDB.
