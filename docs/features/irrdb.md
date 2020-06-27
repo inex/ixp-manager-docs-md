@@ -13,18 +13,21 @@ cd $IXPROOT
 ./artisan db:seed --class=IRRDBs
 ```
 
-[BGPQ3](https://github.com/snar/bgpq3) is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On Ubuntu 16.04/18.04 this is as easy as:
+[BGPQ4](https://github.com/bgp/bgpq4) is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On Ubuntu 16.04/18.04 this is as easy as:
 
 ```sh
-apt install bgpq3
+apt install autoconf automake build-essential git
+git clone https://github.com/bgp/bgpq4
+cd bgpq4 && ./bootstrap && ./configure && make
+sudo make install
 ```
 
 Then configure the path to it in your `.env` file.
 
 ```php
 # Absolute path to run the bgpq3 utility
-# e.g. IXP_IRRDB_BGPQ3_PATH=/usr/local/bin/bgpq3
-IXP_IRRDB_BGPQ3_PATH=/usr/bin/bgpq3
+# e.g. IXP_IRRDB_BGPQ4_PATH=/usr/local/bin/bgpq4
+IXP_IRRDB_BGPQ4_PATH=/usr/bin/local/bgpq4
 ```
 
 ## Usage
@@ -54,10 +57,10 @@ php artisan irrdb:update-prefix-db 64511
 
 ### Internal Workings
 
-Essentially, based on a customers AS number / IPv4/6 Peering Macro, IXP Manager [uses bgpq3](https://github.com/snar/bgpq3) to query IRRDBs as follows:
+Essentially, based on a customers AS number / IPv4/6 Peering Macro, IXP Manager [uses bgpq4](https://github.com/bgp/bgpq4) to query IRRDBs as follows:
 
 ```bash
-bgpq3 -S $sources -l pl -j [-6] $asn/macro
+bgpq4 -S $sources -l pl -j [-6] $asn/macro
 ```
 
 where `$sources` come from the IRRDB sources entries.
@@ -65,8 +68,8 @@ where `$sources` come from the IRRDB sources entries.
 Or, a real example:
 
 ```bash
-bgpq3 -S RIPE -l pl -j AS-BTIRE
-bgpq3 -S RIPE -l pl -j -6 AS-BTIRE
+bgpq4 -S RIPE -l pl -j AS-BTIRE
+bgpq4 -S RIPE -l pl -j -6 AS-BTIRE
 ```
 
 
