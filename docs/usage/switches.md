@@ -118,10 +118,38 @@ where:
 * `[-q, --quiet]` does not output anything unless there is an error. Should be used for cron jobs.
 * `[--log]` outputs detailed SNMP polling information to `/srv/ixpmanager/storage/logs/laravel.log`. You can tail this file when running it to help diagnose any issues.
 * `[--noflush]` polls the switch but does not write anything to the database.
-* `[<switch>]` allows you to optionally limit the polling to a single named switch (the switch's name, not hostname). If not specified, all switches are polled.
+* `[<switch>]` allows you to optionally limit the polling to a single named switch (the switch's name, not hostname). If not specified, all pollable switches are polled.
 
 Not that inactive switches are not polled unless an inactive switch name is explicitly specified.
 
+Similarly, any switch that is not set to poll (*Poll* checkbox with adding / editing a switch) will be skipped unless explicitly specified.
+
+
+### Matching Database Ports to Switch Ports
+
+When we poll the switch to update the database, we need a method to match ports in the database with those on the switch so we can update, remove and add ports. This is achieved using the `ifIndex` as reported by SNMP.
+
+*We have tried other methods in the past including `ifName` but there is no perfect solution to this as switch operating system updates can cause any of these data points to change. In the end we settled on `ifIndex`.*
+
+If you find that a switch update had caused the `ifIndex` to change, then you can reindex the database by updating the `ifIndex` based on the `ifName` using the `switch:reindex-ifindex` Artisan command.
+
+To perform a test run and see what would change, execute it per the following example:
+
+```
+$ ./artisan switch:reindex-ifindex swi2-nwb1-3 --noflush
+ - swp1 unchanged, ifIndex remains the same
+ ...
+ - bond2 unchanged, ifIndex remains the same
+ - bond3 ifIndex changed from 10056 to 10178
+ ...
+ - mgmt unchanged, ifIndex remains the same
+
+*** --noflush parameter set - NO CHANGES MADE TO DATABASE
+```
+
+If you are comfortable with the changes proposed, rerun it
+
+**Operational Note:** if performing switch operating system updates that are known to change the `ifIndex`, it is strongly advised to disable polling (*Poll* checkbox when adding / editing a switch) for the duration of the upgrade work and until after you have reindexed the ports.
 
 ## Migrating Customers to a New Switch
 
