@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  <link rel="canonical" href="https://docs.ixpmanager.org/install/upgrade-v4/">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>Upgrading IXP Manager - V4.x - IXP Manager Documentation</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
   <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
         <div role="search">
@@ -45,339 +47,170 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../..">Home</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Installation</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../">Introduction</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../automated-script/">Automated Script</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../maint-mode/">Maintenance Mode</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../manually/">Manual Installation</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../upgrading/">Upgrading</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../runtime/">Runtime Configuration</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../next-steps/">Post-Install Steps</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">General Usage</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../usage/operational-notes/">Operational Notes</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../usage/authentication/">Authentication</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../usage/contacts/">Contacts</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../usage/customers/">Customers / Members</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../usage/customer-notes/">Customer Notes</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../usage/customer-tags/">Customer Tags</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../usage/interfaces/">Customer Connections</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../usage/users/">Users</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../usage/switches/">Switches</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Features</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../features/api/">API</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/as112/">AS112</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/console-servers/">Console Servers</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/cronjobs/">Cron Jobs</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/patch-panels/">Cross Connects</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/dns-arpa/">DNS / ARPA</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/docstore/">Document Store</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../grapher/introduction/">Grapher</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/helpdesk/">Helpdesk Integration</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/irrdb/">IRRDB</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/ixf-export/">IX-F Member Export</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/looking-glass/">Looking Glass</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/layer2-addresses/">MAC Addresses</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/manrs/">MANRS</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/member-export/">Member Export</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/mailing-lists/">Mailing List Management</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/nagios/">Nagios</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/patch-panels/">Patch Panels</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/peering-manager/">Peering Manager</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/peering-matrix/">Peering Matrix</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/peeringdb/">PeeringDB</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/rir-objects/">RIR Objects</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/reseller/">Reseller Functionality</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/route-collectors/">Route Collectors</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/route-servers/">Route Servers</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/routers/">Router Configuration</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/rpki/">RPKI</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/skinning/">Skinning</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../grapher/smokeping/">Smokeping</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/static-content/">Static Content</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/tacacs/">TACACS</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Grapher</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../grapher/introduction/">Introduction</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../grapher/api/">API &amp; Permissions</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../grapher/mrtg/">Backend: MRTG</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../grapher/sflow/">Backend: sflow</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../grapher/smokeping/">Backend: Smokeping</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Sflow Support</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../features/sflow/">Introduction</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../features/sflow-p2p/">Peer-to-peer Graphs</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Development</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../dev/introduction/">Introduction</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/api/">API</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/authentication/">Authentication</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/ci/">Continuous Integration</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/cla/">Contributer License Agreement</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/docker/">Docker</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/docs/">Documentation</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/forms/">Forms</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/frontend-crud/">Frontend CRUD</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/grapher/">Grapher</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/helpders/">Helpers</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/looking-glass/">Looking Glass</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/release-procedure/">Release Procedure</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/telescope/">Telescope</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/users/">Users</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../dev/vagrant/">Vagrant</a>
-                </li>
-    </ul>
-	    </li>
-          
-        </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Installation</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../">Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../automated-script/">Automated Script</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../maint-mode/">Maintenance Mode</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../manually/">Manual Installation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../upgrading/">Upgrading</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../runtime/">Runtime Configuration</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../next-steps/">Post-Install Steps</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">General Usage</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../usage/operational-notes/">Operational Notes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../usage/authentication/">Authentication</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../usage/contacts/">Contacts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customers/">Customers / Members</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-notes/">Customer Notes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-tags/">Customer Tags</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../usage/interfaces/">Customer Connections</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../usage/users/">Users</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../usage/switches/">Switches</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Features</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/api/">API</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/as112/">AS112</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/console-servers/">Console Servers</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/cronjobs/">Cron Jobs</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/patch-panels/">Cross Connects</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/dns-arpa/">DNS / ARPA</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/docstore/">Document Store</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/introduction/">Grapher</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/helpdesk/">Helpdesk Integration</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/irrdb/">IRRDB</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/ixf-export/">IX-F Member Export</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/looking-glass/">Looking Glass</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/layer2-addresses/">MAC Addresses</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/manrs/">MANRS</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/member-export/">Member Export</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/mailing-lists/">Mailing List Management</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/nagios/">Nagios</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/patch-panels/">Patch Panels</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/peering-manager/">Peering Manager</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/peering-matrix/">Peering Matrix</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/peeringdb/">PeeringDB</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/rir-objects/">RIR Objects</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/reseller/">Reseller Functionality</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/route-collectors/">Route Collectors</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/route-servers/">Route Servers</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/routers/">Router Configuration</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/rpki/">RPKI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/skinning/">Skinning</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/smokeping/">Smokeping</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/static-content/">Static Content</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/tacacs/">TACACS</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Grapher</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/introduction/">Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/api/">API &amp; Permissions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/mrtg/">Backend: MRTG</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/sflow/">Backend: sflow</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/smokeping/">Backend: Smokeping</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Sflow Support</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/sflow/">Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../features/sflow-p2p/">Peer-to-peer Graphs</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Development</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/introduction/">Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/api/">API</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/authentication/">Authentication</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/ci/">Continuous Integration</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/cla/">Contributer License Agreement</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docker/">Docker</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docs/">Documentation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/forms/">Forms</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/frontend-crud/">Frontend CRUD</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/grapher/">Grapher</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/helpders/">Helpers</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/looking-glass/">Looking Glass</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/release-procedure/">Release Procedure</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/telescope/">Telescope</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/users/">Users</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/vagrant/">Vagrant</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -405,6 +238,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -600,7 +434,7 @@ systemctl restart memcached.service           # (or as appropriate for your syst
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -610,7 +444,7 @@ systemctl restart memcached.service           # (or as appropriate for your syst
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
           <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
@@ -622,6 +456,11 @@ systemctl restart memcached.service           # (or as appropriate for your syst
     <script>var base_url = '../..';</script>
     <script src="../../js/theme.js" defer></script>
       <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
