@@ -310,7 +310,7 @@ DEBUG: [2001:db8::5:0:1]:179 - [2001:db8::4:0:2]:32952 tcpflags 000011000: ack p
 <h3 id="running-the-daemon-in-production">Running the daemon in production<a class="headerlink" href="#running-the-daemon-in-production" title="Permanent link"></a></h3>
 <p>The script <code>control-sflow-detect-ixp-bgp-sessions</code> should be copied (and edited if necessary) to the operating system startup directory so that <code>sflow-detect-ixp-bgp-sessions</code> is started as a normal daemon.</p>
 <h2 id="controlling-access-to-the-peering-matrix">Controlling Access to the Peering Matrix<a class="headerlink" href="#controlling-access-to-the-peering-matrix" title="Permanent link"></a></h2>
-<p>The peering matrix is publically available by default. However you can limit access to a minimum user privilege by setting <code>PEERING_MATRIX_MIN_AUTH</code> to an integer from 0 to 3 in your <code>.env</code>. See <a href="../../usage/users/#types-of-users">here for what these integers mean</a>. For example, to limit access to any logged in user, set the following:</p>
+<p>The peering matrix is publicly available by default. However you can limit access to a minimum user privilege by setting <code>PEERING_MATRIX_MIN_AUTH</code> to an integer from 0 to 3 in your <code>.env</code>. See <a href="../../usage/users/#types-of-users">here for what these integers mean</a>. For example, to limit access to any logged in user, set the following:</p>
 <pre class="highlight"><code>PEERING_MATRIX_MIN_AUTH=1</code></pre>
 
 <p>You can disable the peering matrix by setting the following in <code>.env</code>:</p>

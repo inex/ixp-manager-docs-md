@@ -366,12 +366,12 @@
 <p>The <code>Virtual Interface Name</code> is again mostly informational unless you are doing automation. It should be the start of the LAG name without the number. On an IOS device this would be <code>Port-channel</code> for example. Matched with this is the <code>Channel Group Number</code> with is tacked onto the end of the <code>Virtual Interface Name</code>. Leave it as 0 and when you check <code>Link aggregation / LAG framing</code> and save the changes, IXP Manager will set this to the next available unused port channel / bundle / LAG number on that switch.</p>
 <p>Both <code>Description</code> and <code>MTU</code> are informational.</p>
 <h3 id="physical-interfaces">Physical Interfaces<a class="headerlink" href="#physical-interfaces" title="Permanent link"></a></h3>
-<p>You can add additional physical interfaces to a connection / virtual interface. This effectivily means you are creating a LAG. The form for adding additional physical interfaces is indentical to that in the wizard.</p>
+<p>You can add additional physical interfaces to a connection / virtual interface. This effectivily means you are creating a LAG. The form for adding additional physical interfaces is identical to that in the wizard.</p>
 <h3 id="vlan-interfaces">VLAN Interfaces<a class="headerlink" href="#vlan-interfaces" title="Permanent link"></a></h3>
 <p>The most common use case of more than one VLAN Interface is when your customer may also have private VLANs on their connection.</p>
 <p>Other than that, the VLAN interface add / edit form has all the same elements as the wizard with one addition:</p>
 <ul>
-<li><code>Busy host</code>: this flag indicates that the customer's router is unusually slow to reply to ICMP echo requests and that when monitoring, the configuraiton should allow for warnings after a 5sec RTT rather than 1sec.</li>
+<li><code>Busy host</code>: this flag indicates that the customer's router is unusually slow to reply to ICMP echo requests and that when monitoring, the configuration should allow for warnings after a 5sec RTT rather than 1sec.</li>
 </ul>
               
             </div>

@@ -312,11 +312,11 @@ Help:
 # Your RIR password to allow the updating of a RIR object by email:
 IXP_API_RIR_PASSWORD=soopersecret
 
-# Rather than specifiying the destination address on the command line, you can set it here
+# Rather than specifying the destination address on the command line, you can set it here
 # (useful for cronjobs and required for use with artisan schedule:run in &gt;=v5.0)
 IXP_API_RIR_EMAIL_TO=test-dbm@ripe.net
 
-# Rather than specifiying the from address on the command line, you can set it here
+# Rather than specifying the from address on the command line, you can set it here
 # (useful for cronjobs and required for use with artisan schedule:run in &gt;=v5.0)
 IXP_API_RIR_EMAIL_FROM=ixp@example.com</code></pre>
 
@@ -328,7 +328,7 @@ IXP_API_RIR_EMAIL_FROM=ixp@example.com</code></pre>
 <p>The template name must be lowercase, and contain only the characters: <code>0-9 a-z _ -</code>.</p>
 <h3 id="available-template-variables">Available Template Variables<a class="headerlink" href="#available-template-variables" title="Permanent link"></a></h3>
 <ul>
-<li><code>$customers</code> - complete Doctrine2 objects of all current external trafficing customers / members. You should be able to derive everything from this. Indexed by customer ID.</li>
+<li><code>$customers</code> - complete Doctrine2 objects of all current external trafficking customers / members. You should be able to derive everything from this. Indexed by customer ID.</li>
 <li><code>$asns</code> - an associate array for the generation of an IXP AS object indexed by ASN containing elements:</li>
 <li><code>['asmacro']</code> - the member's AS macro (or the ASN if no macro);</li>
 <li><code>['name']</code> - the member's name</li>

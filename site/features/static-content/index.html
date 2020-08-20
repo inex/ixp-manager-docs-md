@@ -265,7 +265,7 @@
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link"></a></h2>
 <p>In IXP Manager, there are four types of users as described <a href="../../usage/users/">in the users page</a>. Static contact can be added which requires a minimum user privilege to access (e.g. <code>priv == 0</code> would be publicly accessible through to <code>priv == 3</code> which would require a superadmin).</p>
 <p>To create static content, you should first <a href="../skinning/">set up skinning</a> for your installation. Let's assume you called your skin <code>example</code>.</p>
-<p>To create a publically accessible static content page called <code>misc-benefits</code>, you would first create a content directory in your skin as follows:</p>
+<p>To create a publicly accessible static content page called <code>misc-benefits</code>, you would first create a content directory in your skin as follows:</p>
 <pre class="highlight"><code class="language-sh">cd $IXPROOT
 mkdir -p resources/skins/example/content/{0,1,2,3}</code></pre>
 
@@ -281,11 +281,11 @@ mkdir -p resources/skins/example/content/{0,1,2,3}</code></pre>
 i.e. the file name can only contain characters from the class <code>[a-z0-9\-_]</code> and all lower case. <em>Prior to v4.8.0 the <code>strtolower()</code> mistakenly occurred after the <code>preg_replace()</code>.</em></li>
 </ul>
 <p>The <code>example.foil.php</code> template copied above should provide the necessary structure for you. Essentially just replace the title and the content.</p>
-<p>For publically accessible documents, there is an alias route:</p>
+<p>For publicly accessible documents, there is an alias route:</p>
 <pre class="highlight"><code>/public-content/{page}  -&gt; treated as: /content/0/{page}</code></pre>
 
 <h2 id="support-contact-template">Support / Contact Template<a class="headerlink" href="#support-contact-template" title="Permanent link"></a></h2>
-<p>IXP Manager ships with a link to <em>Support</em> in the main title menu. You should copy and adjust this as neccessary via skinning:</p>
+<p>IXP Manager ships with a link to <em>Support</em> in the main title menu. You should copy and adjust this as necessary via skinning:</p>
 <pre class="highlight"><code class="language-sh">cp resources/views/content/0/support.foil.php resources/skins/example/content/0/support.foil.php</code></pre>
 
 <h2 id="documentation-menu">Documentation Menu<a class="headerlink" href="#documentation-menu" title="Permanent link"></a></h2>

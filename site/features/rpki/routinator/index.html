@@ -250,7 +250,7 @@
 <p>Rather than running Routinator as the root user, we create a dedicated user:</p>
 <pre class="highlight"><code class="language-sh">useradd -c 'Routinator 3000' -d /srv/routinator -m -s /bin/bash -u 1100 routinator</code></pre>
 
-<p>We then install the required software. <code>build-essential</code> is a Ubuntu alias package that installs the common C software build suite. <code>cargo</code> is Rust's package manager and installing that automatically installs other Rust dependancies.</p>
+<p>We then install the required software. <code>build-essential</code> is a Ubuntu alias package that installs the common C software build suite. <code>cargo</code> is Rust's package manager and installing that automatically installs other Rust dependencies.</p>
 <pre class="highlight"><code class="language-sh">apt install -y build-essential cargo rsync</code></pre>
 
 <p>You should have rust version &gt;=1.36.0 installed (check with <code>rustc -V</code>).</p>

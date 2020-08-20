@@ -284,7 +284,7 @@ https://ixp.example.com/api/v4/user/formatted/{priv}/{template}</code></pre>
 <li><code>priv</code> is an optional user privilege to limit the user selection to. See <a href="https://github.com/inex/IXP-Manager/blob/master/database/Entities/User.php">the available integer values on the <code>AUTH_</code> constants here</a>. You typically want <code>3</code>.</li>
 <li><code>template</code> is an optional template (rather than <code>$IXPROOT/resources/views/api/v4/user/formatted/default</code>). See below.</li>
 </ul>
-<p>And example of a user in the reponse is:</p>
+<p>And example of a user in the response is:</p>
 <pre class="highlight"><code>user=joebloggs {
     member=admin
     login = des "$2y$10$pHln5b4DrPj3uuhgfg45HeWEQLK/3ngRxYgYppbnYzleJ.9EpLAN."
@@ -293,7 +293,7 @@ https://ixp.example.com/api/v4/user/formatted/{priv}/{template}</code></pre>
 <h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link"></a></h3>
 <p>You can optionally POST any of the following to change elements of the default template:</p>
 <ul>
-<li><code>template</code>: only relavent when you want to specify a specific template without a privilege.</li>
+<li><code>template</code>: only relevant when you want to specify a specific template without a privilege.</li>
 <li><code>priv</code>: same as above.</li>
 <li><code>users</code>: a comma-separated list of usernames to return rather than all / all based on privilege.</li>
 <li><code>bcrypt</code>: IXP Manager stores bcrypt hashes with the prefix <code>2y</code>. Some systems, such as TACACS+ on FreeBSD, require <code>2a</code>. If you set <code>bcrypt=2a</code>, this substitution will be made before the data is returned.</li>
