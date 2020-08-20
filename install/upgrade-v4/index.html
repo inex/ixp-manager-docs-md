@@ -360,7 +360,7 @@ ${IXPROOT}/artisan view:clear</code></pre>
 
 </li>
 </ol>
-<h2 id="updating-bower-dependancies">Updating Bower Dependancies<a class="headerlink" href="#updating-bower-dependancies" title="Permanent link"></a></h2>
+<h2 id="updating-bower-dependencies">Updating Bower Dependencies<a class="headerlink" href="#updating-bower-dependencies" title="Permanent link"></a></h2>
 <p>It is not advisable to run bower as root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the bower commands themselves will be run as <code>$MY_WWW_USER</code>):</p>
 <pre class="highlight"><code class="language-sh"># set this to your IXP Manager installation directory
 IXPROOT=/srv/ixpmanager
@@ -375,7 +375,7 @@ chmod -R u+rwX $IXPROOT/public/bower_components ${IXPROOT}/bower.json ${IXPROOT}
 sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage &amp;&amp; cd ${IXPROOT} &amp;&amp; bower --config.interactive=false -f update"</code></pre>
 
 <p>The above command is structured as it is because typically the <code>www-data</code> user has a <code>nologin</code> shell specified.</p>
-<h2 id="updating-composer-dependancies">Updating Composer Dependancies<a class="headerlink" href="#updating-composer-dependancies" title="Permanent link"></a></h2>
+<h2 id="updating-composer-dependencies">Updating Composer Dependencies<a class="headerlink" href="#updating-composer-dependencies" title="Permanent link"></a></h2>
 <p>This is similar to the bower section above so please read that if you have not already.</p>
 <p>Note that we assume here what you have installed Composer (see: https://getcomposer.org/ ) in the <code>${IXPROOT}</code> directory as <code>composer.phar</code>. This is where and how the IXP Manager installation scripts and documentation instructions install it.</p>
 <p>The following options would work on Ubuntu (run these as root and the composer commands themselves will be run as <code>$MY_WWW_USER</code>):</p>

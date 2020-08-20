@@ -331,7 +331,7 @@ curl --fail -s -H "X-IXP-Manager-API-Key: ${KEY}" ${URL}/${HANDLE} &gt;${HANDLE}
     https://ixp.example.com/api/v4/router/updated/{handle}</code></pre>
 
 <p>where <code>{handle}</code> should be replaced with the route handle as described above.</p>
-<p>The result is a JSON object with the datetime as set and is equivalent to the result of the following API call which fetchs the <em>last updated</em> field without setting it:</p>
+<p>The result is a JSON object with the datetime as set and is equivalent to the result of the following API call which fetches the <em>last updated</em> field without setting it:</p>
 <pre class="highlight"><code>curl -s -X GET -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
     https://ixp.example.com/api/v4/router/updated/{handle}
 
