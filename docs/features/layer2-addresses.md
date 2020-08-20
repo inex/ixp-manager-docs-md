@@ -64,7 +64,7 @@ You will be prompted as follows:
 
 > Are you sure you wish to proceed? This command will CLEAR the layer2address table and then copy addresses from the read-only macaddress table. Generally, this command should only ever be run once when initially populating the new table.
 
-One thing to note: as the *discovered MAC Addresses* table is per virtual interface and the new configured MAC address functionality is per VLAN interface, any MAC from *discovered MAC Addresses* that is populated into *confifured MAC Addresses* will be populated for every VLAN interface associated with the virtual interface.
+One thing to note: as the *discovered MAC Addresses* table is per virtual interface and the new configured MAC address functionality is per VLAN interface, any MAC from *discovered MAC Addresses* that is populated into *configured MAC Addresses* will be populated for every VLAN interface associated with the virtual interface.
 
 The script prints notices for these such as:
 

@@ -84,7 +84,7 @@ curl -s -X POST -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
 
 where `{handle}` should be replaced with the route handle as described above.
 
-The result is a JSON object with the datetime as set and is equivalent to the result of the following API call which fetchs the *last updated* field without setting it:
+The result is a JSON object with the datetime as set and is equivalent to the result of the following API call which fetches the *last updated* field without setting it:
 
 ```
 curl -s -X GET -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \

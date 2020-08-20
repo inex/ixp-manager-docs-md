@@ -14,7 +14,7 @@ There are basic elements you need to add to IXP Manager which describe your IXP 
 
     For example, INEX runs three infrastructures - INEX LAN1, INEX LAN2 and INEX Cork. Each of these consist of a unique set of switches and these infrastructures are not interconnected. They also have unique PeeringDB entries ([INEX LAN1](https://www.peeringdb.com/api/ix/48), [INEX LAN2](https://www.peeringdb.com/api/ix/387), [INEX Cork](https://www.peeringdb.com/api/ix/1262)) and IX-F entries ([INEX LAN1](https://db.ix-f.net/api/ixp/20), [INEX LAN2](https://db.ix-f.net/api/ixp/645), [INEX Cork](https://db.ix-f.net/api/ixp/646)) for each infrastructure.
 
-    If you do not have a PeeringDB entry yet, then [register and create one](https://www.peeringdb.com/). Similarly, if you do not have an IX-F entry, email the IXPDB admins via `ixpdb-admin <at> euro-ix.net` with your IX's full name, short name, city / region / country, GPS co-ordinates and website URL.
+    If you do not have a PeeringDB entry yet, then [register and create one](https://www.peeringdb.com/). Similarly, if you do not have an IX-F entry, email the IXPDB admins via `ixpdb-admin <at> euro-ix.net` with your IX's full name, short name, city / region / country, GPS coordinates and website URL.
 
 2. Add your **facilities** (points of presence - the data centres where networks can connect to one of your IX switches).
 
@@ -39,7 +39,7 @@ The above constitutes the basic elements that are required to provision a custom
 
 For documentation on [adding and managing customers, see here](https://docs.ixpmanager.org/usage/customers/). And for details on [provisioning interfaces for your customers, see here](https://docs.ixpmanager.org/usage/interfaces/).
 
-**Now, a very important next step:** let us know you are using IXP Manager so we can add you [to the map](https://www.ixpmanager.org/users). Just send your IXP's: full name, short name, city / region / country, GPS co-ordinates and website URL to us at `operations <at> inex.ie`. Also include your Twitter and/or Facebook handle and we'll give you a shout out.
+**Now, a very important next step:** let us know you are using IXP Manager so we can add you [to the map](https://www.ixpmanager.org/users). Just send your IXP's: full name, short name, city / region / country, GPS coordinates and website URL to us at `operations <at> inex.ie`. Also include your Twitter and/or Facebook handle and we'll give you a shout out.
 
 ## Feature Checklist
 

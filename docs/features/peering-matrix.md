@@ -63,7 +63,7 @@ The script `control-sflow-detect-ixp-bgp-sessions` should be copied (and edited 
 
 ## Controlling Access to the Peering Matrix
 
-The peering matrix is publically available by default. However you can limit access to a minimum user privilege by setting `PEERING_MATRIX_MIN_AUTH` to an integer from 0 to 3 in your `.env`. See [here for what these integers mean](../usage/users.md#types-of-users). For example, to limit access to any logged in user, set the following:
+The peering matrix is publicly available by default. However you can limit access to a minimum user privilege by setting `PEERING_MATRIX_MIN_AUTH` to an integer from 0 to 3 in your `.env`. See [here for what these integers mean](../usage/users.md#types-of-users). For example, to limit access to any logged in user, set the following:
 
 ```
 PEERING_MATRIX_MIN_AUTH=1

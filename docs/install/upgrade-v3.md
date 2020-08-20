@@ -124,7 +124,7 @@ cp xxxx.php.dist xxxx.php
 
 Then edit the resultant `.php` file (or, better, where `config()` options exist, add them to `.env`).
 
-These `.dist` files represent v3 funtionality that has not yet been fully ported to v4/Laravel.
+These `.dist` files represent v3 functionality that has not yet been fully ported to v4/Laravel.
 
 
 ### Update the Database Schema

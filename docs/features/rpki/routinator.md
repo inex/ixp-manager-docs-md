@@ -11,7 +11,7 @@ Rather than running Routinator as the root user, we create a dedicated user:
 useradd -c 'Routinator 3000' -d /srv/routinator -m -s /bin/bash -u 1100 routinator
 ```
 
-We then install the required software. `build-essential` is a Ubuntu alias package that installs the common C software build suite. `cargo` is Rust's package manager and installing that automatically installs other Rust dependancies.
+We then install the required software. `build-essential` is a Ubuntu alias package that installs the common C software build suite. `cargo` is Rust's package manager and installing that automatically installs other Rust dependencies.
 
 ```sh
 apt install -y build-essential cargo rsync

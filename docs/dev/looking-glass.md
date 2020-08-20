@@ -2,7 +2,7 @@
 
 **IXP Manager** has [looking glass support](../features/looking-glass.md) allowing IXPs to expose details on route server / collector / AS112 BGP sessions to their members.
 
-As it stands, we have only impemented one looking glass backend - [Bird's Eye](https://github.com/inex/birdseye); a *simple secure micro service for querying Bird (JSON API)* (and also written by us, INEX).
+As it stands, we have only implemented one looking glass backend - [Bird's Eye](https://github.com/inex/birdseye); a *simple secure micro service for querying Bird (JSON API)* (and also written by us, INEX).
 
 We have implemented this in **IXP Manager** as a service so that other backends can be added easily.
 

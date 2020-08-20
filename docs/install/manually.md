@@ -52,7 +52,7 @@ git checkout release-v5
 chown -R www-data: bootstrap/cache storage
 ```
 
-## Initial Setup and Dependancies
+## Initial Setup and Dependencies
 
 
 ### Dependencies

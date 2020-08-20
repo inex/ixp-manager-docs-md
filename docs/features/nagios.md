@@ -53,7 +53,7 @@ where:
 
 If either of these are invalid, the API will return with a HTTP 404 response.
 
-And example of a target in the reponse is:
+And example of a target in the response is:
 
 ```
 ###############################################################################################

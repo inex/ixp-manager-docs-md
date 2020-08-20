@@ -57,7 +57,7 @@ The multi-container Docker environment for developing IXP Manager builds an IXP 
 
 The following are a list of Docker commands that are useful in general but also specifically for the IXP Manager Docker environment.
 
-Note that in our examples, we set the Docker project name to `ixpm` and so that prefix is used in some of the below. We also assume that only one IXP Manager Docker environments is running and so we complate Docker container names with `_1`.
+Note that in our examples, we set the Docker project name to `ixpm` and so that prefix is used in some of the below. We also assume that only one IXP Manager Docker environments is running and so we complete Docker container names with `_1`.
 
 ```sh
 # show all running containers

@@ -109,7 +109,7 @@ When viewing a user's details (<em>eye button</em> on the users list), it will s
 
 PeeringDB OAuth with IXP Manager as an idea dates from early 2017 when Job Snijders proposed it in GitHub issue [peeringdb/peeringdb#131](https://github.com/peeringdb/peeringdb/issues/131). We recognized the benefits immediately and opened a parallel ticket at [inex/IXP-Manager#322](https://github.com/inex/IXP-Manager/issues/322). The background discussions at this point were that PeeringDB would be prepared to invest developer time if IXP Manager committed to implementing it. We both did.
 
-PeeringDB's [OAuth documenation can be found here](https://docs.peeringdb.com/oauth/).
+PeeringDB's [OAuth documentation can be found here](https://docs.peeringdb.com/oauth/).
 
 As part of the development process, we wrote a provider for the [Laravel Socialite](https://laravel.com/docs/6.0/socialite) package which was merged into that package via the [SocialiteProviders/Providers#310](https://github.com/SocialiteProviders/Providers/pull/310) pull request.
 

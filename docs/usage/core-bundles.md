@@ -129,7 +129,7 @@ Both `Description` and `MTU` are informational.
 
 ### Physical Interfaces
 
-You can add additional physical interfaces to a connection / virtual interface. This effectivily means you are creating a LAG. The form for adding additional physical interfaces is indentical to that in the wizard.
+You can add additional physical interfaces to a connection / virtual interface. This effectivily means you are creating a LAG. The form for adding additional physical interfaces is identical to that in the wizard.
 
 ### VLAN Interfaces
 
@@ -137,4 +137,4 @@ The most common use case of more than one VLAN Interface is when your customer m
 
 Other than that, the VLAN interface add / edit form has all the same elements as the wizard with one addition:
 
-* `Busy host`: this flag indicates that the customer's router is unusually slow to reply to ICMP echo requests and that when monitoring, the configuraiton should allow for warnings after a 5sec RTT rather than 1sec.
+* `Busy host`: this flag indicates that the customer's router is unusually slow to reply to ICMP echo requests and that when monitoring, the configuration should allow for warnings after a 5sec RTT rather than 1sec.

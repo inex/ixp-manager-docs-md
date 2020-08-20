@@ -4,7 +4,7 @@ This page discusses default permissions required for accessing certain graphs an
 
 ## Accessibility of Aggregate Graphs
 
-By default, the following graphs are **publically** accessible in **IXP Manager** and available through the top menu under *Statistics*:
+By default, the following graphs are **publicly** accessible in **IXP Manager** and available through the top menu under *Statistics*:
 
 1. aggregate bits/sec and packets/sec graphs for the IXP;
 2. aggregate bits/sec and packets/sec graphs for the infrastructures;

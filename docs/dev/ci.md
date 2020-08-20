@@ -67,7 +67,7 @@ You need to set the `APP_URL` environment variable in your `.env file`. This val
 
 ## Test Database Notes
 
-1. The *SUPERADMIN* username / password is one-way hashed using bcrypt. If you want to log into the frontend of the test databse, these details are: `travis` / `travisci`.
+1. The *SUPERADMIN* username / password is one-way hashed using bcrypt. If you want to log into the frontend of the test database, these details are: `travis` / `travisci`.
 2. There are two test *CUSTADMIN* accounts which can be accessed using username / password: `hecustadmin` / `travisci` and `imcustadmin` / `travisci`.
 3. There are two test *CUSTUSER* accounts which can be accessed using username / password: `hecustuser` / `travisci` and `imcustuser` / `travisci`.
 

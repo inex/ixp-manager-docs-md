@@ -135,7 +135,7 @@ The general process is:
     mysql -u ixp -p ixp < $IXPROOT/tools/sql/views.sql
     ```
 
-## Updating Bower Dependancies
+## Updating Bower Dependencies
 
 It is not advisable to run bower as root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the bower commands themselves will be run as `$MY_WWW_USER`):
 
@@ -156,7 +156,7 @@ sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && bower 
 The above command is structured as it is because typically the `www-data` user has a `nologin` shell specified.
 
 
-## Updating Composer Dependancies
+## Updating Composer Dependencies
 
 This is similar to the bower section above so please read that if you have not already.
 

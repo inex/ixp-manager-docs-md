@@ -4,7 +4,7 @@ An IXP would typically have out of band access (for emergencies, firmware upgrad
 
 **IXP Manager** has *Console Servers* and *Console Server Connections* menu options to allow IXP administrators add / edit / delete / list console server devices and, for any such device, record what console server port is connected to what device (as well as connection characteristics such as baud rate).
 
-From **IXP Manager v4.8.0** onwards, each of these pages has a notes field which supports markdown to allow you to include sample connection sessions to devices. This is especially useful for rearely used console connections to awkward devices.
+From **IXP Manager v4.8.0** onwards, each of these pages has a notes field which supports markdown to allow you to include sample connection sessions to devices. This is especially useful for rarely used console connections to awkward devices.
 
 ## Improvements from v4.8.0
 

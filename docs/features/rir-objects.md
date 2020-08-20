@@ -56,11 +56,11 @@ The following options are available for use in the `.env` file:
 # Your RIR password to allow the updating of a RIR object by email:
 IXP_API_RIR_PASSWORD=soopersecret
 
-# Rather than specifiying the destination address on the command line, you can set it here
+# Rather than specifying the destination address on the command line, you can set it here
 # (useful for cronjobs and required for use with artisan schedule:run in >=v5.0)
 IXP_API_RIR_EMAIL_TO=test-dbm@ripe.net
 
-# Rather than specifiying the from address on the command line, you can set it here
+# Rather than specifying the from address on the command line, you can set it here
 # (useful for cronjobs and required for use with artisan schedule:run in >=v5.0)
 IXP_API_RIR_EMAIL_FROM=ixp@example.com
 ```
@@ -79,7 +79,7 @@ The template name must be lowercase, and contain only the characters: `0-9 a-z _
 
 ### Available Template Variables
 
-* `$customers` - complete Doctrine2 objects of all current external trafficing customers / members. You should be able to derive everything from this. Indexed by customer ID.
+* `$customers` - complete Doctrine2 objects of all current external trafficking customers / members. You should be able to derive everything from this. Indexed by customer ID.
 * `$asns` - an associate array for the generation of an IXP AS object indexed by ASN containing elements:
   * `['asmacro']` - the member's AS macro (or the ASN if no macro);
   * `['name']` - the member's name

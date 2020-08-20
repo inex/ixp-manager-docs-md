@@ -6,7 +6,7 @@ IXP Manager uses Laravel's standard authentication framework but with the [Larav
 
 See also [Barry O'Donovan's PHP write up of the 2fa and user session management changes introduced in v5.3.0](https://www.barryodonovan.com/2020/02/06/2fa-and-user-session-management-in-ixp-manager) and the [v5.2.0 to v5.3.0 diff](https://github.com/inex/IXP-Manager/compare/v5.2.0...v5.3.0). 
 
-## Mutliple Sessions / Remember Me Cookies
+## Multiple Sessions / Remember Me Cookies
 
 The default Laravel functionality around *remember me* is a single shared token across multiple devices. In practice this never worked well for us (but this is most likely a consequence of using LaravelDoctrine). Regardless, we also wanted to expand the functionality to uniquely identify each session and allow other sessions to be logged out by the user.
 

@@ -25,7 +25,7 @@ where:
 * `priv` is an optional user privilege to limit the user selection to. See [the available integer values on the `AUTH_` constants here](https://github.com/inex/IXP-Manager/blob/master/database/Entities/User.php). You typically want `3`.
 * `template` is an optional template (rather than `$IXPROOT/resources/views/api/v4/user/formatted/default`). See below.
 
-And example of a user in the reponse is:
+And example of a user in the response is:
 
 ```
 user=joebloggs {
@@ -38,7 +38,7 @@ user=joebloggs {
 
 You can optionally POST any of the following to change elements of the default template:
 
-* `template`: only relavent when you want to specify a specific template without a privilege.
+* `template`: only relevant when you want to specify a specific template without a privilege.
 * `priv`: same as above.
 * `users`: a comma-separated list of usernames to return rather than all / all based on privilege.
 * `bcrypt`: IXP Manager stores bcrypt hashes with the prefix `2y`. Some systems, such as TACACS+ on FreeBSD, require `2a`. If you set `bcrypt=2a`, this substitution will be made before the data is returned.

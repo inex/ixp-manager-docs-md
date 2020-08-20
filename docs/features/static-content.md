@@ -11,7 +11,7 @@ In IXP Manager, there are four types of users as described [in the users page](.
 
 To create static content, you should first [set up skinning](skinning.md) for your installation. Let's assume you called your skin `example`.
 
-To create a publically accessible static content page called `misc-benefits`, you would first create a content directory in your skin as follows:
+To create a publicly accessible static content page called `misc-benefits`, you would first create a content directory in your skin as follows:
 
 ```sh
 cd $IXPROOT
@@ -38,7 +38,7 @@ i.e. the file name can only contain characters from the class `[a-z0-9\-_]` and 
 
 The `example.foil.php` template copied above should provide the necessary structure for you. Essentially just replace the title and the content.
 
-For publically accessible documents, there is an alias route:
+For publicly accessible documents, there is an alias route:
 
 ```
 /public-content/{page}  -> treated as: /content/0/{page}
@@ -46,7 +46,7 @@ For publically accessible documents, there is an alias route:
 
 ## Support / Contact Template
 
-IXP Manager ships with a link to *Support* in the main title menu. You should copy and adjust this as neccessary via skinning:
+IXP Manager ships with a link to *Support* in the main title menu. You should copy and adjust this as necessary via skinning:
 
 ```sh
 cp resources/views/content/0/support.foil.php resources/skins/example/content/0/support.foil.php

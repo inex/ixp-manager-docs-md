@@ -120,7 +120,7 @@ If your MRTG collector is on a different server, you could use a script such as 
 TMPCONF=/etc/mrtg.cfg.$$
 
 # Download the configuration via the API. Be sure to replace 'your_api_key'
-# with your actual API key (see API documenation).
+# with your actual API key (see API documentation).
 curl --fail -s -H "X-IXP-Manager-API-Key: your_api_key" \
     https://ixp.example.com/api/v4/grapher/mrtg-config >${TMPCONF}
 

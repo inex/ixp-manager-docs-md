@@ -20,7 +20,7 @@ There are a small number of things you should do to ensure your IX-F export is c
 
 The first is to ensure you have correctly set the PeeringDB ID and IX-F ID in your infrastructure (see *Infrastructures* under the left hand side *IXP ADMIN ACTIONS* menu).
 
-The IX-F ID is mandatory. You will find yours by searching [the IX-F providers database here](https://ixpdb.euro-ix.net/en/ixpdb/providers/). If you are a new IXP that is not registered here, please email your IXP's: full name, short name, city / region / country, GPS co-ordinates and website URL to `ixpdb-admin (at) euro-ix (dot) net` so they can register it in the IXPDB.
+The IX-F ID is mandatory. You will find yours by searching [the IX-F providers database here](https://ixpdb.euro-ix.net/en/ixpdb/providers/). If you are a new IXP that is not registered here, please email your IXP's: full name, short name, city / region / country, GPS coordinates and website URL to `ixpdb-admin (at) euro-ix (dot) net` so they can register it in the IXPDB.
 
 **Create Network Info**
 

@@ -5,7 +5,7 @@ The **IXP Manager** *Contacts* feature allows you to record and manage contacts 
 * name / position / email
 * phone / mobile
 * notes
-* roles (billing / techical / admin / marketing)
+* roles (billing / technical / admin / marketing)
 
 If the roles are not shown when you are editing / adding contacts, ensure you copy the following file to a local version:
 
