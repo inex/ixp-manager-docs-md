@@ -35,6 +35,8 @@ There are basic elements you need to add to IXP Manager which describe your IXP 
 
 6. Add your peering IP addresses. IXP Manager will let you add complete ranges (e.g. /24) and more sensible ranges of IPv6 (i.e. not an entire /64!).
 
+7. Ensure [email is correctly configured](../usage/email.md).
+
 The above constitutes the basic elements that are required to provision a customer.
 
 For documentation on [adding and managing customers, see here](https://docs.ixpmanager.org/usage/customers/). And for details on [provisioning interfaces for your customers, see here](https://docs.ixpmanager.org/usage/interfaces/).
