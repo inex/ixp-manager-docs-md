@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="canonical" href="https://docs.ixpmanager.org/dev/ci/">
+  <link rel="canonical" href="https://docs.ixpmanager.org/usage/email/">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Continuous Integration - IXP Manager Documentation</title>
+  <title>Email - IXP Manager Documentation</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Continuous Integration";
-    var mkdocs_page_input_path = "dev/ci.md";
-    var mkdocs_page_url = "/dev/ci/";
+    var mkdocs_page_name = "Email";
+    var mkdocs_page_input_path = "usage/email.md";
+    var mkdocs_page_url = "/usage/email/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -69,26 +69,34 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">General Usage</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/operational-notes/">Operational Notes</a>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../operational-notes/">Operational Notes</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/authentication/">Authentication</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../authentication/">Authentication</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/contacts/">Contacts</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../contacts/">Contacts</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customers/">Customers / Members</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../customers/">Customers / Members</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-notes/">Customer Notes</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../customer-notes/">Customer Notes</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-tags/">Customer Tags</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../customer-tags/">Customer Tags</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/interfaces/">Customer Connections</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../interfaces/">Customer Connections</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/users/">Users</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../users/">Users</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/switches/">Switches</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../switches/">Switches</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/email/">Email</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Email</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#configuring-smtp">Configuring SMTP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sender-identity">Sender Identity</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#testing-smtp">Testing SMTP</a>
+    </li>
+    </ul>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Features</span></p>
@@ -177,48 +185,38 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Development</span></p>
-                <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/introduction/">Introduction</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../api/">API</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/api/">API</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../authentication/">Authentication</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/authentication/">Authentication</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Continuous Integration</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#setting-up-phpunit-tests">Setting Up PHPUnit Tests</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#setting-up-laravel-dusk">Setting Up Laravel Dusk</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#test-database-notes">Test Database Notes</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#running-tests">Running Tests</a>
-    </li>
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/ci/">Continuous Integration</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../cla/">Contributer License Agreement</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/cla/">Contributer License Agreement</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../docker/">Docker</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docker/">Docker</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../docs/">Documentation</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docs/">Documentation</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../forms/">Forms</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/forms/">Forms</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../frontend-crud/">Frontend CRUD</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/frontend-crud/">Frontend CRUD</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../grapher/">Grapher</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/grapher/">Grapher</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../helpders/">Helpers</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/helpders/">Helpers</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../looking-glass/">Looking Glass</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/looking-glass/">Looking Glass</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../release-procedure/">Release Procedure</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/release-procedure/">Release Procedure</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../telescope/">Telescope</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/telescope/">Telescope</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../users/">Users</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/users/">Users</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../vagrant/">Vagrant</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../dev/vagrant/">Vagrant</a>
                     </li>
                 </ul>
       </div>
@@ -242,14 +240,14 @@
     
       
         
-          <li>Development &raquo;</li>
+          <li>General Usage &raquo;</li>
         
       
     
-    <li>Continuous Integration</li>
+    <li>Email</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/dev/ci.md"
+        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/usage/email.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -260,86 +258,111 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="continuous-integration">Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permanent link"></a></h1>
-<p>IXP Manager grew out of a code base and schema that started in the early '90s. Long before <a href="http://phpunit.de/">test driven development</a> or <a href="http://behat.org/">behaviour driven development</a> was fashionable for PHP. However, as IXP Manager is taking over more and more critical configuration tasks, we continue to back fill some automated testing with continuous integration for critical elements.</p>
-<p>We use <a href="https://travis-ci.org/inex/IXP-Manager">Travis-CI</a> for continuous integration (CI) who provide free cloud based CI linked to GitHub for open source projects.</p>
-<p>Our current build status is: <a href="https://travis-ci.org/inex/IXP-Manager"><img alt="Build Status" src="https://travis-ci.org/inex/IXP-Manager.png?branch=master" /></a></p>
-<p>The CI system runs the full suite of tests every time a commit is pushed to GitHub. As such, any <em>build failing</em> states are usually transitory. <strong>Official IXP Manager releases are only made when all tests pass.</strong></p>
-<p>We use two types of unit tests:</p>
-<ol>
-<li><a href="http://phpunit.de/">PHP Unit</a> for standard unit tests;</li>
-<li><a href="https://laravel.com/docs/5.6/dusk">Laravel Dusk</a> for browser based tests.</li>
-</ol>
-<p>We won't be aggressively writing tests for the existing codebase but will add tests as appropriate as we continue development. What follows is some basic instructions on how to set up tests and an overview (or links) to some of the tests we have implemented.</p>
-<p><strong>DISCLAIMER:</strong> This is not a tutorial on unit testing, phpunit, Laravel Dusk or anything else. If you have no experience with these tools, please read up on them elsewhere first.</p>
-<h2 id="setting-up-phpunit-tests">Setting Up PHPUnit Tests<a class="headerlink" href="#setting-up-phpunit-tests" title="Permanent link"></a></h2>
-<p>Documentation by real example can be found via the <a href="https://github.com/inex/IXP-Manager/blob/master/.travis.yml">.travis.yml</a> file and <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci">the Travis data directory</a> which contains scripts, database dumps and configurations.</p>
-<p>Testing assumes <em>a known good sample database</em> which contains a small mix of customers with different configuration options. The files generated from this database are tested against <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci/known-good">known good</a> configuration files. You first need to create a database, add a database user, import this testing database and then configure a <code>.env</code> section for testing.</p>
-<p>In MySQL:</p>
-<pre class="highlight"><code class="language-mysql">CREATE DATABASE ixp_ci CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci';
-GRANT ALL ON `ixp_ci`.* TO `ixp_ci`@`localhost` IDENTIFIED BY 'somepassword';
-FLUSH PRIVILEGES;</code></pre>
+                <h1 id="configuring-email">Configuring Email<a class="headerlink" href="#configuring-email" title="Permanent link"></a></h1>
+<p><strong>IXP Manager</strong> uses Laravel's <a href="https://laravel.com/docs/7.x/mail">mail system</a> to send email. This system allows for many possible email sending drivers (such as Mailgun, Postmark, Amazon SES, etc.). If you wish to use one of these services than please <a href="https://laravel.com/docs/7.x/mail">refer to the official documentation</a>. You can also read the <code>config/mail.php</code> configuration file in your <strong>IXP Manager</strong> installation for further details.</p>
+<p>This guide will explain how to configure and test <strong>IXP Manager</strong> to send email using a standard SMTP service.</p>
+<h2 id="configuring-smtp">Configuring SMTP<a class="headerlink" href="#configuring-smtp" title="Permanent link"></a></h2>
+<p>A sample SMTP configuration block in your <strong>IXP Manager</strong> <code>.env</code> file would be:</p>
+<pre class="highlight"><code>MAIL_DRIVER="smtp"
+# MAIL_HOST="localhost"
+# MAIL_PORT="25"
+# MAIL_ENCRYPTION="tls"
+# MAIL_USERNAME=
+# MAIL_PASSWORD=</code></pre>
 
-<p>Then import the sample database:</p>
-<pre class="highlight"><code class="language-sh">bzcat data/travis-ci/travis_ci_test_db.sql.bz2  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci</code></pre>
+<p>The options that are commented out above show defaults. Under the hood, Laravel in turn uses <a href="https://swiftmailer.symfony.com/docs/sending.html">swiftmailer</a> and the parameters above are passed through to that library.</p>
+<p>The configuration options for SMTP in the <code>.env</code> file are as follows.</p>
+<p><code>MAIL_MAILER="smtp"</code> - this is the mail transport to use. The default is to try and use a local <code>sendmail</code> binary <strong>so it is important to set this</strong>. The other available options are outside the scope of this documentation.</p>
+<p><code>MAIL_HOST</code> is the hostname or IP address of your SMTP relay server. We would generally expect an IXP to have an internal SMTP relay server within the management network to handle the sending of email from monitoring systems, cron processes, IXP Manager, etc. This can also be <code>localhost</code> or <code>127.0.0.1</code> if you are running a local daemon such as Postfix.</p>
+<p><code>MAIL_PORT</code> is the TCP port which the mail relay server listens for connections. Typical values are <code>587</code> for TLS encrypted mail servers and <code>25</code> for unencrypted mail servers (these should be on your local network only - if you are using a third party or remote relay service, you should use TLS or SSL encryption).</p>
+<p><code>MAIL_ENCRYPTION</code> can be <code>"tls"</code> or <code>"ssl"</code> for encryption. If you are using localhost or an internal relay server without encryption, set this to <code>MAIL_ENCRYPTION=false</code>. <strong>NB:</strong> this is important as the default is to use TLS encryption.</p>
+<p>Finally, <code>MAIL_USERNAME</code> and <code>MAIL_PASSWORD</code> can be set if your mail relay server requires authentication. If unset, then no authentication is assumed (which is the default).</p>
+<p>A local SMTP relay server on the same host as <strong>IXP Manager</strong> would therefore require a configuration such as:</p>
+<pre class="highlight"><code>MAIL_DRIVER="smtp"
+MAIL_HOST="localhost"
+MAIL_PORT="25"
+MAIL_ENCRYPTION=false
+# MAIL_USERNAME=
+# MAIL_PASSWORD=</code></pre>
 
-<p>Now, create your <code>.env</code> for testing, such as:</p>
-<pre class="highlight"><code class="language-ini">DB_HOST=localhost
-DB_DATABASE=ixp_ci
-DB_USERNAME=ixp_ci
-DB_PASSWORD=somepassword</code></pre>
+<h2 id="sender-identity">Sender Identity<a class="headerlink" href="#sender-identity" title="Permanent link"></a></h2>
+<p><strong>IXP Manager</strong> sends emails using the name and email address configured in the following <code>.env</code> parameters:</p>
+<pre class="highlight"><code>IDENTITY_NAME="${IDENTITY_LEGALNAME}"
+IDENTITY_EMAIL="ixp@example.com"</code></pre>
 
-<p>Note that the <a href="https://github.com/inex/IXP-Manager/blob/master/phpunit.xml"><code>phpunit.xml</code></a> file in the root directory has some default settings matching the test database. You should not need to edit these.</p>
-<p>The <code>.env</code> file used by Travis CI can be <a href="https://github.com/inex/IXP-Manager/blob/master/.env.travisci">seen here</a> and - as it's used by Travis CI to run the tests - it should be a complete example of what is required.</p>
-<h2 id="setting-up-laravel-dusk">Setting Up Laravel Dusk<a class="headerlink" href="#setting-up-laravel-dusk" title="Permanent link"></a></h2>
-<p>Please review the <a href="https://laravel.com/docs/5.6/dusk">official documentation here</a>.</p>
-<p>You need to ensure the development packages for IXP Manager are installed via:</p>
-<pre class="highlight"><code class="language-sh"># move to the root directory of IXP Manager
-cd $IXPROOT
-composer install --dev</code></pre>
+<p>Where <code>${IDENTITY_LEGALNAME}</code> means use the value as configured in the <code>IDENTITY_LEGALNAME</code> <code>.env</code> parameter.</p>
+<p>You should set these as appropriate to your IXP.</p>
+<h2 id="testing-smtp">Testing SMTP<a class="headerlink" href="#testing-smtp" title="Permanent link"></a></h2>
+<p>A new Artisan SMTP test utility was introduced in <strong>IXP Manager</strong> &gt;v5.7.0. You can run it as follows:</p>
+<pre class="highlight"><code class="language-sh">$ php artisan utils:smtp-mail-test [-v] {recipient-email}</code></pre>
 
-<p>You need to set the <code>APP_URL</code> environment variable in your <code>.env file</code>. This value should match the URL you use to access your application in a browser.</p>
-<h2 id="test-database-notes">Test Database Notes<a class="headerlink" href="#test-database-notes" title="Permanent link"></a></h2>
-<ol>
-<li>The <em>SUPERADMIN</em> username / password is one-way hashed using bcrypt. If you want to log into the frontend of the test database, these details are: <code>travis</code> / <code>travisci</code>.</li>
-<li>There are two test <em>CUSTADMIN</em> accounts which can be accessed using username / password: <code>hecustadmin</code> / <code>travisci</code> and <code>imcustadmin</code> / <code>travisci</code>.</li>
-<li>There are two test <em>CUSTUSER</em> accounts which can be accessed using username / password: <code>hecustuser</code> / <code>travisci</code> and <code>imcustuser</code> / <code>travisci</code>.</li>
-</ol>
-<h2 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link"></a></h2>
-<p>In one console session, start the artisan / Laravel web server:</p>
-<pre class="highlight"><code class="language-sh"># move to the root directory of IXP Manager
-cd $IXPROOT
-php artisan serve</code></pre>
+<p>A example of a working test run looks like this:</p>
+<pre class="highlight"><code>$ php artisan utils:smtp-mail-test me@example.com
+This utility allows you to test your SMTP settings to verify that IXP Manager can send email.
 
-<p>And then kick off <strong>all the tests</strong> which includes PHPUnit and Laravel Dusk tests, run:</p>
-<pre class="highlight"><code class="language-sh">phpunit</code></pre>
+Testing using the following parameters:
 
-<p>Sample output:</p>
-<pre class="highlight"><code>PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
++------------+---------------------+
+| Driver     | smtp                |
+| Host       | localhost           |
+| Port       | 25                  |
+| Encryption |                     |
+| Username   |                     |
+| Password   |                     |
+| From Name  | INEX DEV IXP        |
+| From Email | test@ixpmanager.org |
++------------+---------------------+
 
-...............................................................  63 / 144 ( 43%)
-............................................................... 126 / 144 ( 87%)
-..................                                              144 / 144 (100%)
 
-Time: 1.86 minutes, Memory: 103.73MB</code></pre>
 
-<p>If you only want to run Laravel Dusk / browser tests, run the following (shown with sample output):</p>
-<pre class="highlight"><code class="language-sh">$ php artisan dusk
-PHPUnit 6.5.8 by Sebastian Bergmann and contributors.
+Trying to send email...
 
-..                                                                  2 / 2 (100%)
+SUCCESS - email has been sent.</code></pre>
 
-Time: 12.73 seconds, Memory: 24.00MB</code></pre>
+<p>If you add the verbose option you will also be shown the SMTP dialog:</p>
+<pre class="highlight"><code>$ php artisan utils:smtp-mail-test -v me@example.com
 
-<p>If you want to exclude the browser based tests, just exclude that directory as follows:</p>
-<pre class="highlight"><code class="language-sh">$ phpunit --filter '/^((?!Tests\\Browser).)*$/'
-PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
+...
 
-...............................................................  63 / 142 ( 44%)
-............................................................... 126 / 142 ( 88%)
-................                                                142 / 142 (100%)
+========================================
+SMTP Dialog:
 
-Time: 1.59 minutes, Memory: 106.41MB</code></pre>
+++ Starting Swift_SmtpTransport
+&lt;&lt; 220 mail.example.com ESMTP Postfix
+
+&gt;&gt; EHLO [127.0.0.1]
+
+&lt;&lt; 250-mail.example.com
+250-PIPELINING
+250-SIZE 80200000
+250-VRFY
+250-ETRN
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 SMTPUTF8
+
+&gt;&gt; STARTTLS
+
+&lt;&lt; 220 2.0.0 Ready to start TLS
+
+...</code></pre>
+
+<p>If there is an error sending an email, it will provide the exception thrown and the error message:</p>
+<pre class="highlight"><code>...
+Trying to send email...
+
+FAILED TO SEND EMAIL!
+
+
+
+Exception thrown: ErrorException
+Error: stream_socket_enable_crypto(): Peer certificate CN=`mail.example.com' did not match expected CN=`192.0.2.16'
+File: /tmp/dev/ixpm/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php
+Line: 94</code></pre>
+
+<p>Similarly, if you provide the verbose option in the case of an error, you will be provided with a stack trace and the SMTP dialog.</p>
               
             </div>
           </div>
@@ -347,10 +370,10 @@ Time: 1.59 minutes, Memory: 106.41MB</code></pre>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../cla/" class="btn btn-neutral float-right" title="Contributer License Agreement">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../features/api/" class="btn btn-neutral float-right" title="API">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../authentication/" class="btn btn-neutral" title="Authentication"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../switches/" class="btn btn-neutral" title="Switches"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -380,10 +403,10 @@ Time: 1.59 minutes, Memory: 106.41MB</code></pre>
           <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../authentication/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../switches/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../cla/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../features/api/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
