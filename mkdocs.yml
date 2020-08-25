@@ -25,6 +25,7 @@ nav:
     - 'Customer Connections': 'usage/interfaces.md'
     - 'Users': 'usage/users.md'
     - 'Switches': 'usage/switches.md'
+    - 'Email': 'usage/email.md'
 - Features:
     - 'API': 'features/api.md'
     - 'AS112': 'features/as112.md'

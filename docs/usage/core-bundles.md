@@ -129,7 +129,7 @@ Both `Description` and `MTU` are informational.
 
 ### Physical Interfaces
 
-You can add additional physical interfaces to a connection / virtual interface. This effectivily means you are creating a LAG. The form for adding additional physical interfaces is identical to that in the wizard.
+You can add additional physical interfaces to a connection / virtual interface. This effectively means you are creating a LAG. The form for adding additional physical interfaces is identical to that in the wizard.
 
 ### VLAN Interfaces
 
