@@ -74,10 +74,10 @@ There's a couple things to note in the above:
 
 There are occasions where you may need to override the default filtering mechanism for some members. IXP Manager allows you to create custom Bird2 checks at the **start** of the standard import / export filters when using **Bird2** (not supported on the older Bird v1 configuration).
 
-To do this, you must [create skinned files](skinning.md) named after the ASN. For example, let's assume your skin name is `example` and the ASN of the member you want to apply custom filtering to is `65500`; then you would an export and/or import filter in files named:
+To do this, you must [create skinned files](skinning.md) named after the ASN. For example, let's assume your skin name is `example` and the ASN of the member you want to apply custom filtering to is `64511`; then you would an export and/or import filter in files named:
 
-* `$IXPROOT/resources/skins/example/api/v4/router/server/bird2/f_import_as65500.foil.php`
-* `$IXPROOT/resources/skins/example/api/v4/router/server/bird2/f_export_as65500.foil.php`
+* `$IXPROOT/resources/skins/example/api/v4/router/server/bird2/f_import_as64511.foil.php`
+* `$IXPROOT/resources/skins/example/api/v4/router/server/bird2/f_export_as64511.foil.php`
 
 You'll see [real examples from INEX here](https://github.com/inex/IXP-Manager/tree/master/resources/skins/inex/api/v4/router/server/bird2). Remember that these are placed at the *beginning of the standard filters* allowing you to explicitly `accept` or `reject` the prefix. However, remember that INEX `accepts` prefixes on import always but tags prefixes for filtering with large community `routerasn:1101:x` - please see the resources referenced above for details on this.
 
@@ -111,6 +111,50 @@ For a route server to be polled for a customer by this tool, the following condi
 It is also critical that the [looking glass](looking-glass.md) for the route server works.
 
 **Caching:** for large members with tens of thousands of routes, gathering filtered prefixes can be an expensive task for IXP Manager and the route server (expensive in terms of time and CPU cycles). As such, this feature of IXP Manager **requires** the use of a persistent cache. We recommend memcached for this which is installed and enabled by default with the automated installer.
+
+
+## Well-Known Filtering Communities
+
+The route server configuration that **IXP Manager** generates by default provides well known communities to allow members to control the distribution of their prefixes.
+
+**NB:** in the following, `rs-asn` is the AS number of the IXP's route server.
+
+The standard communities are defined as follows:
+
+| Description	                                  | Community |
+|-----------------------------------------------|---------------|
+| Prevent announcement of a prefix to a peer	  | `0:peer-as` |
+| Announce a route to a certain peer	          | `rs-asn:peer-as` |
+| Prevent announcement of a prefix to all peers	| `0:rs-asn` |
+| Announce a route to all peers	                | `rs-asn:rs-asn` |
+
+The community for announcing a route to all peers (`rs-asn:rs-asn`) is the default behaviour and so there is no need to tag routes with this.
+
+**Example #1:** if a member wishes to to instruct the IXP route server (with AS64500) to distribute a particular prefix only to AS64496 and AS64503, the prefix should be tagged with communities: `0:64500 64500:64496 64500:64503` (i.e. *announce to no one except...*).
+
+**Example #2:** for a member to to announce a prefix to all IXP route server participants, excluding AS64497, the prefix should be tagged with only community `0:64497`.
+
+
+If you enabled support for BGP large communities, then the following large communities can be used:
+
+| Description	                                  | Community |
+|-----------------------------------------------|---------------|
+| Prevent announcement of a prefix to a peer	  | `rs-asn:0:peer-as` |
+| Announce a route to a certain peer	| `rs-asn:1:peer-as` |
+| Prevent announcement of a prefix to all peers	 | `rs-asn:0:0` |
+| Announce a route to all peers	 | `rs-asn:1:0` |
+
+
+> If your route server is configured to support large communities, then you should advise your members to use these over standard 16-bit communities as a large number of networks now have a 32-bit ASN. You should also advise them **not to mix standard 16-bit communities and large communities** – please choose one or the other.
+
+Lastly, with BGP large communities, AS path prepending control is also available by default using the following large BGP communities:
+
+| Description	                                  | Community |
+|-----------------------------------------------|---------------|
+| Prepend to peer AS once	| `rs-asn:101:peer-as` |
+| Prepend to peer AS twice	 | `rs-asn:102:peer-as` |
+| Prepend to peer AS three times	 | `rs-asn:103:peer-as` |
+
 
 ## RFC1997 Passthru
 
