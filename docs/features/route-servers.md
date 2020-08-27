@@ -122,6 +122,8 @@ The route server configuration that **IXP Manager** generates by default provide
 The standard communities are defined as follows:
 
 
+<br><br>
+
 | Description	                                  | Community |
 |-----------------------------------------------|---------------|
 | Prevent announcement of a prefix to a peer	  | `0:peer-as` |
