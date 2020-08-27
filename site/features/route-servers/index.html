@@ -362,7 +362,7 @@
 <p>The route server configuration that <strong>IXP Manager</strong> generates by default provides well known communities to allow members to control the distribution of their prefixes.</p>
 <p><strong>NB:</strong> in the following, <code>rs-asn</code> is the AS number of the IXP's route server.</p>
 <p>The standard communities are defined as follows:</p>
-<p><br><br></p>
+<p><br></p>
 <table>
 <thead>
 <tr>
@@ -389,10 +389,12 @@
 </tr>
 </tbody>
 </table>
+<p><br></p>
 <p>The community for announcing a route to all peers (<code>rs-asn:rs-asn</code>) is the default behaviour and so there is no need to tag routes with this.</p>
 <p><strong>Example #1:</strong> if a member wishes to to instruct the IXP route server (with AS64500) to distribute a particular prefix only to AS64496 and AS64503, the prefix should be tagged with communities: <code>0:64500 64500:64496 64500:64503</code> (i.e. <em>announce to no one except...</em>).</p>
 <p><strong>Example #2:</strong> for a member to to announce a prefix to all IXP route server participants, excluding AS64497, the prefix should be tagged with only community <code>0:64497</code>.</p>
 <p>If you enabled support for BGP large communities, then the following large communities can be used:</p>
+<p><br></p>
 <table>
 <thead>
 <tr>
@@ -419,10 +421,10 @@
 </tr>
 </tbody>
 </table>
-<blockquote>
+<p><br></p>
 <p>If your route server is configured to support large communities, then you should advise your members to use these over standard 16-bit communities as a large number of networks now have a 32-bit ASN. You should also advise them <strong>not to mix standard 16-bit communities and large communities</strong> – please choose one or the other.</p>
-</blockquote>
 <p>Lastly, with BGP large communities, AS path prepending control is also available by default using the following large BGP communities:</p>
+<p><br></p>
 <table>
 <thead>
 <tr>
@@ -445,6 +447,7 @@
 </tr>
 </tbody>
 </table>
+<p><br></p>
 <h2 id="rfc1997-passthru">RFC1997 Passthru<a class="headerlink" href="#rfc1997-passthru" title="Permanent link"></a></h2>
 <p><a href="https://tools.ietf.org/html/rfc1997">RFC1997</a> defines some well-known communities including <code>NO_EXPORT</code> (<code>0xFFFFFF01 / 65535:65281</code>) and <code>NO_ADVERTISE</code> and states that they <em>have global significance and their operations shall be implemented in any community-attribute-aware BGP speaker</em>.</p>
 <p>According to <a href="https://tools.ietf.org/html/rfc7947">RFC7947</a>, it is a matter of local policy whether these well-known communities are interpreted or passed through. Historically, some IXP route servers interpret them and some pass them through. As such the behaviour of these well-known communities is not well-understood when it comes to route servers and this topic has been the subject of a good deal of debate in the IXP community over the years.</p>

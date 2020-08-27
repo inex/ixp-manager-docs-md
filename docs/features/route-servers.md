@@ -122,7 +122,7 @@ The route server configuration that **IXP Manager** generates by default provide
 The standard communities are defined as follows:
 
 
-<br><br>
+<br>
 
 | Description	                                  | Community |
 |-----------------------------------------------|---------------|
@@ -131,6 +131,7 @@ The standard communities are defined as follows:
 | Prevent announcement of a prefix to all peers	| `0:rs-asn` |
 | Announce a route to all peers	                | `rs-asn:rs-asn` |
 
+<br>
 
 The community for announcing a route to all peers (`rs-asn:rs-asn`) is the default behaviour and so there is no need to tag routes with this.
 
@@ -141,6 +142,7 @@ The community for announcing a route to all peers (`rs-asn:rs-asn`) is the defau
 
 If you enabled support for BGP large communities, then the following large communities can be used:
 
+<br>
 
 | Description	                                  | Community |
 |-----------------------------------------------|---------------|
@@ -149,12 +151,13 @@ If you enabled support for BGP large communities, then the following large commu
 | Prevent announcement of a prefix to all peers	 | `rs-asn:0:0` |
 | Announce a route to all peers	 | `rs-asn:1:0` |
 
+<br>
 
-
-> If your route server is configured to support large communities, then you should advise your members to use these over standard 16-bit communities as a large number of networks now have a 32-bit ASN. You should also advise them **not to mix standard 16-bit communities and large communities** – please choose one or the other.
+If your route server is configured to support large communities, then you should advise your members to use these over standard 16-bit communities as a large number of networks now have a 32-bit ASN. You should also advise them **not to mix standard 16-bit communities and large communities** – please choose one or the other.
 
 Lastly, with BGP large communities, AS path prepending control is also available by default using the following large BGP communities:
 
+<br>
 
 | Description	                                  | Community |
 |-----------------------------------------------|---------------|
@@ -162,7 +165,7 @@ Lastly, with BGP large communities, AS path prepending control is also available
 | Prepend to peer AS twice	 | `rs-asn:102:peer-as` |
 | Prepend to peer AS three times	 | `rs-asn:103:peer-as` |
 
-
+<br>
 
 ## RFC1997 Passthru
 
