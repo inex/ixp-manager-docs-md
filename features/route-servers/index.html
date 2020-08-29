@@ -391,7 +391,7 @@
 </table>
 <p><br></p>
 <p>The community for announcing a route to all peers (<code>rs-asn:rs-asn</code>) is the default behaviour and so there is no need to tag routes with this.</p>
-<p><strong>Example #1:</strong> if a member wishes to to instruct the IXP route server (with AS64500) to distribute a particular prefix only to AS64496 and AS64503, the prefix should be tagged with communities: <code>0:64500 64500:64496 64500:64503</code> (i.e. <em>announce to no one except...</em>).</p>
+<p><strong>Example #1:</strong> if a member wishes to instruct the IXP route server (with AS64500) to distribute a particular prefix only to AS64496 and AS64503, the prefix should be tagged with communities: <code>0:64500 64500:64496 64500:64503</code> (i.e. <em>announce to no one except...</em>).</p>
 <p><strong>Example #2:</strong> for a member to to announce a prefix to all IXP route server participants, excluding AS64497, the prefix should be tagged with only community <code>0:64497</code>.</p>
 <p>If you enabled support for BGP large communities, then the following large communities can be used:</p>
 <p><br></p>
