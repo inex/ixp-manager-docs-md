@@ -135,7 +135,7 @@ The standard communities are defined as follows:
 
 The community for announcing a route to all peers (`rs-asn:rs-asn`) is the default behaviour and so there is no need to tag routes with this.
 
-**Example #1:** if a member wishes to to instruct the IXP route server (with AS64500) to distribute a particular prefix only to AS64496 and AS64503, the prefix should be tagged with communities: `0:64500 64500:64496 64500:64503` (i.e. *announce to no one except...*).
+**Example #1:** if a member wishes to instruct the IXP route server (with AS64500) to distribute a particular prefix only to AS64496 and AS64503, the prefix should be tagged with communities: `0:64500 64500:64496 64500:64503` (i.e. *announce to no one except...*).
 
 **Example #2:** for a member to to announce a prefix to all IXP route server participants, excluding AS64497, the prefix should be tagged with only community `0:64497`.
 
