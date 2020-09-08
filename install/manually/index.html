@@ -1,287 +1,1546 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <link rel="canonical" href="https://docs.ixpmanager.org/install/manually/">
-  <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Manual Installation - IXP Manager Documentation</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Manual Installation";
-    var mkdocs_page_input_path = "install/manually.md";
-    var mkdocs_page_url = "/install/manually/";
-  </script>
-  
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
-</head>
 
-<body class="wy-body-for-nav" role="document">
 
-  <div class="wy-grid-for-nav">
-
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Installation</span></p>
-                <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../automated-script/">Automated Script</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../maint-mode/">Maintenance Mode</a>
-                    </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Manual Installation</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#video-tutorial">Video Tutorial</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#get-the-ixp-manager-source">Get the IXP Manager Source</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#initial-setup-and-dependencies">Initial Setup and Dependencies</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#database-setup">Database Setup</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#initial-database-objects">Initial Database Objects</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#file-permissions">File Permissions</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#setting-up-apache">Setting Up Apache</a>
-    </li>
-    </ul>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../upgrading/">Upgrading</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../runtime/">Runtime Configuration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../next-steps/">Post-Install Steps</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">General Usage</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/operational-notes/">Operational Notes</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/authentication/">Authentication</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/contacts/">Contacts</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customers/">Customers / Members</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-notes/">Customer Notes</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-tags/">Customer Tags</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/interfaces/">Customer Connections</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/users/">Users</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/switches/">Switches</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/email/">Email</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Features</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/api/">API</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/as112/">AS112</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/console-servers/">Console Servers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/cronjobs/">Cron Jobs</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/patch-panels/">Cross Connects</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/dns-arpa/">DNS / ARPA</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/docstore/">Document Store</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/introduction/">Grapher</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/helpdesk/">Helpdesk Integration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/irrdb/">IRRDB</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/ixf-export/">IX-F Member Export</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/looking-glass/">Looking Glass</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/layer2-addresses/">MAC Addresses</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/manrs/">MANRS</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/member-export/">Member Export</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/mailing-lists/">Mailing List Management</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/nagios/">Nagios</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/patch-panels/">Patch Panels</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/peering-manager/">Peering Manager</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/peering-matrix/">Peering Matrix</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/peeringdb/">PeeringDB</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/rir-objects/">RIR Objects</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/reseller/">Reseller Functionality</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/route-collectors/">Route Collectors</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/route-servers/">Route Servers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/routers/">Router Configuration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/rpki/">RPKI</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/skinning/">Skinning</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/smokeping/">Smokeping</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/static-content/">Static Content</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/tacacs/">TACACS</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Grapher</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/introduction/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/api/">API &amp; Permissions</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/mrtg/">Backend: MRTG</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/sflow/">Backend: sflow</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/smokeping/">Backend: Smokeping</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Sflow Support</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/sflow/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/sflow-p2p/">Peer-to-peer Graphs</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Development</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/introduction/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/api/">API</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/authentication/">Authentication</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/ci/">Continuous Integration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/cla/">Contributer License Agreement</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docker/">Docker</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docs/">Documentation</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/forms/">Forms</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/frontend-crud/">Frontend CRUD</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/grapher/">Grapher</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/helpders/">Helpers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/looking-glass/">Looking Glass</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/release-procedure/">Release Procedure</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/telescope/">Telescope</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/users/">Users</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/vagrant/">Vagrant</a>
-                    </li>
-                </ul>
-      </div>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://docs.ixpmanager.org/install/manually/">
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Manual Installation - IXP Manager Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#manual-installation" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
+    <div data-md-component="announce">
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">IXP Manager Documentation</a>
-      </nav>
+        <aside class="md-announce">
+          <div class="md-announce__inner md-grid md-typeset">
+            
 
+    <a href="https://www.ixpmanager.org/" style="color: #ffffff;">
+      See our new website at <strong>www.ixpmanager.org</strong>.
+    </a>
+
+
+    <a href="https://twitter.com/ixpmanager" style="color: #ffffff;">
+      For updates follow <strong>@ixpmanager</strong> on
+      <span class="twemoji twitter">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="color: rgb(0, 172, 238);"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+      </span> <strong>Twitter</strong>
+    </a>
+
+
+          </div>
+        </aside>
       
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
+    </div>
     
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://docs.ixpmanager.org" title="IXP Manager Documentation" class="md-header-nav__button md-logo" aria-label="IXP Manager Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            IXP Manager Documentation
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Manual Installation
+            
+          </span>
+        </div>
+      
+    </div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/inex/IXP-Manager/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
       
         
-          <li>Installation &raquo;</li>
+      
+      
         
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
       
+        
+  <li class="md-tabs__item">
     
-    <li>Manual Installation</li>
-    <li class="wy-breadcrumbs-aside">
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/install/manually.md"
-          class="icon icon-github"> Edit on GitHub</a>
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../" class="md-tabs__link md-tabs__link--active">
+          Installation
+        </a>
       
     </li>
-  </ul>
   
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../usage/operational-notes/" class="md-tabs__link">
+          General Usage
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../features/api/" class="md-tabs__link">
+          Features
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../grapher/introduction/" class="md-tabs__link">
+          Grapher
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../features/sflow/" class="md-tabs__link">
+          Sflow Support
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../dev/introduction/" class="md-tabs__link">
+          Development
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://docs.ixpmanager.org" title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    IXP Manager Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/inex/IXP-Manager/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Installation
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Installation" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Installation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../automated-script/" title="Automated Script" class="md-nav__link">
+      Automated Script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../maint-mode/" title="Maintenance Mode" class="md-nav__link">
+      Maintenance Mode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Manual Installation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Manual Installation" class="md-nav__link md-nav__link--active">
+      Manual Installation
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#video-tutorial" class="md-nav__link">
+    Video Tutorial
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+    <nav class="md-nav" aria-label="Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-the-ixp-manager-source" class="md-nav__link">
+    Get the IXP Manager Source
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-setup-and-dependencies" class="md-nav__link">
+    Initial Setup and Dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Initial Setup and Dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    Dependencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-setup" class="md-nav__link">
+    Database Setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-database-objects" class="md-nav__link">
+    Initial Database Objects
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-permissions" class="md-nav__link">
+    File Permissions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-apache" class="md-nav__link">
+    Setting Up Apache
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../upgrading/" title="Upgrading" class="md-nav__link">
+      Upgrading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runtime/" title="Runtime Configuration" class="md-nav__link">
+      Runtime Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../next-steps/" title="Post-Install Steps" class="md-nav__link">
+      Post-Install Steps
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      General Usage
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="General Usage" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        General Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/operational-notes/" title="Operational Notes" class="md-nav__link">
+      Operational Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/authentication/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/contacts/" title="Contacts" class="md-nav__link">
+      Contacts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customers/" title="Customers / Members" class="md-nav__link">
+      Customers / Members
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customer-notes/" title="Customer Notes" class="md-nav__link">
+      Customer Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customer-tags/" title="Customer Tags" class="md-nav__link">
+      Customer Tags
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/interfaces/" title="Customer Connections" class="md-nav__link">
+      Customer Connections
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/users/" title="Users" class="md-nav__link">
+      Users
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/switches/" title="Switches" class="md-nav__link">
+      Switches
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/email/" title="Email" class="md-nav__link">
+      Email
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Features
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Features" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/api/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/as112/" title="AS112" class="md-nav__link">
+      AS112
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/console-servers/" title="Console Servers" class="md-nav__link">
+      Console Servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/cronjobs/" title="Cron Jobs" class="md-nav__link">
+      Cron Jobs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/patch-panels/" title="Cross Connects" class="md-nav__link">
+      Cross Connects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/dns-arpa/" title="DNS / ARPA" class="md-nav__link">
+      DNS / ARPA
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/docstore/" title="Document Store" class="md-nav__link">
+      Document Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/introduction/" title="Grapher" class="md-nav__link">
+      Grapher
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/helpdesk/" title="Helpdesk Integration" class="md-nav__link">
+      Helpdesk Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/irrdb/" title="IRRDB" class="md-nav__link">
+      IRRDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/ixf-export/" title="IX-F Member Export" class="md-nav__link">
+      IX-F Member Export
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/looking-glass/" title="Looking Glass" class="md-nav__link">
+      Looking Glass
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/layer2-addresses/" title="MAC Addresses" class="md-nav__link">
+      MAC Addresses
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/manrs/" title="MANRS" class="md-nav__link">
+      MANRS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/member-export/" title="Member Export" class="md-nav__link">
+      Member Export
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/mailing-lists/" title="Mailing List Management" class="md-nav__link">
+      Mailing List Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/nagios/" title="Nagios" class="md-nav__link">
+      Nagios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/patch-panels/" title="Patch Panels" class="md-nav__link">
+      Patch Panels
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/peering-manager/" title="Peering Manager" class="md-nav__link">
+      Peering Manager
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/peering-matrix/" title="Peering Matrix" class="md-nav__link">
+      Peering Matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/peeringdb/" title="PeeringDB" class="md-nav__link">
+      PeeringDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/rir-objects/" title="RIR Objects" class="md-nav__link">
+      RIR Objects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/reseller/" title="Reseller Functionality" class="md-nav__link">
+      Reseller Functionality
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/route-collectors/" title="Route Collectors" class="md-nav__link">
+      Route Collectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/route-servers/" title="Route Servers" class="md-nav__link">
+      Route Servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/routers/" title="Router Configuration" class="md-nav__link">
+      Router Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/rpki/" title="RPKI" class="md-nav__link">
+      RPKI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/skinning/" title="Skinning" class="md-nav__link">
+      Skinning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/smokeping/" title="Smokeping" class="md-nav__link">
+      Smokeping
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/static-content/" title="Static Content" class="md-nav__link">
+      Static Content
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/tacacs/" title="TACACS" class="md-nav__link">
+      TACACS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Grapher
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Grapher" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Grapher
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/api/" title="API & Permissions" class="md-nav__link">
+      API &amp; Permissions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/mrtg/" title="Backend: MRTG" class="md-nav__link">
+      Backend: MRTG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/sflow/" title="Backend: sflow" class="md-nav__link">
+      Backend: sflow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/smokeping/" title="Backend: Smokeping" class="md-nav__link">
+      Backend: Smokeping
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Sflow Support
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Sflow Support" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Sflow Support
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/sflow/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/sflow-p2p/" title="Peer-to-peer Graphs" class="md-nav__link">
+      Peer-to-peer Graphs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Development
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Development" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/api/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/authentication/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/ci/" title="Continuous Integration" class="md-nav__link">
+      Continuous Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/cla/" title="Contributer License Agreement" class="md-nav__link">
+      Contributer License Agreement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/docker/" title="Docker" class="md-nav__link">
+      Docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/docs/" title="Documentation" class="md-nav__link">
+      Documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/forms/" title="Forms" class="md-nav__link">
+      Forms
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/frontend-crud/" title="Frontend CRUD" class="md-nav__link">
+      Frontend CRUD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/grapher/" title="Grapher" class="md-nav__link">
+      Grapher
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/helpders/" title="Helpers" class="md-nav__link">
+      Helpers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/looking-glass/" title="Looking Glass" class="md-nav__link">
+      Looking Glass
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/release-procedure/" title="Release Procedure" class="md-nav__link">
+      Release Procedure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/telescope/" title="Telescope" class="md-nav__link">
+      Telescope
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/users/" title="Users" class="md-nav__link">
+      Users
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/vagrant/" title="Vagrant" class="md-nav__link">
+      Vagrant
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#video-tutorial" class="md-nav__link">
+    Video Tutorial
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+    <nav class="md-nav" aria-label="Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-the-ixp-manager-source" class="md-nav__link">
+    Get the IXP Manager Source
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-setup-and-dependencies" class="md-nav__link">
+    Initial Setup and Dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Initial Setup and Dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    Dependencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-setup" class="md-nav__link">
+    Database Setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-database-objects" class="md-nav__link">
+    Initial Database Objects
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-permissions" class="md-nav__link">
+    File Permissions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-apache" class="md-nav__link">
+    Setting Up Apache
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
               
+                
+                  <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/install/manually.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
                 <h1 id="manual-installation">Manual Installation<a class="headerlink" href="#manual-installation" title="Permanent link"></a></h1>
 <details class="note" open="open"><summary><strong>This page was updated in April 2020 for Ubuntu LTS 20.04.</strong></summary></details>
 <h2 id="video-tutorial">Video Tutorial<a class="headerlink" href="#video-tutorial" title="Permanent link"></a></h2>
-<p>We created a video tutorial demonstrating the manual installation process for IXP Manager v5.5.0 (April 2020) on Ubuntu LTS 20.04. You can find the <a href="https://www.youtube.com/watch?v=qRIl1ioG6Ck">video here</a> in our <a href="https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA">YouTube channel</a>.</p>
+<p>We created a video tutorial demonstrating the manual installation process for IXP Manager v5.5.0 (April 2020) on Ubuntu LTS 20.04. You can find the <a href="https://www.youtube.com/watch?v=qRIl1ioG6Ck">video here</a> in our <a href="https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA">YouTube channel</a>. As always, <a href="https://www.ixpmanager.org/support/tutorials">the full catalog of video tutorials is here</a>.</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link"></a></h2>
 <p>IXP Manager tries to stay current in terms of technology. Typically, this means some element of framework refresh(es) every couple of years and other more incremental package upgrades with minor version upgrades. As well as the obvious reasons for this, there is also the requirement to prevent developer apathy - insisting on legacy frameworks and packages that have been EOL'd provides a major stumbling block for bringing on new developers and contributors.</p>
 <p>The current requirements for the web application are:</p>
@@ -296,137 +1555,150 @@
 <p>Regrettably the potential combinations of operating systems, versions of same and then versions of PHP are too numerous to provide individual support. As such, we recommend installing IXP Manager on Ubuntu LTS 20.04 and we officially support this platform.</p>
 <p>In fact we provide a complete installation script for this - see <a href="../automated-script/">the automated installation page</a> for details. If you have any issues with the manual installation, the automated script should be your first reference to compare what you are doing to what we recommend.</p>
 <p>For completeness, the IXP Manager installation script for Ubuntu 20.04 LTS installs:</p>
-<pre class="highlight"><code class="language-sh">apt install -qy apache2 php7.4 php7.4-intl php-rrd php7.4-cgi php7.4-cli          \
-    php7.4-snmp php7.4-curl  php-memcached libapache2-mod-php7.4 mysql-server     \
-    mysql-client php7.4-mysql memcached snmp php7.4-mbstring php7.4-xml php7.4-gd \
-    php7.4-bcmath bgpq3 php-memcache unzip php7.4-zip git php-yaml                \
-    php-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl \
-    libnetaddr-ip-perl rrdtool librrds-perl curl composer</code></pre>
+<div class="highlight"><pre><span></span><code>apt install -qy apache2 php7.4 php7.4-intl php-rrd php7.4-cgi php7.4-cli          <span class="se">\</span>
+    php7.4-snmp php7.4-curl  php-memcached libapache2-mod-php7.4 mysql-server     <span class="se">\</span>
+    mysql-client php7.4-mysql memcached snmp php7.4-mbstring php7.4-xml php7.4-gd <span class="se">\</span>
+    php7.4-bcmath bgpq3 php-memcache unzip php7.4-zip git php-yaml                <span class="se">\</span>
+    php-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl <span class="se">\</span>
+    libnetaddr-ip-perl rrdtool librrds-perl curl composer
+</code></pre></div>
 
 <p>If you are using a different platform, you will need to replicate the above as appropriate for your chosen platform.</p>
 <h3 id="get-the-ixp-manager-source">Get the IXP Manager Source<a class="headerlink" href="#get-the-ixp-manager-source" title="Permanent link"></a></h3>
 <p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
 <p>Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source (the automated script, our documentation and our examples use <code>/srv/ixpmanager</code> which we refer to as <code>$IXPROOT</code>). Note that it <strong>should not</strong> be cloned into any web exposed directory (e.g. do not clone to <code>/var/www</code>).</p>
-<pre class="highlight"><code class="language-sh">IXPROOT=/srv/ixpmanager
-cd /srv
+<div class="highlight"><pre><span></span><code><span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
+<span class="nb">cd</span> /srv
 git clone https://github.com/inex/IXP-Manager.git ixpmanager
-cd $IXPROOT   # /srv/ixpmanager
+<span class="nb">cd</span> <span class="nv">$IXPROOT</span>   <span class="c1"># /srv/ixpmanager</span>
 git checkout release-v5
-chown -R www-data: bootstrap/cache storage</code></pre>
+chown -R www-data: bootstrap/cache storage
+</code></pre></div>
 
 <h2 id="initial-setup-and-dependencies">Initial Setup and Dependencies<a class="headerlink" href="#initial-setup-and-dependencies" title="Permanent link"></a></h2>
 <h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link"></a></h3>
 <p>Install the required PHP libraries:</p>
-<pre class="highlight"><code class="language-sh">cd $IXPROOT
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 composer install --no-dev --prefer-dist
 cp .env.example .env
-php artisan key:generate</code></pre>
+php artisan key:generate
+</code></pre></div>
 
 <h2 id="database-setup">Database Setup<a class="headerlink" href="#database-setup" title="Permanent link"></a></h2>
 <p>Use whatever means you like to create a database and user for IXP Manager. For example:</p>
-<pre class="highlight"><code class="language-mysql">CREATE DATABASE `ixpmanager` CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci';
-CREATE USER `ixpmanager`@`localhost` IDENTIFIED BY '&lt;pick a password!&gt;';
-GRANT ALL ON `ixpmanager`.* TO `ixpmanager`@`localhost`;
-FLUSH PRIVILEGES;</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="ss">`ixpmanager`</span> <span class="k">CHARACTER</span> <span class="kt">SET</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4&#39;</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="n">USER</span> <span class="ss">`ixpmanager`</span><span class="o">@</span><span class="ss">`localhost`</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;&lt;pick a password!&gt;&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="ss">`ixpmanager`</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="ss">`ixpmanager`</span><span class="o">@</span><span class="ss">`localhost`</span><span class="p">;</span>
+<span class="k">FLUSH</span> <span class="n">PRIVILEGES</span><span class="p">;</span>
+</code></pre></div>
 
 <p>Then edit <code>$IXPROOT/.env</code> and set the database options:</p>
-<pre class="highlight"><code class="language-dotenv">DB_HOST=localhost
+<div class="highlight"><pre><span></span><code>DB_HOST=localhost
 DB_DATABASE=ixpmanager
 DB_USERNAME=ixpmanager
-DB_PASSWORD=&lt;the password you picked above!&gt;</code></pre>
+DB_PASSWORD=&lt;the password you picked above!&gt;
+</code></pre></div>
 
 <p>Now create the database schema:</p>
-<pre class="highlight"><code class="language-sh">php artisan doctrine:schema:create
-php artisan migrate</code></pre>
+<div class="highlight"><pre><span></span><code>php artisan doctrine:schema:create
+php artisan migrate
+</code></pre></div>
 
 <p>Some older scripts still rely on MySQL view tables. Create these with:</p>
-<pre class="highlight"><code class="language-sh"># We use root here as the views.sql also contain triggers
-mysql -u root ixpmanager &lt; $IXPROOT/tools/sql/views.sql</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># We use root here as the views.sql also contain triggers</span>
+mysql -u root ixpmanager &lt; <span class="nv">$IXPROOT</span>/tools/sql/views.sql
+</code></pre></div>
 
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h3>
 <p>Edit <code>$IXPROOT/.env</code> and review and set/change all parameters. Hopefully this is mostly documented or clear but please start a discussion on the mailing list if you have difficultly and we'll update this and the example file's documentation as appropriate.</p>
 <h3 id="initial-database-objects">Initial Database Objects<a class="headerlink" href="#initial-database-objects" title="Permanent link"></a></h3>
 <p>Using the settings you edited in <code>.env</code> we'll create some database objects. [Yes, a setup wizard needs to be built!].</p>
 <p>First let's create the password for the admin user. The following will create a secure random password and hash it with bcrypt:</p>
-<pre class="highlight"><code class="language-sh">USERNAME=admin
-USEREMAIL=your@email.address
-IXPM_ADMIN_PW="$( openssl rand -base64 12 )"
-ADMIN_PW_SALT="$( openssl rand -base64 16 )"
-HASH_PW=$( php -r "echo escapeshellarg( crypt( '${IXPM_ADMIN_PW}', sprintf( '\$2a\$%02d\$%s', 10, substr( '${ADMIN_PW_SALT}', 0, 22 ) ) ) );" )
-echo Your password is: $IXPM_ADMIN_PW</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">USERNAME</span><span class="o">=</span>admin
+<span class="nv">USEREMAIL</span><span class="o">=</span>your@email.address
+<span class="nv">IXPM_ADMIN_PW</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span> openssl rand -base64 <span class="m">12</span> <span class="k">)</span><span class="s2">&quot;</span>
+<span class="nv">ADMIN_PW_SALT</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span> openssl rand -base64 <span class="m">16</span> <span class="k">)</span><span class="s2">&quot;</span>
+<span class="nv">HASH_PW</span><span class="o">=</span><span class="k">$(</span> php -r <span class="s2">&quot;echo escapeshellarg( crypt( &#39;</span><span class="si">${</span><span class="nv">IXPM_ADMIN_PW</span><span class="si">}</span><span class="s2">&#39;, sprintf( &#39;\$2a\$%02d\$%s&#39;, 10, substr( &#39;</span><span class="si">${</span><span class="nv">ADMIN_PW_SALT</span><span class="si">}</span><span class="s2">&#39;, 0, 22 ) ) ) );&quot;</span> <span class="k">)</span>
+<span class="nb">echo</span> Your password is: <span class="nv">$IXPM_ADMIN_PW</span>
+</code></pre></div>
 
 <p>The following is taken from the IXP Manager installation script:</p>
-<pre class="highlight"><code class="language-mysql">mysql -u ixpmanager "-p${MYSQL_ROOT_PW}" $DBNAME &lt;&lt;END_SQL
-INSERT INTO ixp ( name, shortname, address1, country )
-    VALUES ( '${IXPNAME}', '${IXPSNAME}', '${IXPCITY}', '${IXPCOUNTRY}' );
-SET @ixpid = LAST_INSERT_ID();
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">ixpmanager</span> <span class="s2">&quot;-p${MYSQL_ROOT_PW}&quot;</span> <span class="err">$</span><span class="n">DBNAME</span> <span class="o">&lt;&lt;</span><span class="n">END_SQL</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">ixp</span> <span class="p">(</span> <span class="n">name</span><span class="p">,</span> <span class="n">shortname</span><span class="p">,</span> <span class="n">address1</span><span class="p">,</span> <span class="n">country</span> <span class="p">)</span>
+    <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">&#39;${IXPNAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPSNAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPCITY}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPCOUNTRY}&#39;</span> <span class="p">);</span>
+<span class="kt">SET</span> <span class="o">@</span><span class="n">ixpid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
 
-INSERT INTO infrastructure ( ixp_id, name, shortname, isPrimary )
-    VALUES ( @ixpid, 'Infrastructure #1', '#1', 1 );
-SET @infraid = LAST_INSERT_ID();
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">infrastructure</span> <span class="p">(</span> <span class="n">ixp_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">shortname</span><span class="p">,</span> <span class="n">isPrimary</span> <span class="p">)</span>
+    <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">ixpid</span><span class="p">,</span> <span class="s1">&#39;Infrastructure #1&#39;</span><span class="p">,</span> <span class="s1">&#39;#1&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="p">);</span>
+<span class="kt">SET</span> <span class="o">@</span><span class="n">infraid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
 
-INSERT INTO company_registration_detail ( registeredName ) VALUES ( '${IXPNAME}' );
-SET @crdid = LAST_INSERT_ID();
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">company_registration_detail</span> <span class="p">(</span> <span class="n">registeredName</span> <span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">&#39;${IXPNAME}&#39;</span> <span class="p">);</span>
+<span class="kt">SET</span> <span class="o">@</span><span class="n">crdid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
 
-INSERT INTO company_billing_detail ( billingContactName, invoiceMethod, billingFrequency )
-    VALUES ( '${NAME}', 'EMAIL', 'NOBILLING' );
-SET @cbdid = LAST_INSERT_ID();
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">company_billing_detail</span> <span class="p">(</span> <span class="n">billingContactName</span><span class="p">,</span> <span class="n">invoiceMethod</span><span class="p">,</span> <span class="n">billingFrequency</span> <span class="p">)</span>
+    <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">&#39;${NAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;EMAIL&#39;</span><span class="p">,</span> <span class="s1">&#39;NOBILLING&#39;</span> <span class="p">);</span>
+<span class="kt">SET</span> <span class="o">@</span><span class="n">cbdid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
 
-INSERT INTO cust ( name, shortname, type, abbreviatedName, autsys, maxprefixes, peeringemail, nocphone, noc24hphone,
-        nocemail, nochours, nocwww, peeringpolicy, corpwww, datejoin, status, activepeeringmatrix, isReseller,
-        company_registered_detail_id, company_billing_details_id )
-    VALUES ( '${IXPNAME}', '${IXPSNAME}', 3, '${IXPSNAME}', '${IXPASN}', 100, '${IXPPEEREMAIL}', '${IXPNOCPHONE}',
-        '${IXPNOCPHONE}', '${IXPNOCEMAIL}', '24x7', '', 'mandatory', '${IXPWWW}', NOW(), 1, 1, 0, @crdid, @cbdid );
-SET @custid = LAST_INSERT_ID();
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">cust</span> <span class="p">(</span> <span class="n">name</span><span class="p">,</span> <span class="n">shortname</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">abbreviatedName</span><span class="p">,</span> <span class="n">autsys</span><span class="p">,</span> <span class="n">maxprefixes</span><span class="p">,</span> <span class="n">peeringemail</span><span class="p">,</span> <span class="n">nocphone</span><span class="p">,</span> <span class="n">noc24hphone</span><span class="p">,</span>
+        <span class="n">nocemail</span><span class="p">,</span> <span class="n">nochours</span><span class="p">,</span> <span class="n">nocwww</span><span class="p">,</span> <span class="n">peeringpolicy</span><span class="p">,</span> <span class="n">corpwww</span><span class="p">,</span> <span class="n">datejoin</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">activepeeringmatrix</span><span class="p">,</span> <span class="n">isReseller</span><span class="p">,</span>
+        <span class="n">company_registered_detail_id</span><span class="p">,</span> <span class="n">company_billing_details_id</span> <span class="p">)</span>
+    <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">&#39;${IXPNAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPSNAME}&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;${IXPSNAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPASN}&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;${IXPPEEREMAIL}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPNOCPHONE}&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;${IXPNOCPHONE}&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPNOCEMAIL}&#39;</span><span class="p">,</span> <span class="s1">&#39;24x7&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mandatory&#39;</span><span class="p">,</span> <span class="s1">&#39;${IXPWWW}&#39;</span><span class="p">,</span> <span class="nf">NOW</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">@</span><span class="n">crdid</span><span class="p">,</span> <span class="o">@</span><span class="n">cbdid</span> <span class="p">);</span>
+<span class="kt">SET</span> <span class="o">@</span><span class="n">custid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
 
-INSERT INTO customer_to_ixp ( customer_id, ixp_id ) VALUES ( @custid, @ixpid );
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">customer_to_ixp</span> <span class="p">(</span> <span class="n">customer_id</span><span class="p">,</span> <span class="n">ixp_id</span> <span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">custid</span><span class="p">,</span> <span class="o">@</span><span class="n">ixpid</span> <span class="p">);</span>
 
-INSERT INTO user ( custid, username, password, email, privs, disabled, created )
-    VALUES ( @custid, '${USERNAME}', ${HASH_PW}, '${USEREMAIL}', 3, 0, NOW() );
-SET @userid = LAST_INSERT_ID();
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">user</span> <span class="p">(</span> <span class="n">custid</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">privs</span><span class="p">,</span> <span class="n">disabled</span><span class="p">,</span> <span class="n">created</span> <span class="p">)</span>
+    <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">custid</span><span class="p">,</span> <span class="s1">&#39;${USERNAME}&#39;</span><span class="p">,</span> <span class="err">${</span><span class="n">HASH_PW</span><span class="err">}</span><span class="p">,</span> <span class="s1">&#39;${USEREMAIL}&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nf">NOW</span><span class="p">()</span> <span class="p">);</span>
+<span class="kt">SET</span> <span class="o">@</span><span class="n">userid</span> <span class="o">=</span> <span class="nf">LAST_INSERT_ID</span><span class="p">();</span>
 
-INSERT INTO customer_to_users ( customer_id, user_id, privs, created_at )
-    VALUES ( @custid, @userid, 3, NOW() );
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">customer_to_users</span> <span class="p">(</span> <span class="n">customer_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">privs</span><span class="p">,</span> <span class="n">created_at</span> <span class="p">)</span>
+    <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">custid</span><span class="p">,</span> <span class="o">@</span><span class="n">userid</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="nf">NOW</span><span class="p">()</span> <span class="p">);</span>
 
-INSERT INTO contact ( custid, name, email, created )
-    VALUES ( @custid, '${NAME}', '${USEREMAIL}', NOW() );
-END_SQL</code></pre>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="nf">contact</span> <span class="p">(</span> <span class="n">custid</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">created</span> <span class="p">)</span>
+    <span class="k">VALUES</span> <span class="p">(</span> <span class="o">@</span><span class="n">custid</span><span class="p">,</span> <span class="s1">&#39;${NAME}&#39;</span><span class="p">,</span> <span class="s1">&#39;${USEREMAIL}&#39;</span><span class="p">,</span> <span class="nf">NOW</span><span class="p">()</span> <span class="p">);</span>
+<span class="n">END_SQL</span>
+</code></pre></div>
 
 <p>And finally seed the database:</p>
-<pre class="highlight"><code class="language-sh">cd $IXPROOT
-php artisan db:seed --force --class=IRRDBs
-php artisan db:seed --force --class=Vendors
-php artisan db:seed --force --class=ContactGroups</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+php artisan db:seed --force --class<span class="o">=</span>IRRDBs
+php artisan db:seed --force --class<span class="o">=</span>Vendors
+php artisan db:seed --force --class<span class="o">=</span>ContactGroups
+</code></pre></div>
 
 <h2 id="file-permissions">File Permissions<a class="headerlink" href="#file-permissions" title="Permanent link"></a></h2>
 <p>The web server needs write access to some directories:</p>
-<pre class="highlight"><code class="language-sh">cd $IXPROOT
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 chown -R www-data: storage/ bootstrap/cache/ database/Proxies/
-chmod -R u+rwX     storage/ bootstrap/cache/ database/Proxies/</code></pre>
+chmod -R u+rwX     storage/ bootstrap/cache/ database/Proxies/
+</code></pre></div>
 
 <h2 id="setting-up-apache">Setting Up Apache<a class="headerlink" href="#setting-up-apache" title="Permanent link"></a></h2>
 <p>Here is a sample virtual hosts file for IXP Manager (replace <code>{$IXPROOT}</code> as appropriate!):</p>
-<pre class="highlight"><code class="language-apache">&lt;VirtualHost *:80&gt;
-    ServerAdmin webmaster@localhost
-    DocumentRoot ${IXPROOT}/public
-    &lt;Directory ${IXPROOT}/public&gt;
-        Options FollowSymLinks
-        AllowOverride None
-        Require all granted
-        RewriteEngine On
-        RewriteCond %{REQUEST_FILENAME} -s [OR]
-        RewriteCond %{REQUEST_FILENAME} -l [OR]
-        RewriteCond %{REQUEST_FILENAME} -d
-        RewriteRule ^.*$ - [NC,L]
-        RewriteRule ^.*$ /index.php [NC,L]
-    &lt;/Directory&gt;
-    ErrorLog \${APACHE_LOG_DIR}/error.log
-    CustomLog \${APACHE_LOG_DIR}/access.log combined
-&lt;/VirtualHost&gt;</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
+    <span class="nb">ServerAdmin</span> webmaster@localhost
+    <span class="nb">DocumentRoot</span> ${IXPROOT}/public
+    <span class="nt">&lt;Directory</span> <span class="s">${IXPROOT}/public</span><span class="nt">&gt;</span>
+        <span class="nb">Options</span> FollowSymLinks
+        <span class="nb">AllowOverride</span> <span class="k">None</span>
+        <span class="nb">Require</span> <span class="k">all</span> granted
+        <span class="nb">RewriteEngine</span> <span class="k">On</span>
+        <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} -s [OR]
+        <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} -l [OR]
+        <span class="nb">RewriteCond</span> %{REQUEST_FILENAME} -d
+        <span class="nb">RewriteRule</span> ^.*$ - [NC,L]
+        <span class="nb">RewriteRule</span> ^.*$ <span class="sx">/index.php</span> [NC,L]
+    <span class="nt">&lt;/Directory&gt;</span>
+    <span class="nb">ErrorLog</span> \${APACHE_LOG_DIR}/error.log
+    <span class="nb">CustomLog</span> \${APACHE_LOG_DIR}/access.log combined
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</code></pre></div>
 
 <p>You also need to enable rewrite:</p>
-<pre class="highlight"><code class="language-sh">a2enmod rewrite
-service apache2 restart</code></pre>
+<div class="highlight"><pre><span></span><code>a2enmod rewrite
+service apache2 restart
+</code></pre></div>
 
 <h1 id="congratulations">Congratulations!<a class="headerlink" href="#congratulations" title="Permanent link"></a></h1>
 <p>Your new IXP Manager installation should be accessible via your server's IP address using the username (<code>$USERNAME</code>) and password (<code>$IXPM_ADMIN_PW</code>) you set above.</p>
@@ -438,61 +1710,151 @@ service apache2 restart</code></pre>
 <li>PLEASE TELL US! We'd like to add you to the users list at http://www.ixpmanager.org/users.php - just drop us an email to <code>operations &lt;at&gt; inex &lt;dot&gt; ie</code>.</li>
 </ul>
 <p><strong>What next? See our <a href="../next-steps/">post-install / next steps document here</a>.</strong></p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 8, 2020</span>
+    
+  </small>
+</div>
+                  
+                
               
-            </div>
+              
+                
+
+
+              
+            </article>
           </div>
-          <footer>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../upgrading/" class="btn btn-neutral float-right" title="Upgrading">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../maint-mode/" class="btn btn-neutral" title="Maintenance Mode"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../maint-mode/" title="Maintenance Mode" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Maintenance Mode
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../upgrading/" title="Upgrading" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Upgrading
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     </div>
   
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            &copy; 2017-2020, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
     
-      <p>&copy; 2017-2020, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+      
+      
+        
+        
+      
+      <a href="https://github.com/inex/IXP-Manager" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/ixpmanager" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.facebook.com/ixpmanager/" target="_blank" rel="noopener" title="www.facebook.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA" target="_blank" rel="noopener" title="www.youtube.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.ixpmanager.org/" target="_blank" rel="noopener" title="www.ixpmanager.org" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"/></svg>
+      </a>
     
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    </div>
+  </div>
 </footer>
       
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
-      
-        <span><a href="../maint-mode/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../upgrading/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
-</div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
-
-</body>
+    
+  </body>
 </html>
