@@ -1,275 +1,1508 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <link rel="canonical" href="https://docs.ixpmanager.org/grapher/mrtg/">
-  <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Backend: MRTG - IXP Manager Documentation</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Backend: MRTG";
-    var mkdocs_page_input_path = "grapher/mrtg.md";
-    var mkdocs_page_url = "/grapher/mrtg/";
-  </script>
-  
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
-</head>
 
-<body class="wy-body-for-nav" role="document">
 
-  <div class="wy-grid-for-nav">
-
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://docs.ixpmanager.org/grapher/mrtg/">
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Backend: MRTG - IXP Manager Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#backend-mrtg" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-announce">
+          <div class="md-announce__inner md-grid md-typeset">
+            
+  Test
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Installation</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/automated-script/">Automated Script</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/maint-mode/">Maintenance Mode</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/manually/">Manual Installation</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/upgrading/">Upgrading</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/runtime/">Runtime Configuration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/next-steps/">Post-Install Steps</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">General Usage</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/operational-notes/">Operational Notes</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/authentication/">Authentication</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/contacts/">Contacts</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customers/">Customers / Members</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-notes/">Customer Notes</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-tags/">Customer Tags</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/interfaces/">Customer Connections</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/users/">Users</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/switches/">Switches</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/email/">Email</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Features</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/api/">API</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/as112/">AS112</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/console-servers/">Console Servers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/cronjobs/">Cron Jobs</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/patch-panels/">Cross Connects</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/dns-arpa/">DNS / ARPA</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/docstore/">Document Store</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../introduction/">Grapher</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/helpdesk/">Helpdesk Integration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/irrdb/">IRRDB</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/ixf-export/">IX-F Member Export</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/looking-glass/">Looking Glass</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/layer2-addresses/">MAC Addresses</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/manrs/">MANRS</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/member-export/">Member Export</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/mailing-lists/">Mailing List Management</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/nagios/">Nagios</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/patch-panels/">Patch Panels</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/peering-manager/">Peering Manager</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/peering-matrix/">Peering Matrix</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/peeringdb/">PeeringDB</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/rir-objects/">RIR Objects</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/reseller/">Reseller Functionality</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/route-collectors/">Route Collectors</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/route-servers/">Route Servers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/routers/">Router Configuration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/rpki/">RPKI</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/skinning/">Skinning</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../smokeping/">Smokeping</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/static-content/">Static Content</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/tacacs/">TACACS</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Grapher</span></p>
-                <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../api/">API &amp; Permissions</a>
-                    </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Backend: MRTG</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#mrtg-setup-and-configuration">MRTG Setup and Configuration</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#generating-mrtg-configuration">Generating MRTG Configuration</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#customising-the-configuration">Customising the Configuration</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#port-utilisation">Port Utilisation</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#general-notes">General Notes</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#missing-graphs">Missing Graphs</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../sflow/">Backend: sflow</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../smokeping/">Backend: Smokeping</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Sflow Support</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/sflow/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/sflow-p2p/">Peer-to-peer Graphs</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Development</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/introduction/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/api/">API</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/authentication/">Authentication</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/ci/">Continuous Integration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/cla/">Contributer License Agreement</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docker/">Docker</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docs/">Documentation</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/forms/">Forms</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/frontend-crud/">Frontend CRUD</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/grapher/">Grapher</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/helpders/">Helpers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/looking-glass/">Looking Glass</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/release-procedure/">Release Procedure</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/telescope/">Telescope</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/users/">Users</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/vagrant/">Vagrant</a>
-                    </li>
-                </ul>
+          </div>
+        </aside>
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://docs.ixpmanager.org" title="IXP Manager Documentation" class="md-header-nav__button md-logo" aria-label="IXP Manager Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            IXP Manager Documentation
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Backend: MRTG
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
       </div>
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">IXP Manager Documentation</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
+  </div>
+</div>
     
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/inex/ixp-manager-docs-md/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
       
         
-          <li>Grapher &raquo;</li>
+      
+      
         
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
       
+        
+  <li class="md-tabs__item">
     
-    <li>Backend: MRTG</li>
-    <li class="wy-breadcrumbs-aside">
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/grapher/mrtg.md"
-          class="icon icon-github"> Edit on GitHub</a>
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../install/" class="md-tabs__link">
+          Installation
+        </a>
       
     </li>
-  </ul>
   
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../usage/operational-notes/" class="md-tabs__link">
+          General Usage
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../features/api/" class="md-tabs__link">
+          Features
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../introduction/" class="md-tabs__link md-tabs__link--active">
+          Grapher
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../features/sflow/" class="md-tabs__link">
+          Sflow Support
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../dev/introduction/" class="md-tabs__link">
+          Development
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://docs.ixpmanager.org" title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    IXP Manager Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/inex/ixp-manager-docs-md/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Installation
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Installation" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Installation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/automated-script/" title="Automated Script" class="md-nav__link">
+      Automated Script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/maint-mode/" title="Maintenance Mode" class="md-nav__link">
+      Maintenance Mode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/manually/" title="Manual Installation" class="md-nav__link">
+      Manual Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/upgrading/" title="Upgrading" class="md-nav__link">
+      Upgrading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/runtime/" title="Runtime Configuration" class="md-nav__link">
+      Runtime Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/next-steps/" title="Post-Install Steps" class="md-nav__link">
+      Post-Install Steps
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      General Usage
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="General Usage" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        General Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/operational-notes/" title="Operational Notes" class="md-nav__link">
+      Operational Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/authentication/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/contacts/" title="Contacts" class="md-nav__link">
+      Contacts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customers/" title="Customers / Members" class="md-nav__link">
+      Customers / Members
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customer-notes/" title="Customer Notes" class="md-nav__link">
+      Customer Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customer-tags/" title="Customer Tags" class="md-nav__link">
+      Customer Tags
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/interfaces/" title="Customer Connections" class="md-nav__link">
+      Customer Connections
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/users/" title="Users" class="md-nav__link">
+      Users
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/switches/" title="Switches" class="md-nav__link">
+      Switches
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/email/" title="Email" class="md-nav__link">
+      Email
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Features
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Features" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/api/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/as112/" title="AS112" class="md-nav__link">
+      AS112
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/console-servers/" title="Console Servers" class="md-nav__link">
+      Console Servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/cronjobs/" title="Cron Jobs" class="md-nav__link">
+      Cron Jobs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/patch-panels/" title="Cross Connects" class="md-nav__link">
+      Cross Connects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/dns-arpa/" title="DNS / ARPA" class="md-nav__link">
+      DNS / ARPA
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/docstore/" title="Document Store" class="md-nav__link">
+      Document Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../introduction/" title="Grapher" class="md-nav__link">
+      Grapher
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/helpdesk/" title="Helpdesk Integration" class="md-nav__link">
+      Helpdesk Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/irrdb/" title="IRRDB" class="md-nav__link">
+      IRRDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/ixf-export/" title="IX-F Member Export" class="md-nav__link">
+      IX-F Member Export
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/looking-glass/" title="Looking Glass" class="md-nav__link">
+      Looking Glass
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/layer2-addresses/" title="MAC Addresses" class="md-nav__link">
+      MAC Addresses
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/manrs/" title="MANRS" class="md-nav__link">
+      MANRS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/member-export/" title="Member Export" class="md-nav__link">
+      Member Export
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/mailing-lists/" title="Mailing List Management" class="md-nav__link">
+      Mailing List Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/nagios/" title="Nagios" class="md-nav__link">
+      Nagios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/patch-panels/" title="Patch Panels" class="md-nav__link">
+      Patch Panels
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/peering-manager/" title="Peering Manager" class="md-nav__link">
+      Peering Manager
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/peering-matrix/" title="Peering Matrix" class="md-nav__link">
+      Peering Matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/peeringdb/" title="PeeringDB" class="md-nav__link">
+      PeeringDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/rir-objects/" title="RIR Objects" class="md-nav__link">
+      RIR Objects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/reseller/" title="Reseller Functionality" class="md-nav__link">
+      Reseller Functionality
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/route-collectors/" title="Route Collectors" class="md-nav__link">
+      Route Collectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/route-servers/" title="Route Servers" class="md-nav__link">
+      Route Servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/routers/" title="Router Configuration" class="md-nav__link">
+      Router Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/rpki/" title="RPKI" class="md-nav__link">
+      RPKI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/skinning/" title="Skinning" class="md-nav__link">
+      Skinning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../smokeping/" title="Smokeping" class="md-nav__link">
+      Smokeping
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/static-content/" title="Static Content" class="md-nav__link">
+      Static Content
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/tacacs/" title="TACACS" class="md-nav__link">
+      TACACS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Grapher
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Grapher" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Grapher
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../api/" title="API & Permissions" class="md-nav__link">
+      API &amp; Permissions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Backend: MRTG
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Backend: MRTG" class="md-nav__link md-nav__link--active">
+      Backend: MRTG
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mrtg-setup-and-configuration" class="md-nav__link">
+    MRTG Setup and Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-mrtg-configuration" class="md-nav__link">
+    Generating MRTG Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customising-the-configuration" class="md-nav__link">
+    Customising the Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inserting-traffic-data-into-the-database-reporting-emails" class="md-nav__link">
+    Inserting Traffic Data Into the Database / Reporting Emails
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#port-utilisation" class="md-nav__link">
+    Port Utilisation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-notes" class="md-nav__link">
+    General Notes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-graphs" class="md-nav__link">
+    Missing Graphs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sflow/" title="Backend: sflow" class="md-nav__link">
+      Backend: sflow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../smokeping/" title="Backend: Smokeping" class="md-nav__link">
+      Backend: Smokeping
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Sflow Support
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Sflow Support" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Sflow Support
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/sflow/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/sflow-p2p/" title="Peer-to-peer Graphs" class="md-nav__link">
+      Peer-to-peer Graphs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Development
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Development" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/api/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/authentication/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/ci/" title="Continuous Integration" class="md-nav__link">
+      Continuous Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/cla/" title="Contributer License Agreement" class="md-nav__link">
+      Contributer License Agreement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/docker/" title="Docker" class="md-nav__link">
+      Docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/docs/" title="Documentation" class="md-nav__link">
+      Documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/forms/" title="Forms" class="md-nav__link">
+      Forms
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/frontend-crud/" title="Frontend CRUD" class="md-nav__link">
+      Frontend CRUD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/grapher/" title="Grapher" class="md-nav__link">
+      Grapher
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/helpders/" title="Helpers" class="md-nav__link">
+      Helpers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/looking-glass/" title="Looking Glass" class="md-nav__link">
+      Looking Glass
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/release-procedure/" title="Release Procedure" class="md-nav__link">
+      Release Procedure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/telescope/" title="Telescope" class="md-nav__link">
+      Telescope
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/users/" title="Users" class="md-nav__link">
+      Users
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/vagrant/" title="Vagrant" class="md-nav__link">
+      Vagrant
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mrtg-setup-and-configuration" class="md-nav__link">
+    MRTG Setup and Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-mrtg-configuration" class="md-nav__link">
+    Generating MRTG Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customising-the-configuration" class="md-nav__link">
+    Customising the Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inserting-traffic-data-into-the-database-reporting-emails" class="md-nav__link">
+    Inserting Traffic Data Into the Database / Reporting Emails
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#port-utilisation" class="md-nav__link">
+    Port Utilisation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-notes" class="md-nav__link">
+    General Notes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-graphs" class="md-nav__link">
+    Missing Graphs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
               
+                
+                  <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/grapher/mrtg.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
                 <h1 id="backend-mrtg">Backend: MRTG<a class="headerlink" href="#backend-mrtg" title="Permanent link"></a></h1>
 <p>MRTG is used to generate interface graphs. MRTG is a particularly efficient SNMP poller as, irrespective of how many times an interface is referenced for different graphs, it is only polled once per run. If you want to understand MRTG related options in this section, please refer to <a href="https://oss.oetiker.ch/mrtg/doc/mrtg.en.html">MRTG's own documentation</a>.</p>
 <p>Per-second graphs are generated for bits, packets, errors, discards and broadcasts at 5min intervals. <strong>IXP Manager</strong>'s <em>Grapher</em> system can use MRTG to poll switches and create traffic graphs for:</p>
@@ -296,115 +1529,123 @@
 <p>MRTG creates: per port (physical interface); per LAG (virtual interface); and per customer aggregate graphs for each member / customer.</p>
 <h2 id="mrtg-setup-and-configuration">MRTG Setup and Configuration<a class="headerlink" href="#mrtg-setup-and-configuration" title="Permanent link"></a></h2>
 <p>You need to install some basic packages for MRTG to work - on Ubuntu for example, install:</p>
-<pre class="highlight"><code class="language-sh">apt install rrdtool mrtg</code></pre>
+<div class="highlight"><pre><span></span><code>apt install rrdtool mrtg
+</code></pre></div>
 
 <p>You also need a folder to store all MRTG files. For example:</p>
-<pre class="highlight"><code class="language-sh">mkdir -p /srv/mrtg</code></pre>
+<div class="highlight"><pre><span></span><code>mkdir -p /srv/mrtg
+</code></pre></div>
 
 <p>In your `.env, you need to set the following options:</p>
-<pre class="highlight"><code># The MRTG database type to use - either log or rrd:
-GRAPHER_BACKEND_MRTG_DBTYPE="rrd"
+<div class="highlight"><pre><span></span><code># The MRTG database type to use - either log or rrd:
+GRAPHER_BACKEND_MRTG_DBTYPE=&quot;rrd&quot;
 
 # Where to store log/rrd/png files. This is from the perspective
 # of the mrtg daemon and it is only used when generating the mrtg configuration
 # file so this should be a local path on whatever server mrtg will run:
-GRAPHER_BACKEND_MRTG_WORKDIR="/srv/mrtg"
+GRAPHER_BACKEND_MRTG_WORKDIR=&quot;/srv/mrtg&quot;
 
 # Where IXP Manager can fine the GRAPHER_BACKEND_MRTG_WORKDIR above. If mrtg is
 # running on the same server as IXP Manager, this this would just be the same:
-GRAPHER_BACKEND_MRTG_LOGDIR="/srv/mrtg"
+GRAPHER_BACKEND_MRTG_LOGDIR=&quot;/srv/mrtg&quot;
 # Note that if you wish to run MRTG on another server, you can expose the
 # WORKDIR on a HTTP server and provide a URL to this option:
-# GRAPHER_BACKEND_MRTG_LOGDIR="http://collector.example.com/mrtg"</code></pre>
+# GRAPHER_BACKEND_MRTG_LOGDIR=&quot;http://collector.example.com/mrtg&quot;
+</code></pre></div>
 
 <h2 id="generating-mrtg-configuration">Generating MRTG Configuration<a class="headerlink" href="#generating-mrtg-configuration" title="Permanent link"></a></h2>
 <p>You can now generate a MRTG configuration by executing a command such as:</p>
-<pre class="highlight"><code class="language-sh"># Move to the directory where you have installed IXP Manager (typically: /srv/ixpmanager)
-cd $IXPROOT
+<div class="highlight"><pre><span></span><code><span class="c1"># Move to the directory where you have installed IXP Manager (typically: /srv/ixpmanager)</span>
+<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 
-# Generate MRTG configuration and output to stdout:
+<span class="c1"># Generate MRTG configuration and output to stdout:</span>
 php artisan grapher:generate-configuration -B mrtg
 
-# Generate MRTG configuration and output to a named file:
-php artisan grapher:generate-configuration -B mrtg -O /tmp/mrtg.cfg.candidate</code></pre>
+<span class="c1"># Generate MRTG configuration and output to a named file:</span>
+php artisan grapher:generate-configuration -B mrtg -O /tmp/mrtg.cfg.candidate
+</code></pre></div>
 
 <p>You could also combine a syntax check before putting the resultant file live. Here's a complete example that could be run via cron:</p>
-<pre class="highlight"><code class="language-sh">#! /usr/bin/env bash
+<div class="highlight"><pre><span></span><code><span class="ch">#! /usr/bin/env bash</span>
 
-# Set this to the directory where you have installed IXP Manager (typically: /srv/ixpmanager)
-IXPROOT=/srv/ixpmanager
+<span class="c1"># Set this to the directory where you have installed IXP Manager (typically: /srv/ixpmanager)</span>
+<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
 
-# Temporary configuration file:
-TMPCONF=/tmp/mrtg.cfg.$$
+<span class="c1"># Temporary configuration file:</span>
+<span class="nv">TMPCONF</span><span class="o">=</span>/tmp/mrtg.cfg.<span class="nv">$$</span>
 
-# Synchronize configuration files
-${IXPROOT}/artisan grapher:generate-configuration -B mrtg -O $TMPCONF
+<span class="c1"># Synchronize configuration files</span>
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan grapher:generate-configuration -B mrtg -O <span class="nv">$TMPCONF</span>
 
-# Remove comments and date/time stamps for before comparing for differences
-cat /etc/mrtg.cfg    | egrep -v '^#.*$' | \
-    egrep -v '^[ ]+Based on configuration last generated by.*$' &gt;/tmp/mrtg.cfg.filtered
-cat $TMPCONF         | egrep -v '^#.*$' | \
-    egrep -v '^[ ]+Based on configuration last generated by.*$' &gt;${TMPCONF}.filtered
-diff /tmp/mrtg.cfg.filtered ${TMPCONF}.filtered &gt;/dev/null
-DIFF=$?
+<span class="c1"># Remove comments and date/time stamps for before comparing for differences</span>
+cat /etc/mrtg.cfg    <span class="p">|</span> egrep -v <span class="s1">&#39;^#.*$&#39;</span> <span class="p">|</span> <span class="se">\</span>
+    egrep -v <span class="s1">&#39;^[ ]+Based on configuration last generated by.*$&#39;</span> &gt;/tmp/mrtg.cfg.filtered
+cat <span class="nv">$TMPCONF</span>         <span class="p">|</span> egrep -v <span class="s1">&#39;^#.*$&#39;</span> <span class="p">|</span> <span class="se">\</span>
+    egrep -v <span class="s1">&#39;^[ ]+Based on configuration last generated by.*$&#39;</span> &gt;<span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered
+diff /tmp/mrtg.cfg.filtered <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered &gt;/dev/null
+<span class="nv">DIFF</span><span class="o">=</span><span class="nv">$?</span>
 
 rm /tmp/mrtg.cfg.filtered
-rm ${TMPCONF}.filtered
+rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered
 
-if [[ $DIFF -eq 0 ]]; then
-    rm ${TMPCONF}
-    exit 0
-fi
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$DIFF</span> -eq <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+    rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>
+    <span class="nb">exit</span> <span class="m">0</span>
+<span class="k">fi</span>
 
-/usr/bin/mrtg --check ${TMPCONF} &amp;&amp; /bin/mv ${TMPCONF} /etc/mrtg.cfg</code></pre>
+/usr/bin/mrtg --check <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> <span class="o">&amp;&amp;</span> /bin/mv <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> /etc/mrtg.cfg
+</code></pre></div>
 
 <p>If your MRTG collector is on a different server, you could use a script such as the following to safely update MRTG via <a href="../../features/api/">IXP Manager's API</a>.</p>
-<pre class="highlight"><code class="language-sh">#! /usr/bin/env bash
+<div class="highlight"><pre><span></span><code><span class="ch">#! /usr/bin/env bash</span>
 
-# Temporary configuration file:
-TMPCONF=/etc/mrtg.cfg.$$
+<span class="c1"># Temporary configuration file:</span>
+<span class="nv">TMPCONF</span><span class="o">=</span>/etc/mrtg.cfg.<span class="nv">$$</span>
 
-# Download the configuration via the API. Be sure to replace 'your_api_key'
-# with your actual API key (see API documentation).
-curl --fail -s -H "X-IXP-Manager-API-Key: your_api_key" \
-    https://ixp.example.com/api/v4/grapher/mrtg-config &gt;${TMPCONF}
+<span class="c1"># Download the configuration via the API. Be sure to replace &#39;your_api_key&#39;</span>
+<span class="c1"># with your actual API key (see API documentation).</span>
+curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: your_api_key&quot;</span> <span class="se">\</span>
+    https://ixp.example.com/api/v4/grapher/mrtg-config &gt;<span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>
 
-if [[ $? -ne 0 ]]; then
-    echo "WARNING: COULD NOT FETCH UP TO DATE MRTG CONFIGURATION!"
-    exit -1
-fi
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;WARNING: COULD NOT FETCH UP TO DATE MRTG CONFIGURATION!&quot;</span>
+    <span class="nb">exit</span> -1
+<span class="k">fi</span>
 
-cd /etc
+<span class="nb">cd</span> /etc
 
-# Remove comments and date/time stamps for before comparing for differences
-cat mrtg.cfg    | egrep -v '^#.*$' | \
-    egrep -v '^[ ]+Based on configuration last generated by.*$' &gt;mrtg.cfg.filtered
-cat ${TMPCONF}  | egrep -v '^#.*$' | \
-    egrep -v '^[ ]+Based on configuration last generated by.*$' &gt;${TMPCONF}.filtered
-diff mrtg.cfg.filtered ${TMPCONF}.filtered &gt;/dev/null
-DIFF=$?
+<span class="c1"># Remove comments and date/time stamps for before comparing for differences</span>
+cat mrtg.cfg    <span class="p">|</span> egrep -v <span class="s1">&#39;^#.*$&#39;</span> <span class="p">|</span> <span class="se">\</span>
+    egrep -v <span class="s1">&#39;^[ ]+Based on configuration last generated by.*$&#39;</span> &gt;mrtg.cfg.filtered
+cat <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>  <span class="p">|</span> egrep -v <span class="s1">&#39;^#.*$&#39;</span> <span class="p">|</span> <span class="se">\</span>
+    egrep -v <span class="s1">&#39;^[ ]+Based on configuration last generated by.*$&#39;</span> &gt;<span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered
+diff mrtg.cfg.filtered <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered &gt;/dev/null
+<span class="nv">DIFF</span><span class="o">=</span><span class="nv">$?</span>
 
 rm mrtg.cfg.filtered
-rm ${TMPCONF}.filtered
+rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>.filtered
 
-if [[ $DIFF -eq 0 ]]; then
-    rm ${TMPCONF}
-    exit 0
-fi
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$DIFF</span> -eq <span class="m">0</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+    rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>
+    <span class="nb">exit</span> <span class="m">0</span>
+<span class="k">fi</span>
 
-/usr/bin/mrtg --check ${TMPCONF} &amp;&amp; /bin/mv ${TMPCONF} /etc/mrtg.cfg</code></pre>
+/usr/bin/mrtg --check <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> <span class="o">&amp;&amp;</span> /bin/mv <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> /etc/mrtg.cfg
+</code></pre></div>
 
 <p>Note that the MRTG configuration that IXP Manager generates instructs MRTG to run as a daemon. On FreeBSD, MRTG comes with an initd script by default and you can kick it off on boot with something like the following in <code>/etc/rc.conf</code>:</p>
-<pre class="highlight"><code>mrtg_daemon_enable="YES"
-mrtg_daemon_config="/etc/mrtg.cfg"</code></pre>
+<div class="highlight"><pre><span></span><code>mrtg_daemon_enable=&quot;YES&quot;
+mrtg_daemon_config=&quot;/etc/mrtg.cfg&quot;
+</code></pre></div>
 
 <p>On Ubuntu it does not but it comes with a <code>/etc/cron.d/mrtg</code> file which kicks it off every five minutes (it will daemonize the first time and further cron jobs will have no effect).</p>
 <p>Marco d'Itri provided Ubuntu / Debian compatible systemd configurations for mrtg which you can find detailed in <a href="https://github.com/inex/IXP-Manager/issues/627">this Github issue</a>.</p>
 <p>To start and stop it via the older initd scripts on Ubuntu, use an initd script such as this: <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/mrtg/ubuntu-mrtg-initd">ubuntu-mrtg-initd</a>  (<a href="http://www.iceflatline.com/2009/08/how-to-install-and-configure-mrtg-on-ubuntu-server/">source</a>):</p>
-<pre class="highlight"><code>cp ${IXPROOT}/tools/runtime/mrtg/ubuntu-mrtg-initd /etc/init.d/mrtg
+<div class="highlight"><pre><span></span><code>cp ${IXPROOT}/tools/runtime/mrtg/ubuntu-mrtg-initd /etc/init.d/mrtg
 chmod +x /etc/init.d/mrtg
 update-rc.d mrtg defaults
-/etc/init.d/mrtg start</code></pre>
+/etc/init.d/mrtg start
+</code></pre></div>
 
 <p>And disable the default cron job for MRTG on Ubuntu (<code>/etc/cron.d/mrtg</code>).</p>
 <h2 id="customising-the-configuration">Customising the Configuration<a class="headerlink" href="#customising-the-configuration" title="Permanent link"></a></h2>
@@ -412,12 +1653,13 @@ update-rc.d mrtg defaults
 <h2 id="inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails<a class="headerlink" href="#inserting-traffic-data-into-the-database-reporting-emails" title="Permanent link"></a></h2>
 <p>The MRTG backend inserts daily summaries into MySQL for reporting. See the <code>traffic_daily</code> and <code>traffic_daily_phys_ints</code> database tables for this. Essentially, there is a row per day per customer in the first and a row per physical interface in the second for traffic types <em>bits, discards, errors, broadcasts and packets</em>. Each row has a daily, weekly, monthly and yearly value for average, max and total.</p>
 <p>From IXP Manager &gt;= v5.0, the <a href="../../features/cronjobs/">task scheduler</a> handles collecting and storing <em>yesterday's</em> data. If you are using an older version, create a cron job such as:</p>
-<pre class="highlight"><code>0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
-5 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-pi-stats-to-db</code></pre>
+<div class="highlight"><pre><span></span><code>0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
+5 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-pi-stats-to-db
+</code></pre></div>
 
 <p>In the IXP Manager application, the <code>traffic_daily</code> data powers the <em>League Table</em> function and the <code>traffic_daily_phys_int</code> data powers the <em>Utilisation</em> (since v5.5.0) function - both on the left hand menu.</p>
 <p>This data is also used to send email reports / notifications of various traffic events. A sample crontab for this would look like the following:</p>
-<pre class="highlight"><code>0 4   * * *   www-data        /srv/ixpmanager/artisan grapher:email-traffic-deltas    \
+<div class="highlight"><pre><span></span><code>0 4   * * *   www-data        /srv/ixpmanager/artisan grapher:email-traffic-deltas    \
                                 --stddev=1.5 -v user1@example.com,user2@example.com
 
 30 10 * * tue www-data        /srv/ixpmanager/artisan grapher:email-port-utilisations \
@@ -427,7 +1669,8 @@ update-rc.d mrtg defaults
                                 --discards user1@example.com,user2@example.com
 
 32 10 * * *   www-data        /srv/ixpmanager/artisan grapher:email-ports-with-counts \
-                                --errors user1@example.com,user2@example.com</code></pre>
+                                --errors user1@example.com,user2@example.com
+</code></pre></div>
 
 <p>Which, in the order above, do:</p>
 <ol>
@@ -472,61 +1715,89 @@ update-rc.d mrtg defaults
 <li>Click <em>Include Inactive</em> on the top right heading.</li>
 <li>Find the switch where the physical interface is and ensure <em>Active</em> is checked.</li>
 </ol>
+                
               
-            </div>
+              
+                
+
+
+              
+            </article>
           </div>
-          <footer>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../sflow/" class="btn btn-neutral float-right" title="Backend: sflow">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../api/" class="btn btn-neutral" title="API &amp; Permissions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../api/" title="API & Permissions" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                API &amp; Permissions
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../sflow/" title="Backend: sflow" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Backend: sflow
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     </div>
   
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
-      <p>&copy; 2017-2020, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
-    
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            &copy; 2017-2020, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
   </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
-      
-        <span><a href="../api/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../sflow/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
-</div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
-
-</body>
+    
+  </body>
 </html>

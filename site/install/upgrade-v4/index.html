@@ -1,251 +1,1370 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <link rel="canonical" href="https://docs.ixpmanager.org/install/upgrade-v4/">
-  <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Upgrading IXP Manager - V4.x - IXP Manager Documentation</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Upgrading IXP Manager - V4.x";
-    var mkdocs_page_input_path = "install/upgrade-v4.md";
-    var mkdocs_page_url = "/install/upgrade-v4/";
-  </script>
-  
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
-</head>
 
-<body class="wy-body-for-nav" role="document">
 
-  <div class="wy-grid-for-nav">
-
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://docs.ixpmanager.org/install/upgrade-v4/">
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Upgrading IXP Manager - V4.x - IXP Manager Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#upgrading-ixp-manager-v4x" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-announce">
+          <div class="md-announce__inner md-grid md-typeset">
+            
+  Test
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Installation</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../automated-script/">Automated Script</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../maint-mode/">Maintenance Mode</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../manually/">Manual Installation</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../upgrading/">Upgrading</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../runtime/">Runtime Configuration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../next-steps/">Post-Install Steps</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">General Usage</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/operational-notes/">Operational Notes</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/authentication/">Authentication</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/contacts/">Contacts</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customers/">Customers / Members</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-notes/">Customer Notes</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-tags/">Customer Tags</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/interfaces/">Customer Connections</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/users/">Users</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/switches/">Switches</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/email/">Email</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Features</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/api/">API</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/as112/">AS112</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/console-servers/">Console Servers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/cronjobs/">Cron Jobs</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/patch-panels/">Cross Connects</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/dns-arpa/">DNS / ARPA</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/docstore/">Document Store</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/introduction/">Grapher</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/helpdesk/">Helpdesk Integration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/irrdb/">IRRDB</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/ixf-export/">IX-F Member Export</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/looking-glass/">Looking Glass</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/layer2-addresses/">MAC Addresses</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/manrs/">MANRS</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/member-export/">Member Export</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/mailing-lists/">Mailing List Management</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/nagios/">Nagios</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/patch-panels/">Patch Panels</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/peering-manager/">Peering Manager</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/peering-matrix/">Peering Matrix</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/peeringdb/">PeeringDB</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/rir-objects/">RIR Objects</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/reseller/">Reseller Functionality</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/route-collectors/">Route Collectors</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/route-servers/">Route Servers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/routers/">Router Configuration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/rpki/">RPKI</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/skinning/">Skinning</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/smokeping/">Smokeping</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/static-content/">Static Content</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/tacacs/">TACACS</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Grapher</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/introduction/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/api/">API &amp; Permissions</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/mrtg/">Backend: MRTG</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/sflow/">Backend: sflow</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/smokeping/">Backend: Smokeping</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Sflow Support</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/sflow/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/sflow-p2p/">Peer-to-peer Graphs</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Development</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/introduction/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/api/">API</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/authentication/">Authentication</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/ci/">Continuous Integration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/cla/">Contributer License Agreement</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docker/">Docker</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docs/">Documentation</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/forms/">Forms</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/frontend-crud/">Frontend CRUD</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/grapher/">Grapher</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/helpders/">Helpers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/looking-glass/">Looking Glass</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/release-procedure/">Release Procedure</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/telescope/">Telescope</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/users/">Users</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/vagrant/">Vagrant</a>
-                    </li>
-                </ul>
+          </div>
+        </aside>
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://docs.ixpmanager.org" title="IXP Manager Documentation" class="md-header-nav__button md-logo" aria-label="IXP Manager Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            IXP Manager Documentation
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Upgrading IXP Manager - V4.x
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
       </div>
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">IXP Manager Documentation</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
+  </div>
+</div>
     
-      
     
-    <li>Upgrading IXP Manager - V4.x</li>
-    <li class="wy-breadcrumbs-aside">
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/inex/ixp-manager-docs-md/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/install/upgrade-v4.md"
-          class="icon icon-github"> Edit on GitHub</a>
+        
+      
+      
+        
+          
+
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link md-tabs__link--active">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../" class="md-tabs__link">
+          Installation
+        </a>
       
     </li>
-  </ul>
   
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../usage/operational-notes/" class="md-tabs__link">
+          General Usage
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../features/api/" class="md-tabs__link">
+          Features
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../grapher/introduction/" class="md-tabs__link">
+          Grapher
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../features/sflow/" class="md-tabs__link">
+          Sflow Support
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../dev/introduction/" class="md-tabs__link">
+          Development
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://docs.ixpmanager.org" title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    IXP Manager Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/inex/ixp-manager-docs-md/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Installation
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Installation" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Installation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../automated-script/" title="Automated Script" class="md-nav__link">
+      Automated Script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../maint-mode/" title="Maintenance Mode" class="md-nav__link">
+      Maintenance Mode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../manually/" title="Manual Installation" class="md-nav__link">
+      Manual Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../upgrading/" title="Upgrading" class="md-nav__link">
+      Upgrading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runtime/" title="Runtime Configuration" class="md-nav__link">
+      Runtime Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../next-steps/" title="Post-Install Steps" class="md-nav__link">
+      Post-Install Steps
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      General Usage
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="General Usage" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        General Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/operational-notes/" title="Operational Notes" class="md-nav__link">
+      Operational Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/authentication/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/contacts/" title="Contacts" class="md-nav__link">
+      Contacts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customers/" title="Customers / Members" class="md-nav__link">
+      Customers / Members
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customer-notes/" title="Customer Notes" class="md-nav__link">
+      Customer Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customer-tags/" title="Customer Tags" class="md-nav__link">
+      Customer Tags
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/interfaces/" title="Customer Connections" class="md-nav__link">
+      Customer Connections
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/users/" title="Users" class="md-nav__link">
+      Users
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/switches/" title="Switches" class="md-nav__link">
+      Switches
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/email/" title="Email" class="md-nav__link">
+      Email
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Features
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Features" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/api/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/as112/" title="AS112" class="md-nav__link">
+      AS112
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/console-servers/" title="Console Servers" class="md-nav__link">
+      Console Servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/cronjobs/" title="Cron Jobs" class="md-nav__link">
+      Cron Jobs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/patch-panels/" title="Cross Connects" class="md-nav__link">
+      Cross Connects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/dns-arpa/" title="DNS / ARPA" class="md-nav__link">
+      DNS / ARPA
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/docstore/" title="Document Store" class="md-nav__link">
+      Document Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/introduction/" title="Grapher" class="md-nav__link">
+      Grapher
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/helpdesk/" title="Helpdesk Integration" class="md-nav__link">
+      Helpdesk Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/irrdb/" title="IRRDB" class="md-nav__link">
+      IRRDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/ixf-export/" title="IX-F Member Export" class="md-nav__link">
+      IX-F Member Export
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/looking-glass/" title="Looking Glass" class="md-nav__link">
+      Looking Glass
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/layer2-addresses/" title="MAC Addresses" class="md-nav__link">
+      MAC Addresses
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/manrs/" title="MANRS" class="md-nav__link">
+      MANRS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/member-export/" title="Member Export" class="md-nav__link">
+      Member Export
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/mailing-lists/" title="Mailing List Management" class="md-nav__link">
+      Mailing List Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/nagios/" title="Nagios" class="md-nav__link">
+      Nagios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/patch-panels/" title="Patch Panels" class="md-nav__link">
+      Patch Panels
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/peering-manager/" title="Peering Manager" class="md-nav__link">
+      Peering Manager
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/peering-matrix/" title="Peering Matrix" class="md-nav__link">
+      Peering Matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/peeringdb/" title="PeeringDB" class="md-nav__link">
+      PeeringDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/rir-objects/" title="RIR Objects" class="md-nav__link">
+      RIR Objects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/reseller/" title="Reseller Functionality" class="md-nav__link">
+      Reseller Functionality
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/route-collectors/" title="Route Collectors" class="md-nav__link">
+      Route Collectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/route-servers/" title="Route Servers" class="md-nav__link">
+      Route Servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/routers/" title="Router Configuration" class="md-nav__link">
+      Router Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/rpki/" title="RPKI" class="md-nav__link">
+      RPKI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/skinning/" title="Skinning" class="md-nav__link">
+      Skinning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/smokeping/" title="Smokeping" class="md-nav__link">
+      Smokeping
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/static-content/" title="Static Content" class="md-nav__link">
+      Static Content
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/tacacs/" title="TACACS" class="md-nav__link">
+      TACACS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Grapher
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Grapher" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Grapher
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/api/" title="API & Permissions" class="md-nav__link">
+      API &amp; Permissions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/mrtg/" title="Backend: MRTG" class="md-nav__link">
+      Backend: MRTG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/sflow/" title="Backend: sflow" class="md-nav__link">
+      Backend: sflow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/smokeping/" title="Backend: Smokeping" class="md-nav__link">
+      Backend: Smokeping
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Sflow Support
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Sflow Support" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Sflow Support
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/sflow/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/sflow-p2p/" title="Peer-to-peer Graphs" class="md-nav__link">
+      Peer-to-peer Graphs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Development
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Development" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/api/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/authentication/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/ci/" title="Continuous Integration" class="md-nav__link">
+      Continuous Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/cla/" title="Contributer License Agreement" class="md-nav__link">
+      Contributer License Agreement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/docker/" title="Docker" class="md-nav__link">
+      Docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/docs/" title="Documentation" class="md-nav__link">
+      Documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/forms/" title="Forms" class="md-nav__link">
+      Forms
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/frontend-crud/" title="Frontend CRUD" class="md-nav__link">
+      Frontend CRUD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/grapher/" title="Grapher" class="md-nav__link">
+      Grapher
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/helpders/" title="Helpers" class="md-nav__link">
+      Helpers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/looking-glass/" title="Looking Glass" class="md-nav__link">
+      Looking Glass
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/release-procedure/" title="Release Procedure" class="md-nav__link">
+      Release Procedure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/telescope/" title="Telescope" class="md-nav__link">
+      Telescope
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/users/" title="Users" class="md-nav__link">
+      Users
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/vagrant/" title="Vagrant" class="md-nav__link">
+      Vagrant
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#updating-bower-dependencies" class="md-nav__link">
+    Updating Bower Dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-composer-dependencies" class="md-nav__link">
+    Updating Composer Dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correcting-database-issues-verifying-your-schema" class="md-nav__link">
+    Correcting Database Issues / Verifying Your Schema
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
               
+                
+                  <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/install/upgrade-v4.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
                 <h1 id="upgrading-ixp-manager-v4x">Upgrading IXP Manager - V4.x<a class="headerlink" href="#upgrading-ixp-manager-v4x" title="Permanent link"></a></h1>
 <blockquote>
 <p>These upgrade instructions relate to upgrading when you are already using IXP Manager v4.x.</p>
@@ -254,75 +1373,84 @@
 <p>You will find standard instructions for upgrading IXP Manager below. Note that the release notes for each version may contain specific upgrade instructions including schema changes.</p>
 <p>If you have missed some versions, the most sensible approach is to upgrade to each minor release in sequence (4.5.0 -&gt; 4.6.0 -&gt; 4.7.0 -&gt; ...) and then to the latest patch version in the latest minor version.</p>
 <p>In the below, we assume the following installation directory - alter this to suit your own situation:</p>
-<pre class="highlight"><code>IXPROOT=/srv/ixpmanager</code></pre>
+<div class="highlight"><pre><span></span><code>IXPROOT=/srv/ixpmanager
+</code></pre></div>
 
 <p>The general process is:</p>
 <ol>
 <li>
 <p>Set up some variables and ensure directory permissions are okay:</p>
-<pre class="highlight"><code class="language-sh"># set this to your IXP Manager installation directory
-IXPROOT=/srv/ixpmanager
+<div class="highlight"><pre><span></span><code><span class="c1"># set this to your IXP Manager installation directory</span>
+<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
 
-# fix as appropriate to your operating system
-MY_WWW_USER=www-data
+<span class="c1"># fix as appropriate to your operating system</span>
+<span class="nv">MY_WWW_USER</span><span class="o">=</span>www-data
 
-# ensure the web server daemon user can write to necessary directories:
-chown -R $MY_WWW_USER: $IXPROOT/public/bower_components ${IXPROOT}/bower.json \
-    ${IXPROOT}/storage $IXPROOT/vendor
-chmod -R u+rwX $IXPROOT/public/bower_components ${IXPROOT}/bower.json         \
-    ${IXPROOT}/storage $IXPROOT/vendor</code></pre>
+<span class="c1"># ensure the web server daemon user can write to necessary directories:</span>
+chown -R <span class="nv">$MY_WWW_USER</span>: <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json <span class="se">\</span>
+    <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage <span class="nv">$IXPROOT</span>/vendor
+chmod -R u+rwX <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json         <span class="se">\</span>
+    <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage <span class="nv">$IXPROOT</span>/vendor
+</code></pre></div>
 
 </li>
 <li>
 <p>Enable maintenance mode:</p>
-<pre class="highlight"><code class="language-sh">cd $IXPROOT
-./artisan down</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
+./artisan down
+</code></pre></div>
 
 </li>
 <li>
 <p>Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v4.</p>
-<pre class="highlight"><code class="language-sh"># (assuming we're still in $IXPROOT)
-# pull the latest code
+<div class="highlight"><pre><span></span><code><span class="c1"># (assuming we&#39;re still in $IXPROOT)</span>
+<span class="c1"># pull the latest code</span>
 git fetch
-# check out the version you are upgrading to
-git checkout v4.x.y</code></pre>
+<span class="c1"># check out the version you are upgrading to</span>
+git checkout v4.x.y
+</code></pre></div>
 
 </li>
 <li>
 <p>Install latest required libraries from composer <a href="#updating-composer-dependancies"><strong>(see notes below)</strong></a>:</p>
-<pre class="highlight"><code class="language-sh"># this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.
-sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage &amp;&amp; cd ${IXPROOT} &amp;&amp; php ./composer.phar install --no-dev --prefer-dist"</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.</span>
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; php ./composer.phar install --no-dev --prefer-dist&quot;</span>
+</code></pre></div>
 
 </li>
 <li>
 <p>Install latest frontend dependencies <a href="#updating-bower-dependancies"><strong>(see notes below)</strong></a>:</p>
-<pre class="highlight"><code class="language-sh"># if asked to chose a jquery version, chose the latest / highest version offered
-sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage &amp;&amp; cd ${IXPROOT} &amp;&amp; \
-    bower --config.interactive=false -f prune"
-sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage &amp;&amp; cd ${IXPROOT} &amp;&amp; \
-    bower --config.interactive=false -f update"</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># if asked to chose a jquery version, chose the latest / highest version offered</span>
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; \</span>
+<span class="s2">    bower --config.interactive=false -f prune&quot;</span>
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; \</span>
+<span class="s2">    bower --config.interactive=false -f update&quot;</span>
+</code></pre></div>
 
 </li>
 <li>
 <p>Restart Memcached and clear the cache. Do not forget / skip this step!</p>
-<pre class="highlight"><code class="language-sh"># (assuming we're still in $IXPROOT)
+<div class="highlight"><pre><span></span><code><span class="c1"># (assuming we&#39;re still in $IXPROOT)</span>
 systemctl restart memcached.service
-./artisan cache:clear</code></pre>
+./artisan cache:clear
+</code></pre></div>
 
 </li>
 <li>
 <p>Update the database schema:</p>
-<pre class="highlight"><code class="language-sh"># (assuming we're still in $IXPROOT)
-# review / sanity check first:
+<div class="highlight"><pre><span></span><code><span class="c1"># (assuming we&#39;re still in $IXPROOT)</span>
+<span class="c1"># review / sanity check first:</span>
 ./artisan doctrine:schema:update --sql
-# If in doubt, take a mysqldump of your database first.
-# migrate:
-./artisan doctrine:schema:update --force</code></pre>
+<span class="c1"># If in doubt, take a mysqldump of your database first.</span>
+<span class="c1"># migrate:</span>
+./artisan doctrine:schema:update --force
+</code></pre></div>
 
 </li>
 <li>
 <p>Restart Memcached (yes, again). Do not forget / skip this step!</p>
-<pre class="highlight"><code class="language-sh">systemctl restart memcached.service</code></pre>
+<div class="highlight"><pre><span></span><code>systemctl restart memcached.service
+</code></pre></div>
 
 </li>
 <li>
@@ -330,139 +1458,157 @@ systemctl restart memcached.service
 </li>
 <li>
 <p>Ensure file permissions are correct.</p>
-<pre class="highlight"><code class="language-sh">chown -R $MY_WWW_USER: $IXPROOT/public/bower_components ${IXPROOT}/bower.json \
-    ${IXPROOT}/storage $IXPROOT/vendor $IXPROOT/var $IXPROOT/bootstrap/cache
-chmod -R u+rwX $IXPROOT/public/bower_components ${IXPROOT}/bower.json         \
-    ${IXPROOT}/storage $IXPROOT/vendor $IXPROOT/var $IXPROOT/bootstrap/cache</code></pre>
+<div class="highlight"><pre><span></span><code>chown -R <span class="nv">$MY_WWW_USER</span>: <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json <span class="se">\</span>
+    <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage <span class="nv">$IXPROOT</span>/vendor <span class="nv">$IXPROOT</span>/var <span class="nv">$IXPROOT</span>/bootstrap/cache
+chmod -R u+rwX <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json         <span class="se">\</span>
+    <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage <span class="nv">$IXPROOT</span>/vendor <span class="nv">$IXPROOT</span>/var <span class="nv">$IXPROOT</span>/bootstrap/cache
+</code></pre></div>
 
 </li>
 <li>
 <p>For IXP Manager v4.9 (including upgrading to v4.9) and later:</p>
-<pre class="highlight"><code class="language-sh">${IXPROOT}/artisan migrate</code></pre>
+<div class="highlight"><pre><span></span><code><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan migrate
+</code></pre></div>
 
 </li>
 <li>
 <p>Clear out all caches:</p>
-<pre class="highlight"><code class="language-sh">${IXPROOT}/artisan cache:clear
-${IXPROOT}/artisan config:clear
-${IXPROOT}/artisan doctrine:clear:metadata:cache
-${IXPROOT}/artisan doctrine:clear:query:cache
-${IXPROOT}/artisan doctrine:clear:result:cache
-${IXPROOT}/artisan route:clear
-${IXPROOT}/artisan view:clear</code></pre>
+<div class="highlight"><pre><span></span><code><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan cache:clear
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan config:clear
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan doctrine:clear:metadata:cache
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan doctrine:clear:query:cache
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan doctrine:clear:result:cache
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan route:clear
+<span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan view:clear
+</code></pre></div>
 
 </li>
 <li>
 <p>Disable maintenance mode:</p>
-<p><pre class="highlight"><code class="language-sh"># (assuming we're still in $IXPROOT)
-./artisan up</code></pre>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># (assuming we&#39;re still in $IXPROOT)</span>
+./artisan up
+</code></pre></div>
 14. Recreate SQL views</p>
 <p>Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them:</p>
-<pre class="highlight"><code class="language-sh">mysql -u ixp -p ixp &lt; $IXPROOT/tools/sql/views.sql</code></pre>
+<div class="highlight"><pre><span></span><code>mysql -u ixp -p ixp &lt; <span class="nv">$IXPROOT</span>/tools/sql/views.sql
+</code></pre></div>
 
 </li>
 </ol>
 <h2 id="updating-bower-dependencies">Updating Bower Dependencies<a class="headerlink" href="#updating-bower-dependencies" title="Permanent link"></a></h2>
 <p>It is not advisable to run bower as root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the bower commands themselves will be run as <code>$MY_WWW_USER</code>):</p>
-<pre class="highlight"><code class="language-sh"># set this to your IXP Manager installation directory
-IXPROOT=/srv/ixpmanager
+<div class="highlight"><pre><span></span><code><span class="c1"># set this to your IXP Manager installation directory</span>
+<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
 
-MY_WWW_USER=www-data  # fix as appropriate to your operating system
+<span class="nv">MY_WWW_USER</span><span class="o">=</span>www-data  <span class="c1"># fix as appropriate to your operating system</span>
 
-# ensure www-data can write to bower:
-chown -R $MY_WWW_USER: $IXPROOT/public/bower_components ${IXPROOT}/bower.json ${IXPROOT}/storage
-chmod -R u+rwX $IXPROOT/public/bower_components ${IXPROOT}/bower.json ${IXPROOT}/storage
+<span class="c1"># ensure www-data can write to bower:</span>
+chown -R <span class="nv">$MY_WWW_USER</span>: <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage
+chmod -R u+rwX <span class="nv">$IXPROOT</span>/public/bower_components <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/bower.json <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage
 
-# update bower
-sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage &amp;&amp; cd ${IXPROOT} &amp;&amp; bower --config.interactive=false -f update"</code></pre>
+<span class="c1"># update bower</span>
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; bower --config.interactive=false -f update&quot;</span>
+</code></pre></div>
 
 <p>The above command is structured as it is because typically the <code>www-data</code> user has a <code>nologin</code> shell specified.</p>
 <h2 id="updating-composer-dependencies">Updating Composer Dependencies<a class="headerlink" href="#updating-composer-dependencies" title="Permanent link"></a></h2>
 <p>This is similar to the bower section above so please read that if you have not already.</p>
 <p>Note that we assume here what you have installed Composer (see: https://getcomposer.org/ ) in the <code>${IXPROOT}</code> directory as <code>composer.phar</code>. This is where and how the IXP Manager installation scripts and documentation instructions install it.</p>
 <p>The following options would work on Ubuntu (run these as root and the composer commands themselves will be run as <code>$MY_WWW_USER</code>):</p>
-<pre class="highlight"><code class="language-sh"># set this to your IXP Manager installation directory
-IXPROOT=/srv/ixpmanager
+<div class="highlight"><pre><span></span><code><span class="c1"># set this to your IXP Manager installation directory</span>
+<span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
 
-MY_WWW_USER=www-data  # fix as appropriate to your operating system
+<span class="nv">MY_WWW_USER</span><span class="o">=</span>www-data  <span class="c1"># fix as appropriate to your operating system</span>
 
-# ensure www-data can write to vendor:
-chown -R $MY_WWW_USER: $IXPROOT/vendor ${IXPROOT}/storage
-chmod -R u+rwX $IXPROOT/vendor ${IXPROOT}/storage
+<span class="c1"># ensure www-data can write to vendor:</span>
+chown -R <span class="nv">$MY_WWW_USER</span>: <span class="nv">$IXPROOT</span>/vendor <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage
+chmod -R u+rwX <span class="nv">$IXPROOT</span>/vendor <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/storage
 
-# update composer
-sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage &amp;&amp; cd ${IXPROOT} &amp;&amp; php ./composer.phar install"</code></pre>
+<span class="c1"># update composer</span>
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; php ./composer.phar install&quot;</span>
+</code></pre></div>
 
 <p>NB: If composer is not managed by your package management system, you should keep it up to date via the following (using the same definitions from the composer update example above):</p>
-<pre class="highlight"><code class="language-sh">chown -R $MY_WWW_USER: ${IXPROOT}/composer.phar
-chmod -R u+rwx ${IXPROOT}/composer.phar
-sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage &amp;&amp; cd ${IXPROOT} &amp;&amp; php ./composer.phar selfupdate"</code></pre>
+<div class="highlight"><pre><span></span><code>chown -R <span class="nv">$MY_WWW_USER</span>: <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/composer.phar
+chmod -R u+rwx <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/composer.phar
+sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; php ./composer.phar selfupdate&quot;</span>
+</code></pre></div>
 
 <h2 id="correcting-database-issues-verifying-your-schema">Correcting Database Issues / Verifying Your Schema<a class="headerlink" href="#correcting-database-issues-verifying-your-schema" title="Permanent link"></a></h2>
 <p>Because of the manual process of database updates, it is possible your database schema may fall out of sync.</p>
 <p>If you are having issues, first and foremost, restart Memcached. Doctrine2 caches entities and schema information in Memcached so, after an upgrade, you must restart Memcached.</p>
 <p>You can verify and update your schema using the <code>artisan</code> script. The first action should be validation - here is a working example with no database issues:</p>
-<pre class="highlight"><code>cd $IXPROOT
+<div class="highlight"><pre><span></span><code>cd $IXPROOT
 ./artisan doctrine:schema:validate
 
 Validating for default entity manager...
 [Mapping]  OK - The mapping files are correct.
-[Database] OK - The database schema is in sync with the mapping files.</code></pre>
+[Database] OK - The database schema is in sync with the mapping files.
+</code></pre></div>
 
 <p>If there are issues, you can use the following to show what SQL commands are required to bring your schema into line:</p>
-<pre class="highlight"><code>./artisan doctrine:schema:update --sql</code></pre>
+<div class="highlight"><pre><span></span><code>./artisan doctrine:schema:update --sql
+</code></pre></div>
 
 <p>And you can let Doctrine make the changes for you via:</p>
-<pre class="highlight"><code>./artisan doctrine:schema:update --force</code></pre>
+<div class="highlight"><pre><span></span><code>./artisan doctrine:schema:update --force
+</code></pre></div>
 
 <p>Doctrine2 maintains the entities, proxies and repository classes. Ideally you should never need to do the following on a production installation - as we maintain these files with Git - but if you're developing / testing IXP Manager, you may need to.</p>
 <p>The process for updating these files with schema changes / updates is:</p>
-<pre class="highlight"><code>cd $IXPROOT
+<div class="highlight"><pre><span></span><code>cd $IXPROOT
 systemctl restart memcached.service           # (or as appropriate for your system)
 ./artisan doctrine:generate:entities database
-./artisan doctrine:generate:proxies</code></pre>
+./artisan doctrine:generate:proxies
+</code></pre></div>
+                
               
-            </div>
+              
+                
+
+
+              
+            </article>
           </div>
-          <footer>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
   
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
-      <p>&copy; 2017-2020, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
-    
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            &copy; 2017-2020, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
   </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
-      
-      
-    </span>
-</div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
-
-</body>
+    
+  </body>
 </html>

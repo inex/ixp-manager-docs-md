@@ -6,6 +6,9 @@ Hopefully this document will point you in the right direction to help you start 
 
 ## Essential Steps - Set Up the IXP
 
+**We created a video tutorial demonstrating these steps.** You can find the [video here](https://www.youtube.com/watch?v=Cuox538kFZs) in our [YouTube channel](https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA). As always, [the full catalog of video tutorials is here](https://www.ixpmanager.org/support/tutorials).
+
+
 There are basic elements you need to add to IXP Manager which describe your IXP and are required for standard usage. Most of these actions can be found under the **IXP ADMIN ACTIONS** on the left hand side menu.
 
 **Remember:** most of the forms for adding and editing the following entities have context help on each input field via the green *Help* button.

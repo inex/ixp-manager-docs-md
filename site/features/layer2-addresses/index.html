@@ -1,279 +1,1534 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <link rel="canonical" href="https://docs.ixpmanager.org/features/layer2-addresses/">
-  <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>MAC Addresses - IXP Manager Documentation</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "MAC Addresses";
-    var mkdocs_page_input_path = "features/layer2-addresses.md";
-    var mkdocs_page_url = "/features/layer2-addresses/";
-  </script>
-  
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
-</head>
 
-<body class="wy-body-for-nav" role="document">
 
-  <div class="wy-grid-for-nav">
-
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://docs.ixpmanager.org/features/layer2-addresses/">
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>MAC Addresses - IXP Manager Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mac-addresses" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-announce">
+          <div class="md-announce__inner md-grid md-typeset">
+            
+  Test
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Installation</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/automated-script/">Automated Script</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/maint-mode/">Maintenance Mode</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/manually/">Manual Installation</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/upgrading/">Upgrading</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/runtime/">Runtime Configuration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../install/next-steps/">Post-Install Steps</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">General Usage</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/operational-notes/">Operational Notes</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/authentication/">Authentication</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/contacts/">Contacts</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customers/">Customers / Members</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-notes/">Customer Notes</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-tags/">Customer Tags</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/interfaces/">Customer Connections</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/users/">Users</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/switches/">Switches</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/email/">Email</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Features</span></p>
-                <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../api/">API</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../as112/">AS112</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../console-servers/">Console Servers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../cronjobs/">Cron Jobs</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../patch-panels/">Cross Connects</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../dns-arpa/">DNS / ARPA</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../docstore/">Document Store</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/introduction/">Grapher</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../helpdesk/">Helpdesk Integration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../irrdb/">IRRDB</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../ixf-export/">IX-F Member Export</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../looking-glass/">Looking Glass</a>
-                    </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">MAC Addresses</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#configured-addresses">Configured Addresses</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#listing-and-searching-existing-configured-mac-addresses">Listing and Searching Existing Configured MAC Addresses</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#adding-removing-layer2-addresses-tofrom-a-vlan-interface">Adding / Removing Layer2 Addresses to/from a VLAN Interface</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#extracting-addresses">Extracting Addresses</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#migrating-discovered-macs-to-configured-macs">Migrating Discovered MACs to Configured MACs</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#discovered-mac-addresses">Discovered MAC Addresses</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#oui-database">OUI Database</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#populating-and-updating-the-oui-database">Populating and Updating the OUI Database</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#end-user-access">End User Access</a>
-    </li>
-    </ul>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../manrs/">MANRS</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../member-export/">Member Export</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../mailing-lists/">Mailing List Management</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../nagios/">Nagios</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../patch-panels/">Patch Panels</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../peering-manager/">Peering Manager</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../peering-matrix/">Peering Matrix</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../peeringdb/">PeeringDB</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../rir-objects/">RIR Objects</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../reseller/">Reseller Functionality</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../route-collectors/">Route Collectors</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../route-servers/">Route Servers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../routers/">Router Configuration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../rpki/">RPKI</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../skinning/">Skinning</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/smokeping/">Smokeping</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../static-content/">Static Content</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../tacacs/">TACACS</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Grapher</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/introduction/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/api/">API &amp; Permissions</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/mrtg/">Backend: MRTG</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/sflow/">Backend: sflow</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/smokeping/">Backend: Smokeping</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Sflow Support</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../sflow/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../sflow-p2p/">Peer-to-peer Graphs</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Development</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/introduction/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/api/">API</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/authentication/">Authentication</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/ci/">Continuous Integration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/cla/">Contributer License Agreement</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docker/">Docker</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docs/">Documentation</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/forms/">Forms</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/frontend-crud/">Frontend CRUD</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/grapher/">Grapher</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/helpders/">Helpers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/looking-glass/">Looking Glass</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/release-procedure/">Release Procedure</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/telescope/">Telescope</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/users/">Users</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/vagrant/">Vagrant</a>
-                    </li>
-                </ul>
+          </div>
+        </aside>
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://docs.ixpmanager.org" title="IXP Manager Documentation" class="md-header-nav__button md-logo" aria-label="IXP Manager Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            IXP Manager Documentation
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              MAC Addresses
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
       </div>
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">IXP Manager Documentation</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
+  </div>
+</div>
     
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/inex/ixp-manager-docs-md/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
       
         
-          <li>Features &raquo;</li>
+      
+      
         
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
       
+        
+  <li class="md-tabs__item">
     
-    <li>MAC Addresses</li>
-    <li class="wy-breadcrumbs-aside">
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/layer2-addresses.md"
-          class="icon icon-github"> Edit on GitHub</a>
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../install/" class="md-tabs__link">
+          Installation
+        </a>
       
     </li>
-  </ul>
   
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../usage/operational-notes/" class="md-tabs__link">
+          General Usage
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../api/" class="md-tabs__link md-tabs__link--active">
+          Features
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../grapher/introduction/" class="md-tabs__link">
+          Grapher
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../sflow/" class="md-tabs__link">
+          Sflow Support
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../dev/introduction/" class="md-tabs__link">
+          Development
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://docs.ixpmanager.org" title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    IXP Manager Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/inex/ixp-manager-docs-md/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Installation
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Installation" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Installation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/automated-script/" title="Automated Script" class="md-nav__link">
+      Automated Script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/maint-mode/" title="Maintenance Mode" class="md-nav__link">
+      Maintenance Mode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/manually/" title="Manual Installation" class="md-nav__link">
+      Manual Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/upgrading/" title="Upgrading" class="md-nav__link">
+      Upgrading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/runtime/" title="Runtime Configuration" class="md-nav__link">
+      Runtime Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../install/next-steps/" title="Post-Install Steps" class="md-nav__link">
+      Post-Install Steps
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      General Usage
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="General Usage" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        General Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/operational-notes/" title="Operational Notes" class="md-nav__link">
+      Operational Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/authentication/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/contacts/" title="Contacts" class="md-nav__link">
+      Contacts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customers/" title="Customers / Members" class="md-nav__link">
+      Customers / Members
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customer-notes/" title="Customer Notes" class="md-nav__link">
+      Customer Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customer-tags/" title="Customer Tags" class="md-nav__link">
+      Customer Tags
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/interfaces/" title="Customer Connections" class="md-nav__link">
+      Customer Connections
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/users/" title="Users" class="md-nav__link">
+      Users
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/switches/" title="Switches" class="md-nav__link">
+      Switches
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/email/" title="Email" class="md-nav__link">
+      Email
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Features
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Features" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../api/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../as112/" title="AS112" class="md-nav__link">
+      AS112
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../console-servers/" title="Console Servers" class="md-nav__link">
+      Console Servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cronjobs/" title="Cron Jobs" class="md-nav__link">
+      Cron Jobs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../patch-panels/" title="Cross Connects" class="md-nav__link">
+      Cross Connects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dns-arpa/" title="DNS / ARPA" class="md-nav__link">
+      DNS / ARPA
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docstore/" title="Document Store" class="md-nav__link">
+      Document Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/introduction/" title="Grapher" class="md-nav__link">
+      Grapher
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../helpdesk/" title="Helpdesk Integration" class="md-nav__link">
+      Helpdesk Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../irrdb/" title="IRRDB" class="md-nav__link">
+      IRRDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ixf-export/" title="IX-F Member Export" class="md-nav__link">
+      IX-F Member Export
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../looking-glass/" title="Looking Glass" class="md-nav__link">
+      Looking Glass
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        MAC Addresses
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="MAC Addresses" class="md-nav__link md-nav__link--active">
+      MAC Addresses
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configured-addresses" class="md-nav__link">
+    Configured Addresses
+  </a>
+  
+    <nav class="md-nav" aria-label="Configured Addresses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listing-and-searching-existing-configured-mac-addresses" class="md-nav__link">
+    Listing and Searching Existing Configured MAC Addresses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-removing-layer2-addresses-tofrom-a-vlan-interface" class="md-nav__link">
+    Adding / Removing Layer2 Addresses to/from a VLAN Interface
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extracting-addresses" class="md-nav__link">
+    Extracting Addresses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrating-discovered-macs-to-configured-macs" class="md-nav__link">
+    Migrating Discovered MACs to Configured MACs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discovered-mac-addresses" class="md-nav__link">
+    Discovered MAC Addresses
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oui-database" class="md-nav__link">
+    OUI Database
+  </a>
+  
+    <nav class="md-nav" aria-label="OUI Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#populating-and-updating-the-oui-database" class="md-nav__link">
+    Populating and Updating the OUI Database
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-user-access" class="md-nav__link">
+    End User Access
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../manrs/" title="MANRS" class="md-nav__link">
+      MANRS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../member-export/" title="Member Export" class="md-nav__link">
+      Member Export
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mailing-lists/" title="Mailing List Management" class="md-nav__link">
+      Mailing List Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nagios/" title="Nagios" class="md-nav__link">
+      Nagios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../patch-panels/" title="Patch Panels" class="md-nav__link">
+      Patch Panels
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../peering-manager/" title="Peering Manager" class="md-nav__link">
+      Peering Manager
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../peering-matrix/" title="Peering Matrix" class="md-nav__link">
+      Peering Matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../peeringdb/" title="PeeringDB" class="md-nav__link">
+      PeeringDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rir-objects/" title="RIR Objects" class="md-nav__link">
+      RIR Objects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reseller/" title="Reseller Functionality" class="md-nav__link">
+      Reseller Functionality
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../route-collectors/" title="Route Collectors" class="md-nav__link">
+      Route Collectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../route-servers/" title="Route Servers" class="md-nav__link">
+      Route Servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../routers/" title="Router Configuration" class="md-nav__link">
+      Router Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rpki/" title="RPKI" class="md-nav__link">
+      RPKI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../skinning/" title="Skinning" class="md-nav__link">
+      Skinning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/smokeping/" title="Smokeping" class="md-nav__link">
+      Smokeping
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../static-content/" title="Static Content" class="md-nav__link">
+      Static Content
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tacacs/" title="TACACS" class="md-nav__link">
+      TACACS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Grapher
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Grapher" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Grapher
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/api/" title="API & Permissions" class="md-nav__link">
+      API &amp; Permissions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/mrtg/" title="Backend: MRTG" class="md-nav__link">
+      Backend: MRTG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/sflow/" title="Backend: sflow" class="md-nav__link">
+      Backend: sflow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/smokeping/" title="Backend: Smokeping" class="md-nav__link">
+      Backend: Smokeping
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Sflow Support
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Sflow Support" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Sflow Support
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sflow/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sflow-p2p/" title="Peer-to-peer Graphs" class="md-nav__link">
+      Peer-to-peer Graphs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Development
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Development" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/api/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/authentication/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/ci/" title="Continuous Integration" class="md-nav__link">
+      Continuous Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/cla/" title="Contributer License Agreement" class="md-nav__link">
+      Contributer License Agreement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/docker/" title="Docker" class="md-nav__link">
+      Docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/docs/" title="Documentation" class="md-nav__link">
+      Documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/forms/" title="Forms" class="md-nav__link">
+      Forms
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/frontend-crud/" title="Frontend CRUD" class="md-nav__link">
+      Frontend CRUD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/grapher/" title="Grapher" class="md-nav__link">
+      Grapher
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/helpders/" title="Helpers" class="md-nav__link">
+      Helpers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/looking-glass/" title="Looking Glass" class="md-nav__link">
+      Looking Glass
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/release-procedure/" title="Release Procedure" class="md-nav__link">
+      Release Procedure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/telescope/" title="Telescope" class="md-nav__link">
+      Telescope
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/users/" title="Users" class="md-nav__link">
+      Users
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/vagrant/" title="Vagrant" class="md-nav__link">
+      Vagrant
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configured-addresses" class="md-nav__link">
+    Configured Addresses
+  </a>
+  
+    <nav class="md-nav" aria-label="Configured Addresses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listing-and-searching-existing-configured-mac-addresses" class="md-nav__link">
+    Listing and Searching Existing Configured MAC Addresses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-removing-layer2-addresses-tofrom-a-vlan-interface" class="md-nav__link">
+    Adding / Removing Layer2 Addresses to/from a VLAN Interface
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extracting-addresses" class="md-nav__link">
+    Extracting Addresses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrating-discovered-macs-to-configured-macs" class="md-nav__link">
+    Migrating Discovered MACs to Configured MACs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discovered-mac-addresses" class="md-nav__link">
+    Discovered MAC Addresses
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oui-database" class="md-nav__link">
+    OUI Database
+  </a>
+  
+    <nav class="md-nav" aria-label="OUI Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#populating-and-updating-the-oui-database" class="md-nav__link">
+    Populating and Updating the OUI Database
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-user-access" class="md-nav__link">
+    End User Access
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
               
+                
+                  <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/features/layer2-addresses.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
                 <h1 id="mac-addresses">MAC Addresses<a class="headerlink" href="#mac-addresses" title="Permanent link"></a></h1>
 <p>IXP Manager has support for layer2 / MAC addresses in two ways:</p>
 <ol>
@@ -318,7 +1573,8 @@
 </ol>
 <h3 id="migrating-discovered-macs-to-configured-macs">Migrating Discovered MACs to Configured MACs<a class="headerlink" href="#migrating-discovered-macs-to-configured-macs" title="Permanent link"></a></h3>
 <p>INEX's use case was to switch from the <em>discovered MAC addresses</em> table to the <em>configured MAC addresses</em> table without the need to data fill all preexisting ~200 MACs. As such we have created an Artisan migration script which can be run with:</p>
-<pre class="highlight"><code class="language-sh">php $IXPROOT/artisan l2addresses:populate</code></pre>
+<div class="highlight"><pre><span></span><code>php <span class="nv">$IXPROOT</span>/artisan l2addresses:populate
+</code></pre></div>
 
 <p>You will be prompted as follows:</p>
 <blockquote>
@@ -336,33 +1592,36 @@
 </blockquote>
 <p>These should all be checked manually.</p>
 <p>A useful SQL command to double check the results for me was:</p>
-<pre class="highlight"><code class="language-sql">SELECT mac, COUNT(mac) AS c FROM l2address GROUP BY mac HAVING COUNT(mac) &gt; 1;</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="n">mac</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">mac</span><span class="p">)</span> <span class="k">AS</span> <span class="k">c</span> <span class="k">FROM</span> <span class="n">l2address</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">mac</span> <span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">mac</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
 
 <h2 id="discovered-mac-addresses">Discovered MAC Addresses<a class="headerlink" href="#discovered-mac-addresses" title="Permanent link"></a></h2>
 <p>This was the original functionality - a read-only table via an admin menu option called <em>MAC Addresses -&gt; Discovered Addresses</em> which lists entries from a database of MAC addresses which are sourced via a script from the IXP's switches directly.</p>
 <p>At an IXP, it can be extremely useful to have a quick look up table to see what member owns what MAC address - especially when they start injecting illegal packets into the exchange fabric.</p>
 <p>We have a script, <a href="https://github.com/inex/IXP-Manager/blob/master/tools/runtime/l2database/update-l2database.pl">update-l2database.pl</a>, for this. To set it up (using Ubuntu as an example), proceed as below. We are in the process of trying to reduce the reliance on the perl library and direct database access. But for now, this script still requires it.</p>
-<pre class="highlight"><code class="language-sh"># If you haven't already, install the Perl library for IXP Manager:
+<div class="highlight"><pre><span></span><code><span class="c1"># If you haven&#39;t already, install the Perl library for IXP Manager:</span>
 apt-get install libnet-snmp-perl libconfig-general-perl libnetaddr-ip-perl
-cd $IXPROOT/tools/perl-lib/IXPManager
+<span class="nb">cd</span> <span class="nv">$IXPROOT</span>/tools/perl-lib/IXPManager
 perl Makefile.PL
 make install
 
-# Then copy and edit the configuration file to set the database connection settings:
-cp $IXPROOT/tools/perl-lib/IXPManager/ixpmanager.conf /usr/local/etc/
-joe /usr/local/etc/ixpmanager.conf #and set database settings
+<span class="c1"># Then copy and edit the configuration file to set the database connection settings:</span>
+cp <span class="nv">$IXPROOT</span>/tools/perl-lib/IXPManager/ixpmanager.conf /usr/local/etc/
+joe /usr/local/etc/ixpmanager.conf <span class="c1">#and set database settings</span>
 
-# Now copy the script:
-cp $IXPROOT/tools/runtime/l2database/update-l2database.pl /usr/local/bin
+<span class="c1"># Now copy the script:</span>
+cp <span class="nv">$IXPROOT</span>/tools/runtime/l2database/update-l2database.pl /usr/local/bin
 
-# and then add it to your periodic cron job with:
-/usr/local/bin/update-l2database.pl</code></pre>
+<span class="c1"># and then add it to your periodic cron job with:</span>
+/usr/local/bin/update-l2database.pl
+</code></pre></div>
 
 <h2 id="oui-database">OUI Database<a class="headerlink" href="#oui-database" title="Permanent link"></a></h2>
 <p>IXP Manager can store the IEEE OUI database and reference it to show the manufacturer behind a MAC address.</p>
 <h3 id="populating-and-updating-the-oui-database">Populating and Updating the OUI Database<a class="headerlink" href="#populating-and-updating-the-oui-database" title="Permanent link"></a></h3>
 <p>The OUI is updated weekly by the <a href="../cronjobs/">task scheduler</a>. You can force an update with the following Artisan command:</p>
-<pre class="highlight"><code class="language-sh">php $IXPROOT/artisan utils:oui-update</code></pre>
+<div class="highlight"><pre><span></span><code>php <span class="nv">$IXPROOT</span>/artisan utils:oui-update
+</code></pre></div>
 
 <p>which will populate / update the OUI database directly from the latest IEEE file from their website.</p>
 <p>A specific file can be passed via the <code>file</code> parameter. You can also force a database reset (drop all OUI entries and re-populate) via the <code>--refresh</code> option.</p>
@@ -370,83 +1629,113 @@ cp $IXPROOT/tools/runtime/l2database/update-l2database.pl /usr/local/bin
 <h2 id="end-user-access">End User Access<a class="headerlink" href="#end-user-access" title="Permanent link"></a></h2>
 <p>In v4.7.3 we introduced the ability for logged in users to management their own configured MAC addresses.</p>
 <p>This is disabled by default but can be enabled with the following <code>.env</code> settings:</p>
-<pre class="highlight"><code># Set this to allow customers to change their own configured MAC addresses:
+<div class="highlight"><pre><span></span><code># Set this to allow customers to change their own configured MAC addresses:
 IXP_FE_LAYER2_ADDRESSES_CUST_CAN_EDIT=true
 
 # The following defaults are configured for min/max MAC addresses
 IXP_FE_LAYER2_ADDRESSES_CUST_PARAMS_MIN_ADDRESSES=1
-IXP_FE_LAYER2_ADDRESSES_CUST_PARAMS_MAX_ADDRESSES=2</code></pre>
+IXP_FE_LAYER2_ADDRESSES_CUST_PARAMS_MAX_ADDRESSES=2
+</code></pre></div>
 
 <p>When a MAC is added, a <code>IXP\Events\Layer2Address\Added</code> event is triggered and, similarly, when a MAC is deleted a <code>IXP\Events\Layer2Address\Deleted</code> event is triggered. We have created an event listener for these to fire off an email in both cases. To enable this listener, set the following <code>.env</code> settings:</p>
-<pre class="highlight"><code># Trigger an email when a superuser adds/deletes a MAC:
+<div class="highlight"><pre><span></span><code># Trigger an email when a superuser adds/deletes a MAC:
 IXP_FE_LAYER2_ADDRESSES_EMAIL_ON_SUPERUSER_CHANGE=true
 
 # Trigger an email when a customer user adds/deletes a MAC:
 IXP_FE_LAYER2_ADDRESSES_EMAIL_ON_CUSTOMER_CHANGE=true
 
 # Destination address of the email:
-IXP_FE_LAYER2_ADDRESSES_EMAIL_ON_CHANGE_DEST=ops@ixp.example.net</code></pre>
+IXP_FE_LAYER2_ADDRESSES_EMAIL_ON_CHANGE_DEST=ops@ixp.example.net
+</code></pre></div>
 
 <p>There are two files you can consider <a href="../skinning/">skinning</a> with this functionality:</p>
 <ol>
 <li><code>resources/views/layer2-address/emails/changed.blade.php</code> - the email which is sent when a MAC is added / removed.</li>
 <li><code>resources/views/layer2-address/customer-edit-msg.foil.php</code> - an informational alert box that is shown to the customer on the MAC add/delete page to set their expectations on time to complete on the IXP end.</li>
 </ol>
+                
               
-            </div>
+              
+                
+
+
+              
+            </article>
           </div>
-          <footer>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../manrs/" class="btn btn-neutral float-right" title="MANRS">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../looking-glass/" class="btn btn-neutral" title="Looking Glass"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../looking-glass/" title="Looking Glass" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Looking Glass
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../manrs/" title="MANRS" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                MANRS
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     </div>
   
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
-      <p>&copy; 2017-2020, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
-    
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            &copy; 2017-2020, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
   </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
-      
-        <span><a href="../looking-glass/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../manrs/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
-</div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
-
-</body>
+    
+  </body>
 </html>

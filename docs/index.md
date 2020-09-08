@@ -2,51 +2,51 @@
 
 ![IXP Manager Logo](img/ixp-manager.png)
 
-**IXP Manager** is a full stack management system for Internet eXchange Points (IXPs) which includes an administration and customer portal; provides end to end provisioning; and both teaches and implements best practice.
+**IXP Manager is the most trusted IXP platform worldwide.**
 
-It allows IXPs to manage new customers, provision new connections / services and monitor traffic usage. It has a number of provisioning templates including its ability to generate secure proven route server configuration and provides a built in looking glass for these.
+
+It is a full stack management system for Internet eXchange Points (IXPs) which includes an administration and customer portal; provides end to end provisioning; and both teaches and implements best practice. It allows IXPs to manage new customers, provision new connections / services and monitor traffic usage. It has a number of provisioning templates including its ability to generate secure proven route server configuration and provides a built in looking glass for these.
 
 **[INEX](https://www.inex.ie/)** are pleased to release **[IXP Manager](http://www.ixpmanager.org/)** under an open source license (the GNU Public License V2) which we hope will benefit the wider IXP community, and especially new and small IXPs looking to expand.
 
-Additional information: [http://www.ixpmanager.org/](http://www.ixpmanager.org/)
+Additional information: [https://www.ixpmanager.org/](https://www.ixpmanager.org/)
 
 ## Other Links
 
-* [IXP Manager Website](https://www.ixpmanager.org)
-* [Documentation](https://docs.ixpmanager.org) including:
+* [IXP Manager Website](https://www.ixpmanager.org/)
+* [Documentation](https://docs.ixpmanager.org/) including:
   * Installation [overview](https://docs.ixpmanager.org/install/),
     [by automated script](https://docs.ixpmanager.org/install/automated-script/),
     and [manually](https://docs.ixpmanager.org/install/manually/)
   * [Upgrade Instructions](https://docs.ixpmanager.org/install/upgrading/)
 * [Releases](https://github.com/inex/IXP-Manager/releases)
-* [List of Users](https://www.ixpmanager.org/users.php) (contact us if you are missing!)
+* [List of Users](https://www.ixpmanager.org/community/world-map) (contact us if you are missing!)
 * [How to Get Help](https://www.ixpmanager.org/support)
-* [Presentations & Talks](https://www.ixpmanager.org/presentations)
+* [Video Tutorials](https://www.ixpmanager.org/support/tutorials)
+* [Presentations & Talks](https://www.ixpmanager.org/support/talks)
 * [Sponsors and Sponsorship](https://www.ixpmanager.org/sponsors)
 * Follow [@ixpmanager](https://twitter.com/ixpmanager) on Twitter
 
 
 ## People Behind IXP Manager
 
-[INEX](https://www.inex.ie/) is an Internet eXchange Point and Ireland's IP peering hub. It is a neutral, industry-owned Association, founded in 1996, that provides IP peering facilities for its members. INEX membership is open to all organisations that can benefit from peering their IP traffic. See: https://www.inex.ie/
+[INEX](https://www.inex.ie/) is an Internet eXchange Point and Ireland's IP peering hub. It is a neutral, industry-owned Association, founded in 1996, that provides IP peering facilities for its members. INEX membership is open to all organisations that can benefit from peering their IP traffic. See: [https://www.inex.ie/](https://www.inex.ie/).
 
 Authors:
 
 * [Barry O'Donovan](https://www.barryodonovan.com/contact) / [@barryo79](https://twitter.com/#!/barryo79)
 * Nick Hilliard
-
-Since the end of 2016, IXP Manager has a full time developer through [the sponsorship program](https://www.ixpmanager.org/sponsors): **Yann Robin**.
+* Yann Robin (since 2016 and supported by [the sponsorship program](https://www.ixpmanager.org/sponsors))
+* Eileen Gallagher
 
 We are also grateful [for all the individuals who have contributed code](https://github.com/inex/IXP-Manager/graphs/contributors), issues, mailing list help and feature requests.
 
-
-Copyright (C) 2009-2019 Internet Neutral Exchange Association Company Limited By Guarantee.
-All Rights Reserved.
+See the [team page on the IXP Manager website for more details](https://www.ixpmanager.org/about/team).
 
 
 ## Sponsors
 
-IXP Manager is extremely grateful to its [existing sponsors](http://www.ixpmanager.org/sponsors) and continues to seek sponsors for on going development. If you are interested, please [see out call for sponsorship](https://www.ixpmanager.org/sponsorship).
+IXP Manager is extremely grateful to its [existing sponsors and patrons](http://www.ixpmanager.org/sponsors) and continues to seek sponsors for on going development. If you are interested, please [see out call for sponsorship](https://www.ixpmanager.org/sponsorship).
 
 
 ## License

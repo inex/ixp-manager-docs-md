@@ -1,251 +1,1445 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <link rel="canonical" href="https://docs.ixpmanager.org/install/upgrade-v3/">
-  <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Upgrade From v3 - IXP Manager Documentation</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Upgrade From v3";
-    var mkdocs_page_input_path = "install/upgrade-v3.md";
-    var mkdocs_page_url = "/install/upgrade-v3/";
-  </script>
-  
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
-</head>
 
-<body class="wy-body-for-nav" role="document">
 
-  <div class="wy-grid-for-nav">
-
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> IXP Manager Documentation</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://docs.ixpmanager.org/install/upgrade-v3/">
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Upgrade From v3 - IXP Manager Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#upgrade-from-v3" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-announce">
+          <div class="md-announce__inner md-grid md-typeset">
+            
+  Test
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Installation</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../automated-script/">Automated Script</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../maint-mode/">Maintenance Mode</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../manually/">Manual Installation</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../upgrading/">Upgrading</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../runtime/">Runtime Configuration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../next-steps/">Post-Install Steps</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">General Usage</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/operational-notes/">Operational Notes</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/authentication/">Authentication</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/contacts/">Contacts</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customers/">Customers / Members</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-notes/">Customer Notes</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/customer-tags/">Customer Tags</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/interfaces/">Customer Connections</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/users/">Users</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/switches/">Switches</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../usage/email/">Email</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Features</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/api/">API</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/as112/">AS112</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/console-servers/">Console Servers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/cronjobs/">Cron Jobs</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/patch-panels/">Cross Connects</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/dns-arpa/">DNS / ARPA</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/docstore/">Document Store</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/introduction/">Grapher</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/helpdesk/">Helpdesk Integration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/irrdb/">IRRDB</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/ixf-export/">IX-F Member Export</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/looking-glass/">Looking Glass</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/layer2-addresses/">MAC Addresses</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/manrs/">MANRS</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/member-export/">Member Export</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/mailing-lists/">Mailing List Management</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/nagios/">Nagios</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/patch-panels/">Patch Panels</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/peering-manager/">Peering Manager</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/peering-matrix/">Peering Matrix</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/peeringdb/">PeeringDB</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/rir-objects/">RIR Objects</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/reseller/">Reseller Functionality</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/route-collectors/">Route Collectors</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/route-servers/">Route Servers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/routers/">Router Configuration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/rpki/">RPKI</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/skinning/">Skinning</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/smokeping/">Smokeping</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/static-content/">Static Content</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/tacacs/">TACACS</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Grapher</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/introduction/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/api/">API &amp; Permissions</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/mrtg/">Backend: MRTG</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/sflow/">Backend: sflow</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../grapher/smokeping/">Backend: Smokeping</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Sflow Support</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/sflow/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../features/sflow-p2p/">Peer-to-peer Graphs</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Development</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/introduction/">Introduction</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/api/">API</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/authentication/">Authentication</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/ci/">Continuous Integration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/cla/">Contributer License Agreement</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docker/">Docker</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/docs/">Documentation</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/forms/">Forms</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/frontend-crud/">Frontend CRUD</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/grapher/">Grapher</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/helpders/">Helpers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/looking-glass/">Looking Glass</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/release-procedure/">Release Procedure</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/telescope/">Telescope</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/users/">Users</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../dev/vagrant/">Vagrant</a>
-                    </li>
-                </ul>
+          </div>
+        </aside>
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://docs.ixpmanager.org" title="IXP Manager Documentation" class="md-header-nav__button md-logo" aria-label="IXP Manager Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            IXP Manager Documentation
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Upgrade From v3
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
       </div>
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">IXP Manager Documentation</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
+  </div>
+</div>
     
-      
     
-    <li>Upgrade From v3</li>
-    <li class="wy-breadcrumbs-aside">
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/inex/ixp-manager-docs-md/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
       
-        <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/install/upgrade-v3.md"
-          class="icon icon-github"> Edit on GitHub</a>
+        
+      
+      
+        
+          
+
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link md-tabs__link--active">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../" class="md-tabs__link">
+          Installation
+        </a>
       
     </li>
-  </ul>
   
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../usage/operational-notes/" class="md-tabs__link">
+          General Usage
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../features/api/" class="md-tabs__link">
+          Features
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../grapher/introduction/" class="md-tabs__link">
+          Grapher
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../features/sflow/" class="md-tabs__link">
+          Sflow Support
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../dev/introduction/" class="md-tabs__link">
+          Development
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://docs.ixpmanager.org" title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    IXP Manager Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/inex/ixp-manager-docs-md/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Installation
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Installation" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Installation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../automated-script/" title="Automated Script" class="md-nav__link">
+      Automated Script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../maint-mode/" title="Maintenance Mode" class="md-nav__link">
+      Maintenance Mode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../manually/" title="Manual Installation" class="md-nav__link">
+      Manual Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../upgrading/" title="Upgrading" class="md-nav__link">
+      Upgrading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runtime/" title="Runtime Configuration" class="md-nav__link">
+      Runtime Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../next-steps/" title="Post-Install Steps" class="md-nav__link">
+      Post-Install Steps
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      General Usage
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="General Usage" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        General Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/operational-notes/" title="Operational Notes" class="md-nav__link">
+      Operational Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/authentication/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/contacts/" title="Contacts" class="md-nav__link">
+      Contacts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customers/" title="Customers / Members" class="md-nav__link">
+      Customers / Members
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customer-notes/" title="Customer Notes" class="md-nav__link">
+      Customer Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/customer-tags/" title="Customer Tags" class="md-nav__link">
+      Customer Tags
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/interfaces/" title="Customer Connections" class="md-nav__link">
+      Customer Connections
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/users/" title="Users" class="md-nav__link">
+      Users
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/switches/" title="Switches" class="md-nav__link">
+      Switches
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../usage/email/" title="Email" class="md-nav__link">
+      Email
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Features
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Features" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/api/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/as112/" title="AS112" class="md-nav__link">
+      AS112
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/console-servers/" title="Console Servers" class="md-nav__link">
+      Console Servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/cronjobs/" title="Cron Jobs" class="md-nav__link">
+      Cron Jobs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/patch-panels/" title="Cross Connects" class="md-nav__link">
+      Cross Connects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/dns-arpa/" title="DNS / ARPA" class="md-nav__link">
+      DNS / ARPA
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/docstore/" title="Document Store" class="md-nav__link">
+      Document Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/introduction/" title="Grapher" class="md-nav__link">
+      Grapher
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/helpdesk/" title="Helpdesk Integration" class="md-nav__link">
+      Helpdesk Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/irrdb/" title="IRRDB" class="md-nav__link">
+      IRRDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/ixf-export/" title="IX-F Member Export" class="md-nav__link">
+      IX-F Member Export
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/looking-glass/" title="Looking Glass" class="md-nav__link">
+      Looking Glass
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/layer2-addresses/" title="MAC Addresses" class="md-nav__link">
+      MAC Addresses
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/manrs/" title="MANRS" class="md-nav__link">
+      MANRS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/member-export/" title="Member Export" class="md-nav__link">
+      Member Export
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/mailing-lists/" title="Mailing List Management" class="md-nav__link">
+      Mailing List Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/nagios/" title="Nagios" class="md-nav__link">
+      Nagios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/patch-panels/" title="Patch Panels" class="md-nav__link">
+      Patch Panels
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/peering-manager/" title="Peering Manager" class="md-nav__link">
+      Peering Manager
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/peering-matrix/" title="Peering Matrix" class="md-nav__link">
+      Peering Matrix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/peeringdb/" title="PeeringDB" class="md-nav__link">
+      PeeringDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/rir-objects/" title="RIR Objects" class="md-nav__link">
+      RIR Objects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/reseller/" title="Reseller Functionality" class="md-nav__link">
+      Reseller Functionality
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/route-collectors/" title="Route Collectors" class="md-nav__link">
+      Route Collectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/route-servers/" title="Route Servers" class="md-nav__link">
+      Route Servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/routers/" title="Router Configuration" class="md-nav__link">
+      Router Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/rpki/" title="RPKI" class="md-nav__link">
+      RPKI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/skinning/" title="Skinning" class="md-nav__link">
+      Skinning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/smokeping/" title="Smokeping" class="md-nav__link">
+      Smokeping
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/static-content/" title="Static Content" class="md-nav__link">
+      Static Content
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/tacacs/" title="TACACS" class="md-nav__link">
+      TACACS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Grapher
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Grapher" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Grapher
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/api/" title="API & Permissions" class="md-nav__link">
+      API &amp; Permissions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/mrtg/" title="Backend: MRTG" class="md-nav__link">
+      Backend: MRTG
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/sflow/" title="Backend: sflow" class="md-nav__link">
+      Backend: sflow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../grapher/smokeping/" title="Backend: Smokeping" class="md-nav__link">
+      Backend: Smokeping
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Sflow Support
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Sflow Support" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Sflow Support
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/sflow/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/sflow-p2p/" title="Peer-to-peer Graphs" class="md-nav__link">
+      Peer-to-peer Graphs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Development
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Development" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/api/" title="API" class="md-nav__link">
+      API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/authentication/" title="Authentication" class="md-nav__link">
+      Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/ci/" title="Continuous Integration" class="md-nav__link">
+      Continuous Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/cla/" title="Contributer License Agreement" class="md-nav__link">
+      Contributer License Agreement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/docker/" title="Docker" class="md-nav__link">
+      Docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/docs/" title="Documentation" class="md-nav__link">
+      Documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/forms/" title="Forms" class="md-nav__link">
+      Forms
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/frontend-crud/" title="Frontend CRUD" class="md-nav__link">
+      Frontend CRUD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/grapher/" title="Grapher" class="md-nav__link">
+      Grapher
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/helpders/" title="Helpers" class="md-nav__link">
+      Helpers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/looking-glass/" title="Looking Glass" class="md-nav__link">
+      Looking Glass
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/release-procedure/" title="Release Procedure" class="md-nav__link">
+      Release Procedure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/telescope/" title="Telescope" class="md-nav__link">
+      Telescope
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/users/" title="Users" class="md-nav__link">
+      Users
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dev/vagrant/" title="Vagrant" class="md-nav__link">
+      Vagrant
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deprecations-removed-features" class="md-nav__link">
+    Deprecations / Removed Features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duplicating-the-database" class="md-nav__link">
+    Duplicating the Database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-ixp-manager" class="md-nav__link">
+    Install IXP Manager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-configuration-tasks" class="md-nav__link">
+    Initial Configuration Tasks
+  </a>
+  
+    <nav class="md-nav" aria-label="Initial Configuration Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-local-settings-configuration-laravel" class="md-nav__link">
+    New Local Settings / Configuration (Laravel)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-the-database-schema" class="md-nav__link">
+    Update the Database Schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrate-plaintext-passwords-to-bcrypt" class="md-nav__link">
+    Migrate Plaintext Passwords to Bcrypt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-one-complete" class="md-nav__link">
+    Stage One Complete
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mrtg-graphing-migration" class="md-nav__link">
+    MRTG Graphing Migration
+  </a>
+  
+    <nav class="md-nav" aria-label="MRTG Graphing Migration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performing-the-migration" class="md-nav__link">
+    Performing the Migration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#peer-to-peer-sflow-changes" class="md-nav__link">
+    Peer to Peer / sflow Changes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
               
+                
+                  <a href="https://github.com/inex/ixp-manager-docs-md/edit/master/docs/install/upgrade-v3.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
                 <h1 id="upgrade-from-v3">Upgrade From v3<a class="headerlink" href="#upgrade-from-v3" title="Permanent link"></a></h1>
 <p>Due to the significant changes between IXP Manager v3 and v4, there is no in place upgrade process. The advised way to handle this is to install v4 in parallel and then switch over (by adjusting your DNS or Apache configuration for example) to the new v4 directory/server.</p>
 <p>This documentation was compiled while performing an upgrade on three separate IXP Manager installations.</p>
@@ -285,14 +1479,15 @@
 <h2 id="duplicating-the-database">Duplicating the Database<a class="headerlink" href="#duplicating-the-database" title="Permanent link"></a></h2>
 <p>As we're installing in parallel, we want to duplicate the database.</p>
 <p>When granting permissions on the new database, use your existing IXP Manager database credentials for ease of configuration.</p>
-<pre class="highlight"><code class="language-sh">mysql -u root -pXXX -e 'CREATE DATABASE ixp4 CHARACTER SET = "utf8mb4" COLLATE = "utf8mb4_unicode_ci";'
+<div class="highlight"><pre><span></span><code>mysql -u root -pXXX -e <span class="s1">&#39;CREATE DATABASE ixp4 CHARACTER SET = &quot;utf8mb4&quot; COLLATE = &quot;utf8mb4_unicode_ci&quot;;&#39;</span>
 
-mysqldump -u root -pXXX ixp | mysql -u root -pXXX ixp4
+mysqldump -u root -pXXX ixp <span class="p">|</span> mysql -u root -pXXX ixp4
 
-mysql -u root -pXXX -e 'GRANT ALL ON ixp4.* TO `ixp`@`localhost` IDENTIFIED BY "YYY";'
+mysql -u root -pXXX -e <span class="s1">&#39;GRANT ALL ON ixp4.* TO `ixp`@`localhost` IDENTIFIED BY &quot;YYY&quot;;&#39;</span>
 
-# and test:
-mysql -u ixp -pYYY -h localhost ixp4</code></pre>
+<span class="c1"># and test:</span>
+mysql -u ixp -pYYY -h localhost ixp4
+</code></pre></div>
 
 <h2 id="install-ixp-manager">Install IXP Manager<a class="headerlink" href="#install-ixp-manager" title="Permanent link"></a></h2>
 <p>This is very much a tl;dr version of <a href="../manually/">the official installation instructions</a> which you should review if you need additional help.</p>
@@ -300,29 +1495,30 @@ mysql -u ixp -pYYY -h localhost ixp4</code></pre>
 <p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
 <p>Log into the server where you wish to install IXP Manager and move to the directory where you wish to install (we use <code>/srv/ixpmanager</code> here as an example and which will be referred to as <code>$IXPROOT</code> below).</p>
 <p>Note that it should not be checked out into any web exposed directory (e.g. do not checkout to <code>/var/www</code>).</p>
-<pre class="highlight"><code class="language-sh">IXPROOT=/srv/ixpmanager
+<div class="highlight"><pre><span></span><code><span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
 
-# get the source / application
-git clone https://github.com/inex/IXP-Manager.git $IXPROOT
-cd $IXPROOT
+<span class="c1"># get the source / application</span>
+git clone https://github.com/inex/IXP-Manager.git <span class="nv">$IXPROOT</span>
+<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 git checkout v4.5.0
 
-# Using https://getcomposer.org/
+<span class="c1"># Using https://getcomposer.org/</span>
 composer.phar install
 
-# Using https://bower.io/
+<span class="c1"># Using https://bower.io/</span>
 bower install
 
-# Start with the example configuration and edit.
-# Read the official documentation for help.
-# Ensure you configure the database.
-# More notes on this follow below.
+<span class="c1"># Start with the example configuration and edit.</span>
+<span class="c1"># Read the official documentation for help.</span>
+<span class="c1"># Ensure you configure the database.</span>
+<span class="c1"># More notes on this follow below.</span>
 cp .env.example .env
 php artisan key:generate
 joe .env
 
-# File system permissions
-chown -R www-data: var/ storage/ bootstrap/cache database/Proxies</code></pre>
+<span class="c1"># File system permissions</span>
+chown -R www-data: var/ storage/ bootstrap/cache database/Proxies
+</code></pre></div>
 
 <h2 id="initial-configuration-tasks">Initial Configuration Tasks<a class="headerlink" href="#initial-configuration-tasks" title="Permanent link"></a></h2>
 <h3 id="new-local-settings-configuration-laravel">New Local Settings / Configuration (Laravel)<a class="headerlink" href="#new-local-settings-configuration-laravel" title="Permanent link"></a></h3>
@@ -330,28 +1526,32 @@ chown -R www-data: var/ storage/ bootstrap/cache database/Proxies</code></pre>
 <p>The <a href="https://github.com/vlucas/phpdotenv">php dotenv</a> file (<code>.env</code>) is where all the new configuration options go. These in turn are used by the configuration files under <code>config/</code>.</p>
 <p><strong>NB: Where possible, place local changes into <code>.env</code> rather than changing the config files as these files are under version control. See <a href="http://laravel.com/docs/5.4/installation#configuration">Laravel's documentation on this</a> and email the mailing list for help.</strong></p>
 <p>Once you have worked your way through <code>.env</code>, move into the <code>$IXPROOT/config</code> directory and - as appropriate for your own installation - examine each config file that ends in <code>.dist</code>. If you use / need any features in these files, copy then such as:</p>
-<pre class="highlight"><code class="language-sh">cd $IXPROOT/config
-cp xxxx.php.dist xxxx.php</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="nv">$IXPROOT</span>/config
+cp xxxx.php.dist xxxx.php
+</code></pre></div>
 
 <p>Then edit the resultant <code>.php</code> file (or, better, where <code>config()</code> options exist, add them to <code>.env</code>).</p>
 <p>These <code>.dist</code> files represent v3 functionality that has not yet been fully ported to v4/Laravel.</p>
 <h3 id="update-the-database-schema">Update the Database Schema<a class="headerlink" href="#update-the-database-schema" title="Permanent link"></a></h3>
 <p>There's about 50 schema changed between the end of v3 and v4.4.</p>
 <p>View the required changes with:</p>
-<pre class="highlight"><code>./artisan doctrine:schema:update --sql</code></pre>
+<div class="highlight"><pre><span></span><code>./artisan doctrine:schema:update --sql
+</code></pre></div>
 
 <p>And apply with:</p>
-<p><pre class="highlight"><code>./artisan doctrine:schema:update --force</code></pre>
+<p><div class="highlight"><pre><span></span><code>./artisan doctrine:schema:update --force
+</code></pre></div>
  Note that this may take a few minutes if you have a lot of data such as BGP session data.</p>
 <h3 id="migrate-plaintext-passwords-to-bcrypt">Migrate Plaintext Passwords to Bcrypt<a class="headerlink" href="#migrate-plaintext-passwords-to-bcrypt" title="Permanent link"></a></h3>
 <p>Since v4.5, we <a href="../../usage/users/#password-hashing">no longer allow plaintext passwords</a>. If you were using plaintext passwords, you need to convert them to bcrypt as follows:</p>
-<pre class="highlight"><code class="language-sh">cd $IXPROOT
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 
-# dummy run to see what happens:
+<span class="c1"># dummy run to see what happens:</span>
 php artisan utils:convert-plaintext-password
 
-# really convert passwords and save to database:
-php artisan utils:convert-plaintext-password --force</code></pre>
+<span class="c1"># really convert passwords and save to database:</span>
+php artisan utils:convert-plaintext-password --force
+</code></pre></div>
 
 <h3 id="stage-one-complete">Stage One Complete<a class="headerlink" href="#stage-one-complete" title="Permanent link"></a></h3>
 <p>You should be able to point Apache / your web server at the new IXP Manager installation and log in.</p>
@@ -361,137 +1561,148 @@ php artisan utils:convert-plaintext-password --force</code></pre>
 <p><strong>It is strongly recommended you copy your existing files and do this in parallel or, at least keep a backup.</strong> Also, stop the MRTG daemon before starting.</p>
 <h3 id="performing-the-migration">Performing the Migration<a class="headerlink" href="#performing-the-migration" title="Permanent link"></a></h3>
 <p>First, you'll need to update your local configuration in <code>.env</code> by setting something like:</p>
-<pre class="highlight"><code>GRAPHER_BACKENDS="mrtg"
-GRAPHER_BACKEND_MRTG_LOGDIR="/path/to/new/mrtg/data"
-GRAPHER_BACKEND_MRTG_WORKDIR="/path/to/new/mrtg/data"
-GRAPHER_CACHE_ENABLED=true</code></pre>
+<div class="highlight"><pre><span></span><code>GRAPHER_BACKENDS=&quot;mrtg&quot;
+GRAPHER_BACKEND_MRTG_LOGDIR=&quot;/path/to/new/mrtg/data&quot;
+GRAPHER_BACKEND_MRTG_WORKDIR=&quot;/path/to/new/mrtg/data&quot;
+GRAPHER_CACHE_ENABLED=true
+</code></pre></div>
 
 <p>See the <a href="../../grapher/introduction/">Grapher</a> documentation for full details of what these mean.</p>
 <p>You'll then need to migrate all your MRTG files to the new naming scheme. Run the commands below twice. Once to verify the output and a second time piped to sh (<code>| sh</code>) to actually execute the commands.</p>
-<pre class="highlight"><code class="language-sh"># set a variable for what will become the 'old' files for convenience
-OLDMRTG=/srv/old-mrtg
+<div class="highlight"><pre><span></span><code><span class="c1"># set a variable for what will become the &#39;old&#39; files for convenience</span>
+<span class="nv">OLDMRTG</span><span class="o">=</span>/srv/old-mrtg
 
-# position ourselves in the IXP Manager root directory
-cd $IXPROOT
+<span class="c1"># position ourselves in the IXP Manager root directory</span>
+<span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 
-# stop mrtg
-service mrtg stop  # or as appropriate for your platform
+<span class="c1"># stop mrtg</span>
+service mrtg stop  <span class="c1"># or as appropriate for your platform</span>
 
-# Migrate IXP graphs.
-#
-# In v3 of IXP Manager, the name of this was set by a database
-# parameter in the IXP table called 'aggregate graph name'.
-# You will be able to spot it in the old MRTG files where the
-# old IXP file is named something like: 'ixp_peering-XXXXX-bits.log'.
-# The 'XXXXXX' bit is the aggregate name you need to replace in the below:
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -X --agg-name=XXXXXX
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -X --agg-name=XXXXXX | sh
+<span class="c1"># Migrate IXP graphs.</span>
+<span class="c1">#</span>
+<span class="c1"># In v3 of IXP Manager, the name of this was set by a database</span>
+<span class="c1"># parameter in the IXP table called &#39;aggregate graph name&#39;.</span>
+<span class="c1"># You will be able to spot it in the old MRTG files where the</span>
+<span class="c1"># old IXP file is named something like: &#39;ixp_peering-XXXXX-bits.log&#39;.</span>
+<span class="c1"># The &#39;XXXXXX&#39; bit is the aggregate name you need to replace in the below:</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -X --agg-name<span class="o">=</span>XXXXXX
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -X --agg-name<span class="o">=</span>XXXXXX <span class="p">|</span> sh
 
-# Migrate infrastructure graphs.
-#
-# In v3 of IXP Manager, the name of this was set by a database
-# parameter in the infrastructure table called 'aggregate graph name'.
-# You will be able to spot it in the old MRTG files where the
-# old IXP file is named something like: 'ixp_peering-XXXXX-bits.log'.
-# The 'XXXXXX' bit is the aggregate name you need to replace in the below:
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -I
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -I | sh
+<span class="c1"># Migrate infrastructure graphs.</span>
+<span class="c1">#</span>
+<span class="c1"># In v3 of IXP Manager, the name of this was set by a database</span>
+<span class="c1"># parameter in the infrastructure table called &#39;aggregate graph name&#39;.</span>
+<span class="c1"># You will be able to spot it in the old MRTG files where the</span>
+<span class="c1"># old IXP file is named something like: &#39;ixp_peering-XXXXX-bits.log&#39;.</span>
+<span class="c1"># The &#39;XXXXXX&#39; bit is the aggregate name you need to replace in the below:</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -I
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -I <span class="p">|</span> sh
 
-# Migrate switch graphs
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -S
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -S | sh
+<span class="c1"># Migrate switch graphs</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -S
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -S <span class="p">|</span> sh
 
-# Migrate trunk graphs and configuration.
-# If you had not configured trunk graphs you can skip this. We are
-# planning to (very soon - Q2/3 2017) fully integrate this into IXP
-# Manager.
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -T
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -T | sh
+<span class="c1"># Migrate trunk graphs and configuration.</span>
+<span class="c1"># If you had not configured trunk graphs you can skip this. We are</span>
+<span class="c1"># planning to (very soon - Q2/3 2017) fully integrate this into IXP</span>
+<span class="c1"># Manager.</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -T
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -T <span class="p">|</span> sh
 php artisan grapher:backend:mrtg:upgrade migrate-trunk-config
 
-# Create member directories
-php artisan grapher:backend:mrtg:upgrade mkdir -L $OLDMRTG -M
-php artisan grapher:backend:mrtg:upgrade mkdir -L $OLDMRTG -M | sh
+<span class="c1"># Create member directories</span>
+php artisan grapher:backend:mrtg:upgrade mkdir -L <span class="nv">$OLDMRTG</span> -M
+php artisan grapher:backend:mrtg:upgrade mkdir -L <span class="nv">$OLDMRTG</span> -M <span class="p">|</span> sh
 
-# Migrate member physical interface graphs
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -P
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -P | sh
+<span class="c1"># Migrate member physical interface graphs</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -P
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -P <span class="p">|</span> sh
 
-# Migrate member LAG graphs
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -Q
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -Q | sh
+<span class="c1"># Migrate member LAG graphs</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -Q
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -Q <span class="p">|</span> sh
 
-# Migrate member aggregate graphs
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -C
-php artisan grapher:backend:mrtg:upgrade mv -L $OLDMRTG -C | sh
+<span class="c1"># Migrate member aggregate graphs</span>
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -C
+php artisan grapher:backend:mrtg:upgrade mv -L <span class="nv">$OLDMRTG</span> -C <span class="p">|</span> sh
 
-# Regenerate mrtg configuration
+<span class="c1"># Regenerate mrtg configuration</span>
 php artisan grapher:generate-configuration -B mrtg &gt; path/to/mrtg.conf
 
-# Start mrtg
-service mrtg start  # or as appropriate for your platform</code></pre>
+<span class="c1"># Start mrtg</span>
+service mrtg start  <span class="c1"># or as appropriate for your platform</span>
+</code></pre></div>
 
 <h2 id="peer-to-peer-sflow-changes">Peer to Peer / sflow Changes<a class="headerlink" href="#peer-to-peer-sflow-changes" title="Permanent link"></a></h2>
 <p>The previous version of IXP Manager used a script called <code>sflow-graph.php</code> which was installed on the sflow server to create graphs on demand. IXP Manager v4 does not use this but pulls the required RRD files directly.</p>
 <p>If you have this on the same server or can expose it using NFS for example, then set the path accordingly in <code>.env</code>:</p>
-<pre class="highlight"><code>GRAPHER_BACKEND_SFLOW_ROOT="/srv/ixpmatrix"</code></pre>
+<div class="highlight"><pre><span></span><code>GRAPHER_BACKEND_SFLOW_ROOT=&quot;/srv/ixpmatrix&quot;
+</code></pre></div>
 
 <p>If you have implemented this via a web server on the sflow server (as we typically do at INEX), then you need to expose the RRD data directory to IXP Manager using an Apache config such as:</p>
-<pre class="highlight"><code>Alias /grapher-sflow /srv/ixpmatrix
+<div class="highlight"><pre><span></span><code>Alias /grapher-sflow /srv/ixpmatrix
 
-&lt;Directory "/srv/ixpmatrix"&gt;
+&lt;Directory &quot;/srv/ixpmatrix&quot;&gt;
     Options None
     AllowOverride None
     &lt;RequireAny&gt;
             Require ip 192.0.2.0/24
             Require ip 2001:db8::/32
     &lt;/RequireAny&gt;
-&lt;/Directory&gt;</code></pre>
+&lt;/Directory&gt;
+</code></pre></div>
 
 <p>and update <code>.env</code> for this with something like:</p>
-<pre class="highlight"><code>GRAPHER_BACKEND_SFLOW_ROOT="http://www.example.com/grapher-sflow"</code></pre>
+<div class="highlight"><pre><span></span><code>GRAPHER_BACKEND_SFLOW_ROOT=&quot;http://www.example.com/grapher-sflow&quot;
+</code></pre></div>
+                
               
-            </div>
+              
+                
+
+
+              
+            </article>
           </div>
-          <footer>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
   
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
-      <p>&copy; 2017-2020, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
-    
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            &copy; 2017-2020, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
   </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-          <a href="https://github.com/inex/ixp-manager-docs-md/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
-      
-      
-    </span>
-</div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
-
-</body>
+    
+  </body>
 </html>

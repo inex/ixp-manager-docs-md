@@ -1,5 +1,9 @@
 # Customer / Members
 
+## Video Tutorial
+
+**We created a video tutorial demonstrating these steps.** You can find the [video here](https://youtu.be/QxltZ1I6lGk) in our [YouTube channel](https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA). As always, [the full catalog of video tutorials is here](https://www.ixpmanager.org/support/tutorials).
+
 
 ## Adding Customers
 

@@ -2,6 +2,11 @@
 
 This section explains how to set up a customer interface.
 
+## Video Tutorial
+
+**We created a video tutorial demonstrating these steps.** You can find the [video here](https://youtu.be/zTEfIW7wY8M) in our [YouTube channel](https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA). As always, [the full catalog of video tutorials is here](https://www.ixpmanager.org/support/tutorials).
+
+
 ## Database Overview
 
 To fully understand how IXP Manager treats customer interfaces, you need a little background on the database schema. This will also help explain why we have laid out the UI as it is.

@@ -12,7 +12,7 @@
 
 ### Video Tutorial
 
-We created a video tutorial demonstrating the upgrade process for IXP Manager. You can find the [video here](https://www.youtube.com/watch?v=FqsWCudPUak) in our [YouTube channel](https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA).
+We created a video tutorial demonstrating the upgrade process for IXP Manager. You can find the [video here](https://www.youtube.com/watch?v=FqsWCudPUak) in our [YouTube channel](https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA). We also have a video on upgrading a legacy version (v4.9.3 to v5.7.0) - see [the video here](https://youtu.be/CXTjgRUESAc) and [some further details in this blog post](https://www.barryodonovan.com/2020/09/08/upgrading-legacy-versions-of-ixp-manager). As always, [the full catalog of video tutorials is here](https://www.ixpmanager.org/support/tutorials).
 
 
 ## Instructions
