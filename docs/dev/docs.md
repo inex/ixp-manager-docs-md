@@ -17,8 +17,7 @@ We welcome contributions or errata that improve the quality of our documentation
 If you haven't already, install MkDocs:
 
 ```sh
-pip install mkdocs
-pip install pymdown-extensions
+pip install mkdocs pymdown-extensions mkdocs-material mkdocs-git-revision-date-localized-plugin
 ```
 
 The documentation can then be built locally as follows:
