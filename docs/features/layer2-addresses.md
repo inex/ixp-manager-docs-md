@@ -100,7 +100,7 @@ perl Makefile.PL
 make install
 
 # Then copy and edit the configuration file to set the database connection settings:
-cp $IXPROOT/tools/perl-lib/IXPManager/ixpmanager.conf /usr/local/etc/
+cp $IXPROOT/tools/perl-lib/IXPManager/ixpmanager.conf.dist /usr/local/etc/ixpmanager.conf
 joe /usr/local/etc/ixpmanager.conf #and set database settings
 
 # Now copy the script:
