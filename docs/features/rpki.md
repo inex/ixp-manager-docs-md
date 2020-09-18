@@ -47,25 +47,27 @@ Start by installing two local caches / validator services as linked above. INEX 
 
 Once your maintenance window starts, stop the target route server you plan to upgrade. You'll then need to to remove the Bird v1 package (`dpkg -r bird` on Ubuntu). Once the Bird package is removed, you can perform a distribution upgrade if you wish.
 
-At time of writing (May 2019), there are no Bird v2 packages for Debian or Ubuntu. As such, you need to install from source. Rather than installing a build environment and compiling on each server, you can do this on a single server (a dedicated build box / admin server / etc) and then distribute the package across your route servers / collector:
+Bird v2 is available as a prebuilt package with Ubuntu 20.04 LTS and can be installed with `apt install bird2`.
+
+There are no Bird v2 packages for Ubuntu 18.04 LTS. As such, you need to install from source if using that older platform. Rather than installing a build environment and compiling on each server, you can do this on a single server (a dedicated build box / admin server / etc) and then distribute the package across your route servers / collector:
 
 ```sh
 # Install Ubuntu build packages and libraries Bird requires:
 apt install -y build-essential libssh-dev libreadline-dev \
     libncurses-dev flex bison checkinstall
 
-# At time of writing, the latest release was v2.0.6.
+# At time of writing, the latest release was v2.0.7.
 # Check for newer versions!
 cd /usr/src
-wget ftp://bird.network.cz/pub/bird/bird-2.0.6.tar.gz
-tar zxf  bird-2.0.6.tar.gz
-cd bird-2.0.6/
+wget ftp://bird.network.cz/pub/bird/bird-2.0.7.tar.gz
+tar zxf  bird-2.0.7.tar.gz
+cd bird-2.0.7/
 ./configure  --prefix=/usr --sysconfdir=/etc
 make -j2
 checkinstall -y
 ```
 
-The `checkinstall` tool creates a deb package file: `/usr/local/src/bird-2.0.6/bird_2.0.6-1_amd64.deb`
+The `checkinstall` tool creates a deb package file: `/usr/local/src/bird-2.0.7/bird_2.0.7-1_amd64.deb`
 
 **NB: for this method to work, you must be running the same operating system and version on the target servers as the build box.** For us, it was Ubuntu 18.04 LTS on all systems.
 
@@ -73,11 +75,11 @@ To install on a target machine:
 
 ```sh
 # from build machine
-scp bird_2.0.6-1_amd64.deb target-machine:/tmp
+scp bird_2.0.7-1_amd64.deb target-machine:/tmp
 
 # on target machine
 apt install -y libssh-dev libreadline-dev libncurses-dev
-dpkg -i /tmp/bird_2.0.6-1_amd64.deb
+dpkg -i /tmp/bird_2.0.7-1_amd64.deb
 ```
 
 You now need to update your route server record in IXP Manager:
@@ -86,7 +88,7 @@ You now need to update your route server record in IXP Manager:
 * check *Enable RPKI filtering*;
 * update the template to `api/v4/router/server/bird2/standard`.
 
-Note that the Bird v2 template uses large BGP communities extensively internally. The option *Enable Large BGP Communities / RFC8092* only controls whether your members can use large communities for filtering. *It's 2019 - you should really enable this.*
+Note that the Bird v2 template uses large BGP communities extensively internally. The option *Enable Large BGP Communities / RFC8092* only controls whether your members can use large communities for filtering. *It's 2020 - you should really enable this.*
 
 As mentioned above, you need to let IXP Manager know where your local caching / validators are by setting the following `.env` settings:
 

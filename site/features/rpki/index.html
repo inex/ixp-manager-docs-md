@@ -1448,31 +1448,32 @@ IXP_RPKI_RTR1_PORT=3323
 <p>At INEX we started with our route collector which is a non-service affecting administrative tool. Once we were happy with the stability and results of that, we upgraded our two route servers one week apart in planned announced maintenance windows. We also took the opportunity to perform a distribution upgrade from Ubuntu 16.04 to 18.04.</p>
 <p>Start by installing two local caches / validator services as linked above. INEX uses Cloudflare's and Routinator 3000. You should also add these to your production monitoring service.</p>
 <p>Once your maintenance window starts, stop the target route server you plan to upgrade. You'll then need to to remove the Bird v1 package (<code>dpkg -r bird</code> on Ubuntu). Once the Bird package is removed, you can perform a distribution upgrade if you wish.</p>
-<p>At time of writing (May 2019), there are no Bird v2 packages for Debian or Ubuntu. As such, you need to install from source. Rather than installing a build environment and compiling on each server, you can do this on a single server (a dedicated build box / admin server / etc) and then distribute the package across your route servers / collector:</p>
+<p>Bird v2 is available as a prebuilt package with Ubuntu 20.04 LTS and can be installed with <code>apt install bird2</code>.</p>
+<p>There are no Bird v2 packages for Ubuntu 18.04 LTS. As such, you need to install from source if using that older platform. Rather than installing a build environment and compiling on each server, you can do this on a single server (a dedicated build box / admin server / etc) and then distribute the package across your route servers / collector:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Install Ubuntu build packages and libraries Bird requires:</span>
 apt install -y build-essential libssh-dev libreadline-dev <span class="se">\</span>
     libncurses-dev flex bison checkinstall
 
-<span class="c1"># At time of writing, the latest release was v2.0.6.</span>
+<span class="c1"># At time of writing, the latest release was v2.0.7.</span>
 <span class="c1"># Check for newer versions!</span>
 <span class="nb">cd</span> /usr/src
-wget ftp://bird.network.cz/pub/bird/bird-2.0.6.tar.gz
-tar zxf  bird-2.0.6.tar.gz
-<span class="nb">cd</span> bird-2.0.6/
+wget ftp://bird.network.cz/pub/bird/bird-2.0.7.tar.gz
+tar zxf  bird-2.0.7.tar.gz
+<span class="nb">cd</span> bird-2.0.7/
 ./configure  --prefix<span class="o">=</span>/usr --sysconfdir<span class="o">=</span>/etc
 make -j2
 checkinstall -y
 </code></pre></div>
 
-<p>The <code>checkinstall</code> tool creates a deb package file: <code>/usr/local/src/bird-2.0.6/bird_2.0.6-1_amd64.deb</code></p>
+<p>The <code>checkinstall</code> tool creates a deb package file: <code>/usr/local/src/bird-2.0.7/bird_2.0.7-1_amd64.deb</code></p>
 <p><strong>NB: for this method to work, you must be running the same operating system and version on the target servers as the build box.</strong> For us, it was Ubuntu 18.04 LTS on all systems.</p>
 <p>To install on a target machine:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># from build machine</span>
-scp bird_2.0.6-1_amd64.deb target-machine:/tmp
+scp bird_2.0.7-1_amd64.deb target-machine:/tmp
 
 <span class="c1"># on target machine</span>
 apt install -y libssh-dev libreadline-dev libncurses-dev
-dpkg -i /tmp/bird_2.0.6-1_amd64.deb
+dpkg -i /tmp/bird_2.0.7-1_amd64.deb
 </code></pre></div>
 
 <p>You now need to update your route server record in IXP Manager:</p>
@@ -1481,7 +1482,7 @@ dpkg -i /tmp/bird_2.0.6-1_amd64.deb
 <li>check <em>Enable RPKI filtering</em>;</li>
 <li>update the template to <code>api/v4/router/server/bird2/standard</code>.</li>
 </ul>
-<p>Note that the Bird v2 template uses large BGP communities extensively internally. The option <em>Enable Large BGP Communities / RFC8092</em> only controls whether your members can use large communities for filtering. <em>It's 2019 - you should really enable this.</em></p>
+<p>Note that the Bird v2 template uses large BGP communities extensively internally. The option <em>Enable Large BGP Communities / RFC8092</em> only controls whether your members can use large communities for filtering. <em>It's 2020 - you should really enable this.</em></p>
 <p>As mentioned above, you need to let IXP Manager know where your local caching / validators are by setting the following <code>.env</code> settings:</p>
 <div class="highlight"><pre><span></span><code># IP address and port of the first RPKI local cache:
 IXP_RPKI_RTR1_HOST=192.0.2.11

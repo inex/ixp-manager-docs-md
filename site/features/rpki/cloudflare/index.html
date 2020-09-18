@@ -1321,13 +1321,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#starting-on-boot" class="md-nav__link">
-    Starting on Boot
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#monitoring" class="md-nav__link">
     Monitoring
   </a>
@@ -1357,129 +1350,63 @@
                 <h1 id="cloudflares-rpki-toolkit">Cloudflare's RPKI Toolkit<a class="headerlink" href="#cloudflares-rpki-toolkit" title="Permanent link"></a></h1>
 <p>Cloudflare created their own RPKI toolkit which, similar to RIPE's, is split into two elements:</p>
 <ol>
-<li><strong>GoRTR</strong> is the damon that implements the RPKI-RTR protocol to distribute validated ROAs to your routers.</li>
+<li><strong>GoRTR</strong> is the daemon that implements the RPKI-RTR protocol to distribute validated ROAs to your routers.</li>
 <li><strong>OctoRPKI</strong> is the validator which pulls the signed ROAs from the trust anchors and validates them and then makes them available to GoRTR.</li>
 </ol>
 <p><strong>NB:</strong> Before you proceed further, you should <a href="https://blog.cloudflare.com/cloudflares-rpki-toolkit/">read Cloudflare's own introduction to this toolkit</a>.</p>
-<p>We use a standard Ubuntu 18.04 installation (selecting the minimal virtual server option), 2 vCPUs, 2GB RAM, 10GB LVM hard drive. Not that INEX at this point has not embraced Docker for production services so our install does not use Cloudflare's docker options.</p>
-<p>Rather than running these daemons as the root user, we create a dedicated user:</p>
-<div class="highlight"><pre><span></span><code>useradd -c <span class="s1">&#39;cloudflare&#39;</span> -d /srv/cloudflare -m -s /bin/bash -u <span class="m">1102</span> cloudflare
+<p>We use a standard Ubuntu 20.04 installation (selecting the minimal virtual server option), 2 vCPUs, 2GB RAM, 20GB LVM hard drive.</p>
+<p>Cloudflare provide pre-built packages for installation - visit the following URLs and download the appropriate packages for your operating system:</p>
+<ul>
+<li>https://github.com/cloudflare/cfrpki/releases</li>
+<li>https://github.com/cloudflare/gortr/releases</li>
+</ul>
+<p>In my case, with Ubuntu 20.04 in September 2020, I ended up installing the following:</p>
+<div class="highlight"><pre><span></span><code>wget https://github.com/cloudflare/cfrpki/releases/download/v1.1.4/octorpki_1.1.4_amd64.deb
+wget https://github.com/cloudflare/gortr/releases/download/v0.14.6/gortr_0.14.6_amd64.deb
+dpkg -i gortr_0.14.6_amd64.deb octorpki_1.1.4_amd64.deb
 </code></pre></div>
 
-<p>We now install packages we need:</p>
-<div class="highlight"><pre><span></span><code>apt install golang git rsync ca-certificates
-</code></pre></div>
-
-<p>Note that in the following, we are not signing the JSON file or ROAs that OctoRPKI generates and this not validating this in GoRTR. The reason for this as primarily that it <em>just wouldn't work</em> (May 2019) but also as this is a same server operation and no other tools are using the JSON.</p>
 <h2 id="octorpki">OctoRPKI<a class="headerlink" href="#octorpki" title="Permanent link"></a></h2>
-<p>To install OctoRPKI, su to the target user and proceed as follows (we assume all  commands are executed from <code>/srv/cloudflare</code>):</p>
-<div class="highlight"><pre><span></span><code>sudo su - cloudflare
-
-go get github.com/cloudflare/cfrpki/cmd/octorpki
-
-<span class="c1"># test:</span>
-./go/bin/octorpki -h
-
-<span class="c1"># create the directories we need:</span>
-mkdir tals <span class="o">&amp;&amp;</span> mkdir cache <span class="o">&amp;&amp;</span> touch rrdp.json
-
-<span class="c1"># copy files we need from the OctoRPKI repository:</span>
-cp go/src/github.com/cloudflare/cfrpki/cmd/octorpki/tals/* tals/
-</code></pre></div>
-
 <p>You now need to install the ARIN file manually, sigh:</p>
 <ol>
 <li>Visiting https://www.arin.net/resources/rpki/tal.html</li>
 <li>Downloading the TAL in RFC 7730 format</li>
-<li>Place it in <code>/srv/cloudflare/tals/arin.tal</code></li>
+<li>Place it in <code>/usr/share/tals/arin.tal</code></li>
 </ol>
-<p>You can now run the validator via the following command <em>(and I'm showing the start of some of the sample output)</em>:</p>
-<div class="highlight"><pre><span></span><code>$ ./go/bin/octorpki -mode server -output.sign<span class="o">=</span><span class="m">0</span>
-INFO<span class="o">[</span><span class="m">0000</span><span class="o">]</span> Validator started
-INFO<span class="o">[</span><span class="m">0000</span><span class="o">]</span> Serving HTTP on :8080/output.json
-...
+<p>You can now run the validator via the following command <em>(and I'm also showing how to see the log)</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># start the service:</span>
+systemctl start octorpki
+
+<span class="c1"># see and tail the logs</span>
+journalctl -fu octorpki
+
+<span class="c1"># enable to start on server boot:</span>
+systemctl <span class="nb">enable</span> octorpki.service
 </code></pre></div>
 
-<p>As it starts up, there is some info available as JSON under http://localhost:8080/infos and the ROAs can be seen as JSON via http://localhost:8080/output.json after ~5mins.</p>
+<p>At the time of writing with the above mentioned versions, we have the following error in the</p>
+<div class="highlight"><pre><span></span><code>Error adding Resource tals/arin.tal: illegal base64 data at input byte 4
+</code></pre></div>
+
+<p>This is referenced in the follow <a href="https://github.com/cloudflare/cfrpki/issues/53">GitHub issue for octorpki #53</a> and is solved by editing <code>/usr/share/tals/arin.tal</code> and removing the line starting <code>https://...</code> and then restart (<code>systemctl restart octorpki</code>).</p>
+<p>As it starts up, there is some info available as JSON under <code>http://[hostname/ip address]:8080/infos</code> and the ROAs can be seen as JSON via <code>http://[hostname/ip address]:8080/output.json</code> after ~5mins.</p>
 <h2 id="gortr">GoRTR<a class="headerlink" href="#gortr" title="Permanent link"></a></h2>
-<p>To install GoRTR (once OctoRPKI is installed and running), we proceed as follows and assume you are su'd to <code>cloudflare</code> and your current directory is <code>/srv/cloudflare</code>:</p>
-<div class="highlight"><pre><span></span><code>go get github.com/cloudflare/gortr/cmd/gortr
+<p>To start GoRTR (once OctoRPKI is configured and running), we first edit <code>/etc/default/gortr</code>:</p>
+<div class="highlight"><pre><span></span><code>GORTR_ARGS=-bind :3323 -verify=false -cache http://localhost:8080/output.json -metrics.addr :8081
 </code></pre></div>
 
-<p>You can run it now with:</p>
-<div class="highlight"><pre><span></span><code>./go/bin/gortr -bind :3323                                <span class="se">\</span>
-               -verify<span class="o">=</span><span class="m">0</span>                                  <span class="se">\</span>
-               -cache http://localhost:8080/output.json   <span class="se">\</span>
-               -metrics.addr :8081
+<p>You can now run the GoRTR daemon via the following command <em>(and I'm also showing how to see the log)</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># start the service:</span>
+systemctl start gortr
+
+<span class="c1"># see and tail the logs</span>
+journalctl -fu gortr
+
+<span class="c1"># enable to start on server boot:</span>
+systemctl <span class="nb">enable</span> gortr.service
 </code></pre></div>
 
-<p>Once GoRTR starts up, metrics are available from http://127.0.0.1:8081/metrics.</p>
-<h2 id="starting-on-boot">Starting on Boot<a class="headerlink" href="#starting-on-boot" title="Permanent link"></a></h2>
-<p>To have these services start at boot, we create systemd service files:</p>
-<div class="highlight"><pre><span></span><code>cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/cloudflare-octorpki.service</span>
-<span class="s">[Unit]</span>
-<span class="s">Description=Cloudflare OctoRPKI Validator</span>
-
-<span class="s">[Service]</span>
-<span class="s">Restart=always</span>
-<span class="s">RestartSec=60</span>
-
-<span class="s">WorkingDirectory=/srv/cloudflare</span>
-
-<span class="s">User=cloudflare</span>
-
-<span class="s">StandardOutput=syslog</span>
-<span class="s">StandardError=syslog</span>
-<span class="s">SyslogIdentifier=cloudflare-octorpki</span>
-
-<span class="s">ExecStart=/srv/cloudflare/go/bin/octorpki -mode server -output.sign=0</span>
-
-
-
-<span class="s">[Install]</span>
-<span class="s">WantedBy=multi-user.target</span>
-
-<span class="s">ENDL</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>cat <span class="s">&lt;&lt;ENDL &gt;/etc/systemd/system/cloudflare-gortr.service</span>
-<span class="s">[Unit]</span>
-<span class="s">Description=Cloudflare GoRTR</span>
-<span class="s">After=cloudflare-octorpki.service</span>
-
-<span class="s">[Service]</span>
-<span class="s">Restart=always</span>
-<span class="s">RestartSec=60</span>
-
-<span class="s">WorkingDirectory=/srv/cloudflare</span>
-
-<span class="s">User=cloudflare</span>
-
-<span class="s">StandardOutput=syslog</span>
-<span class="s">StandardError=syslog</span>
-<span class="s">SyslogIdentifier=cloudflare-gortr</span>
-
-<span class="s">ExecStartPre=/bin/sleep 30</span>
-
-<span class="s">ExecStart=/srv/cloudflare/go/bin/gortr -bind :3323 -verify=0 -cache http://localhost:8080/output.json -metrics.addr :8081 -refresh=120</span>
-
-
-<span class="s">[Install]</span>
-<span class="s">WantedBy=multi-user.target</span>
-
-<span class="s">ENDL</span>
-</code></pre></div>
-
-<p>And then we enable for start on boot with:</p>
-<div class="highlight"><pre><span></span><code>systemctl <span class="nb">enable</span> cloudflare-octorpki.service
-systemctl <span class="nb">enable</span> cloudflare-gortr.service
-</code></pre></div>
-
-<p>Note that:</p>
-<ul>
-<li>we have a sleep on gortr of 30 seconds to give OctoRPKI a chance to start;</li>
-<li>even still, it may not be ready in which case gortr will retry every two minutes (<code>-refresh=120</code>).</li>
-</ul>
+<p>Once GoRTR starts up, metrics are available from http://[hostname/ip address]:8081/metrics.</p>
 <h2 id="monitoring">Monitoring<a class="headerlink" href="#monitoring" title="Permanent link"></a></h2>
 <p>We add Nagios http checks for ports 8080 (OctoRPKI) and 8081 (GoRTR) to our monitoring platform. We also add a <code>check_tcp</code> test for GoRTR port 3323.</p>
                 
