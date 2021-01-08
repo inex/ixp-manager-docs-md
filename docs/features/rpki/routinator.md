@@ -1,122 +1,78 @@
 
 # Routinator 3000
 
-**Routinator 3000** is a [RPKI](/features/rpki.md) relying party software (aka RPKI Validator) written in Rust by the good folks at [NLnet Labs](https://www.nlnetlabs.nl/projects/rpki/routinator/). These instructions reflect Routinator 0.7.1 (on Ubuntu 20.04). This mostly follows [their own GitHub instructions](https://github.com/NLnetLabs/routinator) and [documentation](https://rpki.readthedocs.io/en/latest/routinator/).
+**Routinator 3000** is a [RPKI](/features/rpki.md) relying party software (aka RPKI Validator) written in Rust by the good folks at [NLnet Labs](https://www.nlnetlabs.nl/projects/rpki/routinator/). These instructions reflect Routinator 0.8.2 (on Ubuntu 20.04). This mostly follows [their own GitHub instructions](https://github.com/NLnetLabs/routinator) and [documentation](https://rpki.readthedocs.io/en/latest/routinator/).
 
 We use a standard Ubuntu 20.04 installation (selecting the minimal virtual server option), 2 vCPUs, 2GB RAM, 20GB LVM hard drive.
 
-Rather than running Routinator as the root user, we create a dedicated user:
+Add the apt repo to the system by creating a file called `/etc/apt/sources.list.d/routinator.list` with the following contents:
+
+```
+deb [arch=amd64] https://packages.nlnetlabs.nl/linux/debian/ stretch main
+deb [arch=amd64] https://packages.nlnetlabs.nl/linux/debian/ buster main
+deb [arch=amd64] https://packages.nlnetlabs.nl/linux/ubuntu/ xenial main
+deb [arch=amd64] https://packages.nlnetlabs.nl/linux/ubuntu/ bionic main
+deb [arch=amd64] https://packages.nlnetlabs.nl/linux/ubuntu/ focal main
+```
+
+Then add the NLNetLabs package key to the system:
+
+```
+sudo apt update && apt-get install -y gnupg2
+wget -qO- https://packages.nlnetlabs.nl/aptkey.asc | sudo apt-key add -
+sudo apt update
+```
+
+Note that the first `apt update` will return a bunch of errors.  The second update should run without errors, once the key has been added.
+
+We then install the required software:
+
+```
+sudo apt install routinator
+sudo routinator-init
+```
+
+Alternatively, if you plan to agree with the ARIN RPA, run:
 
 ```sh
-useradd -c 'Routinator 3000' -d /srv/routinator -m -s /bin/bash -u 1100 routinator
+sudo routinator-init --accept-arin-rpa
 ```
 
-We then install the required software. `build-essential` is a Ubuntu alias package that installs the common C software build suite. `cargo` is Rust's package manager and installing that automatically installs other Rust dependencies.
+By default, Routinator listens only on TCP sockets on 127.0.0.1.  If you want other devices
+to be able to access the service, it needs to listen to the wildcard socket.
+
+
+If you're running Linux, you can configure Routinator to listen to both ipv4
+and ipv6 wildcard sockets using the following configuration lines in
+`/etc/routinator/routinator.conf`:
+
+```
+rtr-listen = [ "[::]:3323" ]
+http-listen = [ "[::]:8080" ]
+```
+
+If you're running an operating system other than Linux, you'll need separate entries for
+ipv4 and ipv6:
+
+```
+rtr-listen = [ "127.0.0.1:3323", "[::]:3323" ]
+http-listen = [ "127.0.0.1:8080", "[::]:8080" ]
+```
+
+You can then test by running the following command, which prints the validated ROA payloads
+and increases the log level to show the process in detail:
 
 ```sh
-apt install -y build-essential cargo rsync
+/usr/bin/routinator --config /etc/routinator/routinator.conf -v vrps
 ```
-
-You should have rust version >=1.43.0 installed (check with `rustc -V`).
-
-To install Routinator, we then switch to the `routinator` user and use Cargo to build and install it:
-
-```sh
-sudo su - routinator
-cargo install --locked routinator
-```
-
-To check if this works, run the following (and note the path to the `routinator` binary):
-
-```sh
-routinator@rpki01:~$ /srv/routinator/.cargo/bin/routinator -V
-Routinator 0.7.1
-```
-
-Routinator needs to prepare its working environment via the `init` command, which will set up both
-the directory for the local RPKI cache as well as the TAL directory. Running it will prompt you to
-agree to the [ARIN Relying Party Agreement (RPA)](https://www.arin.net/resources/manage/rpki/tal/)
-so it can install the ARIN TAL along with the other four RIR TALs:
-
-```sh
-/srv/routinator/.cargo/bin/routinator init
-```
-
-To agree with the ARIN RPA, run:
-
-```sh
-/srv/routinator/.cargo/bin/routinator init --accept-arin-rpa
-```
-
-You can then test by running the following (this command prints the validated ROA payloads
-and increases the log level to show the process in detail at least once):
-
-```sh
-/srv/routinator/.cargo/bin/routinator -v vrps
-```
-
-To upgrade Routinator, you reinstall it (`-f` to overwrite the older version):
-
-```sh
-cargo install --locked --force routinator
-```
-
-After you upgrade, kill the running version of Routinator and start it again.
-
-Note that in the above we are using the (sensible) configuration defaults. Read Routinator's own [documentation](https://rpki.readthedocs.io/en/latest/routinator/) if you want to change these.
-
-Start Routinator's RTR and HTTP service with:
-
-```
-/srv/routinator/.cargo/bin/routinator server --rtr 192.0.2.13:3323 --rtr [2001:db8::13]:3323 --http 192.0.2.13:8080
-```
-
-It will stay attached unless you run it with `-d` (for daemon) to start in the background. You can see log messages using:
-
-```sh
-cat /var/log/syslog | grep routinator
-```
-
-When it starts, there is a webserver on port 8080 - see [the documentation for the available endpoints](https://rpki.readthedocs.io/en/latest/routinator/running.html#running-the-http-service).
 
 ## Starting on Boot
 
-To have this service start at boot, we create systemd service files.
+To have this service start at boot:
 
-**Edit this to reflect your correct IP address(es).**
-
-
-```sh
-cat <<ENDL >/etc/systemd/system/rpki-routinator.service
-[Unit]
-Description=RPKI Routinator
-
-[Service]
-Restart=always
-RestartSec=60
-
-WorkingDirectory=/srv/routinator
-
-User=routinator
-
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=rpki-routinator
-
-ExecStart=/srv/routinator/.cargo/bin/routinator server --rtr 192.0.2.13:3323 --rtr [2001:db8::13]:3323 --http 192.0.2.13:8080
-
-
-
-[Install]
-WantedBy=multi-user.target
-
-ENDL
 ```
-
-And then we enable it to start on boot:
-
-```sh
-systemctl enable rpki-routinator.service
+systemctl enable routinator
+systemctl start routinator
 ```
 
 ## Monitoring
