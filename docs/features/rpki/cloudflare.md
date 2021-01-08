@@ -15,25 +15,25 @@ Cloudflare provide pre-built packages for installation - visit the following URL
 * https://github.com/cloudflare/cfrpki/releases
 * https://github.com/cloudflare/gortr/releases
 
-In my case, with Ubuntu 20.04 in September 2020, I ended up installing the following:
+As of late November 2020, the following packages are available to install:
 
 ```sh
-wget https://github.com/cloudflare/cfrpki/releases/download/v1.1.4/octorpki_1.1.4_amd64.deb
-wget https://github.com/cloudflare/gortr/releases/download/v0.14.6/gortr_0.14.6_amd64.deb
-dpkg -i gortr_0.14.6_amd64.deb octorpki_1.1.4_amd64.deb
+wget https://github.com/cloudflare/cfrpki/releases/download/v1.2.2/octorpki_1.2.2_amd64.deb
+wget https://github.com/cloudflare/gortr/releases/download/v0.14.7/gortr_0.14.7_amd64.deb
+dpkg -i octorpki_1.2.2_amd64.deb gortr_0.14.7_amd64.deb
 ```
 
 
 ## OctoRPKI
 
-You now need to install the ARIN file manually, sigh:
+You now need to install the ARIN file manually:
 
-1. Visiting https://www.arin.net/resources/rpki/tal.html
-2. Downloading the TAL in RFC 7730 format
-3. Place it in `/usr/share/tals/arin.tal`
+1. Visit https://www.arin.net/resources/rpki/tal.html
+2. Downloadi the TAL in RFC 7730 format
+3. Place it in `/usr/share/octorpki/tals/arin.tal`
 
 
-You can now run the validator via the following command *(and I'm also showing how to see the log)*:
+You can now run the validator via the following command:
 
 ```sh
 # start the service:
@@ -46,14 +46,6 @@ journalctl -fu octorpki
 systemctl enable octorpki.service
 ```
 
-At the time of writing with the above mentioned versions, we have the following error in the
-
-```
-Error adding Resource tals/arin.tal: illegal base64 data at input byte 4
-```
-
-This is referenced in the follow [GitHub issue for octorpki #53](https://github.com/cloudflare/cfrpki/issues/53) and is solved by editing `/usr/share/tals/arin.tal` and removing the line starting `https://...` and then restart (`systemctl restart octorpki`).
-
 As it starts up, there is some info available as JSON under `http://[hostname/ip address]:8080/infos` and the ROAs can be seen as JSON via `http://[hostname/ip address]:8080/output.json` after ~5mins.
 
 
@@ -65,7 +57,7 @@ To start GoRTR (once OctoRPKI is configured and running), we first edit `/etc/de
 GORTR_ARGS=-bind :3323 -verify=false -cache http://localhost:8080/output.json -metrics.addr :8081
 ```
 
-You can now run the GoRTR daemon via the following command *(and I'm also showing how to see the log)*:
+You can now run the GoRTR daemon via the following command:
 
 ```sh
 # start the service:
