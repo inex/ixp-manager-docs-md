@@ -49,7 +49,7 @@ The following sflow parameters must be set in the `<ixp>` section:
 * `apibaseurl`: the base URL of the IXP Manager API.  E.g. if you log into IXP Manager using `https://ixp.example.com/`, then `apibaseurl` will be `https://ixp.example.com/api/v4`.
 * `macdbtype`: `configured|discovered` - specifies whether the sflow p2p graphing system should pull MAC address information from the Configured MAC address database or the Discovered MAC address database.  By default, it uses the Discovered MAC address database.  If you wish to use the Configured MAC address database, then this should be set to `configured`.
 
-Note that the `<sql>` section of `ixpmanager.conf` will need to be configured either if you are running `update-l2database.pl` or the sflow BGP peering matrix system on the same server as the p2p sflow system.
+Note that the `<sql>` section of `ixpmanager.conf` will needs to be configured either if you are running `update-l2database.pl` or the sflow BGP peering matrix system.  The `sflow-to-rrd-handler` script uses API calls and does not need SQL access.
 
 An example ixpmanager.conf might look like this:
 
