@@ -4,8 +4,11 @@ IXP Manager can use [sflow](http://www.sflow.org/) data to:
 
 - analyse BGP flows over the exchange and use the data to create a peering matrix
 - build [peer-to-peer](sflow-p2p.md) traffic graphs
+- build a [peering matrix](../features/peering-matrix.md)
 
 The peer-to-peer traffic graphs show traffic aggregate analysis of bytes/packets, split by VLAN and protocol (IPv4 / IPv6), both for individual IXP peering ports and entire VLANs.
+
+The peering matrix guesses who interconnects with whom on the basis of analysing bgp session flows.
 
 # Helicopter View
 
