@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -9,11 +7,12 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
+      
+      
         <link rel="canonical" href="https://docs.ixpmanager.org/grapher/smokeping/">
       
-      
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
@@ -21,14 +20,18 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
       
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
+        
       
     
     
     
       
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
@@ -44,7 +47,13 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -82,7 +91,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="https://docs.ixpmanager.org" title="IXP Manager Documentation" class="md-header-nav__button md-logo" aria-label="IXP Manager Documentation">
       
@@ -94,18 +105,20 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
     <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
             IXP Manager Documentation
           </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
             
               Backend: Smokeping
             
           </span>
         </div>
-      
+      </div>
     </div>
     
     
@@ -127,119 +140,23 @@
     
     <div class="md-container" data-md-component="container">
       
-        
       
-      
-        
-          
-
-  
-
-<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-tabs__inner md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  <li class="md-tabs__item">
-    
-      <a href="../.." class="md-tabs__link">
-        Home
-      </a>
-    
-  </li>
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../install/" class="md-tabs__link">
-          Installation
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../usage/operational-notes/" class="md-tabs__link">
-          General Usage
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../features/api/" class="md-tabs__link">
-          Features
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../introduction/" class="md-tabs__link md-tabs__link--active">
-          Grapher
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../features/sflow/" class="md-tabs__link">
-          Sflow Support
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../dev/introduction/" class="md-tabs__link">
-          Development
-        </a>
-      
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
         
       
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="https://docs.ixpmanager.org" title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation">
       
@@ -269,763 +186,784 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../.." title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
 
     
       
       
       
 
-
-  <li class="md-nav__item md-nav__item--nested">
+  
+  
+  
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
-    
-    <label class="md-nav__link" for="nav-2">
-      Installation
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Installation" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
-        <span class="md-nav__icon md-icon"></span>
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+      
+      <label class="md-nav__link" for="nav-2">
         Installation
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../install/" title="Introduction" class="md-nav__link">
-      Introduction
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../install/automated-script/" title="Automated Script" class="md-nav__link">
-      Automated Script
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../install/maint-mode/" title="Maintenance Mode" class="md-nav__link">
-      Maintenance Mode
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../install/manually/" title="Manual Installation" class="md-nav__link">
-      Manual Installation
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../install/upgrading/" title="Upgrading" class="md-nav__link">
-      Upgrading
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../install/runtime/" title="Runtime Configuration" class="md-nav__link">
-      Runtime Configuration
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../install/next-steps/" title="Post-Install Steps" class="md-nav__link">
-      Post-Install Steps
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
-    
-    <label class="md-nav__link" for="nav-3">
-      General Usage
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="General Usage" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
         <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Installation" data-md-level="1">
+        <label class="md-nav__title" for="nav-2">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install/automated-script/" class="md-nav__link">
+        Automated Script
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install/maint-mode/" class="md-nav__link">
+        Maintenance Mode
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install/manually/" class="md-nav__link">
+        Manual Installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install/upgrading/" class="md-nav__link">
+        Upgrading
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install/runtime/" class="md-nav__link">
+        Runtime Configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install/next-steps/" class="md-nav__link">
+        Post-Install Steps
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+      
+      <label class="md-nav__link" for="nav-3">
         General Usage
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/operational-notes/" title="Operational Notes" class="md-nav__link">
-      Operational Notes
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/authentication/" title="Authentication" class="md-nav__link">
-      Authentication
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/contacts/" title="Contacts" class="md-nav__link">
-      Contacts
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/customers/" title="Customers / Members" class="md-nav__link">
-      Customers / Members
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/customer-notes/" title="Customer Notes" class="md-nav__link">
-      Customer Notes
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/customer-tags/" title="Customer Tags" class="md-nav__link">
-      Customer Tags
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/interfaces/" title="Customer Connections" class="md-nav__link">
-      Customer Connections
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/users/" title="Users" class="md-nav__link">
-      Users
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/switches/" title="Switches" class="md-nav__link">
-      Switches
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../usage/email/" title="Email" class="md-nav__link">
-      Email
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
-    
-    <label class="md-nav__link" for="nav-4">
-      Features
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Features" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
         <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="General Usage" data-md-level="1">
+        <label class="md-nav__title" for="nav-3">
+          <span class="md-nav__icon md-icon"></span>
+          General Usage
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/operational-notes/" class="md-nav__link">
+        Operational Notes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/authentication/" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/contacts/" class="md-nav__link">
+        Contacts
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/customers/" class="md-nav__link">
+        Customers / Members
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/customer-notes/" class="md-nav__link">
+        Customer Notes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/customer-tags/" class="md-nav__link">
+        Customer Tags
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/interfaces/" class="md-nav__link">
+        Customer Connections
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/users/" class="md-nav__link">
+        Users
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/switches/" class="md-nav__link">
+        Switches
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/email/" class="md-nav__link">
+        Email
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+      
+      <label class="md-nav__link" for="nav-4">
         Features
+        <span class="md-nav__icon md-icon"></span>
       </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/api/" title="API" class="md-nav__link">
-      API
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/as112/" title="AS112" class="md-nav__link">
-      AS112
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/console-servers/" title="Console Servers" class="md-nav__link">
-      Console Servers
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/cronjobs/" title="Cron Jobs" class="md-nav__link">
-      Cron Jobs
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/patch-panels/" title="Cross Connects" class="md-nav__link">
-      Cross Connects
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/dns-arpa/" title="DNS / ARPA" class="md-nav__link">
-      DNS / ARPA
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/docstore/" title="Document Store" class="md-nav__link">
-      Document Store
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../introduction/" title="Grapher" class="md-nav__link">
-      Grapher
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/helpdesk/" title="Helpdesk Integration" class="md-nav__link">
-      Helpdesk Integration
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/irrdb/" title="IRRDB" class="md-nav__link">
-      IRRDB
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/ixf-export/" title="IX-F Member Export" class="md-nav__link">
-      IX-F Member Export
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/looking-glass/" title="Looking Glass" class="md-nav__link">
-      Looking Glass
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/layer2-addresses/" title="MAC Addresses" class="md-nav__link">
-      MAC Addresses
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/manrs/" title="MANRS" class="md-nav__link">
-      MANRS
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/member-export/" title="Member Export" class="md-nav__link">
-      Member Export
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/mailing-lists/" title="Mailing List Management" class="md-nav__link">
-      Mailing List Management
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/nagios/" title="Nagios" class="md-nav__link">
-      Nagios
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/patch-panels/" title="Patch Panels" class="md-nav__link">
-      Patch Panels
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/peering-manager/" title="Peering Manager" class="md-nav__link">
-      Peering Manager
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/peering-matrix/" title="Peering Matrix" class="md-nav__link">
-      Peering Matrix
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/peeringdb/" title="PeeringDB" class="md-nav__link">
-      PeeringDB
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/rir-objects/" title="RIR Objects" class="md-nav__link">
-      RIR Objects
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/reseller/" title="Reseller Functionality" class="md-nav__link">
-      Reseller Functionality
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/route-collectors/" title="Route Collectors" class="md-nav__link">
-      Route Collectors
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/route-servers/" title="Route Servers" class="md-nav__link">
-      Route Servers
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/routers/" title="Router Configuration" class="md-nav__link">
-      Router Configuration
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/rpki/" title="RPKI" class="md-nav__link">
-      RPKI
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/skinning/" title="Skinning" class="md-nav__link">
-      Skinning
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="./" title="Smokeping" class="md-nav__link">
-      Smokeping
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/static-content/" title="Static Content" class="md-nav__link">
-      Static Content
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/tacacs/" title="TACACS" class="md-nav__link">
-      TACACS
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
+      <nav class="md-nav" aria-label="Features" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          Features
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/api/" class="md-nav__link">
+        API
+      </a>
+    </li>
   
 
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/as112/" class="md-nav__link">
+        AS112
+      </a>
+    </li>
+  
 
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
-    
-    <label class="md-nav__link" for="nav-5">
-      Grapher
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Grapher" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
-        <span class="md-nav__icon md-icon"></span>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/console-servers/" class="md-nav__link">
+        Console Servers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/cronjobs/" class="md-nav__link">
+        Cron Jobs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/patch-panels/" class="md-nav__link">
+        Cross Connects
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/dns-arpa/" class="md-nav__link">
+        DNS / ARPA
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/docstore/" class="md-nav__link">
+        Document Store
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
         Grapher
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../introduction/" title="Introduction" class="md-nav__link">
-      Introduction
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../api/" title="API & Permissions" class="md-nav__link">
-      API &amp; Permissions
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../mrtg/" title="Backend: MRTG" class="md-nav__link">
-      Backend: MRTG
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../sflow/" title="Backend: sflow" class="md-nav__link">
-      Backend: sflow
-    </a>
-  </li>
-
-        
-          
-          
-          
-
+      </a>
+    </li>
   
 
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/helpdesk/" class="md-nav__link">
+        Helpdesk Integration
+      </a>
+    </li>
+  
 
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/irrdb/" class="md-nav__link">
+        IRRDB
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/ixf-export/" class="md-nav__link">
+        IX-F Member Export
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/looking-glass/" class="md-nav__link">
+        Looking Glass
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/layer2-addresses/" class="md-nav__link">
+        MAC Addresses
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/manrs/" class="md-nav__link">
+        MANRS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/member-export/" class="md-nav__link">
+        Member Export
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/mailing-lists/" class="md-nav__link">
+        Mailing List Management
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/nagios/" class="md-nav__link">
+        Nagios
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/patch-panels/" class="md-nav__link">
+        Patch Panels
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/peering-manager/" class="md-nav__link">
+        Peering Manager
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/peering-matrix/" class="md-nav__link">
+        Peering Matrix
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/peeringdb/" class="md-nav__link">
+        PeeringDB
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/rir-objects/" class="md-nav__link">
+        RIR Objects
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/reseller/" class="md-nav__link">
+        Reseller Functionality
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/route-collectors/" class="md-nav__link">
+        Route Collectors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/route-servers/" class="md-nav__link">
+        Route Servers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/routers/" class="md-nav__link">
+        Router Configuration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/rpki/" class="md-nav__link">
+        RPKI
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/skinning/" class="md-nav__link">
+        Skinning
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./" class="md-nav__link">
+        Smokeping
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/static-content/" class="md-nav__link">
+        Static Content
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/tacacs/" class="md-nav__link">
+        TACACS
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
     
       
+      
+      
+
+  
+  
     
+  
+  
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Backend: Smokeping
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      
+      <label class="md-nav__link" for="nav-5">
+        Grapher
         <span class="md-nav__icon md-icon"></span>
       </label>
+      <nav class="md-nav" aria-label="Grapher" data-md-level="1">
+        <label class="md-nav__title" for="nav-5">
+          <span class="md-nav__icon md-icon"></span>
+          Grapher
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        API &amp; Permissions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mrtg/" class="md-nav__link">
+        Backend: MRTG
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sflow/" class="md-nav__link">
+        Backend: sflow
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
-    <a href="./" title="Backend: Smokeping" class="md-nav__link md-nav__link--active">
-      Backend: Smokeping
-    </a>
-    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
       
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Backend: Smokeping
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Backend: Smokeping
+      </a>
+      
+        
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -1137,281 +1075,293 @@
     </ul>
   
 </nav>
-    
-  </li>
+      
+    </li>
+  
 
-        
-      </ul>
-    </nav>
-  </li>
+          
+        </ul>
+      </nav>
+    </li>
+  
 
     
       
       
       
 
-
-  <li class="md-nav__item md-nav__item--nested">
+  
+  
+  
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
-    
-    <label class="md-nav__link" for="nav-6">
-      Sflow Support
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Sflow Support" data-md-level="1">
-      <label class="md-nav__title" for="nav-6">
-        <span class="md-nav__icon md-icon"></span>
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+      
+      <label class="md-nav__link" for="nav-6">
         Sflow Support
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/sflow/" title="Introduction" class="md-nav__link">
-      Introduction
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../features/sflow-p2p/" title="Peer-to-peer Graphs" class="md-nav__link">
-      Peer-to-peer Graphs
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
-    
-    <label class="md-nav__link" for="nav-7">
-      Development
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Development" data-md-level="1">
-      <label class="md-nav__title" for="nav-7">
         <span class="md-nav__icon md-icon"></span>
-        Development
       </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
+      <nav class="md-nav" aria-label="Sflow Support" data-md-level="1">
+        <label class="md-nav__title" for="nav-6">
+          <span class="md-nav__icon md-icon"></span>
+          Sflow Support
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/sflow/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/sflow-p2p/" class="md-nav__link">
+        Peer-to-peer Graphs
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../dev/introduction/" title="Introduction" class="md-nav__link">
-      Introduction
-    </a>
-  </li>
-
-        
           
-          
-          
+        </ul>
+      </nav>
+    </li>
+  
 
+    
+      
+      
+      
 
-  <li class="md-nav__item">
-    <a href="../../dev/api/" title="API" class="md-nav__link">
-      API
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../dev/authentication/" title="Authentication" class="md-nav__link">
-      Authentication
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../dev/ci/" title="Continuous Integration" class="md-nav__link">
-      Continuous Integration
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../dev/cla/" title="Contributer License Agreement" class="md-nav__link">
-      Contributer License Agreement
-    </a>
-  </li>
-
-        
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" >
+      
+      <label class="md-nav__link" for="nav-7">
+        Development
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Development" data-md-level="1">
+        <label class="md-nav__title" for="nav-7">
+          <span class="md-nav__icon md-icon"></span>
+          Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/api/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../dev/docker/" title="Docker" class="md-nav__link">
-      Docker
-    </a>
-  </li>
-
-        
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/authentication/" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/ci/" class="md-nav__link">
+        Continuous Integration
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/cla/" class="md-nav__link">
+        Contributer License Agreement
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../dev/docs/" title="Documentation" class="md-nav__link">
-      Documentation
-    </a>
-  </li>
-
-        
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/docs/" class="md-nav__link">
+        Documentation
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/forms/" class="md-nav__link">
+        Forms
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../dev/forms/" title="Forms" class="md-nav__link">
-      Forms
-    </a>
-  </li>
-
-        
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/frontend-crud/" class="md-nav__link">
+        Frontend CRUD
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/grapher/" class="md-nav__link">
+        Grapher
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/helpders/" class="md-nav__link">
+        Helpers
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../dev/frontend-crud/" title="Frontend CRUD" class="md-nav__link">
-      Frontend CRUD
-    </a>
-  </li>
-
-        
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/looking-glass/" class="md-nav__link">
+        Looking Glass
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/release-procedure/" class="md-nav__link">
+        Release Procedure
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/telescope/" class="md-nav__link">
+        Telescope
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../dev/grapher/" title="Grapher" class="md-nav__link">
-      Grapher
-    </a>
-  </li>
-
-        
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/users/" class="md-nav__link">
+        Users
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/vagrant/" class="md-nav__link">
+        Vagrant
+      </a>
+    </li>
+  
+
           
-
-
-  <li class="md-nav__item">
-    <a href="../../dev/helpders/" title="Helpers" class="md-nav__link">
-      Helpers
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../dev/looking-glass/" title="Looking Glass" class="md-nav__link">
-      Looking Glass
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../dev/release-procedure/" title="Release Procedure" class="md-nav__link">
-      Release Procedure
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../dev/telescope/" title="Telescope" class="md-nav__link">
-      Telescope
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../dev/users/" title="Users" class="md-nav__link">
-      Users
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../dev/vagrant/" title="Vagrant" class="md-nav__link">
-      Vagrant
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+        </ul>
+      </nav>
+    </li>
+  
 
     
   </ul>
@@ -1421,7 +1371,8 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -1550,9 +1501,6 @@
                   </a>
                 
                 
-                  
-                
-                
                 <h1 id="backend-smokeping">Backend: Smokeping<a class="headerlink" href="#backend-smokeping" title="Permanent link"></a></h1>
 <p>Latency graphs are a tool for monitoring latency / packet loss to the routers of IXP partipants and they can be an invaluable asset when diagnosing many IXP issues.</p>
 <p><strong>While they should never be used as a tool for monitoring IXP latency or packet loss</strong> (as routers de-prioritise ICMP requests and/or may not have a suitably powerful management plane), they can act as an extremely useful tool for identifying and diagnosing customer / member issues. <strong>What we really look for here is recent changes over time.</strong></p>
@@ -1575,7 +1523,6 @@
 <p>You can use the <strong>IXP Manager</strong> API to get the Smokeping target configurations for a given VLAN and protocol using the following endpoint format (both GET and POST requests work):</p>
 <div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/grapher/config?backend=smokeping&amp;vlanid=10&amp;protocol=ipv4
 </code></pre></div>
-
 <p><em>Note that in versions of IXP Manager between v4.5 and v4.7.3, this was: <code>https://ixp.example.com/api/v4/vlan/smokeping/{vlanid}/{protocol}</code>.</em></p>
 <p>In the above, the parameters are:</p>
 <ul>
@@ -1591,7 +1538,6 @@ title =  Peering VLAN #1 :: AS112 Reverse DNS via 185.6.36.6
 probe = FPing
 host = 185.6.36.6
 </code></pre></div>
-
 <h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link"></a></h3>
 <p>You can optionally POST any of the above parameters and none, one or both of the following to change elements of the default template:</p>
 <ul>
@@ -1604,7 +1550,6 @@ host = 185.6.36.6
     -H <span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span> <span class="se">\</span>
     https://ixpexample.com/api/v4/grapher/config
 </code></pre></div>
-
 <h3 id="templates-skinning">Templates / Skinning<a class="headerlink" href="#templates-skinning" title="Permanent link"></a></h3>
 <p>You can use <a href="../../features/skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
 <p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
@@ -1613,7 +1558,6 @@ mkdir -p resources/skins/myskin/services/grapher/smokeping
 cp resources/views/services/grapher/smokeping/default.foil.php <span class="se">\</span>
     resources/skins/myskin/services/grapher/smokeping/mytemplate1.foil.php
 </code></pre></div>
-
 <p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
 <p>The following variables are available in the template:</p>
 <ul>
@@ -1635,7 +1579,6 @@ cp resources/views/services/grapher/smokeping/default.foil.php <span class="se">
 <span class="nv">VLANS</span><span class="o">=</span><span class="s2">&quot;1 2&quot;</span>
 <span class="nv">PROTOCOLS</span><span class="o">=</span><span class="s2">&quot;ipv4 ipv6&quot;</span>
 </code></pre></div>
-
 <p>where:</p>
 <ul>
 <li><code>KEY</code> is your IXP Manager <a href="../../features/api/">API key</a>.</li>
@@ -1662,7 +1605,6 @@ title = IXP Infra 1 :: Peering VLAN 1
 @include targets-vlan1-ipv4.cfg
 @include targets-vlan1-ipv6.cfg
 </code></pre></div>
-
 <h2 id="apache-configuration">Apache Configuration<a class="headerlink" href="#apache-configuration" title="Permanent link"></a></h2>
 <p>You need to be able to configure IXP Manager with the base Smokeping URL such as <code>http://www.example.com/smokeping</code>. This should be the URL to the standard entry page to Smokeping.</p>
 <p>IXP Manager will add the trailing slash and assume the directory index is configured for the CGI script. Thus you need an Apache configuration such as:</p>
@@ -1674,7 +1616,6 @@ Alias /smokeping /usr/share/smokeping/www
     DirectoryIndex smokeping.cgi
 &lt;/Directory&gt;
 </code></pre></div>
-
 <h2 id="ixp-manager-configuration">IXP Manager Configuration<a class="headerlink" href="#ixp-manager-configuration" title="Permanent link"></a></h2>
 <p>Once you have configured Smokeping and Apache/web server as above, you really just need to set the following in your IXP Manager <code>.env</code> file:</p>
 <div class="highlight"><pre><span></span><code># Add smokeping to the grapher backends:
@@ -1686,7 +1627,6 @@ GRAPHER_BACKEND_SMOKEPING_ENABLED=true
 # And set the default location to fetch the Smokeping graphs from:
 GRAPHER_BACKEND_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
 </code></pre></div>
-
 <p>where the URL is as you set up in Apache above.</p>
 <p>There may be instances where you have multiple VLANs where it is not possible to have a single Smokeping instance graph latency for all of them. Particularly as the Smokeping daemon for a given VLAN needs to have an interface / IP address on that VLAN.</p>
 <p>INEX has such a situation where we have a regional exchange, <em>INEX Cork</em>, that is located in a different city to the main INEX LANs and IXP Manager. In this situation, you can configure Smokeping URL overrides on a per VLAN basis by creating a file called <code>$IXPROOT/config/grapher_smokeping_overrides.php</code> which returns an array as follows:</p>
@@ -1701,7 +1641,6 @@ GRAPHER_BACKEND_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
 
 <span class="p">];</span>
 </code></pre></div>
-
 <p>where the array index (<code>2</code> and <code>4</code> in the above example) is the VLAN DB ID as explained above.</p>
 <p>Any VLANs without a specific override configured in this way will fall back to the <code>GRAPHER_BACKEND_SMOKEPING_URL</code> setting.</p>
 <h2 id="viewing-smokeping-in-ixp-manager">Viewing Smokeping in IXP Manager<a class="headerlink" href="#viewing-smokeping-in-ixp-manager" title="Permanent link"></a></h2>
@@ -1711,7 +1650,6 @@ GRAPHER_BACKEND_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
 <p>IXP Manager will call something like the following to fetch graphs from Smokeping:</p>
 <div class="highlight"><pre><span></span><code><span class="x">file_get_contents( &#39;https://www.example.com/smokeping/?.....&#39; )</span>
 </code></pre></div>
-
 <p>You should see these requests to Smokeping in your Smokeping web server log files. Find these and compare them to the URLs that Smokeping itself generates for its own display of the images to ensure you have everything - and especially the Smokeping URL in IXP configuration set up correctly.</p>
 <p>Also, try testing these URLs directly on the IXP Manager server via:</p>
 <div class="highlight"><pre><span></span><code><span class="x">php -r &#39;echo file_get_contents( &quot;https://...&quot; );&#39;</span>
@@ -1747,7 +1685,7 @@ GRAPHER_BACKEND_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../sflow/" title="Backend: sflow" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../sflow/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1762,7 +1700,7 @@ GRAPHER_BACKEND_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
           </a>
         
         
-          <a href="../../features/sflow/" title="Introduction" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../features/sflow/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
@@ -1848,15 +1786,15 @@ GRAPHER_BACKEND_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
-      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "../..",
-          features: ["tabs"],
+          features: ['tabs'],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
