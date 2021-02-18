@@ -108,7 +108,9 @@ if [[ $DIFF -eq 0 ]]; then
     exit 0
 fi
 
-/usr/bin/mrtg --check ${TMPCONF} && /bin/mv ${TMPCONF} /etc/mrtg.cfg
+/usr/bin/mrtg --check ${TMPCONF}                 \
+    && /bin/mv ${TMPCONF} /etc/mrtg.cfg          \
+    && /etc/rc.d/mrtg_daemon restart > /dev/null
 ```
 
 If your MRTG collector is on a different server, you could use a script such as the following to safely update MRTG via [IXP Manager's API](../features/api.md).
@@ -148,6 +150,12 @@ if [[ $DIFF -eq 0 ]]; then
 fi
 
 /usr/bin/mrtg --check ${TMPCONF} && /bin/mv ${TMPCONF} /etc/mrtg.cfg
+
+
+
+/usr/bin/mrtg --check ${TMPCONF}                 \
+    && /bin/mv ${TMPCONF} /etc/mrtg.cfg          \
+    && /etc/rc.d/mrtg_daemon restart > /dev/null
 ```
 
 Note that the MRTG configuration that IXP Manager generates instructs MRTG to run as a daemon. On FreeBSD, MRTG comes with an initd script by default and you can kick it off on boot with something like the following in `/etc/rc.conf`:

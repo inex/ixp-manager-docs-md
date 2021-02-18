@@ -1519,7 +1519,9 @@ rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</
     <span class="nb">exit</span> <span class="m">0</span>
 <span class="k">fi</span>
 
-/usr/bin/mrtg --check <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> <span class="o">&amp;&amp;</span> /bin/mv <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> /etc/mrtg.cfg
+/usr/bin/mrtg --check <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>                 <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> /bin/mv <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> /etc/mrtg.cfg          <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> /etc/rc.d/mrtg_daemon restart &gt; /dev/null
 </code></pre></div>
 <p>If your MRTG collector is on a different server, you could use a script such as the following to safely update MRTG via <a href="../../features/api/">IXP Manager's API</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#! /usr/bin/env bash</span>
@@ -1556,6 +1558,12 @@ rm <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</
 <span class="k">fi</span>
 
 /usr/bin/mrtg --check <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> <span class="o">&amp;&amp;</span> /bin/mv <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> /etc/mrtg.cfg
+
+
+
+/usr/bin/mrtg --check <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span>                 <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> /bin/mv <span class="si">${</span><span class="nv">TMPCONF</span><span class="si">}</span> /etc/mrtg.cfg          <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> /etc/rc.d/mrtg_daemon restart &gt; /dev/null
 </code></pre></div>
 <p>Note that the MRTG configuration that IXP Manager generates instructs MRTG to run as a daemon. On FreeBSD, MRTG comes with an initd script by default and you can kick it off on boot with something like the following in <code>/etc/rc.conf</code>:</p>
 <div class="highlight"><pre><span></span><code>mrtg_daemon_enable=&quot;YES&quot;
