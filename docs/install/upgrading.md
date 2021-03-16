@@ -6,7 +6,7 @@
 
     * For instructions on how to upgrade from v3.x to v4, please [see this page](upgrade-v3.md).
 
-    * For instructions on how to upgrade from v4.9.x to v5.0, please see [the v5.0 release notes](https://github.com/inex/IXP-Manager/releases).
+    * For instructions on how to upgrade from v4.9.x to v5.0, please see [the v5.0 release notes](https://github.com/inex/IXP-Manager/releases/tag/v5.0.0).
 
 
 
