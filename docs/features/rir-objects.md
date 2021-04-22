@@ -2,7 +2,7 @@
 
 IXP Manager can generate (and email) your RIR objects - for example your AS-SETs, AS object, etc - to your RIR for automatic updates / maintenance.
 
-As a concreate example of this, see how INEX do this with our RIPE objects as follows:
+As a concrete example of this, see how INEX do this with our RIPE objects as follows:
 
 * [AS2128](https://apps.db.ripe.net/db-web-ui/#/lookup?source=ripe&key=AS2128&type=aut-num) - INEX's route collector / management ASN
 * [AS43760](https://apps.db.ripe.net/db-web-ui/#/lookup?source=ripe&key=AS43760&type=aut-num) - INEX's route server ASN
@@ -80,7 +80,7 @@ The template name must be lowercase, and contain only the characters: `0-9 a-z _
 ### Available Template Variables
 
 * `$customers` - complete Doctrine2 objects of all current external trafficking customers / members. You should be able to derive everything from this. Indexed by customer ID.
-* `$asns` - an associate array for the generation of an IXP AS object indexed by ASN containing elements:
+* `$asns` - an associative array for the generation of an IXP AS object indexed by ASN containing elements:
   * `['asmacro']` - the member's AS macro (or the ASN if no macro);
   * `['name']` - the member's name
 * `$rsclients` - an associative array for the generation of an IXP's route server AS object. See the function definition for `generateRouteServerClientDetails()` in `app/Tasks/Rir/Generator.php` for details on the array structure.
@@ -93,7 +93,7 @@ You'll find a standard template for an `autnum:` object at `resources/views/api/
 
 Just copy one of these to your own skin directory and edit as appropriate.
 
-### AS-SET - Connected ASNs
+### as-set: - Connected ASNs
 
 You can create an AS-SET of connected ASNs / AS macros (see INEX's [AS-SET-INEX-CONNECTED](https://apps.db.ripe.net/db-web-ui/#/lookup?source=ripe&key=AS-SET-INEX-CONNECTED&type=as-set) as an example) via the example template `as-set-ixp-connected`.
 
