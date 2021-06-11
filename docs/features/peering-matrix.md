@@ -25,6 +25,11 @@ Sflow is a packet sampling mechanism, which means that it will take some while b
 
 For more information, see the [sflow documentation](../grapher/sflow.md).
 
+Note that the peering matrix functionality depends on SQL triggers which are maintained in the `tools/sql/views.sql` file.  This can be refreshed using the following command:
+
+    ```sh
+    mysql -u ixp -p ixp < $IXPROOT/tools/sql/views.sql
+    ```
 
 ### Configuring ixpmanager.conf
 
@@ -85,3 +90,7 @@ This probably means that it's not getting an sflow feed.  Check to ensure that s
 * The script prints `ignored - no address match in database` when in debug mode
 
 If the IP addresses match those on the IXP's peering LAN, then the IP address database is not populated correctly.  This can be fixed by entering the IXP's addresses in the `IP Addressing` menu of the web UI.
+
+* No peer-to-peer sessions appear in the matrix
+
+Check that the `tools/sql/views.sql` file has been imported into the SQL database.
