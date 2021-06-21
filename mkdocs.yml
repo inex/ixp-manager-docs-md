@@ -35,6 +35,7 @@ nav:
     - 'Upgrading': 'install/upgrading.md'
     - 'Runtime Configuration': 'install/runtime.md'
     - 'Post-Install Steps': 'install/next-steps.md'
+    - 'Join the Community': 'install/register.md'
 - General Usage:
     - 'Operational Notes': 'usage/operational-notes.md'
     - 'Authentication': 'usage/authentication.md'
