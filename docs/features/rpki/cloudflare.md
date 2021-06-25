@@ -29,7 +29,7 @@ dpkg -i octorpki_1.2.2_amd64.deb gortr_0.14.7_amd64.deb
 You now need to install the ARIN file manually:
 
 1. Visit https://www.arin.net/resources/rpki/tal.html
-2. Downloadi the TAL in RFC 7730 format
+2. Download the TAL in RFC 7730 format
 3. Place it in `/usr/share/octorpki/tals/arin.tal`
 
 
@@ -46,7 +46,10 @@ journalctl -fu octorpki
 systemctl enable octorpki.service
 ```
 
-As it starts up, there is some info available as JSON under `http://[hostname/ip address]:8080/infos` and the ROAs can be seen as JSON via `http://[hostname/ip address]:8080/output.json` after ~5mins.
+**NB:** OctoRPKI listens as a web service by default on port `8081`. It's possible to change this port by adding `OCTORPKI_ARGS=-http.addr :8080` to `/etc/default/octorpki` if required.
+
+As it starts up, there is some info available as JSON under `http://[hostname/ip address]:8081/infos` and the ROAs can be seen as JSON via `http://[hostname/ip address]:8081/output.json` after ~5mins.
+
 
 
 ## GoRTR
@@ -54,7 +57,7 @@ As it starts up, there is some info available as JSON under `http://[hostname/ip
 To start GoRTR (once OctoRPKI is configured and running), we first edit `/etc/default/gortr`:
 
 ```
-GORTR_ARGS=-bind :3323 -verify=false -cache http://localhost:8080/output.json -metrics.addr :8081
+GORTR_ARGS=-bind :3323 -verify=false -cache http://localhost:8081/output.json -metrics.addr :8082
 ```
 
 You can now run the GoRTR daemon via the following command:
@@ -71,10 +74,10 @@ systemctl enable gortr.service
 ```
 
 
-Once GoRTR starts up, metrics are available from http://[hostname/ip address]:8081/metrics.
+Once GoRTR starts up, metrics are available from http://[hostname/ip address]:8082/metrics.
 
 
 
 ## Monitoring
 
-We add Nagios http checks for ports 8080 (OctoRPKI) and 8081 (GoRTR) to our monitoring platform. We also add a `check_tcp` test for GoRTR port 3323.
+We add Nagios http checks for ports 8081 (OctoRPKI) and 8082 (GoRTR) to our monitoring platform. We also add a `check_tcp` test for GoRTR port 3323.
