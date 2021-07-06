@@ -1,10 +1,10 @@
 # Manual Installation
 
-???+ note "**This page was updated in April 2020 for Ubuntu LTS 20.04.**"
+???+ note "**This page was updated in July 2010 for the release of IXP Manager v6.0 and installation on Ubuntu LTS 20.04.**"
 
 ## Video Tutorial
 
-We created a video tutorial demonstrating the manual installation process for IXP Manager v5.5.0 (April 2020) on Ubuntu LTS 20.04. You can find the [video here](https://www.youtube.com/watch?v=qRIl1ioG6Ck) in our [YouTube channel](https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA). As always, [the full catalog of video tutorials is here](https://www.ixpmanager.org/support/tutorials).
+We created a video tutorial demonstrating the manual installation process for IXP Manager v5.5.0 (April 2020) on Ubuntu LTS 20.04. You can find the [video here](https://www.youtube.com/watch?v=qRIl1ioG6Ck) in our [YouTube channel](https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA). The procedure is similar for v6.0 - just be sure to use the [ubuntu-lts-2004-ixp-manager-v6.sh](https://github.com/inex/IXP-Manager/blob/release-v6/tools/installers/ubuntu-lts-2004-ixp-manager-v6.sh) script. As always, [the full catalog of video tutorials is here](https://www.ixpmanager.org/support/tutorials).
 
 ## Requirements
 
@@ -12,27 +12,34 @@ IXP Manager tries to stay current in terms of technology. Typically, this means 
 
 The current requirements for the web application are:
 
-* a Linux / BSD host.
-* MySQL version 5.7 or later **but you should use MySQL >=8.0 from April 2020**.
+* a Linux / BSD host - **all documentation and videos relate to Ubuntu LTS**.
+* MySQL 8.
 * Apache / Nginx / etc.
-* PHP >= 7.4. **Note that IXP Manager will not run on older versions of PHP.**
+* PHP >= 8.0. **Note that IXP Manager >= v6.0 will not run on older versions of PHP.**
 * Memcached - optional but recommended.
 
 To complete the installation using the included config/scripts, you will also need to have installed git (`apt install git`) and a number of PHP extensions (see the example `apt install` below).
 
 Regrettably the potential combinations of operating systems, versions of same and then versions of PHP are too numerous to provide individual support. As such, we recommend installing IXP Manager on Ubuntu LTS 20.04 and we officially support this platform.
 
-In fact we provide a complete installation script for this - see [the automated installation page](automated-script.md) for details. If you have any issues with the manual installation, the automated script should be your first reference to compare what you are doing to what we recommend.
+In fact, we provide a complete installation script for this - see [the automated installation page](automated-script.md) for details. If you have any issues with the manual installation, the automated script should be your first reference to compare what you are doing to what we recommend.
 
 For completeness, the IXP Manager installation script for Ubuntu 20.04 LTS installs:
 
 ```sh
-apt install -qy apache2 php7.4 php7.4-intl php-rrd php7.4-cgi php7.4-cli          \
-    php7.4-snmp php7.4-curl  php-memcached libapache2-mod-php7.4 mysql-server     \
-    mysql-client php7.4-mysql memcached snmp php7.4-mbstring php7.4-xml php7.4-gd \
-    php7.4-bcmath bgpq3 php-memcache unzip php7.4-zip git php-yaml                \
+apt install -qy apache2 php8.0 php8.0-intl php-rrd php8.0-cgi php8.0-cli          \
+    php8.0-snmp php8.0-curl  php-memcached libapache2-mod-php8.0 mysql-server     \
+    mysql-client php8.0-mysql memcached snmp php8.0-mbstring php8.0-xml php8.0-gd \
+    php8.0-bcmath bgpq3 php-memcache unzip php8.0-zip git php-yaml                \
     php-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl \
     libnetaddr-ip-perl rrdtool librrds-perl curl composer
+```
+
+Do note that Ubuntu 20.04 LTS comes with PHP 7.4 so you must enable Ondřej Surý's excellent [Ubuntu PHP PPA](https://launchpad.net/~ondrej/+archive/ubuntu/php) (and maybe [buy him a pint](https://deb.sury.org/#donate)). This can be enabled with:
+
+```sh
+apt-get install -yq software-properties-common
+add-apt-repository -y ppa:ondrej/php
 ```
 
 If you are using a different platform, you will need to replicate the above as appropriate for your chosen platform.
@@ -48,7 +55,7 @@ IXPROOT=/srv/ixpmanager
 cd /srv
 git clone https://github.com/inex/IXP-Manager.git ixpmanager
 cd $IXPROOT   # /srv/ixpmanager
-git checkout release-v5
+git checkout release-v6
 chown -R www-data: bootstrap/cache storage
 ```
 
@@ -75,6 +82,7 @@ Use whatever means you like to create a database and user for IXP Manager. For e
 CREATE DATABASE `ixpmanager` CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci';
 CREATE USER `ixpmanager`@`localhost` IDENTIFIED BY '<pick a password!>';
 GRANT ALL ON `ixpmanager`.* TO `ixpmanager`@`localhost`;
+GRANT SUPER ON *.* TO `ixpmanager`@`localhost`;
 FLUSH PRIVILEGES;
 ```
 
@@ -90,7 +98,6 @@ DB_PASSWORD=<the password you picked above!>
 Now create the database schema:
 
 ```sh
-php artisan doctrine:schema:create
 php artisan migrate
 ```
 
@@ -126,39 +133,33 @@ The following is taken from the IXP Manager installation script:
 
 ```mysql
 mysql -u ixpmanager "-p${MYSQL_ROOT_PW}" $DBNAME <<END_SQL
-INSERT INTO ixp ( name, shortname, address1, country )
-    VALUES ( '${IXPNAME}', '${IXPSNAME}', '${IXPCITY}', '${IXPCOUNTRY}' );
-SET @ixpid = LAST_INSERT_ID();
-
-INSERT INTO infrastructure ( ixp_id, name, shortname, isPrimary )
-    VALUES ( @ixpid, 'Infrastructure #1', '#1', 1 );
+INSERT INTO infrastructure ( name, shortname, isPrimary, created_at, updated_at )
+    VALUES ( 'Infrastructure #1', '#1', 1, NOW(), NOW() );
 SET @infraid = LAST_INSERT_ID();
 
-INSERT INTO company_registration_detail ( registeredName ) VALUES ( '${IXPNAME}' );
+INSERT INTO company_registration_detail ( registeredName, created_at, updated_at ) VALUES ( '${IXPNAME}', NOW(), NOW() );
 SET @crdid = LAST_INSERT_ID();
 
-INSERT INTO company_billing_detail ( billingContactName, invoiceMethod, billingFrequency )
-    VALUES ( '${NAME}', 'EMAIL', 'NOBILLING' );
+INSERT INTO company_billing_detail ( billingContactName, invoiceMethod, billingFrequency, created_at, updated_at )
+    VALUES ( '${NAME}', 'EMAIL', 'NOBILLING', NOW(), NOW() );
 SET @cbdid = LAST_INSERT_ID();
 
 INSERT INTO cust ( name, shortname, type, abbreviatedName, autsys, maxprefixes, peeringemail, nocphone, noc24hphone,
         nocemail, nochours, nocwww, peeringpolicy, corpwww, datejoin, status, activepeeringmatrix, isReseller,
-        company_registered_detail_id, company_billing_details_id )
+        company_registered_detail_id, company_billing_details_id, created_at, updated_at )
     VALUES ( '${IXPNAME}', '${IXPSNAME}', 3, '${IXPSNAME}', '${IXPASN}', 100, '${IXPPEEREMAIL}', '${IXPNOCPHONE}',
-        '${IXPNOCPHONE}', '${IXPNOCEMAIL}', '24x7', '', 'mandatory', '${IXPWWW}', NOW(), 1, 1, 0, @crdid, @cbdid );
+        '${IXPNOCPHONE}', '${IXPNOCEMAIL}', '24x7', '', 'mandatory', '${IXPWWW}', NOW(), 1, 1, 0, @crdid, @cbdid, NOW(), NOW() );
 SET @custid = LAST_INSERT_ID();
 
-INSERT INTO customer_to_ixp ( customer_id, ixp_id ) VALUES ( @custid, @ixpid );
-
-INSERT INTO user ( custid, username, password, email, privs, disabled, created )
-    VALUES ( @custid, '${USERNAME}', ${HASH_PW}, '${USEREMAIL}', 3, 0, NOW() );
+INSERT INTO user ( custid, name, username, password, email, privs, disabled, created_at, updated_at )
+    VALUES ( @custid, '${NAME}', '${USERNAME}', ${HASH_PW}, '${USEREMAIL}', 3, 0, NOW(), NOW() );
 SET @userid = LAST_INSERT_ID();
 
-INSERT INTO customer_to_users ( customer_id, user_id, privs, created_at )
-    VALUES ( @custid, @userid, 3, NOW() );
+INSERT INTO customer_to_users ( customer_id, user_id, privs, created_at, updated_at )
+    VALUES ( @custid, @userid, 3, NOW(), NOW() );
 
-INSERT INTO contact ( custid, name, email, created )
-    VALUES ( @custid, '${NAME}', '${USEREMAIL}', NOW() );
+INSERT INTO contact ( custid, name, email, created_at, updated_at )
+    VALUES ( @custid, '${NAME}', '${USEREMAIL}', NOW(), NOW() );
 END_SQL
 ```
 
@@ -177,8 +178,8 @@ The web server needs write access to some directories:
 
 ```sh
 cd $IXPROOT
-chown -R www-data: storage/ bootstrap/cache/ database/Proxies/
-chmod -R u+rwX     storage/ bootstrap/cache/ database/Proxies/
+chown -R www-data: storage/ bootstrap/cache/
+chmod -R u+rwX     storage/ bootstrap/cache/
 ```
 
 ## Setting Up Apache
@@ -223,7 +224,7 @@ If you plan to use this in production, you should:
 * secure your server with an iptables firewall
 * install an SSL certificate and redirect HTTP access to HTTPS
 * complete the installation of the many features of IXP Manager such as route server generation, member stats, peer to peer graphs, etc.
-* PLEASE TELL US! We'd like to add you to the users list at http://www.ixpmanager.org/users.php - just drop us an email to `operations <at> inex <dot> ie`.
+* PLEASE TELL US! We'd like to add you to the users list at https://www.ixpmanager.org/community/world-map - just complete the form there or drop us an email to `operations <at> inex <dot> ie`.
 
 
 **What next? See our [post-install / next steps document here](next-steps.md).**
