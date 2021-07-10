@@ -24,6 +24,7 @@ extra:
 repo_name: GitHub
 plugins:
   - git-revision-date-localized
+  - search
 copyright: '&copy; 2017-2020, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.'
 nav:
 - Home: 'index.md'
@@ -51,6 +52,7 @@ nav:
     - 'API': 'features/api.md'
     - 'AS112': 'features/as112.md'
     - 'Console Servers': 'features/console-servers.md'
+    - 'Core Bundles': 'features/core-bundles.md'
     - 'Cron Jobs': 'features/cronjobs.md'
     - 'Cross Connects': 'features/patch-panels.md'
     - 'DNS / ARPA': 'features/dns-arpa.md'
