@@ -66,6 +66,11 @@ chown -R www-data: bootstrap/cache storage
 
 Install the required PHP libraries:
 
+First you will need Composer v2 but v1 ships with Ubuntu 20.04. Composer is PHP's package manager and you can download and install it per the [copy and paste instructions here](https://getcomposer.org/download/) (always satisfy yourself with the trustworthiness of the source when downloading and executing scripts).
+
+We assume you downloaded it to `$IXPROOT` as `composer.phar` in the following:
+
+
 ```sh
 cd $IXPROOT
 php composer.phar install --no-dev --prefer-dist
