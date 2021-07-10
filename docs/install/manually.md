@@ -1,10 +1,10 @@
 # Manual Installation
 
-???+ note "**This page was updated in July 2010 for the release of IXP Manager v6.0 and installation on Ubuntu LTS 20.04.**"
+???+ note "**This page was updated in July 2021 for the release of IXP Manager v6.0 and installation on Ubuntu LTS 20.04.**"
 
 ## Video Tutorial
 
-We created a video tutorial demonstrating the manual installation process for IXP Manager v5.5.0 (April 2020) on Ubuntu LTS 20.04. You can find the [video here](https://www.youtube.com/watch?v=qRIl1ioG6Ck) in our [YouTube channel](https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA). The procedure is similar for v6.0 - just be sure to use the [ubuntu-lts-2004-ixp-manager-v6.sh](https://github.com/inex/IXP-Manager/blob/release-v6/tools/installers/ubuntu-lts-2004-ixp-manager-v6.sh) script. As always, [the full catalog of video tutorials is here](https://www.ixpmanager.org/support/tutorials).
+We created a video tutorial demonstrating the manual installation process for IXP Manager v6.0.0 (July 2021) on Ubuntu LTS 20.04. You can find the [latest installation videos](https://www.ixpmanager.org/download/install). As always, [the full catalog of video tutorials is here](https://www.ixpmanager.org/support/tutorials).
 
 ## Requirements
 
@@ -68,7 +68,7 @@ Install the required PHP libraries:
 
 ```sh
 cd $IXPROOT
-composer install --no-dev --prefer-dist
+php composer.phar install --no-dev --prefer-dist
 cp .env.example .env
 php artisan key:generate
 ```
@@ -99,6 +99,8 @@ Now create the database schema:
 
 ```sh
 php artisan migrate
+# Run it twice for completeness
+php artisan migrate
 ```
 
 Some older scripts still rely on MySQL view tables. Create these with:
@@ -120,19 +122,32 @@ Using the settings you edited in `.env` we'll create some database objects. [Yes
 First let's create the password for the admin user. The following will create a secure random password and hash it with bcrypt:
 
 ```sh
+cd $IXPROOT
+source .env
 USERNAME=admin
 USEREMAIL=your@email.address
 IXPM_ADMIN_PW="$( openssl rand -base64 12 )"
 ADMIN_PW_SALT="$( openssl rand -base64 16 )"
 HASH_PW=$( php -r "echo escapeshellarg( crypt( '${IXPM_ADMIN_PW}', sprintf( '\$2a\$%02d\$%s', 10, substr( '${ADMIN_PW_SALT}', 0, 22 ) ) ) );" )
 echo Your password is: $IXPM_ADMIN_PW
+
+NAME="Joe"
+IXPNAME=SCIX
+IXPSNAME=SCIX
+IXPASN=65500
+IXPPEEREMAIL=peering@example.com
+IXPNOCPHONE=12345678
+IXPNOCEMAIL=noc@example.com
+IXPWWW="http://www.example.com"
+USERNAME=jbloggs
+USEREMAIL=jbloggs@example.com
 ```
 
 The following is taken from the IXP Manager installation script:
 
 
 ```mysql
-mysql -u ixpmanager "-p${MYSQL_ROOT_PW}" $DBNAME <<END_SQL
+mysql -h $DB_HOST -u $DB_USERNAME "-p${DB_PASSWORD}" $DB_DATABASE <<END_SQL
 INSERT INTO infrastructure ( name, shortname, isPrimary, created_at, updated_at )
     VALUES ( 'Infrastructure #1', '#1', 1, NOW(), NOW() );
 SET @infraid = LAST_INSERT_ID();
