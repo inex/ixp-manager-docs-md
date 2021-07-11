@@ -102,12 +102,68 @@ There are a number of features to assist with adding large bundles (e.g. when we
 * The next available switch port on each switch will be pre-selected. (Rationale: most people will prefer to run bundles on consecutive ports where possible.)
 * The next subnet will be calculated and populated. E.g. if you chose `10.10.20.0/30` for link 1, then `10.10.20.4/30` will be populated for link 2, and so on.
 
-    We have discussed this with some IXPs who use an addressing scheme where they try and embed information in the IP address such as PoP. We always advise that you treat an IP address as a 32-bit unique identifier and nothing else. If you choose a more complex addressing scheme, you can of course override IXP Manager's assistance here.
+    We have discussed this with some IXPs who use an addressing scheme where they try and embed information in the IP address such as facility or switch. We always advise that you treat an IP address as a 32-bit unique identifier and nothing else. If you choose a more complex addressing scheme, you can of course override IXP Manager's assistance here.
 
-You provisioning system will be responsible for picking the IP address for each side from `10.10.20.4/30`. We recommend (and implement) a system such that the lowest usable address is assigned to the 'a side' and the next usable address is assigned to the 'b side'. For illustration:
+    Your provisioning system will be responsible for picking the IP address for each side from `10.10.20.4/30`. We recommend (and implement) a system such that the lowest usable address is assigned to the 'a side' and the next usable address is assigned to the 'b side'. For illustration:
 
-| Subnet          | A Side       | B Side       |
-|-----------------|--------------|--------------|
-| `10.10.20.0/31` | `10.10.20.0` | `10.10.20.1` |
-| `10.10.20.0/30` | `10.10.20.1` | `10.10.20.2` |
-| `10.10.20.0/24` | `10.10.20.1` | `10.10.20.2` |
+    | Subnet          | A Side       | B Side       |
+    |-----------------|--------------|--------------|
+    | `10.10.20.0/31` | `10.10.20.0` | `10.10.20.1` |
+    | `10.10.20.0/30` | `10.10.20.1` | `10.10.20.2` |
+    | `10.10.20.0/24` | `10.10.20.1` | `10.10.20.2` |
+
+
+
+## Graphing
+
+Core bundles make graphing inter-switch links really easy - in fact, so long as you already have MRTG graphing configured, you just need to add the bundle, allow MRTG configuration to update and the graphs will appear in the statistics menu.
+
+In fact, you can see [a live example from INEX here](https://www.inex.ie/ixp/statistics/core-bundle/33?category=bits&side=a). If this link yields a 404, it will mean we've since mothballed that specific link. Just browse to the *Statistics* menu and select *Inter-Switch / PoP Graphs* for another.
+
+You'll note:
+
+* on the top right is some detail on the graph. At the time of writing, the above link produced *ECMP, swi1-cwt1-4 - swi1-cwt2-3, 4 x 100 Gbits = 400 Gbits* - i.e. the type, the 'a' and 'b switch', the number of ports and their speed, and the total speed available.
+* unlike any other graphs in IXP Manager, the IX owns both ends of this link. As such, you can also chose to view the graph from the 'a side' or the 'b side'.
+* By default, bits and packets are available publicly. Errors and discards are available to the IX operator (superadmins).
+
+
+## Nagios Monitoring
+
+There is an [API endpoint](api.md) for superadmins to get the status of core bundles:
+
+```
+/api/v4/switch/{switchid}/core-bundles-status
+```
+
+where `{switchid}` is the database ID of the switch.
+
+A sample of the JSON output is:
+
+```json
+{
+  "status": true,
+  "switchname": "swi1-cwt1-4",
+  "msgs": [
+    "swi1-cwt1-4 - swi1-cwt1-1 OK - 1\/1 links up",
+    "swi1-cwt1-4 - swi1-cwt1-2 OK - 1\/1 links up",
+    "swi1-cwt1-4 - swi1-cwt2-1 OK - 1\/1 links up",
+    "swi1-cwt1-3 - swi1-cwt1-4 OK - 3\/3 links up",
+    "swi1-cwt1-4 - swi1-cwt2-3 OK - 4\/4 links up"
+  ]
+}
+```
+
+If any individual link has failed, `status` will return `false` and an appropriate message will be provided:
+
+```
+"ISSUE: swi1-cwt1-4 - swi1-cwt1-1 has 0\/1 links up"
+```
+
+Individually disabled core links (via the core bundle UI) will not trigger an alert. If an entire core bundle is disabled in the UI it will be listed as follows:
+
+```
+"Ignoring swi1-cwt1-4 - swi1-cwt1-1 as core bundle disabled"
+```
+
+
+As you can see, it returns a `msgs[]` element for each core bundle indicating the number of core links up.
