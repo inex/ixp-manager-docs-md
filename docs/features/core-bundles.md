@@ -153,7 +153,7 @@ A sample of the JSON output is:
 }
 ```
 
-If any individual link has failed, `status` will return `false` and an appropriate message will be provided:
+If any individual link has failed, `status` will return `false` and an appropriate message will be provided for the relevant link(s):
 
 ```
 "ISSUE: swi1-cwt1-4 - swi1-cwt1-1 has 0\/1 links up"
@@ -165,5 +165,82 @@ Individually disabled core links (via the core bundle UI) will not trigger an al
 "Ignoring swi1-cwt1-4 - swi1-cwt1-1 as core bundle disabled"
 ```
 
-
 As you can see, it returns a `msgs[]` element for each core bundle indicating the number of core links up.
+
+
+The Nagios script we use at INEX to check the core bundles on a switch can be found here on the GitHub repository here: [tools/runtime/nagios/ixp-manager-check-core-bundles.sh](https://github.com/inex/IXP-Manager/blob/master/tools/runtime/nagios/ixp-manager-check-core-bundles.sh).
+
+The Nagios command and service definition is as follows *(this is an example - please alter to suit your own environment)*:
+
+
+```
+define command {
+    command_name    check_ixpmanager_core_bundles
+    command_line    /path/to/ixp-manager-check-core-bundles.sh -k <API Key> -i $_HOSTDBID$ -u 'https://ixpmanager.example.com'
+}
+
+define service {
+    use                  ixp-production-switch-service
+    hostgroup_name       ixp-production-switches
+    service_description  Core Bundles
+    check_command        check_ixpmanager_core_bundles
+}
+```
+
+The `hostgroup_name` and `_HOSTDBID` come from the *[Switch Monitoring](nagios.md#switch-monitoring)* section in [Nagios Monitoring](nagios.md).
+
+**NB:** Nagios monitoring requires that the *[Automated Polling / SNMP Updates](../usage/switches.md#automated-polling-snmp-updates)* for switches is working and is working for any switch you want monitored. The Nagios script / API check is a database check. This means if you poll switches every `$x` minutes (5 by default) and your Nagios script runs the service check every `$y` minutes (also 5 by default), the maximum delay in notification of a core bundle with issues should be approx. `$x + $y` minutes.
+
+
+## Creating Weathermaps
+
+At INEX, we use [Network Weathermap](https://www.network-weathermap.com/) to create the [weathermaps on our website](https://www.inex.ie/technical/network-weathermap/).
+
+This isn't something we can document exhaustively as it vary from IXP to IXP. The general approach to take is:
+
+1. Create a Network Weathermap configuration that works for you.
+2. Use this as a template to automate the configuration using:
+    * the API endpoint for core bundles
+    * the API endpoint for switches
+3. Use a templating system you are comfortable with to create the configuration.
+
+
+As an outline of this process, here's the script Nick created for INEX:
+
+```sh
+#!/bin/sh
+
+PATH=/opt/local/bin:${PATH}
+etcdir=/opt/local/etc
+
+APIKEY=xxxx
+APIURL=https://ixpmanager.example.com/api/v4
+
+curl -s -X GET -H "X-IXP-Manager-API-Key: ${APIKEY}" \
+    ${APIURL}/provisioner/corebundle/list.yaml > ${etcdir}/ixp-corebundles.yaml
+curl -s -X GET -H "X-IXP-Manager-API-Key: ${APIKEY}" \
+    ${APIURL}/provisioner/switch/list.yaml     > ${etcdir}/ixp-switches.yaml
+
+render-jinja-template.py                       \
+    --yaml ${etcdir}/ixp-corebundles.yaml      \
+    --yaml ${etcdir}/ixp-switches.yaml         \
+    --yaml ${etcdir}/switchpos.yaml   \
+    --jinja ${etcdir}/ixp-weathermap.conf
+```
+
+The `switchpos.yaml` file is a manual file that contains the x/y coordinates for each switch in the following format:
+
+```yaml
+---
+switchpos:
+
+  swi1-cls1-1:
+    x: 130
+    y: 40
+
+  swi1-cwt1-1:
+    x: 50
+    y: 100
+```
+
+Hopefully this helps - improving this is something that is on our TODO list.

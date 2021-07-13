@@ -188,6 +188,7 @@ define host {
     host_name               swi2-dc1-1.mgmt.inex.ie
     alias                   swi2-dc1-1
     address                 192.0.2.4
+    _DBID                   74
 }
 ```
 
