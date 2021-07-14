@@ -10,9 +10,9 @@ Within IXP Manager, a *core bundle* represents a link(s) between two switches. T
 
     If you are running just two switches with a single link between them, this is also the option you would choose. We'd typically recommend a protocol such as LACP or UDLD runs across even single links to detect unidirectional link errors.
 
-2. A layer 3 LAG *(L3-LAG)* is for one or more aggregated links between a switch when using a routed underlay such as MPLS / VPLS / VXLAN. Each end of the link would have an IP address and participate in a routing core network.
+2. A layer 3 LAG *(L3-LAG)* is for one or more aggregated links between a switch when using a routed underlay such as MPLS / VPLS / VXLAN. Each end of the link would have an IP address and participate in a routed core network.
 
-3. *ECMP* is similar to L3-LAG above each each individual link in the *core bundle* has its own IP addressing and traffic distribution across the links is handled via equal-cost multi-path (ECMP) routing.
+3. *ECMP* is similar to L3-LAG above, each individual link in the *core bundle* has its own IP addressing and traffic distribution across the links is handled via equal-cost multi-path (ECMP) routing.
 
 ???+ important "INEX has been using the core bundles feature internally for some time without issue. We use ECMP extensively and L2-LAGs to a lesser extent. This all ties into our automation. L3-LAGs are mostly untested by us so please open bug reports on GitHub if there are any issues."
 
@@ -31,7 +31,7 @@ Some of the features that core bundles provide and enable include:
 
 ## Database Representation
 
-To fully understand IXP Managers implementation of core bundles, it is important to have an awareness of the database representation of them. This is why reading the [customer connections](../usage/interfaces.md) page is important - core bundles have been designed to fit into the existing database representation:
+To fully understand IXP Manager's implementation of core bundles, it is important to have an awareness of the database representation of them. This is why reading the [customer connections](../usage/interfaces.md) page is important - core bundles have been designed to fit into the existing database representation:
 
 ![Core Bundles - Database Objects](img/core-bundles-db.png)
 
@@ -45,7 +45,7 @@ What's new is we've added a new element of syntactic sugar - the core bundle (CB
 ![Core Bundles - Database Objects](img/core-bundles-db2.png)
 
 * Each CB has one or more pairs of core links (CLs).
-* Each core link represents a physical connection (e.g. the fibre cable) from a port on one switch to the port on another switch.
+* Each core link represents a physical connection (e.g. the fibre cable) from a port on one switch to a port on another switch.
 * Each core link has two core interfaces (CIs) - the 'a side' interface and the 'b side' interface.
   * Which switch is the 'a side' doesn't matter as long as it is consistent for each core link in a core bundle. I.e. if a core bundle has four links, then the same switch must be the 'a side' for each core interface.
 * A core interface (CI) is a simple one-to-one mapping to a physical interface. From there, the existing schema takes over and a physical interface connects to a switch port which in turn is attached to a switch.
@@ -196,7 +196,7 @@ The `hostgroup_name` and `_HOSTDBID` come from the *[Switch Monitoring](nagios.m
 
 At INEX, we use [Network Weathermap](https://www.network-weathermap.com/) to create the [weathermaps on our website](https://www.inex.ie/technical/network-weathermap/).
 
-This isn't something we can document exhaustively as it vary from IXP to IXP. The general approach to take is:
+This isn't something we can document exhaustively as it varys from IXP to IXP. The general approach to take is:
 
 1. Create a Network Weathermap configuration that works for you.
 2. Use this as a template to automate the configuration using:
