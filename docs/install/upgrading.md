@@ -2,6 +2,8 @@
 
 ???+ note "**These upgrade instructions relate to upgrading when you are already using IXP Manager v6.x.**"
 
+    * For instructions on how to upgrade from v5.8.0 to v6.0.0, please see [the release notes for v6](https://github.com/inex/IXP-Manager/releases/tag/v6.0.0).
+
     * For instructions on how to upgrade within the v5.x releases, please [see this page](upgrade-v5.md).
 
     * For instructions on how to upgrade within the v4.x releases, please [see this page](upgrade-v4.md).
