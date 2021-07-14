@@ -1,4 +1,4 @@
-# Database Logs
+# Database Change Logging
 
 In IXP Manager v6, we changed the database access layer to Laravel's Eloquent. As part of this work, we added a new listener for any UI based changes to database objects.
 

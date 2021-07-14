@@ -47,7 +47,7 @@ nav:
     - 'Customer Connections': 'usage/interfaces.md'
     - 'Users': 'usage/users.md'
     - 'Switches': 'usage/switches.md'
-    - 'Database Logs': 'usage/dblogs.md'
+    - 'Database Logging': 'usage/dblogs.md'
     - 'Email': 'usage/email.md'
 - Features:
     - 'API': 'features/api.md'
