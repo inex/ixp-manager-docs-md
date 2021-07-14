@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#upgrading-ixp-manager-v5x" class="md-skip">
+        <a href="#upgrading-ixp-manager-v6x" class="md-skip">
           Skip to content
         </a>
       
@@ -123,6 +123,36 @@
     </div>
     
     
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     
     
       <div class="md-header__source">
@@ -330,13 +360,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#correcting-database-issues-verifying-your-schema" class="md-nav__link">
-    Correcting Database Issues / Verifying Your Schema
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -524,6 +547,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../usage/dblogs/" class="md-nav__link">
+        Database Logging
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../usage/email/" class="md-nav__link">
         Email
       </a>
@@ -592,6 +627,18 @@
     <li class="md-nav__item">
       <a href="../../features/console-servers/" class="md-nav__link">
         Console Servers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/core-bundles/" class="md-nav__link">
+        Core Bundles
       </a>
     </li>
   
@@ -1351,13 +1398,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#correcting-database-issues-verifying-your-schema" class="md-nav__link">
-    Correcting Database Issues / Verifying Your Schema
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1375,8 +1415,14 @@
                   </a>
                 
                 
-                <h1 id="upgrading-ixp-manager-v5x">Upgrading IXP Manager - v5.x<a class="headerlink" href="#upgrading-ixp-manager-v5x" title="Permanent link"></a></h1>
-<details class="note" open="open"><summary><strong>These upgrade instructions relate to upgrading when you are already using IXP Manager v5.x.</strong></summary><ul>
+                <h1 id="upgrading-ixp-manager-v6x">Upgrading IXP Manager - v6.x<a class="headerlink" href="#upgrading-ixp-manager-v6x" title="Permanent link"></a></h1>
+<details class="note" open="open"><summary><strong>These upgrade instructions relate to upgrading when you are already using IXP Manager v6.x.</strong></summary><ul>
+<li>
+<p>For instructions on how to upgrade from v5.8.0 to v6.0.0, please see <a href="https://github.com/inex/IXP-Manager/releases/tag/v6.0.0">the release notes for v6</a>.</p>
+</li>
+<li>
+<p>For instructions on how to upgrade within the v5.x releases, please <a href="../upgrade-v5/">see this page</a>.</p>
+</li>
 <li>
 <p>For instructions on how to upgrade within the v4.x releases, please <a href="../upgrade-v4/">see this page</a>.</p>
 </li>
@@ -1389,11 +1435,11 @@
 </ul>
 </details>
 <h3 id="video-tutorial">Video Tutorial<a class="headerlink" href="#video-tutorial" title="Permanent link"></a></h3>
-<p>We created a video tutorial demonstrating the upgrade process for IXP Manager. You can find the <a href="https://www.youtube.com/watch?v=FqsWCudPUak">video here</a> in our <a href="https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA">YouTube channel</a>. We also have a video on upgrading a legacy version (v4.9.3 to v5.7.0) - see <a href="https://youtu.be/CXTjgRUESAc">the video here</a> and <a href="https://www.barryodonovan.com/2020/09/08/upgrading-legacy-versions-of-ixp-manager">some further details in this blog post</a>. As always, <a href="https://www.ixpmanager.org/support/tutorials">the full catalog of video tutorials is here</a>.</p>
+<p>We created a video tutorial demonstrating the upgrade process for IXP Manager within the v5.x branch which is not dissimilar to this. You can find the <a href="https://www.youtube.com/watch?v=FqsWCudPUak">video here</a> in our <a href="https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA">YouTube channel</a>. We also have a video on upgrading a legacy version (v4.9.3 to v5.7.0) - see <a href="https://youtu.be/CXTjgRUESAc">the video here</a> and <a href="https://www.barryodonovan.com/2020/09/08/upgrading-legacy-versions-of-ixp-manager">some further details in this blog post</a>. As always, <a href="https://www.ixpmanager.org/support/tutorials">the full catalog of video tutorials is here</a>.</p>
 <h2 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link"></a></h2>
 <p>We track <a href="https://github.com/inex/IXP-Manager/releases">releases on GitHub</a>.</p>
 <p>You will find standard instructions for upgrading IXP Manager below. Note that the release notes for each version may contain specific upgrade instructions including schema changes.</p>
-<p>If you have missed some versions, the most sensible approach is to upgrade to each minor release in sequence (5.0.0 -&gt; 5.1.0 -&gt; 5.2.0 -&gt; ...) and then to the latest patch version in the latest minor version.</p>
+<p>If you have missed some versions, the most sensible approach is to upgrade to each minor release in sequence (6.0.0 -&gt; 6.1.0 -&gt; 6.2.0 -&gt; ...) and then to the latest patch version in the latest minor version.</p>
 <p>In the below, we assume the following installation directory - alter this to suit your own situation:</p>
 <div class="highlight"><pre><span></span><code>IXPROOT=/srv/ixpmanager
 </code></pre></div>
@@ -1419,31 +1465,24 @@ chmod -R ug+rwX <span class="si">${</span><span class="nv">IXPROOT</span><span c
 </code></pre></div>
 </li>
 <li>
-<p>Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v4.</p>
+<p>Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v6:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 <span class="c1"># pull the latest code</span>
 git fetch --all
 <span class="c1"># check out the version you are upgrading to</span>
-git checkout v5.x.y
+git checkout v6.x.y
 </code></pre></div>
 </li>
 <li>
 <p>Install latest required libraries from composer <a href="#updating-composer-dependancies"><strong>(see notes below)</strong></a>. Note that composer may be in different locations.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># This assumes composer is in the IXP Manager install directory.</span>
-<span class="c1"># (Typical for IXP Manager on Ubtuntu 18.04):</span>
-sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> \</span>
-<span class="s2">    &amp;&amp; php ./composer.phar install --no-dev --prefer-dist&quot;</span>
-
-<span class="c1"># OR:</span>
-
-<span class="c1"># This assumes composer is installed globally.</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># This assumes composer is installed globally.</span>
 <span class="c1"># (Typical for IXP Manager on Ubtuntu 20.04):</span>
 sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> \</span>
 <span class="s2">    &amp;&amp; composer install --no-dev --prefer-dist&quot;</span>
 </code></pre></div>
 </li>
 <li>
-<p>Restart Memcached and clear the cache. Do not forget / skip this step!</p>
+<p>Restart Memcached and clear the cache.</p>
 <div class="highlight"><pre><span></span><code>systemctl restart memcached.service
 php <span class="nv">$IXPROOT</span>/artisan cache:clear
 </code></pre></div>
@@ -1453,17 +1492,10 @@ php <span class="nv">$IXPROOT</span>/artisan cache:clear
 <div class="highlight"><pre><span></span><code><span class="c1"># (you really should take a mysqldump of your database first)</span>
 
 <span class="c1"># (optional) see what changes will be made:</span>
-php <span class="nv">$IXPROOT</span>/artisan doctrine:schema:update --sql
 php <span class="nv">$IXPROOT</span>/artisan migrate:status
 
 <span class="c1"># migrate:</span>
-php <span class="nv">$IXPROOT</span>/artisan doctrine:schema:update --force
 php <span class="nv">$IXPROOT</span>/artisan migrate
-</code></pre></div>
-</li>
-<li>
-<p>Restart Memcached (yes, again). Do not forget / skip this step!</p>
-<div class="highlight"><pre><span></span><code>systemctl restart memcached.service
 </code></pre></div>
 </li>
 <li>
@@ -1479,9 +1511,6 @@ chmod -R ug+rwX <span class="si">${</span><span class="nv">IXPROOT</span><span c
 <p>Clear out all caches:</p>
 <div class="highlight"><pre><span></span><code>php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan cache:clear
 php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan config:clear
-php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan doctrine:clear:metadata:cache
-php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan doctrine:clear:query:cache
-php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan doctrine:clear:result:cache
 php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan route:clear
 php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan view:clear
 </code></pre></div>
@@ -1493,16 +1522,15 @@ php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}<
 </li>
 <li>
 <p>Recreate SQL views</p>
-<p>Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates. You can safely run this to recreate them on versions &gt; v5.5.0:</p>
-<div class="highlight"><pre><span></span><code>php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan update:reset-mysql-views
-</code></pre></div>
-<p>If you are running &lt;= v5.4.0 then do this as follows using the appropriate MySQL username and password:</p>
-<div class="highlight"><pre><span></span><code>mysql -u ixp -p ixp &lt; <span class="nv">$IXPROOT</span>/tools/sql/views.sql
+<p>Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>
+<span class="nb">source</span> .env
+mysql -h <span class="nv">$DB_HOST</span> -u <span class="nv">$DB_USERNAME</span> -p<span class="nv">$DB_PASSWORD</span> <span class="nv">$DB_DATABASE</span> &lt; <span class="nv">$IXPROOT</span>/tools/sql/views.sql
 </code></pre></div>
 </li>
 </ol>
 <h2 id="updating-composer-dependencies">Updating Composer Dependencies<a class="headerlink" href="#updating-composer-dependencies" title="Permanent link"></a></h2>
-<p>It is not advisable to run composer as root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the composer commands themselves will be run as <code>$MY_WWW_USER</code>). Note that we assume here what you have installed Composer (see: https://getcomposer.org/ ) in the <code>${IXPROOT}</code> directory as <code>composer.phar</code>. This is where and how the IXP Manager installation scripts and documentation instructions install it.</p>
+<p>It is not advisable to run composer as root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the composer commands themselves will be run as <code>$MY_WWW_USER</code>). Note that we assume here what you have installed Composer (see: https://getcomposer.org/ ) in the <code>${IXPROOT}</code> directory as <code>composer.phar</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># set this to your IXP Manager installation directory</span>
 <span class="nv">IXPROOT</span><span class="o">=</span>/srv/ixpmanager
 
@@ -1521,30 +1549,6 @@ sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME
 chmod -R u+rwx <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/composer.phar
 sudo -u <span class="nv">$MY_WWW_USER</span> bash -c <span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> &amp;&amp; php ./composer.phar selfupdate&quot;</span>
 </code></pre></div>
-<h2 id="correcting-database-issues-verifying-your-schema">Correcting Database Issues / Verifying Your Schema<a class="headerlink" href="#correcting-database-issues-verifying-your-schema" title="Permanent link"></a></h2>
-<p>Because of the manual process of database updates, it is possible your database schema may fall out of sync.</p>
-<p>If you are having issues, first and foremost, restart Memcached / clear your cache (see upgrade instructions above). Doctrine2 caches entities and schema information in Memcached so, after an upgrade, you must restart Memcached.</p>
-<p>You can verify and update your schema using the <code>artisan</code> script. The first action should be validation - here is a working example with no database issues:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-./artisan doctrine:schema:validate
-
-Validating <span class="k">for</span> default entity manager...
-<span class="o">[</span>Mapping<span class="o">]</span>  OK - The mapping files are correct.
-<span class="o">[</span>Database<span class="o">]</span> OK - The database schema is <span class="k">in</span> sync with the mapping files.
-</code></pre></div>
-<p>If there are issues, you can use the following to show what SQL commands are required to bring your schema into line:</p>
-<div class="highlight"><pre><span></span><code>./artisan doctrine:schema:update --sql
-</code></pre></div>
-<p>And you can let Doctrine make the changes for you via:</p>
-<div class="highlight"><pre><span></span><code>./artisan doctrine:schema:update --force
-</code></pre></div>
-<p>Doctrine2 maintains the entities, proxies and repository classes. Ideally you should never need to do the following on a production installation - as we maintain these files with Git - but if you're developing / testing IXP Manager, you may need to.</p>
-<p>The process for updating these files with schema changes / updates is:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
-systemctl restart memcached.service           <span class="c1"># (or as appropriate for your system)</span>
-./artisan doctrine:generate:entities database
-./artisan doctrine:generate:proxies
-</code></pre></div>
                 
                   
                     
@@ -1553,7 +1557,7 @@ systemctl restart memcached.service           <span class="c1"># (or as appropri
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 16, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 14, 2021</span>
       
     
   </small>
