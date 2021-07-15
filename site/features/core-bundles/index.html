@@ -1507,10 +1507,10 @@
 <p>If you are running just two switches with a single link between them, this is also the option you would choose. We'd typically recommend a protocol such as LACP or UDLD runs across even single links to detect unidirectional link errors.</p>
 </li>
 <li>
-<p>A layer 3 LAG <em>(L3-LAG)</em> is for one or more aggregated links between a switch when using a routed underlay such as MPLS / VPLS / VXLAN. Each end of the link would have an IP address and participate in a routing core network.</p>
+<p>A layer 3 LAG <em>(L3-LAG)</em> is for one or more aggregated links between a switch when using a routed underlay such as MPLS / VPLS / VXLAN. Each end of the link would have an IP address and participate in a routed core network.</p>
 </li>
 <li>
-<p><em>ECMP</em> is similar to L3-LAG above each each individual link in the <em>core bundle</em> has its own IP addressing and traffic distribution across the links is handled via equal-cost multi-path (ECMP) routing.</p>
+<p><em>ECMP</em> is similar to L3-LAG above, each individual link in the <em>core bundle</em> has its own IP addressing and traffic distribution across the links is handled via equal-cost multi-path (ECMP) routing.</p>
 </li>
 </ol>
 <details class="important" open="open"><summary>INEX has been using the core bundles feature internally for some time without issue. We use ECMP extensively and L2-LAGs to a lesser extent. This all ties into our automation. L3-LAGs are mostly untested by us so please open bug reports on GitHub if there are any issues.</summary></details>
@@ -1526,7 +1526,7 @@
 <li>Nagios checks for core bundle monitoring and alerting.</li>
 </ul>
 <h2 id="database-representation">Database Representation<a class="headerlink" href="#database-representation" title="Permanent link"></a></h2>
-<p>To fully understand IXP Managers implementation of core bundles, it is important to have an awareness of the database representation of them. This is why reading the <a href="../../usage/interfaces/">customer connections</a> page is important - core bundles have been designed to fit into the existing database representation:</p>
+<p>To fully understand IXP Manager's implementation of core bundles, it is important to have an awareness of the database representation of them. This is why reading the <a href="../../usage/interfaces/">customer connections</a> page is important - core bundles have been designed to fit into the existing database representation:</p>
 <p><img alt="Core Bundles - Database Objects" src="../img/core-bundles-db.png" /></p>
 <p>As you'll note, we still have a virtual interface (VI) as the syntactic sugar to represent a link where:</p>
 <ul>
@@ -1537,7 +1537,7 @@
 <p><img alt="Core Bundles - Database Objects" src="../img/core-bundles-db2.png" /></p>
 <ul>
 <li>Each CB has one or more pairs of core links (CLs).</li>
-<li>Each core link represents a physical connection (e.g. the fibre cable) from a port on one switch to the port on another switch.</li>
+<li>Each core link represents a physical connection (e.g. the fibre cable) from a port on one switch to a port on another switch.</li>
 <li>Each core link has two core interfaces (CIs) - the 'a side' interface and the 'b side' interface.</li>
 <li>Which switch is the 'a side' doesn't matter as long as it is consistent for each core link in a core bundle. I.e. if a core bundle has four links, then the same switch must be the 'a side' for each core interface.</li>
 <li>A core interface (CI) is a simple one-to-one mapping to a physical interface. From there, the existing schema takes over and a physical interface connects to a switch port which in turn is attached to a switch.</li>
@@ -1655,7 +1655,7 @@ define service {
 <p><strong>NB:</strong> Nagios monitoring requires that the <em><a href="../../usage/switches/#automated-polling-snmp-updates">Automated Polling / SNMP Updates</a></em> for switches is working and is working for any switch you want monitored. The Nagios script / API check is a database check. This means if you poll switches every <code>$x</code> minutes (5 by default) and your Nagios script runs the service check every <code>$y</code> minutes (also 5 by default), the maximum delay in notification of a core bundle with issues should be approx. <code>$x + $y</code> minutes.</p>
 <h2 id="creating-weathermaps">Creating Weathermaps<a class="headerlink" href="#creating-weathermaps" title="Permanent link"></a></h2>
 <p>At INEX, we use <a href="https://www.network-weathermap.com/">Network Weathermap</a> to create the <a href="https://www.inex.ie/technical/network-weathermap/">weathermaps on our website</a>.</p>
-<p>This isn't something we can document exhaustively as it vary from IXP to IXP. The general approach to take is:</p>
+<p>This isn't something we can document exhaustively as it varys from IXP to IXP. The general approach to take is:</p>
 <ol>
 <li>Create a Network Weathermap configuration that works for you.</li>
 <li>Use this as a template to automate the configuration using:<ul>
@@ -1706,7 +1706,7 @@ render-jinja-template.py                       <span class="se">\</span>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 13, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 14, 2021</span>
       
     
   </small>
