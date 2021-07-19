@@ -750,6 +750,19 @@
     Configuration Options
   </a>
   
+    <nav class="md-nav" aria-label="Configuration Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#excluding-some-data" class="md-nav__link">
+    Excluding Some Data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1443,6 +1456,19 @@
     Configuration Options
   </a>
   
+    <nav class="md-nav" aria-label="Configuration Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#excluding-some-data" class="md-nav__link">
+    Excluding Some Data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1630,6 +1656,103 @@
 <li>The maximum incoming transfer rate in bytes per second for the current interval. This is calculated from all the updates which have occurred in the current interval. If the current interval is 1 hour, and updates have occurred every 5 minutes, it will be the biggest 5 minute transfer rate seen during the hour.</li>
 <li>The maximum outgoing transfer rate in bytes per second for the current interval.</li>
 </ol>
+<h3 id="excluding-some-data">Excluding Some Data<a class="headerlink" href="#excluding-some-data" title="Permanent link"></a></h3>
+<p>It is possible to exclude some data from v6.0.1 per <a href="https://github.com/inex/IXP-Manager/issues/722">GitHub issue #722</a>:</p>
+<blockquote>
+<p>While some exchanges are willing to share detailed information about their infrastructure via the IX-F Member Export Schema, others either do not want to or cannot due to regulation. Enabling exchanges to share a limited set of data about their infrastructure would help exchanges find others using the same platforms to learn from each other and shows the diversity of platforms in use across the market.</p>
+</blockquote>
+<p>For example, a switch object typically looks like:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;swi1-kcp1-2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;colo&quot;</span><span class="p">:</span> <span class="s2">&quot;Equinix DB2 (Kilcarbery)&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;Dublin&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;IE&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;pdb_facility_id&quot;</span><span class="p">:</span> <span class="mi">178</span><span class="p">,</span>
+    <span class="nt">&quot;manufacturer&quot;</span><span class="p">:</span> <span class="s2">&quot;Arista&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;DCS-7280SR-48C6&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;software&quot;</span><span class="p">:</span> <span class="s2">&quot;EOS 4.24.3M&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>If you needed to exclude the model and software version, you can add the following to your <code>.env</code> file:</p>
+<div class="highlight"><pre><span></span><code>IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH=&quot;model|software&quot;
+</code></pre></div>
+<p>which will yield:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;swi1-kcp1-2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;colo&quot;</span><span class="p">:</span> <span class="s2">&quot;Equinix DB2 (Kilcarbery)&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;Dublin&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;IE&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;pdb_facility_id&quot;</span><span class="p">:</span> <span class="mi">178</span><span class="p">,</span>
+    <span class="nt">&quot;manufacturer&quot;</span><span class="p">:</span> <span class="s2">&quot;Arista&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>As you can see, the configuration option is the set of identifiers you want to exclude (<code>model</code> and <code>software</code>) separated with the pipe symbol. Any combinations are possible:</p>
+<div class="highlight"><pre><span></span><code>IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH=&quot;software&quot;
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH=&quot;model|software&quot;
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH=&quot;city|model|software&quot;
+</code></pre></div>
+<p>You <strong>should not</strong> exclude the <code>id</code> as these is referred to in the member interface list.</p>
+<p>You can exclude detail for the IXP object:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;shortname&quot;</span><span class="p">:</span> <span class="s2">&quot;INEX LAN1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Internet Neutral Exchange Association Limited by Guarantee&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;IE&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https:\/\/www.inex.ie\/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;peeringdb_id&quot;</span><span class="p">:</span> <span class="mi">48</span><span class="p">,</span>
+    <span class="nt">&quot;ixf_id&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="nt">&quot;ixp_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;support_email&quot;</span><span class="p">:</span> <span class="s2">&quot;operations@example.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;support_contact_hours&quot;</span><span class="p">:</span> <span class="s2">&quot;24x7&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;emergency_email&quot;</span><span class="p">:</span> <span class="s2">&quot;operations@example.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;emergency_contact_hours&quot;</span><span class="p">:</span> <span class="s2">&quot;24x7&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;billing_contact_hours&quot;</span><span class="p">:</span> <span class="s2">&quot;8x5&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;billing_email&quot;</span><span class="p">:</span> <span class="s2">&quot;accounts@example.com&quot;</span><span class="p">,</span>
+    <span class="err">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>with the option:</p>
+<div class="highlight"><pre><span></span><code>IXP_API_JSONEXPORTSCHEMA_EXCLUDE_IXP=&quot;name|url&quot;
+</code></pre></div>
+<p>You can exclude member detail:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;asnum&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="nt">&quot;member_since&quot;</span><span class="p">:</span> <span class="s2">&quot;2009-01-13T00:00:00Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http:\/\/www.pch.net\/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Packet Clearing House DNS&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;peering_policy&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;member_type&quot;</span><span class="p">:</span> <span class="s2">&quot;peering&quot;</span><span class="p">,</span>
+    <span class="err">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>with the option:</p>
+<div class="highlight"><pre><span></span><code>IXP_API_JSONEXPORTSCHEMA_EXCLUDE_MEMBER=&quot;peering_policy|member_type&quot;
+</code></pre></div>
+<p>And finally, you can include member VLAN/protocol detail:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;ipv4&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;185.6.36.60&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;as_macro&quot;</span><span class="p">:</span> <span class="s2">&quot;AS-PCH&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;routeserver&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;mac_addresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;00:xx:yy:11:22:33&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;max_prefix&quot;</span><span class="p">:</span> <span class="mi">2000</span>
+<span class="p">},</span>
+<span class="nt">&quot;ipv6&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;2001:7f8:18::60&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;as_macro&quot;</span><span class="p">:</span> <span class="s2">&quot;AS-PCH&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;routeserver&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;mac_addresses&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;00:xx:yy:11:22:33&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;max_prefix&quot;</span><span class="p">:</span> <span class="mi">2000</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>with the option:</p>
+<div class="highlight"><pre><span></span><code>IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO=&quot;mac_addresses|routeserver&quot;
+</code></pre></div>
+<p>Please note that the <code>IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO</code> affects <strong>both</strong> the ipv4 and ipv6 clauses.</p>
 <h2 id="example-member-lists">Example: Member Lists<a class="headerlink" href="#example-member-lists" title="Permanent link"></a></h2>
 <p>A common requirement of IXPs is to create a public member list on their official website. This can be done with the IX-F Member Export quite easily. The below HTML and JavaScript is a way to do it with INEX's endpoint. There's a <a href="https://jsfiddle.net/barryo/2tzuypf9/">live JSFiddle which demonstrates this also</a> - <a href="https://jsfiddle.net/barryo/2tzuypf9/">https://jsfiddle.net/barryo/2tzuypf9/</a>.</p>
 <p>The HTML requires just a table with a placeholder and an <code>id</code> on the <code>body</code>:</p>
