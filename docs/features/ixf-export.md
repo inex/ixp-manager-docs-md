@@ -170,7 +170,135 @@ If you wish to control access to the infrastructure statistics, see [the Grapher
 5. The maximum outgoing transfer rate in bytes per second for the current interval.
 
 
+### Excluding Some Data
 
+It is possible to exclude some data from v6.0.1 per [GitHub issue #722](https://github.com/inex/IXP-Manager/issues/722):
+
+> While some exchanges are willing to share detailed information about their infrastructure via the IX-F Member Export Schema, others either do not want to or cannot due to regulation. Enabling exchanges to share a limited set of data about their infrastructure would help exchanges find others using the same platforms to learn from each other and shows the diversity of platforms in use across the market.
+
+For example, a switch object typically looks like:
+
+```json
+{
+    "id": 50,
+    "name": "swi1-kcp1-2",
+    "colo": "Equinix DB2 (Kilcarbery)",
+    "city": "Dublin",
+    "country": "IE",
+    "pdb_facility_id": 178,
+    "manufacturer": "Arista",
+    "model": "DCS-7280SR-48C6",
+    "software": "EOS 4.24.3M"
+}
+```
+
+If you needed to exclude the model and software version, you can add the following to your `.env` file:
+
+```
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH="model|software"
+```
+
+which will yield:
+
+```json
+{
+    "id": 50,
+    "name": "swi1-kcp1-2",
+    "colo": "Equinix DB2 (Kilcarbery)",
+    "city": "Dublin",
+    "country": "IE",
+    "pdb_facility_id": 178,
+    "manufacturer": "Arista"
+}
+```
+
+As you can see, the configuration option is the set of identifiers you want to exclude (`model` and `software`) separated with the pipe symbol. Any combinations are possible:
+
+```
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH="software"
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH="model|software"
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH="city|model|software"
+```
+
+You **should not** exclude the `id` as these is referred to in the member interface list.
+
+You can exclude detail for the IXP object:
+
+```json
+{
+    "shortname": "INEX LAN1",
+    "name": "Internet Neutral Exchange Association Limited by Guarantee",
+    "country": "IE",
+    "url": "https:\/\/www.inex.ie\/",
+    "peeringdb_id": 48,
+    "ixf_id": 20,
+    "ixp_id": 1,
+    "support_email": "operations@example.com",
+    "support_contact_hours": "24x7",
+    "emergency_email": "operations@example.com",
+    "emergency_contact_hours": "24x7",
+    "billing_contact_hours": "8x5",
+    "billing_email": "accounts@example.com",
+    ...
+}
+```
+
+with the option:
+
+```
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_IXP="name|url"
+```
+
+You can exclude member detail:
+
+```json
+{
+    "asnum": 42,
+    "member_since": "2009-01-13T00:00:00Z",
+    "url": "http:\/\/www.pch.net\/",
+    "name": "Packet Clearing House DNS",
+    "peering_policy": "open",
+    "member_type": "peering",
+    ...
+}
+```
+
+with the option:
+
+```
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_MEMBER="peering_policy|member_type"
+```
+
+And finally, you can include member VLAN/protocol detail:
+
+```json
+"ipv4": {
+    "address": "185.6.36.60",
+    "as_macro": "AS-PCH",
+    "routeserver": true,
+    "mac_addresses": [
+        "00:xx:yy:11:22:33"
+    ],
+    "max_prefix": 2000
+},
+"ipv6": {
+    "address": "2001:7f8:18::60",
+    "as_macro": "AS-PCH",
+    "routeserver": true,
+    "mac_addresses": [
+        "00:xx:yy:11:22:33"
+    ],
+    "max_prefix": 2000
+}
+```
+
+with the option:
+
+```
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO="mac_addresses|routeserver"
+```
+
+Please note that the `IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO` affects **both** the ipv4 and ipv6 clauses.
 
 ## Example: Member Lists
 
