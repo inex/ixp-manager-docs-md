@@ -176,6 +176,9 @@ It is possible to exclude some data from v6.0.1 per [GitHub issue #722](https://
 
 > While some exchanges are willing to share detailed information about their infrastructure via the IX-F Member Export Schema, others either do not want to or cannot due to regulation. Enabling exchanges to share a limited set of data about their infrastructure would help exchanges find others using the same platforms to learn from each other and shows the diversity of platforms in use across the market.
 
+???+ important "Please bear in mind that the more data you remove, the less useful the IX-F member export becomes. Most IXPs do not use this exclusion function and, ideally, you will only use it if there is no other choice."
+
+
 For example, a switch object typically looks like:
 
 ```json
@@ -192,7 +195,7 @@ For example, a switch object typically looks like:
 }
 ```
 
-If you needed to exclude the model and software version, you can add the following to your `.env` file:
+If, for example, you need to exclude the model and software version, you can add the following to your `.env` file:
 
 ```
 IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH="model|software"
@@ -212,7 +215,7 @@ which will yield:
 }
 ```
 
-As you can see, the configuration option is the set of identifiers you want to exclude (`model` and `software`) separated with the pipe symbol. Any combinations are possible:
+As you can see, the configuration option is the set of identifiers you want to exclude (`model` and `software`) separated with the pipe symbol. Different combinations are possible - here are some examples:
 
 ```
 IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH="software"
@@ -248,6 +251,8 @@ with the option:
 ```
 IXP_API_JSONEXPORTSCHEMA_EXCLUDE_IXP="name|url"
 ```
+
+You **should not** exclude any of the IDs (`peeringdb_id`, `ixf_id` and `ixp_id`) as these is referred to else where in the document and required externally when using the data.
 
 You can exclude member detail:
 
@@ -299,6 +304,8 @@ IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO="mac_addresses|routeserver"
 ```
 
 Please note that the `IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO` affects **both** the ipv4 and ipv6 clauses.
+
+
 
 ## Example: Member Lists
 

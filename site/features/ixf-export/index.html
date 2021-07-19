@@ -1661,6 +1661,7 @@
 <blockquote>
 <p>While some exchanges are willing to share detailed information about their infrastructure via the IX-F Member Export Schema, others either do not want to or cannot due to regulation. Enabling exchanges to share a limited set of data about their infrastructure would help exchanges find others using the same platforms to learn from each other and shows the diversity of platforms in use across the market.</p>
 </blockquote>
+<details class="important" open="open"><summary>Please bear in mind that the more data you remove, the less useful the IX-F member export becomes. Most IXPs do not use this exclusion function and, ideally, you will only use it if there is no other choice.</summary></details>
 <p>For example, a switch object typically looks like:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
@@ -1674,7 +1675,7 @@
     <span class="nt">&quot;software&quot;</span><span class="p">:</span> <span class="s2">&quot;EOS 4.24.3M&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>If you needed to exclude the model and software version, you can add the following to your <code>.env</code> file:</p>
+<p>If, for example, you need to exclude the model and software version, you can add the following to your <code>.env</code> file:</p>
 <div class="highlight"><pre><span></span><code>IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH=&quot;model|software&quot;
 </code></pre></div>
 <p>which will yield:</p>
@@ -1688,7 +1689,7 @@
     <span class="nt">&quot;manufacturer&quot;</span><span class="p">:</span> <span class="s2">&quot;Arista&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>As you can see, the configuration option is the set of identifiers you want to exclude (<code>model</code> and <code>software</code>) separated with the pipe symbol. Any combinations are possible:</p>
+<p>As you can see, the configuration option is the set of identifiers you want to exclude (<code>model</code> and <code>software</code>) separated with the pipe symbol. Different combinations are possible - here are some examples:</p>
 <div class="highlight"><pre><span></span><code>IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH=&quot;software&quot;
 IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH=&quot;model|software&quot;
 IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH=&quot;city|model|software&quot;
@@ -1715,6 +1716,7 @@ IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH=&quot;city|model|software&quot;
 <p>with the option:</p>
 <div class="highlight"><pre><span></span><code>IXP_API_JSONEXPORTSCHEMA_EXCLUDE_IXP=&quot;name|url&quot;
 </code></pre></div>
+<p>You <strong>should not</strong> exclude any of the IDs (<code>peeringdb_id</code>, <code>ixf_id</code> and <code>ixp_id</code>) as these is referred to else where in the document and required externally when using the data.</p>
 <p>You can exclude member detail:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;asnum&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
@@ -1852,7 +1854,7 @@ Afilias             | 12041       | 1Gb                |
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 20, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 19, 2021</span>
       
     
   </small>
