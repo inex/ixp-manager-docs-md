@@ -1451,7 +1451,7 @@
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="nv">$IXPROOT</span>
 ./artisan db:seed --class<span class="o">=</span>IRRDBs
 </code></pre></div>
-<p><a href="https://github.com/snar/bgpq3">BGPQ3</a> is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On Ubuntu 16.04/18.04 this is as easy as:</p>
+<p><a href="https://github.com/snar/bgpq3">BGPQ3</a> is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On a modern Ubuntu system this is as easy as:</p>
 <div class="highlight"><pre><span></span><code>apt install bgpq3
 </code></pre></div>
 <p>Then configure the path to it in your <code>.env</code> file.</p>
@@ -1494,6 +1494,7 @@ bgpq3 -S RIPE -l pl -j -6 AS-BTIRE
 <li>compare prefixes(/ASNs) in the database already (if any) against RADB and insert / delete as appropriate;</li>
 <li>validate the prefix for proper CIDR notation before database inserts;</li>
 <li>update the last_seen time for all prefixes(/ASNs) for that customer;</li>
+<li>create a local file-based cache of that customer's prefixes / asns to speed up router configuration generation <em>(you don't need to worry about the staleness of this cache as it's cached everytime the IRRDB commands above are run for each customer)</em>.</li>
 </ul>
 <p><strong>We use transactions to update the database so, even in the middle of a refresh, a full set of prefixes for all customers will still be available.</strong> It also means the update process can be safely interrupted.</p>
 <p><strong>Note that our current implementation only queries RADB as BGPQ3 does not support the RIPE whois protocol.</strong> Our version will however set the RADB source database according to the member's stated IRRDB database as set on the customer add / edit page - so, for customer's registered with the RIPE IRRDB, the RIPE database of RADB is queried.</p>

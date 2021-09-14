@@ -13,7 +13,7 @@ cd $IXPROOT
 ./artisan db:seed --class=IRRDBs
 ```
 
-[BGPQ3](https://github.com/snar/bgpq3) is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On Ubuntu 16.04/18.04 this is as easy as:
+[BGPQ3](https://github.com/snar/bgpq3) is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On a modern Ubuntu system this is as easy as:
 
 ```sh
 apt install bgpq3
@@ -80,6 +80,7 @@ The IRRDB update commands will:
 * compare prefixes(/ASNs) in the database already (if any) against RADB and insert / delete as appropriate;
 * validate the prefix for proper CIDR notation before database inserts;
 * update the last_seen time for all prefixes(/ASNs) for that customer;
+* create a local file-based cache of that customer's prefixes / asns to speed up router configuration generation *(you don't need to worry about the staleness of this cache as it's cached everytime the IRRDB commands above are run for each customer)*.
 
 **We use transactions to update the database so, even in the middle of a refresh, a full set of prefixes for all customers will still be available.** It also means the update process can be safely interrupted.
 
