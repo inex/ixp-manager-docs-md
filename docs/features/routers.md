@@ -146,3 +146,36 @@ Each router is queried twice via AJAX requests to provide:
 * established BGP sessions
 * last updated time
 * last reboot time
+
+
+## Filtering Known Transit Networks
+
+We filter known transit networks as discussed here: https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/
+
+There are three configuration options to allow you to change the default behaviour.
+
+Exclude one of more AS numbers from the default list (see [this file](https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/server/bird2/filter-transit-networks.foil.php) on your own deployment of IXP Manager).
+
+**(1) Exclude Specific ASNs:**
+
+If you just want to exclude one or more ASNs from the default list, then using comma separation, set the following in your `.env` file:
+
+```
+IXP_NO_TRANSIT_ASNS_EXCLUDE=65501,65502
+```
+
+**(2) Disable This Feature Entirely:**
+
+Set an empty configuration option as follows in your `.env` file:
+
+```
+IXP_NO_TRANSIT_ASNS_OVERRIDE=
+```
+
+**(3) Use Your Own Custom List of ASNs:**
+
+Set the following configuration option with a comma separated list as follows in your `.env` file:
+
+```
+IXP_NO_TRANSIT_ASNS_OVERRIDE=65501,65502,65503
+```
