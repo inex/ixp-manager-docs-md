@@ -150,7 +150,7 @@ Each router is queried twice via AJAX requests to provide:
 
 ## Filtering Known Transit Networks
 
-We filter known transit networks as discussed here: [https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/](https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/)
+We filter known transit networks as discussed here: [https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/](https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/).
 
 There are three configuration options available (>v6.1.0) to allow you to change the default behaviour. These options exist to provide an easier path than skinning the template files directly.
 
