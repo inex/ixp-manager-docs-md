@@ -108,10 +108,11 @@ The general process is:
     chmod -R ug+rwX ${IXPROOT}/{bootstrap/cache,composer.lock,storage,vendor}
     ```
 
-10. Clear out all caches:
+10. Clear out all caches *(cache is there twice which is intended)*:
 
     ```sh
     php ${IXPROOT}/artisan cache:clear
+    php ${IXPROOT}/artisan cache:clear file
     php ${IXPROOT}/artisan config:clear
     php ${IXPROOT}/artisan route:clear
     php ${IXPROOT}/artisan view:clear

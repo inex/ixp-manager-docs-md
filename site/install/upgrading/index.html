@@ -1508,8 +1508,9 @@ chmod -R ug+rwX <span class="si">${</span><span class="nv">IXPROOT</span><span c
 </code></pre></div>
 </li>
 <li>
-<p>Clear out all caches:</p>
+<p>Clear out all caches <em>(cache is there twice which is intended)</em>:</p>
 <div class="highlight"><pre><span></span><code>php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan cache:clear
+php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan cache:clear file
 php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan config:clear
 php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan route:clear
 php <span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan view:clear
