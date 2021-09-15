@@ -926,6 +926,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#filtering-known-transit-networks" class="md-nav__link">
+    Filtering Known Transit Networks
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1426,6 +1433,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#filtering-known-transit-networks" class="md-nav__link">
+    Filtering Known Transit Networks
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1558,6 +1572,22 @@ curl --fail -s -H <span class="s2">&quot;X-IXP-Manager-API-Key: </span><span cla
 <li>last updated time</li>
 <li>last reboot time</li>
 </ul>
+<h2 id="filtering-known-transit-networks">Filtering Known Transit Networks<a class="headerlink" href="#filtering-known-transit-networks" title="Permanent link"></a></h2>
+<p>We filter known transit networks as discussed here: https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/</p>
+<p>There are three configuration options to allow you to change the default behaviour.</p>
+<p>Exclude one of more AS numbers from the default list (see <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/server/bird2/filter-transit-networks.foil.php">this file</a> on your own deployment of IXP Manager).</p>
+<p><strong>(1) Exclude Specific ASNs:</strong></p>
+<p>If you just want to exclude one or more ASNs from the default list, then using comma separation, set the following in your <code>.env</code> file:</p>
+<div class="highlight"><pre><span></span><code>IXP_NO_TRANSIT_ASNS_EXCLUDE=65501,65502
+</code></pre></div>
+<p><strong>(2) Disable This Feature Entirely:</strong></p>
+<p>Set an empty configuration option as follows in your <code>.env</code> file:</p>
+<div class="highlight"><pre><span></span><code>IXP_NO_TRANSIT_ASNS_OVERRIDE=
+</code></pre></div>
+<p><strong>(3) Use Your Own Custom List of ASNs:</strong></p>
+<p>Set the following configuration option with a comma separated list as follows in your <code>.env</code> file:</p>
+<div class="highlight"><pre><span></span><code>IXP_NO_TRANSIT_ASNS_OVERRIDE=65501,65502,65503
+</code></pre></div>
                 
                   
                     
