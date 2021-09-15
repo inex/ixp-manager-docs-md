@@ -152,7 +152,7 @@ Each router is queried twice via AJAX requests to provide:
 
 We filter known transit networks as discussed here: https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/
 
-There are three configuration options to allow you to change the default behaviour.
+There are three configuration options available (>v6.1.0) to allow you to change the default behaviour.
 
 Exclude one of more AS numbers from the default list (see [this file](https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/server/bird2/filter-transit-networks.foil.php) on your own deployment of IXP Manager).
 
