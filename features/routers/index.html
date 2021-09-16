@@ -1465,6 +1465,8 @@
 <li><a href="../as112/">AS112 services</a>.</li>
 </ul>
 <p>See the above pages for specific information on each of those use cases and below for instructions on how to generate configuration.</p>
+<details class="tip" open="open"><summary>Tip</summary><p>For larger router configurations - especially when you have members with large prefix lists, you will need to <a href="https://www.php.net/manual/en/ini.core.php#ini.memory-limit">increase PHP's <code>memory_limit</code></a> as the default of 128M will not be sufficient. Start with 512MB and watch the log (<code>storage/logs/...</code>) which reports the memory and time for configuration generation.</p>
+</details>
 <h2 id="managing-routers">Managing Routers<a class="headerlink" href="#managing-routers" title="Permanent link"></a></h2>
 <p>The basic elements of <em>a router</em> are configured in <strong>IXP Manager</strong> under the <em>IXP Admin Actions - Routers</em> option on the left hand menu.</p>
 <p>When you goto add / edit a router, the green help button will provide explanatory details on each field of information required:</p>
