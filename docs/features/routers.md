@@ -8,6 +8,10 @@ IXP Manager can generate router configuration for typical IXP services such as:
 
 See the above pages for specific information on each of those use cases and below for instructions on how to generate configuration.
 
+???+ tip
+    For larger router configurations - especially when you have members with large prefix lists, you will need to [increase PHP's `memory_limit`](https://www.php.net/manual/en/ini.core.php#ini.memory-limit) as the default of 128M will not be sufficient. Start with 512MB and watch the log (`storage/logs/...`) which reports the memory and time for configuration generation.
+
+
 ## Managing Routers
 
 The basic elements of *a router* are configured in **IXP Manager** under the *IXP Admin Actions - Routers* option on the left hand menu.
