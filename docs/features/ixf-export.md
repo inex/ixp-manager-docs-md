@@ -306,6 +306,30 @@ IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO="mac_addresses|routeserver"
 Please note that the `IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO` affects **both** the ipv4 and ipv6 clauses.
 
 
+### Including IXP Manager Specific Data
+
+If you pass `withtags=1` as a parameter to the URL endpoint, then you will get an extra section in each member section:
+
+```json
+"ixp_manager": {
+    "tags": {
+        "exampletag1": "Example Tag #1",
+        "exampletag2": "Example Tag #2"
+    },
+    "in_manrs": false,
+    "is_reseller": false,
+    "is_resold": true,
+    "resold_via_asn": 65501
+},
+```
+
+As you can see:
+
+* Any [tags](../usage/customer-tags.md) you have assigned to a member will get listed. If you are accessing the IF-X export while logged in as a super user (or using a superuser API key) then it will also include internal tags.
+* `is_manrs` indicates if the member is [MANRS compliant](manrs.md).
+* `is_reseller` indicates if this member is a [reseller](reseller.md).
+* `is_resold` indicates if the member has come via a reseller and, if so, `resold_via_asn` provides the AS number of the reseller.
+
 
 ## Example: Member Lists
 

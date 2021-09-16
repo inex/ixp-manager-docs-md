@@ -760,6 +760,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#including-ixp-manager-specific-data" class="md-nav__link">
+    Including IXP Manager Specific Data
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1466,6 +1473,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#including-ixp-manager-specific-data" class="md-nav__link">
+    Including IXP Manager Specific Data
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1755,6 +1769,26 @@ IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH=&quot;city|model|software&quot;
 <div class="highlight"><pre><span></span><code>IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO=&quot;mac_addresses|routeserver&quot;
 </code></pre></div>
 <p>Please note that the <code>IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO</code> affects <strong>both</strong> the ipv4 and ipv6 clauses.</p>
+<h3 id="including-ixp-manager-specific-data">Including IXP Manager Specific Data<a class="headerlink" href="#including-ixp-manager-specific-data" title="Permanent link"></a></h3>
+<p>If you pass <code>withtags=1</code> as a parameter to the URL endpoint, then you will get an extra section in each member section:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;ixp_manager&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;exampletag1&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Tag #1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;exampletag2&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Tag #2&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;in_manrs&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;is_reseller&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;is_resold&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;resold_via_asn&quot;</span><span class="p">:</span> <span class="mi">65501</span>
+<span class="p">},</span>
+</code></pre></div>
+<p>As you can see:</p>
+<ul>
+<li>Any <a href="../../usage/customer-tags/">tags</a> you have assigned to a member will get listed. If you are accessing the IF-X export while logged in as a super user (or using a superuser API key) then it will also include internal tags.</li>
+<li><code>is_manrs</code> indicates if the member is <a href="../manrs/">MANRS compliant</a>.</li>
+<li><code>is_reseller</code> indicates if this member is a <a href="../reseller/">reseller</a>.</li>
+<li><code>is_resold</code> indicates if the member has come via a reseller and, if so, <code>resold_via_asn</code> provides the AS number of the reseller.</li>
+</ul>
 <h2 id="example-member-lists">Example: Member Lists<a class="headerlink" href="#example-member-lists" title="Permanent link"></a></h2>
 <p>A common requirement of IXPs is to create a public member list on their official website. This can be done with the IX-F Member Export quite easily. The below HTML and JavaScript is a way to do it with INEX's endpoint. There's a <a href="https://jsfiddle.net/barryo/2tzuypf9/">live JSFiddle which demonstrates this also</a> - <a href="https://jsfiddle.net/barryo/2tzuypf9/">https://jsfiddle.net/barryo/2tzuypf9/</a>.</p>
 <p>The HTML requires just a table with a placeholder and an <code>id</code> on the <code>body</code>:</p>
