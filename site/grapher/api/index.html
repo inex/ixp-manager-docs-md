@@ -1448,6 +1448,7 @@
 <ol>
 <li>aggregate bits/sec and packets/sec graphs for the IXP;</li>
 <li>aggregate bits/sec and packets/sec graphs for the infrastructures;</li>
+<li>aggregate bits/sec and packets/sec graphs for locations / facilities;</li>
 <li>aggregate bits/sec graphs on a per-protocol and per-VLAN basis (requires <a href="../../features/sflow/">sflow</a>);</li>
 <li>aggregate graphs for the switches; and</li>
 <li>aggregate graphs for the trunk connections.</li>
@@ -1456,6 +1457,7 @@
 <ol>
 <li><code>GRAPHER_ACCESS_IXP</code></li>
 <li><code>GRAPHER_ACCESS_INFRASTRUCTURE</code></li>
+<li><code>GRAPHER_ACCESS_LOCATION</code></li>
 <li><code>GRAPHER_ACCESS_VLAN</code></li>
 <li><code>GRAPHER_ACCESS_SWITCH</code></li>
 <li><code>GRAPHER_ACCESS_TRUNK</code></li>
@@ -1468,6 +1470,7 @@
 GRAPHER_ACCESS_INFRASTRUCTURE=1
 GRAPHER_ACCESS_VLAN=1
 GRAPHER_ACCESS_SWITCH=1
+GRAPHER_ACCESS_LOCATION=1
 GRAPHER_ACCESS_TRUNK=1
 </code></pre></div>
 <p>If you would prefer to restrict access to these to superusers / admins only, replace <code>=1</code> above with <code>=3</code>.</p>
@@ -1552,6 +1555,9 @@ GRAPHER_ACCESS_TRUNK=1
 <p><code>vlan</code>: aggregate graph for a specific VLAN. <code>id</code>, which is mandatory, is the primary key of the VLAN from the <code>vlan</code> database table. [Currently only supported via sflow for <code>protocol=ipv4|ipv6</code> and <code>category=bits|pkts</code>]</p>
 </li>
 <li>
+<p><code>location</code>: aggregate graph of all peering traffic being switched by a specific facility (sum of all customer ports <strong>not including</strong> core ports). <code>id</code>, which is mandatory, is the primary key of the location / facility from the <code>location</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]. *Note that we are looking at all traffic originating and/or terminating at a location rather than traffic passing through it.</p>
+</li>
+<li>
 <p><code>switch</code>: aggregate graph of all peering traffic being switched by a specific switch (sum of all customer ports plus core ports). <code>id</code>, which is mandatory, is the primary key of the switch from the <code>switch</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
 </li>
 <li>
@@ -1631,6 +1637,10 @@ GRAPHER_ACCESS_TRUNK=1
 <tr>
 <td><code>vlan</code></td>
 <td>public but respects <code>GRAPHER_ACCESS_VLAN</code> (see above), unless it's a private VLAN (in which case only superuser is supported currently)</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td>public but respects <code>GRAPHER_ACCESS_LOCATION</code> (see above)</td>
 </tr>
 <tr>
 <td><code>switch</code></td>

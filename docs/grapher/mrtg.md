@@ -12,6 +12,15 @@ Per-second graphs are generated for bits, packets, errors, discards and broadcas
 
     You'll find examples of [IXP graphs](https://www.inex.ie/ixp/statistics/ixp) and [infrastructure graphs](https://www.inex.ie/ixp/statistics/infrastructure) on INEX's own [IXP Manager](https://www.inex.ie/ixp/) where they are public be default.
 
+* **Location Aggregate Graphs**
+
+    These are defined and built automatically from the locations / facilities you have defined and the switches you have assigned to them. These graphs are available from the *Statistics* menu under *Facility Aggregate Graphs*.
+
+    These graphs are the aggregate of all peering ports **excluding** core/trunk ports on a given switch. It is the aggregate of traffic originating and/or terminating in a location rather than traffic simply passing through a location.
+
+    You'll find examples of [locaiton graphs](https://www.inex.ie/ixp/statistics/location) on INEX's own [IXP Manager](https://www.inex.ie/ixp/) where they are public be default.
+
+
 * **Switch Aggregate Graphs**
 
     These are defined and built automatically from the switches you have defined. These graphs are available from the *Statistics* menu under *Switch Aggregate Graphs*.
