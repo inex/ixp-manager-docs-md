@@ -266,7 +266,7 @@ A common issue raised on the mailing list is missing customer graphs. The code w
 The conditions for a physical interface allocated to a customer to make the configuration file are:
 
 * the physical interface state must be either *Connected* or *Quarantine*.
-* the switch must be *active*.
+* the switch must be *active* and *pollable*.
 
 If you are not sure about how ports are configured in IXP Manager, please see [the interfaces document](../usage/interfaces.md).
 
