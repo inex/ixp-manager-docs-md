@@ -575,6 +575,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#snmp-and-port-types-iftype" class="md-nav__link">
+    SNMP and Port Types (ifType)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1512,6 +1519,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#snmp-and-port-types-iftype" class="md-nav__link">
+    SNMP and Port Types (ifType)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1677,6 +1691,17 @@ iso.3.6.1.2.1.1.1.0 <span class="o">=</span> STRING: <span class="s2">&quot;Aris
 </code></pre></div>
 <p>If you are comfortable with the changes proposed, rerun it</p>
 <p><strong>Operational Note:</strong> if performing switch operating system updates that are known to change the <code>ifIndex</code>, it is strongly advised to disable polling (<em>Poll</em> checkbox when adding / editing a switch) for the duration of the upgrade work and until after you have reindexed the ports.</p>
+<h3 id="snmp-and-port-types-iftype">SNMP and Port Types (<code>ifType</code>)<a class="headerlink" href="#snmp-and-port-types-iftype" title="Permanent link"></a></h3>
+<p>By default, IXP Manager restricts the type of port to ifType <code>ethernetCsmacd</code>, <code>l2vlan</code> and <code>l3ipvlan</code>, because most network operating systems include various types of virtual port which are not relevant to IXP operation. Sometimes, some vendors (e.g. Juniper) use a richer set of ports, and a wider selection of ifTypes. If these ifTypes were enabled in the general case, IXP Manager operators would be presented with lots of port types that were irrelevant to their IXP service.</p>
+<p>This is a traditional user interface situation: we need a balance between hiding the inherent complexity of what's going on, while enabling enough flexibility to allow the operator to do what they need, while ensuring that the underlying code base and config is maintainable as a long term proposition.</p>
+<p>If you examine the file <code>config/ixp.php</code> you'll find an element called <code>snmp['allowed_interface_types']</code>. The default behaviour is equivalent to creating a <code>.env</code> setting as follows:</p>
+<div class="highlight"><pre><span></span><code>IXP_SNMP_ALLOWED_INTERFACE_TYPES=&quot;6,135,136&quot;
+</code></pre></div>
+<p>where 6, 135 and 136 are the SNMP codes for ifType <code>ethernetCsmacd</code>, <code>l2vlan</code> and <code>l3ipvlan</code> respectivily. <em>Note that over time we may add more to the default stack - the configuration file will always represent the default status.</em></p>
+<p>If you wish to have IXP Manager poll additional interface / port types on your switch then set this .env variable. For example, to additionally allow irb interfaces on Juniper (which at time of writing use <code>ifOther</code>) then set it as follows:</p>
+<div class="highlight"><pre><span></span><code>IXP_SNMP_ALLOWED_INTERFACE_TYPES=&quot;1,6,135,136&quot;
+</code></pre></div>
+<p>More detail may be found in the <a href="https://github.com/inex/IXP-Manager/issues/695">originating GitHub issue #695</a>).</p>
 <h2 id="migrating-customers-to-a-new-switch">Migrating Customers to a New Switch<a class="headerlink" href="#migrating-customers-to-a-new-switch" title="Permanent link"></a></h2>
 <p>When moving IXP customers from one switch to another, add the new switch into the IXP Manager as described above. The customer port assignments can easily be changed to the new switch using the IXP Manager web interface. It is advisable not to delete the old port assignment and create a new one, because if this happens, then the old customer port graphs will not be preserved.</p>
 <p>The process is, for each customer:</p>

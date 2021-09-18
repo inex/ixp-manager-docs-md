@@ -151,6 +151,29 @@ If you are comfortable with the changes proposed, rerun it
 
 **Operational Note:** if performing switch operating system updates that are known to change the `ifIndex`, it is strongly advised to disable polling (*Poll* checkbox when adding / editing a switch) for the duration of the upgrade work and until after you have reindexed the ports.
 
+
+### SNMP and Port Types (`ifType`)
+
+By default, IXP Manager restricts the type of port to ifType `ethernetCsmacd`, `l2vlan` and `l3ipvlan`, because most network operating systems include various types of virtual port which are not relevant to IXP operation. Sometimes, some vendors (e.g. Juniper) use a richer set of ports, and a wider selection of ifTypes. If these ifTypes were enabled in the general case, IXP Manager operators would be presented with lots of port types that were irrelevant to their IXP service.
+
+This is a traditional user interface situation: we need a balance between hiding the inherent complexity of what's going on, while enabling enough flexibility to allow the operator to do what they need, while ensuring that the underlying code base and config is maintainable as a long term proposition.
+
+If you examine the file `config/ixp.php` you'll find an element called `snmp['allowed_interface_types']`. The default behaviour is equivalent to creating a `.env` setting as follows:
+
+```
+IXP_SNMP_ALLOWED_INTERFACE_TYPES="6,135,136"
+```
+
+where 6, 135 and 136 are the SNMP codes for ifType `ethernetCsmacd`, `l2vlan` and `l3ipvlan` respectivily. *Note that over time we may add more to the default stack - the configuration file will always represent the default status.*
+
+If you wish to have IXP Manager poll additional interface / port types on your switch then set this .env variable. For example, to additionally allow irb interfaces on Juniper (which at time of writing use `ifOther`) then set it as follows:
+
+```
+IXP_SNMP_ALLOWED_INTERFACE_TYPES="1,6,135,136"
+```
+
+More detail may be found in the [originating GitHub issue #695](https://github.com/inex/IXP-Manager/issues/695)).
+
 ## Migrating Customers to a New Switch
 
 When moving IXP customers from one switch to another, add the new switch into the IXP Manager as described above. The customer port assignments can easily be changed to the new switch using the IXP Manager web interface. It is advisable not to delete the old port assignment and create a new one, because if this happens, then the old customer port graphs will not be preserved.
