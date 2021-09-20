@@ -74,6 +74,7 @@ Use whatever means you like to create a database and user for IXP Manager. For e
 ```mysql
 CREATE DATABASE `ixpmanager` CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci';
 CREATE USER `ixpmanager`@`localhost` IDENTIFIED BY '<pick a password!>';
+GRANT SUPER ON *.* TO `ixpmanager`@`localhost`;
 GRANT ALL ON `ixpmanager`.* TO `ixpmanager`@`localhost`;
 FLUSH PRIVILEGES;
 ```
