@@ -40,11 +40,13 @@ There are basic elements you need to add to IXP Manager which describe your IXP 
 
 7. Ensure [email is correctly configured](../usage/email.md).
 
+8. **Now, a very important next step:** let us know you are using IXP Manager so we can add you [to the community map](https://www.ixpmanager.org/community/world-map). You can complete [the online form](https://www.ixpmanager.org/community/users/submit) or get [more details here](register.md).
+
+
 The above constitutes the basic elements that are required to provision a customer.
 
 For documentation on [adding and managing customers, see here](https://docs.ixpmanager.org/usage/customers/). And for details on [provisioning interfaces for your customers, see here](https://docs.ixpmanager.org/usage/interfaces/).
 
-**Now, a very important next step:** let us know you are using IXP Manager so we can add you [to the map](https://www.ixpmanager.org/users). Just send your IXP's: full name, short name, city / region / country, GPS coordinates and website URL to us at `operations <at> inex.ie`. Also include your Twitter and/or Facebook handle and we'll give you a shout out.
 
 ## Feature Checklist
 

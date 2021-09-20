@@ -170,6 +170,165 @@ If you wish to control access to the infrastructure statistics, see [the Grapher
 5. The maximum outgoing transfer rate in bytes per second for the current interval.
 
 
+### Excluding Some Data
+
+It is possible to exclude some data from v6.0.1 per [GitHub issue #722](https://github.com/inex/IXP-Manager/issues/722):
+
+> While some exchanges are willing to share detailed information about their infrastructure via the IX-F Member Export Schema, others either do not want to or cannot due to regulation. Enabling exchanges to share a limited set of data about their infrastructure would help exchanges find others using the same platforms to learn from each other and shows the diversity of platforms in use across the market.
+
+???+ important "Please bear in mind that the more data you remove, the less useful the IX-F member export becomes. Most IXPs do not use this exclusion function and, ideally, you will only use it if there is no other choice."
+
+
+For example, a switch object typically looks like:
+
+```json
+{
+    "id": 50,
+    "name": "swi1-kcp1-2",
+    "colo": "Equinix DB2 (Kilcarbery)",
+    "city": "Dublin",
+    "country": "IE",
+    "pdb_facility_id": 178,
+    "manufacturer": "Arista",
+    "model": "DCS-7280SR-48C6",
+    "software": "EOS 4.24.3M"
+}
+```
+
+If, for example, you need to exclude the model and software version, you can add the following to your `.env` file:
+
+```
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH="model|software"
+```
+
+which will yield:
+
+```json
+{
+    "id": 50,
+    "name": "swi1-kcp1-2",
+    "colo": "Equinix DB2 (Kilcarbery)",
+    "city": "Dublin",
+    "country": "IE",
+    "pdb_facility_id": 178,
+    "manufacturer": "Arista"
+}
+```
+
+As you can see, the configuration option is the set of identifiers you want to exclude (`model` and `software`) separated with the pipe symbol. Different combinations are possible - here are some examples:
+
+```
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH="software"
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH="model|software"
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH="city|model|software"
+```
+
+You **should not** exclude the `id` as these is referred to in the member interface list.
+
+You can exclude detail for the IXP object:
+
+```json
+{
+    "shortname": "INEX LAN1",
+    "name": "Internet Neutral Exchange Association Limited by Guarantee",
+    "country": "IE",
+    "url": "https:\/\/www.inex.ie\/",
+    "peeringdb_id": 48,
+    "ixf_id": 20,
+    "ixp_id": 1,
+    "support_email": "operations@example.com",
+    "support_contact_hours": "24x7",
+    "emergency_email": "operations@example.com",
+    "emergency_contact_hours": "24x7",
+    "billing_contact_hours": "8x5",
+    "billing_email": "accounts@example.com",
+    ...
+}
+```
+
+with the option:
+
+```
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_IXP="name|url"
+```
+
+You **should not** exclude any of the IDs (`peeringdb_id`, `ixf_id` and `ixp_id`) as these is referred to else where in the document and required externally when using the data.
+
+You can exclude member detail:
+
+```json
+{
+    "asnum": 42,
+    "member_since": "2009-01-13T00:00:00Z",
+    "url": "http:\/\/www.pch.net\/",
+    "name": "Packet Clearing House DNS",
+    "peering_policy": "open",
+    "member_type": "peering",
+    ...
+}
+```
+
+with the option:
+
+```
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_MEMBER="peering_policy|member_type"
+```
+
+And finally, you can include member VLAN/protocol detail:
+
+```json
+"ipv4": {
+    "address": "185.6.36.60",
+    "as_macro": "AS-PCH",
+    "routeserver": true,
+    "mac_addresses": [
+        "00:xx:yy:11:22:33"
+    ],
+    "max_prefix": 2000
+},
+"ipv6": {
+    "address": "2001:7f8:18::60",
+    "as_macro": "AS-PCH",
+    "routeserver": true,
+    "mac_addresses": [
+        "00:xx:yy:11:22:33"
+    ],
+    "max_prefix": 2000
+}
+```
+
+with the option:
+
+```
+IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO="mac_addresses|routeserver"
+```
+
+Please note that the `IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO` affects **both** the ipv4 and ipv6 clauses.
+
+
+### Including IXP Manager Specific Data
+
+If you pass `withtags=1` as a parameter to the URL endpoint, then you will get an extra section in each member section:
+
+```json
+"ixp_manager": {
+    "tags": {
+        "exampletag1": "Example Tag #1",
+        "exampletag2": "Example Tag #2"
+    },
+    "in_manrs": false,
+    "is_reseller": false,
+    "is_resold": true,
+    "resold_via_asn": 65501
+},
+```
+
+As you can see:
+
+* Any [tags](../usage/customer-tags.md) you have assigned to a member will get listed. If you are accessing the IF-X export while logged in as a super user (or using a superuser API key) then it will also include internal tags.
+* `is_manrs` indicates if the member is [MANRS compliant](manrs.md).
+* `is_reseller` indicates if this member is a [reseller](reseller.md).
+* `is_resold` indicates if the member has come via a reseller and, if so, `resold_via_asn` provides the AS number of the reseller.
 
 
 ## Example: Member Lists

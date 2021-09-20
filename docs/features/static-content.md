@@ -57,7 +57,7 @@ cp resources/views/content/0/support.foil.php resources/skins/example/content/0/
 You can link to your own static contact pages using the *Documentation* menu by skinning this file:
 
 ```sh
-cp resources/views/header-documentation.foil.php resources/skins/example/header-documentation.foil.php
+cp resources/views/layouts/header-documentation.foil.php resources/skins/example/layouts/header-documentation.foil.php
 ```
 
 The stock version includes a link to the example page and a external link to the IXP Manager website *(we would be much obliged if you left this in place!)*.

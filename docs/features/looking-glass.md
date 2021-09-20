@@ -27,7 +27,7 @@ See this screenshot for an appropriately configured INEX router with Bird's Eye:
 
 ## Looking Glass 'Pass Thru' API Calls
 
-Depending on the configured *LG Access Privileges* for a given router, **IXP Manager** will pass thru the following API calls to the router API.
+Depending on the configured *LG Access Privileges* for a given router, **IXP Manager** will pass through the following API calls to the router API.
 
 * `https://ixp.example.com/api/v4/lg/{handle}/status`
 * `https://ixp.example.com/api/v4/lg/{handle}/bgp-summary`

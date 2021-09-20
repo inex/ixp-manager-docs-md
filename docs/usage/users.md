@@ -67,6 +67,36 @@ Note that *deleting* a user results in one of two actions:
 2. if the user is linked to more than one customer, then only the link to this customer will be removed.
 
 
+## Command Line User Management
+
+There are three command line tools for managing users available since v6:
+
+* `user:create`:  create a user.
+* `user:find`: find and print user(s) details
+* `user:set-password`: set the user's password
+
+Here's a sample run of `user:set-password`:
+
+```
+❯ ./artisan user:set-password --search john
++-----+------------+------------+----------------+--------------+-------+
+| ID  | Name       | Username   | Email          | Customers    | Privs |
++-----+------------+------------+----------------+--------------+-------+
+| 115 | John Smith | sjohnsmith | js@example.com | Acme Limited | CA    |
+| ... |            |            |                |              | CA    |
++-----+------------+------------+----------------+--------------+-------+
+
+ Enter ID to change password for:
+ > 115
+
+ Password or (return to have one generated):
+ >
+
+Generated password: 1eHRUoDNiGBlkJEz
+Password set.
+```
+
+
 ## Users With Multiple Customers
 
 This section explains the handling around users with multiple customers.

@@ -6,29 +6,40 @@ Per-second graphs are generated for bits, packets, errors, discards and broadcas
 
 * **Aggregate IXP and Infrastructure Graphs**
 
-  The MRTG script creates aggregate graphs for the entire IXP as well as per-infrastructure graphs. These graphs are available from the *Statistics* menu under *Overall Peering Graphs*. Also, the graphs on the admin dashboard are versions of these.
+    The MRTG script creates aggregate graphs for the entire IXP as well as per-infrastructure graphs. These graphs are available from the *Statistics* menu under *Overall Peering Graphs*. Also, the graphs on the admin dashboard are versions of these.
 
-  IXP and infrastructure graphs are aggregate graphs of edge / member ports only. It is the aggregate of traffic exchanged between the members of the IXP and thus does not include core / trunk ports between switches.
+    IXP and infrastructure graphs are aggregate graphs of edge / member ports only. It is the aggregate of traffic exchanged between the members of the IXP and thus does not include core / trunk ports between switches.
 
-  You'll find examples of [IXP graphs](https://www.inex.ie/ixp/statistics/ixp) and [infrastructure graphs](https://www.inex.ie/ixp/statistics/infrastructure) on INEX's own [IXP Manager](https://www.inex.ie/ixp/) where they are public be default.
+    You'll find examples of [IXP graphs](https://www.inex.ie/ixp/statistics/ixp) and [infrastructure graphs](https://www.inex.ie/ixp/statistics/infrastructure) on INEX's own [IXP Manager](https://www.inex.ie/ixp/) where they are public be default.
+
+* **Location Aggregate Graphs**
+
+    These are defined and built automatically from the locations / facilities you have defined and the switches you have assigned to them. These graphs are available from the *Statistics* menu under *Facility Aggregate Graphs*.
+
+    These graphs are the aggregate of all peering ports **excluding** core/trunk ports on a given switch. It is the aggregate of traffic originating and/or terminating in a location rather than traffic simply passing through a location.
+
+    You'll find examples of [locaiton graphs](https://www.inex.ie/ixp/statistics/location) on INEX's own [IXP Manager](https://www.inex.ie/ixp/) where they are public be default.
+
 
 * **Switch Aggregate Graphs**
 
-  These are defined and built automatically from the switches you have defined. These graphs are available from the *Statistics* menu under *Switch Aggregate Graphs*.
+    These are defined and built automatically from the switches you have defined. These graphs are available from the *Statistics* menu under *Switch Aggregate Graphs*.
 
-  These graphs are the aggregate of all peering ports **and core/trunk ports** on a given switch. It is the aggregate of traffic being exchanged across a given switch.
+    These graphs are the aggregate of all peering ports **and core/trunk ports** on a given switch. It is the aggregate of traffic being exchanged across a given switch.
 
-  You'll find examples of [switch graphs](https://www.inex.ie/ixp/statistics/switch) on INEX's own [IXP Manager](https://www.inex.ie/ixp/) where they are public be default.
+    You'll find examples of [switch graphs](https://www.inex.ie/ixp/statistics/switch) on INEX's own [IXP Manager](https://www.inex.ie/ixp/) where they are public be default.
 
 * **Inter-Switch / Trunk Graphs**
 
-  IXP Manager does not currently support a frontend means of creating these definitions (but, as of mid 2018, it is being worked on). For now, we do it manually via the [IXP Manager v3 way](https://github.com/inex/IXP-Manager/wiki/MRTG---Traffic-Graphs#inter-switch--trunk-graphs).
+    From IXP Manager v6, this is now handled via Core Bundles. Please see the [graphing section of the core bundles page](../features/core-bundles.md#graphing) for details.
 
-  These graphs will be available in the *Statistics* menu under *Inter-Switch / PoP Graphs*. You can see [examples from INEX here](https://www.inex.ie/ixp/statistics/trunk).
+    For older versions of IXP Manager, it can be done manually via the [config/grapher_trunks.php.dist](https://github.com/inex/IXP-Manager/blob/master/config/grapher_trunks.php.dist) file. **This is now deprecated and will be removed during the lifetime of the v6 release.**
+
+    In either case, these graphs will be available in the *Statistics* menu. You can see [examples from INEX here](https://www.inex.ie/ixp/statistics/trunk).
 
 * **Customer Graphs**
 
-  MRTG creates: per port (physical interface); per LAG (virtual interface); and per customer aggregate graphs for each member / customer.
+    MRTG creates: per port (physical interface); per LAG (virtual interface); and per customer aggregate graphs for each member / customer.
 
 ## MRTG Setup and Configuration
 
@@ -255,7 +266,7 @@ A common issue raised on the mailing list is missing customer graphs. The code w
 The conditions for a physical interface allocated to a customer to make the configuration file are:
 
 * the physical interface state must be either *Connected* or *Quarantine*.
-* the switch must be *active*.
+* the switch must be *active* and *pollable*.
 
 If you are not sure about how ports are configured in IXP Manager, please see [the interfaces document](../usage/interfaces.md).
 

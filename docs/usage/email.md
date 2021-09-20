@@ -9,7 +9,8 @@ This guide will explain how to configure and test **IXP Manager** to send email 
 A sample SMTP configuration block in your **IXP Manager** `.env` file would be:
 
 ```
-MAIL_DRIVER="smtp"
+MAIL_MAILER="smtp"
+# Pre v6, replace above with: MAIL_DRIVER=...
 # MAIL_HOST="localhost"
 # MAIL_PORT="25"
 # MAIL_ENCRYPTION="tls"
@@ -34,7 +35,7 @@ Finally, `MAIL_USERNAME` and `MAIL_PASSWORD` can be set if your mail relay serve
 A local SMTP relay server on the same host as **IXP Manager** would therefore require a configuration such as:
 
 ```
-MAIL_DRIVER="smtp"
+MAIL_MAILER="smtp"
 MAIL_HOST="localhost"
 MAIL_PORT="25"
 MAIL_ENCRYPTION=false

@@ -40,7 +40,7 @@ With Bird v2 support in IXP Manager v5, we provide better looking glass integrat
 3. Sanity check - filter prefixes with no AS path or > 64 ASNs in AS path.
 4. Sanity check to ensure peer AS is the same as first AS in the prefix’s AS path.
 5. Prevent next-hop hijacking. This occurs when a participant advertises a prefix with a next hop IP other than their own. An exception exists to allow participants with multiple connections advertise their other router (next-hop within the same AS).
-6. Filter known transit networks - see FIXME
+6. Filter known transit networks - see [this section](routers.md#filtering-known-transit-networks)
 7. IRRDB filtering: ensure origin AS is in set of ASNs from member AS-SET.
 8. RPKI:
     * Valid -> accept

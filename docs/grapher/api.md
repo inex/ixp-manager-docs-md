@@ -8,6 +8,7 @@ By default, the following graphs are **publicly** accessible in **IXP Manager** 
 
 1. aggregate bits/sec and packets/sec graphs for the IXP;
 2. aggregate bits/sec and packets/sec graphs for the infrastructures;
+2. aggregate bits/sec and packets/sec graphs for locations / facilities;
 3. aggregate bits/sec graphs on a per-protocol and per-VLAN basis (requires [sflow](../features/sflow.md));
 4. aggregate graphs for the switches; and
 5. aggregate graphs for the trunk connections.
@@ -16,6 +17,7 @@ If you wish to limit access to these to a *less than or equal* [user permission]
 
 1. `GRAPHER_ACCESS_IXP`
 2. `GRAPHER_ACCESS_INFRASTRUCTURE`
+3. `GRAPHER_ACCESS_LOCATION`
 3. `GRAPHER_ACCESS_VLAN`
 4. `GRAPHER_ACCESS_SWITCH`
 5. `GRAPHER_ACCESS_TRUNK`
@@ -33,6 +35,7 @@ GRAPHER_ACCESS_IXP=1
 GRAPHER_ACCESS_INFRASTRUCTURE=1
 GRAPHER_ACCESS_VLAN=1
 GRAPHER_ACCESS_SWITCH=1
+GRAPHER_ACCESS_LOCATION=1
 GRAPHER_ACCESS_TRUNK=1
 ```
 
@@ -126,6 +129,8 @@ Let's first look at supported graphs:
 * `vlan`: aggregate graph for a specific VLAN. `id`, which is mandatory, is the primary key of the VLAN from the `vlan` database table. [Currently only supported via sflow for `protocol=ipv4|ipv6` and `category=bits|pkts`]
 
 
+* `location`: aggregate graph of all peering traffic being switched by a specific facility (sum of all customer ports **not including** core ports). `id`, which is mandatory, is the primary key of the location / facility from the `location` database table. [Currently only supported via MRTG for `protocol=all`]. *Note that we are looking at all traffic originating and/or terminating at a location rather than traffic passing through it.
+
 * `switch`: aggregate graph of all peering traffic being switched by a specific switch (sum of all customer ports plus core ports). `id`, which is mandatory, is the primary key of the switch from the `switch` database table. [Currently only supported via MRTG for `protocol=all`]
 
 
@@ -191,6 +196,7 @@ Graph               |  Default Access Control
 `ixp`               | public but respects `GRAPHER_ACCESS_IXP` (see above)
 `infrastructure`    | public but respects `GRAPHER_ACCESS_INFRASTRUCTURE` (see above)
 `vlan`              | public but respects `GRAPHER_ACCESS_VLAN` (see above), unless it's a private VLAN (in which case only superuser is supported currently)
+`location`          | public but respects `GRAPHER_ACCESS_LOCATION` (see above)
 `switch`            | public but respects `GRAPHER_ACCESS_SWITCH` (see above)
 `trunk`             | public but respects `GRAPHER_ACCESS_TRUNK` (see above)
 `physicalinterface` | superuser or user of the owning customer but respects `GRAPHER_ACCESS_CUSTOMER` (see *Access to Member Graphs* below)
