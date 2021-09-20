@@ -2,9 +2,9 @@
 
 IXP Manager grew out of a code base and schema that started in the early '90s. Long before [test driven development](http://phpunit.de/) or [behaviour driven development](http://behat.org/) was fashionable for PHP. However, as IXP Manager is taking over more and more critical configuration tasks, we continue to back fill some automated testing with continuous integration for critical elements.
 
-We use [Travis-CI](https://travis-ci.org/inex/IXP-Manager) for continuous integration (CI) who provide free cloud based CI linked to GitHub for open source projects.
+We use [GitHub Actions](https://github.com/features/actions) for continuous integration which is provided free for public repositories.
 
-Our current build status is: [![Build Status](https://travis-ci.org/inex/IXP-Manager.png?branch=master)](https://travis-ci.org/inex/IXP-Manager)
+Our current build status is: [![Build Status](https://github.com/inex/IXP-Manager/actions/workflows/ci-ex-dusk.yml/badge.svg)](https://github.com/inex/IXP-Manager/actions)
 
 The CI system runs the full suite of tests every time a commit is pushed to GitHub. As such, any *build failing* states are usually transitory. **Official IXP Manager releases are only made when all tests pass.**
 
@@ -20,9 +20,9 @@ We won't be aggressively writing tests for the existing codebase but will add te
 
 ## Setting Up PHPUnit Tests
 
-Documentation by real example can be found via the [.travis.yml](https://github.com/inex/IXP-Manager/blob/master/.travis.yml) file and [the Travis data directory](https://github.com/inex/IXP-Manager/tree/master/data/travis-ci) which contains scripts, database dumps and configurations.
+Documentation by real example can be found via the [GitHub Actions workflow files](https://github.com/inex/IXP-Manager/tree/master/.github/workflows) and [the CI data directory](https://github.com/inex/IXP-Manager/tree/master/data/ci) which contains scripts, database dumps and configurations.
 
-Testing assumes *a known good sample database* which contains a small mix of customers with different configuration options. The files generated from this database are tested against [known good](https://github.com/inex/IXP-Manager/tree/master/data/travis-ci/known-good) configuration files. You first need to create a database, add a database user, import this testing database and then configure a `.env` section for testing.
+Testing assumes *a known good sample database* which contains a small mix of customers with different configuration options. The files generated from this database are tested against [known good](https://github.com/inex/IXP-Manager/tree/master/data/ci/known-good) configuration files. You first need to create a database, add a database user, import this testing database and then configure a `.env` file for testing (see [the one here use here](https://github.com/inex/IXP-Manager/blob/master/.env.ci)).
 
 In MySQL:
 
@@ -35,7 +35,7 @@ FLUSH PRIVILEGES;
 Then import the sample database:
 
 ```sh
-bzcat data/travis-ci/travis_ci_test_db.sql.bz2  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci
+cat data/ci/ci_test_db.sql.bz2  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci
 ```
 
 Now, create your `.env` for testing, such as:
@@ -49,11 +49,9 @@ DB_PASSWORD=somepassword
 
 Note that the [`phpunit.xml`](https://github.com/inex/IXP-Manager/blob/master/phpunit.xml) file in the root directory has some default settings matching the test database. You should not need to edit these.
 
-The `.env` file used by Travis CI can be [seen here](https://github.com/inex/IXP-Manager/blob/master/.env.travisci) and - as it's used by Travis CI to run the tests - it should be a complete example of what is required.
-
 ## Setting Up Laravel Dusk
 
-Please review the [official documentation here](https://laravel.com/docs/5.6/dusk).
+Please review the [official documentation here](https://laravel.com/docs/master/dusk).
 
 You need to ensure the development packages for IXP Manager are installed via:
 
@@ -84,7 +82,7 @@ php artisan serve
 And then kick off **all the tests** which includes PHPUnit and Laravel Dusk tests, run:
 
 ```sh
-phpunit
+./vendor/bin/phpunit
 ```
 
 Sample output:
@@ -113,7 +111,7 @@ Time: 12.73 seconds, Memory: 24.00MB
 If you want to exclude the browser based tests, just exclude that directory as follows:
 
 ```sh
-$ phpunit --filter '/^((?!Tests\\Browser).)*$/'
+$ ./vendor/bin/phpunit --filter '/^((?!Tests\\Browser).)*$/'
 PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
 
 ...............................................................  63 / 142 ( 44%)
@@ -121,4 +119,12 @@ PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
 ................                                                142 / 142 (100%)
 
 Time: 1.59 minutes, Memory: 106.41MB
+```
+
+You can also limit tests to specific test suites:
+
+```
+$ ./vendor/bin/phpunit --testsuite 'Dusk / Browser Test Suite'
+$ ./vendor/bin/phpunit --testsuite 'Docstore Test Suite'
+$ ./vendor/bin/phpunit --testsuite 'IXP Manager Test Suite'
 ```
