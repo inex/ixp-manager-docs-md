@@ -140,3 +140,21 @@ The most common use case of more than one VLAN Interface is when your customer m
 Other than that, the VLAN interface add / edit form has all the same elements as the wizard with one addition:
 
 * `Busy host`: this flag indicates that the customer's router is unusually slow to reply to ICMP echo requests and that when monitoring, the configuration should allow for warnings after a 5sec RTT rather than 1sec.
+
+
+## Partial Port Speeds / Rate Limiters
+
+
+In cases where the IXP provides subrate connectivity, the declared port speed at an IXP may not match the port speed which is configured on the access device. Support for this scenario was included in v6.2.0:
+
+* New `rate_limit` column on the database as the actual request for partial port speeds is really a request to honour rate limits on ports. If there are other use cases this can still be used, the actual physical (production) effect is determined by how individual IXPs use this information in their provisioning systems / as they manually configure switches.
+* Rate Limit field when adding and editing a physical interface through the normal virtual interface overview. **NB:** this means if using the *New Interface Wizard*, you configure the physical speed and then edit the physical interface afterwards. The wizard is meant to cover the 90% scenario and we'd prefer to keep it de-cluttered.
+* This is for member ports; not core ports.
+* Speed reported on various member screens as the rate limited speed (and sometimes, where space / appropriate) as x / y and also GUI labels to make it clear when a port is rate limited.
+* IX-F Member Export now reports rate_limit speed and adds an IXP Manager specific field called if_phys_speed to show the physical port speed.
+* The switch configuration viewer (e.g. INEX's one also updated to support this.
+* Port utilisation updated to be congnisant of this.
+* Switch provisioner yaml/json output now has rate_limit for peering ports, null means not in use.
+* MRTG configuration has not been updated as the MRTG config uses the detected speed from SNMP. We currently do not see any value in swapping this for the rate limited speed as rate limiters can be buggy / misconfigured / etc and we'll want to see that traffic.
+* The dashboard statistics also reflect this and include a new section at the end which shows how partial ports were accounted for.
+* The physical interface list (left hand menu -> Interfaces -> Physical Interfaces) has a rate limit column to make it easy to see the rate limited ports.
