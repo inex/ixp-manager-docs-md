@@ -1579,12 +1579,12 @@
 <p>Regrettably the potential combinations of operating systems, versions of same and then versions of PHP are too numerous to provide individual support. As such, we recommend installing IXP Manager on Ubuntu LTS 20.04 and we officially support this platform.</p>
 <p>In fact, we provide a complete installation script for this - see <a href="../automated-script/">the automated installation page</a> for details. If you have any issues with the manual installation, the automated script should be your first reference to compare what you are doing to what we recommend.</p>
 <p>For completeness, the IXP Manager installation script for Ubuntu 20.04 LTS installs:</p>
-<div class="highlight"><pre><span></span><code>apt install -qy apache2 php8.0 php8.0-intl php-rrd php8.0-cgi php8.0-cli          <span class="se">\</span>
-    php8.0-snmp php8.0-curl  php-memcached libapache2-mod-php8.0 mysql-server     <span class="se">\</span>
-    mysql-client php8.0-mysql memcached snmp php8.0-mbstring php8.0-xml php8.0-gd <span class="se">\</span>
-    php8.0-bcmath bgpq3 php-memcache unzip php8.0-zip git php-yaml                <span class="se">\</span>
-    php-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl <span class="se">\</span>
-    libnetaddr-ip-perl rrdtool librrds-perl curl composer
+<div class="highlight"><pre><span></span><code>apt install -qy apache2 php8.0 php8.0-intl php8.0-rrd php8.0-cgi php8.0-cli              <span class="se">\</span>
+    php8.0-snmp php8.0-curl  php8.0-memcached libapache2-mod-php8.0 mysql-server         <span class="se">\</span>
+    mysql-client php8.0-mysql memcached snmp php8.0-mbstring php8.0-xml php8.0-gd        <span class="se">\</span>
+    php8.0-bcmath bgpq3 php8.0-memcache unzip php8.0-zip git php8.0-yaml                 <span class="se">\</span>
+    php8.0-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl     <span class="se">\</span>
+    libnetaddr-ip-perl rrdtool librrds-perl curl composer                                
 </code></pre></div>
 <p>Do note that Ubuntu 20.04 LTS comes with PHP 7.4 so you must enable Ondřej Surý's excellent <a href="https://launchpad.net/~ondrej/+archive/ubuntu/php">Ubuntu PHP PPA</a> (and maybe <a href="https://deb.sury.org/#donate">buy him a pint</a>). This can be enabled with:</p>
 <div class="highlight"><pre><span></span><code>apt-get install -yq software-properties-common

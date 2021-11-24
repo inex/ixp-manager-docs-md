@@ -27,12 +27,12 @@ In fact, we provide a complete installation script for this - see [the automated
 For completeness, the IXP Manager installation script for Ubuntu 20.04 LTS installs:
 
 ```sh
-apt install -qy apache2 php8.0 php8.0-intl php-rrd php8.0-cgi php8.0-cli          \
-    php8.0-snmp php8.0-curl  php-memcached libapache2-mod-php8.0 mysql-server     \
-    mysql-client php8.0-mysql memcached snmp php8.0-mbstring php8.0-xml php8.0-gd \
-    php8.0-bcmath bgpq3 php-memcache unzip php8.0-zip git php-yaml                \
-    php-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl \
-    libnetaddr-ip-perl rrdtool librrds-perl curl composer
+apt install -qy apache2 php8.0 php8.0-intl php8.0-rrd php8.0-cgi php8.0-cli              \
+    php8.0-snmp php8.0-curl  php8.0-memcached libapache2-mod-php8.0 mysql-server         \
+    mysql-client php8.0-mysql memcached snmp php8.0-mbstring php8.0-xml php8.0-gd        \
+    php8.0-bcmath bgpq3 php8.0-memcache unzip php8.0-zip git php8.0-yaml                 \
+    php8.0-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl     \
+    libnetaddr-ip-perl rrdtool librrds-perl curl composer                                
 ```
 
 Do note that Ubuntu 20.04 LTS comes with PHP 7.4 so you must enable Ondřej Surý's excellent [Ubuntu PHP PPA](https://launchpad.net/~ondrej/+archive/ubuntu/php) (and maybe [buy him a pint](https://deb.sury.org/#donate)). This can be enabled with:
