@@ -1,6 +1,6 @@
 # Configuring Email
 
-**IXP Manager** uses Laravel's [mail system](https://laravel.com/docs/7.x/mail) to send email. This system allows for many possible email sending drivers (such as Mailgun, Postmark, Amazon SES, etc.). If you wish to use one of these services than please [refer to the official documentation](https://laravel.com/docs/7.x/mail). You can also read the `config/mail.php` configuration file in your **IXP Manager** installation for further details.
+**IXP Manager** uses Laravel's [mail system](https://laravel.com/docs/master/mail) to send email. This system allows for many possible email sending drivers (such as Mailgun, Postmark, Amazon SES, etc.). If you wish to use one of these services than please [refer to the official documentation](https://laravel.com/docs/master/mail). You can also read the `config/mail.php` configuration file in your **IXP Manager** installation for further details. *NB: we link to the 'master' version of Laravel's documentation above - see IXP Manager's `composer.json` file and use the appropriate version of Laravel's documentation to match.*
 
 This guide will explain how to configure and test **IXP Manager** to send email using a standard SMTP service.
 
@@ -9,30 +9,35 @@ This guide will explain how to configure and test **IXP Manager** to send email 
 A sample SMTP configuration block in your **IXP Manager** `.env` file would be:
 
 ```
-MAIL_MAILER="smtp"
-# Pre v6, replace above with: MAIL_DRIVER=...
+### Email Settings.
+#
+# We use Laravel's mail system - see: https://docs.ixpmanager.org/usage/email/
+#
+# The default setting are as follows:
+#
+# MAIL_MAILER="smtp"
 # MAIL_HOST="localhost"
-# MAIL_PORT="25"
-# MAIL_ENCRYPTION="tls"
+# MAIL_PORT=25
+# MAIL_ENCRYPTION=false
 # MAIL_USERNAME=
 # MAIL_PASSWORD=
 ```
 
-The options that are commented out above show defaults. Under the hood, Laravel in turn uses [swiftmailer](https://swiftmailer.symfony.com/docs/sending.html) and the parameters above are passed through to that library.
+The options that are commented out above show defaults. Under the hood, Laravel currently uses [swiftmailer](https://swiftmailer.symfony.com/docs/sending.html) and the parameters above are passed through to that library (this changes from Laravel v9).
 
 The configuration options for SMTP in the `.env` file are as follows.
 
-`MAIL_MAILER="smtp"` - this is the mail transport to use. The default is to try and use a local `sendmail` binary **so it is important to set this**. The other available options are outside the scope of this documentation.
+`MAIL_MAILER="smtp"` - this is the mail transport to use. The other available options are outside the scope of this documentation.
 
 `MAIL_HOST` is the hostname or IP address of your SMTP relay server. We would generally expect an IXP to have an internal SMTP relay server within the management network to handle the sending of email from monitoring systems, cron processes, IXP Manager, etc. This can also be `localhost` or `127.0.0.1` if you are running a local daemon such as Postfix.
 
 `MAIL_PORT` is the TCP port which the mail relay server listens for connections. Typical values are `587` for TLS encrypted mail servers and `25` for unencrypted mail servers (these should be on your local network only - if you are using a third party or remote relay service, you should use TLS or SSL encryption).
 
-`MAIL_ENCRYPTION` can be `"tls"` or `"ssl"` for encryption. If you are using localhost or an internal relay server without encryption, set this to `MAIL_ENCRYPTION=false`. **NB:** this is important as the default is to use TLS encryption.
+`MAIL_ENCRYPTION` can be `"tls"` or `"ssl"` for encryption. If you are using localhost or an internal relay server without encryption, set this to `MAIL_ENCRYPTION=false`.
 
 Finally, `MAIL_USERNAME` and `MAIL_PASSWORD` can be set if your mail relay server requires authentication. If unset, then no authentication is assumed (which is the default).
 
-A local SMTP relay server on the same host as **IXP Manager** would therefore require a configuration such as:
+A local SMTP relay server on the same host as **IXP Manager** would therefore require no configuration as the defaults mirror:
 
 ```
 MAIL_MAILER="smtp"
