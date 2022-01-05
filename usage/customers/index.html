@@ -504,6 +504,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#customer-name-display" class="md-nav__link">
+    Customer Name Display
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#registration-and-billing-details" class="md-nav__link">
     Registration and Billing Details
   </a>
@@ -1520,6 +1527,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#customer-name-display" class="md-nav__link">
+    Customer Name Display
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#registration-and-billing-details" class="md-nav__link">
     Registration and Billing Details
   </a>
@@ -1632,6 +1646,13 @@ cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/
 </ul>
 <p>Logos will then be shown in the customer overview page and a new admin left-hand-side menu option called <em>Member Logos</em> (which shows all logos).</p>
 <p>Logos are stored under <code>${IXPROOT}/public/logos</code> in a sharded directory structure based on the SHA1 of the image content.</p>
+<h2 id="customer-name-display">Customer Name Display<a class="headerlink" href="#customer-name-display" title="Permanent link"></a></h2>
+<p>Following a <a href="https://github.com/inex/IXP-Manager/issues/88">feature request</a>, we have a configuration option which can be set to allow each IXP Manager installation customise how the customer / member name is displayed. E.g. <em>Acme Ltd</em> or <em>Acme Ltd (AS65500)</em> for example.</p>
+<p>You can customise this by setting the following option in your <code>.env</code>:</p>
+<div class="highlight"><pre><span></span><code>IXP_FE_CUSTOMER_NAME_FORMAT=&quot;&quot;%a (AS%i)&quot;
+</code></pre></div>
+<p>The above is the default which uses the abbreviated name and the customer's ASN. You can see the available options in the <a href="https://github.com/inex/IXP-Manager/blob/master/config/ixp_fe.php"><code>config/ixp_fe.php</code> file</a>.</p>
+<p>You can also find more detail in this <a href="https://github.com/inex/IXP-Manager/issues/766">issue thread</a>. </p>
 <h2 id="registration-and-billing-details">Registration and Billing Details<a class="headerlink" href="#registration-and-billing-details" title="Permanent link"></a></h2>
 <p>After you add a new customer (or from the customer overview page from the dropdown edit icon on the right of the title area, you can select <em>Edit Billing/Registration Details</em>), you will get the following form:</p>
 <p><img alt="Customer Registration and Billing Details" src="../img/customer-reg-billing.png" /></p>
