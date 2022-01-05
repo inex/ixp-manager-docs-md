@@ -115,6 +115,20 @@ Logos will then be shown in the customer overview page and a new admin left-hand
 Logos are stored under `${IXPROOT}/public/logos` in a sharded directory structure based on the SHA1 of the image content.
 
 
+## Customer Name Display
+
+Following a [feature request](https://github.com/inex/IXP-Manager/issues/88), we have a configuration option which can be set to allow each IXP Manager installation customise how the customer / member name is displayed. E.g. *Acme Ltd* or *Acme Ltd (AS65500)* for example.
+
+You can customise this by setting the following option in your `.env`:
+
+```
+IXP_FE_CUSTOMER_NAME_FORMAT=""%a (AS%i)"
+```
+
+The above is the default which uses the abbreviated name and the customer's ASN. You can see the available options in the [`config/ixp_fe.php` file](https://github.com/inex/IXP-Manager/blob/master/config/ixp_fe.php).
+
+You can also find more detail in this [issue thread](https://github.com/inex/IXP-Manager/issues/766). 
+
 ## Registration and Billing Details
 
 After you add a new customer (or from the customer overview page from the dropdown edit icon on the right of the title area, you can select *Edit Billing/Registration Details*), you will get the following form:
