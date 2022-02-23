@@ -11,7 +11,7 @@ By default, the following graphs are **publicly** accessible in **IXP Manager** 
 2. aggregate bits/sec and packets/sec graphs for locations / facilities;
 3. aggregate bits/sec graphs on a per-protocol and per-VLAN basis (requires [sflow](../features/sflow.md));
 4. aggregate graphs for the switches; and
-5. aggregate graphs for the trunk connections.
+5. aggregate graphs for the core bundles / trunk connections.
 
 If you wish to limit access to these to a *less than or equal* [user permission](../usage/users.md), set the following in `.env` appropriately:
 
@@ -20,9 +20,9 @@ If you wish to limit access to these to a *less than or equal* [user permission]
 3. `GRAPHER_ACCESS_LOCATION`
 3. `GRAPHER_ACCESS_VLAN`
 4. `GRAPHER_ACCESS_SWITCH`
-5. `GRAPHER_ACCESS_TRUNK`
+5. `GRAPHER_ACCESS_TRUNK` *(this also applies to core bundles)*
 
-For example to limit `GRAPHER_ACCESS_TRUNK` to logged in users, set:
+For example to limit access to trunks / core bundles to logged in users, set:
 
 ```
 GRAPHER_ACCESS_TRUNK=1
@@ -133,9 +133,9 @@ Let's first look at supported graphs:
 
 * `switch`: aggregate graph of all peering traffic being switched by a specific switch (sum of all customer ports plus core ports). `id`, which is mandatory, is the primary key of the switch from the `switch` database table. [Currently only supported via MRTG for `protocol=all`]
 
+* `core-bundle`: inter-switch / trunk graphs configured in IXP Manager using the *Core Bundles* tool. The `id` is mandatory and is the database ID of the core bundle. An additional parameter is supported also: `&side=a` or `&side=b` which determines which side of the core bundle you want to graph. This parameter is optional and defaults to `a`. Each side of the graph will be about identical (only differing by MRTG polling time) but with tx/rx reversed. Access is determined using the `GRAPHER_ACCESS_TRUNK`.
 
 * `trunk`: a legacy hold over from *Inter-Switch / Trunk Graphs* above to be replaced with core bundles.
-
 
 * `physicalinterface`: traffic for an individual member port - a single physical switch port. `id`, which is mandatory, is the primary key of the physical interface from the `physicalinterface` database table. [Currently only supported via MRTG for `protocol=all`]
 
@@ -198,6 +198,7 @@ Graph               |  Default Access Control
 `vlan`              | public but respects `GRAPHER_ACCESS_VLAN` (see above), unless it's a private VLAN (in which case only superuser is supported currently)
 `location`          | public but respects `GRAPHER_ACCESS_LOCATION` (see above)
 `switch`            | public but respects `GRAPHER_ACCESS_SWITCH` (see above)
+`core-bundle`       | public but respects `GRAPHER_ACCESS_TRUNK` (see above)
 `trunk`             | public but respects `GRAPHER_ACCESS_TRUNK` (see above)
 `physicalinterface` | superuser or user of the owning customer but respects `GRAPHER_ACCESS_CUSTOMER` (see *Access to Member Graphs* below)
 `vlaninterface`     | superuser or user of the owning customer but respects `GRAPHER_ACCESS_CUSTOMER` (see *Access to Member Graphs* below)
