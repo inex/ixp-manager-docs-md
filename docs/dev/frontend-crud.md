@@ -1,6 +1,6 @@
 # Frontend CRUD
 
-**IXP Manager**, like many applications, has a lot of tables that need basic CRUD access: **CR**eate, **U**pdate and **D**elete (plus list and view). In older versions of **IXP Manager** (and as yet unupdated code), we used [this Zend Framework trait](https://github.com/opensolutions/OSS-Framework/wiki/Doctrine2-Frontend) to allow us to repidly deploy CRUD interfaces.
+**IXP Manager**, like many applications, has a lot of tables that need basic CRUD access: **C**reate, **R**ead, **U**pdate and **D**elete. In older versions of **IXP Manager** (and as yet unupdated code), we used [this Zend Framework trait](https://github.com/opensolutions/OSS-Framework/wiki/Doctrine2-Frontend) to allow us to repidly deploy CRUD interfaces.
 
 For **IXP Manager** >= v4.7, we have duplicated (and improved) this to create a scaffolding framework in Laravel. This page documents that class.
 
