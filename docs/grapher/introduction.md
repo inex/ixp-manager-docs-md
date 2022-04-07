@@ -1,6 +1,6 @@
 # Grapher - Introduction
 
-**IXP Manager** generates all of its graphs using it's own graphing system called *Grapher*. This was introduced in v4.
+**IXP Manager** generates all of its graphs using its own graphing system called *Grapher*. This was introduced in v4.
 
 *Grapher* is a complete rewrite of all previous graphing code and includes:
 
@@ -12,15 +12,15 @@
 To date, we have developed the following reference backend implementations:
 
 1. ``dummy`` - a dummy grapher that just provides a placeholder graph for all possible graph types;
-2. ``mrtg`` - MRTG graphing using either the log or rrd backend. Use cases for MRTG are L2 interface statistics for bits / packets / errors / discards / broadcasts per second. Aggregate graphs for customer LAGs, overall customer traffic, all traffic over a switch / infrastructure / the entire IXP are all supported.
-3. ``sflow`` - while the MRTG backend looks at layer 2 statistics, sflow is used to provide layer 3 statistics such as per protocol (IPv4/6) graphs and peer to peer graphs.
+2. ``mrtg`` - MRTG graphing using either the log or rrd backend. Use cases for MRTG are L2 interface statistics for bits / packets / errors / discards / broadcasts per second. Aggregate graphs for customer LAGs, overall customer traffic, all traffic over a switch / infrastructure / the entire IXP are all supported;
+3. ``sflow`` - while the MRTG backend looks at layer 2 statistics, sflow is used to provide layer 3 statistics such as per protocol (IPv4/6) graphs and peer to peer graphs;
 4. ``smokeping`` - (available from v4.8.0) which creates latency graphs and this replaces the previous way we used to access Smokeping graphs.
 
-In a typical production environment, you'd implement MRTG, Smokeping and sflow to provide the complete set of features.
+In a typical production environment, you would implement MRTG, Smokeping and sflow to provide the complete set of features.
 
 ## Configuration
 
-There is only a handful of configuration options required and a typical and complete `$IXPROOT/.env` would look like this:
+There are only a handful of configuration options required and a typical and complete `$IXPROOT/.env` would look like the following:
 
 ```
 GRAPHER_BACKENDS="mrtg|sflow|smokeping"
