@@ -90,13 +90,13 @@ sflow_bgp_handler_enable="YES"
 
 The IXP Manager web GUI requires access to the sflow p2p .rrd files over http or https.  This means that the sflow server must run a web server (e.g. Apache), and the IXP Manager GUI must be configured with the URL of the RRD archive on the sflow server.
 
-Assuming that `ixpmanager.conf` is configured to use `/data/ixpmatrix` for the RRD directory, these files can be server over HTTP using the following Apache configuration:
+Assuming that `ixpmanager.conf` is configured to use `/data/ixpmatrix` for the RRD directory, these files can be server over HTTP using the following Apache configuration *(please consider appropriate access security - **this example assumes an internal host on an internal network**)*:
 
 ```
 Alias /grapher-sflow /data/ixpmatrix
 <Directory "/data/ixpmatrix">
         Options None
-        AllowOverride None
+        Require all granted 
 </Directory>
 ```
 

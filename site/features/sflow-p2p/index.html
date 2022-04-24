@@ -1603,11 +1603,11 @@
 </code></pre></div>
 <h1 id="displaying-the-graphs">Displaying the Graphs<a class="headerlink" href="#displaying-the-graphs" title="Permanent link"></a></h1>
 <p>The IXP Manager web GUI requires access to the sflow p2p .rrd files over http or https.  This means that the sflow server must run a web server (e.g. Apache), and the IXP Manager GUI must be configured with the URL of the RRD archive on the sflow server.</p>
-<p>Assuming that <code>ixpmanager.conf</code> is configured to use <code>/data/ixpmatrix</code> for the RRD directory, these files can be server over HTTP using the following Apache configuration:</p>
+<p>Assuming that <code>ixpmanager.conf</code> is configured to use <code>/data/ixpmatrix</code> for the RRD directory, these files can be server over HTTP using the following Apache configuration <em>(please consider appropriate access security - </em><em>this example assumes an internal host on an internal network</em><em>)</em>:</p>
 <div class="highlight"><pre><span></span><code>Alias /grapher-sflow /data/ixpmatrix
 &lt;Directory &quot;/data/ixpmatrix&quot;&gt;
         Options None
-        AllowOverride None
+        Require all granted 
 &lt;/Directory&gt;
 </code></pre></div>
 <p>The IXP Manager <code>.env</code> file must be configured with parameters both to enable sflow and to provide the front-end with the HTTP URL of the back-end server.  Assuming that the sflow p2p server has IP address 10.0.0.1, then the following lines should be added to <code>.env</code>:</p>
