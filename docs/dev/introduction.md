@@ -45,12 +45,8 @@ The following is a reply to someone looking to contribute something that didn't 
 
 ## Database / ORMs
 
-Another answer to the question of Laravel Eloquent vs Doctrine ORM:
+As of v6.0.0, IXP Manager uses the Laravel Eloquent ORM, replacing the Doctrine ORM used in previous versions.
 
-> We don't use Laravel Eloquent as the project has historically always used Doctrine ORM. It's far too much work to try and swap that out for Eloquent.
+> a) do not change the schema of any existing table. This would need to be done in IXP Manager core via Eloquent as part of a new release and should be discussed with the core developers.
 >
-> That's not to say there is any issue with you using Eloquent with the following notes and provisions:
->
-> a) do not change the schema of any existing table. This would need to be done in IXP Manager core via Doctrine as part of a new release and should be discussed with the core developers.
->
-> b) ideally schema changes would be limited to namespaced (xxx_*) tables where xxx represents your package / feature.
+> b) ideally schema changes would be limited to namespaced (`xxx_*`) tables (where `xxx` represents your package / feature.)
