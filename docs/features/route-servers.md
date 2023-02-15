@@ -175,6 +175,11 @@ According to [RFC7947](https://tools.ietf.org/html/rfc7947), it is a matter of l
 
 In 2017, INEX and LONAP published [draft-hilliard-grow-no-export-via-rs-00](https://www.ietf.org/archive/id/draft-hilliard-grow-no-export-via-rs-00.txt) to try and create some consensus on this. While the draft was not accepted as a standard, the discussion drew a conclusion that these well-known communities should not be interpreted by the route server but passed through.
 
+When creating a route server in IXP Manager, there is a checkbox option to control this behavior: *Pass through RFC1997 well-known communities (recommended)*.
+
+It is recommended that this be **enabled** on route servers.
+
+
 ## Legacy Prefix Analysis Tool
 
 The older but deprecated means of viewing filtered prefixes was the *Route Server Prefix Analysis tool* which allows your members to examine what routes they are advertising to the route servers, which are being accepted and which are being rejected.
