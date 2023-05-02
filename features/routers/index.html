@@ -1784,7 +1784,7 @@ curl<span class="w"> </span>--fail<span class="w"> </span>-s<span class="w"> </s
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link"></a></h2>
 <p>We use <a href="../../dev/ci/">Travis CI</a> to test IXP Manager before pushing new releases. The primary purpose of this is to ensure that the configuration for routers generated matches known good configurations from the same sample database.</p>
 <p>These known good configurations also serve as useful examples of what the standard IXP Manager configuration generates.</p>
-<p>See <a href="https://github.com/inex/IXP-Manager/tree/master/data/travis-ci/known-good">these known good configurations here</a> and:</p>
+<p>See <a href="https://github.com/inex/IXP-Manager/tree/master/data/ci/known-good">these known good configurations here</a> and:</p>
 <ul>
 <li><code>as112</code>: AS112 router configurations conforming to <a href="https://tools.ietf.org/html/rfc7534">rfc7534</a> (AS112 Nameserver Operations) and implementing <a href="https://tools.ietf.org/html/rfc7535">rfc7535</a> (AS112 Redirection Using DNAME). There are configs to serve queries over both IPv4 and IPv6. See <a href="../as112/">the AS112 documentation for more details</a>.</li>
 <li><code>rc1</code>: route collector configurations. Peering with the route collector is mandatory at many IXPs including INEX. These are incredibly useful for monitoring, diagnosing issues and providing looking glasses. We also use the quarantine version of these for turning up new member connections.</li>
