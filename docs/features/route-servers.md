@@ -54,7 +54,10 @@ You first need to add your route servers to the **IXP Manager** routers database
 
 Typically an IXP's route server service will have a dedicated ASN that is different to the IXP's own management / route collector ASN. As such, you need to add a new *internal* customer to IXP Manager.
 
-**You are strongly advised to use / request a 16-bit ASN from your RIR for route server use. If you do not, you will be unable to offer your members standard community based filtering.**
+???+ warning
+    You are strongly advised to use / request a dedicated 16-bit ASN from your RIR for route server use and in our experience, all RIRs understand this and accomodate it. The route server configurations will support an asn32 but to our knowledge, this has never been used in production. Also, withouot an asn16, you will be unable to offer your members standard community based filtering. 
+
+
 
 Here's an example from INEX for our *route server #1*:
 
