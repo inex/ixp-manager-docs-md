@@ -33,7 +33,12 @@ The features of the route server configurations that IXP Manager generates inclu
 * [rfc1997 passthru / interpretation](#rfc1997-passthru) switch (>= v5.2.0);
 * nearly 15 years of production use and experience.
 
-With Bird v2 support in IXP Manager v5, we provide better looking glass integration and other tooling to show members which prefixes are filtered and why. The Bird v2 filtering mechanism is as follows:
+With Bird v2 support in IXP Manager >= v5, we provide better looking glass integration and other tooling to show members which prefixes are filtered and why. 
+
+
+## Filtering Algorithm 
+
+The Bird v2 filtering algorithm is as follows:
 
 1. Filter small prefixes (default is > /24 / /48 for ipv4 / ipv6).
 2. Filter martians / bogons prefixes ([see this template](https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/server/bird2/header.foil.php)).
@@ -46,6 +51,8 @@ With Bird v2 support in IXP Manager v5, we provide better looking glass integrat
     * Valid -> accept
     * Invalid -> drop
 9. RPKI Unknown -> revert to standard IRRDB prefix filtering.
+
+If a route fails at any point it is tagged (for looking glass) and rejected.
 
 
 ## Setting Up
