@@ -1021,6 +1021,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#filtering-algorithm" class="md-nav__link">
+    Filtering Algorithm
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#setting-up" class="md-nav__link">
     Setting Up
   </a>
@@ -1656,6 +1663,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#filtering-algorithm" class="md-nav__link">
+    Filtering Algorithm
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#setting-up" class="md-nav__link">
     Setting Up
   </a>
@@ -1765,7 +1779,9 @@
 <li><a href="#rfc1997-passthru">rfc1997 passthru / interpretation</a> switch (&gt;= v5.2.0);</li>
 <li>nearly 15 years of production use and experience.</li>
 </ul>
-<p>With Bird v2 support in IXP Manager v5, we provide better looking glass integration and other tooling to show members which prefixes are filtered and why. The Bird v2 filtering mechanism is as follows:</p>
+<p>With Bird v2 support in IXP Manager &gt;= v5, we provide better looking glass integration and other tooling to show members which prefixes are filtered and why. </p>
+<h2 id="filtering-algorithm">Filtering Algorithm<a class="headerlink" href="#filtering-algorithm" title="Permanent link"></a></h2>
+<p>The Bird v2 filtering algorithm is as follows:</p>
 <ol>
 <li>Filter small prefixes (default is &gt; /24 / /48 for ipv4 / ipv6).</li>
 <li>Filter martians / bogons prefixes (<a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/server/bird2/header.foil.php">see this template</a>).</li>
@@ -1781,6 +1797,7 @@
 </li>
 <li>RPKI Unknown -&gt; revert to standard IRRDB prefix filtering.</li>
 </ol>
+<p>If a route fails at any point it is tagged (for looking glass) and rejected.</p>
 <h2 id="setting-up">Setting Up<a class="headerlink" href="#setting-up" title="Permanent link"></a></h2>
 <p>You first need to add your route servers to the <strong>IXP Manager</strong> routers database. See <a href="../routers/">this page on how to do that</a>.</p>
 <p>Typically an IXP's route server service will have a dedicated ASN that is different to the IXP's own management / route collector ASN. As such, you need to add a new <em>internal</em> customer to IXP Manager.</p>
