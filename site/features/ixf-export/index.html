@@ -867,6 +867,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#excluding-members" class="md-nav__link">
+    Excluding Members
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#including-ixp-manager-specific-data" class="md-nav__link">
     Including IXP Manager Specific Data
   </a>
@@ -1697,6 +1704,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#excluding-members" class="md-nav__link">
+    Excluding Members
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#including-ixp-manager-specific-data" class="md-nav__link">
     Including IXP Manager Specific Data
   </a>
@@ -1996,6 +2010,21 @@ IXP_API_JSONEXPORTSCHEMA_EXCLUDE_SWITCH=&quot;city|model|software&quot;
 <div class="highlight"><pre><span></span><code>IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO=&quot;mac_addresses|routeserver&quot;
 </code></pre></div>
 <p>Please note that the <code>IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO</code> affects <strong>both</strong> the ipv4 and ipv6 clauses.</p>
+<h3 id="excluding-members">Excluding Members<a class="headerlink" href="#excluding-members" title="Permanent link"></a></h3>
+<p>You can exclude members by ASN or by <a href="../../usage/customer-tags/">tag</a> by setting the following <code>.env</code> option:</p>
+<div class="highlight"><pre><span></span><code># Exclude members with certain AS numbers
+# IXP_API_JSONEXPORTSCHEMA_EXCLUDE_ASNUM=&quot;65001|65002|65003&quot;
+
+# Exclude members with certain tags
+# IXP_API_JSONEXPORTSCHEMA_EXCLUDE_TAGS=&quot;tag1|tag2&quot;
+</code></pre></div>
+<p>The following are enabled by default to prevent exporting test customers:</p>
+<div class="highlight"><pre><span></span><code># Exclude documentation ASNs (64496 - 64511, 65536 - 65551)
+# IXP_API_JSONEXPORTSCHEMA_EXCLUDE_RFC5398=true
+
+# Exclude private ASNs (64512 - 65534, 4200000000 - 4294967294)
+# IXP_API_JSONEXPORTSCHEMA_EXCLUDE_RFC6996=true
+</code></pre></div>
 <h3 id="including-ixp-manager-specific-data">Including IXP Manager Specific Data<a class="headerlink" href="#including-ixp-manager-specific-data" title="Permanent link"></a></h3>
 <p>If you pass <code>withtags=1</code> as a parameter to the URL endpoint, then you will get an extra section in each member section:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&quot;ixp_manager&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>

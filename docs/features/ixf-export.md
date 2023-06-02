@@ -306,6 +306,31 @@ IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO="mac_addresses|routeserver"
 Please note that the `IXP_API_JSONEXPORTSCHEMA_EXCLUDE_INTINFO` affects **both** the ipv4 and ipv6 clauses.
 
 
+### Excluding Members
+
+You can exclude members by ASN or by [tag](../usage/customer-tags.md) by setting the following `.env` option:
+
+```
+# Exclude members with certain AS numbers
+# IXP_API_JSONEXPORTSCHEMA_EXCLUDE_ASNUM="65001|65002|65003"
+
+# Exclude members with certain tags
+# IXP_API_JSONEXPORTSCHEMA_EXCLUDE_TAGS="tag1|tag2"
+```
+
+The following are enabled by default to prevent exporting test customers:
+
+```
+# Exclude documentation ASNs (64496 - 64511, 65536 - 65551)
+# IXP_API_JSONEXPORTSCHEMA_EXCLUDE_RFC5398=true
+
+# Exclude private ASNs (64512 - 65534, 4200000000 - 4294967294)
+# IXP_API_JSONEXPORTSCHEMA_EXCLUDE_RFC6996=true
+```
+
+
+
+
 ### Including IXP Manager Specific Data
 
 If you pass `withtags=1` as a parameter to the URL endpoint, then you will get an extra section in each member section:
