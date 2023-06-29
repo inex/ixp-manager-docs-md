@@ -40,6 +40,7 @@ nav:
 - General Usage:
     - 'Authentication': 'usage/authentication.md'
     - 'Contacts': 'usage/contacts.md'
+    - 'Cookies': 'usage/cookies.md'
     - 'Customers / Members': 'usage/customers.md'
     - 'Customer Notes': 'usage/customer-notes.md'
     - 'Customer Tags': 'usage/customer-tags.md'
