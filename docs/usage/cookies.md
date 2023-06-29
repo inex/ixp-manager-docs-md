@@ -1,4 +1,12 @@
-# Cookies
+# Cookies and Privacy
+
+IXP Manager is open-source and free software. Any individual or organisation who installs IXP Manager and/or makes it available for use must ensure that they are complying with all appropriuate data protection legislation in their jurisdiction as the data controller.
+
+This page details what the developers consider appropropriate information to the best of the knowledge for helping such organisations in with such compliance. 
+
+
+## Cookies
+
 
 Cookies are small text files that websites place on your device as you are browsing. They are processed and stored by your web browser. Cookies can also generally be easily viewed and deleted. Each cookie is unique to your web browser and will usually contain information such as the cookie name, a unique identifier, and the website's host name or domain name.
 
@@ -18,7 +26,7 @@ A third cookie is generated if a user optionally invokes the *Remember Me* funct
 IXP Manager does not generate any other cookies.
 
 
-## Strictly Necessary cookies
+### Strictly Necessary cookies
 
 Strictly Necessary cookies are essential for you to browse the website and use its features, such as accessing secure areas of the site. For example, these cookies let us recognise that you have an account and you have logged into that account. These necessary cookies also allow the portal to remember you and avoid having to log you in on each site visit, or to prevent cross-site scripting security issues.
 
@@ -26,9 +34,23 @@ IXP Manager uses only first-party strictly necessary cookies. IXP Manager does n
 
 
 
-## Cookies and EU ePrivary and GDPR Law
+### Cookies and EU ePrivary and GDPR Law
 
 As **IXP Manager** generates only *Strictly Necessary* cookies, it does not need to receive users' consent for the use of these cookies.
+
+
+## Data Protection and Privacy
+
+The following table is a summary of personal data collected by IXP Manager and for what purpose / activity:
+
+| Data Collected | Purpose / Activity |
+|---------|---------|
+| Contact details including name, position and role, phone number, email address, etc. These are stored on a per mmeber basis and customer admins can also add, edit and remove these. | To manage and facilitate customers / members of an exchange; usually in the performance of a contract.  |
+| Usernames and passwords | To provide members / customers with access to secure areas of IXP Manager; usually in the performance of a contract. |
+| Login history (IP addreess, date and time) | To provide an auditable record of when users logged into IXP Manager; usually in compliance with ISMS policies. |
+| Login IP address and browser identifier | To enable users to identify and optionally delete long-lived sessions that they opt into. |
+| Generic note fields | Many records on IXP Manager allow admins to enter free text notes. You should ensure you have appropriate policies for this. Their use would be to manage and facilitate customers / members of an exchange; usually in the performance of a contract. |
+| Document store - file uploads | Admins can upload files to a central store or to a per customer / member store. You should ensure you have appropriate policies for this. The suggested use case is copies of contracts; service order forms; etc. |
 
 
 ## Correctness and Disclaimer
