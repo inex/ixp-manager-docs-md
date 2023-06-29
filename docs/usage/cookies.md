@@ -13,7 +13,7 @@ A third cookie is generated if a user optionally invokes the *Remember Me* funct
 
 | Cookie Name | Purpose and Desciption | Classification | Lifetime |
 |-------|--------|------|------|
-| `remember_web_xxx` | Session management cookie to facilitate longer sessions and multiple session functionality. These cookies are encypted by the server and only the encrypted version exists on the client side browser. These only contain a session ID. | Strictly Necessary and Opt In | 30 days |
+| `remember_web_xxx` | Session management cookie to facilitate longer sessions and multiple session functionality. These cookies are encypted by the server and only the encrypted version exists on the client side browser. These only contain a session ID. The server records the user's IP address and a browser identifier (e.g. *Macintosh 10 / Firefox 109.0*) so that users can identify and optionally delete long-lived sessions in the user interface. | Strictly Necessary and Opt In | 30 days |
 
 IXP Manager does not generate any other cookies.
 
