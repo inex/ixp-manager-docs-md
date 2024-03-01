@@ -4,17 +4,16 @@ The OpenBSD project created a free and easy-to-use RPKI validator named **[rpki-
 
 Deployment is split into two elements:
 
-1. **StayRTR** is the daemon that implements the RPKI-RTR protocol to distribute validated ROAs to your routers.
-2. **rpki-client** is the validator which pulls the Signed Objects from the RPKI repositories and validates them and then makes them available to StayRTR.
+1. **rpki-client** is the validator which pulls the Signed Objects from the RPKI repositories and validates them and then makes them available to StayRTR.
+2. **StayRTR** is the daemon that implements the RPKI-RTR protocol to distributes Validated ROA Payloads to your routers.
 
 We use a standard Debian Sid (unstable) installation, 2 vCPUs, 2GB RAM, 20GB LVM hard drive.
-
 Debian provides pre-built packages for installation.
 
 As of early March 2024, the following packages can easily be installed:
 
 ```sh
-$ sudo apt install stayrtr rpki-client rpki-trust-anchors
+$ sudo apt install rpki-client stayrtr
 ```
 
 ## rpki-trust-anchors
@@ -33,6 +32,8 @@ systemctl start rpki-client &
 journalctl -fu rpki-client
 ```
 
+Running rpki-client the first time might take a few minutes.
+
 ## StayRTR
 
 To start StayRTR (once rpki-client is configured and running), we first edit `/etc/default/stayrtr`:
@@ -45,14 +46,13 @@ You can now run the StayRTR daemon via the following command:
 
 ```sh
 # start the service:
-systemctl enable stayrtr
 systemctl restart stayrtr
 
 # see and tail the logs
 journalctl -fu stayrtr
 ```
 
-Once StayRTR starts up, metrics are available from http://[hostname/ip address]:8082/metrics.
+Once rpki-client completed its initial run, and StayRTR starts up, metrics are available from http://[hostname/ip address]:8082/metrics.
 
 ## Monitoring
 
