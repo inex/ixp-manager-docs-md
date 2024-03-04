@@ -114,5 +114,6 @@ nav:
 markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.tilde
   - toc:
       permalink: 

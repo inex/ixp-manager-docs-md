@@ -1,6 +1,10 @@
 
 # Cloudflare's RPKI Toolkit
 
+???+ danger
+    Cloudflare's RPKI toolkit has been [deprecated](https://github.com/cloudflare/cfrpki/commit/932c7596bb6f8ce2e0dadd7930e19ddef1beab0e) and should not be used. 
+
+
 Cloudflare created their own RPKI toolkit which, similar to RIPE's, is split into two elements:
 
 1. **GoRTR** is the daemon that implements the RPKI-RTR protocol to distribute validated ROAs to your routers.
