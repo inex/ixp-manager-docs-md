@@ -8,27 +8,23 @@
       
       
       
-        <link rel="canonical" href="https://docs.ixpmanager.org/features/rpki/">
+        <link rel="canonical" href="https://docs.ixpmanager.org/features/rpki/rpkiclient/">
       
       
-        <link rel="prev" href="../routers/">
       
-      
-        <link rel="next" href="../skinning/">
-      
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.12">
     
     
       
-        <title>RPKI - IXP Manager Documentation</title>
+        <title>OpenBSD's RPKI Validator rpki-client - IXP Manager Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0d440cfe.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -44,9 +40,9 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -71,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rpki" class="md-skip">
+        <a href="#openbsds-rpki-validator-rpki-client" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +103,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../../.." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -126,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              RPKI
+              OpenBSD's RPKI Validator rpki-client
             
           </span>
         </div>
@@ -205,7 +201,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../../.." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -236,7 +232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -278,7 +274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/" class="md-nav__link">
+      <a href="../../../install/" class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -292,7 +288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/automated-script/" class="md-nav__link">
+      <a href="../../../install/automated-script/" class="md-nav__link">
         Automated Script
       </a>
     </li>
@@ -306,7 +302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/maint-mode/" class="md-nav__link">
+      <a href="../../../install/maint-mode/" class="md-nav__link">
         Maintenance Mode
       </a>
     </li>
@@ -320,7 +316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/manually/" class="md-nav__link">
+      <a href="../../../install/manually/" class="md-nav__link">
         Manual Installation
       </a>
     </li>
@@ -334,7 +330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/upgrading/" class="md-nav__link">
+      <a href="../../../install/upgrading/" class="md-nav__link">
         Upgrading
       </a>
     </li>
@@ -348,7 +344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/runtime/" class="md-nav__link">
+      <a href="../../../install/runtime/" class="md-nav__link">
         Runtime Configuration
       </a>
     </li>
@@ -362,7 +358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/next-steps/" class="md-nav__link">
+      <a href="../../../install/next-steps/" class="md-nav__link">
         Post-Install Steps
       </a>
     </li>
@@ -376,7 +372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/register/" class="md-nav__link">
+      <a href="../../../install/register/" class="md-nav__link">
         Join the Community
       </a>
     </li>
@@ -425,7 +421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/authentication/" class="md-nav__link">
+      <a href="../../../usage/authentication/" class="md-nav__link">
         Authentication
       </a>
     </li>
@@ -439,7 +435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/contacts/" class="md-nav__link">
+      <a href="../../../usage/contacts/" class="md-nav__link">
         Contacts
       </a>
     </li>
@@ -453,7 +449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/cookies/" class="md-nav__link">
+      <a href="../../../usage/cookies/" class="md-nav__link">
         Cookies & Privacy
       </a>
     </li>
@@ -467,7 +463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/customers/" class="md-nav__link">
+      <a href="../../../usage/customers/" class="md-nav__link">
         Customers / Members
       </a>
     </li>
@@ -481,7 +477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/customer-notes/" class="md-nav__link">
+      <a href="../../../usage/customer-notes/" class="md-nav__link">
         Customer Notes
       </a>
     </li>
@@ -495,7 +491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/customer-tags/" class="md-nav__link">
+      <a href="../../../usage/customer-tags/" class="md-nav__link">
         Customer Tags
       </a>
     </li>
@@ -509,7 +505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/interfaces/" class="md-nav__link">
+      <a href="../../../usage/interfaces/" class="md-nav__link">
         Customer Connections
       </a>
     </li>
@@ -523,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/dblogs/" class="md-nav__link">
+      <a href="../../../usage/dblogs/" class="md-nav__link">
         Database Logging
       </a>
     </li>
@@ -537,7 +533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/email/" class="md-nav__link">
+      <a href="../../../usage/email/" class="md-nav__link">
         Email
       </a>
     </li>
@@ -551,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/operational-notes/" class="md-nav__link">
+      <a href="../../../usage/operational-notes/" class="md-nav__link">
         Operational Notes
       </a>
     </li>
@@ -565,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/switches/" class="md-nav__link">
+      <a href="../../../usage/switches/" class="md-nav__link">
         Switches
       </a>
     </li>
@@ -579,7 +575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/users/" class="md-nav__link">
+      <a href="../../../usage/users/" class="md-nav__link">
         Users
       </a>
     </li>
@@ -599,16 +595,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
       
       
       
@@ -617,7 +611,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Features
@@ -630,7 +624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../../api/" class="md-nav__link">
         API
       </a>
     </li>
@@ -644,7 +638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../as112/" class="md-nav__link">
+      <a href="../../as112/" class="md-nav__link">
         AS112
       </a>
     </li>
@@ -658,7 +652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../provisioning/" class="md-nav__link">
+      <a href="../../provisioning/" class="md-nav__link">
         Automated Provisioning
       </a>
     </li>
@@ -672,7 +666,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../console-servers/" class="md-nav__link">
+      <a href="../../console-servers/" class="md-nav__link">
         Console Servers
       </a>
     </li>
@@ -686,7 +680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core-bundles/" class="md-nav__link">
+      <a href="../../core-bundles/" class="md-nav__link">
         Core Bundles
       </a>
     </li>
@@ -700,7 +694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cronjobs/" class="md-nav__link">
+      <a href="../../cronjobs/" class="md-nav__link">
         Cron Jobs
       </a>
     </li>
@@ -714,7 +708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../patch-panels/" class="md-nav__link">
+      <a href="../../patch-panels/" class="md-nav__link">
         Cross Connects
       </a>
     </li>
@@ -728,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dns-arpa/" class="md-nav__link">
+      <a href="../../dns-arpa/" class="md-nav__link">
         DNS / ARPA
       </a>
     </li>
@@ -742,7 +736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../docstore/" class="md-nav__link">
+      <a href="../../docstore/" class="md-nav__link">
         Document Store
       </a>
     </li>
@@ -756,7 +750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../grapher/introduction/" class="md-nav__link">
+      <a href="../../../grapher/introduction/" class="md-nav__link">
         Grapher
       </a>
     </li>
@@ -770,7 +764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../helpdesk/" class="md-nav__link">
+      <a href="../../helpdesk/" class="md-nav__link">
         Helpdesk Integration
       </a>
     </li>
@@ -784,7 +778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../irrdb/" class="md-nav__link">
+      <a href="../../irrdb/" class="md-nav__link">
         IRRDB
       </a>
     </li>
@@ -798,7 +792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ixf-export/" class="md-nav__link">
+      <a href="../../ixf-export/" class="md-nav__link">
         IX-F Member Export
       </a>
     </li>
@@ -812,7 +806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../looking-glass/" class="md-nav__link">
+      <a href="../../looking-glass/" class="md-nav__link">
         Looking Glass
       </a>
     </li>
@@ -826,7 +820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../layer2-addresses/" class="md-nav__link">
+      <a href="../../layer2-addresses/" class="md-nav__link">
         MAC Addresses
       </a>
     </li>
@@ -840,7 +834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../manrs/" class="md-nav__link">
+      <a href="../../manrs/" class="md-nav__link">
         MANRS
       </a>
     </li>
@@ -854,7 +848,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../member-export/" class="md-nav__link">
+      <a href="../../member-export/" class="md-nav__link">
         Member Export
       </a>
     </li>
@@ -868,7 +862,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mailing-lists/" class="md-nav__link">
+      <a href="../../mailing-lists/" class="md-nav__link">
         Mailing List Management
       </a>
     </li>
@@ -882,7 +876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nagios/" class="md-nav__link">
+      <a href="../../nagios/" class="md-nav__link">
         Nagios
       </a>
     </li>
@@ -896,7 +890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../patch-panels/" class="md-nav__link">
+      <a href="../../patch-panels/" class="md-nav__link">
         Patch Panels
       </a>
     </li>
@@ -910,7 +904,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../peering-manager/" class="md-nav__link">
+      <a href="../../peering-manager/" class="md-nav__link">
         Peering Manager
       </a>
     </li>
@@ -924,7 +918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../peering-matrix/" class="md-nav__link">
+      <a href="../../peering-matrix/" class="md-nav__link">
         Peering Matrix
       </a>
     </li>
@@ -938,7 +932,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../peeringdb/" class="md-nav__link">
+      <a href="../../peeringdb/" class="md-nav__link">
         PeeringDB
       </a>
     </li>
@@ -952,7 +946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rir-objects/" class="md-nav__link">
+      <a href="../../rir-objects/" class="md-nav__link">
         RIR Objects
       </a>
     </li>
@@ -966,7 +960,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reseller/" class="md-nav__link">
+      <a href="../../reseller/" class="md-nav__link">
         Reseller Functionality
       </a>
     </li>
@@ -980,7 +974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../route-collectors/" class="md-nav__link">
+      <a href="../../route-collectors/" class="md-nav__link">
         Route Collectors
       </a>
     </li>
@@ -994,7 +988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../route-servers/" class="md-nav__link">
+      <a href="../../route-servers/" class="md-nav__link">
         Route Servers
       </a>
     </li>
@@ -1008,7 +1002,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../routers/" class="md-nav__link">
+      <a href="../../routers/" class="md-nav__link">
         Router Configuration
       </a>
     </li>
@@ -1020,73 +1014,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          RPKI
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
         RPKI
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#rpki-validator-local-cache" class="md-nav__link">
-    RPKI Validator / Local Cache
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#revalidation" class="md-nav__link">
-    Revalidation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enabling-rpki" class="md-nav__link">
-    Enabling RPKI
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bird-operational-notes" class="md-nav__link">
-    Bird Operational Notes
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1098,7 +1030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../skinning/" class="md-nav__link">
+      <a href="../../skinning/" class="md-nav__link">
         Skinning
       </a>
     </li>
@@ -1112,7 +1044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../grapher/smokeping/" class="md-nav__link">
+      <a href="../../../grapher/smokeping/" class="md-nav__link">
         Smokeping
       </a>
     </li>
@@ -1126,7 +1058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../static-content/" class="md-nav__link">
+      <a href="../../static-content/" class="md-nav__link">
         Static Content
       </a>
     </li>
@@ -1140,7 +1072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tacacs/" class="md-nav__link">
+      <a href="../../tacacs/" class="md-nav__link">
         TACACS
       </a>
     </li>
@@ -1189,7 +1121,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../grapher/introduction/" class="md-nav__link">
+      <a href="../../../grapher/introduction/" class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -1203,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../grapher/api/" class="md-nav__link">
+      <a href="../../../grapher/api/" class="md-nav__link">
         API &amp; Permissions
       </a>
     </li>
@@ -1217,7 +1149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../grapher/mrtg/" class="md-nav__link">
+      <a href="../../../grapher/mrtg/" class="md-nav__link">
         Backend: MRTG
       </a>
     </li>
@@ -1231,7 +1163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../grapher/sflow/" class="md-nav__link">
+      <a href="../../../grapher/sflow/" class="md-nav__link">
         Backend: sflow
       </a>
     </li>
@@ -1245,7 +1177,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../grapher/smokeping/" class="md-nav__link">
+      <a href="../../../grapher/smokeping/" class="md-nav__link">
         Backend: Smokeping
       </a>
     </li>
@@ -1294,7 +1226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sflow/" class="md-nav__link">
+      <a href="../../sflow/" class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -1308,7 +1240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sflow-p2p/" class="md-nav__link">
+      <a href="../../sflow-p2p/" class="md-nav__link">
         Peer-to-peer Graphs
       </a>
     </li>
@@ -1357,7 +1289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/introduction/" class="md-nav__link">
+      <a href="../../../dev/introduction/" class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -1371,7 +1303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/api/" class="md-nav__link">
+      <a href="../../../dev/api/" class="md-nav__link">
         API
       </a>
     </li>
@@ -1385,7 +1317,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/authentication/" class="md-nav__link">
+      <a href="../../../dev/authentication/" class="md-nav__link">
         Authentication
       </a>
     </li>
@@ -1399,7 +1331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/ci/" class="md-nav__link">
+      <a href="../../../dev/ci/" class="md-nav__link">
         Continuous Integration
       </a>
     </li>
@@ -1413,7 +1345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/cla/" class="md-nav__link">
+      <a href="../../../dev/cla/" class="md-nav__link">
         Contributer License Agreement
       </a>
     </li>
@@ -1427,7 +1359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/docker/" class="md-nav__link">
+      <a href="../../../dev/docker/" class="md-nav__link">
         Docker
       </a>
     </li>
@@ -1441,7 +1373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/docs/" class="md-nav__link">
+      <a href="../../../dev/docs/" class="md-nav__link">
         Documentation
       </a>
     </li>
@@ -1455,7 +1387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/foils.md" class="md-nav__link">
+      <a href="../../../dev/foils.md" class="md-nav__link">
         Foil
       </a>
     </li>
@@ -1469,7 +1401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/forms/" class="md-nav__link">
+      <a href="../../../dev/forms/" class="md-nav__link">
         Forms
       </a>
     </li>
@@ -1483,7 +1415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/frontend-crud/" class="md-nav__link">
+      <a href="../../../dev/frontend-crud/" class="md-nav__link">
         Frontend CRUD
       </a>
     </li>
@@ -1497,7 +1429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/grapher/" class="md-nav__link">
+      <a href="../../../dev/grapher/" class="md-nav__link">
         Grapher
       </a>
     </li>
@@ -1511,7 +1443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/helpders/" class="md-nav__link">
+      <a href="../../../dev/helpders/" class="md-nav__link">
         Helpers
       </a>
     </li>
@@ -1525,7 +1457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/looking-glass/" class="md-nav__link">
+      <a href="../../../dev/looking-glass/" class="md-nav__link">
         Looking Glass
       </a>
     </li>
@@ -1539,7 +1471,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/release-procedure/" class="md-nav__link">
+      <a href="../../../dev/release-procedure/" class="md-nav__link">
         Release Procedure
       </a>
     </li>
@@ -1553,7 +1485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/telescope/" class="md-nav__link">
+      <a href="../../../dev/telescope/" class="md-nav__link">
         Telescope
       </a>
     </li>
@@ -1567,7 +1499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/users/" class="md-nav__link">
+      <a href="../../../dev/users/" class="md-nav__link">
         Users
       </a>
     </li>
@@ -1581,7 +1513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/vagrant/" class="md-nav__link">
+      <a href="../../../dev/vagrant/" class="md-nav__link">
         Vagrant
       </a>
     </li>
@@ -1622,29 +1554,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rpki-validator-local-cache" class="md-nav__link">
-    RPKI Validator / Local Cache
+  <a href="#rpki-trust-anchors" class="md-nav__link">
+    rpki-trust-anchors
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#revalidation" class="md-nav__link">
-    Revalidation
+  <a href="#rpki-client" class="md-nav__link">
+    rpki-client
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#enabling-rpki" class="md-nav__link">
-    Enabling RPKI
+  <a href="#stayrtr" class="md-nav__link">
+    StayRTR
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#bird-operational-notes" class="md-nav__link">
-    Bird Operational Notes
+  <a href="#monitoring" class="md-nav__link">
+    Monitoring
   </a>
   
 </li>
@@ -1668,165 +1600,51 @@
 
 
 
-<h1 id="rpki">RPKI<a class="headerlink" href="#rpki" title="Permanent link"></a></h1>
-<p><strong>IXP Manager</strong> supports RPKI validation on the router configuration generated for Bird v2. The best way to fully understand RPKI with IXP Manager is to <a href="https://youtu.be/cqhJwuBaxxQ?t=1549">watch our presentation</a> from APRICOT 2019 or <a href="https://www.inex.ie/inex-news/shiny-new-route-servers/">read this article</a> on INEX's website.</p>
-<h2 id="rpki-validator-local-cache">RPKI Validator / Local Cache<a class="headerlink" href="#rpki-validator-local-cache" title="Permanent link"></a></h2>
-<p>IXP Manager uses the RPKI-RTR protocol to feed ROAs to the Bird router instances. We recommend you install two of these validators/local caches from different vendors.</p>
-<p>Let IXP Manager know where they are by setting the following <code>.env</code> settings:</p>
-<div class="highlight"><pre><span></span><code># IP address and port of the first RPKI local cache:
-IXP_RPKI_RTR1_HOST=192.0.2.11
-IXP_RPKI_RTR1_PORT=3323
-
-# While not required, we recommend you also install a second validator:
-# IXP_RPKI_RTR2_HOST=192.0.2.12
-# IXP_RPKI_RTR2_PORT=3323
-</code></pre></div>
-<p>See our installation notes for these:</p>
+<h1 id="openbsds-rpki-validator-rpki-client">OpenBSD's RPKI Validator rpki-client<a class="headerlink" href="#openbsds-rpki-validator-rpki-client" title="Permanent link"></a></h1>
+<p>The OpenBSD project created a free and easy-to-use RPKI validator named <strong><a href="https://www.rpki-client.org/">rpki-client</a></strong>.</p>
+<p>Deployment is split into two elements:</p>
 <ol>
-<li><a href="routinator/">Routinator 3000</a>.</li>
-<li><a href="rpkiclient/">rpki-client</a>.</li>
-<li><del><a href="cloudflare/">Cloudflare's RPKI Toolkit</a></del> - <em>this has now been <a href="https://github.com/cloudflare/cfrpki/commit/932c7596bb6f8ce2e0dadd7930e19ddef1beab0e">deprecated</a> and should not be used</em>.</li>
-<li><del><a href="ripe/">RIPE NCC RPKI Validator 3</a></del> - <em>this has now been <a href="https://www.ripe.net/publications/news/ending-support-for-the-ripe-ncc-rpki-validator/">deprecated</a> and should not be used</em>.</li>
+<li><strong>rpki-client</strong> is the validator which pulls the Signed Objects from the RPKI repositories and validates them and then makes them available to StayRTR.</li>
+<li><strong>StayRTR</strong> is the daemon that implements the RPKI-RTR protocol to distributes Validated ROA Payloads to your routers.</li>
 </ol>
-<h2 id="revalidation">Revalidation<a class="headerlink" href="#revalidation" title="Permanent link"></a></h2>
-<p>As it stands, Bird v2.0.4 does not support revalidation of prefixes following ROA updates (i.e. a prefix that was accepted as ROA valid that subsequently becomes ROA unknown / invalid will remain learnt as ROA valid). The Bird developers are working on fixing this. In the interim, you need to schedule a revalidation via cron using a <code>/etc/crontab</code> entry such as:</p>
-<div class="highlight"><pre><span></span><code>20 11,23 * * *   root    /usr/sbin/birdc -s /var/run/bird/bird-rs1-ipv4.ctl reload in all &gt;/dev/null
+<p>We use a standard Debian Sid (unstable) installation, 2 vCPUs, 2GB RAM, 20GB LVM hard drive.
+Debian provides pre-built packages for installation.</p>
+<p>As of early March 2024, the following packages can easily be installed:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>rpki-client<span class="w"> </span>stayrtr
 </code></pre></div>
-<h2 id="enabling-rpki">Enabling RPKI<a class="headerlink" href="#enabling-rpki" title="Permanent link"></a></h2>
-<p>The outline procedure to enable RPKI is below. These notes are written from the perspective that you have existing IXP Manager Bird v1 route servers. If this is a green field site, these notes will work just as well by ignoring the upgrade bits. <strong>In either case, it's vital you already understand <a href="../routers/">how to configure routers in IXP Manager</a>.</strong></p>
-<p>At INEX we started with our route collector which is a non-service affecting administrative tool. Once we were happy with the stability and results of that, we upgraded our two route servers one week apart in planned announced maintenance windows. We also took the opportunity to perform a distribution upgrade from Ubuntu 16.04 to 18.04.</p>
-<p>Start by installing two local caches / validator services as linked above. INEX uses Cloudflare's and Routinator 3000. You should also add these to your production monitoring service.</p>
-<p>Once your maintenance window starts, stop the target route server you plan to upgrade. You'll then need to to remove the Bird v1 package (<code>dpkg -r bird</code> on Ubuntu). Once the Bird package is removed, you can perform a distribution upgrade if you wish.</p>
-<p>Bird v2 is available as a prebuilt package with Ubuntu 20.04 LTS and can be installed with <code>apt install bird2</code>.</p>
-<p>There are no Bird v2 packages for Ubuntu 18.04 LTS. As such, you need to install from source if using that older platform. Rather than installing a build environment and compiling on each server, you can do this on a single server (a dedicated build box / admin server / etc) and then distribute the package across your route servers / collector:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Install Ubuntu build packages and libraries Bird requires:</span>
-apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>build-essential<span class="w"> </span>libssh-dev<span class="w"> </span>libreadline-dev<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>libncurses-dev<span class="w"> </span>flex<span class="w"> </span>bison<span class="w"> </span>checkinstall
+<h2 id="rpki-trust-anchors">rpki-trust-anchors<a class="headerlink" href="#rpki-trust-anchors" title="Permanent link"></a></h2>
+<p>You'll need to confirm whether you'd like to install the ARIN TAL.</p>
+<p>You can now run the validator via the following command:</p>
+<h2 id="rpki-client">rpki-client<a class="headerlink" href="#rpki-client" title="Permanent link"></a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># start the service:</span>
+systemctl<span class="w"> </span>start<span class="w"> </span>rpki-client<span class="w"> </span><span class="p">&amp;</span>
 
-<span class="c1"># At time of writing, the latest release was v2.0.7.</span>
-<span class="c1"># Check for newer versions!</span>
-<span class="nb">cd</span><span class="w"> </span>/usr/src
-wget<span class="w"> </span>ftp://bird.network.cz/pub/bird/bird-2.0.7.tar.gz
-tar<span class="w"> </span>zxf<span class="w">  </span>bird-2.0.7.tar.gz
-<span class="nb">cd</span><span class="w"> </span>bird-2.0.7/
-./configure<span class="w">  </span>--prefix<span class="o">=</span>/usr<span class="w"> </span>--sysconfdir<span class="o">=</span>/etc
-make<span class="w"> </span>-j2
-checkinstall<span class="w"> </span>-y
+<span class="c1"># see and tail the logs</span>
+journalctl<span class="w"> </span>-fu<span class="w"> </span>rpki-client
 </code></pre></div>
-<p>The <code>checkinstall</code> tool creates a deb package file: <code>/usr/local/src/bird-2.0.7/bird_2.0.7-1_amd64.deb</code></p>
-<p><strong>NB: for this method to work, you must be running the same operating system and version on the target servers as the build box.</strong> For us, it was Ubuntu 18.04 LTS on all systems.</p>
-<p>To install on a target machine:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># from build machine</span>
-scp<span class="w"> </span>bird_2.0.7-1_amd64.deb<span class="w"> </span>target-machine:/tmp
+<p>Running rpki-client the first time might take a few minutes.</p>
+<h2 id="stayrtr">StayRTR<a class="headerlink" href="#stayrtr" title="Permanent link"></a></h2>
+<p>To start StayRTR (once rpki-client is configured and running), we first edit <code>/etc/default/stayrtr</code>:</p>
+<div class="highlight"><pre><span></span><code>STAYRTR_ARGS=-bind :3323 -cache /var/lib/rpki-client/json -metrics.addr :8082
+</code></pre></div>
+<p>You can now run the StayRTR daemon via the following command:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># start the service:</span>
+systemctl<span class="w"> </span>restart<span class="w"> </span>stayrtr
 
-<span class="c1"># on target machine</span>
-apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libssh-dev<span class="w"> </span>libreadline-dev<span class="w"> </span>libncurses-dev
-dpkg<span class="w"> </span>-i<span class="w"> </span>/tmp/bird_2.0.7-1_amd64.deb
+<span class="c1"># see and tail the logs</span>
+journalctl<span class="w"> </span>-fu<span class="w"> </span>stayrtr
 </code></pre></div>
-<p>You now need to update your route server record in IXP Manager:</p>
-<ul>
-<li>set <em>Software</em> to <em>Bird v2</em> (this is currently informational only);</li>
-<li>check <em>Enable RPKI filtering</em>;</li>
-<li>update the template to <code>api/v4/router/server/bird2/standard</code>.</li>
-</ul>
-<p>Note that the Bird v2 template uses large BGP communities extensively internally. The option <em>Enable Large BGP Communities / RFC8092</em> only controls whether your members can use large communities for filtering. <em>It's 2020 - you should really enable this.</em></p>
-<p>As mentioned above, you need to let IXP Manager know where your local caching / validators are by setting the following <code>.env</code> settings:</p>
-<div class="highlight"><pre><span></span><code># IP address and port of the first RPKI local cache:
-IXP_RPKI_RTR1_HOST=192.0.2.11
-IXP_RPKI_RTR1_PORT=3323
-
-# While not required, we recommend you also install a second validator:
-IXP_RPKI_RTR2_HOST=192.0.2.12
-IXP_RPKI_RTR2_PORT=3323
-</code></pre></div>
-<p>Take a look at the generated configuration within IXP Manager now and sanity check it.</p>
-<p>If you have been using <a href="https://github.com/inex/IXP-Manager/tree/release-v5/tools/runtime/route-servers">our scripts</a> to reload route server configurations, you will need to download <a href="https://github.com/inex/IXP-Manager/blob/release-v5/tools/runtime/route-servers/api-reconfigure-example-birdv2.sh">the new one</a> (and edit the lines at the top) or update your existing one. The main elements that need to be changed is that the daemon name is not longer named differently for IPv6 (Bird v1 had <code>bird/birdc</code> and <code>bird6/bird6c</code> where as Bird v2 only has <code>bird/birdc</code>).</p>
-<p>You should now be able to run this script to pull a new configuration and start an instance of the route server. We would start with one and compare route numbers (just eyeball them) against the route server you have not upgraded.</p>
-<p>You're nearly there! If you are using our <a href="../looking-glass/">Bird's Eye looking glass</a>, you will need to upgrade this to &gt;= v1.2.1 for Bird v2 support. At INEX, we tend to clone the repository and so a simple <code>git pull</code> is all that's required. If you're installing from release packages, get the latest one and copy over your configurations.</p>
-<h2 id="bird-operational-notes">Bird Operational Notes<a class="headerlink" href="#bird-operational-notes" title="Permanent link"></a></h2>
-<p>These notes are valid when using IXP Manager's Bird v2 with RPKI route server configuration.</p>
-<p>You can see the status of the RPKI-RTR protocol with:</p>
-<div class="highlight"><pre><span></span><code>bird&gt; show protocols &quot;rpki*&quot;
-Name       Proto      Table      State  Since         Info
-rpki1      RPKI       ---        up     2019-05-11 14:51:40  Established
-rpki2      RPKI       ---        up     2019-05-11 12:44:25  Established
-</code></pre></div>
-<p>And you can see detailed information with:</p>
-<div class="highlight"><pre><span></span><code>bird&gt; show protocols all rpki1
-Name       Proto      Table      State  Since         Info
-rpki1      RPKI       ---        up     2019-05-11 14:51:40  Established
-  Cache server:     10.39.5.123:3323
-  Status:           Established
-  Transport:        Unprotected over TCP
-  Protocol version: 1
-  Session ID:       54059
-  Serial number:    122
-  Last update:      before 459.194 s
-  Refresh timer   : 440.805/900
-  Retry timer     : ---
-  Expire timer    : 172340.805/172800
-  Channel roa4
-    State:          UP
-    Table:          t_roa
-    Preference:     100
-    Input filter:   ACCEPT
-    Output filter:  REJECT
-    Routes:         72161 imported, 0 exported
-    Route change stats:     received   rejected   filtered    ignored   accepted
-      Import updates:         141834          0          0          0     141834
-      Import withdraws:         2519          0        ---          0       3367
-      Export updates:              0          0          0        ---          0
-      Export withdraws:            0        ---        ---        ---          0
-  No roa6 channel
-</code></pre></div>
-<p>You can examine the ROA table with:</p>
-<div class="highlight"><pre><span></span><code>bird&gt; show route table t_roa
-Table t_roa:
-58.69.253.0/24-24 AS36776  [rpki1 2019-05-11 14:51:40] * (100)
-                           [rpki2 2019-05-11 12:45:45] (100)
-</code></pre></div>
-<p>Now, using INEX's route collector ASN (<code>2128</code>) as an example here - change for your own collector/server ASN - you can find RPKI invalid and filtered routes via:</p>
-<div class="highlight"><pre><span></span><code>bird&gt; show route  where bgp_large_community ~ [(2128,1101,13)]
-Table master4:
-136.146.52.0/22      unicast [pb_as15169_vli99_ipv4 2019-05-11 01:00:17] * (100) [AS396982e]
-        via 185.6.36.57 on eth1
-...
-</code></pre></div>
-<p>At time of writing, the filtered reason communities are:</p>
-<div class="highlight"><pre><span></span><code>define IXP_LC_FILTERED_PREFIX_LEN_TOO_LONG      = ( routeserverasn, 1101, 1  );
-define IXP_LC_FILTERED_PREFIX_LEN_TOO_SHORT     = ( routeserverasn, 1101, 2  );
-define IXP_LC_FILTERED_BOGON                    = ( routeserverasn, 1101, 3  );
-define IXP_LC_FILTERED_BOGON_ASN                = ( routeserverasn, 1101, 4  );
-define IXP_LC_FILTERED_AS_PATH_TOO_LONG         = ( routeserverasn, 1101, 5  );
-define IXP_LC_FILTERED_AS_PATH_TOO_SHORT        = ( routeserverasn, 1101, 6  );
-define IXP_LC_FILTERED_FIRST_AS_NOT_PEER_AS     = ( routeserverasn, 1101, 7  );
-define IXP_LC_FILTERED_NEXT_HOP_NOT_PEER_IP     = ( routeserverasn, 1101, 8  );
-define IXP_LC_FILTERED_IRRDB_PREFIX_FILTERED    = ( routeserverasn, 1101, 9  );
-define IXP_LC_FILTERED_IRRDB_ORIGIN_AS_FILTERED = ( routeserverasn, 1101, 10 );
-define IXP_LC_FILTERED_PREFIX_NOT_IN_ORIGIN_AS  = ( routeserverasn, 1101, 11 );
-define IXP_LC_FILTERED_RPKI_UNKNOWN             = ( routeserverasn, 1101, 12 );
-define IXP_LC_FILTERED_RPKI_INVALID             = ( routeserverasn, 1101, 13 );
-define IXP_LC_FILTERED_TRANSIT_FREE_ASN         = ( routeserverasn, 1101, 14 );
-define IXP_LC_FILTERED_TOO_MANY_COMMUNITIES     = ( routeserverasn, 1101, 15 );
-</code></pre></div>
-<p>Check the route server configuration as generated by IXP Manager for the current list if you are reading this on a version later than v5.0.</p>
-<p>If you want to see if a specific IP is covered by a ROA, use:</p>
-<div class="highlight"><pre><span></span><code>bird&gt; show route table t_roa where 45.114.234.0 ~ net
-Table t_roa:
-45.114.234.0/24-24 AS59347  [rpki1 2019-05-11 14:51:40] * (100)
-                            [rpki2 2019-05-11 12:45:45] (100)
-45.114.232.0/22-24 AS59347  [rpki1 2019-05-11 14:51:40] * (100)
-                            [rpki2 2019-05-11 12:45:45] (100)
-45.114.232.0/22-22 AS59347  [rpki1 2019-05-11 14:51:41] * (100)
-                            [rpki2 2019-05-11 12:45:45] (100)
-</code></pre></div>
+<p>Once rpki-client completed its initial run, and StayRTR starts up, metrics are available from http://[hostname/ip address]:8082/metrics.</p>
+<h2 id="monitoring">Monitoring<a class="headerlink" href="#monitoring" title="Permanent link"></a></h2>
+<p>We add Nagios http checks for and 8082 (StayRTR) to our monitoring platform. We also add a <code>check_tcp</code> test for StayRTR port 3323.</p>
+<p>Rpki-client produces a statistics file in OpenMetrics format in <code>/var/lib/rpki-client/metrics</code> for use with Grafana.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 4, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 1, 2024</span>
       
     
   </small>
@@ -1931,10 +1749,10 @@ Table t_roa:
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["tabs"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["tabs"], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.4b2c34cd.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.4b2c34cd.min.js"></script>
       
     
   </body>
