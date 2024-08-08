@@ -12,7 +12,8 @@ See the above pages for specific information on each of those use cases and belo
     For larger router configurations - especially when you have members with large prefix lists, you will need to [increase PHP's `memory_limit`](https://www.php.net/manual/en/ini.core.php#ini.memory-limit) as the default of 128M will not be sufficient. Start with 512MB and watch the log (`storage/logs/...`) which reports the memory and time for configuration generation.
 
 
-## Managing Routers
+
+## Managing Routers
 
 The basic elements of *a router* are configured in **IXP Manager** under the *IXP Admin Actions - Routers* option on the left hand menu.
 
@@ -26,7 +27,7 @@ From the router management page, you can:
 * view all the details of a router;
 * generate and view a router's configuration.
 
-## Configuration Generation Overview
+## Configuration Generation Overview
 
 The simplest configuration to generate is the route collector configuration. A route collector is an IXP router which serves only to *accept all routes and export no routes*. It is used for problem diagnosis, to aid customer monitoring and for looking glasses (see [INEX's here](https://www.inex.ie/ixp/lg/rc1-lan1-ipv4)).
 
@@ -69,9 +70,79 @@ We also provide sample scripts for automating the re-configuration of these serv
 
 * AS112 scripts [can be found here](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/as112).
 * Route collector scripts [can be found here](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-collectors).
-* Route server scripts [in this directory](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-servers). These are quite robust and have been in production for ~5 years at INEX (as of Jan 2019).
+* Route server scripts [in this directory](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-servers). These are quite robust and have been in production for ~10 years at INEX (as of May 2024).
 
 All of these scripts have been written defensively such that if there is any issue getting the configuring or validating the configuration then the running router instance should be unaffected. This has worked in practice at INEX when IXP Manager was under maintenance, when there were management connectivity issues and when there were database issues. They also use the *updated API* (see below) to mark when the router configuration update script ran successfully.
+
+## Router Pairing and Locking 
+
+???+ info
+    Pairing, locking and the more advanced update scripts were introduced with IXP Manager v6.4.0, and there is also a tutorial video [linked from the release notes](https://github.com/inex/IXP-Manager/releases/tag/v6.4.0).
+
+For IXPs, route servers are considered a critical production service and most IXPs deploy them in redundant pairs. This is usually implemented with dedicated hardware (servers with dual PSU, hardware RAID, and out-of-band management access) deployed in different points of presence.
+
+When it comes to updating the configuration of these, the older scripts provided by IXP Manager suggested that this be done about four times per day with the timing of the cronjob set so that there is an offset so that each server will not update at the same time. The hope was that if there was an issue, only one server of the resilient pair would be affected, and engineers would have time to react and prevent updates on the other working server. Some IXPs added additional logic to the scripts to check if the other server was functional before performing a reconfiguration, but this was often limited to pings and a simple check to see if Bird was running.
+
+The v6.4.0 release introduced a significant new resilience mechanism by pairing servers. In the IXP Manager router UI, you can now select another router to pair with the one you are editing: 
+
+![Routers - Pairing](img/rs-pairing.png)
+
+
+
+You would select pairs as follows:
+
+* For route servers deployed in pairs, rs1-ipv4 should be paired with rs2-ipv4 and vice versa - be sure to set the paired server in each individual server.
+* For route collectors, quarantine route collectors and AS112 services where you would normally have a single instance, you can pair the ipv4 version with the ipv6 version, ensuring at least one will always be running. For example, pair rc1-ipv4 with rc1-ipv6 and vice versa.
+
+Once your pairs are set up, you need to deploy the new router update scripts as follows:
+
+* for route servers: [tools/runtime/route-servers/api-reconfigure-example-birdv2.sh](https://github.com/inex/IXP-Manager/blob/release-v6/tools/runtime/route-servers/api-reconfigure-example-birdv2.sh)
+* for route collectors: [tools/runtime/route-collectors/reconfigure-rc-bird2.sh](https://github.com/inex/IXP-Manager/blob/release-v6/tools/runtime/route-collectors/reconfigure-rc-bird2.sh)
+
+*There is no need to use different scripts for route collectors and servers. Traditionally, at INEX, these scripts were developed slightly differently from each other (e.g., the collector script updates both IPv4 and IPv6 versions and provides more informative output, whereas the route server script takes a specific route server handle to update). We may merge these in the future.*
+
+You can use these scripts exactly as they are on an Ubuntu server changing only the configuration lines at the top:
+
+```
+APIKEY="your-api-key"
+URLROOT="https://ixp.example.com"
+BIRDBIN="/usr/sbin/bird"
+```
+
+The collector script takes an additional configuration option for the handles of the servers to update - e.g.:
+
+```
+HANDLES="rc1-ipv4 rc1-ipv6"
+```
+
+These new scripts now work as follows:
+
+1. **NEW:** Obtain a local script lock preventing more than one update script to execute at a time on the server (e.g., if the update is long-running, cron cannot start additional updates).
+2. **NEW:** Obtain a configuration lock from IXP Manager.
+    * This involves making an API call to `/api/v4/router/get-update-lock/$handle`, which IXP Manager then processes and returns HTTP code 200 if the lock is acquired and the update can proceed.
+    * A lock is not granted if the router is paused for updates within IXP Manager (new per-router option in the router's dropdown menu on the router list page).
+    * A lock is not granted if another process has already acquired a configuration lock for this router.
+    * A lock is also not granted if the router's partner is locked. ***This major new resiliency addition prevents two paired route servers from being updated in parallel.***
+    * The update script will abort if IXP Manager is unavailable or in maintenance mode. *It must get a HTTP 200 to proceed.*
+3. If a lock is acquired, the script will then download the latest configuration from IXP Manager.
+4. The script will do some basic sanity checks on the downloaded configuration:
+    * First, check that the HTTP request to pull the new configuration succeeded.
+    * Second, check that the downloaded file exists and is non-zero in size.
+    * Third, ensure at least two BGP protocol definitions are in the configuration file.
+    * Lastly, the script has Bird parse the downloaded file to ensure validity.
+5. **NEW:** The update script will now compare the newly downloaded script to the running configuration.
+    * If there are differences, the old configuration is backed up, and the Bird daemon will be reloaded.
+    * If no differences exist, the Bird daemon will not be reloaded.
+6. A check is performed to ensure the Bird daemon is actually running and, if not, it is started.
+7. **IMPROVED:** A final API call is made to IXP Manager via `/api/v4/router/updated/$handle` to release the lock and update the *last updated* timestamp.
+    * A significant improvement here is the use of a until api-succeeds, sleep 60, retry construct to ensure the lock is released even when there are transitive network issues / IXP Manager maintenance modes / server maintenance, etc.
+
+Adding step (5) above (only reload on changes) now allows the update script to be safely run as frequently as every few minutes, which is necessary for the UI-based community filtering to be effective.
+
+*You should still offset the updates between router pairs, as the script will give up if a lock cannot be obtained. Future improvements could allow for some retries.*
+
+For additional information with UI images, see slides 25-30 in [this presentation PDF](https://www.barryodonovan.com/wp-content/uploads/2024/03/euroix-rs-workshop-2024-03-13.pdf).
+
 
 ## Updated API
 
