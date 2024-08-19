@@ -14,10 +14,15 @@ We welcome contributions or errata that improve the quality of our documentation
 
 ## Building Locally
 
-If you haven't already, install MkDocs:
+If you haven't already, install MkDocs. These instructions work on MacOS as of 2024:
 
 ```sh
-pip install mkdocs pymdown-extensions mkdocs-material mkdocs-git-revision-date-localized-plugin
+# create a venv
+python3 -m venv venv
+cd venv
+
+# install mkdocs
+./bin/pip install mkdocs pymdown-extensions mkdocs-material mkdocs-git-revision-date-localized-plugin
 ```
 
 The documentation can then be built locally as follows:
@@ -25,19 +30,19 @@ The documentation can then be built locally as follows:
 ```sh
 git clone https://github.com/inex/ixp-manager-docs-md.git
 cd ixp-manager-docs-md
-mkdocs build
+./venv/bin/mkdocs build
 ```
 
 You can *serve* them locally with the following and then access them via http://127.0.0.1:8000 -
 
 ```sh
-mkdocs serve
+./venv/bin/mkdocs serve
 ```
 
 To automatically deploy to GitHub and make live:
 
 ```sh
-mkdocs gh-deploy
+./venv/bin/mkdocs gh-deploy
 ```
 
 You must be an authorised user for this but we **welcome pull requests against the documentation repository!**
