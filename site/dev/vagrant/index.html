@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.32">
     
     
       
@@ -2192,6 +2192,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#snmp-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      SNMP Simulator
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2279,6 +2288,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#snmp-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      SNMP Simulator
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2322,17 +2340,21 @@
 </ol>
 <h2 id="quick-vagrant-with-parallels">Quick Vagrant with Parallels<a class="headerlink" href="#quick-vagrant-with-parallels" title="Permanent link"></a></h2>
 <ol>
-<li>Install Vagrant (see: https://developer.hashicorp.com/vagrant/install)</li>
-<li>Install VirtualBox (see: https://www.virtualbox.org/)</li>
+<li>Install Vagrant (see: https://developer.hashicorp.com/vagrant/install). On MacOS:
+   <div class="highlight"><pre><span></span><code>brew<span class="w"> </span>tap<span class="w"> </span>hashicorp/tap
+brew<span class="w"> </span>install<span class="w"> </span>hashicorp/tap/hashicorp-vagrant
+</code></pre></div></li>
+<li>Install Parallels (see: https://www.parallels.com/)</li>
 <li>Install the <a href="https://github.com/Parallels/vagrant-parallels">Parallels provider</a>. E.g., on MacOS when Vagrant is installed via Homebrew:
-   <div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>hashicorp/tap/hashicorp-vagrant
+   <div class="highlight"><pre><span></span><code>vagrant<span class="w"> </span>plugin<span class="w"> </span>install<span class="w"> </span>vagrant-parallels
 </code></pre></div></li>
 <li>Clone IXP Manager to a directory:
     <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/inex/IXP-Manager.git<span class="w"> </span>ixpmanager
 <span class="nb">cd</span><span class="w"> </span>ixpmanager
 </code></pre></div></li>
 <li>Spin up a Vagrant virtual machine:
-   <code>vagrant up</code></li>
+    <div class="highlight"><pre><span></span><code>vagrant up
+</code></pre></div></li>
 </ol>
 <h2 id="next-steps-access-ixp-manager">Next Steps - Access IXP Manager<a class="headerlink" href="#next-steps-access-ixp-manager" title="Permanent link"></a></h2>
 <ol>
@@ -2371,6 +2393,13 @@
 </ul>
 <h2 id="database-details">Database Details<a class="headerlink" href="#database-details" title="Permanent link"></a></h2>
 <p>Spinning up Vagrant in the above manner loads a sample database from <code>ixpmanager/database/schema/vagrant-base.sql</code>. If you have a preferred development database, place a bzip'd copy of it in the <code>ixpmanager</code> directory called <code>ixpmanager-preferred.sql.bz2</code> before step 5 above.</p>
+<h2 id="snmp-simulator">SNMP Simulator<a class="headerlink" href="#snmp-simulator" title="Permanent link"></a></h2>
+<p>The Vagrant bootstrapping includes installing <a href="https://github.com/etingof/snmpsim">snmpsim</a> making two <em>"switches"</em> available for polling. The source snmpwalks for these are copied from <code>tools/docker/snmpwalks</code> to <code>/srv/snmpclients</code> and values can be freely edited there.</p>
+<p>Example of polling:</p>
+<div class="highlight"><pre><span></span><code>snmpwalk -c switch1 -v 2c 127.0.0.1:16100
+snmpwalk -c switch2 -v 2c 127.0.0.1:16100
+</code></pre></div>
+<p>As you can see, the community selects the source file - i.e., <code>-c switch1</code> for <code>/srv/snmpclients/switch1.snmprec</code>.</p>
 
 
 
@@ -2504,7 +2533,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["tabs"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.471ce7a9.min.js"></script>
       
     
   </body>
