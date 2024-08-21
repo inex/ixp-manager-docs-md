@@ -1,10 +1,12 @@
 # Vagrant
 
-For development purposes, we have both [Docker](docker.md) and Vagrant build files.
+For development purposes, we have Vagrant build files.
 
 The Vagrant file was updated for IXP Manager v7.
 
 ## Quick Vagrant with VirtualBox
+
+*Note the developers use Parallels (see below) and have not tested on VirtualBox for sometime.*
 
 If you want to get IXP Manager with Vagrant and VirtualBox up and running quickly, follow these steps:
 
@@ -50,9 +52,9 @@ If you want to get IXP Manager with Vagrant and VirtualBox up and running quickl
 
 2. Log in with one of the following username / passwords:
 
-   - Admin user: `vagrant / vagrant1`
-   - Customer Admin: `as112 / as112as112`
-   - Customer User: `asii2user / as112as112`
+   - Admin user: `vagrant / Vagrant1` (api key: `r8sFfkGamCjrbbLC12yIoCJooIRXzY9CYPaLVz92GFQyGqLq`)
+   - Customer Admin: `as112 / AS112as112`
+   - Customer User: `as112user / AS112as112`
 
 
 ## Vagrant Notes

@@ -145,8 +145,6 @@ IXPPEEREMAIL=peering@example.com
 IXPNOCPHONE=12345678
 IXPNOCEMAIL=noc@example.com
 IXPWWW="http://www.example.com"
-USERNAME=jbloggs
-USEREMAIL=jbloggs@example.com
 ```
 
 The following is taken from the IXP Manager installation script:
@@ -168,7 +166,7 @@ SET @cbdid = LAST_INSERT_ID();
 INSERT INTO cust ( name, shortname, type, abbreviatedName, autsys, maxprefixes, peeringemail, nocphone, noc24hphone,
         nocemail, nochours, nocwww, peeringpolicy, corpwww, datejoin, status, activepeeringmatrix, isReseller,
         company_registered_detail_id, company_billing_details_id, created_at, updated_at )
-    VALUES ( '${IXPNAME}', '${IXPSNAME}', 3, '${IXPSNAME}', '${IXPASN}', 100, '${IXPPEEREMAIL}', '${IXPNOCPHONE}',
+    VALUES ( '${IXPNAME}', '${IXPSNAME}', 3, '${IXPSNAME}', ${IXPASN}, 100, '${IXPPEEREMAIL}', '${IXPNOCPHONE}',
         '${IXPNOCPHONE}', '${IXPNOCEMAIL}', '24x7', '', 'mandatory', '${IXPWWW}', NOW(), 1, 1, 0, @crdid, @cbdid, NOW(), NOW() );
 SET @custid = LAST_INSERT_ID();
 
