@@ -2316,9 +2316,10 @@
 
 
 <h1 id="vagrant">Vagrant<a class="headerlink" href="#vagrant" title="Permanent link"></a></h1>
-<p>For development purposes, we have both <a href="../docker/">Docker</a> and Vagrant build files.</p>
+<p>For development purposes, we have Vagrant build files.</p>
 <p>The Vagrant file was updated for IXP Manager v7.</p>
 <h2 id="quick-vagrant-with-virtualbox">Quick Vagrant with VirtualBox<a class="headerlink" href="#quick-vagrant-with-virtualbox" title="Permanent link"></a></h2>
+<p><em>Note the developers use Parallels (see below) and have not tested on VirtualBox for sometime.</em></p>
 <p>If you want to get IXP Manager with Vagrant and VirtualBox up and running quickly, follow these steps:</p>
 <ol>
 <li>Install Vagrant (see: https://developer.hashicorp.com/vagrant/install)</li>
@@ -2365,10 +2366,10 @@ brew<span class="w"> </span>install<span class="w"> </span>hashicorp/tap/hashico
 <p>Log in with one of the following username / passwords:</p>
 </li>
 <li>
-<p>Admin user: <code>vagrant / vagrant1</code></p>
+<p>Admin user: <code>vagrant / Vagrant1</code> (api key: <code>r8sFfkGamCjrbbLC12yIoCJooIRXzY9CYPaLVz92GFQyGqLq</code>)</p>
 </li>
-<li>Customer Admin: <code>as112 / as112as112</code></li>
-<li>Customer User: <code>asii2user / as112as112</code></li>
+<li>Customer Admin: <code>as112 / AS112as112</code></li>
+<li>Customer User: <code>as112user / AS112as112</code></li>
 </ol>
 <h2 id="vagrant-notes">Vagrant Notes<a class="headerlink" href="#vagrant-notes" title="Permanent link"></a></h2>
 <p>Please see Vagrant's own documentation for a full description of how to use it fully. </p>
@@ -2392,14 +2393,15 @@ brew<span class="w"> </span>install<span class="w"> </span>hashicorp/tap/hashico
 <li>Apache runs as <code>vagrant</code> to avoid all file system permission issues.</li>
 </ul>
 <h2 id="database-details">Database Details<a class="headerlink" href="#database-details" title="Permanent link"></a></h2>
-<p>Spinning up Vagrant in the above manner loads a sample database from <code>ixpmanager/database/schema/vagrant-base.sql</code>. If you have a preferred development database, place a bzip'd copy of it in the <code>ixpmanager</code> directory called <code>ixpmanager-preferred.sql.bz2</code> before step 5 above.</p>
+<p>Spinning up Vagrant in the above manner loads a sample database from <code>tools/vagrant/vagrant-base.sql</code>. If you have a preferred development database, place a bzip'd copy of it in the <code>ixpmanager</code> directory called <code>ixpmanager-preferred.sql.bz2</code> before step 5 above.</p>
 <h2 id="snmp-simulator">SNMP Simulator<a class="headerlink" href="#snmp-simulator" title="Permanent link"></a></h2>
-<p>The Vagrant bootstrapping includes installing <a href="https://github.com/etingof/snmpsim">snmpsim</a> making two <em>"switches"</em> available for polling. The source snmpwalks for these are copied from <code>tools/docker/snmpwalks</code> to <code>/srv/snmpclients</code> and values can be freely edited there.</p>
-<p>Example of polling:</p>
-<div class="highlight"><pre><span></span><code>snmpwalk -c switch1 -v 2c 127.0.0.1:16100
-snmpwalk -c switch2 -v 2c 127.0.0.1:16100
+<p>The Vagrant bootstrapping includes installing <a href="https://github.com/etingof/snmpsim">snmpsim</a> making three <em>"switches"</em> matching those in the supplied database available for polling. The source snmpwalks for these are copied from <code>tools/vagrant/snmpwalks</code> to <code>/srv/snmpclients</code> and values can be freely edited there.</p>
+<p>Example of polling when ssh'd into vagrant:</p>
+<div class="highlight"><pre><span></span><code>snmpwalk -c swi1-fac1-1 -v 2c swi1-fac1-1
+snmpwalk -c swi1-fac2-1 -v 2c swi1-fac1-1
+snmpwalk -c swi2-fac1-1 -v 2c swi2-fac1-1
 </code></pre></div>
-<p>As you can see, the community selects the source file - i.e., <code>-c switch1</code> for <code>/srv/snmpclients/switch1.snmprec</code>.</p>
+<p>As you can see, the community selects the source file - i.e., <code>-c swi1-fac1-1</code> for <code>/srv/snmpclients/swi1-fac1-1.snmprec</code>. The Vagrant bootstrap file adds these switch names to <code>/etc/hosts</code> also.</p>
 
 
 
@@ -2420,7 +2422,7 @@ snmpwalk -c switch2 -v 2c 127.0.0.1:16100
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 19, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 21, 2024</span>
   </span>
 
     

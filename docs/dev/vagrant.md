@@ -83,19 +83,20 @@ Please see Vagrant's own documentation for a full description of how to use it f
 
 ## Database Details
 
-Spinning up Vagrant in the above manner loads a sample database from `ixpmanager/database/schema/vagrant-base.sql`. If you have a preferred development database, place a bzip'd copy of it in the `ixpmanager` directory called `ixpmanager-preferred.sql.bz2` before step 5 above.
+Spinning up Vagrant in the above manner loads a sample database from `tools/vagrant/vagrant-base.sql`. If you have a preferred development database, place a bzip'd copy of it in the `ixpmanager` directory called `ixpmanager-preferred.sql.bz2` before step 5 above.
 
 
 ## SNMP Simulator
 
-The Vagrant bootstrapping includes installing [snmpsim](https://github.com/etingof/snmpsim) making two *"switches"* available for polling. The source snmpwalks for these are copied from `tools/docker/snmpwalks` to `/srv/snmpclients` and values can be freely edited there.
+The Vagrant bootstrapping includes installing [snmpsim](https://github.com/etingof/snmpsim) making three *"switches"* matching those in the supplied database available for polling. The source snmpwalks for these are copied from `tools/vagrant/snmpwalks` to `/srv/snmpclients` and values can be freely edited there.
 
-Example of polling:
+Example of polling when ssh'd into vagrant:
 
 ```
-snmpwalk -c switch1 -v 2c 127.0.0.1:16100
-snmpwalk -c switch2 -v 2c 127.0.0.1:16100
+snmpwalk -c swi1-fac1-1 -v 2c swi1-fac1-1
+snmpwalk -c swi1-fac2-1 -v 2c swi1-fac1-1
+snmpwalk -c swi2-fac1-1 -v 2c swi2-fac1-1
 ```
 
-As you can see, the community selects the source file - i.e., `-c switch1` for `/srv/snmpclients/switch1.snmprec`.
+As you can see, the community selects the source file - i.e., `-c swi1-fac1-1` for `/srv/snmpclients/swi1-fac1-1.snmprec`. The Vagrant bootstrap file adds these switch names to `/etc/hosts` also.
 
