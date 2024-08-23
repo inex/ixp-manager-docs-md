@@ -2193,9 +2193,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#snmp-simulator" class="md-nav__link">
+  <a href="#snmp-simulator-and-mrtg" class="md-nav__link">
     <span class="md-ellipsis">
-      SNMP Simulator
+      SNMP Simulator and MRTG
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-server-collector-as112-testbed-and-looking-glass" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route Server / Collector / AS112 Testbed and Looking Glass
     </span>
   </a>
   
@@ -2289,9 +2298,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#snmp-simulator" class="md-nav__link">
+  <a href="#snmp-simulator-and-mrtg" class="md-nav__link">
     <span class="md-ellipsis">
-      SNMP Simulator
+      SNMP Simulator and MRTG
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-server-collector-as112-testbed-and-looking-glass" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route Server / Collector / AS112 Testbed and Looking Glass
     </span>
   </a>
   
@@ -2318,6 +2336,7 @@
 <h1 id="vagrant">Vagrant<a class="headerlink" href="#vagrant" title="Permanent link"></a></h1>
 <p>For development purposes, we have Vagrant build files.</p>
 <p>The Vagrant file was updated for IXP Manager v7.</p>
+<p>The entire system is built from a fresh Ubuntu 24.04 installation via the <code>tools/vagrant/bootstrap.sh</code> script. This also installs a systemd service to run <code>tools/vagrant/startup.sh</code> on a reboot to restart the various services.</p>
 <h2 id="quick-vagrant-with-virtualbox">Quick Vagrant with VirtualBox<a class="headerlink" href="#quick-vagrant-with-virtualbox" title="Permanent link"></a></h2>
 <p><em>Note the developers use Parallels (see below) and have not tested on VirtualBox for sometime.</em></p>
 <p>If you want to get IXP Manager with Vagrant and VirtualBox up and running quickly, follow these steps:</p>
@@ -2394,7 +2413,7 @@ brew<span class="w"> </span>install<span class="w"> </span>hashicorp/tap/hashico
 </ul>
 <h2 id="database-details">Database Details<a class="headerlink" href="#database-details" title="Permanent link"></a></h2>
 <p>Spinning up Vagrant in the above manner loads a sample database from <code>tools/vagrant/vagrant-base.sql</code>. If you have a preferred development database, place a bzip'd copy of it in the <code>ixpmanager</code> directory called <code>ixpmanager-preferred.sql.bz2</code> before step 5 above.</p>
-<h2 id="snmp-simulator">SNMP Simulator<a class="headerlink" href="#snmp-simulator" title="Permanent link"></a></h2>
+<h2 id="snmp-simulator-and-mrtg">SNMP Simulator and MRTG<a class="headerlink" href="#snmp-simulator-and-mrtg" title="Permanent link"></a></h2>
 <p>The Vagrant bootstrapping includes installing <a href="https://github.com/etingof/snmpsim">snmpsim</a> making three <em>"switches"</em> matching those in the supplied database available for polling. The source snmpwalks for these are copied from <code>tools/vagrant/snmpwalks</code> to <code>/srv/snmpclients</code> and values can be freely edited there.</p>
 <p>Example of polling when ssh'd into vagrant:</p>
 <div class="highlight"><pre><span></span><code>snmpwalk -c swi1-fac1-1 -v 2c swi1-fac1-1
@@ -2402,6 +2421,36 @@ snmpwalk -c swi1-fac2-1 -v 2c swi1-fac1-1
 snmpwalk -c swi2-fac1-1 -v 2c swi2-fac1-1
 </code></pre></div>
 <p>As you can see, the community selects the source file - i.e., <code>-c swi1-fac1-1</code> for <code>/srv/snmpclients/swi1-fac1-1.snmprec</code>. The Vagrant bootstrap file adds these switch names to <code>/etc/hosts</code> also.</p>
+<p>The bootstrapping also configures mrtg to run and includes this in the crontab rather than using dummy graphs. The snmp simulator has some randomised elements for some of the interface counters.</p>
+<h2 id="route-server-collector-as112-testbed-and-looking-glass">Route Server / Collector / AS112 Testbed and Looking Glass<a class="headerlink" href="#route-server-collector-as112-testbed-and-looking-glass" title="Permanent link"></a></h2>
+<p>When running <code>vagrant up</code> for the first time, it will create a full route server / collector /as112 testbed complete with clients:</p>
+<ul>
+<li>Route servers, collectors and AS112 bird daemons are started from hardcoded handles based on the Vagrant test database.</li>
+<li>Client router bird instances (dual-stack v4/v6) are generated and started based on their vlan interfaces as at the time the scripts are run.</li>
+</ul>
+<p>All Bird instance sockets are located in <code>/var/run/bird/</code> allowing you to connect to them using <code>birdc -s /var/run/bird/xxx.ctl</code>.</p>
+<p>In additional to this, a second Apache virtual host is set up listening on port 81 locally providing access to Birdseye installed in <code>/srv/birdseye</code>. The bundled Vagrant database is already configured for this and should work out of the box. All of Birdseye's env files are generated via: </p>
+<pre><code>php /vagrant/artisan vagrant:generate-birdseye-configurations
+</code></pre>
+<p>Various additional scripts support all of this:</p>
+<ol>
+<li>The <code>tools/vagrant/bootstrap.sh</code> file which sets everything up.</li>
+<li><code>tools/vagrant/scripts/refresh-router-testbed.sh</code> will reconfigure all routers.</li>
+<li><code>tools/vagrant/scripts/as112-reconfigure-bird2.sh</code> will (re)configure and start, if necessary, the AS112 Bird instances.</li>
+<li><code>tools/vagrant/scripts/rs-api-reconfigure-all.sh</code> will (re)configure and start, if necessary, the route server Bird instances.</li>
+<li><code>tools/vagrant/scripts/rc-reconfigure.sh</code> will (re)configure and start, if necessary, the route collector Bird instances.</li>
+</ol>
+<p>For the clients, we run the following:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/srv/clients
+chown<span class="w"> </span>-R<span class="w"> </span>vagrant:<span class="w"> </span>/srv/clients
+php<span class="w"> </span>/vagrant/artisan<span class="w"> </span>vagrant:generate-client-router-configurations
+chmod<span class="w"> </span>a+x<span class="w"> </span>/srv/clients/start-reload-clients.sh
+/srv/clients/start-reload-clients.sh
+</code></pre></div>
+<p>All router IPs are added to the loopback interface as part of the <code>tools/vagrant/bootstrap.sh</code> (or the <code>startup.sh</code> script on a reboot). There are also necessary entries in <code>/etc/hosts</code> to map router handles to IP addresses. There are two critical Bird BGP configuration options to allow multiple instances to run on the same server and speak with each other:</p>
+<div class="highlight"><pre><span></span><code>strict bind yes;
+multihop;
+</code></pre></div>
 
 
 
