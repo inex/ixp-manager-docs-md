@@ -1939,6 +1939,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#deploying-to-live-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying to Live Site
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2209,6 +2218,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#deploying-to-live-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying to Live Site
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2253,17 +2271,32 @@ python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </
 <p>You can <em>serve</em> them locally with the following and then access them via http://127.0.0.1:8000 -</p>
 <div class="highlight"><pre><span></span><code>./venv/bin/mkdocs<span class="w"> </span>serve
 </code></pre></div>
-<p>To automatically deploy to GitHub and make live:</p>
-<div class="highlight"><pre><span></span><code>./venv/bin/mkdocs<span class="w"> </span>gh-deploy
+<p>Or to see the full versioning site, use:</p>
+<div class="highlight"><pre><span></span><code>./venv/bin/mike<span class="w"> </span>serve
 </code></pre></div>
+<h2 id="deploying-to-live-site">Deploying to Live Site<a class="headerlink" href="#deploying-to-live-site" title="Permanent link"></a></h2>
+<p>Since September 2024, we now use documentation versioning and so you should only be pushing to the latest <em>major.minor</em> release of the dev <em>major.minor</em> version. </p>
+<p><strong>Never deploy to historical versions!</strong></p>
+<p>As an example, as the time of writing, 6.4.x is the latest release and 7.0 is in development. We did <strong>our final</strong> push to 6.4 via:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">PATH</span><span class="o">=</span>./venv/bin:<span class="nv">$PATH</span><span class="w"> </span>./venv/bin/mike<span class="w"> </span>deploy<span class="w"> </span>--push<span class="w"> </span>--update-aliases<span class="w"> </span><span class="m">6</span>.4<span class="w"> </span>latest
+</code></pre></div>
+<p>And all new documentation will be pushed to dev via:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">PATH</span><span class="o">=</span>./venv/bin:<span class="nv">$PATH</span><span class="w"> </span>./venv/bin/mike<span class="w"> </span>deploy<span class="w"> </span>--push<span class="w"> </span>--update-aliases<span class="w"> </span><span class="m">7</span>.0<span class="w"> </span>dev
+</code></pre></div>
+<p>Once 7.0 is released, we will push a final update to 7.0 updating it to latest:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">PATH</span><span class="o">=</span>./venv/bin:<span class="nv">$PATH</span><span class="w"> </span>./venv/bin/mike<span class="w"> </span>deploy<span class="w"> </span>--push<span class="w"> </span>--update-aliases<span class="w"> </span><span class="m">7</span>.0<span class="w"> </span>latest
+</code></pre></div>
+<p>And all new documentation will be pushed to dev via:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">PATH</span><span class="o">=</span>./venv/bin:<span class="nv">$PATH</span><span class="w"> </span>./venv/bin/mike<span class="w"> </span>deploy<span class="w"> </span>--push<span class="w"> </span>--update-aliases<span class="w"> </span><span class="m">7</span>.1<span class="w"> </span>dev
+</code></pre></div>
+<blockquote>
+<p>Note that <code>PATH=./venv/bin:$PATH</code> is used as <code>mike</code> in turn calls <code>mkdocs</code> which is in this path.</p>
+</blockquote>
 <p>You must be an authorised user for this but we <strong>welcome pull requests against the documentation repository!</strong></p>
 <p><strong>Do not forget to push your changes to GutHub</strong> (if you have push permissions):</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>.
 git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s2">&quot;your commit message&quot;</span>
 git<span class="w"> </span>push
-</code></pre></div>
-<p>There is a simple script in the documentation root directory that combiles these deploy and commit steps:</p>
-<div class="highlight"><pre><span></span><code>./build-deploy-push.sh<span class="w"> </span><span class="s2">&quot;your commit message&quot;</span>
 </code></pre></div>
 
 
