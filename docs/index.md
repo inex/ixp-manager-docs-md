@@ -30,18 +30,22 @@ Additional information: [https://www.ixpmanager.org/](https://www.ixpmanager.org
 
 ## People Behind IXP Manager
 
-[INEX](https://www.inex.ie/) is an Internet eXchange Point and Ireland's IP peering hub. It is a neutral, industry-owned Association, founded in 1996, that provides IP peering facilities for its members. INEX membership is open to all organisations that can benefit from peering their IP traffic. See: [https://www.inex.ie/](https://www.inex.ie/).
+[INEX](https://www.inex.ie/) is an Internet eXchange Point and Ireland's IP peering hub. It is a neutral, industry-owned Association, founded in 1996, that provides IP peering facilities for its members. INEX membership is open to all organisations that can benefit from peering their IP traffic. See: [https://www.inex.ie/](https://www.inex.ie/). INEX is IXP Manager's core team and founder. 
 
-Authors:
+**Principle Authors:**
 
-* [Barry O'Donovan](https://www.barryodonovan.com/contact) / [@barryo79](https://twitter.com/#!/barryo79)
-* Nick Hilliard
-* Yann Robin (since 2016 and supported by [the sponsorship program](https://www.ixpmanager.org/sponsors))
-* Eileen Gallagher
+* [Barry O'Donovan](https://www.barryodonovan.com/contact) [@barryo](https://github.com/barryo)
+* Nick Hilliard [@nickhilliard](https://github.com/nickhilliard/)
+* Lászlá Kiss [@griphons](https://github.com/griphons) (since 2024 and supported by [the sponsorship program](https://www.ixpmanager.org/sponsors))
+
+The team at INEX deserves special mention - its CEO, Eileen Gallagher for her steadfast support and promotion of the project; the INEX Board of Directors - past and present - for their approval to open source the project and their on-going support of the project; and all team members who contribute real-world feedback, suggestions and all-round support!
+
+See the [team page on the IXP Manager website for more details](https://www.ixpmanager.org/about/team).
 
 We are also grateful [for all the individuals who have contributed code](https://github.com/inex/IXP-Manager/graphs/contributors), issues, mailing list help and feature requests.
 
-See the [team page on the IXP Manager website for more details](https://www.ixpmanager.org/about/team).
+
+
 
 
 ## Sponsors

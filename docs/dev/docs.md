@@ -47,7 +47,7 @@ Or to see the full versioning site, use:
 
 ## Deploying to Live Site
 
-Since September 2024, we now use documentation versioning and so you should only be pushing to the latest *major.minor* release of the dev *major.minor* version. 
+Since September 2024, we now use [documentation versioning](https://www.barryodonovan.com/2024/09/21/adding-versioning-to-an-existing-mkdocs-site) and so you should only be pushing to the latest *major.minor* release of the dev *major.minor* version. 
 
 **Never deploy to historical versions!**
 
