@@ -6,13 +6,6 @@ Latency graphs are a tool for monitoring latency / packet loss to the routers of
 
 **IXP Manager** can configure Smokeping to monitor member routers and display those graphs in member statistic pages. Presuming it is installed.
 
-## Historical Notes
-
-If you have used Smokeping on IXP Manager <v4.5 or between v4.5 and v4.7.3, then how the configuration is generated has changed.
-
-
-* In versions of IXP Manager <v4.5, we generated an entire / monolithic Smokeping configuration file. We have found in practice that this does not scale well and creates a number of limitations - especially when running more than one infrastructures. IXP Manager >= v4.5 now simply creates the targets on a per VLAN and protocol basis.
-* In versions >=v4.8, the URL endpoint has changed from that which was used in versions between v4.5 and v4.7.3. This was done as Smokeping (latency graphs) were fully integrated into Grapher.
 
 
 ## Target Selection
@@ -34,12 +27,10 @@ You can use the **IXP Manager** API to get the Smokeping target configurations f
 https://ixp.example.com/api/v4/grapher/config?backend=smokeping&vlanid=10&protocol=ipv4
 ```
 
-*Note that in versions of IXP Manager between v4.5 and v4.7.3, this was: `https://ixp.example.com/api/v4/vlan/smokeping/{vlanid}/{protocol}`.*
-
 In the above, the parameters are:
 
 * `vlanid` is the database ID (*DB ID*) of the VLAN. You can find the DB ID in IXP Manager in the VLAN table (select *VLANs* from the left hand side menu).
-* `protocol` is either `ipv4` or `ipv6` *(while in versions between v4.5 and v4.7.3, these were just `4` and `6` respectfully)*.
+* `protocol` is either `ipv4` or `ipv6`.
 
 If either of these are invalid, the API will return with a HTTP 404 response.
 

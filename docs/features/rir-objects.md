@@ -57,11 +57,11 @@ The following options are available for use in the `.env` file:
 IXP_API_RIR_PASSWORD=soopersecret
 
 # Rather than specifying the destination address on the command line, you can set it here
-# (useful for cronjobs and required for use with artisan schedule:run in >=v5.0)
+# (useful for cronjobs and required for use with artisan schedule:run)
 IXP_API_RIR_EMAIL_TO=test-dbm@ripe.net
 
 # Rather than specifying the from address on the command line, you can set it here
-# (useful for cronjobs and required for use with artisan schedule:run in >=v5.0)
+# (useful for cronjobs and required for use with artisan schedule:run)
 IXP_API_RIR_EMAIL_FROM=ixp@example.com
 ```
 

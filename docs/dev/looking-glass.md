@@ -6,7 +6,7 @@ As it stands, we have only implemented one looking glass backend - [Bird's Eye](
 
 We have implemented this in **IXP Manager** as a service so that other backends can be added easily.
 
-*Disclaimer: the links and line numbers here are against IXP Manager [v4.5.0](https://github.com/inex/IXP-Manager/tree/v4.5.0) and they may have changed since.*
+*Disclaimer: the links and line numbers here are against historical versions of IXP Manager and they may have changed since.*
 
 ## Adding Support for Additional LGs
 

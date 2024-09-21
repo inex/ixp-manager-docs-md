@@ -1,7 +1,5 @@
 # Authentication & Session Management
 
-???+ note "**This page refers to features introduced in IXP Manager v5.3**"
-
 
 ## Session Management
 
@@ -45,7 +43,7 @@ Two factor authentication (2fa) strengthens access security by requiring two met
 
 User's can enable, view (and test) and disable 2fa via the *My Account -> Profile* page.
 
-2FA support in IXP Manager is enabled by default from v5.3. To globally disable it set the following `.env` option:
+2FA support in IXP Manager is enabled by default. To globally disable it set the following `.env` option:
 
 ```
 2FA_ENABLED=false

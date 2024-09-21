@@ -77,7 +77,7 @@ All of these scripts have been written defensively such that if there is any iss
 ## Router Pairing and Locking 
 
 ???+ info
-    Pairing, locking and the more advanced update scripts were introduced with IXP Manager v6.4.0, and there is also a tutorial video [linked from the release notes](https://github.com/inex/IXP-Manager/releases/tag/v6.4.0).
+    There is also a tutorial video [available on YouTube here](https://youtu.be/k12TzsNQwLI).
 
 For IXPs, route servers are considered a critical production service and most IXPs deploy them in redundant pairs. This is usually implemented with dedicated hardware (servers with dual PSU, hardware RAID, and out-of-band management access) deployed in different points of presence.
 
@@ -227,7 +227,7 @@ Each router is queried twice via AJAX requests to provide:
 
 We filter known transit networks as discussed here: [https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/](https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/).
 
-There are three configuration options available (>v6.1.0) to allow you to change the default behaviour. These options exist to provide an easier path than skinning the template files directly.
+There are three configuration options available to allow you to change the default behaviour. These options exist to provide an easier path than skinning the template files directly.
 
 Exclude one of more AS numbers from the default list (see [this file](https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/server/bird2/filter-transit-networks.foil.php) on your own deployment of IXP Manager).
 

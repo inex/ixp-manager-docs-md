@@ -78,8 +78,6 @@ There are three steps to performing the synchronisation **for each list** which 
 
 ### CLI Interface Overview
 
-**NB:** these relate to the CLI as implemented from IXP Manager >= v4.7.
-
 1. The execution of the `artisan mailing-list:init` script which is really for new IXP Manager users (or initial set up of the mailing list feature). This script is piped the full subscribers list from Mailman (via `list_members`). This function will iterate through all users and, if they have no preference set for subscription to this list, will either add a "not subscribed" preference if their email address is not in the provided list of subscribers or a "subscribed" preference if it is.
 
 2. The execution of the `artisan mailing-list:get-subscribers` action which lists all users who are subscribed to the given mailing list based on their user preferences. This is piped to the `add_members` Mailman script.
@@ -87,8 +85,6 @@ There are three steps to performing the synchronisation **for each list** which 
 3. The execution of the `artisan mailing-list:get-subscribers --unsubscribed` action which lists all users who are unsubscribed to the given mailing list based on their user preferences. This is piped to the `remove_members` Mailman script.
 
 ### API V4 Interface Overview
-
-The API v4 implementation was added in IXP Manager v4.7. See the end of this document for the API v1 implementation in previous versions of IXP Manager.
 
 If you wish to use the API version, proceed as follows where:
 
@@ -152,37 +148,3 @@ You should now put this script into crontab on the appropriate server (same serv
 * better handling of multiple users with the same email address and documentation of same
 * user changes email address
 
-
-## API V1 Interface Overview
-
-**DEPRECATED** and only available in IXP Manager <v4.7.
-
-The CLI version of mailing list management was presented above. If you wish to use the API version, proceed as follows where:
-
-* `$MyKey` is one of your SUPERUSER API keys;
-* `https://www.example.com/ixp/` is your IXP Manager web interface;
-* `members` is an example mailing list handle as defined above in `$IXPROOT/config/mailinglists.php`.
-
-
-Use the initialisation function for new IXP Manager users (or initial set up of the mailing list feature) which updates IXP Manager with all currently subscribed mailing list members:
-
-```sh
-/path/to/mailman/bin/list_members members >/tmp/ml-listname1.txt
-curl -f --data-urlencode addresses@/tmp/ml-listname1.txt \
-    "https://www.example.com/ixp/apiv1/mailing-list/init/key/$MyKey/list/members"
-rm /tmp/ml-listname1.txt
-```
-
-Pipe all subscribed users to the `add_members` Mailman script:
-
-```sh
-curl -f "https://www.example.com/ixp/apiv1/mailing-list/get-subscribed/key/$MyKey/list/members" | \
-    /path/to/mailman/bin/add_members -r - -w n -a n members >/dev/null
-```
-
-Pipe all users who are unsubscribed to the `remove_members` Mailman script:
-
-```sh
-curl -f "https://www.example.com/ixp/apiv1/mailing-list/get-unsubscribed/key/$MyKey/list/members" | \
-    /path/to/mailman/bin/remove_members -f - -n -N members >/dev/null
-```

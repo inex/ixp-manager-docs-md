@@ -2,7 +2,7 @@
 
 [MANRS](https://www.manrs.org/) - *Mutually Agreed Norms for Routing Security* - is a global initiative, supported by the Internet Society, that provides crucial fixes to reduce the most common routing threats. ﻿
 
-IXP Manager >=v5.0 rewards networks that have joined the MANRS program by highlighting this on the customer's public and internal pages - for example:
+IXP Manager rewards networks that have joined the MANRS program by highlighting this on the customer's public and internal pages - for example:
 
 ![MANRS Example](img/manrs-google.png)
 

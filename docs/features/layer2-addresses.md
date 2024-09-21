@@ -131,7 +131,7 @@ Neither of these options are typically necessary.
 
 ## End User Access
 
-In v4.7.3 we introduced the ability for logged in users to management their own configured MAC addresses.
+Users can manage their own configured MAC addresses.
 
 This is disabled by default but can be enabled with the following `.env` settings:
 

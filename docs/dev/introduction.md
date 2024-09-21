@@ -45,7 +45,7 @@ The following is a reply to someone looking to contribute something that didn't 
 
 ## Database / ORMs
 
-As of v6.0.0, IXP Manager uses the Laravel Eloquent ORM, replacing the Doctrine ORM used in previous versions.
+IXP Manager uses the Laravel Eloquent ORM.
 
 > a) do not change the schema of any existing table. This would need to be done in IXP Manager core via Eloquent as part of a new release and should be discussed with the core developers.
 >

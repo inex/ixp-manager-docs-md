@@ -11,11 +11,6 @@ IXP Manager can generate configuration to monitor the above for you.
 
 **NB: IXP Manager will not install and configure Nagios from scratch. You need a working Nagios installation first and then IXP Manager will automate the above areas of the configuration.**
 
-## Historical Notes
-
-If you have used Nagios on IXP Manager <4.5, then how the configuration is generated has changed. The [older documentation may be available here](https://github.com/inex/IXP-Manager/wiki/Nagios). In previous versions of IXP Manager, we generated entire / monolithic Nagios configuration files. We have found in practice that this does not scale well and creates a number of limitations.
-
-IXP Manager >= v4.5 now simply creates the targets on a per VLAN and protocol basis.
 
 ## Sample Scripts
 

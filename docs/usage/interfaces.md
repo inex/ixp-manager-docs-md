@@ -145,7 +145,7 @@ Other than that, the VLAN interface add / edit form has all the same elements as
 ## Partial Port Speeds / Rate Limiters
 
 
-In cases where the IXP provides subrate connectivity, the declared port speed at an IXP may not match the port speed which is configured on the access device. Support for this scenario was included in v6.2.0:
+In cases where the IXP provides subrate connectivity, the declared port speed at an IXP may not match the port speed which is configured on the access device. In these cases, please use the rate limit feature:
 
 * New `rate_limit` column on the database as the actual request for partial port speeds is really a request to honour rate limits on ports. If there are other use cases this can still be used, the actual physical (production) effect is determined by how individual IXPs use this information in their provisioning systems / as they manually configure switches.
 * Rate Limit field when adding and editing a physical interface through the normal virtual interface overview. **NB:** this means if using the *New Interface Wizard*, you configure the physical speed and then edit the physical interface afterwards. The wizard is meant to cover the 90% scenario and we'd prefer to keep it de-cluttered.

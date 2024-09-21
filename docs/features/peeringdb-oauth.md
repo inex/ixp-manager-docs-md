@@ -1,6 +1,6 @@
 # PeeringDB - OAuth
 
-IXP Manager can authenticate users via their PeeringDB account and affiliations (from V5.2.0). This is hugely beneficial for your customers who are members of multiple IXPs which use IXP Manager - it means they only need their PeeringDB account to access their portal at each of those IXs.
+IXP Manager can authenticate users via their PeeringDB account and affiliations. This is hugely beneficial for your customers who are members of multiple IXPs which use IXP Manager - it means they only need their PeeringDB account to access their portal at each of those IXs.
 
 **NB:** this feature is not set up by default as it requires some configuration on both PeeringDB and your IXP Manager installation.
 

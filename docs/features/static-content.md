@@ -33,7 +33,7 @@ It can be accessed using a URL such as: `https://ixp.example.com/content/0/misc-
 ```php
 preg_replace( '/[^a-z0-9\-_]/', '', strtolower( $page ) )
 ```
-i.e. the file name can only contain characters from the class `[a-z0-9\-_]` and all lower case. *Prior to v4.8.0 the `strtolower()` mistakenly occurred after the `preg_replace()`.*
+i.e. the file name can only contain characters from the class `[a-z0-9\-_]` and all lower case.
 
 
 The `example.foil.php` template copied above should provide the necessary structure for you. Essentially just replace the title and the content.

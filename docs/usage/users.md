@@ -1,8 +1,5 @@
 # Users
 
-???+ note "**This page refers to IXP Manager >= v5.0**"
-    User management prior to v5.0 was handled differently - please see [this page](legacy/users.md) for the legacy usage.
-
 The IXP Manager Users feature allows you to add and manage users (people who can login to IXP Manager) on a per customer basis including:
 
 * name / email / phone number
@@ -128,6 +125,6 @@ The purpose of this is for both development and for support staff to replicate i
 
 ## Passwords and Password Hashing
 
-**As of v4.5, all passwords are stored as bcrypt with a cost >=10.**
+All passwords are stored as bcrypt with a cost >=10.
 
-As of v4.9, administrative users are unable to set a user's password. User's can set (and reset) their passwords via their *Profile* page or using the password reset functionality.
+Administrative users are unable to set a user's password. User's can set (and reset) their passwords via their *Profile* page or using the password reset functionality.

@@ -65,7 +65,7 @@ You should set these as appropriate to your IXP.
 
 ## Testing SMTP
 
-A new Artisan SMTP test utility was introduced in **IXP Manager** >v5.7.0. You can run it as follows:
+An artisan SMTP test utility can be run as follows:
 
 ```sh
 $ php artisan utils:smtp-mail-test [-v] {recipient-email}

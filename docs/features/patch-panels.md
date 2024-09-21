@@ -38,7 +38,7 @@ Your mileage may vary on this but we need to allow this flexibility to cover bot
 
 ## Adding a Patch Panel
 
-The following image shows a typical *add a new patch panel* form (as of v4.3). You'll note that clicking *Help* provides detailed context aware help messages.
+The following image shows a typical *add a new patch panel* form. You'll note that clicking *Help* provides detailed context aware help messages.
 
 ![Adding a Patch Panel](img/pp-add2.png)
 

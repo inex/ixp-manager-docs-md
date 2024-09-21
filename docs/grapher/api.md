@@ -213,7 +213,7 @@ Graph               |  Default Access Control
 
 **NB: before you read this section, please first read and be familiar with the *Accessibility of Aggregate Graphs* section above.**
 
-A number of IXPs have requested a feature to allow public access to member / customer graphs. To support this we have added the following `.env` options (beginning in v4.8) with the default value as shown:
+To allow public access to member / customer graphs, the following `.env` options with the default value as shown are available:
 
 ```
 GRAPHER_ACCESS_CUSTOMER="own_graphs_only"

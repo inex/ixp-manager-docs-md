@@ -30,7 +30,7 @@ The features of the route server configurations that IXP Manager generates inclu
 * max prefix limits;
 * multiple VLAN interfaces for a single member supported;
 * large BGP communities supported;
-* [rfc1997 passthru / interpretation](#rfc1997-passthru) switch (>= v5.2.0);
+* [rfc1997 passthru / interpretation](#rfc1997-passthru) switch;
 * nearly 15 years of production use and experience.
 
 With Bird v2 support in IXP Manager >= v5, we provide better looking glass integration and other tooling to show members which prefixes are filtered and why. 

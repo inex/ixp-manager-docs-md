@@ -18,7 +18,7 @@ Some of the features currently supported include:
 
 ## Notes in Customer Overview
 
-The following image shows the standard customer overview page (as per v4.8.0) with the *Notes* tab selected and two sample notes:
+The following image shows the standard customer overview page with the *Notes* tab selected and two sample notes:
 
 ![Customer Notes Overview](img/customer-notes-overview.png)
 

@@ -46,8 +46,6 @@ https://ixp.example.com/api/v4/test?apikey=my-api-key
 
 ## API Key Management
 
-In **IXP Manager v5.1** we introduced some new API Key management features:
-
 * You can now add an optional description to an API key. This allows you to record where the key is used for example.
 * You can set an optional expiry date for the key. The key may be used *up to* that date but not on the date. The expiry date can be added / edited  /removed when editing an API key.
 * Expired API keys are automatically deleted after one week ([via the scheduler](cronjobs.md)).

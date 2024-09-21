@@ -4,7 +4,7 @@
 
 **IXP Manager** supports template/view skinning allowing users to substitute any of their own templates in place of the default ones shipped with IXP Manager.
 
-## Skinning in Version >=v4
+## Skinning 
 
 First, set the following parameter in `.env`:
 
@@ -86,21 +86,6 @@ where the second parameter is a default option if the requested configuration se
 ```php    
 <?= config( "custom.example.key", "default" ) ?>
 ```
-
-## Skinning Old Templates (<v4.9)
-
-This is still important as **IXP Manager** v4 still uses most of the previous templates.
-
-To skin files found under `application/[modules/xxx/]views`, proceed as follows:
-
-1. set a skin name in `.env`:
-   ```
-   VIEW_SMARTY_SKIN="myskin"
-   ```
-
-2. create a directory with a matching name: `application/views/_skins/myskin`.
-
-Once the above `.env` option is set, then any pages in its skin directory (using the same directory structure as `application/views` will take precedence over the default template files. This means you do not need to recreate / copy all the default files - just replace the ones you want.
 
 ## Finding Templates
 

@@ -4,7 +4,7 @@
 
 If you are running IXP Manager behind a load balancer / proxy that terminates TLS / SSL connections, you may notice your application sometimes does not generate HTTPS links. Typically this is because your application is being forwarded traffic from your load balancer on port 80 and does not know it should generate secure links.
 
-From [v4.7.2](https://github.com/inex/IXP-Manager/releases/tag/v4.7.2), IXP Manager supports trusted proxies via [Laravel's support](https://laravel.com/docs/5.5/requests#configuring-trusted-proxies) for [fideloper/TrustedProxy](https://github.com/fideloper/TrustedProxy).
+IXP Manager supports trusted proxies via [Laravel](https://laravel.com/docs/11.x/requests#configuring-trusted-proxies).
 
 See the above links for complete documentation. To just get it working, you need to:
 

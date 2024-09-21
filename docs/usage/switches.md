@@ -193,7 +193,7 @@ When the switch port updates have been completed, it's advisable to rebuild the 
 
 ### Port Audit
 
-A new feature (adding in v4.9.0) allows **IXP Manager** administrators to audit port speeds as configured in [physical interfaces](interfaces.md#physical-interface-settings) against what has been discovered in the last SNMP run.
+**IXP Manager** administrators can audit port speeds as configured in [physical interfaces](interfaces.md#physical-interface-settings) against what has been discovered in the last SNMP run.
 
 You can run it from Artisan such as the following example:
 

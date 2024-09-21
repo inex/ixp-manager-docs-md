@@ -86,7 +86,7 @@ From the *Customer Overview* page, you will find the *Send Welcome Email...* opt
 
 To be useful, you need to [skin](../features/skinning.md) the welcome email.
 
-From IXP Manager v4.8.0 onwards, its format is Markdown and it is sent as a HTML email. The file you need to skin is (with an example of how to do it):
+Its format is Markdown and it is sent as a HTML email. The file you need to skin is (with an example of how to do it):
 
 ```
 cd ${IXPROOT}
@@ -148,8 +148,6 @@ IXP_FE_CUSTOMER_BILLING_UPDATES_NOTIFY="mail@example.com"
 This can be useful to alert your accounts / billing staff of these changes automatically.
 
 If you need multiple people notified, use an alias address encompassing all the users.
-
-*Prior to v4.8, you had to edit the `config/ixp_tools.php` configuration file and set the `billing_updates_notify` array element. If this file does not exist, create it from the suggested template: `cp config/ixp_tools.php.dist config/ixp_tools.php`.*
 
 ## Public Customer Details
 

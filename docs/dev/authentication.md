@@ -1,10 +1,10 @@
 # Authentication & Session Management (Development Notes)
 
-Please read the [authentication usage instructions first](../usage/authentication.md) as that provides some key information for understanding the below brief notes.
+Please read the [authentication usage instructions first](../usage/authentication.md) as that provides some key information for understanding the below brief notes. See also [Barry O'Donovan's PHP write up of the 2fa and user session management changes introduced in v5.3.0](https://www.barryodonovan.com/2020/02/06/2fa-and-user-session-management-in-ixp-manager).
 
 IXP Manager uses Laravel's standard authentication framework with Laravel's Eloquent ORM.
 
-See also [Barry O'Donovan's PHP write up of the 2fa and user session management changes introduced in v5.3.0](https://www.barryodonovan.com/2020/02/06/2fa-and-user-session-management-in-ixp-manager) and the [v5.2.0 to v5.3.0 diff](https://github.com/inex/IXP-Manager/compare/v5.2.0...v5.3.0). 
+
 
 ## Multiple Sessions / Remember Me Cookies
 

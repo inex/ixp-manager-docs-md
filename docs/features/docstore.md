@@ -1,7 +1,5 @@
 # Document Store
 
-???+ note "**This page refers to features introduced in IXP Manager v5.4 (general document store) and v5.6 (per-member document store).**"
-
 **IXP Manager** has two *document stores* which allow administrators to upload and manage document. The two types are:
 
 1. a *general* document store which allows administrators to make documents generally available for specific [user classes](../usage/users.md#types-of-users) (public, customer user, customer admin, superadmin). Example use cases for this are member upgrade forms, distribution of board or management minutes, etc.

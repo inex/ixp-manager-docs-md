@@ -20,8 +20,6 @@ The latest version of the automatic installation script takes care of this but o
 
 ## Contact Groups
 
-**INTRODUCED:** 20130410 - V3.0.9 (sponsored by [LONAP](http://www.lonap.net/))
-
 Contacts can be assigned to multiple arbitrary groups. A group is defined by:
 
 * a group type (e.g. *Marketing Preferences*);
@@ -105,7 +103,3 @@ The default sample configuration file (`config/contact_group.php`) and the datab
 If the role type is removed from the configuration, the form element for the contact's roles will not be shown.
 
 
-
-## Historical Perspective
-
-IXP Manager of pre-April 2013 had separate *contacts* and *users* which - at the time - we felt was quite confusing. [LONAP](http://www.lonap.net/) sponsored a rework of this in 2013 to merge the concept of users and contacts with login privileges. Strangely, this actually caused more confusion and also was a developer nightmare with hacked in code to handle the database tables in multiple places. As such, in 2019 with release v4.9, this was undone and contacts and users are now separate entities again.
