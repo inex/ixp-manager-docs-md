@@ -2348,7 +2348,7 @@ IXP_API_PEERING_DB_PASSWORD=password
 <p><img alt="PeeringDB Whois" src="../img/peeringdb-whois.png" /></p>
 <h2 id="existence-of-peeringdb-records">Existence of PeeringDB Records<a class="headerlink" href="#existence-of-peeringdb-records" title="Permanent link"></a></h2>
 <p>On the customer overview page from IXP Manager v5.0, we provide an indication (yes/no) as to whether a customer has a PeeringDB record. Generally it is important for IXPs to encourage their members to create PeeringDB entries to ensure your IXP is properly represented on their database.</p>
-<p>Whether a customer has a PeeringDB entry is updated daily via the <a href="task scheduler">cronjobs.md</a>. If you want to run it manually, run this Artisan command:</p>
+<p>Whether a customer has a PeeringDB entry is updated daily via the <a href="../cronjobs/">task scheduler</a>. If you want to run it manually, run this Artisan command:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span>ixp-manager:update-in-peeringdb<span class="w"> </span>-vv
 PeeringDB<span class="w"> </span>membership<span class="w"> </span>updated<span class="w"> </span>-<span class="w"> </span>before/after/missing:<span class="w"> </span><span class="m">92</span>/92/17
 </code></pre></div>
