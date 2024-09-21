@@ -1,5 +1,5 @@
 site_name: IXP Manager Documentation
-site_url: https://docs.ixpmanager.org
+site_url: https://docs.ixpmanager.org/
 repo_url: https://github.com/inex/IXP-Manager
 edit_uri: https://github.com/inex/ixp-manager-docs-md/edit/master/docs
 theme:
@@ -9,7 +9,13 @@ theme:
     - tabs
 extra_css:
   - stylesheets/extra.css
+plugins:
+  - git-revision-date-localized
+  - search
+  - mike
 extra:
+  version:
+    provider: mike
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/inex/IXP-Manager
@@ -22,9 +28,6 @@ extra:
     - icon: fontawesome/solid/globe
       link: https://www.ixpmanager.org/
 repo_name: GitHub
-plugins:
-  - git-revision-date-localized
-  - search
 copyright: '&copy; 2017-2023, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.'
 nav:
 - Home: 'index.md'
