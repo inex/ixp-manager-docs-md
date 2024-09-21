@@ -12,7 +12,6 @@ extra_css:
 plugins:
   - git-revision-date-localized
   - search
-  - mike
 extra:
   version:
     provider: mike
