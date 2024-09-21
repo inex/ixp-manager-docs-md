@@ -26,7 +26,7 @@ See our installation notes for these:
 1. [Routinator 3000](rpki/routinator.md).
 2. [rpki-client](rpki/rpkiclient.md).
 3. ~~[Cloudflare's RPKI Toolkit](rpki/cloudflare.md)~~ - *this has now been [deprecated](https://github.com/cloudflare/cfrpki/commit/932c7596bb6f8ce2e0dadd7930e19ddef1beab0e) and should not be used*.
-4. ~~[RIPE NCC RPKI Validator 3](rpki/ripe.md)~~ - *this has now been [deprecated](https://www.ripe.net/publications/news/ending-support-for-the-ripe-ncc-rpki-validator/) and should not be used*.
+4. ~~[RIPE NCC RPKI Validator 3](./rpki/ripe.md)~~ - *this has now been [deprecated](https://www.ripe.net/publications/news/ending-support-for-the-ripe-ncc-rpki-validator/) and should not be used*.
 
 
 ## Revalidation

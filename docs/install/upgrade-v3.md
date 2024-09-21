@@ -147,7 +147,7 @@ And apply with:
 
 ### Migrate Plaintext Passwords to Bcrypt
 
-Since v4.5, we [no longer allow plaintext passwords](../usage/users.md#password-hashing). If you were using plaintext passwords, you need to convert them to bcrypt as follows:
+Since v4.5, we [no longer allow plaintext passwords](../usage/users.md#passwords-and-password-hashing). If you were using plaintext passwords, you need to convert them to bcrypt as follows:
 
 ```sh
 cd $IXPROOT

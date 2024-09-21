@@ -103,7 +103,7 @@ The same details apply to IPv4 and IPv6 options so we will document them togethe
   * The *circle refresh* icon in the IPv4 section will generate a cryptographically secure secret in modern browsers.
   * The *square refresh* icon in the IPv6 section will copy the value from the IPv4 section.
   * Note that setting a MD5 here does not mean that all router configurations have to include it. MD5 can be disabled entirely by a [routers configuration](../features/routers.md) or by templating.
-* `Can Ping`: IXP Manager generates configuration for a number of other tools such as [Smokeping](/grapher/smokeping.md) and Nagios which ping customer routers. These are invaluable tools for problem solving, monitoring and graphing long term trends. We enable this by default unless a customer specifically asks us not to.
+* `Can Ping`: IXP Manager generates configuration for a number of other tools such as [Smokeping](../grapher/smokeping.md) and Nagios which ping customer routers. These are invaluable tools for problem solving, monitoring and graphing long term trends. We enable this by default unless a customer specifically asks us not to.
 * `Can Monitor RC BGP`: this is more of a legacy option for configuration builders that used to check for established route collector BGP sessions and warn if not present. This is deprecated and will be removed.
 
 ## Viewing / Editing an Interface

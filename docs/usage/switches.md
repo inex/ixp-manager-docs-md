@@ -36,7 +36,7 @@ In the list view above, you will also notice that there are per row / per switch
 
 ## Adding and Editing Switches
 
-From the [list view described above](#Listing-Switches), click the *plus* button in the top right to add a switch. Switches are added by SNMP poll so the first step is to provide a hostname and SNMP v2 community:
+From the [list view described above](#listing-switches), click the *plus* button in the top right to add a switch. Switches are added by SNMP poll so the first step is to provide a hostname and SNMP v2 community:
 
 ![Adding a Switch - SNMP](img/switches-add-snmp.png)
 
@@ -56,7 +56,7 @@ The important things to note about this are:
 1. Clicking the green *Help* button will show individual help / instructions for each field.
 2. The hostname and SNMP community are read only here as they were entered in the previous step and the additional details pre-filled were discovered by a SNMP poll.
 3. The name of the switch is how you want it shown in various sections of IXP Manager. We recommend using the hostname of the fully-qualified-domain-name of the switch. Regardless of what you use, please do not use periods, spaces or non-alphanumeric characters besides dashes and underscores.
-4. The vendor and model are prefilled where IXP Manager could successfully identify them based on [platform discovery - see below](#Platform-Discovery). If the vendor does not exist in the dropdown, it can be added via the *Vendors* option in the left-hand menu.
+4. The vendor and model are prefilled where IXP Manager could successfully identify them based on [platform discovery - see below](#platform-discovery). If the vendor does not exist in the dropdown, it can be added via the *Vendors* option in the left-hand menu.
 5. The elements under *Management Configuration* are not used directly by IXP Manager but can be used for orchestration and automated provisioning (as it used by INEX - [see here](https://github.com/inex/ixp-manager-provisioning)).
 6. The elements under *Layer 3 Configuration* are not used directly by IXP Manager but can be used for orchestration and automated provisioning of overlay networks such as VXLAN (as it used by INEX - [see here](https://github.com/inex/ixp-manager-provisioning)).
 
@@ -101,7 +101,7 @@ While some of these are clear from the name, we will explain each type here for 
 
 ## Automated Polling / SNMP Updates
 
-Switch and switch port information in the database can go stale very quickly. As such, IXP Manager will poll switches using SNMP every five minutes via the [task scheduler](/features/cronjobs.md). You can do it manually via the Artisan command:
+Switch and switch port information in the database can go stale very quickly. As such, IXP Manager will poll switches using SNMP every five minutes via the [task scheduler](../features/cronjobs.md). You can do it manually via the Artisan command:
 
 ```
 /srv/ixpmanager/artisan switch:snmp-poll

@@ -50,14 +50,14 @@ The general process is:
     git checkout v4.x.y
     ```
 
-4. Install latest required libraries from composer [**(see notes below)**](#updating-composer-dependancies):
+4. Install latest required libraries from composer [**(see notes below)**](#updating-composer-dependencies):
 
     ```sh
     # this assumes composer.phar is in the IXP Manager install directory. YMMV - see notes below.
     sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} && php ./composer.phar install --no-dev --prefer-dist"
     ```
 
-5. Install latest frontend dependencies [**(see notes below)**](#updating-bower-dependancies):
+5. Install latest frontend dependencies [**(see notes below)**](#updating-bower-dependencies):
 
     ```sh
     # if asked to chose a jquery version, chose the latest / highest version offered

@@ -4,7 +4,7 @@
     The **RIPE NCC RPKI Validator 3** has been [deprecated](https://www.ripe.net/publications/news/ending-support-for-the-ripe-ncc-rpki-validator/) and should not be used. 
 
 
-The **RIPE NCC RPKI Validator 3** is a [RPKI](/features/rpki.md) relying party software (aka RPKI Validator). While  RIPE's [RPKI Validator 3](https://github.com/RIPE-NCC/rpki-validator-3) is a RPKI-RTR implementation we have tested and support, we found it buggy in production (as of April 2019 it consumed increasing amounts of disk space and crashed regularly). These instructions reflect INEX's production installation from early 2019.
+The **RIPE NCC RPKI Validator 3** is a [RPKI](../rpki.md) relying party software (aka RPKI Validator). While  RIPE's [RPKI Validator 3](https://github.com/RIPE-NCC/rpki-validator-3) is a RPKI-RTR implementation we have tested and support, we found it buggy in production (as of April 2019 it consumed increasing amounts of disk space and crashed regularly). These instructions reflect INEX's production installation from early 2019.
 
 RIPE provides CentOS7 RPMs for production builds but as we tend to use Ubuntu LTS for our servers, we will describe an installation using the generic builds here. You can read RIPE's [CentOS7 installation details here](https://github.com/RIPE-NCC/rpki-validator-3/wiki/RIPE-NCC-RPKI-Validator-3-Production) and their [own generic install details here](https://github.com/RIPE-NCC/rpki-validator-3/wiki/Running-the-generic-builds) (which are the ones we worked from for these Ubuntu 18.04 LTS instructions).
 

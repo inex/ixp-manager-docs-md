@@ -70,7 +70,7 @@ The general process is:
     ```
 
 
-4. Install latest required libraries from composer [**(see notes below)**](#updating-composer-dependancies). Note that composer may be in different locations.
+4. Install latest required libraries from composer [**(see notes below)**](#updating-composer-dependencies). Note that composer may be in different locations.
 
     ```sh
     # This assumes composer is installed globally.

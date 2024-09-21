@@ -53,7 +53,7 @@ Here's a squashed screen shot just to illustrate the feature:
 
 On the customer overview page from IXP Manager v5.0, we provide an indication (yes/no) as to whether a customer has a PeeringDB record. Generally it is important for IXPs to encourage their members to create PeeringDB entries to ensure your IXP is properly represented on their database.
 
-Whether a customer has a PeeringDB entry is updated daily via the [cronjobs.md](task scheduler). If you want to run it manually, run this Artisan command:
+Whether a customer has a PeeringDB entry is updated daily via the [task scheduler](cronjobs.md). If you want to run it manually, run this Artisan command:
 
 ```sh
 $ php artisan ixp-manager:update-in-peeringdb -vv
