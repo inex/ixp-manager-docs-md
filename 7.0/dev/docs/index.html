@@ -2275,7 +2275,7 @@ python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </
 <div class="highlight"><pre><span></span><code>./venv/bin/mike<span class="w"> </span>serve
 </code></pre></div>
 <h2 id="deploying-to-live-site">Deploying to Live Site<a class="headerlink" href="#deploying-to-live-site" title="Permanent link"></a></h2>
-<p>Since September 2024, we now use documentation versioning and so you should only be pushing to the latest <em>major.minor</em> release of the dev <em>major.minor</em> version. </p>
+<p>Since September 2024, we now use <a href="https://www.barryodonovan.com/2024/09/21/adding-versioning-to-an-existing-mkdocs-site">documentation versioning</a> and so you should only be pushing to the latest <em>major.minor</em> release of the dev <em>major.minor</em> version. </p>
 <p><strong>Never deploy to historical versions!</strong></p>
 <p>As an example, as the time of writing, 6.4.x is the latest release and 7.0 is in development. We did <strong>our final</strong> push to 6.4 via:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">PATH</span><span class="o">=</span>./venv/bin:<span class="nv">$PATH</span><span class="w"> </span>./venv/bin/mike<span class="w"> </span>deploy<span class="w"> </span>--push<span class="w"> </span>--update-aliases<span class="w"> </span><span class="m">6</span>.4<span class="w"> </span>latest
