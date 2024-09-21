@@ -1458,15 +1458,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#historical-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Historical Notes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#target-selection" class="md-nav__link">
     <span class="md-ellipsis">
       Target Selection
@@ -1807,15 +1798,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#historical-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Historical Notes
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#target-selection" class="md-nav__link">
@@ -2454,15 +2436,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#historical-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Historical Notes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#target-selection" class="md-nav__link">
     <span class="md-ellipsis">
       Target Selection
@@ -2595,12 +2568,6 @@
 <p>Latency graphs are a tool for monitoring latency / packet loss to the routers of IXP partipants and they can be an invaluable asset when diagnosing many IXP issues.</p>
 <p><strong>While they should never be used as a tool for monitoring IXP latency or packet loss</strong> (as routers de-prioritise ICMP requests and/or may not have a suitably powerful management plane), they can act as an extremely useful tool for identifying and diagnosing customer / member issues. <strong>What we really look for here is recent changes over time.</strong></p>
 <p><strong>IXP Manager</strong> can configure Smokeping to monitor member routers and display those graphs in member statistic pages. Presuming it is installed.</p>
-<h2 id="historical-notes">Historical Notes<a class="headerlink" href="#historical-notes" title="Permanent link"></a></h2>
-<p>If you have used Smokeping on IXP Manager &lt;v4.5 or between v4.5 and v4.7.3, then how the configuration is generated has changed.</p>
-<ul>
-<li>In versions of IXP Manager <v4.5, we generated an entire / monolithic Smokeping configuration file. We have found in practice that this does not scale well and creates a number of limitations - especially when running more than one infrastructures. IXP Manager >= v4.5 now simply creates the targets on a per VLAN and protocol basis.</li>
-<li>In versions &gt;=v4.8, the URL endpoint has changed from that which was used in versions between v4.5 and v4.7.3. This was done as Smokeping (latency graphs) were fully integrated into Grapher.</li>
-</ul>
 <h2 id="target-selection">Target Selection<a class="headerlink" href="#target-selection" title="Permanent link"></a></h2>
 <p>This section explains the rules on how a member router (target) is selected to be included in the generated Smokeping configuration.</p>
 <p>When generating a list of targets per VLAN and protocol, the API call to IXP Manager will select all VLAN interfaces (member routers) where:</p>
@@ -2613,11 +2580,10 @@
 <p>You can use the <strong>IXP Manager</strong> API to get the Smokeping target configurations for a given VLAN and protocol using the following endpoint format (both GET and POST requests work):</p>
 <div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/grapher/config?backend=smokeping&amp;vlanid=10&amp;protocol=ipv4
 </code></pre></div>
-<p><em>Note that in versions of IXP Manager between v4.5 and v4.7.3, this was: <code>https://ixp.example.com/api/v4/vlan/smokeping/{vlanid}/{protocol}</code>.</em></p>
 <p>In the above, the parameters are:</p>
 <ul>
 <li><code>vlanid</code> is the database ID (<em>DB ID</em>) of the VLAN. You can find the DB ID in IXP Manager in the VLAN table (select <em>VLANs</em> from the left hand side menu).</li>
-<li><code>protocol</code> is either <code>ipv4</code> or <code>ipv6</code> <em>(while in versions between v4.5 and v4.7.3, these were just <code>4</code> and <code>6</code> respectfully)</em>.</li>
+<li><code>protocol</code> is either <code>ipv4</code> or <code>ipv6</code>.</li>
 </ul>
 <p>If either of these are invalid, the API will return with a HTTP 404 response.</p>
 <p>And example of a Smokeping target in the response is:</p>

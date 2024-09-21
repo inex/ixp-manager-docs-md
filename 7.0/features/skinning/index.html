@@ -1439,13 +1439,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#skinning-in-version-v4" class="md-nav__link">
+  <a href="#skinning" class="md-nav__link">
     <span class="md-ellipsis">
-      Skinning in Version &gt;=v4
+      Skinning
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Skinning in Version >=v4">
+    <nav class="md-nav" aria-label="Skinning">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1468,15 +1468,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#skinning-old-templates-v49" class="md-nav__link">
-    <span class="md-ellipsis">
-      Skinning Old Templates (&lt;v4.9)
-    </span>
-  </a>
   
 </li>
       
@@ -2225,13 +2216,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#skinning-in-version-v4" class="md-nav__link">
+  <a href="#skinning" class="md-nav__link">
     <span class="md-ellipsis">
-      Skinning in Version &gt;=v4
+      Skinning
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Skinning in Version >=v4">
+    <nav class="md-nav" aria-label="Skinning">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2254,15 +2245,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#skinning-old-templates-v49" class="md-nav__link">
-    <span class="md-ellipsis">
-      Skinning Old Templates (&lt;v4.9)
-    </span>
-  </a>
   
 </li>
       
@@ -2298,7 +2280,7 @@
 <p>Remember that v4 is a transition version of <strong>IXP Manager</strong> from Zend Framework / Smarty to Laravel and so much of the frontend / templating still uses v3 templates and code. As such, how to skin a page will depend on whether the template is found in <code>resources/views</code> (v4) or <code>application/[modules/xxx/]views</code> (v3). Both are covered here.</p>
 </blockquote>
 <p><strong>IXP Manager</strong> supports template/view skinning allowing users to substitute any of their own templates in place of the default ones shipped with IXP Manager.</p>
-<h2 id="skinning-in-version-v4">Skinning in Version &gt;=v4<a class="headerlink" href="#skinning-in-version-v4" title="Permanent link"></a></h2>
+<h2 id="skinning">Skinning<a class="headerlink" href="#skinning" title="Permanent link"></a></h2>
 <p>First, set the following parameter in <code>.env</code>:</p>
 <div class="highlight"><pre><span></span><code>VIEW_SKIN=&quot;example&quot;
 </code></pre></div>
@@ -2348,20 +2330,6 @@ vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
 <p>where the second parameter is a default option if the requested configuration setting has not been defined (which defaults to <code>null</code>). In templates, this can be accessed the same way or rendered in the template with::</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?</span><span class="o">=</span> <span class="nx">config</span><span class="p">(</span> <span class="s2">&quot;custom.example.key&quot;</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span> <span class="p">)</span> <span class="cp">?&gt;</span>
 </code></pre></div>
-<h2 id="skinning-old-templates-v49">Skinning Old Templates (&lt;v4.9)<a class="headerlink" href="#skinning-old-templates-v49" title="Permanent link"></a></h2>
-<p>This is still important as <strong>IXP Manager</strong> v4 still uses most of the previous templates.</p>
-<p>To skin files found under <code>application/[modules/xxx/]views</code>, proceed as follows:</p>
-<ol>
-<li>
-<p>set a skin name in <code>.env</code>:
-   <div class="highlight"><pre><span></span><code>VIEW_SMARTY_SKIN=&quot;myskin&quot;
-</code></pre></div></p>
-</li>
-<li>
-<p>create a directory with a matching name: <code>application/views/_skins/myskin</code>.</p>
-</li>
-</ol>
-<p>Once the above <code>.env</code> option is set, then any pages in its skin directory (using the same directory structure as <code>application/views</code> will take precedence over the default template files. This means you do not need to recreate / copy all the default files - just replace the ones you want.</p>
 <h2 id="finding-templates">Finding Templates<a class="headerlink" href="#finding-templates" title="Permanent link"></a></h2>
 <p>Usually there is one of two places to find a template:</p>
 <ul>

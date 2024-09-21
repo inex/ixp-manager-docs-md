@@ -2384,7 +2384,7 @@
 </blockquote>
 <p>The key element of the IX-F Member Export is it makes you, the individual IXP, the canonical trusted source for data about <em>your own IXP</em>. Data that has the best chance of being correct and up to date. Particularly, PeeringDB has the option of allowing network data to be updated from IX records - <a href="../peeringdb/#syncing-ixp-owned-data-to-peeringdb-customer-records">see our documentation on this here</a>.</p>
 <p>To find out more about the JSON schema and see examples, you can <a href="https://ixpdb.euro-ix.net/en/">read more here</a>, <a href="https://ixpdb.euro-ix.net/en/ixpdb/ixps/?reverse=&amp;sort=name&amp;q=&amp;api=on">explore many of the public IXP end points available here</a> or see the GitHub <a href="https://github.com/euro-ix/json-schemas">euro-ix/json-schemas</a> repository.</p>
-<p><strong>IXP Manager</strong> supports the IX-F Member List Export out of the box. It previously supported all versions from 0.3 to 0.5 but we now only support 0.6, 0.7 and 1.0 (for &gt;=v5.1). We plan to deprecate support for 0.6 during 2019.</p>
+<p><strong>IXP Manager</strong> supports versions 0.6, 0.7 and 1.0 of the IX-F Member List Export.</p>
 <p><em>Sometimes you may need something more customized than the the IX-F Member Export. For that, see <a href="../member-export/">the other member export feature</a> if IXP Manager.</em></p>
 <h2 id="preparing-the-ix-f-member-export">Preparing the IX-F Member Export<a class="headerlink" href="#preparing-the-ix-f-member-export" title="Permanent link"></a></h2>
 <p>There are a small number of things you should do to ensure your IX-F export is correct.</p>
@@ -2392,8 +2392,7 @@
 <p>The first is to ensure you have correctly set the PeeringDB ID and IX-F ID in your infrastructure (see <em>Infrastructures</em> under the left hand side <em>IXP ADMIN ACTIONS</em> menu).</p>
 <p>The IX-F ID is mandatory. You will find yours by searching <a href="https://ixpdb.euro-ix.net/en/ixpdb/providers/">the IX-F providers database here</a>. If you are a new IXP that is not registered here, please email your IXP's: full name, short name, city / region / country, GPS coordinates and website URL to <code>ixpdb-admin (at) euro-ix (dot) net</code> so they can register it in the IXPDB.</p>
 <p><strong>Create Network Info</strong></p>
-<p>From <strong>IXP Manager</strong> v4.9 and above, click <em>VLANs</em> on the left-hand-side menu and then chose <em>Network Information</em>. Once there, add the network address and network mask length for IPv4 and IPv6 for your peering LAN(s).</p>
-<p>Prior to v4.9, this was a little hacky: there is a database table called <code>networkinfo</code> that requires you to manually insert some detail on your peering LAN.</p>
+<p>Click <em>VLANs</em> on the left-hand-side menu and then chose <em>Network Information</em>. Once there, add the network address and network mask length for IPv4 and IPv6 for your peering LAN(s).</p>
 <p>The first thing you need is the peering VLAN DB ID. <em>[clarification note: this is nothing to do with PeeringDB but the VLAN created within IXP Manager].</em> For this, select <em>VLANs</em> under the left hand side <em>IXP ADMIN ACTIONS</em> menu in IXP Manager. Locate your peering VLAN <em>DB ID</em> and note it.</p>
 <p>For our example, we will use the following sample data:</p>
 <ul>
@@ -2495,7 +2494,7 @@
 <p>Note that the publicly accessible version does not include individual member details such as name, max prefixes, contact email and phone, when the member joined, member's web address, peering policy, NOC website, NOC hours or member type. This information is available to any logged in users or users querying <a href="../api/">the API with an API key</a>.</p>
 <h3 id="access-without-ix-f-id-being-set">Access Without IX-F ID Being Set<a class="headerlink" href="#access-without-ix-f-id-being-set" title="Permanent link"></a></h3>
 <p>While the IX-F ID is officially required for &gt;= v0.7 of the schema, it may be overlooked on new installations or some IXPs may be uninterested in working with the IX-F IXP database.</p>
-<p>The schema requirement for a valid IX-F ID should not prevent the IX-F exporter from working if someone wishes to pull the information regardless of that being set. There are two ways to override this and query the API available from IXP Manager v5.7.0:</p>
+<p>The schema requirement for a valid IX-F ID should not prevent the IX-F exporter from working if someone wishes to pull the information regardless of that being set. There are two ways to override this and query the API:</p>
 <p>The first is to pass an <code>ixfid_y</code> parameter (where <code>y</code> is the database ID of the infrastructure) <strong>every</strong> infrastructure that does not have one. Using this method will have IXP Manager set the IX-F ID in the generated JSON output suitable for processing by automated scripts. A sample URL for an IXP with two infrastructures might look like this:</p>
 <div class="highlight"><pre><span></span><code>https://ixpmanager.example.com/api/v4/member-export/ixf/1.0?ixfid_1=30&amp;ixfid_2=31
 </code></pre></div>
@@ -2539,7 +2538,7 @@
 <li>The maximum outgoing transfer rate in bytes per second for the current interval.</li>
 </ol>
 <h3 id="excluding-some-data">Excluding Some Data<a class="headerlink" href="#excluding-some-data" title="Permanent link"></a></h3>
-<p>It is possible to exclude some data from v6.0.1 per <a href="https://github.com/inex/IXP-Manager/issues/722">GitHub issue #722</a>:</p>
+<p>It is possible to exclude some data per <a href="https://github.com/inex/IXP-Manager/issues/722">GitHub issue #722</a>:</p>
 <blockquote>
 <p>While some exchanges are willing to share detailed information about their infrastructure via the IX-F Member Export Schema, others either do not want to or cannot due to regulation. Enabling exchanges to share a limited set of data about their infrastructure would help exchanges find others using the same platforms to learn from each other and shows the diversity of platforms in use across the market.</p>
 </blockquote>

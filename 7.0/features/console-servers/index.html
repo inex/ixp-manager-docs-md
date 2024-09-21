@@ -856,17 +856,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Console Servers
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -876,34 +865,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#improvements-from-v480" class="md-nav__link">
-    <span class="md-ellipsis">
-      Improvements from v4.8.0
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -2176,23 +2137,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#improvements-from-v480" class="md-nav__link">
-    <span class="md-ellipsis">
-      Improvements from v4.8.0
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -2212,9 +2156,7 @@
 <h1 id="console-servers">Console Servers<a class="headerlink" href="#console-servers" title="Permanent link"></a></h1>
 <p>An IXP would typically have out of band access (for emergencies, firmware upgrades, etc) to critical infrastructure devices by means of a console server.</p>
 <p><strong>IXP Manager</strong> has <em>Console Servers</em> and <em>Console Server Connections</em> menu options to allow IXP administrators add / edit / delete / list console server devices and, for any such device, record what console server port is connected to what device (as well as connection characteristics such as baud rate).</p>
-<p>From <strong>IXP Manager v4.8.0</strong> onwards, each of these pages has a notes field which supports markdown to allow you to include sample connection sessions to devices. This is especially useful for rarely used console connections to awkward devices.</p>
-<h2 id="improvements-from-v480">Improvements from v4.8.0<a class="headerlink" href="#improvements-from-v480" title="Permanent link"></a></h2>
-<p>One of the new features of v4.8.0 is fixing the switch database table which until now could hold switches and console servers. This was awkward in practice and we have split these into distinct database tables and menu options.</p>
+<p>Each of these pages has a notes field which supports markdown to allow you to include sample connection sessions to devices. This is especially useful for rarely used console connections to awkward devices.</p>
 
 
 

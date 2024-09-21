@@ -2286,7 +2286,7 @@ IDENTITY_EMAIL=&quot;ixp@example.com&quot;
 <p>Where <code>${IDENTITY_LEGALNAME}</code> means use the value as configured in the <code>IDENTITY_LEGALNAME</code> <code>.env</code> parameter.</p>
 <p>You should set these as appropriate to your IXP.</p>
 <h2 id="testing-smtp">Testing SMTP<a class="headerlink" href="#testing-smtp" title="Permanent link"></a></h2>
-<p>A new Artisan SMTP test utility was introduced in <strong>IXP Manager</strong> &gt;v5.7.0. You can run it as follows:</p>
+<p>An artisan SMTP test utility can be run as follows:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span>utils:smtp-mail-test<span class="w"> </span><span class="o">[</span>-v<span class="o">]</span><span class="w"> </span><span class="o">{</span>recipient-email<span class="o">}</span>
 </code></pre></div>
 <p>A example of a working test run looks like this:</p>

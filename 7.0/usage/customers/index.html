@@ -2483,7 +2483,7 @@
 <p>From the <em>Customer Overview</em> page, you will find the <em>Send Welcome Email...</em> option under the tools menu on the top right hand corner of the page:</p>
 <p><img alt="Welcome Email" src="../img/customer-welcome-email.png" /></p>
 <p>To be useful, you need to <a href="../../features/skinning/">skin</a> the welcome email.</p>
-<p>From IXP Manager v4.8.0 onwards, its format is Markdown and it is sent as a HTML email. The file you need to skin is (with an example of how to do it):</p>
+<p>Its format is Markdown and it is sent as a HTML email. The file you need to skin is (with an example of how to do it):</p>
 <div class="highlight"><pre><span></span><code>cd ${IXPROOT}
 mkdir -p resources/skins/example/customer/emails
 cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/customer/emails/
@@ -2517,7 +2517,6 @@ cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/
 </code></pre></div>
 <p>This can be useful to alert your accounts / billing staff of these changes automatically.</p>
 <p>If you need multiple people notified, use an alias address encompassing all the users.</p>
-<p><em>Prior to v4.8, you had to edit the <code>config/ixp_tools.php</code> configuration file and set the <code>billing_updates_notify</code> array element. If this file does not exist, create it from the suggested template: <code>cp config/ixp_tools.php.dist config/ixp_tools.php</code>.</em></p>
 <h2 id="public-customer-details">Public Customer Details<a class="headerlink" href="#public-customer-details" title="Permanent link"></a></h2>
 <p><strong>IXP Manager</strong> makes customer/member details available publicly (without login) through the <em>Member Information</em> menu item. To disable this, set the following in your <code>.env</code>:</p>
 <div class="highlight"><pre><span></span><code>IXP_FE_CUSTOMER_DETAILS_PUBLIC=false

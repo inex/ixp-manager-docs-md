@@ -1208,15 +1208,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#historical-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Historical Notes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#sample-scripts" class="md-nav__link">
     <span class="md-ellipsis">
       Sample Scripts
@@ -2297,15 +2288,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#historical-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Historical Notes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#sample-scripts" class="md-nav__link">
     <span class="md-ellipsis">
       Sample Scripts
@@ -2447,9 +2429,6 @@
 </ul>
 <p>IXP Manager can generate configuration to monitor the above for you.</p>
 <p><strong>NB: IXP Manager will not install and configure Nagios from scratch. You need a working Nagios installation first and then IXP Manager will automate the above areas of the configuration.</strong></p>
-<h2 id="historical-notes">Historical Notes<a class="headerlink" href="#historical-notes" title="Permanent link"></a></h2>
-<p>If you have used Nagios on IXP Manager &lt;4.5, then how the configuration is generated has changed. The <a href="https://github.com/inex/IXP-Manager/wiki/Nagios">older documentation may be available here</a>. In previous versions of IXP Manager, we generated entire / monolithic Nagios configuration files. We have found in practice that this does not scale well and creates a number of limitations.</p>
-<p>IXP Manager &gt;= v4.5 now simply creates the targets on a per VLAN and protocol basis.</p>
 <h2 id="sample-scripts">Sample Scripts<a class="headerlink" href="#sample-scripts" title="Permanent link"></a></h2>
 <p>You will find sample scripts for pulling Nagios configuration from IXP Manager and reloading Nagios at:</p>
 <p>https://github.com/inex/IXP-Manager/tree/master/tools/runtime/nagios</p>

@@ -2387,7 +2387,7 @@ curl<span class="w"> </span>--fail<span class="w"> </span>-s<span class="w"> </s
 <h2 id="router-pairing-and-locking">Router Pairing and Locking<a class="headerlink" href="#router-pairing-and-locking" title="Permanent link"></a></h2>
 <details class="info" open="open">
 <summary>Info</summary>
-<p>Pairing, locking and the more advanced update scripts were introduced with IXP Manager v6.4.0, and there is also a tutorial video <a href="https://github.com/inex/IXP-Manager/releases/tag/v6.4.0">linked from the release notes</a>.</p>
+<p>There is also a tutorial video <a href="https://youtu.be/k12TzsNQwLI">available on YouTube here</a>.</p>
 </details>
 <p>For IXPs, route servers are considered a critical production service and most IXPs deploy them in redundant pairs. This is usually implemented with dedicated hardware (servers with dual PSU, hardware RAID, and out-of-band management access) deployed in different points of presence.</p>
 <p>When it comes to updating the configuration of these, the older scripts provided by IXP Manager suggested that this be done about four times per day with the timing of the cronjob set so that there is an offset so that each server will not update at the same time. The hope was that if there was an issue, only one server of the resilient pair would be affected, and engineers would have time to react and prevent updates on the other working server. Some IXPs added additional logic to the scripts to check if the other server was functional before performing a reconfiguration, but this was often limited to pings and a simple check to see if Bird was running.</p>
@@ -2499,7 +2499,7 @@ BIRDBIN=&quot;/usr/sbin/bird&quot;
 </ul>
 <h2 id="filtering-known-transit-networks">Filtering Known Transit Networks<a class="headerlink" href="#filtering-known-transit-networks" title="Permanent link"></a></h2>
 <p>We filter known transit networks as discussed here: <a href="https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/">https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/</a>.</p>
-<p>There are three configuration options available (&gt;v6.1.0) to allow you to change the default behaviour. These options exist to provide an easier path than skinning the template files directly.</p>
+<p>There are three configuration options available to allow you to change the default behaviour. These options exist to provide an easier path than skinning the template files directly.</p>
 <p>Exclude one of more AS numbers from the default list (see <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/server/bird2/filter-transit-networks.foil.php">this file</a> on your own deployment of IXP Manager).</p>
 <p><strong>(1) Exclude Specific ASNs:</strong></p>
 <p>If you just want to exclude one or more ASNs from the default list, then using comma separation, set the following in your <code>.env</code> file:</p>

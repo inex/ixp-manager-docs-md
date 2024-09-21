@@ -2268,7 +2268,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>resources/skins/example/c
 <li><code>{page}</code> is the name of the file to load (less <code>.foil.php</code>) and <strong>please be aware that this is normalised as follows:</strong>
 <div class="highlight"><pre><span></span><code><span class="x">preg_replace( &#39;/[^a-z0-9\-_]/&#39;, &#39;&#39;, strtolower( $page ) )</span>
 </code></pre></div>
-i.e. the file name can only contain characters from the class <code>[a-z0-9\-_]</code> and all lower case. <em>Prior to v4.8.0 the <code>strtolower()</code> mistakenly occurred after the <code>preg_replace()</code>.</em></li>
+i.e. the file name can only contain characters from the class <code>[a-z0-9\-_]</code> and all lower case.</li>
 </ul>
 <p>The <code>example.foil.php</code> template copied above should provide the necessary structure for you. Essentially just replace the title and the content.</p>
 <p>For publicly accessible documents, there is an alias route:</p>

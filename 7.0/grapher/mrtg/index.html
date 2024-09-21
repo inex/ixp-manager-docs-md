@@ -2505,11 +2505,11 @@ update-rc.d mrtg defaults
 <p>Generally speaking, you should not customize the way IXP Manager generates MRTG configuration as the naming conventions are tightly coupled to how IXP Manager fetches the graphs. However, if there are bits of the MRTG configuration you need to alter, you can do it via <a href="../../features/skinning/">skinning</a>. <em>The skinning documentation actually uses MRTG as an example.</em></p>
 <h2 id="inserting-traffic-data-into-the-database-reporting-emails">Inserting Traffic Data Into the Database / Reporting Emails<a class="headerlink" href="#inserting-traffic-data-into-the-database-reporting-emails" title="Permanent link"></a></h2>
 <p>The MRTG backend inserts daily summaries into MySQL for reporting. See the <code>traffic_daily</code> and <code>traffic_daily_phys_ints</code> database tables for this. Essentially, there is a row per day per customer in the first and a row per physical interface in the second for traffic types <em>bits, discards, errors, broadcasts and packets</em>. Each row has a daily, weekly, monthly and yearly value for average, max and total.</p>
-<p>From IXP Manager &gt;= v5.0, the <a href="../../features/cronjobs/">task scheduler</a> handles collecting and storing <em>yesterday's</em> data. If you are using an older version, create a cron job such as:</p>
+<p>The <a href="../../features/cronjobs/">task scheduler</a> handles collecting and storing <em>yesterday's</em> data. If you are using an older version, create a cron job such as:</p>
 <div class="highlight"><pre><span></span><code>0 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-stats-to-db
 5 2   * * *   www-data        /srv/ixpmanager/artisan grapher:upload-pi-stats-to-db
 </code></pre></div>
-<p>In the IXP Manager application, the <code>traffic_daily</code> data powers the <em>League Table</em> function and the <code>traffic_daily_phys_int</code> data powers the <em>Utilisation</em> (since v5.5.0) function - both on the left hand menu.</p>
+<p>In the IXP Manager application, the <code>traffic_daily</code> data powers the <em>League Table</em> function and the <code>traffic_daily_phys_int</code> data powers the <em>Utilisation</em> function - both on the left hand menu.</p>
 <p>This data is also used to send email reports / notifications of various traffic events. A sample crontab for this would look like the following:</p>
 <div class="highlight"><pre><span></span><code>0 4   * * *   www-data        /srv/ixpmanager/artisan grapher:email-traffic-deltas    \
                                 --stddev=1.5 -v user1@example.com,user2@example.com
@@ -2532,7 +2532,7 @@ update-rc.d mrtg defaults
 </ol>
 <p>This generated emails are HTML formatted with embedded graph images.</p>
 <h2 id="port-utilisation">Port Utilisation<a class="headerlink" href="#port-utilisation" title="Permanent link"></a></h2>
-<p>In IXP Manager v5.5.0, we introduced a port utilisation reporting function into IXP Manager's frontend UI. You will find it in the <em>IXP STATISTICS</em>  section of the left hand side menu.</p>
+<p>There exists a port utilisation reporting function into IXP Manager's frontend UI. You will find it in the <em>IXP STATISTICS</em>  section of the left hand side menu.</p>
 <p>The purpose of this tool is to easily identify ports that are nearing or exceeding 80% utilisation. In its default configuration, IXP Manager will iterate over all the physical interface (switch ports) MRTG log files for every member and insert that information into the database at 02:10 (AM).</p>
 <p>In the UI, when you select a specific date and period (day/week/month/year), you are shown the maximum port utilisation (in and out) for the given period up to 02:10 on that day.</p>
 <p>This feature was introduced in March 2020 during the Coronavirus outbreak. After observing as much as 50% routine traffic increases across IXPs in areas under lock down, we needed a tool that would allow us to rapidly and easily view port utilisations across all members rather than looking at member graphs individually.</p>

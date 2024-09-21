@@ -2324,9 +2324,6 @@
 
 
 <h1 id="authentication-session-management">Authentication &amp; Session Management<a class="headerlink" href="#authentication-session-management" title="Permanent link"></a></h1>
-<details class="note" open="open">
-<summary><strong>This page refers to features introduced in IXP Manager v5.3</strong></summary>
-</details>
 <h2 id="session-management">Session Management<a class="headerlink" href="#session-management" title="Permanent link"></a></h2>
 <p>IXP Manager allows users to login and remain logged in for up to 30 days (by default). Users may also have and maintain multiple login sessions from different browsers.</p>
 <p>To enable such a long-lived session, the user must check the <em>Remember me</em> checkbox when logging in.</p>
@@ -2347,7 +2344,7 @@
 <p><strong>For the avoidance of doubt, 2fa does not apply to API keys or API requests. Treat your API keys with extreme care.</strong></p>
 <p><strong>IXP Manager</strong> supports a Google Authenticator compatible HMAC-Based One-time Password (HOTP) algorithm as specified in <a href="https://tools.ietf.org/html/rfc4226">RFC 4226</a> and the Time-based One-time Password (TOTP) algorithm specified in <a href="https://tools.ietf.org/html/rfc6238">RFC 6238</a>. In other words, <em>the standard</em> 2fa system that is supported by most apps such as <a href="https://www.authy.com/">Authy</a>, Google Authenticator, <a href="https://lastpass.com/auth/">LastPass</a>, <a href="https://1password.com/">1Password</a>, etc.</p>
 <p>User's can enable, view (and test) and disable 2fa via the <em>My Account -&gt; Profile</em> page.</p>
-<p>2FA support in IXP Manager is enabled by default from v5.3. To globally disable it set the following <code>.env</code> option:</p>
+<p>2FA support in IXP Manager is enabled by default. To globally disable it set the following <code>.env</code> option:</p>
 <div class="highlight"><pre><span></span><code>2FA_ENABLED=false
 </code></pre></div>
 <h3 id="enforcing-2fa-for-users">Enforcing 2FA for Users<a class="headerlink" href="#enforcing-2fa-for-users" title="Permanent link"></a></h3>

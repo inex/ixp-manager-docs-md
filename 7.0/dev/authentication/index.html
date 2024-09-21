@@ -2306,9 +2306,8 @@
 
 
 <h1 id="authentication-session-management-development-notes">Authentication &amp; Session Management (Development Notes)<a class="headerlink" href="#authentication-session-management-development-notes" title="Permanent link"></a></h1>
-<p>Please read the <a href="../../usage/authentication/">authentication usage instructions first</a> as that provides some key information for understanding the below brief notes.</p>
+<p>Please read the <a href="../../usage/authentication/">authentication usage instructions first</a> as that provides some key information for understanding the below brief notes. See also <a href="https://www.barryodonovan.com/2020/02/06/2fa-and-user-session-management-in-ixp-manager">Barry O'Donovan's PHP write up of the 2fa and user session management changes introduced in v5.3.0</a>.</p>
 <p>IXP Manager uses Laravel's standard authentication framework with Laravel's Eloquent ORM.</p>
-<p>See also <a href="https://www.barryodonovan.com/2020/02/06/2fa-and-user-session-management-in-ixp-manager">Barry O'Donovan's PHP write up of the 2fa and user session management changes introduced in v5.3.0</a> and the <a href="https://github.com/inex/IXP-Manager/compare/v5.2.0...v5.3.0">v5.2.0 to v5.3.0 diff</a>. </p>
 <h2 id="multiple-sessions-remember-me-cookies">Multiple Sessions / Remember Me Cookies<a class="headerlink" href="#multiple-sessions-remember-me-cookies" title="Permanent link"></a></h2>
 <p>The default Laravel functionality around <em>remember me</em> is a single shared token across multiple devices. In practice this never worked well for us (but this is most likely a consequence of using LaravelDoctrine). Regardless, we also wanted to expand the functionality to uniquely identify each session and allow other sessions to be logged out by the user.</p>
 <h3 id="sessionguard-and-userprovider">SessionGuard and UserProvider<a class="headerlink" href="#sessionguard-and-userprovider" title="Permanent link"></a></h3>

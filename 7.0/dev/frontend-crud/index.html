@@ -2462,8 +2462,7 @@
 
 
 <h1 id="frontend-crud">Frontend CRUD<a class="headerlink" href="#frontend-crud" title="Permanent link"></a></h1>
-<p><strong>IXP Manager</strong>, like many applications, has a lot of tables that need basic CRUD access: <strong>C</strong>eate, <strong>R</strong>ead, <strong>U</strong>pdate and <strong>D</strong>elete (plus list and view). In older versions of <strong>IXP Manager</strong> (and as yet unupdated code), we used <a href="https://github.com/opensolutions/OSS-Framework/wiki/Doctrine2-Frontend">this Zend Framework trait</a> to allow us to repidly deploy CRUD interfaces.</p>
-<p>For <strong>IXP Manager</strong> &gt;= v4.7, we have duplicated (and improved) this to create a scaffolding framework in Laravel. This page documents that class.</p>
+<p><strong>IXP Manager</strong>, like many applications, has a lot of tables that need basic CRUD access: <strong>C</strong>eate, <strong>R</strong>ead, <strong>U</strong>pdate and <strong>D</strong>elete (plus list and view). In <strong>IXP Manager</strong> we have created a scaffolding framework in Laravel to allow us to repidly deploy CRUD interfaces.</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h2>
 <p>In any controller using extending the <code>Doctrine2Frontend</code> class, a <code>_feInit()</code> method is required which configures the controller and, for example, allows you to set what is displayed for different levels of user privileges.</p>
 <p>The primary purpose of this function is to define the anonymous object <code>_feParams</code> (using an object ensures that the view gets a reference to the object and not a copy of a static array at a point in time):</p>
