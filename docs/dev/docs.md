@@ -39,11 +39,45 @@ You can *serve* them locally with the following and then access them via http://
 ./venv/bin/mkdocs serve
 ```
 
-To automatically deploy to GitHub and make live:
+Or to see the full versioning site, use:
 
 ```sh
-./venv/bin/mkdocs gh-deploy
+./venv/bin/mike serve
 ```
+
+## Deploying to Live Site
+
+Since September 2024, we now use documentation versioning and so you should only be pushing to the latest *major.minor* release of the dev *major.minor* version. 
+
+**Never deploy to historical versions!**
+
+As an example, as the time of writing, 6.4.x is the latest release and 7.0 is in development. We did **our final** push to 6.4 via:
+
+```sh
+PATH=./venv/bin:$PATH ./venv/bin/mike deploy --push --update-aliases 6.4 latest
+```
+
+And all new documentation will be pushed to dev via:
+
+```sh
+PATH=./venv/bin:$PATH ./venv/bin/mike deploy --push --update-aliases 7.0 dev
+```
+
+Once 7.0 is released, we will push a final update to 7.0 updating it to latest:
+
+```sh
+PATH=./venv/bin:$PATH ./venv/bin/mike deploy --push --update-aliases 7.0 latest
+```
+
+And all new documentation will be pushed to dev via:
+
+```sh
+PATH=./venv/bin:$PATH ./venv/bin/mike deploy --push --update-aliases 7.1 dev
+```
+
+> Note that `PATH=./venv/bin:$PATH` is used as `mike` in turn calls `mkdocs` which is in this path.
+
+
 
 You must be an authorised user for this but we **welcome pull requests against the documentation repository!**
 
@@ -55,8 +89,3 @@ git commit -am "your commit message"
 git push
 ```
 
-There is a simple script in the documentation root directory that combiles these deploy and commit steps:
-
-```sh
-./build-deploy-push.sh "your commit message"
-```
