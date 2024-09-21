@@ -6,7 +6,7 @@ IXP Manager >=v5.0 rewards networks that have joined the MANRS program by highli
 
 ![MANRS Example](img/manrs-google.png)
 
-This information is updated daily via the [cronjobs.md](task scheduler). If you want to run it manually, run this Artisan command:
+This information is updated daily via the [task scheduler](cronjobs.md). If you want to run it manually, run this Artisan command:
 
 ```sh
 $ php artisan ixp-manager:update-in-manrs -vv
