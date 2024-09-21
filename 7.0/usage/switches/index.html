@@ -2473,7 +2473,7 @@
 </li>
 </ol>
 <h2 id="adding-and-editing-switches">Adding and Editing Switches<a class="headerlink" href="#adding-and-editing-switches" title="Permanent link"></a></h2>
-<p>From the <a href="#Listing-Switches">list view described above</a>, click the <em>plus</em> button in the top right to add a switch. Switches are added by SNMP poll so the first step is to provide a hostname and SNMP v2 community:</p>
+<p>From the <a href="#listing-switches">list view described above</a>, click the <em>plus</em> button in the top right to add a switch. Switches are added by SNMP poll so the first step is to provide a hostname and SNMP v2 community:</p>
 <p><img alt="Adding a Switch - SNMP" src="../img/switches-add-snmp.png" /></p>
 <p>The switch must respond to SNMP queries from the server on which IXP Manager is installed. This can be testing on the command line as follows:</p>
 <div class="highlight"><pre><span></span><code>root@ixpmanager:~#<span class="w"> </span>snmpget<span class="w"> </span>-c<span class="w"> </span>yourcommunity<span class="w"> </span>-v<span class="w"> </span>2c<span class="w"> </span>switch01.mgmt.example.com<span class="w"> </span>.1.3.6.1.2.1.1.1.0
@@ -2486,7 +2486,7 @@ iso.3.6.1.2.1.1.1.0<span class="w"> </span><span class="o">=</span><span class="
 <li>Clicking the green <em>Help</em> button will show individual help / instructions for each field.</li>
 <li>The hostname and SNMP community are read only here as they were entered in the previous step and the additional details pre-filled were discovered by a SNMP poll.</li>
 <li>The name of the switch is how you want it shown in various sections of IXP Manager. We recommend using the hostname of the fully-qualified-domain-name of the switch. Regardless of what you use, please do not use periods, spaces or non-alphanumeric characters besides dashes and underscores.</li>
-<li>The vendor and model are prefilled where IXP Manager could successfully identify them based on <a href="#Platform-Discovery">platform discovery - see below</a>. If the vendor does not exist in the dropdown, it can be added via the <em>Vendors</em> option in the left-hand menu.</li>
+<li>The vendor and model are prefilled where IXP Manager could successfully identify them based on <a href="#platform-discovery">platform discovery - see below</a>. If the vendor does not exist in the dropdown, it can be added via the <em>Vendors</em> option in the left-hand menu.</li>
 <li>The elements under <em>Management Configuration</em> are not used directly by IXP Manager but can be used for orchestration and automated provisioning (as it used by INEX - <a href="https://github.com/inex/ixp-manager-provisioning">see here</a>).</li>
 <li>The elements under <em>Layer 3 Configuration</em> are not used directly by IXP Manager but can be used for orchestration and automated provisioning of overlay networks such as VXLAN (as it used by INEX - <a href="https://github.com/inex/ixp-manager-provisioning">see here</a>).</li>
 </ol>
