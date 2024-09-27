@@ -1877,18 +1877,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#test-database-notes" class="md-nav__link">
+  <a href="#test-database-users-passwords-and-api-keys" class="md-nav__link">
     <span class="md-ellipsis">
-      Test Database Notes
+      Test Database - Users, Passwords and API Keys
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-tests" class="md-nav__link">
+  <a href="#running-unit-tests" class="md-nav__link">
     <span class="md-ellipsis">
-      Running Tests
+      Running Unit Tests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-psalm-static-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Psalm Static Code Analysis
     </span>
   </a>
   
@@ -2228,18 +2237,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#test-database-notes" class="md-nav__link">
+  <a href="#test-database-users-passwords-and-api-keys" class="md-nav__link">
     <span class="md-ellipsis">
-      Test Database Notes
+      Test Database - Users, Passwords and API Keys
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-tests" class="md-nav__link">
+  <a href="#running-unit-tests" class="md-nav__link">
     <span class="md-ellipsis">
-      Running Tests
+      Running Unit Tests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-psalm-static-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Psalm Static Code Analysis
     </span>
   </a>
   
@@ -2264,7 +2282,7 @@
 
 
 <h1 id="continuous-integration">Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permanent link"></a></h1>
-<p>IXP Manager grew out of a code base and schema that started in the early '90s. Long before <a href="http://phpunit.de/">test driven development</a> or <a href="http://behat.org/">behaviour driven development</a> was fashionable for PHP. However, as IXP Manager is taking over more and more critical configuration tasks, we continue to back fill some automated testing with continuous integration for critical elements.</p>
+<p>IXP Manager grew out of a code base and schema that started in the early '90s. Long before <a href="http://phpunit.de/">test driven development</a> or <a href="http://behat.org/">behaviour driven development</a> was fashionable for PHP. However, as IXP Manager is taking over more and more critical configuration tasks, we continue to back fill automated testing with continuous integration.</p>
 <p>We use <a href="https://github.com/features/actions">GitHub Actions</a> for continuous integration which is provided free for public repositories.</p>
 <p>Our current build status is: <a href="https://github.com/inex/IXP-Manager/actions"><img alt="Build Status" src="https://github.com/inex/IXP-Manager/actions/workflows/ci-ex-dusk.yml/badge.svg" /></a></p>
 <p>The CI system runs the full suite of tests every time a commit is pushed to GitHub. As such, any <em>build failing</em> states are usually transitory. <strong>Official IXP Manager releases are only made when all tests pass.</strong></p>
@@ -2273,8 +2291,9 @@
 <li><a href="http://phpunit.de/">PHP Unit</a> for standard unit tests;</li>
 <li><a href="https://laravel.com/docs/5.6/dusk">Laravel Dusk</a> for browser based tests.</li>
 </ol>
-<p>We won't be aggressively writing tests for the existing codebase but will add tests as appropriate as we continue development. What follows is some basic instructions on how to set up tests and an overview (or links) to some of the tests we have implemented.</p>
-<p><strong>DISCLAIMER:</strong> This is not a tutorial on unit testing, phpunit, Laravel Dusk or anything else. If you have no experience with these tools, please read up on them elsewhere first.</p>
+<p>We also use <a href="https://psalm.dev/">Psalm</a> for static code analysis.</p>
+<p>The following are basic instructions on how to set up tests and an overview (or links) to some of the tests we have implemented.</p>
+<p><strong>DISCLAIMER:</strong> This is not a tutorial on unit testing, phpunit, Laravel Dusk, Psalm or anything else. If you have no experience with these tools, please read up on them elsewhere first.</p>
 <h2 id="setting-up-phpunit-tests">Setting Up PHPUnit Tests<a class="headerlink" href="#setting-up-phpunit-tests" title="Permanent link"></a></h2>
 <p>Documentation by real example can be found via the <a href="https://github.com/inex/IXP-Manager/tree/master/.github/workflows">GitHub Actions workflow files</a> and <a href="https://github.com/inex/IXP-Manager/tree/master/data/ci">the CI data directory</a> which contains scripts, database dumps and configurations.</p>
 <p>Testing assumes <em>a known good sample database</em> which contains a small mix of customers with different configuration options. The files generated from this database are tested against <a href="https://github.com/inex/IXP-Manager/tree/master/data/ci/known-good">known good</a> configuration files. You first need to create a database, add a database user, import this testing database and then configure a <code>.env</code> file for testing (see <a href="https://github.com/inex/IXP-Manager/blob/master/.env.ci">the one here use here</a>).</p>
@@ -2284,7 +2303,7 @@
 <span class="k">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
 </code></pre></div>
 <p>Then import the sample database:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>data/ci/ci_test_db.sql.bz2<span class="w">  </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-u<span class="w"> </span>ixp_ci<span class="w"> </span>-psomepassword<span class="w"> </span>ixp_ci
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>data/ci/ci_test_db.sql<span class="w">  </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-u<span class="w"> </span>ixp_ci<span class="w"> </span>-psomepassword<span class="w"> </span>ixp_ci
 </code></pre></div>
 <p>Now, create your <code>.env</code> for testing, such as:</p>
 <div class="highlight"><pre><span></span><code><span class="na">DB_HOST</span><span class="o">=</span><span class="s">localhost</span>
@@ -2301,13 +2320,50 @@
 composer<span class="w"> </span>install<span class="w"> </span>--dev
 </code></pre></div>
 <p>You need to set the <code>APP_URL</code> environment variable in your <code>.env file</code>. This value should match the URL you use to access your application in a browser.</p>
-<h2 id="test-database-notes">Test Database Notes<a class="headerlink" href="#test-database-notes" title="Permanent link"></a></h2>
-<ol>
-<li>The <em>SUPERADMIN</em> username / password is one-way hashed using bcrypt. If you want to log into the frontend of the test database, these details are: <code>travis</code> / <code>travisci</code>.</li>
-<li>There are two test <em>CUSTADMIN</em> accounts which can be accessed using username / password: <code>hecustadmin</code> / <code>travisci</code> and <code>imcustadmin</code> / <code>travisci</code>.</li>
-<li>There are two test <em>CUSTUSER</em> accounts which can be accessed using username / password: <code>hecustuser</code> / <code>travisci</code> and <code>imcustuser</code> / <code>travisci</code>.</li>
-</ol>
-<h2 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link"></a></h2>
+<h2 id="test-database-users-passwords-and-api-keys">Test Database - Users, Passwords and API Keys<a class="headerlink" href="#test-database-users-passwords-and-api-keys" title="Permanent link"></a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Username</th>
+<th style="text-align: left;">Privilege</th>
+<th style="text-align: left;">Password</th>
+<th style="text-align: left;">API Key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>travis</code></td>
+<td style="text-align: left;"><em>SUPERADMIN</em></td>
+<td style="text-align: left;"><code>travisci</code></td>
+<td style="text-align: left;"><code>Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC9</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>imcustadmin</code></td>
+<td style="text-align: left;"><em>CUSTADMIN</em></td>
+<td style="text-align: left;"><code>travisci</code></td>
+<td style="text-align: left;"><code>Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC8</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>hecustadmin</code></td>
+<td style="text-align: left;"><em>CUSTADMIN</em></td>
+<td style="text-align: left;"><code>travisci</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>imcustuser</code></td>
+<td style="text-align: left;"><em>CUSTUSER</em></td>
+<td style="text-align: left;"><code>travisci</code></td>
+<td style="text-align: left;"><code>Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC7</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>hecustuser</code></td>
+<td style="text-align: left;"><em>CUSTUSER</em></td>
+<td style="text-align: left;"><code>travisci</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="running-unit-tests">Running Unit Tests<a class="headerlink" href="#running-unit-tests" title="Permanent link"></a></h2>
 <p>In one console session, start the artisan / Laravel web server:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># move to the root directory of IXP Manager</span>
 <span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
@@ -2347,6 +2403,30 @@ Time:<span class="w"> </span><span class="m">1</span>.59<span class="w"> </span>
 <div class="highlight"><pre><span></span><code>$ ./vendor/bin/phpunit --testsuite &#39;Dusk / Browser Test Suite&#39;
 $ ./vendor/bin/phpunit --testsuite &#39;Docstore Test Suite&#39;
 $ ./vendor/bin/phpunit --testsuite &#39;IXP Manager Test Suite&#39;
+</code></pre></div>
+<h2 id="running-psalm-static-code-analysis">Running Psalm Static Code Analysis<a class="headerlink" href="#running-psalm-static-code-analysis" title="Permanent link"></a></h2>
+<p>This is very easy if you've following the above <code>composer install --dev</code> step:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./vendor/bin/psalm
+Target<span class="w"> </span>PHP<span class="w"> </span>version:<span class="w"> </span><span class="m">8</span>.3<span class="w"> </span><span class="o">(</span>inferred<span class="w"> </span>from<span class="w"> </span>composer.json<span class="o">)</span>.
+Scanning<span class="w"> </span>files...
+Analyzing<span class="w"> </span>files...
+
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w">  </span><span class="m">60</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">11</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">120</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">22</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">180</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">34</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">240</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">45</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">300</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">57</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">360</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">68</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">420</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">80</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">480</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">91</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+
+------------------------------
+
+<span class="w">       </span>No<span class="w"> </span>errors<span class="w"> </span>found!
+
+------------------------------
 </code></pre></div>
 
 
