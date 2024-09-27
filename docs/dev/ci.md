@@ -1,6 +1,6 @@
 # Continuous Integration
 
-IXP Manager grew out of a code base and schema that started in the early '90s. Long before [test driven development](http://phpunit.de/) or [behaviour driven development](http://behat.org/) was fashionable for PHP. However, as IXP Manager is taking over more and more critical configuration tasks, we continue to back fill some automated testing with continuous integration for critical elements.
+IXP Manager grew out of a code base and schema that started in the early '90s. Long before [test driven development](http://phpunit.de/) or [behaviour driven development](http://behat.org/) was fashionable for PHP. However, as IXP Manager is taking over more and more critical configuration tasks, we continue to back fill automated testing with continuous integration.
 
 We use [GitHub Actions](https://github.com/features/actions) for continuous integration which is provided free for public repositories.
 
@@ -13,9 +13,11 @@ We use two types of unit tests:
 1. [PHP Unit](http://phpunit.de/) for standard unit tests;
 2. [Laravel Dusk](https://laravel.com/docs/5.6/dusk) for browser based tests.
 
-We won't be aggressively writing tests for the existing codebase but will add tests as appropriate as we continue development. What follows is some basic instructions on how to set up tests and an overview (or links) to some of the tests we have implemented.
+We also use [Psalm](https://psalm.dev/) for static code analysis.
 
-**DISCLAIMER:** This is not a tutorial on unit testing, phpunit, Laravel Dusk or anything else. If you have no experience with these tools, please read up on them elsewhere first.
+The following are basic instructions on how to set up tests and an overview (or links) to some of the tests we have implemented.
+
+**DISCLAIMER:** This is not a tutorial on unit testing, phpunit, Laravel Dusk, Psalm or anything else. If you have no experience with these tools, please read up on them elsewhere first.
 
 
 ## Setting Up PHPUnit Tests
@@ -35,7 +37,7 @@ FLUSH PRIVILEGES;
 Then import the sample database:
 
 ```sh
-cat data/ci/ci_test_db.sql.bz2  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci
+cat data/ci/ci_test_db.sql  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci
 ```
 
 Now, create your `.env` for testing, such as:
@@ -63,13 +65,18 @@ composer install --dev
 
 You need to set the `APP_URL` environment variable in your `.env file`. This value should match the URL you use to access your application in a browser.
 
-## Test Database Notes
+## Test Database - Users, Passwords and API Keys
 
-1. The *SUPERADMIN* username / password is one-way hashed using bcrypt. If you want to log into the frontend of the test database, these details are: `travis` / `travisci`.
-2. There are two test *CUSTADMIN* accounts which can be accessed using username / password: `hecustadmin` / `travisci` and `imcustadmin` / `travisci`.
-3. There are two test *CUSTUSER* accounts which can be accessed using username / password: `hecustuser` / `travisci` and `imcustuser` / `travisci`.
+| Username | Privilege | Password | API Key |
+|:--|:--|:--|:--|
+| `travis` | *SUPERADMIN* | `travisci` | `Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC9` |
+| `imcustadmin` | *CUSTADMIN* | `travisci` |  `Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC8` |
+| `hecustadmin` | *CUSTADMIN* | `travisci` | |
+| `imcustuser` | *CUSTUSER* | `travisci` | `Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC7` |
+| `hecustuser` | *CUSTUSER* | `travisci` | |
 
-## Running Tests
+
+## Running Unit Tests
 
 In one console session, start the artisan / Laravel web server:
 
@@ -128,3 +135,32 @@ $ ./vendor/bin/phpunit --testsuite 'Dusk / Browser Test Suite'
 $ ./vendor/bin/phpunit --testsuite 'Docstore Test Suite'
 $ ./vendor/bin/phpunit --testsuite 'IXP Manager Test Suite'
 ```
+
+## Running Psalm Static Code Analysis
+
+This is very easy if you've following the above `composer install --dev` step:
+
+```sh
+$ ./vendor/bin/psalm
+Target PHP version: 8.3 (inferred from composer.json).
+Scanning files...
+Analyzing files...
+
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  60 / 522 (11%)
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 120 / 522 (22%)
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 180 / 522 (34%)
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 240 / 522 (45%)
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 300 / 522 (57%)
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 360 / 522 (68%)
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 420 / 522 (80%)
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 480 / 522 (91%)
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+
+------------------------------
+
+       No errors found!
+
+------------------------------
+```
+
