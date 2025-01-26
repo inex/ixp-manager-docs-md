@@ -29,7 +29,7 @@
       // Replace it in href, so we keep hashes and query params
       // Only replace first occurence of basePath
       if (!foundVersion){
-          window.location.href = window.location.href.replace( visitedPath, `/${defaultVersion}/${visitedPath}`)
+          window.location.href = window.location.href.replace( visitedPath, `/${defaultVersion}${visitedPath}`)
       }
   </script>
 
