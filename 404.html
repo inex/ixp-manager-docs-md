@@ -3,6 +3,37 @@
 <html lang="en" class="no-js">
   <head>
     
+    <script>
+      // Check if the current path is versioned, if not, redirect to the default versioned path
+      const versions = ["dev", "latest", "6.4", 
+        "7.1", "7.2", "7.3", "7.4", "7.5", "7.6", "7.7", "7.8", "7.9", "7.10", "7.11", "7.12", 
+        "8.1", "8.2", "8.3", "8.4", "8.5", "8.6", "8.7", "8.8", "8.9", "8.10", "8.11", "8.12", 
+      ]
+      const defaultVersion = "latest"
+      const visitedPath = window.location.pathname;
+      const targetRedirectPath = "404" // path to redirect to, relative to basePath
+  
+      // if path starts with version, redirect to versioned 404
+      let foundVersion = false
+      versions.forEach(version => {
+          const versionedPath = `/${version}`;
+          if (window.location.pathname.startsWith(versionedPath)) {
+               // we need this foundVersion guard because the browser is fast and
+               // will keep the executing code below until the redirect happens
+              foundVersion = true;
+              window.location.href = `${versionedPath}/${targetRedirectPath}`
+          }
+      });
+  
+      // if path doesn't start with any version, redirect to defaultVersion
+      // Replace it in href, so we keep hashes and query params
+      // Only replace first occurence of basePath
+      if (!foundVersion){
+          window.location.href = window.location.href.replace( visitedPath, `/${defaultVersion}/${visitedPath}`)
+      }
+  </script>
+
+
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
