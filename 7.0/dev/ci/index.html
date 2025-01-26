@@ -2318,6 +2318,12 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># move to the root directory of IXP Manager</span>
 <span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
 composer<span class="w"> </span>install<span class="w"> </span>--dev
+
+<span class="c1"># install Chromium:</span>
+./artisan<span class="w"> </span>dusk:install
+
+<span class="c1"># or update it:</span>
+./artisan<span class="w"> </span>dusk:update
 </code></pre></div>
 <p>You need to set the <code>APP_URL</code> environment variable in your <code>.env file</code>. This value should match the URL you use to access your application in a browser.</p>
 <h2 id="test-database-users-passwords-and-api-keys">Test Database - Users, Passwords and API Keys<a class="headerlink" href="#test-database-users-passwords-and-api-keys" title="Permanent link"></a></h2>
@@ -2369,25 +2375,51 @@ composer<span class="w"> </span>install<span class="w"> </span>--dev
 <span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
 php<span class="w"> </span>artisan<span class="w"> </span>serve
 </code></pre></div>
-<p>And then kick off <strong>all the tests</strong> which includes PHPUnit and Laravel Dusk tests, run:</p>
-<div class="highlight"><pre><span></span><code>./vendor/bin/phpunit
+<p>If you are running Dusk tests, also start the Chromium driver in another console session. For example:</p>
+<div class="highlight"><pre><span></span><code>./vendor/laravel/dusk/bin/chromedriver-mac-arm<span class="w"> </span>--headless<span class="w"> </span>--disable-gpu<span class="w"> </span>--remote-debugging-port<span class="o">=</span><span class="m">9222</span><span class="w"> </span>--port<span class="o">=</span><span class="m">9515</span><span class="w"> </span>http://localhost
 </code></pre></div>
-<p>Sample output:</p>
-<div class="highlight"><pre><span></span><code>PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
+<p>And then kick off <strong>all the tests</strong> which includes PHPUnit and Laravel Dusk tests, run:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span><span class="nb">test</span>
 
-...............................................................  63 / 144 ( 43%)
-............................................................... 126 / 144 ( 87%)
-..................                                              144 / 144 (100%)
+<span class="w">  </span>...
+<span class="w">  </span>...
 
-Time: 1.86 minutes, Memory: 103.73MB
+<span class="w">  </span>Tests:<span class="w">    </span><span class="m">316</span><span class="w"> </span>passed<span class="w"> </span><span class="o">(</span><span class="m">3206</span><span class="w"> </span>assertions<span class="o">)</span>
+<span class="w">  </span>Duration:<span class="w"> </span><span class="m">139</span>.11s
+</code></pre></div>
+<p>You can also use PHPUnit directly:</p>
+<div class="highlight"><pre><span></span><code>./vendor/bin/phpunit
+PHPUnit<span class="w"> </span><span class="m">10</span>.5.41<span class="w"> </span>by<span class="w"> </span>Sebastian<span class="w"> </span>Bergmann<span class="w"> </span>and<span class="w"> </span>contributors.
+
+Runtime:<span class="w">       </span>PHP<span class="w"> </span><span class="m">8</span>.3.16
+Configuration:<span class="w"> </span>/Users/barryo/dev/ixpm-ibn/phpunit.xml
+
+...............................................................<span class="w">  </span><span class="m">63</span><span class="w"> </span>/<span class="w"> </span><span class="m">316</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">19</span>%<span class="o">)</span>
+...............................................................<span class="w"> </span><span class="m">126</span><span class="w"> </span>/<span class="w"> </span><span class="m">316</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">39</span>%<span class="o">)</span>
+...............................................................<span class="w"> </span><span class="m">189</span><span class="w"> </span>/<span class="w"> </span><span class="m">316</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">59</span>%<span class="o">)</span>
+...............................................................<span class="w"> </span><span class="m">252</span><span class="w"> </span>/<span class="w"> </span><span class="m">316</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">79</span>%<span class="o">)</span>
+...............................................................<span class="w"> </span><span class="m">315</span><span class="w"> </span>/<span class="w"> </span><span class="m">316</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">99</span>%<span class="o">)</span>
+.<span class="w">                                                               </span><span class="m">316</span><span class="w"> </span>/<span class="w"> </span><span class="m">316</span><span class="w"> </span><span class="o">(</span><span class="m">100</span>%<span class="o">)</span>
+
+Time:<span class="w"> </span><span class="m">02</span>:08.245,<span class="w"> </span>Memory:<span class="w"> </span><span class="m">76</span>.50<span class="w"> </span>MB
+
+OK<span class="w"> </span><span class="o">(</span><span class="m">316</span><span class="w"> </span>tests,<span class="w"> </span><span class="m">3205</span><span class="w"> </span>assertions<span class="o">)</span>
 </code></pre></div>
 <p>If you only want to run Laravel Dusk / browser tests, run the following (shown with sample output):</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span>dusk
-PHPUnit<span class="w"> </span><span class="m">6</span>.5.8<span class="w"> </span>by<span class="w"> </span>Sebastian<span class="w"> </span>Bergmann<span class="w"> </span>and<span class="w"> </span>contributors.
 
-..<span class="w">                                                                  </span><span class="m">2</span><span class="w"> </span>/<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">(</span><span class="m">100</span>%<span class="o">)</span>
+<span class="w">   </span>PASS<span class="w">  </span>Tests<span class="se">\B</span>rowser<span class="se">\A</span>piKeyControllerTest
 
-Time:<span class="w"> </span><span class="m">12</span>.73<span class="w"> </span>seconds,<span class="w"> </span>Memory:<span class="w"> </span><span class="m">24</span>.00MB
+<span class="w">   </span>PASS<span class="w">  </span>Tests<span class="se">\B</span>rowser<span class="se">\C</span>abinetControllerTest
+<span class="w">   </span>✓<span class="w"> </span>cabinet
+
+<span class="w">   </span>...
+
+<span class="w">   </span>PASS<span class="w">  </span>Tests<span class="se">\B</span>rowser<span class="se">\V</span>lanControllerTest
+<span class="w">   </span>✓<span class="w"> </span>add
+
+<span class="w">  </span>Tests:<span class="w">    </span><span class="m">24</span><span class="w"> </span>passed<span class="w"> </span><span class="o">(</span><span class="m">2259</span><span class="w"> </span>assertions<span class="o">)</span>
+<span class="w">  </span>Duration:<span class="w"> </span><span class="m">117</span>.17s
 </code></pre></div>
 <p>If you want to exclude the browser based tests, just exclude that directory as follows:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>./vendor/bin/phpunit<span class="w"> </span>--filter<span class="w"> </span><span class="s1">&#39;/^((?!Tests\\Browser).)*$/&#39;</span>
@@ -2448,7 +2480,7 @@ Analyzing<span class="w"> </span>files...
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 20, 2021</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 27, 2024</span>
   </span>
 
     
