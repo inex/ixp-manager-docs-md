@@ -49,12 +49,12 @@ php artisan irrdb:update-prefix-db
 php artisan irrdb:update-asn-db
 ```
 
-So long as your bgpq3 path is set as above and is executable, the [task scheduler](cronjobs.md) will take care of updating your local IRRDB a number of times a day.
+So long as your bgpq3 path is set as above and is executable, the [task scheduler](cronjobs.md) will take care of updating your local IRRDB a number of times a day. If any member's IRRDB entries fails to update, an alert email will be sent to the configured `IDENTITY_ALERTS_EMAIL` address.
 
 When running the commands manually, there are four levels of verbosity:
 
-1. `--quiet`: no output unless there's an error / issue (used by the task scheduler).
-2. no option: simple stats on each customer's update results.
+1. default: no output unless there's an error / issue (used by the task scheduler).
+2. `-v`: simple stats on each customer's update results.
 3. `-vv`: include per customer and overall timings (database, processing and network).
 4. `-vvv` (debug): show prefixes/ASNs added remove also.
 
@@ -73,6 +73,8 @@ php artisan irrdb:update-prefix-db --id 27
 If the automated updates via the task scheduler fail for any member, that member will be skipped and the task will continue to the next member.
 
 On such a failure, an error will be printed which your cron system should capture and email.
+
+Additionally, when run via the task manager, the `--alert-email` flag is set to send an email on failure to the configured `IDENTITY_ALERTS_EMAIL` address.
 
 
 ## User Interface Features
