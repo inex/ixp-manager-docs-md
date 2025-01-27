@@ -61,6 +61,12 @@ You need to ensure the development packages for IXP Manager are installed via:
 # move to the root directory of IXP Manager
 cd $IXPROOT
 composer install --dev
+
+# install Chromium:
+./artisan dusk:install
+
+# or update it:
+./artisan dusk:update
 ```
 
 You need to set the `APP_URL` environment variable in your `.env file`. This value should match the URL you use to access your application in a browser.
@@ -86,33 +92,62 @@ cd $IXPROOT
 php artisan serve
 ```
 
+If you are running Dusk tests, also start the Chromium driver in another console session. For example:
+
+```sh
+./vendor/laravel/dusk/bin/chromedriver-mac-arm --headless --disable-gpu --remote-debugging-port=9222 --port=9515 http://localhost
+```
+
 And then kick off **all the tests** which includes PHPUnit and Laravel Dusk tests, run:
 
 ```sh
+$ php artisan test
+
+  ...
+  ...
+
+  Tests:    316 passed (3206 assertions)
+  Duration: 139.11s
+```
+
+You can also use PHPUnit directly:
+
+```sh
 ./vendor/bin/phpunit
-```
+PHPUnit 10.5.41 by Sebastian Bergmann and contributors.
 
-Sample output:
+Runtime:       PHP 8.3.16
+Configuration: /Users/barryo/dev/ixpm-ibn/phpunit.xml
 
-```
-PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
+...............................................................  63 / 316 ( 19%)
+............................................................... 126 / 316 ( 39%)
+............................................................... 189 / 316 ( 59%)
+............................................................... 252 / 316 ( 79%)
+............................................................... 315 / 316 ( 99%)
+.                                                               316 / 316 (100%)
 
-...............................................................  63 / 144 ( 43%)
-............................................................... 126 / 144 ( 87%)
-..................                                              144 / 144 (100%)
+Time: 02:08.245, Memory: 76.50 MB
 
-Time: 1.86 minutes, Memory: 103.73MB
+OK (316 tests, 3205 assertions)
 ```
 
 If you only want to run Laravel Dusk / browser tests, run the following (shown with sample output):
 
 ```sh
 $ php artisan dusk
-PHPUnit 6.5.8 by Sebastian Bergmann and contributors.
 
-..                                                                  2 / 2 (100%)
+   PASS  Tests\Browser\ApiKeyControllerTest
 
-Time: 12.73 seconds, Memory: 24.00MB
+   PASS  Tests\Browser\CabinetControllerTest
+   ✓ cabinet
+ 
+   ...
+
+   PASS  Tests\Browser\VlanControllerTest
+   ✓ add
+
+  Tests:    24 passed (2259 assertions)
+  Duration: 117.17s
 ```
 
 If you want to exclude the browser based tests, just exclude that directory as follows:

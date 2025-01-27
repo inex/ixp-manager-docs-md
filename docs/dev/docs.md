@@ -1,6 +1,6 @@
 # Documentation
 
-From v4 onwards, we use [GitHub Pages](http://docs.ixpmanager.org/) with [MkDocs](http://www.mkdocs.org/) to build the documentation.
+We use [GitHub Pages](http://docs.ixpmanager.org/) with [MkDocs](http://www.mkdocs.org/) to build the documentation and, since v7, the [Pythin utility 'mike'](https://github.com/jimporter/mike) to deploy versioned documentation for each minor release of IXP Manager.
 
 Both the site and the content are hosted on [GitHub](https://github.com/inex/ixp-manager-docs-md).
 
