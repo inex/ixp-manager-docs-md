@@ -2353,11 +2353,11 @@ IXP_IRRDB_MIN_V6_SUBNET_SIZE=48
 php artisan irrdb:update-prefix-db
 php artisan irrdb:update-asn-db
 </code></pre></div>
-<p>So long as your bgpq3 path is set as above and is executable, the <a href="../cronjobs/">task scheduler</a> will take care of updating your local IRRDB a number of times a day.</p>
+<p>So long as your bgpq3 path is set as above and is executable, the <a href="../cronjobs/">task scheduler</a> will take care of updating your local IRRDB a number of times a day. If any member's IRRDB entries fails to update, an alert email will be sent to the configured <code>IDENTITY_ALERTS_EMAIL</code> address.</p>
 <p>When running the commands manually, there are four levels of verbosity:</p>
 <ol>
-<li><code>--quiet</code>: no output unless there's an error / issue (used by the task scheduler).</li>
-<li>no option: simple stats on each customer's update results.</li>
+<li>default: no output unless there's an error / issue (used by the task scheduler).</li>
+<li><code>-v</code>: simple stats on each customer's update results.</li>
 <li><code>-vv</code>: include per customer and overall timings (database, processing and network).</li>
 <li><code>-vvv</code> (debug): show prefixes/ASNs added remove also.</li>
 </ol>
@@ -2371,6 +2371,7 @@ php<span class="w"> </span>artisan<span class="w"> </span>irrdb:update-prefix-db
 <h3 id="handling-failure">Handling Failure<a class="headerlink" href="#handling-failure" title="Permanent link"></a></h3>
 <p>If the automated updates via the task scheduler fail for any member, that member will be skipped and the task will continue to the next member.</p>
 <p>On such a failure, an error will be printed which your cron system should capture and email.</p>
+<p>Additionally, when run via the task manager, the <code>--alert-email</code> flag is set to send an email on failure to the configured <code>IDENTITY_ALERTS_EMAIL</code> address.</p>
 <h2 id="user-interface-features">User Interface Features<a class="headerlink" href="#user-interface-features" title="Permanent link"></a></h2>
 <p>The status of a members IRRDB entries can be found and updated in various frontend features:</p>
 <ol>
