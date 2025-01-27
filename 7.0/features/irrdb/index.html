@@ -1080,9 +1080,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#internal-workings" class="md-nav__link">
+  <a href="#handling-failure" class="md-nav__link">
     <span class="md-ellipsis">
-      Internal Workings
+      Handling Failure
     </span>
   </a>
   
@@ -1094,11 +1094,35 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#user-interface-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Interface Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#details" class="md-nav__link">
     <span class="md-ellipsis">
       Details
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#internal-workings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Internal Workings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2235,9 +2259,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#internal-workings" class="md-nav__link">
+  <a href="#handling-failure" class="md-nav__link">
     <span class="md-ellipsis">
-      Internal Workings
+      Handling Failure
     </span>
   </a>
   
@@ -2249,11 +2273,35 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#user-interface-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Interface Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#details" class="md-nav__link">
     <span class="md-ellipsis">
       Details
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#internal-workings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Internal Workings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2280,6 +2328,7 @@
 <p><strong>Prerequisite Reading:</strong> Ensure you first familiarize yourself with <a href="../routers/">the generic documentation on managing and generating router configurations here</a>.</p>
 </blockquote>
 <p>IXP Manager can maintain a list of member route:/route6: prefixes and origin ASNs as registered in IRRDBs in its database and then use these to, for example, generate strict inbound filters on route servers.</p>
+<p>It is important to note that IRRDB database entries are only kept for members who are enabled to use the route servers (option under VLAN interfaces) and have IRRDB prefix filtering enabled (also an option under VLAN interfaces). </p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link"></a></h2>
 <p>You need to have set up some IRRDB sources (e.g. RIPE's whois service) under the <em>IXP Admin Actions / IRRDB Configuration</em> on the left hand side menu. If you do not have any entries here, there is a database seeder you can use to install some to start you off:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
@@ -2288,37 +2337,51 @@
 <p><a href="https://github.com/snar/bgpq3">BGPQ3</a> is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On a modern Ubuntu system this is as easy as:</p>
 <div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>bgpq3
 </code></pre></div>
-<p>Then configure the path to it in your <code>.env</code> file.</p>
-<div class="highlight"><pre><span></span><code><span class="x"># Absolute path to run the bgpq3 utility</span>
-<span class="x"># e.g. IXP_IRRDB_BGPQ3_PATH=/usr/local/bin/bgpq3</span>
-<span class="x">IXP_IRRDB_BGPQ3_PATH=/usr/bin/bgpq3</span>
+<p>Then configure the path to it in your <code>.env</code> file or via the <em>Settings</em> page in IXP Manager.</p>
+<div class="highlight"><pre><span></span><code># Absolute path to run the bgpq3 utility
+# e.g. IXP_IRRDB_BGPQ3_PATH=/usr/local/bin/bgpq3
+IXP_IRRDB_BGPQ3_PATH=/usr/bin/bgpq3
 </code></pre></div>
+<p>There are two other possible options which are defaulted as follows:</p>
+<div class="highlight"><pre><span></span><code>IXP_IRRDB_MIN_V4_SUBNET_SIZE=24
+IXP_IRRDB_MIN_V6_SUBNET_SIZE=48
+</code></pre></div>
+<p>It would be <em>exceptionally unusual</em> to change these and this can only be done by setting them in the <code>.env</code> file.</p>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link"></a></h2>
-<p>To populate (and update) your local IRRDB, run the following commands:</p>
+<p>To manually populate (or update) your local IRRDB database entries, run the following commands:</p>
 <div class="highlight"><pre><span></span><code>cd $IXPROOT
 php artisan irrdb:update-prefix-db
 php artisan irrdb:update-asn-db
 </code></pre></div>
-<p>From IXP Manager v5 onwards, and so long as your bgpq3 path is set as above and is executable, the <a href="../cronjobs/">task scheduler</a> will take care of updating your local IRRDB a number of times a day. If you are using a version of IXP Manager before v5, then the above commands should be added to cron to run ~once per day (using the --quiet flag).</p>
-<p>There are four levels of verbosity:</p>
+<p>So long as your bgpq3 path is set as above and is executable, the <a href="../cronjobs/">task scheduler</a> will take care of updating your local IRRDB a number of times a day.</p>
+<p>When running the commands manually, there are four levels of verbosity:</p>
 <ol>
-<li><code>--quiet</code>: no output unless there's an error / issue.</li>
+<li><code>--quiet</code>: no output unless there's an error / issue (used by the task scheduler).</li>
 <li>no option: simple stats on each customer's update results.</li>
 <li><code>-vv</code>: include per customer and overall timings (database, processing and network).</li>
 <li><code>-vvv</code> (debug): show prefixes/ASNs added remove also.</li>
 </ol>
-<p>You can also specify a specific customer to update (rather than all) with an additional free form parameter. The database is searched for a matching customer in the order: customer ASN; customer ID (database primary key); and customer shortname. E.g.:</p>
-<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>irrdb:update-prefix-db<span class="w"> </span><span class="m">64511</span>
+<p>You can also specify a specific customer to update (rather than all) with additional parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Update just customer with AS number  64511</span>
+php<span class="w"> </span>artisan<span class="w"> </span>irrdb:update-prefix-db<span class="w"> </span>--asn<span class="w"> </span><span class="m">64511</span>
+
+<span class="c1"># Update just customer with database ID 27</span>
+php<span class="w"> </span>artisan<span class="w"> </span>irrdb:update-prefix-db<span class="w"> </span>--id<span class="w"> </span><span class="m">27</span>
 </code></pre></div>
-<h3 id="internal-workings">Internal Workings<a class="headerlink" href="#internal-workings" title="Permanent link"></a></h3>
-<p>Essentially, based on a customers AS number / IPv4/6 Peering Macro, IXP Manager <a href="https://github.com/snar/bgpq3">uses bgpq3</a> to query IRRDBs as follows:</p>
-<div class="highlight"><pre><span></span><code>bgpq3<span class="w"> </span>-S<span class="w"> </span><span class="nv">$sources</span><span class="w"> </span>-l<span class="w"> </span>pl<span class="w"> </span>-j<span class="w"> </span><span class="o">[</span>-6<span class="o">]</span><span class="w"> </span><span class="nv">$asn</span>/macro
-</code></pre></div>
-<p>where <code>$sources</code> come from the IRRDB sources entries.</p>
-<p>Or, a real example:</p>
-<div class="highlight"><pre><span></span><code>bgpq3<span class="w"> </span>-S<span class="w"> </span>RIPE<span class="w"> </span>-l<span class="w"> </span>pl<span class="w"> </span>-j<span class="w"> </span>AS-BTIRE
-bgpq3<span class="w"> </span>-S<span class="w"> </span>RIPE<span class="w"> </span>-l<span class="w"> </span>pl<span class="w"> </span>-j<span class="w"> </span>-6<span class="w"> </span>AS-BTIRE
-</code></pre></div>
+<h3 id="handling-failure">Handling Failure<a class="headerlink" href="#handling-failure" title="Permanent link"></a></h3>
+<p>If the automated updates via the task scheduler fail for any member, that member will be skipped and the task will continue to the next member.</p>
+<p>On such a failure, an error will be printed which your cron system should capture and email.</p>
+<h2 id="user-interface-features">User Interface Features<a class="headerlink" href="#user-interface-features" title="Permanent link"></a></h2>
+<p>The status of a members IRRDB entries can be found and updated in various frontend features:</p>
+<ol>
+<li>A summary of all members' IRRDB database entries / status can be found under the <em>IRRDB Summary</em> menu. This will highlight any members where there have never been an IRRDB update (usually new members or members where the process has failed); it will also highlight as <em>stale</em> any member who has not had their entries updated in the last 24 hours.</li>
+<li>On a member's overview page, the last time they have been updated is also shown.</li>
+<li>Using the diagnostics functionality, a members IRRDB entry status can be checked.</li>
+<li>You can click through from a number of places to view and update a member's IRRDB entries:</li>
+<li>Via the summary page above in (1);</li>
+<li>Via the IRRDB information on the member's overview page in (2); and</li>
+<li>Via a menu option on the member's overview page.</li>
+</ol>
 <h2 id="details">Details<a class="headerlink" href="#details" title="Permanent link"></a></h2>
 <p>The IRRDB update commands will:</p>
 <ul>
@@ -2330,8 +2393,17 @@ bgpq3<span class="w"> </span>-S<span class="w"> </span>RIPE<span class="w"> </sp
 <li>update the last_seen time for all prefixes(/ASNs) for that customer;</li>
 <li>create a local file-based cache of that customer's prefixes / asns to speed up router configuration generation <em>(you don't need to worry about the staleness of this cache as it's cached everytime the IRRDB commands above are run for each customer)</em>.</li>
 </ul>
-<p><strong>We use transactions to update the database so, even in the middle of a refresh, a full set of prefixes for all customers will still be available.</strong> It also means the update process can be safely interrupted.</p>
+<p><strong>We use database transactions to update the database so, even in the middle of a refresh, a full set of prefixes for all customers will still be available.</strong> It also means the update process can be safely interrupted.</p>
 <p><strong>Note that our current implementation only queries RADB as BGPQ3 does not support the RIPE whois protocol.</strong> Our version will however set the RADB source database according to the member's stated IRRDB database as set on the customer add / edit page - so, for customer's registered with the RIPE IRRDB, the RIPE database of RADB is queried.</p>
+<h3 id="internal-workings">Internal Workings<a class="headerlink" href="#internal-workings" title="Permanent link"></a></h3>
+<p>Based on a customers AS number / IPv4/6 Peering Macro, IXP Manager <a href="https://github.com/snar/bgpq3">uses bgpq3</a> to query IRRDBs as follows:</p>
+<div class="highlight"><pre><span></span><code>bgpq3<span class="w"> </span>-S<span class="w"> </span><span class="nv">$sources</span><span class="w"> </span>-l<span class="w"> </span>pl<span class="w"> </span>-j<span class="w"> </span>-m<span class="w"> </span><span class="nv">$min_subnet_size</span><span class="w"> </span><span class="o">[</span>-6<span class="o">]</span><span class="w"> </span><span class="nv">$asn</span>/macro
+</code></pre></div>
+<p>where <code>$sources</code> come from the IRRDB sources entries and <code>$min_subnet_size</code> is explained above.</p>
+<p>Or, a real example:</p>
+<div class="highlight"><pre><span></span><code>bgpq3<span class="w"> </span>-S<span class="w"> </span>RIPE<span class="w"> </span>-l<span class="w"> </span>pl<span class="w"> </span>-j<span class="w"> </span>-m<span class="w"> </span><span class="m">24</span><span class="w"> </span>AS-BTIRE
+bgpq3<span class="w"> </span>-S<span class="w"> </span>RIPE<span class="w"> </span>-l<span class="w"> </span>pl<span class="w"> </span>-j<span class="w"> </span>-m<span class="w"> </span><span class="m">48</span><span class="w"> </span>-6<span class="w"> </span>AS-BTIRE
+</code></pre></div>
 
 
 
@@ -2352,7 +2424,7 @@ bgpq3<span class="w"> </span>-S<span class="w"> </span>RIPE<span class="w"> </sp
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 14, 2021</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 27, 2025</span>
   </span>
 
     
