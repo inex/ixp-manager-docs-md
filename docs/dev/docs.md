@@ -22,8 +22,19 @@ python3 -m venv venv
 cd venv
 
 # install mkdocs
-./bin/pip install mkdocs mike pymdown-extensions mkdocs-material mkdocs-git-revision-date-localized-plugin
+./bin/pip install mkdocs mike pymdown-extensions mkdocs-material \
+    mkdocs-git-revision-date-localized-plugin
 ```
+
+You can also update the local mkdocs packages via:
+
+```sh
+cd venv
+
+./bin/pip install mkdocs mike pymdown-extensions mkdocs-material \
+    mkdocs-git-revision-date-localized-plugin -U
+```
+
 
 The documentation can then be built locally as follows:
 

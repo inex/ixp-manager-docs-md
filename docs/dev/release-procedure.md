@@ -12,5 +12,5 @@
 1. Update any necessary documentation on https://docs.ixpmanager.org/
 1. Tag the GitHub release.
 1. Ensure proxies match entities.
-1. Ensure production yarn run.
+1. Ensure production npm run.
 1. Release announcement.
