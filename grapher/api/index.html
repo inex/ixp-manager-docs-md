@@ -8,19 +8,25 @@
       
       
       
+        <link rel="canonical" href="https://docs.ixpmanager.org/grapher/api/">
       
       
+        <link rel="prev" href="../introduction/">
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      
+        <link rel="next" href="../mrtg/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>IXP Manager Documentation</title>
+        <title>API & Permissions - IXP Manager Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -39,9 +45,9 @@
       
     
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -59,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#api-permissions" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -75,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -95,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              API &amp; Permissions
             
           </span>
         </div>
@@ -185,7 +196,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -215,7 +226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -275,7 +286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/" class="md-nav__link">
+      <a href="../../install/" class="md-nav__link">
         
   
   
@@ -298,7 +309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/automated-script/" class="md-nav__link">
+      <a href="../../install/automated-script/" class="md-nav__link">
         
   
   
@@ -321,7 +332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/maint-mode/" class="md-nav__link">
+      <a href="../../install/maint-mode/" class="md-nav__link">
         
   
   
@@ -344,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/manually/" class="md-nav__link">
+      <a href="../../install/manually/" class="md-nav__link">
         
   
   
@@ -367,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/upgrading/" class="md-nav__link">
+      <a href="../../install/upgrading/" class="md-nav__link">
         
   
   
@@ -390,7 +401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/runtime/" class="md-nav__link">
+      <a href="../../install/runtime/" class="md-nav__link">
         
   
   
@@ -413,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/next-steps/" class="md-nav__link">
+      <a href="../../install/next-steps/" class="md-nav__link">
         
   
   
@@ -436,7 +447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/register/" class="md-nav__link">
+      <a href="../../install/register/" class="md-nav__link">
         
   
   
@@ -504,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/authentication/" class="md-nav__link">
+      <a href="../../usage/authentication/" class="md-nav__link">
         
   
   
@@ -527,7 +538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/contacts/" class="md-nav__link">
+      <a href="../../usage/contacts/" class="md-nav__link">
         
   
   
@@ -550,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/cookies/" class="md-nav__link">
+      <a href="../../usage/cookies/" class="md-nav__link">
         
   
   
@@ -573,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customers/" class="md-nav__link">
+      <a href="../../usage/customers/" class="md-nav__link">
         
   
   
@@ -596,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customer-notes/" class="md-nav__link">
+      <a href="../../usage/customer-notes/" class="md-nav__link">
         
   
   
@@ -619,7 +630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customer-tags/" class="md-nav__link">
+      <a href="../../usage/customer-tags/" class="md-nav__link">
         
   
   
@@ -642,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/interfaces/" class="md-nav__link">
+      <a href="../../usage/interfaces/" class="md-nav__link">
         
   
   
@@ -665,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/dblogs/" class="md-nav__link">
+      <a href="../../usage/dblogs/" class="md-nav__link">
         
   
   
@@ -688,7 +699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/email/" class="md-nav__link">
+      <a href="../../usage/email/" class="md-nav__link">
         
   
   
@@ -711,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/operational-notes/" class="md-nav__link">
+      <a href="../../usage/operational-notes/" class="md-nav__link">
         
   
   
@@ -734,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/switches/" class="md-nav__link">
+      <a href="../../usage/switches/" class="md-nav__link">
         
   
   
@@ -757,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/users/" class="md-nav__link">
+      <a href="../../usage/users/" class="md-nav__link">
         
   
   
@@ -825,7 +836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/api/" class="md-nav__link">
+      <a href="../../features/api/" class="md-nav__link">
         
   
   
@@ -848,7 +859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/as112/" class="md-nav__link">
+      <a href="../../features/as112/" class="md-nav__link">
         
   
   
@@ -871,7 +882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/provisioning/" class="md-nav__link">
+      <a href="../../features/provisioning/" class="md-nav__link">
         
   
   
@@ -894,7 +905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/console-servers/" class="md-nav__link">
+      <a href="../../features/console-servers/" class="md-nav__link">
         
   
   
@@ -917,7 +928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/core-bundles/" class="md-nav__link">
+      <a href="../../features/core-bundles/" class="md-nav__link">
         
   
   
@@ -940,7 +951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/cronjobs/" class="md-nav__link">
+      <a href="../../features/cronjobs/" class="md-nav__link">
         
   
   
@@ -963,7 +974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/patch-panels/" class="md-nav__link">
+      <a href="../../features/patch-panels/" class="md-nav__link">
         
   
   
@@ -986,7 +997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/dns-arpa/" class="md-nav__link">
+      <a href="../../features/dns-arpa/" class="md-nav__link">
         
   
   
@@ -1009,7 +1020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/docstore/" class="md-nav__link">
+      <a href="../../features/docstore/" class="md-nav__link">
         
   
   
@@ -1032,7 +1043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1055,7 +1066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/helpdesk/" class="md-nav__link">
+      <a href="../../features/helpdesk/" class="md-nav__link">
         
   
   
@@ -1078,7 +1089,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/irrdb/" class="md-nav__link">
+      <a href="../../features/irrdb/" class="md-nav__link">
         
   
   
@@ -1101,7 +1112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/ixf-export/" class="md-nav__link">
+      <a href="../../features/ixf-export/" class="md-nav__link">
         
   
   
@@ -1124,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/looking-glass/" class="md-nav__link">
+      <a href="../../features/looking-glass/" class="md-nav__link">
         
   
   
@@ -1147,7 +1158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/layer2-addresses/" class="md-nav__link">
+      <a href="../../features/layer2-addresses/" class="md-nav__link">
         
   
   
@@ -1170,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/manrs/" class="md-nav__link">
+      <a href="../../features/manrs/" class="md-nav__link">
         
   
   
@@ -1193,7 +1204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/member-export/" class="md-nav__link">
+      <a href="../../features/member-export/" class="md-nav__link">
         
   
   
@@ -1216,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/mailing-lists/" class="md-nav__link">
+      <a href="../../features/mailing-lists/" class="md-nav__link">
         
   
   
@@ -1239,7 +1250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/nagios/" class="md-nav__link">
+      <a href="../../features/nagios/" class="md-nav__link">
         
   
   
@@ -1262,7 +1273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/patch-panels/" class="md-nav__link">
+      <a href="../../features/patch-panels/" class="md-nav__link">
         
   
   
@@ -1285,7 +1296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peering-manager/" class="md-nav__link">
+      <a href="../../features/peering-manager/" class="md-nav__link">
         
   
   
@@ -1308,7 +1319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peering-matrix/" class="md-nav__link">
+      <a href="../../features/peering-matrix/" class="md-nav__link">
         
   
   
@@ -1331,7 +1342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peeringdb/" class="md-nav__link">
+      <a href="../../features/peeringdb/" class="md-nav__link">
         
   
   
@@ -1354,7 +1365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/rir-objects/" class="md-nav__link">
+      <a href="../../features/rir-objects/" class="md-nav__link">
         
   
   
@@ -1377,7 +1388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/reseller/" class="md-nav__link">
+      <a href="../../features/reseller/" class="md-nav__link">
         
   
   
@@ -1400,7 +1411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/route-collectors/" class="md-nav__link">
+      <a href="../../features/route-collectors/" class="md-nav__link">
         
   
   
@@ -1423,7 +1434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/route-servers/" class="md-nav__link">
+      <a href="../../features/route-servers/" class="md-nav__link">
         
   
   
@@ -1446,7 +1457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/routers/" class="md-nav__link">
+      <a href="../../features/routers/" class="md-nav__link">
         
   
   
@@ -1469,7 +1480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/rpki/" class="md-nav__link">
+      <a href="../../features/rpki/" class="md-nav__link">
         
   
   
@@ -1492,7 +1503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/skinning/" class="md-nav__link">
+      <a href="../../features/skinning/" class="md-nav__link">
         
   
   
@@ -1515,7 +1526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/smokeping/" class="md-nav__link">
+      <a href="../smokeping/" class="md-nav__link">
         
   
   
@@ -1538,7 +1549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/static-content/" class="md-nav__link">
+      <a href="../../features/static-content/" class="md-nav__link">
         
   
   
@@ -1561,7 +1572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/tacacs/" class="md-nav__link">
+      <a href="../../features/tacacs/" class="md-nav__link">
         
   
   
@@ -1588,18 +1599,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -1615,7 +1628,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Grapher
@@ -1629,7 +1642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1649,10 +1662,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/grapher/api/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    API &amp; Permissions
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1663,6 +1698,68 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#accessibility-of-aggregate-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessibility of Aggregate Graphs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Control
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Access Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-to-member-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access to Member Graphs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1675,7 +1772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/mrtg/" class="md-nav__link">
+      <a href="../mrtg/" class="md-nav__link">
         
   
   
@@ -1698,7 +1795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/sflow/" class="md-nav__link">
+      <a href="../sflow/" class="md-nav__link">
         
   
   
@@ -1721,7 +1818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/smokeping/" class="md-nav__link">
+      <a href="../smokeping/" class="md-nav__link">
         
   
   
@@ -1789,7 +1886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/sflow/" class="md-nav__link">
+      <a href="../../features/sflow/" class="md-nav__link">
         
   
   
@@ -1812,7 +1909,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/sflow-p2p/" class="md-nav__link">
+      <a href="../../features/sflow-p2p/" class="md-nav__link">
         
   
   
@@ -1880,7 +1977,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/introduction/" class="md-nav__link">
+      <a href="../../dev/introduction/" class="md-nav__link">
         
   
   
@@ -1903,7 +2000,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/policy/" class="md-nav__link">
+      <a href="../../dev/policy/" class="md-nav__link">
         
   
   
@@ -1926,7 +2023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/api/" class="md-nav__link">
+      <a href="../../dev/api/" class="md-nav__link">
         
   
   
@@ -1949,7 +2046,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/authentication/" class="md-nav__link">
+      <a href="../../dev/authentication/" class="md-nav__link">
         
   
   
@@ -1972,7 +2069,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/ci/" class="md-nav__link">
+      <a href="../../dev/ci/" class="md-nav__link">
         
   
   
@@ -1995,7 +2092,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/cla/" class="md-nav__link">
+      <a href="../../dev/cla/" class="md-nav__link">
         
   
   
@@ -2018,7 +2115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/docker/" class="md-nav__link">
+      <a href="../../dev/docker/" class="md-nav__link">
         
   
   
@@ -2041,7 +2138,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/docs/" class="md-nav__link">
+      <a href="../../dev/docs/" class="md-nav__link">
         
   
   
@@ -2064,7 +2161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/foil/" class="md-nav__link">
+      <a href="../../dev/foil/" class="md-nav__link">
         
   
   
@@ -2087,7 +2184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/forms/" class="md-nav__link">
+      <a href="../../dev/forms/" class="md-nav__link">
         
   
   
@@ -2110,7 +2207,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/frontend-crud/" class="md-nav__link">
+      <a href="../../dev/frontend-crud/" class="md-nav__link">
         
   
   
@@ -2133,7 +2230,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/grapher/" class="md-nav__link">
+      <a href="../../dev/grapher/" class="md-nav__link">
         
   
   
@@ -2156,7 +2253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/helpders/" class="md-nav__link">
+      <a href="../../dev/helpders/" class="md-nav__link">
         
   
   
@@ -2179,7 +2276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/looking-glass/" class="md-nav__link">
+      <a href="../../dev/looking-glass/" class="md-nav__link">
         
   
   
@@ -2202,7 +2299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/release-procedure/" class="md-nav__link">
+      <a href="../../dev/release-procedure/" class="md-nav__link">
         
   
   
@@ -2225,7 +2322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/telescope/" class="md-nav__link">
+      <a href="../../dev/telescope/" class="md-nav__link">
         
   
   
@@ -2248,7 +2345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/users/" class="md-nav__link">
+      <a href="../../dev/users/" class="md-nav__link">
         
   
   
@@ -2271,7 +2368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/vagrant/" class="md-nav__link">
+      <a href="../../dev/vagrant/" class="md-nav__link">
         
   
   
@@ -2311,6 +2408,58 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#accessibility-of-aggregate-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessibility of Aggregate Graphs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Control
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Access Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-to-member-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access to Member Graphs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2322,8 +2471,314 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="api-permissions">API &amp; Permissions<a class="headerlink" href="#api-permissions" title="Permanent link"></a></h1>
+<p>This page discusses default permissions required for accessing certain graphs and well as details on how to change that.</p>
+<h2 id="accessibility-of-aggregate-graphs">Accessibility of Aggregate Graphs<a class="headerlink" href="#accessibility-of-aggregate-graphs" title="Permanent link"></a></h2>
+<p>By default, the following graphs are <strong>publicly</strong> accessible in <strong>IXP Manager</strong> and available through the top menu under <em>Statistics</em>:</p>
+<ol>
+<li>aggregate bits/sec and packets/sec graphs for the IXP;</li>
+<li>aggregate bits/sec and packets/sec graphs for the infrastructures;</li>
+<li>aggregate bits/sec and packets/sec graphs for locations / facilities;</li>
+<li>aggregate bits/sec graphs on a per-protocol and per-VLAN basis (requires <a href="../../features/sflow/">sflow</a>);</li>
+<li>aggregate graphs for the switches; and</li>
+<li>aggregate graphs for the core bundles / trunk connections.</li>
+</ol>
+<p>If you wish to limit access to these to a <em>less than or equal</em> <a href="../../usage/users/">user permission</a>, set the following in <code>.env</code> appropriately:</p>
+<ol>
+<li><code>GRAPHER_ACCESS_IXP</code></li>
+<li><code>GRAPHER_ACCESS_INFRASTRUCTURE</code></li>
+<li><code>GRAPHER_ACCESS_LOCATION</code></li>
+<li><code>GRAPHER_ACCESS_VLAN</code></li>
+<li><code>GRAPHER_ACCESS_SWITCH</code></li>
+<li><code>GRAPHER_ACCESS_TRUNK</code> <em>(this also applies to core bundles)</em></li>
+</ol>
+<p>For example to limit access to trunks / core bundles to logged in users, set:</p>
+<div class="highlight"><pre><span></span><code>GRAPHER_ACCESS_TRUNK=1
+</code></pre></div>
+<p>If you would like to make the aggregate graphs available to logged in users only, set the following <code>.env</code> options:</p>
+<div class="highlight"><pre><span></span><code>GRAPHER_ACCESS_IXP=1
+GRAPHER_ACCESS_INFRASTRUCTURE=1
+GRAPHER_ACCESS_VLAN=1
+GRAPHER_ACCESS_SWITCH=1
+GRAPHER_ACCESS_LOCATION=1
+GRAPHER_ACCESS_TRUNK=1
+</code></pre></div>
+<p>If you would prefer to restrict access to these to superusers / admins only, replace <code>=1</code> above with <code>=3</code>.</p>
+<h2 id="api-access">API Access<a class="headerlink" href="#api-access" title="Permanent link"></a></h2>
+<p><em>Grapher</em> allows API access to graphs via a base URL of the form:</p>
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/grapher/{graph}[?id=x][&amp;period=x][&amp;type=x][&amp;category=x] \
+    [&amp;protocol=x][&amp;backend=x]
+</code></pre></div>
+<p>Here's two quick examples from INEX's production system:</p>
+<ol>
+<li>Aggregate exchange traffic options: <a href="https://www.inex.ie/ixp/grapher/ixp?id=1&amp;type=json">https://www.inex.ie/ixp/grapher/ixp?id=1&amp;type=json</a></li>
+<li>Aggregate exchange traffic PNG: <a href="https://www.inex.ie/ixp/grapher/ixp">https://www.inex.ie/ixp/grapher/ixp</a> (as you'll learn below, the defaults are <code>id=1&amp;type=png</code>).</li>
+</ol>
+<p>A sample of the JSON output is:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ixp&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;urls&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;png&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&amp;type=png&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&amp;type=log&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;json&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https:\/\/www.inex.ie\/ixp\/grapher\/ixp?period=day&amp;type=json&amp;category=bits&amp;protocol=all&amp;id=1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;base_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https:\/\/www.inex.ie\/ixp\/grapher\/ixp&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;statistics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;totalin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15013439801606864</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;totalout&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15013959560329200</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;curin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">158715231920</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;curout&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">158713872624</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;averagein&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">125566129180.59367</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;averageout&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">125570476225.09074</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;maxin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">222438012592</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;maxout&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">222348641336</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bits&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;period&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;protocol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;supports&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;protocols&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;all&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;all&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;categories&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;bits&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bits&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;pkts&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pkts&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;periods&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;day&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;week&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;week&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;month&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;month&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;year&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;types&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;png&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;png&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;log&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;json&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;json&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;backends&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;mrtg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mrtg&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mrtg&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>You can see from the above what <code>params</code> were used to create the <code>statistics</code> (and would be used for the image if <code>type=png</code>), what parameters are supported (<code>supports</code>), what backends are available for the given graph type and mix of parameters, etc.</p>
+<p><strong>Notes:</strong></p>
+<ol>
+<li>not all backends support all options or graphs; use the <code>json</code> type to see what's supported <em>but remember that IXP Manager will, when configured correctly, chose the appropriate backend</em>;</li>
+<li>the primary key IDs mentioned below are mostly available in the UI when viewing lists of the relevant objects under a column <em>DB ID</em>;</li>
+<li>an understanding of how IXP Manager represents interfaces is required to grasp the below - <a href="../../usage/interfaces/">see here</a>.</li>
+</ol>
+<p>Let's first look at supported graphs:</p>
+<ul>
+<li>
+<p><code>ixp</code>: aggregate graph for an IXP's overall traffic. <code>id</code>, which defaults to <code>1</code>, is the primary key of the IXP from the <code>ixp</code> database table. As <strong>IXP Manager</strong> does not support multiple IXPs, this defaults to <code>id=1</code>. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>infrastructure</code>: aggregate graph for the overall traffic on a specific IXP infrastructure. For many IXPs, they'll just have a single infrastructure and this will go unused as it would be the equivalent of <code>ixp</code> above. <code>id</code>, which is mandatory, is the primary key of the infrastructure from the <code>infrastructure</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>vlan</code>: aggregate graph for a specific VLAN. <code>id</code>, which is mandatory, is the primary key of the VLAN from the <code>vlan</code> database table. [Currently only supported via sflow for <code>protocol=ipv4|ipv6</code> and <code>category=bits|pkts</code>]</p>
+</li>
+<li>
+<p><code>location</code>: aggregate graph of all peering traffic being switched by a specific facility (sum of all customer ports <strong>not including</strong> core ports). <code>id</code>, which is mandatory, is the primary key of the location / facility from the <code>location</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]. *Note that we are looking at all traffic originating and/or terminating at a location rather than traffic passing through it.</p>
+</li>
+<li>
+<p><code>switch</code>: aggregate graph of all peering traffic being switched by a specific switch (sum of all customer ports plus core ports). <code>id</code>, which is mandatory, is the primary key of the switch from the <code>switch</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>core-bundle</code>: inter-switch / trunk graphs configured in IXP Manager using the <em>Core Bundles</em> tool. The <code>id</code> is mandatory and is the database ID of the core bundle. An additional parameter is supported also: <code>&amp;side=a</code> or <code>&amp;side=b</code> which determines which side of the core bundle you want to graph. This parameter is optional and defaults to <code>a</code>. Each side of the graph will be about identical (only differing by MRTG polling time) but with tx/rx reversed. Access is determined using the <code>GRAPHER_ACCESS_TRUNK</code>.</p>
+</li>
+<li>
+<p><code>trunk</code>: a legacy hold over from <em>Inter-Switch / Trunk Graphs</em> above to be replaced with core bundles.</p>
+</li>
+<li>
+<p><code>physicalinterface</code>: traffic for an individual member port - a single physical switch port. <code>id</code>, which is mandatory, is the primary key of the physical interface from the <code>physicalinterface</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>virtualinterface</code>: if a member has a single connection (one switch port) then this is the same as <code>physicalinterface</code> above. However, if they have a LAG port then it's the aggregate traffic for all physical ports in the LAG. <code>id</code>, which is mandatory, is the primary key of the virtual interface from the <code>virtualinterface</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>customer</code>: the aggregate traffic for all ports belonging to a customer across all infrastructures. <code>id</code>, which is mandatory, is the primary key of the customer from the <code>cust</code> database table. [Currently only supported via MRTG for <code>protocol=all</code>]</p>
+</li>
+<li>
+<p><code>vlaninterface</code>: aggregate traffic flowing through a members VLAN interface for a specific protocol. <code>id</code>, which is mandatory, is the primary key of the VLAN interface from the <code>vlaninterface</code> database table. [Currently only supported via sflow for <code>protocol=ipv4|ipv6</code>]</p>
+</li>
+<li>
+<p><code>latency</code>: latency graphs (e.g. Smokeping). <code>id</code>, which is mandatory, is the primary key of the VLAN interface from the <code>vlaninterface</code> database table. <code>protocol=ipv4|ipv6</code> is also mandatory. Periods for Smokeping are different to the default periods and should be one of <code>3hours|30hours|10days|1year</code>.</p>
+</li>
+<li>
+<p><code>p2p</code>: peer to peer traffic between two member VLAN interfaces. The source (<code>svli</code>) and destination (<code>dvli</code>) VLAN interface IDs are required. <code>svli</code> and <code>dvli</code>, which are mandatory, are primary keys of the VLAN interfaces from the <code>vlaninterface</code> database table. [Currently only supported via sflow for <code>protocol=ipv4|ipv6</code>]</p>
+</li>
+</ul>
+<p>For additional options, it's always best to manually or programmatically examine the output for <code>type=json</code> to see what is supported. The following is a general list.</p>
+<ul>
+<li>
+<p><code>type</code>: one of:</p>
+<ul>
+<li><code>json</code> - as demonstrated and described above;</li>
+<li><code>log</code> - MRTG  log file type output formatted as a JSON array;</li>
+<li><code>rrd</code> - the RRD file for the requested graph type;</li>
+<li><code>png</code> - the graph image itself (default).</li>
+<li>potentially others as supported / implemented by newer backends.</li>
+</ul>
+</li>
+<li>
+<p><code>period</code>: one of <code>day</code>, <code>week</code>, <code>month</code>, <code>year</code> (except for <code>latency</code> graphs as described above).</p>
+</li>
+<li>
+<p><code>category</code>: one of <code>bits</code>, <code>pkts</code> (packets), <code>errs</code> (errors), <code>discs</code> (discards), <code>bcasts</code> (broadcasts). Bits is measured in bits per second, the rest in packets per second.</p>
+</li>
+<li>
+<p><code>protocol</code>: one of <code>all</code>, <code>ipv4</code> or <code>ipv6</code>.</p>
+</li>
+<li>
+<p><code>backend</code>: default is to let IXP Manager decide.</p>
+</li>
+</ul>
+<h2 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link"></a></h2>
+<p>The grapher API can be accessed using the <a href="../../features/api/">standard API access mechanisms</a>.</p>
+<p>Each graph (ixp, infrastructure, etc.) has an <code>authorise()</code> method which determines who is allowed view a graph. For example, see <a href="https://github.com/inex/IXP-Manager/blob/master/app/Services/Grapher/Graph/VlanInterface.php#L131">IXP\Services\Grapher\Graph\VlanInterface::authorise()</a>. The general logic is:</p>
+<ul>
+<li>if the graph is configured to be publicly accessible -&gt; allow</li>
+<li>if not logged in / no valid API key -&gt; deny</li>
+<li>if superuser -&gt; allow</li>
+<li>if user belongs to customer graph requested -&gt; allow</li>
+<li>otherwise -&gt; deny and log</li>
+</ul>
+<p>For the supported graph types, default access control is:</p>
+<table>
+<thead>
+<tr>
+<th>Graph</th>
+<th>Default Access Control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ixp</code></td>
+<td>public but respects <code>GRAPHER_ACCESS_IXP</code> (see above)</td>
+</tr>
+<tr>
+<td><code>infrastructure</code></td>
+<td>public but respects <code>GRAPHER_ACCESS_INFRASTRUCTURE</code> (see above)</td>
+</tr>
+<tr>
+<td><code>vlan</code></td>
+<td>public but respects <code>GRAPHER_ACCESS_VLAN</code> (see above), unless it's a private VLAN (in which case only superuser is supported currently)</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td>public but respects <code>GRAPHER_ACCESS_LOCATION</code> (see above)</td>
+</tr>
+<tr>
+<td><code>switch</code></td>
+<td>public but respects <code>GRAPHER_ACCESS_SWITCH</code> (see above)</td>
+</tr>
+<tr>
+<td><code>core-bundle</code></td>
+<td>public but respects <code>GRAPHER_ACCESS_TRUNK</code> (see above)</td>
+</tr>
+<tr>
+<td><code>trunk</code></td>
+<td>public but respects <code>GRAPHER_ACCESS_TRUNK</code> (see above)</td>
+</tr>
+<tr>
+<td><code>physicalinterface</code></td>
+<td>superuser or user of the owning customer but respects <code>GRAPHER_ACCESS_CUSTOMER</code> (see <em>Access to Member Graphs</em> below)</td>
+</tr>
+<tr>
+<td><code>vlaninterface</code></td>
+<td>superuser or user of the owning customer but respects <code>GRAPHER_ACCESS_CUSTOMER</code> (see <em>Access to Member Graphs</em> below)</td>
+</tr>
+<tr>
+<td><code>virtualinterface</code></td>
+<td>superuser or user of the owning customer but respects <code>GRAPHER_ACCESS_CUSTOMER</code> (see <em>Access to Member Graphs</em> below)</td>
+</tr>
+<tr>
+<td><code>customer</code></td>
+<td>superuser or user of the owning customer but respects <code>GRAPHER_ACCESS_CUSTOMER</code> (see <em>Access to Member Graphs</em> below)</td>
+</tr>
+<tr>
+<td><code>latency</code></td>
+<td>superuser or user of the owning customer but respects <code>GRAPHER_ACCESS_LATENCY</code> (see <em>Access to Member Graphs</em> below)</td>
+</tr>
+<tr>
+<td><code>p2p</code></td>
+<td>superuser or user of the source (<code>svli</code>) owning customer but respects <code>GRAPHER_ACCESS_P2P</code> (see <em>Access to Member Graphs</em> below)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="access-to-member-graphs">Access to Member Graphs<a class="headerlink" href="#access-to-member-graphs" title="Permanent link"></a></h3>
+<p><strong>NB: before you read this section, please first read and be familiar with the <em>Accessibility of Aggregate Graphs</em> section above.</strong></p>
+<p>To allow public access to member / customer graphs, the following <code>.env</code> options with the default value as shown are available:</p>
+<div class="highlight"><pre><span></span><code>GRAPHER_ACCESS_CUSTOMER=&quot;own_graphs_only&quot;
+GRAPHER_ACCESS_P2P=&quot;own_graphs_only&quot;
+GRAPHER_ACCESS_LATENCY=&quot;own_graphs_only&quot;
+</code></pre></div>
+<p>The <code>own_graphs_only</code> setting just means <em>perform the default access checks</em> which are: access is granted to a superuser or a user who belongs to the customer which owns the respective graph. I.e. no one but the customer or a superadmin can access the respective graph.</p>
+<p>If you wish to allow access to these to a <em>less than or equal</em> <a href="../../usage/users/">user permission</a>, set the above in <code>.env</code> appropriately.</p>
+<p>For example:</p>
+<ul>
+<li>to allow public access to all customer graphs (customer aggregate, LAG aggregates, physical interfaces and per-VLAN/protocol graphs);</li>
+<li>to allow any logged in customer access any other customer's peer to peer graphs; and</li>
+<li>to continue to restrict latency graph access to superadmins and the owning customer</li>
+</ul>
+<p>then set the following in <code>.env</code>:</p>
+<div class="highlight"><pre><span></span><code>GRAPHER_ACCESS_CUSTOMER=0
+GRAPHER_ACCESS_P2P=1
+</code></pre></div>
+<p><em>Note that <code>GRAPHER_ACCESS_LATENCY</code> is omitted as we are not changing the default.</em></p>
+<p>Please note the following:</p>
+<ul>
+<li><code>GRAPHER_ACCESS_CUSTOMER</code> applies to customer aggregate graphs, customer LAG graphs (virtualinterface), customer ports (physicalinterface) and customer vlaninterface. T individually limit these makes little sense and drastically increases complexity (from a UI perspectve).</li>
+<li>It makes limited sense for UI access to enable either <code>GRAPHER_ACCESS_P2P</code> or <code>GRAPHER_ACCESS_LATENCY</code> without enabling equivalent or less restrictive access to <code>GRAPHER_ACCESS_CUSTOMER</code>. This is because most of the user interface (UI) pathways to access these is via <code>GRAPHER_ACCESS_CUSTOMER</code> pages.</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2024 12:34:10 UTC">September 21, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -2422,10 +2877,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": ["tabs"], "search": "/assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["tabs"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>

@@ -8,19 +8,25 @@
       
       
       
+        <link rel="canonical" href="https://docs.ixpmanager.org/usage/authentication/">
       
       
+        <link rel="prev" href="../../install/register/">
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      
+        <link rel="next" href="../contacts/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>IXP Manager Documentation</title>
+        <title>Authentication - IXP Manager Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -39,9 +45,9 @@
       
     
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -59,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#authentication-session-management" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -75,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -95,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Authentication
             
           </span>
         </div>
@@ -185,7 +196,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -215,7 +226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -275,7 +286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/" class="md-nav__link">
+      <a href="../../install/" class="md-nav__link">
         
   
   
@@ -298,7 +309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/automated-script/" class="md-nav__link">
+      <a href="../../install/automated-script/" class="md-nav__link">
         
   
   
@@ -321,7 +332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/maint-mode/" class="md-nav__link">
+      <a href="../../install/maint-mode/" class="md-nav__link">
         
   
   
@@ -344,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/manually/" class="md-nav__link">
+      <a href="../../install/manually/" class="md-nav__link">
         
   
   
@@ -367,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/upgrading/" class="md-nav__link">
+      <a href="../../install/upgrading/" class="md-nav__link">
         
   
   
@@ -390,7 +401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/runtime/" class="md-nav__link">
+      <a href="../../install/runtime/" class="md-nav__link">
         
   
   
@@ -413,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/next-steps/" class="md-nav__link">
+      <a href="../../install/next-steps/" class="md-nav__link">
         
   
   
@@ -436,7 +447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/register/" class="md-nav__link">
+      <a href="../../install/register/" class="md-nav__link">
         
   
   
@@ -463,18 +474,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -490,7 +503,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             General Usage
@@ -501,10 +514,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/usage/authentication/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Authentication
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -515,6 +550,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#session-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Session Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#session-lifetimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Session Lifetimes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-factor-authentication-2fa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two-Factor Authentication (2FA)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Two-Factor Authentication (2FA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enforcing-2fa-for-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enforcing 2FA for Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lifetime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removing-2fa-restoring-user-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removing 2FA / Restoring User Access
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -527,7 +648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/contacts/" class="md-nav__link">
+      <a href="../contacts/" class="md-nav__link">
         
   
   
@@ -550,7 +671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/cookies/" class="md-nav__link">
+      <a href="../cookies/" class="md-nav__link">
         
   
   
@@ -573,7 +694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customers/" class="md-nav__link">
+      <a href="../customers/" class="md-nav__link">
         
   
   
@@ -596,7 +717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customer-notes/" class="md-nav__link">
+      <a href="../customer-notes/" class="md-nav__link">
         
   
   
@@ -619,7 +740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customer-tags/" class="md-nav__link">
+      <a href="../customer-tags/" class="md-nav__link">
         
   
   
@@ -642,7 +763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/interfaces/" class="md-nav__link">
+      <a href="../interfaces/" class="md-nav__link">
         
   
   
@@ -665,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/dblogs/" class="md-nav__link">
+      <a href="../dblogs/" class="md-nav__link">
         
   
   
@@ -688,7 +809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/email/" class="md-nav__link">
+      <a href="../email/" class="md-nav__link">
         
   
   
@@ -711,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/operational-notes/" class="md-nav__link">
+      <a href="../operational-notes/" class="md-nav__link">
         
   
   
@@ -734,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/switches/" class="md-nav__link">
+      <a href="../switches/" class="md-nav__link">
         
   
   
@@ -757,7 +878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/users/" class="md-nav__link">
+      <a href="../users/" class="md-nav__link">
         
   
   
@@ -825,7 +946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/api/" class="md-nav__link">
+      <a href="../../features/api/" class="md-nav__link">
         
   
   
@@ -848,7 +969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/as112/" class="md-nav__link">
+      <a href="../../features/as112/" class="md-nav__link">
         
   
   
@@ -871,7 +992,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/provisioning/" class="md-nav__link">
+      <a href="../../features/provisioning/" class="md-nav__link">
         
   
   
@@ -894,7 +1015,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/console-servers/" class="md-nav__link">
+      <a href="../../features/console-servers/" class="md-nav__link">
         
   
   
@@ -917,7 +1038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/core-bundles/" class="md-nav__link">
+      <a href="../../features/core-bundles/" class="md-nav__link">
         
   
   
@@ -940,7 +1061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/cronjobs/" class="md-nav__link">
+      <a href="../../features/cronjobs/" class="md-nav__link">
         
   
   
@@ -963,7 +1084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/patch-panels/" class="md-nav__link">
+      <a href="../../features/patch-panels/" class="md-nav__link">
         
   
   
@@ -986,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/dns-arpa/" class="md-nav__link">
+      <a href="../../features/dns-arpa/" class="md-nav__link">
         
   
   
@@ -1009,7 +1130,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/docstore/" class="md-nav__link">
+      <a href="../../features/docstore/" class="md-nav__link">
         
   
   
@@ -1032,7 +1153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/introduction/" class="md-nav__link">
+      <a href="../../grapher/introduction/" class="md-nav__link">
         
   
   
@@ -1055,7 +1176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/helpdesk/" class="md-nav__link">
+      <a href="../../features/helpdesk/" class="md-nav__link">
         
   
   
@@ -1078,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/irrdb/" class="md-nav__link">
+      <a href="../../features/irrdb/" class="md-nav__link">
         
   
   
@@ -1101,7 +1222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/ixf-export/" class="md-nav__link">
+      <a href="../../features/ixf-export/" class="md-nav__link">
         
   
   
@@ -1124,7 +1245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/looking-glass/" class="md-nav__link">
+      <a href="../../features/looking-glass/" class="md-nav__link">
         
   
   
@@ -1147,7 +1268,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/layer2-addresses/" class="md-nav__link">
+      <a href="../../features/layer2-addresses/" class="md-nav__link">
         
   
   
@@ -1170,7 +1291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/manrs/" class="md-nav__link">
+      <a href="../../features/manrs/" class="md-nav__link">
         
   
   
@@ -1193,7 +1314,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/member-export/" class="md-nav__link">
+      <a href="../../features/member-export/" class="md-nav__link">
         
   
   
@@ -1216,7 +1337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/mailing-lists/" class="md-nav__link">
+      <a href="../../features/mailing-lists/" class="md-nav__link">
         
   
   
@@ -1239,7 +1360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/nagios/" class="md-nav__link">
+      <a href="../../features/nagios/" class="md-nav__link">
         
   
   
@@ -1262,7 +1383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/patch-panels/" class="md-nav__link">
+      <a href="../../features/patch-panels/" class="md-nav__link">
         
   
   
@@ -1285,7 +1406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peering-manager/" class="md-nav__link">
+      <a href="../../features/peering-manager/" class="md-nav__link">
         
   
   
@@ -1308,7 +1429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peering-matrix/" class="md-nav__link">
+      <a href="../../features/peering-matrix/" class="md-nav__link">
         
   
   
@@ -1331,7 +1452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peeringdb/" class="md-nav__link">
+      <a href="../../features/peeringdb/" class="md-nav__link">
         
   
   
@@ -1354,7 +1475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/rir-objects/" class="md-nav__link">
+      <a href="../../features/rir-objects/" class="md-nav__link">
         
   
   
@@ -1377,7 +1498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/reseller/" class="md-nav__link">
+      <a href="../../features/reseller/" class="md-nav__link">
         
   
   
@@ -1400,7 +1521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/route-collectors/" class="md-nav__link">
+      <a href="../../features/route-collectors/" class="md-nav__link">
         
   
   
@@ -1423,7 +1544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/route-servers/" class="md-nav__link">
+      <a href="../../features/route-servers/" class="md-nav__link">
         
   
   
@@ -1446,7 +1567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/routers/" class="md-nav__link">
+      <a href="../../features/routers/" class="md-nav__link">
         
   
   
@@ -1469,7 +1590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/rpki/" class="md-nav__link">
+      <a href="../../features/rpki/" class="md-nav__link">
         
   
   
@@ -1492,7 +1613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/skinning/" class="md-nav__link">
+      <a href="../../features/skinning/" class="md-nav__link">
         
   
   
@@ -1515,7 +1636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/smokeping/" class="md-nav__link">
+      <a href="../../grapher/smokeping/" class="md-nav__link">
         
   
   
@@ -1538,7 +1659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/static-content/" class="md-nav__link">
+      <a href="../../features/static-content/" class="md-nav__link">
         
   
   
@@ -1561,7 +1682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/tacacs/" class="md-nav__link">
+      <a href="../../features/tacacs/" class="md-nav__link">
         
   
   
@@ -1629,7 +1750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/introduction/" class="md-nav__link">
+      <a href="../../grapher/introduction/" class="md-nav__link">
         
   
   
@@ -1652,7 +1773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/api/" class="md-nav__link">
+      <a href="../../grapher/api/" class="md-nav__link">
         
   
   
@@ -1675,7 +1796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/mrtg/" class="md-nav__link">
+      <a href="../../grapher/mrtg/" class="md-nav__link">
         
   
   
@@ -1698,7 +1819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/sflow/" class="md-nav__link">
+      <a href="../../grapher/sflow/" class="md-nav__link">
         
   
   
@@ -1721,7 +1842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/smokeping/" class="md-nav__link">
+      <a href="../../grapher/smokeping/" class="md-nav__link">
         
   
   
@@ -1789,7 +1910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/sflow/" class="md-nav__link">
+      <a href="../../features/sflow/" class="md-nav__link">
         
   
   
@@ -1812,7 +1933,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/sflow-p2p/" class="md-nav__link">
+      <a href="../../features/sflow-p2p/" class="md-nav__link">
         
   
   
@@ -1880,7 +2001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/introduction/" class="md-nav__link">
+      <a href="../../dev/introduction/" class="md-nav__link">
         
   
   
@@ -1903,7 +2024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/policy/" class="md-nav__link">
+      <a href="../../dev/policy/" class="md-nav__link">
         
   
   
@@ -1926,7 +2047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/api/" class="md-nav__link">
+      <a href="../../dev/api/" class="md-nav__link">
         
   
   
@@ -1949,7 +2070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/authentication/" class="md-nav__link">
+      <a href="../../dev/authentication/" class="md-nav__link">
         
   
   
@@ -1972,7 +2093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/ci/" class="md-nav__link">
+      <a href="../../dev/ci/" class="md-nav__link">
         
   
   
@@ -1995,7 +2116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/cla/" class="md-nav__link">
+      <a href="../../dev/cla/" class="md-nav__link">
         
   
   
@@ -2018,7 +2139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/docker/" class="md-nav__link">
+      <a href="../../dev/docker/" class="md-nav__link">
         
   
   
@@ -2041,7 +2162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/docs/" class="md-nav__link">
+      <a href="../../dev/docs/" class="md-nav__link">
         
   
   
@@ -2064,7 +2185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/foil/" class="md-nav__link">
+      <a href="../../dev/foil/" class="md-nav__link">
         
   
   
@@ -2087,7 +2208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/forms/" class="md-nav__link">
+      <a href="../../dev/forms/" class="md-nav__link">
         
   
   
@@ -2110,7 +2231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/frontend-crud/" class="md-nav__link">
+      <a href="../../dev/frontend-crud/" class="md-nav__link">
         
   
   
@@ -2133,7 +2254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/grapher/" class="md-nav__link">
+      <a href="../../dev/grapher/" class="md-nav__link">
         
   
   
@@ -2156,7 +2277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/helpders/" class="md-nav__link">
+      <a href="../../dev/helpders/" class="md-nav__link">
         
   
   
@@ -2179,7 +2300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/looking-glass/" class="md-nav__link">
+      <a href="../../dev/looking-glass/" class="md-nav__link">
         
   
   
@@ -2202,7 +2323,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/release-procedure/" class="md-nav__link">
+      <a href="../../dev/release-procedure/" class="md-nav__link">
         
   
   
@@ -2225,7 +2346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/telescope/" class="md-nav__link">
+      <a href="../../dev/telescope/" class="md-nav__link">
         
   
   
@@ -2248,7 +2369,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/users/" class="md-nav__link">
+      <a href="../../dev/users/" class="md-nav__link">
         
   
   
@@ -2271,7 +2392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/vagrant/" class="md-nav__link">
+      <a href="../../dev/vagrant/" class="md-nav__link">
         
   
   
@@ -2311,6 +2432,82 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#session-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Session Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#session-lifetimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Session Lifetimes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-factor-authentication-2fa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two-Factor Authentication (2FA)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Two-Factor Authentication (2FA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enforcing-2fa-for-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enforcing 2FA for Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lifetime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removing-2fa-restoring-user-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removing 2FA / Restoring User Access
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2322,8 +2519,89 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="authentication-session-management">Authentication &amp; Session Management<a class="headerlink" href="#authentication-session-management" title="Permanent link"></a></h1>
+<h2 id="session-management">Session Management<a class="headerlink" href="#session-management" title="Permanent link"></a></h2>
+<p>IXP Manager allows users to login and remain logged in for up to 30 days (by default). Users may also have and maintain multiple login sessions from different browsers.</p>
+<p>To enable such a long-lived session, the user must check the <em>Remember me</em> checkbox when logging in.</p>
+<p>Active sessions can be seen (and deleted) via the <em>Active Sessions</em> option in the user's <em>My Account</em> menu (top right of screen).</p>
+<h3 id="session-lifetimes">Session Lifetimes<a class="headerlink" href="#session-lifetimes" title="Permanent link"></a></h3>
+<p>There are two configurable options here - <strong>both in minutes</strong>. The first is the session lifetime which is how long a browser session will stay valid since the last activity. The default value is defined in <code>.env</code> as:</p>
+<div class="highlight"><pre><span></span><code>SESSION_LIFETIME=120
+</code></pre></div>
+<p>In other words, your login session (when you do not check <em>remember me</em>) will stay valid for 120 minutes / 2 hours by default. This is two hours <em>since the last request</em> - i.e. the session expiry time updates on each request. If you are curious, the browser cookie managing this is called <code>laravel_session</code> by default.</p>
+<p>If the user checks <em>remember me</em>, then a second cookie is sent to and stored on your browser (called <code>remember_web_xxx</code> where <code>xxx</code> is a random string). This references an entry in the user's <code>user_remember_tokens</code> database table.</p>
+<p>The default lifetime of this <em>remember me</em> session is defined in <code>.env</code> as:</p>
+<div class="highlight"><pre><span></span><code>AUTH_TOKEN_EXPIRE=43200
+</code></pre></div>
+<p>So, your <em>remember me</em> session will last 30 days before you will be forced to login again from a particular browser.</p>
+<p>You may notice that the cookie sent to the browser for this has an indefinite lifetime - the expiry is actually controlled by the <code>user_remember_tokens.expires</code> database column.</p>
+<h2 id="two-factor-authentication-2fa">Two-Factor Authentication (2FA)<a class="headerlink" href="#two-factor-authentication-2fa" title="Permanent link"></a></h2>
+<p>Two factor authentication (2fa) strengthens access security by requiring two methods (also referred to as factors) to verify your identity. Two factor authentication protects against phishing, social engineering and password brute force attacks and secures your logins from attackers exploiting weak or stolen credentials.</p>
+<p><strong>For the avoidance of doubt, 2fa does not apply to API keys or API requests. Treat your API keys with extreme care.</strong></p>
+<p><strong>IXP Manager</strong> supports a Google Authenticator compatible HMAC-Based One-time Password (HOTP) algorithm as specified in <a href="https://tools.ietf.org/html/rfc4226">RFC 4226</a> and the Time-based One-time Password (TOTP) algorithm specified in <a href="https://tools.ietf.org/html/rfc6238">RFC 6238</a>. In other words, <em>the standard</em> 2fa system that is supported by most apps such as <a href="https://www.authy.com/">Authy</a>, Google Authenticator, <a href="https://lastpass.com/auth/">LastPass</a>, <a href="https://1password.com/">1Password</a>, etc.</p>
+<p>User's can enable, view (and test) and disable 2fa via the <em>My Account -&gt; Profile</em> page.</p>
+<p>2FA support in IXP Manager is enabled by default. To globally disable it set the following <code>.env</code> option:</p>
+<div class="highlight"><pre><span></span><code>2FA_ENABLED=false
+</code></pre></div>
+<h3 id="enforcing-2fa-for-users">Enforcing 2FA for Users<a class="headerlink" href="#enforcing-2fa-for-users" title="Permanent link"></a></h3>
+<p>You can enforce the use of 2fa for some (or all) categories of users. Set the following configuration option:</p>
+<div class="highlight"><pre><span></span><code>2FA_ENFORCE_FOR_USERS=n
+</code></pre></div>
+<p>where <em>n</em> is the privilege level of the user (see <code>privs=</code> <a href="../users/">here</a>). For example to force 2fa for:</p>
+<ul>
+<li>all superusers, set <em>n</em> to <code>3</code>;</li>
+<li>all custadmins and superusers, set <em>n</em> to <code>2</code>; or</li>
+<li>all users, set <em>n</em> to <code>1</code>.</li>
+</ul>
+<p>If a user without 2fa enabled tries to login from a privilege category that has been configured to enforce 2fa, they will be required to configure 2fa immediately before being granted access to IXP Manager.</p>
+<h3 id="lifetime">Lifetime<a class="headerlink" href="#lifetime" title="Permanent link"></a></h3>
+<p>A user will not be asked to revalidate their 2fa code during the lifetime of a standard browser session or <em>remember me</em> session (see above).</p>
+<h3 id="removing-2fa-restoring-user-access">Removing 2FA / Restoring User Access<a class="headerlink" href="#removing-2fa-restoring-user-access" title="Permanent link"></a></h3>
+<p>We have opted not to implement recovery / backup codes as they are not particularly appropriate to the scope of IXP Manager.</p>
+<p>If a user needs to have their 2fa removed (indefinitely or so they can reconfigure it), superadmins can do this via the standard user listing (the <em>Users</em> option in the left hand menu).</p>
+<p>Identify the user you wish to remove 2fa from, dropdown the additional actions menu on the far right of the table row and select <em>Remove 2FA</em>.</p>
+<p>Once you confirm this action, that user's 2fa configuration will be deleted. The next time they log in, they will either be granted access without 2fa or forced to reconfigure 2fa if you have enforced 2fa for the user's category.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2024 12:34:10 UTC">September 21, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -2422,10 +2700,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": ["tabs"], "search": "/assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["tabs"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>

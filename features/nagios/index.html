@@ -8,23 +8,25 @@
       
       
       
-        <link rel="canonical" href="https://docs.ixpmanager.org/">
+        <link rel="canonical" href="https://docs.ixpmanager.org/features/nagios/">
       
       
+        <link rel="prev" href="../mailing-lists/">
       
-        <link rel="next" href="install/">
+      
+        <link rel="next" href="../patch-panels/">
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>IXP Manager Documentation</title>
+        <title>Nagios - IXP Manager Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -43,9 +45,9 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -64,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-ixp-manager" class="md-skip">
+        <a href="#nagios-monitoring" class="md-skip">
           Skip to content
         </a>
       
@@ -84,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -104,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Nagios
             
           </span>
         </div>
@@ -194,7 +196,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -221,32 +223,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Home
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -257,77 +237,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#other-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      Other Links
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#people-behind-ixp-manager" class="md-nav__link">
-    <span class="md-ellipsis">
-      People Behind IXP Manager
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sponsors" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sponsors
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#license" class="md-nav__link">
-    <span class="md-ellipsis">
-      License
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="License">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#documentation-license" class="md-nav__link">
-    <span class="md-ellipsis">
-      Documentation License
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -377,7 +286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="install/" class="md-nav__link">
+      <a href="../../install/" class="md-nav__link">
         
   
   
@@ -400,7 +309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="install/automated-script/" class="md-nav__link">
+      <a href="../../install/automated-script/" class="md-nav__link">
         
   
   
@@ -423,7 +332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="install/maint-mode/" class="md-nav__link">
+      <a href="../../install/maint-mode/" class="md-nav__link">
         
   
   
@@ -446,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="install/manually/" class="md-nav__link">
+      <a href="../../install/manually/" class="md-nav__link">
         
   
   
@@ -469,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="install/upgrading/" class="md-nav__link">
+      <a href="../../install/upgrading/" class="md-nav__link">
         
   
   
@@ -492,7 +401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="install/runtime/" class="md-nav__link">
+      <a href="../../install/runtime/" class="md-nav__link">
         
   
   
@@ -515,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="install/next-steps/" class="md-nav__link">
+      <a href="../../install/next-steps/" class="md-nav__link">
         
   
   
@@ -538,7 +447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="install/register/" class="md-nav__link">
+      <a href="../../install/register/" class="md-nav__link">
         
   
   
@@ -606,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage/authentication/" class="md-nav__link">
+      <a href="../../usage/authentication/" class="md-nav__link">
         
   
   
@@ -629,7 +538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage/contacts/" class="md-nav__link">
+      <a href="../../usage/contacts/" class="md-nav__link">
         
   
   
@@ -652,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage/cookies/" class="md-nav__link">
+      <a href="../../usage/cookies/" class="md-nav__link">
         
   
   
@@ -675,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage/customers/" class="md-nav__link">
+      <a href="../../usage/customers/" class="md-nav__link">
         
   
   
@@ -698,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage/customer-notes/" class="md-nav__link">
+      <a href="../../usage/customer-notes/" class="md-nav__link">
         
   
   
@@ -721,7 +630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage/customer-tags/" class="md-nav__link">
+      <a href="../../usage/customer-tags/" class="md-nav__link">
         
   
   
@@ -744,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage/interfaces/" class="md-nav__link">
+      <a href="../../usage/interfaces/" class="md-nav__link">
         
   
   
@@ -767,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage/dblogs/" class="md-nav__link">
+      <a href="../../usage/dblogs/" class="md-nav__link">
         
   
   
@@ -790,7 +699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage/email/" class="md-nav__link">
+      <a href="../../usage/email/" class="md-nav__link">
         
   
   
@@ -813,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage/operational-notes/" class="md-nav__link">
+      <a href="../../usage/operational-notes/" class="md-nav__link">
         
   
   
@@ -836,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage/switches/" class="md-nav__link">
+      <a href="../../usage/switches/" class="md-nav__link">
         
   
   
@@ -859,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="usage/users/" class="md-nav__link">
+      <a href="../../usage/users/" class="md-nav__link">
         
   
   
@@ -886,18 +795,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -913,7 +824,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Features
@@ -927,7 +838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/api/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   
@@ -950,7 +861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/as112/" class="md-nav__link">
+      <a href="../as112/" class="md-nav__link">
         
   
   
@@ -973,7 +884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/provisioning/" class="md-nav__link">
+      <a href="../provisioning/" class="md-nav__link">
         
   
   
@@ -996,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/console-servers/" class="md-nav__link">
+      <a href="../console-servers/" class="md-nav__link">
         
   
   
@@ -1019,7 +930,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/core-bundles/" class="md-nav__link">
+      <a href="../core-bundles/" class="md-nav__link">
         
   
   
@@ -1042,7 +953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/cronjobs/" class="md-nav__link">
+      <a href="../cronjobs/" class="md-nav__link">
         
   
   
@@ -1065,7 +976,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/patch-panels/" class="md-nav__link">
+      <a href="../patch-panels/" class="md-nav__link">
         
   
   
@@ -1088,7 +999,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/dns-arpa/" class="md-nav__link">
+      <a href="../dns-arpa/" class="md-nav__link">
         
   
   
@@ -1111,7 +1022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/docstore/" class="md-nav__link">
+      <a href="../docstore/" class="md-nav__link">
         
   
   
@@ -1134,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="grapher/introduction/" class="md-nav__link">
+      <a href="../../grapher/introduction/" class="md-nav__link">
         
   
   
@@ -1157,7 +1068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/helpdesk/" class="md-nav__link">
+      <a href="../helpdesk/" class="md-nav__link">
         
   
   
@@ -1180,7 +1091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/irrdb/" class="md-nav__link">
+      <a href="../irrdb/" class="md-nav__link">
         
   
   
@@ -1203,7 +1114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/ixf-export/" class="md-nav__link">
+      <a href="../ixf-export/" class="md-nav__link">
         
   
   
@@ -1226,7 +1137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/looking-glass/" class="md-nav__link">
+      <a href="../looking-glass/" class="md-nav__link">
         
   
   
@@ -1249,7 +1160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/layer2-addresses/" class="md-nav__link">
+      <a href="../layer2-addresses/" class="md-nav__link">
         
   
   
@@ -1272,7 +1183,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/manrs/" class="md-nav__link">
+      <a href="../manrs/" class="md-nav__link">
         
   
   
@@ -1295,7 +1206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/member-export/" class="md-nav__link">
+      <a href="../member-export/" class="md-nav__link">
         
   
   
@@ -1318,7 +1229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/mailing-lists/" class="md-nav__link">
+      <a href="../mailing-lists/" class="md-nav__link">
         
   
   
@@ -1338,10 +1249,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="features/nagios/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Nagios
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1352,6 +1285,140 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sample-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sample Scripts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-member-reachability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Member Reachability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring Member Reachability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-nagios-for-member-reachability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring Nagios for Member Reachability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates-skinning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Templates / Skinning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switch-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switch Monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Switch Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Checking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#birdseye-daemon-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Birdseye Daemon Monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Birdseye Daemon Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-checking_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Checking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#birdseye-bgp-session-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Birdseye BGP Session Monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Birdseye BGP Session Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-checking_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Checking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1364,7 +1431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/patch-panels/" class="md-nav__link">
+      <a href="../patch-panels/" class="md-nav__link">
         
   
   
@@ -1387,7 +1454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/peering-manager/" class="md-nav__link">
+      <a href="../peering-manager/" class="md-nav__link">
         
   
   
@@ -1410,7 +1477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/peering-matrix/" class="md-nav__link">
+      <a href="../peering-matrix/" class="md-nav__link">
         
   
   
@@ -1433,7 +1500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/peeringdb/" class="md-nav__link">
+      <a href="../peeringdb/" class="md-nav__link">
         
   
   
@@ -1456,7 +1523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/rir-objects/" class="md-nav__link">
+      <a href="../rir-objects/" class="md-nav__link">
         
   
   
@@ -1479,7 +1546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/reseller/" class="md-nav__link">
+      <a href="../reseller/" class="md-nav__link">
         
   
   
@@ -1502,7 +1569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/route-collectors/" class="md-nav__link">
+      <a href="../route-collectors/" class="md-nav__link">
         
   
   
@@ -1525,7 +1592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/route-servers/" class="md-nav__link">
+      <a href="../route-servers/" class="md-nav__link">
         
   
   
@@ -1548,7 +1615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/routers/" class="md-nav__link">
+      <a href="../routers/" class="md-nav__link">
         
   
   
@@ -1571,7 +1638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/rpki/" class="md-nav__link">
+      <a href="../rpki/" class="md-nav__link">
         
   
   
@@ -1594,7 +1661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/skinning/" class="md-nav__link">
+      <a href="../skinning/" class="md-nav__link">
         
   
   
@@ -1617,7 +1684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="grapher/smokeping/" class="md-nav__link">
+      <a href="../../grapher/smokeping/" class="md-nav__link">
         
   
   
@@ -1640,7 +1707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/static-content/" class="md-nav__link">
+      <a href="../static-content/" class="md-nav__link">
         
   
   
@@ -1663,7 +1730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/tacacs/" class="md-nav__link">
+      <a href="../tacacs/" class="md-nav__link">
         
   
   
@@ -1731,7 +1798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="grapher/introduction/" class="md-nav__link">
+      <a href="../../grapher/introduction/" class="md-nav__link">
         
   
   
@@ -1754,7 +1821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="grapher/api/" class="md-nav__link">
+      <a href="../../grapher/api/" class="md-nav__link">
         
   
   
@@ -1777,7 +1844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="grapher/mrtg/" class="md-nav__link">
+      <a href="../../grapher/mrtg/" class="md-nav__link">
         
   
   
@@ -1800,7 +1867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="grapher/sflow/" class="md-nav__link">
+      <a href="../../grapher/sflow/" class="md-nav__link">
         
   
   
@@ -1823,7 +1890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="grapher/smokeping/" class="md-nav__link">
+      <a href="../../grapher/smokeping/" class="md-nav__link">
         
   
   
@@ -1891,7 +1958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/sflow/" class="md-nav__link">
+      <a href="../sflow/" class="md-nav__link">
         
   
   
@@ -1914,7 +1981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/sflow-p2p/" class="md-nav__link">
+      <a href="../sflow-p2p/" class="md-nav__link">
         
   
   
@@ -1982,7 +2049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/introduction/" class="md-nav__link">
+      <a href="../../dev/introduction/" class="md-nav__link">
         
   
   
@@ -2005,7 +2072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/policy/" class="md-nav__link">
+      <a href="../../dev/policy/" class="md-nav__link">
         
   
   
@@ -2028,7 +2095,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/api/" class="md-nav__link">
+      <a href="../../dev/api/" class="md-nav__link">
         
   
   
@@ -2051,7 +2118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/authentication/" class="md-nav__link">
+      <a href="../../dev/authentication/" class="md-nav__link">
         
   
   
@@ -2074,7 +2141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/ci/" class="md-nav__link">
+      <a href="../../dev/ci/" class="md-nav__link">
         
   
   
@@ -2097,7 +2164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/cla/" class="md-nav__link">
+      <a href="../../dev/cla/" class="md-nav__link">
         
   
   
@@ -2120,7 +2187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/docker/" class="md-nav__link">
+      <a href="../../dev/docker/" class="md-nav__link">
         
   
   
@@ -2143,7 +2210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/docs/" class="md-nav__link">
+      <a href="../../dev/docs/" class="md-nav__link">
         
   
   
@@ -2166,7 +2233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/foil/" class="md-nav__link">
+      <a href="../../dev/foil/" class="md-nav__link">
         
   
   
@@ -2189,7 +2256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/forms/" class="md-nav__link">
+      <a href="../../dev/forms/" class="md-nav__link">
         
   
   
@@ -2212,7 +2279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/frontend-crud/" class="md-nav__link">
+      <a href="../../dev/frontend-crud/" class="md-nav__link">
         
   
   
@@ -2235,7 +2302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/grapher/" class="md-nav__link">
+      <a href="../../dev/grapher/" class="md-nav__link">
         
   
   
@@ -2258,7 +2325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/helpders/" class="md-nav__link">
+      <a href="../../dev/helpders/" class="md-nav__link">
         
   
   
@@ -2281,7 +2348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/looking-glass/" class="md-nav__link">
+      <a href="../../dev/looking-glass/" class="md-nav__link">
         
   
   
@@ -2304,7 +2371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/release-procedure/" class="md-nav__link">
+      <a href="../../dev/release-procedure/" class="md-nav__link">
         
   
   
@@ -2327,7 +2394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/telescope/" class="md-nav__link">
+      <a href="../../dev/telescope/" class="md-nav__link">
         
   
   
@@ -2350,7 +2417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/users/" class="md-nav__link">
+      <a href="../../dev/users/" class="md-nav__link">
         
   
   
@@ -2373,7 +2440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dev/vagrant/" class="md-nav__link">
+      <a href="../../dev/vagrant/" class="md-nav__link">
         
   
   
@@ -2423,46 +2490,109 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#other-links" class="md-nav__link">
+  <a href="#sample-scripts" class="md-nav__link">
     <span class="md-ellipsis">
-      Other Links
+      Sample Scripts
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#people-behind-ixp-manager" class="md-nav__link">
+  <a href="#monitoring-member-reachability" class="md-nav__link">
     <span class="md-ellipsis">
-      People Behind IXP Manager
+      Monitoring Member Reachability
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sponsors" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sponsors
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#license" class="md-nav__link">
-    <span class="md-ellipsis">
-      License
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="License">
+    <nav class="md-nav" aria-label="Monitoring Member Reachability">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#documentation-license" class="md-nav__link">
+  <a href="#configuring-nagios-for-member-reachability" class="md-nav__link">
     <span class="md-ellipsis">
-      Documentation License
+      Configuring Nagios for Member Reachability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates-skinning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Templates / Skinning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switch-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switch Monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Switch Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Checking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#birdseye-daemon-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Birdseye Daemon Monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Birdseye Daemon Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-checking_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Checking
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#birdseye-bgp-session-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Birdseye BGP Session Monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Birdseye BGP Session Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-checking_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Checking
     </span>
   </a>
   
@@ -2492,48 +2622,372 @@
   
 
 
-<h1 id="welcome-to-ixp-manager">Welcome to IXP Manager<a class="headerlink" href="#welcome-to-ixp-manager" title="Permanent link"></a></h1>
-<p><img alt="IXP Manager Logo" src="img/ixp-manager.png" /></p>
-<p><strong>IXP Manager is the most trusted IXP platform worldwide.</strong></p>
-<p>It is a full stack management system for Internet eXchange Points (IXPs) which includes an administration and customer portal; provides end to end provisioning; and both teaches and implements best practice. It allows IXPs to manage new customers, provision new connections / services and monitor traffic usage. It has a number of provisioning templates including its ability to generate secure proven route server configuration and provides a built in looking glass for these.</p>
-<p><strong><a href="https://www.inex.ie/">INEX</a></strong> are pleased to release <strong><a href="http://www.ixpmanager.org/">IXP Manager</a></strong> under an open source license (the GNU Public License V2) which we hope will benefit the wider IXP community, and especially new and small IXPs looking to expand.</p>
-<p>Additional information: <a href="https://www.ixpmanager.org/">https://www.ixpmanager.org/</a></p>
-<h2 id="other-links">Other Links<a class="headerlink" href="#other-links" title="Permanent link"></a></h2>
+<h1 id="nagios-monitoring">Nagios Monitoring<a class="headerlink" href="#nagios-monitoring" title="Permanent link"></a></h1>
+<p>At <a href="https://www.inex.ie/">INEX</a> we use Nagios to monitor a number of production services including:</p>
 <ul>
-<li><a href="https://www.ixpmanager.org/">IXP Manager Website</a></li>
-<li><a href="https://docs.ixpmanager.org/">Documentation</a> including:</li>
-<li>Installation <a href="https://docs.ixpmanager.org/install/">overview</a>,
-    <a href="https://docs.ixpmanager.org/install/automated-script/">by automated script</a>,
-    and <a href="https://docs.ixpmanager.org/install/manually/">manually</a></li>
-<li><a href="https://docs.ixpmanager.org/install/upgrading/">Upgrade Instructions</a></li>
-<li><a href="https://github.com/inex/IXP-Manager/releases">Releases</a></li>
-<li><a href="https://www.ixpmanager.org/community/world-map">List of Users</a> (contact us if you are missing!)</li>
-<li><a href="https://www.ixpmanager.org/support">How to Get Help</a></li>
-<li><a href="https://www.ixpmanager.org/support/tutorials">Video Tutorials</a></li>
-<li><a href="https://www.ixpmanager.org/support/talks">Presentations &amp; Talks</a></li>
-<li><a href="https://www.ixpmanager.org/sponsors">Sponsors and Sponsorship</a></li>
-<li>Follow <a href="https://twitter.com/ixpmanager">@ixpmanager</a> on Twitter</li>
+<li>peering LAN switches;</li>
+<li>member reachability (ping v4/v6);</li>
+<li>member route collector sessions;</li>
+<li>member route server sessions.</li>
 </ul>
-<h2 id="people-behind-ixp-manager">People Behind IXP Manager<a class="headerlink" href="#people-behind-ixp-manager" title="Permanent link"></a></h2>
-<p><a href="https://www.inex.ie/">INEX</a> is an Internet eXchange Point and Ireland's IP peering hub. It is a neutral, industry-owned Association, founded in 1996, that provides IP peering facilities for its members. INEX membership is open to all organisations that can benefit from peering their IP traffic. See: <a href="https://www.inex.ie/">https://www.inex.ie/</a>. INEX is IXP Manager's core team and founder. </p>
-<p><strong>Principle Authors:</strong></p>
+<p>IXP Manager can generate configuration to monitor the above for you.</p>
+<p><strong>NB: IXP Manager will not install and configure Nagios from scratch. You need a working Nagios installation first and then IXP Manager will automate the above areas of the configuration.</strong></p>
+<h2 id="sample-scripts">Sample Scripts<a class="headerlink" href="#sample-scripts" title="Permanent link"></a></h2>
+<p>You will find sample scripts for pulling Nagios configuration from IXP Manager and reloading Nagios at:</p>
+<p>https://github.com/inex/IXP-Manager/tree/master/tools/runtime/nagios</p>
+<h2 id="monitoring-member-reachability">Monitoring Member Reachability<a class="headerlink" href="#monitoring-member-reachability" title="Permanent link"></a></h2>
+<p>We monitor all member router interfaces (unless asked not to) via ICMP[v6] pings with Nagios. This is all controlled by the Nagios configuration created with this feature.</p>
+<p>To enable / disable these checks, edit the VLAN interface configuration and set IPvX Can Ping appropriately. <em>Note that when IPvX Can Ping is disabled, the host definition is created anyway as this would be used for other Nagios checks such as route collector sessions.</em></p>
+<p>There is an additional option when editing a member's VLAN interface called <em>Busy Host</em>. This changes the Nagios ping fidelity from <code>250.0,20%!500.0,60%</code> to <code>1000.0,80%!2000.0,90%</code> (using the default object definitions which are configurable). This is useful for routers with slow / rate limited control planes.</p>
+<p>Members are added to a number of hostgroups also:</p>
 <ul>
-<li><a href="https://www.barryodonovan.com/contact">Barry O'Donovan</a> <a href="https://github.com/barryo">@barryo</a></li>
-<li>Nick Hilliard <a href="https://github.com/nickhilliard/">@nickhilliard</a></li>
-<li>Lászlá Kiss <a href="https://github.com/griphons">@griphons</a> (since 2024 and supported by <a href="https://www.ixpmanager.org/sponsors">the sponsorship program</a>)</li>
+<li>a per-switch hostgroup;</li>
+<li>a per cabinet hostgroup;</li>
+<li>a per location / data centre hostgroup;</li>
+<li>an all members hostgroup.</li>
 </ul>
-<p>The team at INEX deserves special mention - its CEO, Eileen Gallagher for her steadfast support and promotion of the project; the INEX Board of Directors - past and present - for their approval to open source the project and their on-going support of the project; and all team members who contribute real-world feedback, suggestions and all-round support!</p>
-<p>See the <a href="https://www.ixpmanager.org/about/team">team page on the IXP Manager website for more details</a>.</p>
-<p>We are also grateful <a href="https://github.com/inex/IXP-Manager/graphs/contributors">for all the individuals who have contributed code</a>, issues, mailing list help and feature requests.</p>
-<h2 id="sponsors">Sponsors<a class="headerlink" href="#sponsors" title="Permanent link"></a></h2>
-<p>IXP Manager is extremely grateful to its <a href="http://www.ixpmanager.org/sponsors">existing sponsors and patrons</a> and continues to seek sponsors for on going development. If you are interested, please <a href="https://www.ixpmanager.org/sponsorship">see out call for sponsorship</a>.</p>
-<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link"></a></h2>
-<p>IXP Manager is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version v2.0 of the License.</p>
-<p>IXP Manager is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.</p>
-<p>You should have received a copy of the GNU General Public License v2.0 along with IXP Manager.  If not, see:</p>
-<p><a href="http://www.gnu.org/licenses/gpl-2.0.html">http://www.gnu.org/licenses/gpl-2.0.html</a></p>
-<h3 id="documentation-license">Documentation License<a class="headerlink" href="#documentation-license" title="Permanent link"></a></h3>
-<p>This documentation is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p>These hostgroups are very useful to single out issues and for post-maintenance checks.</p>
+<p>You can use the <strong>IXP Manager</strong> API to get the Nagios configuration for a given VLAN and protocol using the following endpoint format (both GET and POST requests work):</p>
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/customers/{vlanid}/{protocol}
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li><code>vlanid</code> is the database ID (<em>DB ID</em>) of the VLAN. You can find the DB ID in IXP Manager in the VLAN table (select <em>VLANs</em> from the left hand side menu).</li>
+<li><code>protocol</code> is either <code>4</code> for <code>IPv4</code> or 6 for <code>IPv6</code>.</li>
+</ul>
+<p>If either of these are invalid, the API will return with a HTTP 404 response.</p>
+<p>And example of a target in the response is:</p>
+<div class="highlight"><pre><span></span><code>###############################################################################################
+###
+### Packet Clearing House DNS
+###
+### Equinix DB2 (Kilcarbery) / Packet Clearing House DNS / swi1-kcp1-1.
+###
+
+### Host: 185.6.36.60 / inex.woodynet.net / Peering VLAN #1.
+
+define host {
+    use                     ixp-manager-member-host
+    host_name               packet-clearing-house-dns-as42-ipv4-vlanid2-vliid109
+    alias                   Packet Clearing House DNS / swi1-kcp1-1 / Peering VLAN #1.
+    address                 185.6.36.60
+}
+
+### Service: 185.6.36.60 / inex.woodynet.net / Peering VLAN #1.
+
+define service {
+    use                     ixp-manager-member-ping-service
+    host_name               packet-clearing-house-dns-as42-ipv4-vlanid2-vliid109
+}
+</code></pre></div>
+<h3 id="configuring-nagios-for-member-reachability">Configuring Nagios for Member Reachability<a class="headerlink" href="#configuring-nagios-for-member-reachability" title="Permanent link"></a></h3>
+<p>You will notice that the above configuration example is very light and is missing an awful lot of Nagios required configuration directives. This is intentional so that IXP Manager is not too prescriptive and allows you to define your own Nagios objects without having to resort to skinning IXP Manager.</p>
+<p>Two of the most important elements of Nagios configuration which you need to understand are <a href="https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/objectdefinitions.html">object definitions</a> and <a href="https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/objectinheritance.html">object inheritance</a>.</p>
+<p>You can pass three optional parameters to Nagios via GET/POST and these are:</p>
+<ol>
+<li><code>host_definition</code>; defaults to: <code>ixp-manager-member-host</code>.</li>
+<li><code>service_definition</code>; defaults to <code>ixp-manager-member-service</code>.</li>
+<li><code>ping_service_definition</code>; defaults to: <code>ixp-manager-member-ping-service</code>.</li>
+<li><code>ping_busy_service_definition</code>; defaults to: <code>ixp-manager-member-ping-busy-service</code>.</li>
+</ol>
+<p>An example of changing two of these parameters is:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--data<span class="w"> </span><span class="s2">&quot;host_definition=my-host-def&amp;service_definition=my-service-def&quot;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>https://ixpexample.com/api/v4/nagios/customers/2/4
+</code></pre></div>
+<p>An example of the three objects that INEX use for this are:</p>
+<div class="highlight"><pre><span></span><code>define host {
+    name                    ixp-manager-member-host
+    check_command           check-host-alive
+    check_period            24x7
+    max_check_attempts      10
+    notification_interval   120
+    notification_period     24x7
+    notification_options    d,u,r
+    contact_groups          admins
+    register                0
+}
+
+define service {
+    name                    ixp-manager-member-service
+    check_period            24x7
+    max_check_attempts      10
+    check_interval          5
+    retry_check_interval    1
+    contact_groups          admins
+    notification_interval   120
+    notification_period     24x7
+    notification_options    w,u,c,r
+    register                0
+}
+
+define service {
+    name                    ixp-manager-member-ping-service
+    use                     ixp-manager-member-service
+    service_description     PING
+    check_command           check_ping!250.0,20%!500.0,60%
+    register                0
+}
+
+define service {
+    name                    ixp-manager-member-ping-busy-service
+    use                     ixp-manager-member-service
+    service_description     PING-Busy
+    check_command           check_ping!1000.0,80%!2000.0,90%
+    register                0
+}
+</code></pre></div>
+<h3 id="templates-skinning">Templates / Skinning<a class="headerlink" href="#templates-skinning" title="Permanent link"></a></h3>
+<p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
+<p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>resources/skins/myskin/api/v4/nagios/customers
+cp<span class="w"> </span>resources/views/api/v4/nagios/customers/default.foil.php<span class="w"> </span>resources/skins/myskin/api/v4/nagios/customers/mytemplate1.foil.php
+</code></pre></div>
+<p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
+<p>You can then elect to use this template by tacking the name onto the API request:</p>
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/customers/{vlanid}/{protocol}/{template}
+</code></pre></div>
+<p>where, in this example, <code>{template}</code> would be: <code>mytemplate1</code>.</p>
+<p><em>As a policy, INEX tends to use the bundled templates and as such they should be fit for general purpose.</em></p>
+<h2 id="switch-monitoring">Switch Monitoring<a class="headerlink" href="#switch-monitoring" title="Permanent link"></a></h2>
+<p>We monitor all production peering LAN switches for a number of difference services (see below).</p>
+<p>IXP Manager produces a host configuration for each production switch such as:</p>
+<div class="highlight"><pre><span></span><code>#
+# swi2-dc1-1 - DUB01.XX.YY.ZZ, Data Centre DUB1.
+#
+
+define host {
+    use                     ixp-manager-production-switch
+    host_name               swi2-dc1-1.mgmt.inex.ie
+    alias                   swi2-dc1-1
+    address                 192.0.2.4
+    _DBID                   74
+}
+</code></pre></div>
+<p>Members are added to a number of hostgroups also:</p>
+<ul>
+<li>switches per location / data centre;</li>
+<li>all switches in the requested infrastructure;</li>
+<li>grouped by vendor name (the vendor's <em>shortname</em> as defined in IXP Manager);</li>
+<li>grouped by vendor model (as discovered by SNMP).</li>
+</ul>
+<p>These hostgroups are very useful when defining service checks.</p>
+<p>You can use the <strong>IXP Manager</strong> API to get the Nagios configuration for a given infrastructure using the following endpoint format (both GET and POST requests work):</p>
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/switches/{infraid}
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li><code>infraid</code> is the database ID (<em>DB ID</em>) of the infrastructure. You can find the DB ID in IXP Manager in the infrastructures table (select <em>Infrastructures</em> from the left hand side menu).</li>
+</ul>
+<p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
+<p>Let's say you wanted to add your own template called <code>myswtemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>resources/skins/myskin/api/v4/nagios/switches
+cp<span class="w"> </span>resources/views/api/v4/nagios/switches/default.foil.php<span class="w"> </span>resources/skins/myskin/api/v4/nagios/switches/myswtemplate1.foil.php
+</code></pre></div>
+<p>You can then elect to use this template by tacking the name onto the API request:</p>
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/switches/{infraid}/{template}
+</code></pre></div>
+<p>where, in this example, <code>{template}</code> would be: <code>myswtemplate1</code>.</p>
+<p>You can pass one optional parameter to Nagios via GET/POST which is the host definition to inherit from (see customer reachability testing about for full details and examples):</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--data<span class="w"> </span><span class="s2">&quot;host_definition=my-sw-host-def&quot;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>https://ixpexample.com/api/v4/nagios/switches/2
+</code></pre></div>
+<h3 id="service-checking">Service Checking<a class="headerlink" href="#service-checking" title="Permanent link"></a></h3>
+<p>The recommended way to check various services on your production switches is to use the host groups created by the above switch API call. An example of the hostgroups produced include:</p>
+<ol>
+<li><code>ixp-production-switches-infraid-2</code>: all switches on an infrastructure with DB ID 2;</li>
+<li><code>ixp-switches-infraid-2-dc-dub1</code>: all switches in location dc-dub1;</li>
+<li><code>ixp-switches-infraid-2-extreme</code>: all Extreme switches on an infrastructure with DB ID 2; and</li>
+<li><code>ixp-switches-infraid-2-extreme-x670g2-48x-4q</code>: all Extreme switches of model X670G2-48x-4q on an infrastructure with DB ID 2.</li>
+</ol>
+<p>Using these, you can create generic service definitions to apply to all hosts such as:</p>
+<div class="highlight"><pre><span></span><code>define service{
+    use                             my-ixp-production-switch-service
+    hostgroup_name                  ixp-production-switches-infraid-1, ixp-production-switches-infraid-2
+    service_description             ping - IPv4
+    check_command                   check_ping_ipv4!10!100.0,10%!200.0,20%
+}
+
+define service  {
+    use                             my-ixp-production-switch-service
+    hostgroup_name                  ixp-production-switches-infraid-1, ixp-production-switches-infraid-2
+    service_description             SSH
+    check_command                   check_ssh
+}
+</code></pre></div>
+<p>You can target vendor / model specific checks as appropriate:</p>
+<div class="highlight"><pre><span></span><code>define service{
+    use                             my-ixp-production-switch-service
+    hostgroup_name                  ixp-switches-infraid-1-extreme, ixp-switches-infraid-2-extreme
+    service_description             Chassis
+    check_command                   check_extreme_chassis
+}
+</code></pre></div>
+<p>The one thing you'll need to keep an eye on is adding hostgroups to service checks as you create new infrastructures / add new switch vendors / models.</p>
+<p><strong>Hint:</strong> over the years, we at <a href="https://www.inex.ie/">INEX</a> have written a number of switch chassis check scripts and these can be found on Github at <a href="https://github.com/barryo/nagios-plugins">barryo/nagios-plugins</a>.</p>
+<p>For example the Extreme version checks and returns something like:</p>
+<blockquote>
+<p>OK - CPU: 5sec - 10%. Uptime: 62.8 days. PSUs: 1 - presentOK: 2 - presentOK:. Overall system power state: redundant power available. Fans: [101 - OK (4311 RPM)]: [102 - OK (9273 RPM)]: [103 - OK (4468 RPM)]: [104 - OK (9637 RPM)]: [105 - OK (4165 RPM)]: [106 - OK (9273 RPM)]:. Temp: 34'C. Memory (slot:usage%): 1:29%.</p>
+</blockquote>
+<h2 id="birdseye-daemon-monitoring">Birdseye Daemon Monitoring<a class="headerlink" href="#birdseye-daemon-monitoring" title="Permanent link"></a></h2>
+<p>We monitor our Bird instances at INEX directly through Birdseye, the software we use for our <a href="../looking-glass/">looking glass</a>. This means it is currently tightly coupled to Bird and Birdseye until such time as we look at a second router software.</p>
+<p>IXP Manager produces a host and service configuration for each router such as:</p>
+<div class="highlight"><pre><span></span><code>define host     {
+        use                     ixp-manager-host-birdseye-daemon
+        host_name               bird-rc1q-cork-ipv4
+        alias                   INEX Cork - Quarantine Route Collector - IPv4
+        address                 10.40.5.134
+        _api_url                 http://rc1q-ipv4.cork.inex.ie/api
+}
+
+define service     {
+    use                     ixp-manager-service-birdseye-daemon
+    host_name               bird-rc1q-cork-ipv4
+}
+</code></pre></div>
+<p>You can use the <strong>IXP Manager</strong> API to get the Nagios configuration for all or a given VLAN using the following endpoint format (both GET and POST requests work):</p>
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/birdseye-daemons
+https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}
+https://ixp.example.com/api/v4/nagios/birdseye-daemons/default/{vlanid}
+https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}/{vlanid}
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li><code>{template}</code> is the optional skin (see below).</li>
+<li><code>{vlanid}</code> is the VLAN id to limit the results to. If setting this, you need to provide a template also (or <code>default</code> for the standard template).</li>
+</ul>
+<p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
+<p>Let's say you wanted to add your own template called <code>mybetemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>resources/skins/myskin/api/v4/nagios/birdseye-daemons
+cp<span class="w"> </span>resources/views/api/v4/nagios/birdseye-daemons/default.foil.php<span class="w"> </span>resources/skins/myskin/api/v4/nagios/birdseye-daemons/mybetemplate1.foil.php
+</code></pre></div>
+<p>You can then elect to use this template by tacking the name onto the API request:</p>
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}
+</code></pre></div>
+<p>where, in this example, <code>{template}</code> would be: <code>mybetemplate1</code>.</p>
+<p>You can pass two optional parameter to Nagios via GET/POST which is the host and service definition to inherit from (see customer reachability testing about for full details and examples):</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--data<span class="w"> </span><span class="s2">&quot;host_definition=my-be-host-def&amp;service_definition=my-be-srv-def&quot;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>https://ixpexample.com/api/v4/nagios/birdseye-daemons
+</code></pre></div>
+<p>The default values for the host and service definitions are <code>ixp-manager-host-birdseye-daemon</code> and <code>ixp-manager-service-birdseye-daemon</code> respectively.</p>
+<h3 id="service-checking_1">Service Checking<a class="headerlink" href="#service-checking_1" title="Permanent link"></a></h3>
+<p>You will need to create a parent host and service definition for the generated configuration such as:</p>
+<div class="highlight"><pre><span></span><code>define host {
+    name                    ixp-manager-host-birdseye-daemon
+    check_command           check-host-alive
+    check_period            24x7
+    max_check_attempts      10
+    notification_interval   120
+    notification_period     24x7
+    notification_options    d,u,r
+    contact_groups          admins
+    register                0
+}
+
+define service {
+    name                    ixp-manager-service-birdseye-daemon
+    service_description     Bird BGP Service
+    check_command           check_birdseye_daemon!$_HOSTAPIURL$
+    check_period            24x7
+    max_check_attempts      10
+    check_interval          5
+    retry_check_interval    1
+    contact_groups          admins
+    notification_interval   120
+    notification_period     24x7
+    notification_options    w,u,c,r
+    register                0
+}
+
+define command{
+        command_name    check_birdseye_daemon
+        command_line    /usr/local/nagios-plugins-other/nagios-check-birdseye.php -a $ARG1$
+}
+</code></pre></div>
+<p>The Nagios script we use is bundled with <a href="https://github.com/inex/birdseye">inex/birdseye</a> and can be found <a href="https://github.com/inex/birdseye/tree/master/bin">here</a>.</p>
+<p>Typical Nagios state output:</p>
+<blockquote>
+<p>OK: Bird 1.6.2. Bird's Eye 1.0.4. Router ID 192.0.2.126. Uptime: 235 days. Last Reconfigure: 2017-07-17 16:00:04.26 BGP sessions up of 28.</p>
+</blockquote>
+<h2 id="birdseye-bgp-session-monitoring">Birdseye BGP Session Monitoring<a class="headerlink" href="#birdseye-bgp-session-monitoring" title="Permanent link"></a></h2>
+<p>We monitor our Bird route collector, route server and AS112 Bird BGP sessions at INEX directly through Birdseye, the software we use for our <a href="../looking-glass/">looking glass</a>. This means it is currently tightly coupled to Bird and Birdseye until such time as we look at a second router software.</p>
+<p>IXP Manager produces a host and service configuration for each router type such as:</p>
+<div class="highlight"><pre><span></span><code>### Router: INEX LAN1 - Route Collector - IPv4 / 192.0.2.126.
+
+define service     {
+    use                     ixp-manager-member-bgp-session-service
+    host_name               as112-reverse-dns-as112-ipv4-vlanid2-vliid99
+    service_description     BGP session to rc1-lan1-ipv4 (INEX LAN1 - Route Collector - IPv4)
+    _api_url                http://www.example.com/api
+    _protocol               pb_0099_as112
+}
+</code></pre></div>
+<p>The configuration also includes hostgroups for the given VLAN, protocol and type for:</p>
+<ul>
+<li>per-router;</li>
+<li>all sessions.</li>
+</ul>
+<p>You can use the <strong>IXP Manager</strong> API to get the Nagios configuration for a given protocol, VLAN and router type using the following templates:</p>
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}
+https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li><code>{vlanid}</code> is the VLAN id to generate the configuration for.</li>
+<li><code>{protocol}</code> is either 4 (ipv4) or 6 (ipv6).</li>
+<li><code>{type}</code> is one of (these are defined in <a href="https://github.com/inex/IXP-Manager/blob/master/database/Entities/Router.php">Entities\Router</a>):</li>
+<li><code>1</code> for route servers;</li>
+<li><code>2</code> for route collectors;</li>
+<li><code>3</code> for AS112</li>
+</ul>
+<p>You can use <a href="../skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
+<p>Let's say you wanted to add your own template called <code>myrstemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>resources/skins/myskin/api/v4/nagios/birdseye-bgp-sessions
+cp<span class="w"> </span>resources/views/api/v4/nagios/birdseye-bgp-sessions/default.foil.php<span class="w"> </span>resources/skins/myskin/api/v4/nagios/birdseye-bgp-sessions/myrstemplate1.foil.php
+</code></pre></div>
+<p>You can then elect to use this template by tacking the name onto the API request:</p>
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
+</code></pre></div>
+<p>where, in this example, <code>{template}</code> would be: <code>myrstemplate1</code>.</p>
+<p>You can pass one optional parameter to Nagios via GET/POST which is the service definition to inherit from (see customer reachability testing about for full details and examples):</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--data<span class="w"> </span><span class="s2">&quot;service_definition=my-rs-srv-def&quot;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>https://ixpexample.com/api/v4/nagios/birdseye-bgpsessions/2/4/1
+</code></pre></div>
+<p>The default values for the service definition is <code>ixp-manager-member-bgp-session-service</code> respectively.</p>
+<h3 id="service-checking_2">Service Checking<a class="headerlink" href="#service-checking_2" title="Permanent link"></a></h3>
+<p>You will need to create a parent service definition and a check command for the generated configuration such as:</p>
+<div class="highlight"><pre><span></span><code>define service {
+    name                    ixp-manager-member-bgp-session-service
+    service_description     Member Bird BGP Sessions
+    check_period            24x7
+    max_check_attempts      10
+    check_interval          5
+    retry_check_interval    1
+    contact_groups          admins
+    notification_interval   120
+    notification_period     24x7
+    notification_options    w,u,c,r
+    register                0
+    check_command           check_birdseye_bgp_session!$_SERVICEAPI_URL!$_SERVICEPROTOCOL
+}
+
+define command{
+    command_name    check_birdseye_bgp_session
+    command_line    /path/to/nagios-check-birdseye-bgp-sessions.php -a $ARG1$ -p $ARG2$ -n
+}
+</code></pre></div>
+<p>The Nagios script we use is bundled with <a href="https://github.com/inex/birdseye">inex/birdseye</a> and can be found <a href="https://github.com/inex/birdseye/tree/master/bin">here</a>.</p>
 
 
 
@@ -2554,7 +3008,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2024 11:32:52 UTC">September 21, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2024 12:34:10 UTC">September 21, 2024</span>
   </span>
 
     
@@ -2666,10 +3120,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["tabs"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["tabs"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>

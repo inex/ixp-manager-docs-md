@@ -8,19 +8,25 @@
       
       
       
+        <link rel="canonical" href="https://docs.ixpmanager.org/features/sflow-p2p/">
       
       
+        <link rel="prev" href="../sflow/">
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      
+        <link rel="next" href="../../dev/introduction/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>IXP Manager Documentation</title>
+        <title>Peer-to-peer Graphs - IXP Manager Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -39,9 +45,9 @@
       
     
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -59,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#configuring-peer-to-peer-statistics" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -75,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -95,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Peer-to-peer Graphs
             
           </span>
         </div>
@@ -185,7 +196,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -215,7 +226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -275,7 +286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/" class="md-nav__link">
+      <a href="../../install/" class="md-nav__link">
         
   
   
@@ -298,7 +309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/automated-script/" class="md-nav__link">
+      <a href="../../install/automated-script/" class="md-nav__link">
         
   
   
@@ -321,7 +332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/maint-mode/" class="md-nav__link">
+      <a href="../../install/maint-mode/" class="md-nav__link">
         
   
   
@@ -344,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/manually/" class="md-nav__link">
+      <a href="../../install/manually/" class="md-nav__link">
         
   
   
@@ -367,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/upgrading/" class="md-nav__link">
+      <a href="../../install/upgrading/" class="md-nav__link">
         
   
   
@@ -390,7 +401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/runtime/" class="md-nav__link">
+      <a href="../../install/runtime/" class="md-nav__link">
         
   
   
@@ -413,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/next-steps/" class="md-nav__link">
+      <a href="../../install/next-steps/" class="md-nav__link">
         
   
   
@@ -436,7 +447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/register/" class="md-nav__link">
+      <a href="../../install/register/" class="md-nav__link">
         
   
   
@@ -504,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/authentication/" class="md-nav__link">
+      <a href="../../usage/authentication/" class="md-nav__link">
         
   
   
@@ -527,7 +538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/contacts/" class="md-nav__link">
+      <a href="../../usage/contacts/" class="md-nav__link">
         
   
   
@@ -550,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/cookies/" class="md-nav__link">
+      <a href="../../usage/cookies/" class="md-nav__link">
         
   
   
@@ -573,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customers/" class="md-nav__link">
+      <a href="../../usage/customers/" class="md-nav__link">
         
   
   
@@ -596,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customer-notes/" class="md-nav__link">
+      <a href="../../usage/customer-notes/" class="md-nav__link">
         
   
   
@@ -619,7 +630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customer-tags/" class="md-nav__link">
+      <a href="../../usage/customer-tags/" class="md-nav__link">
         
   
   
@@ -642,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/interfaces/" class="md-nav__link">
+      <a href="../../usage/interfaces/" class="md-nav__link">
         
   
   
@@ -665,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/dblogs/" class="md-nav__link">
+      <a href="../../usage/dblogs/" class="md-nav__link">
         
   
   
@@ -688,7 +699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/email/" class="md-nav__link">
+      <a href="../../usage/email/" class="md-nav__link">
         
   
   
@@ -711,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/operational-notes/" class="md-nav__link">
+      <a href="../../usage/operational-notes/" class="md-nav__link">
         
   
   
@@ -734,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/switches/" class="md-nav__link">
+      <a href="../../usage/switches/" class="md-nav__link">
         
   
   
@@ -757,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/users/" class="md-nav__link">
+      <a href="../../usage/users/" class="md-nav__link">
         
   
   
@@ -825,7 +836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/api/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   
@@ -848,7 +859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/as112/" class="md-nav__link">
+      <a href="../as112/" class="md-nav__link">
         
   
   
@@ -871,7 +882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/provisioning/" class="md-nav__link">
+      <a href="../provisioning/" class="md-nav__link">
         
   
   
@@ -894,7 +905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/console-servers/" class="md-nav__link">
+      <a href="../console-servers/" class="md-nav__link">
         
   
   
@@ -917,7 +928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/core-bundles/" class="md-nav__link">
+      <a href="../core-bundles/" class="md-nav__link">
         
   
   
@@ -940,7 +951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/cronjobs/" class="md-nav__link">
+      <a href="../cronjobs/" class="md-nav__link">
         
   
   
@@ -963,7 +974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/patch-panels/" class="md-nav__link">
+      <a href="../patch-panels/" class="md-nav__link">
         
   
   
@@ -986,7 +997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/dns-arpa/" class="md-nav__link">
+      <a href="../dns-arpa/" class="md-nav__link">
         
   
   
@@ -1009,7 +1020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/docstore/" class="md-nav__link">
+      <a href="../docstore/" class="md-nav__link">
         
   
   
@@ -1032,7 +1043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/introduction/" class="md-nav__link">
+      <a href="../../grapher/introduction/" class="md-nav__link">
         
   
   
@@ -1055,7 +1066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/helpdesk/" class="md-nav__link">
+      <a href="../helpdesk/" class="md-nav__link">
         
   
   
@@ -1078,7 +1089,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/irrdb/" class="md-nav__link">
+      <a href="../irrdb/" class="md-nav__link">
         
   
   
@@ -1101,7 +1112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/ixf-export/" class="md-nav__link">
+      <a href="../ixf-export/" class="md-nav__link">
         
   
   
@@ -1124,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/looking-glass/" class="md-nav__link">
+      <a href="../looking-glass/" class="md-nav__link">
         
   
   
@@ -1147,7 +1158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/layer2-addresses/" class="md-nav__link">
+      <a href="../layer2-addresses/" class="md-nav__link">
         
   
   
@@ -1170,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/manrs/" class="md-nav__link">
+      <a href="../manrs/" class="md-nav__link">
         
   
   
@@ -1193,7 +1204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/member-export/" class="md-nav__link">
+      <a href="../member-export/" class="md-nav__link">
         
   
   
@@ -1216,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/mailing-lists/" class="md-nav__link">
+      <a href="../mailing-lists/" class="md-nav__link">
         
   
   
@@ -1239,7 +1250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/nagios/" class="md-nav__link">
+      <a href="../nagios/" class="md-nav__link">
         
   
   
@@ -1262,7 +1273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/patch-panels/" class="md-nav__link">
+      <a href="../patch-panels/" class="md-nav__link">
         
   
   
@@ -1285,7 +1296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peering-manager/" class="md-nav__link">
+      <a href="../peering-manager/" class="md-nav__link">
         
   
   
@@ -1308,7 +1319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peering-matrix/" class="md-nav__link">
+      <a href="../peering-matrix/" class="md-nav__link">
         
   
   
@@ -1331,7 +1342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peeringdb/" class="md-nav__link">
+      <a href="../peeringdb/" class="md-nav__link">
         
   
   
@@ -1354,7 +1365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/rir-objects/" class="md-nav__link">
+      <a href="../rir-objects/" class="md-nav__link">
         
   
   
@@ -1377,7 +1388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/reseller/" class="md-nav__link">
+      <a href="../reseller/" class="md-nav__link">
         
   
   
@@ -1400,7 +1411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/route-collectors/" class="md-nav__link">
+      <a href="../route-collectors/" class="md-nav__link">
         
   
   
@@ -1423,7 +1434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/route-servers/" class="md-nav__link">
+      <a href="../route-servers/" class="md-nav__link">
         
   
   
@@ -1446,7 +1457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/routers/" class="md-nav__link">
+      <a href="../routers/" class="md-nav__link">
         
   
   
@@ -1469,7 +1480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/rpki/" class="md-nav__link">
+      <a href="../rpki/" class="md-nav__link">
         
   
   
@@ -1492,7 +1503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/skinning/" class="md-nav__link">
+      <a href="../skinning/" class="md-nav__link">
         
   
   
@@ -1515,7 +1526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/smokeping/" class="md-nav__link">
+      <a href="../../grapher/smokeping/" class="md-nav__link">
         
   
   
@@ -1538,7 +1549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/static-content/" class="md-nav__link">
+      <a href="../static-content/" class="md-nav__link">
         
   
   
@@ -1561,7 +1572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/tacacs/" class="md-nav__link">
+      <a href="../tacacs/" class="md-nav__link">
         
   
   
@@ -1629,7 +1640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/introduction/" class="md-nav__link">
+      <a href="../../grapher/introduction/" class="md-nav__link">
         
   
   
@@ -1652,7 +1663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/api/" class="md-nav__link">
+      <a href="../../grapher/api/" class="md-nav__link">
         
   
   
@@ -1675,7 +1686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/mrtg/" class="md-nav__link">
+      <a href="../../grapher/mrtg/" class="md-nav__link">
         
   
   
@@ -1698,7 +1709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/sflow/" class="md-nav__link">
+      <a href="../../grapher/sflow/" class="md-nav__link">
         
   
   
@@ -1721,7 +1732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/smokeping/" class="md-nav__link">
+      <a href="../../grapher/smokeping/" class="md-nav__link">
         
   
   
@@ -1748,18 +1759,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1775,7 +1788,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Sflow Support
@@ -1789,7 +1802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/sflow/" class="md-nav__link">
+      <a href="../sflow/" class="md-nav__link">
         
   
   
@@ -1809,10 +1822,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/features/sflow-p2p/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1823,6 +1845,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1880,7 +1903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/introduction/" class="md-nav__link">
+      <a href="../../dev/introduction/" class="md-nav__link">
         
   
   
@@ -1903,7 +1926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/policy/" class="md-nav__link">
+      <a href="../../dev/policy/" class="md-nav__link">
         
   
   
@@ -1926,7 +1949,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/api/" class="md-nav__link">
+      <a href="../../dev/api/" class="md-nav__link">
         
   
   
@@ -1949,7 +1972,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/authentication/" class="md-nav__link">
+      <a href="../../dev/authentication/" class="md-nav__link">
         
   
   
@@ -1972,7 +1995,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/ci/" class="md-nav__link">
+      <a href="../../dev/ci/" class="md-nav__link">
         
   
   
@@ -1995,7 +2018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/cla/" class="md-nav__link">
+      <a href="../../dev/cla/" class="md-nav__link">
         
   
   
@@ -2018,7 +2041,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/docker/" class="md-nav__link">
+      <a href="../../dev/docker/" class="md-nav__link">
         
   
   
@@ -2041,7 +2064,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/docs/" class="md-nav__link">
+      <a href="../../dev/docs/" class="md-nav__link">
         
   
   
@@ -2064,7 +2087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/foil/" class="md-nav__link">
+      <a href="../../dev/foil/" class="md-nav__link">
         
   
   
@@ -2087,7 +2110,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/forms/" class="md-nav__link">
+      <a href="../../dev/forms/" class="md-nav__link">
         
   
   
@@ -2110,7 +2133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/frontend-crud/" class="md-nav__link">
+      <a href="../../dev/frontend-crud/" class="md-nav__link">
         
   
   
@@ -2133,7 +2156,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/grapher/" class="md-nav__link">
+      <a href="../../dev/grapher/" class="md-nav__link">
         
   
   
@@ -2156,7 +2179,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/helpders/" class="md-nav__link">
+      <a href="../../dev/helpders/" class="md-nav__link">
         
   
   
@@ -2179,7 +2202,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/looking-glass/" class="md-nav__link">
+      <a href="../../dev/looking-glass/" class="md-nav__link">
         
   
   
@@ -2202,7 +2225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/release-procedure/" class="md-nav__link">
+      <a href="../../dev/release-procedure/" class="md-nav__link">
         
   
   
@@ -2225,7 +2248,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/telescope/" class="md-nav__link">
+      <a href="../../dev/telescope/" class="md-nav__link">
         
   
   
@@ -2248,7 +2271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/users/" class="md-nav__link">
+      <a href="../../dev/users/" class="md-nav__link">
         
   
   
@@ -2271,7 +2294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/vagrant/" class="md-nav__link">
+      <a href="../../dev/vagrant/" class="md-nav__link">
         
   
   
@@ -2311,6 +2334,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -2322,8 +2347,176 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="configuring-peer-to-peer-statistics">Configuring peer-to-peer statistics<a class="headerlink" href="#configuring-peer-to-peer-statistics" title="Permanent link"></a></h1>
+<p>The IXP Manager sflow peer-to-peer graphing system depends on the <a href="../layer2-addresses/">MAC address database</a> system so that point to point traffic flows can be identified.  Before proceeding further, this should be configured so that when you click on either the <code>MAC Addresses | Discovered Addresses</code> or <code>MAC Addresses | Configured Addresses</code> links from the admin portal, you should see a MAC address associated with each port.  If you cannot see any MAC address in either database, then the sflow peer-to-peer graphing mechanism will not work. This needs to be working properly before any attempt is made to configure sflow peer-to-peer graphing. The sflow p2p graphing system can use either discovered MAC addresses or configured MAC addresses, but not both.</p>
+<h1 id="server-overview">Server Overview<a class="headerlink" href="#server-overview" title="Permanent link"></a></h1>
+<p>As sflow can put a reasonably high load on a server due to disk I/O for RRD file updates - it is recommended practice to use a separate server (or virtual server) to handle the IXP's sflow system. The sflow server will need:</p>
+<ul>
+<li>Apache (or any other web server)</li>
+<li>sflowtool</li>
+<li>git</li>
+<li>rrdtool + rrdcached</li>
+<li>perl 5.10.2 or later</li>
+<li>mrtg (for Net_SNMP_util)</li>
+<li>a filesystem partition mounted with the <code>noatime</code>, <code>nodiratime</code> options, and which has enough disk space.  You may also want to consider disabling filesystem journaling.</li>
+</ul>
+<h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h1>
+<h3 id="freebsd">FreeBSD<a class="headerlink" href="#freebsd" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code>pkg install apache24 sflowtool git databases/rrdtool mrtg
+</code></pre></div>
+<h3 id="ubuntu">Ubuntu<a class="headerlink" href="#ubuntu" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code>apt-get install apache2 git rrdtool rrdcached mrtg
+</code></pre></div>
+<p><code>sflowtool</code> is not part of the Ubuntu / Debian package archive and must be compiled from source if running on these systems.  The source code can be found on Github:  https://github.com/sflow/sflowtool.</p>
+<p>Once the required packages are installed, the IXP Manager peer-to-peer graphing system can be configured as follows:</p>
+<ul>
+<li>Clone the IXP Manager installation using <code>git clone https://github.com/inex/IXP-Manager /srv/ixpmanager</code>.</li>
+<li>Check what perl libraries need to be installed using the <code>tools/runtime/check-perl-dependencies.pl</code> command.  These libraries will need to be manually installed.</li>
+<li>Install the IXP Manager perl library in the <code>tools/perl-lib/IXPManager</code> directory (<code>perl Makefile.PL; make install</code>)</li>
+<li>configure and start <code>rrdcached</code>.  We recommend using journaled mode with the <code>-P FLUSH,UPDATE -m 0666 -l unix:/var/run/rrdcached.sock</code> options enabled.  Note that these options allow uncontrolled write access to the RRD files from anyone on the sflow machine, so precautions should be taken to limit access to this server to ensure that this cannot be abused.</li>
+</ul>
+<p>On FreeBSD it is advisable to set <code>net.inet.udp.blackhole=1</code> in <code>/etc/sysctl.conf</code>, to stop the kernel from replying to unknown sflow packets with an ICMP unreachable reply.</p>
+<h2 id="ixpmanagerconf">ixpmanager.conf<a class="headerlink" href="#ixpmanagerconf" title="Permanent link"></a></h2>
+<p>The following sflow parameters must be set in the <code>&lt;ixp&gt;</code> section:</p>
+<ul>
+<li><code>sflow_rrdcached</code>: set to 0 or 1, depending on whether you want to use rrdcached or not.</li>
+<li><code>sflowtool</code>: the location of the sflowtool binary.</li>
+<li><code>sflowtool_opts</code>: command-line options to pass to sflowtool</li>
+<li><code>sflow_rrddir</code>: the directory where all the sflow .rrd files will be stored.</li>
+<li><code>apikey</code>: a valid API key.  Instructions for configuring this can be found in the <a href="../api/">API configuration</a> documentation.</li>
+<li><code>apibaseurl</code>: the base URL of the IXP Manager API.  E.g. if you log into IXP Manager using <code>https://ixp.example.com/</code>, then <code>apibaseurl</code> will be <code>https://ixp.example.com/api/v4</code>.</li>
+<li><code>macdbtype</code>: <code>configured|discovered</code> - specifies whether the sflow p2p graphing system should pull MAC address information from the Configured MAC address database or the Discovered MAC address database.  By default, it uses the Discovered MAC address database.  If you wish to use the Configured MAC address database, then this should be set to <code>configured</code>.</li>
+</ul>
+<p>Note that the <code>&lt;sql&gt;</code> section of <code>ixpmanager.conf</code> will need to be configured either if you are running <code>update-l2database.pl</code> or the sflow BGP peering matrix system.  The <code>sflow-to-rrd-handler</code> script uses API calls and does not need SQL access.</p>
+<p>An example ixpmanager.conf might look like this:</p>
+<div class="highlight"><pre><span></span><code>&lt;sql&gt;
+        dbase_type      = mysql
+        dbase_database  = ixpmanager
+        dbase_username  = ixpmanager_user
+        dbase_password  = blahblah
+        dbase_hostname  = sql.example.com
+&lt;/sql&gt;
+
+&lt;ixp&gt;
+        sflowtool = /usr/bin/sflowtool
+        sflowtool_opts = -4 -p 6343 -l
+        sflow_rrdcached = 1
+        sflow_rrddir = /data/ixpmatrix
+
+        apikey = APIKeyFromIXPManager
+        apibaseurl = http://www.example.com/ixp/api/v4
+        macdbtype = configured
+&lt;/ixp&gt;
+</code></pre></div>
+<p>This file should be placed in <code>/usr/local/etc/ixpmanager.conf</code></p>
+<h1 id="starting-sflow-to-rrd-handler">Starting sflow-to-rrd-handler<a class="headerlink" href="#starting-sflow-to-rrd-handler" title="Permanent link"></a></h1>
+<p>The <code>tools/runtime/sflow/sflow-to-rrd-handler</code> command processes the output from sflowtool and injects it into the RRD archive.  This command should be configured to start on system bootup.</p>
+<p>If you are running on FreeBSD, this command can be started on system bootup by copying the <code>tools/runtime/sflow/sflow_rrd_handler</code> script into <code>/usr/local/etc/rc.d</code> and modifying the <code>/etc/rc.conf</code> command to include:</p>
+<div class="highlight"><pre><span></span><code>sflow_bgp_handler_enable=&quot;YES&quot;
+</code></pre></div>
+<h1 id="displaying-the-graphs">Displaying the Graphs<a class="headerlink" href="#displaying-the-graphs" title="Permanent link"></a></h1>
+<p>The IXP Manager web GUI requires access to the sflow p2p .rrd files over http or https.  This means that the sflow server must run a web server (e.g. Apache), and the IXP Manager GUI must be configured with the URL of the RRD archive on the sflow server.</p>
+<p>Assuming that <code>ixpmanager.conf</code> is configured to use <code>/data/ixpmatrix</code> for the RRD directory, these files can be server over HTTP using the following Apache configuration <em>(please consider appropriate access security - </em><em>this example assumes an internal host on an internal network</em><em>)</em>:</p>
+<div class="highlight"><pre><span></span><code>Alias /grapher-sflow /data/ixpmatrix
+&lt;Directory &quot;/data/ixpmatrix&quot;&gt;
+        Options None
+        Require all granted 
+&lt;/Directory&gt;
+</code></pre></div>
+<p>The IXP Manager <code>.env</code> file must be configured with parameters both to enable sflow and to provide the front-end with the HTTP URL of the back-end server.  Assuming that the sflow p2p server has IP address 10.0.0.1, then the following lines should be added to <code>.env</code>:</p>
+<div class="highlight"><pre><span></span><code>GRAPHER_BACKENDS=&quot;mrtg|sflow|smokeping&quot;
+GRAPHER_BACKEND_SFLOW_ENABLED=true
+GRAPHER_BACKEND_SFLOW_ROOT=&quot;http://10.0.0.1/grapher-sflow&quot;
+</code></pre></div>
+<!--
+# Sflowtool fanout
+
+If IXP Manager is configured with more than one component which requires an sflow feed (e.g. [Peering Matrix](Peering-Matrix) support), then it will be necessary to configure `sflowtool` to use [sflow fan-out](sflow-fanout.md).
+-->
+
+<h1 id="rrd-requirements">RRD Requirements<a class="headerlink" href="#rrd-requirements" title="Permanent link"></a></h1>
+<p>Each IXP edge port will have 4 separate RRD files for recording traffic to each other participant on the same VLAN on the IXP fabric: ipv4 bytes, ipv6 bytes, ipv4 packets and ipv6 packets.  This means that the number of RRD files grows very quickly as the number of IXP participants increases.  Roughly speaking, for every N participants at the IXP, there will be about 4*N^2 RRD files.  As this number can create extremely high I/O requirements on even medium sized exchanges, IXP Manager requires that <code>rrdcached</code> is used.</p>
+<h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link"></a></h1>
+<p>There are plenty of things which could go wrong in a way which would stop the sflow mechanism from working properly.</p>
+<ul>
+<li>the Mac Address table in IXP manager is populated correctly with all customer MAC addresses using the <code>update-l2database.pl</code> script, if you are using discovered MAC addresses. If you're using configured MAC addresses, you can ignore <code>update-l2database.pl</code> script completed but you should make sure that there are valid MAC addresses associated with each port you're attempting to monitor.</li>
+<li>ensuring that all switch ports are set up correctly in IXP Manager, i.e. Core ports and Peering ports are configured as such</li>
+<li>ensuring that sflow accounting is configured on peering ports and is disabled on all core ports</li>
+<li>ensuring that sflow accounting is as ingress-only</li>
+<li>Using Arista / Cisco / Dell F10 kit with LAGs?  Make sure you configure the port channel name in the Advanced Options section of the customer's virtual interface port configuration.</li>
+<li>if the <code>sflow-to-rrd-handler</code> script crashes, this may indicate that the back-end filesystem is overloaded.  Installing rrdcached is a first step here.  If it crashes with rrdcached enabled, then you need more disk I/O (SSDs, etc).</li>
+<li>it is normal to see about 5% difference between sflow stats and mrtg stats.  These differences are hardware and software implementation dependent.  Every switch manufacturer does things slightly differently.</li>
+<li>if there is too much of a difference between the sflow p2p individual aggregate stats and the port stats from the main graphing system, it might be that the switch is throttling sflow samples.  It will be necessary to check the maximum sflow pps rate on the switch processor, compare that with the pps rate in the Switch Statistics graphs and work out the switch process pps throughput on the basis of the sflow sample rate.   Increasing the sflow sampling ration may help, at the cost of less accurate graphs for peering sessions with low traffic levels.</li>
+</ul>
+<h1 id="freebsd-really">FreeBSD, really?<a class="headerlink" href="#freebsd-really" title="Permanent link"></a></h1>
+<p>No.  All of this runs perfectly well on Ubuntu (or your favourite Linux distribution).</p>
+<p>INEX runs its sflow back-end on FreeBSD because we found that the UFS filesystem performs better than the Linux ext3 filesystem when handling large RRD archives.  If you run <code>rrdcached</code>, it's unlikely that you will run into performance problems.  If you do, you can engineer around them by running the RRD archive on a PCIe SSD.</p>
+<h1 id="api-endpoints">API Endpoints<a class="headerlink" href="#api-endpoints" title="Permanent link"></a></h1>
+<p>The <code>tools/runtime/sflow/sflow-to-rrd-handler</code> script from <strong>IXP Manager</strong> referenced above uses an IXP Manager API endpoint to associate sflow samples (based on source and destination MAC addreesses) with VLAN interfaces.</p>
+<p>As IXP Manager <a href="../layer2-addresses/">supports layer2 / MAC addresses</a> in two ways (learned versus configured), there are two endpoints (using <code>https://ixp.example.com</code> as your IXP Manager installation):</p>
+<ol>
+<li>Learned: <code>https://ixp.example.com/api/v4/sflow-db-mapper/learned-macs</code></li>
+<li>Configured: <code>https://ixp.example.com/api/v4/sflow-db-mapper/configured-macs</code></li>
+</ol>
+<p>The JSON output is structured as per the following example:</p>
+<div class="highlight"><pre><span></span><code>{
+    &quot;infrastructure id&quot;: {
+        &quot;vlan tag&quot;: {
+            &quot;mac address&quot;: &quot;vlan interface id&quot;,
+            ...
+        },
+        ...
+    },
+    ...
+}
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li>the outer objects are indexed by an infrastructure ID</li>
+<li>each infrastructure object has VLAN objects indexed by the VLAN <strong>tag</strong> <em>(this is not the VLAN database ID but the VLAN tag)</em></li>
+<li>each VLAN object has key/value pairs of <code>"macaddress": "vlaninterfaceid"</code></li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 24, 2022 11:33:19 UTC">April 24, 2022</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -2422,10 +2615,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": ["tabs"], "search": "/assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["tabs"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>

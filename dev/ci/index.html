@@ -8,19 +8,25 @@
       
       
       
+        <link rel="canonical" href="https://docs.ixpmanager.org/dev/ci/">
       
       
+        <link rel="prev" href="../authentication/">
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      
+        <link rel="next" href="../cla/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>IXP Manager Documentation</title>
+        <title>Continuous Integration - IXP Manager Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -39,9 +45,9 @@
       
     
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -59,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#continuous-integration" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -75,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -95,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Continuous Integration
             
           </span>
         </div>
@@ -185,7 +196,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -215,7 +226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -275,7 +286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/" class="md-nav__link">
+      <a href="../../install/" class="md-nav__link">
         
   
   
@@ -298,7 +309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/automated-script/" class="md-nav__link">
+      <a href="../../install/automated-script/" class="md-nav__link">
         
   
   
@@ -321,7 +332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/maint-mode/" class="md-nav__link">
+      <a href="../../install/maint-mode/" class="md-nav__link">
         
   
   
@@ -344,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/manually/" class="md-nav__link">
+      <a href="../../install/manually/" class="md-nav__link">
         
   
   
@@ -367,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/upgrading/" class="md-nav__link">
+      <a href="../../install/upgrading/" class="md-nav__link">
         
   
   
@@ -390,7 +401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/runtime/" class="md-nav__link">
+      <a href="../../install/runtime/" class="md-nav__link">
         
   
   
@@ -413,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/next-steps/" class="md-nav__link">
+      <a href="../../install/next-steps/" class="md-nav__link">
         
   
   
@@ -436,7 +447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/register/" class="md-nav__link">
+      <a href="../../install/register/" class="md-nav__link">
         
   
   
@@ -504,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/authentication/" class="md-nav__link">
+      <a href="../../usage/authentication/" class="md-nav__link">
         
   
   
@@ -527,7 +538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/contacts/" class="md-nav__link">
+      <a href="../../usage/contacts/" class="md-nav__link">
         
   
   
@@ -550,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/cookies/" class="md-nav__link">
+      <a href="../../usage/cookies/" class="md-nav__link">
         
   
   
@@ -573,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customers/" class="md-nav__link">
+      <a href="../../usage/customers/" class="md-nav__link">
         
   
   
@@ -596,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customer-notes/" class="md-nav__link">
+      <a href="../../usage/customer-notes/" class="md-nav__link">
         
   
   
@@ -619,7 +630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customer-tags/" class="md-nav__link">
+      <a href="../../usage/customer-tags/" class="md-nav__link">
         
   
   
@@ -642,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/interfaces/" class="md-nav__link">
+      <a href="../../usage/interfaces/" class="md-nav__link">
         
   
   
@@ -665,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/dblogs/" class="md-nav__link">
+      <a href="../../usage/dblogs/" class="md-nav__link">
         
   
   
@@ -688,7 +699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/email/" class="md-nav__link">
+      <a href="../../usage/email/" class="md-nav__link">
         
   
   
@@ -711,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/operational-notes/" class="md-nav__link">
+      <a href="../../usage/operational-notes/" class="md-nav__link">
         
   
   
@@ -734,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/switches/" class="md-nav__link">
+      <a href="../../usage/switches/" class="md-nav__link">
         
   
   
@@ -757,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/users/" class="md-nav__link">
+      <a href="../../usage/users/" class="md-nav__link">
         
   
   
@@ -825,7 +836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/api/" class="md-nav__link">
+      <a href="../../features/api/" class="md-nav__link">
         
   
   
@@ -848,7 +859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/as112/" class="md-nav__link">
+      <a href="../../features/as112/" class="md-nav__link">
         
   
   
@@ -871,7 +882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/provisioning/" class="md-nav__link">
+      <a href="../../features/provisioning/" class="md-nav__link">
         
   
   
@@ -894,7 +905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/console-servers/" class="md-nav__link">
+      <a href="../../features/console-servers/" class="md-nav__link">
         
   
   
@@ -917,7 +928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/core-bundles/" class="md-nav__link">
+      <a href="../../features/core-bundles/" class="md-nav__link">
         
   
   
@@ -940,7 +951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/cronjobs/" class="md-nav__link">
+      <a href="../../features/cronjobs/" class="md-nav__link">
         
   
   
@@ -963,7 +974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/patch-panels/" class="md-nav__link">
+      <a href="../../features/patch-panels/" class="md-nav__link">
         
   
   
@@ -986,7 +997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/dns-arpa/" class="md-nav__link">
+      <a href="../../features/dns-arpa/" class="md-nav__link">
         
   
   
@@ -1009,7 +1020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/docstore/" class="md-nav__link">
+      <a href="../../features/docstore/" class="md-nav__link">
         
   
   
@@ -1032,7 +1043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/introduction/" class="md-nav__link">
+      <a href="../../grapher/introduction/" class="md-nav__link">
         
   
   
@@ -1055,7 +1066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/helpdesk/" class="md-nav__link">
+      <a href="../../features/helpdesk/" class="md-nav__link">
         
   
   
@@ -1078,7 +1089,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/irrdb/" class="md-nav__link">
+      <a href="../../features/irrdb/" class="md-nav__link">
         
   
   
@@ -1101,7 +1112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/ixf-export/" class="md-nav__link">
+      <a href="../../features/ixf-export/" class="md-nav__link">
         
   
   
@@ -1124,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/looking-glass/" class="md-nav__link">
+      <a href="../../features/looking-glass/" class="md-nav__link">
         
   
   
@@ -1147,7 +1158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/layer2-addresses/" class="md-nav__link">
+      <a href="../../features/layer2-addresses/" class="md-nav__link">
         
   
   
@@ -1170,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/manrs/" class="md-nav__link">
+      <a href="../../features/manrs/" class="md-nav__link">
         
   
   
@@ -1193,7 +1204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/member-export/" class="md-nav__link">
+      <a href="../../features/member-export/" class="md-nav__link">
         
   
   
@@ -1216,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/mailing-lists/" class="md-nav__link">
+      <a href="../../features/mailing-lists/" class="md-nav__link">
         
   
   
@@ -1239,7 +1250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/nagios/" class="md-nav__link">
+      <a href="../../features/nagios/" class="md-nav__link">
         
   
   
@@ -1262,7 +1273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/patch-panels/" class="md-nav__link">
+      <a href="../../features/patch-panels/" class="md-nav__link">
         
   
   
@@ -1285,7 +1296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peering-manager/" class="md-nav__link">
+      <a href="../../features/peering-manager/" class="md-nav__link">
         
   
   
@@ -1308,7 +1319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peering-matrix/" class="md-nav__link">
+      <a href="../../features/peering-matrix/" class="md-nav__link">
         
   
   
@@ -1331,7 +1342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peeringdb/" class="md-nav__link">
+      <a href="../../features/peeringdb/" class="md-nav__link">
         
   
   
@@ -1354,7 +1365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/rir-objects/" class="md-nav__link">
+      <a href="../../features/rir-objects/" class="md-nav__link">
         
   
   
@@ -1377,7 +1388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/reseller/" class="md-nav__link">
+      <a href="../../features/reseller/" class="md-nav__link">
         
   
   
@@ -1400,7 +1411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/route-collectors/" class="md-nav__link">
+      <a href="../../features/route-collectors/" class="md-nav__link">
         
   
   
@@ -1423,7 +1434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/route-servers/" class="md-nav__link">
+      <a href="../../features/route-servers/" class="md-nav__link">
         
   
   
@@ -1446,7 +1457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/routers/" class="md-nav__link">
+      <a href="../../features/routers/" class="md-nav__link">
         
   
   
@@ -1469,7 +1480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/rpki/" class="md-nav__link">
+      <a href="../../features/rpki/" class="md-nav__link">
         
   
   
@@ -1492,7 +1503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/skinning/" class="md-nav__link">
+      <a href="../../features/skinning/" class="md-nav__link">
         
   
   
@@ -1515,7 +1526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/smokeping/" class="md-nav__link">
+      <a href="../../grapher/smokeping/" class="md-nav__link">
         
   
   
@@ -1538,7 +1549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/static-content/" class="md-nav__link">
+      <a href="../../features/static-content/" class="md-nav__link">
         
   
   
@@ -1561,7 +1572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/tacacs/" class="md-nav__link">
+      <a href="../../features/tacacs/" class="md-nav__link">
         
   
   
@@ -1629,7 +1640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/introduction/" class="md-nav__link">
+      <a href="../../grapher/introduction/" class="md-nav__link">
         
   
   
@@ -1652,7 +1663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/api/" class="md-nav__link">
+      <a href="../../grapher/api/" class="md-nav__link">
         
   
   
@@ -1675,7 +1686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/mrtg/" class="md-nav__link">
+      <a href="../../grapher/mrtg/" class="md-nav__link">
         
   
   
@@ -1698,7 +1709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/sflow/" class="md-nav__link">
+      <a href="../../grapher/sflow/" class="md-nav__link">
         
   
   
@@ -1721,7 +1732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/smokeping/" class="md-nav__link">
+      <a href="../../grapher/smokeping/" class="md-nav__link">
         
   
   
@@ -1789,7 +1800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/sflow/" class="md-nav__link">
+      <a href="../../features/sflow/" class="md-nav__link">
         
   
   
@@ -1812,7 +1823,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/sflow-p2p/" class="md-nav__link">
+      <a href="../../features/sflow-p2p/" class="md-nav__link">
         
   
   
@@ -1839,18 +1850,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1866,7 +1879,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Development
@@ -1880,7 +1893,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1903,7 +1916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/policy/" class="md-nav__link">
+      <a href="../policy/" class="md-nav__link">
         
   
   
@@ -1926,7 +1939,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/api/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   
@@ -1949,7 +1962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/authentication/" class="md-nav__link">
+      <a href="../authentication/" class="md-nav__link">
         
   
   
@@ -1969,10 +1982,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/dev/ci/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Continuous Integration
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1983,6 +2018,71 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-phpunit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up PHPUnit Tests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-laravel-dusk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up Laravel Dusk
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-database-users-passwords-and-api-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Database - Users, Passwords and API Keys
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Unit Tests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-psalm-static-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Psalm Static Code Analysis
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1995,7 +2095,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/cla/" class="md-nav__link">
+      <a href="../cla/" class="md-nav__link">
         
   
   
@@ -2018,7 +2118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/docker/" class="md-nav__link">
+      <a href="../docker/" class="md-nav__link">
         
   
   
@@ -2041,7 +2141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/docs/" class="md-nav__link">
+      <a href="../docs/" class="md-nav__link">
         
   
   
@@ -2064,7 +2164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/foil/" class="md-nav__link">
+      <a href="../foil/" class="md-nav__link">
         
   
   
@@ -2087,7 +2187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/forms/" class="md-nav__link">
+      <a href="../forms/" class="md-nav__link">
         
   
   
@@ -2110,7 +2210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/frontend-crud/" class="md-nav__link">
+      <a href="../frontend-crud/" class="md-nav__link">
         
   
   
@@ -2133,7 +2233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/grapher/" class="md-nav__link">
+      <a href="../grapher/" class="md-nav__link">
         
   
   
@@ -2156,7 +2256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/helpders/" class="md-nav__link">
+      <a href="../helpders/" class="md-nav__link">
         
   
   
@@ -2179,7 +2279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/looking-glass/" class="md-nav__link">
+      <a href="../looking-glass/" class="md-nav__link">
         
   
   
@@ -2202,7 +2302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/release-procedure/" class="md-nav__link">
+      <a href="../release-procedure/" class="md-nav__link">
         
   
   
@@ -2225,7 +2325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/telescope/" class="md-nav__link">
+      <a href="../telescope/" class="md-nav__link">
         
   
   
@@ -2248,7 +2348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/users/" class="md-nav__link">
+      <a href="../users/" class="md-nav__link">
         
   
   
@@ -2271,7 +2371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/vagrant/" class="md-nav__link">
+      <a href="../vagrant/" class="md-nav__link">
         
   
   
@@ -2311,6 +2411,61 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-phpunit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up PHPUnit Tests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-laravel-dusk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up Laravel Dusk
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-database-users-passwords-and-api-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Database - Users, Passwords and API Keys
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Unit Tests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-psalm-static-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Psalm Static Code Analysis
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2322,8 +2477,194 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="continuous-integration">Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permanent link"></a></h1>
+<p>IXP Manager grew out of a code base and schema that started in the early '90s. Long before <a href="http://phpunit.de/">test driven development</a> or <a href="http://behat.org/">behaviour driven development</a> was fashionable for PHP. However, as IXP Manager is taking over more and more critical configuration tasks, we continue to back fill automated testing with continuous integration.</p>
+<p>We use <a href="https://github.com/features/actions">GitHub Actions</a> for continuous integration which is provided free for public repositories.</p>
+<p>Our current build status is: <a href="https://github.com/inex/IXP-Manager/actions"><img alt="Build Status" src="https://github.com/inex/IXP-Manager/actions/workflows/ci-ex-dusk.yml/badge.svg" /></a></p>
+<p>The CI system runs the full suite of tests every time a commit is pushed to GitHub. As such, any <em>build failing</em> states are usually transitory. <strong>Official IXP Manager releases are only made when all tests pass.</strong></p>
+<p>We use two types of unit tests:</p>
+<ol>
+<li><a href="http://phpunit.de/">PHP Unit</a> for standard unit tests;</li>
+<li><a href="https://laravel.com/docs/5.6/dusk">Laravel Dusk</a> for browser based tests.</li>
+</ol>
+<p>We also use <a href="https://psalm.dev/">Psalm</a> for static code analysis.</p>
+<p>The following are basic instructions on how to set up tests and an overview (or links) to some of the tests we have implemented.</p>
+<p><strong>DISCLAIMER:</strong> This is not a tutorial on unit testing, phpunit, Laravel Dusk, Psalm or anything else. If you have no experience with these tools, please read up on them elsewhere first.</p>
+<h2 id="setting-up-phpunit-tests">Setting Up PHPUnit Tests<a class="headerlink" href="#setting-up-phpunit-tests" title="Permanent link"></a></h2>
+<p>Documentation by real example can be found via the <a href="https://github.com/inex/IXP-Manager/tree/master/.github/workflows">GitHub Actions workflow files</a> and <a href="https://github.com/inex/IXP-Manager/tree/master/data/ci">the CI data directory</a> which contains scripts, database dumps and configurations.</p>
+<p>Testing assumes <em>a known good sample database</em> which contains a small mix of customers with different configuration options. The files generated from this database are tested against <a href="https://github.com/inex/IXP-Manager/tree/master/data/ci/known-good">known good</a> configuration files. You first need to create a database, add a database user, import this testing database and then configure a <code>.env</code> file for testing (see <a href="https://github.com/inex/IXP-Manager/blob/master/.env.ci">the one here use here</a>).</p>
+<p>In MySQL:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">ixp_ci</span><span class="w"> </span><span class="k">CHARACTER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;utf8mb4&#39;</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`ixp_ci`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n n-Quoted">`ixp_ci`</span><span class="nv">@`localhost`</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;somepassword&#39;</span><span class="p">;</span>
+<span class="k">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
+</code></pre></div>
+<p>Then import the sample database:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>data/ci/ci_test_db.sql<span class="w">  </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-u<span class="w"> </span>ixp_ci<span class="w"> </span>-psomepassword<span class="w"> </span>ixp_ci
+</code></pre></div>
+<p>Now, create your <code>.env</code> for testing, such as:</p>
+<div class="highlight"><pre><span></span><code><span class="na">DB_HOST</span><span class="o">=</span><span class="s">localhost</span>
+<span class="na">DB_DATABASE</span><span class="o">=</span><span class="s">ixp_ci</span>
+<span class="na">DB_USERNAME</span><span class="o">=</span><span class="s">ixp_ci</span>
+<span class="na">DB_PASSWORD</span><span class="o">=</span><span class="s">somepassword</span>
+</code></pre></div>
+<p>Note that the <a href="https://github.com/inex/IXP-Manager/blob/master/phpunit.xml"><code>phpunit.xml</code></a> file in the root directory has some default settings matching the test database. You should not need to edit these.</p>
+<h2 id="setting-up-laravel-dusk">Setting Up Laravel Dusk<a class="headerlink" href="#setting-up-laravel-dusk" title="Permanent link"></a></h2>
+<p>Please review the <a href="https://laravel.com/docs/master/dusk">official documentation here</a>.</p>
+<p>You need to ensure the development packages for IXP Manager are installed via:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># move to the root directory of IXP Manager</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
+composer<span class="w"> </span>install<span class="w"> </span>--dev
+</code></pre></div>
+<p>You need to set the <code>APP_URL</code> environment variable in your <code>.env file</code>. This value should match the URL you use to access your application in a browser.</p>
+<h2 id="test-database-users-passwords-and-api-keys">Test Database - Users, Passwords and API Keys<a class="headerlink" href="#test-database-users-passwords-and-api-keys" title="Permanent link"></a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Username</th>
+<th style="text-align: left;">Privilege</th>
+<th style="text-align: left;">Password</th>
+<th style="text-align: left;">API Key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>travis</code></td>
+<td style="text-align: left;"><em>SUPERADMIN</em></td>
+<td style="text-align: left;"><code>travisci</code></td>
+<td style="text-align: left;"><code>Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC9</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>imcustadmin</code></td>
+<td style="text-align: left;"><em>CUSTADMIN</em></td>
+<td style="text-align: left;"><code>travisci</code></td>
+<td style="text-align: left;"><code>Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC8</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>hecustadmin</code></td>
+<td style="text-align: left;"><em>CUSTADMIN</em></td>
+<td style="text-align: left;"><code>travisci</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>imcustuser</code></td>
+<td style="text-align: left;"><em>CUSTUSER</em></td>
+<td style="text-align: left;"><code>travisci</code></td>
+<td style="text-align: left;"><code>Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC7</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>hecustuser</code></td>
+<td style="text-align: left;"><em>CUSTUSER</em></td>
+<td style="text-align: left;"><code>travisci</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="running-unit-tests">Running Unit Tests<a class="headerlink" href="#running-unit-tests" title="Permanent link"></a></h2>
+<p>In one console session, start the artisan / Laravel web server:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># move to the root directory of IXP Manager</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
+php<span class="w"> </span>artisan<span class="w"> </span>serve
+</code></pre></div>
+<p>And then kick off <strong>all the tests</strong> which includes PHPUnit and Laravel Dusk tests, run:</p>
+<div class="highlight"><pre><span></span><code>./vendor/bin/phpunit
+</code></pre></div>
+<p>Sample output:</p>
+<div class="highlight"><pre><span></span><code>PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 144 ( 43%)
+............................................................... 126 / 144 ( 87%)
+..................                                              144 / 144 (100%)
+
+Time: 1.86 minutes, Memory: 103.73MB
+</code></pre></div>
+<p>If you only want to run Laravel Dusk / browser tests, run the following (shown with sample output):</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span>dusk
+PHPUnit<span class="w"> </span><span class="m">6</span>.5.8<span class="w"> </span>by<span class="w"> </span>Sebastian<span class="w"> </span>Bergmann<span class="w"> </span>and<span class="w"> </span>contributors.
+
+..<span class="w">                                                                  </span><span class="m">2</span><span class="w"> </span>/<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">(</span><span class="m">100</span>%<span class="o">)</span>
+
+Time:<span class="w"> </span><span class="m">12</span>.73<span class="w"> </span>seconds,<span class="w"> </span>Memory:<span class="w"> </span><span class="m">24</span>.00MB
+</code></pre></div>
+<p>If you want to exclude the browser based tests, just exclude that directory as follows:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./vendor/bin/phpunit<span class="w"> </span>--filter<span class="w"> </span><span class="s1">&#39;/^((?!Tests\\Browser).)*$/&#39;</span>
+PHPUnit<span class="w"> </span><span class="m">7</span>.2.2<span class="w"> </span>by<span class="w"> </span>Sebastian<span class="w"> </span>Bergmann<span class="w"> </span>and<span class="w"> </span>contributors.
+
+...............................................................<span class="w">  </span><span class="m">63</span><span class="w"> </span>/<span class="w"> </span><span class="m">142</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">44</span>%<span class="o">)</span>
+...............................................................<span class="w"> </span><span class="m">126</span><span class="w"> </span>/<span class="w"> </span><span class="m">142</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="m">88</span>%<span class="o">)</span>
+................<span class="w">                                                </span><span class="m">142</span><span class="w"> </span>/<span class="w"> </span><span class="m">142</span><span class="w"> </span><span class="o">(</span><span class="m">100</span>%<span class="o">)</span>
+
+Time:<span class="w"> </span><span class="m">1</span>.59<span class="w"> </span>minutes,<span class="w"> </span>Memory:<span class="w"> </span><span class="m">106</span>.41MB
+</code></pre></div>
+<p>You can also limit tests to specific test suites:</p>
+<div class="highlight"><pre><span></span><code>$ ./vendor/bin/phpunit --testsuite &#39;Dusk / Browser Test Suite&#39;
+$ ./vendor/bin/phpunit --testsuite &#39;Docstore Test Suite&#39;
+$ ./vendor/bin/phpunit --testsuite &#39;IXP Manager Test Suite&#39;
+</code></pre></div>
+<h2 id="running-psalm-static-code-analysis">Running Psalm Static Code Analysis<a class="headerlink" href="#running-psalm-static-code-analysis" title="Permanent link"></a></h2>
+<p>This is very easy if you've following the above <code>composer install --dev</code> step:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./vendor/bin/psalm
+Target<span class="w"> </span>PHP<span class="w"> </span>version:<span class="w"> </span><span class="m">8</span>.3<span class="w"> </span><span class="o">(</span>inferred<span class="w"> </span>from<span class="w"> </span>composer.json<span class="o">)</span>.
+Scanning<span class="w"> </span>files...
+Analyzing<span class="w"> </span>files...
+
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w">  </span><span class="m">60</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">11</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">120</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">22</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">180</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">34</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">240</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">45</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">300</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">57</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">360</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">68</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">420</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">80</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<span class="w"> </span><span class="m">480</span><span class="w"> </span>/<span class="w"> </span><span class="m">522</span><span class="w"> </span><span class="o">(</span><span class="m">91</span>%<span class="o">)</span>
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+
+------------------------------
+
+<span class="w">       </span>No<span class="w"> </span>errors<span class="w"> </span>found!
+
+------------------------------
+</code></pre></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2024 13:19:48 UTC">September 27, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -2422,10 +2763,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": ["tabs"], "search": "/assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["tabs"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>

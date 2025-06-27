@@ -8,19 +8,25 @@
       
       
       
+        <link rel="canonical" href="https://docs.ixpmanager.org/grapher/smokeping/">
       
       
+        <link rel="prev" href="../sflow/">
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      
+        <link rel="next" href="../../features/sflow/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>IXP Manager Documentation</title>
+        <title>Smokeping - IXP Manager Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -39,9 +45,9 @@
       
     
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -59,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#backend-smokeping" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -75,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -95,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Smokeping
             
           </span>
         </div>
@@ -185,7 +196,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -215,7 +226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -275,7 +286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/" class="md-nav__link">
+      <a href="../../install/" class="md-nav__link">
         
   
   
@@ -298,7 +309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/automated-script/" class="md-nav__link">
+      <a href="../../install/automated-script/" class="md-nav__link">
         
   
   
@@ -321,7 +332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/maint-mode/" class="md-nav__link">
+      <a href="../../install/maint-mode/" class="md-nav__link">
         
   
   
@@ -344,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/manually/" class="md-nav__link">
+      <a href="../../install/manually/" class="md-nav__link">
         
   
   
@@ -367,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/upgrading/" class="md-nav__link">
+      <a href="../../install/upgrading/" class="md-nav__link">
         
   
   
@@ -390,7 +401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/runtime/" class="md-nav__link">
+      <a href="../../install/runtime/" class="md-nav__link">
         
   
   
@@ -413,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/next-steps/" class="md-nav__link">
+      <a href="../../install/next-steps/" class="md-nav__link">
         
   
   
@@ -436,7 +447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/register/" class="md-nav__link">
+      <a href="../../install/register/" class="md-nav__link">
         
   
   
@@ -504,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/authentication/" class="md-nav__link">
+      <a href="../../usage/authentication/" class="md-nav__link">
         
   
   
@@ -527,7 +538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/contacts/" class="md-nav__link">
+      <a href="../../usage/contacts/" class="md-nav__link">
         
   
   
@@ -550,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/cookies/" class="md-nav__link">
+      <a href="../../usage/cookies/" class="md-nav__link">
         
   
   
@@ -573,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customers/" class="md-nav__link">
+      <a href="../../usage/customers/" class="md-nav__link">
         
   
   
@@ -596,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customer-notes/" class="md-nav__link">
+      <a href="../../usage/customer-notes/" class="md-nav__link">
         
   
   
@@ -619,7 +630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customer-tags/" class="md-nav__link">
+      <a href="../../usage/customer-tags/" class="md-nav__link">
         
   
   
@@ -642,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/interfaces/" class="md-nav__link">
+      <a href="../../usage/interfaces/" class="md-nav__link">
         
   
   
@@ -665,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/dblogs/" class="md-nav__link">
+      <a href="../../usage/dblogs/" class="md-nav__link">
         
   
   
@@ -688,7 +699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/email/" class="md-nav__link">
+      <a href="../../usage/email/" class="md-nav__link">
         
   
   
@@ -711,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/operational-notes/" class="md-nav__link">
+      <a href="../../usage/operational-notes/" class="md-nav__link">
         
   
   
@@ -734,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/switches/" class="md-nav__link">
+      <a href="../../usage/switches/" class="md-nav__link">
         
   
   
@@ -757,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/users/" class="md-nav__link">
+      <a href="../../usage/users/" class="md-nav__link">
         
   
   
@@ -825,7 +836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/api/" class="md-nav__link">
+      <a href="../../features/api/" class="md-nav__link">
         
   
   
@@ -848,7 +859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/as112/" class="md-nav__link">
+      <a href="../../features/as112/" class="md-nav__link">
         
   
   
@@ -871,7 +882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/provisioning/" class="md-nav__link">
+      <a href="../../features/provisioning/" class="md-nav__link">
         
   
   
@@ -894,7 +905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/console-servers/" class="md-nav__link">
+      <a href="../../features/console-servers/" class="md-nav__link">
         
   
   
@@ -917,7 +928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/core-bundles/" class="md-nav__link">
+      <a href="../../features/core-bundles/" class="md-nav__link">
         
   
   
@@ -940,7 +951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/cronjobs/" class="md-nav__link">
+      <a href="../../features/cronjobs/" class="md-nav__link">
         
   
   
@@ -963,7 +974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/patch-panels/" class="md-nav__link">
+      <a href="../../features/patch-panels/" class="md-nav__link">
         
   
   
@@ -986,7 +997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/dns-arpa/" class="md-nav__link">
+      <a href="../../features/dns-arpa/" class="md-nav__link">
         
   
   
@@ -1009,7 +1020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/docstore/" class="md-nav__link">
+      <a href="../../features/docstore/" class="md-nav__link">
         
   
   
@@ -1032,7 +1043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1055,7 +1066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/helpdesk/" class="md-nav__link">
+      <a href="../../features/helpdesk/" class="md-nav__link">
         
   
   
@@ -1078,7 +1089,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/irrdb/" class="md-nav__link">
+      <a href="../../features/irrdb/" class="md-nav__link">
         
   
   
@@ -1101,7 +1112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/ixf-export/" class="md-nav__link">
+      <a href="../../features/ixf-export/" class="md-nav__link">
         
   
   
@@ -1124,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/looking-glass/" class="md-nav__link">
+      <a href="../../features/looking-glass/" class="md-nav__link">
         
   
   
@@ -1147,7 +1158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/layer2-addresses/" class="md-nav__link">
+      <a href="../../features/layer2-addresses/" class="md-nav__link">
         
   
   
@@ -1170,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/manrs/" class="md-nav__link">
+      <a href="../../features/manrs/" class="md-nav__link">
         
   
   
@@ -1193,7 +1204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/member-export/" class="md-nav__link">
+      <a href="../../features/member-export/" class="md-nav__link">
         
   
   
@@ -1216,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/mailing-lists/" class="md-nav__link">
+      <a href="../../features/mailing-lists/" class="md-nav__link">
         
   
   
@@ -1239,7 +1250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/nagios/" class="md-nav__link">
+      <a href="../../features/nagios/" class="md-nav__link">
         
   
   
@@ -1262,7 +1273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/patch-panels/" class="md-nav__link">
+      <a href="../../features/patch-panels/" class="md-nav__link">
         
   
   
@@ -1285,7 +1296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peering-manager/" class="md-nav__link">
+      <a href="../../features/peering-manager/" class="md-nav__link">
         
   
   
@@ -1308,7 +1319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peering-matrix/" class="md-nav__link">
+      <a href="../../features/peering-matrix/" class="md-nav__link">
         
   
   
@@ -1331,7 +1342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peeringdb/" class="md-nav__link">
+      <a href="../../features/peeringdb/" class="md-nav__link">
         
   
   
@@ -1354,7 +1365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/rir-objects/" class="md-nav__link">
+      <a href="../../features/rir-objects/" class="md-nav__link">
         
   
   
@@ -1377,7 +1388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/reseller/" class="md-nav__link">
+      <a href="../../features/reseller/" class="md-nav__link">
         
   
   
@@ -1400,7 +1411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/route-collectors/" class="md-nav__link">
+      <a href="../../features/route-collectors/" class="md-nav__link">
         
   
   
@@ -1423,7 +1434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/route-servers/" class="md-nav__link">
+      <a href="../../features/route-servers/" class="md-nav__link">
         
   
   
@@ -1446,7 +1457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/routers/" class="md-nav__link">
+      <a href="../../features/routers/" class="md-nav__link">
         
   
   
@@ -1469,7 +1480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/rpki/" class="md-nav__link">
+      <a href="../../features/rpki/" class="md-nav__link">
         
   
   
@@ -1492,7 +1503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/skinning/" class="md-nav__link">
+      <a href="../../features/skinning/" class="md-nav__link">
         
   
   
@@ -1512,10 +1523,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/grapher/smokeping/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Smokeping
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1526,6 +1559,137 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#target-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Target Selection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-smokeping-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating Smokeping Targets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating Smokeping Targets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates-skinning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Templates / Skinning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-smokeping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up Smokeping
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting Up Smokeping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generating-updating-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating / Updating Targets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-targets-in-smokeping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Targets in Smokeping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apache-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apache Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ixp-manager-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      IXP Manager Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-smokeping-in-ixp-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Smokeping in IXP Manager
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1538,7 +1702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/static-content/" class="md-nav__link">
+      <a href="../../features/static-content/" class="md-nav__link">
         
   
   
@@ -1561,7 +1725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/tacacs/" class="md-nav__link">
+      <a href="../../features/tacacs/" class="md-nav__link">
         
   
   
@@ -1588,18 +1752,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -1615,7 +1781,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Grapher
@@ -1629,7 +1795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1652,7 +1818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/api/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   
@@ -1675,7 +1841,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/mrtg/" class="md-nav__link">
+      <a href="../mrtg/" class="md-nav__link">
         
   
   
@@ -1698,7 +1864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/sflow/" class="md-nav__link">
+      <a href="../sflow/" class="md-nav__link">
         
   
   
@@ -1718,10 +1884,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/grapher/smokeping/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Smokeping
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1732,6 +1920,137 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#target-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Target Selection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-smokeping-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating Smokeping Targets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating Smokeping Targets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates-skinning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Templates / Skinning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-smokeping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up Smokeping
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting Up Smokeping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generating-updating-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating / Updating Targets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-targets-in-smokeping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Targets in Smokeping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apache-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apache Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ixp-manager-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      IXP Manager Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-smokeping-in-ixp-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Smokeping in IXP Manager
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1789,7 +2108,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/sflow/" class="md-nav__link">
+      <a href="../../features/sflow/" class="md-nav__link">
         
   
   
@@ -1812,7 +2131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/sflow-p2p/" class="md-nav__link">
+      <a href="../../features/sflow-p2p/" class="md-nav__link">
         
   
   
@@ -1880,7 +2199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/introduction/" class="md-nav__link">
+      <a href="../../dev/introduction/" class="md-nav__link">
         
   
   
@@ -1903,7 +2222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/policy/" class="md-nav__link">
+      <a href="../../dev/policy/" class="md-nav__link">
         
   
   
@@ -1926,7 +2245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/api/" class="md-nav__link">
+      <a href="../../dev/api/" class="md-nav__link">
         
   
   
@@ -1949,7 +2268,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/authentication/" class="md-nav__link">
+      <a href="../../dev/authentication/" class="md-nav__link">
         
   
   
@@ -1972,7 +2291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/ci/" class="md-nav__link">
+      <a href="../../dev/ci/" class="md-nav__link">
         
   
   
@@ -1995,7 +2314,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/cla/" class="md-nav__link">
+      <a href="../../dev/cla/" class="md-nav__link">
         
   
   
@@ -2018,7 +2337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/docker/" class="md-nav__link">
+      <a href="../../dev/docker/" class="md-nav__link">
         
   
   
@@ -2041,7 +2360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/docs/" class="md-nav__link">
+      <a href="../../dev/docs/" class="md-nav__link">
         
   
   
@@ -2064,7 +2383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/foil/" class="md-nav__link">
+      <a href="../../dev/foil/" class="md-nav__link">
         
   
   
@@ -2087,7 +2406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/forms/" class="md-nav__link">
+      <a href="../../dev/forms/" class="md-nav__link">
         
   
   
@@ -2110,7 +2429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/frontend-crud/" class="md-nav__link">
+      <a href="../../dev/frontend-crud/" class="md-nav__link">
         
   
   
@@ -2133,7 +2452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/grapher/" class="md-nav__link">
+      <a href="../../dev/grapher/" class="md-nav__link">
         
   
   
@@ -2156,7 +2475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/helpders/" class="md-nav__link">
+      <a href="../../dev/helpders/" class="md-nav__link">
         
   
   
@@ -2179,7 +2498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/looking-glass/" class="md-nav__link">
+      <a href="../../dev/looking-glass/" class="md-nav__link">
         
   
   
@@ -2202,7 +2521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/release-procedure/" class="md-nav__link">
+      <a href="../../dev/release-procedure/" class="md-nav__link">
         
   
   
@@ -2225,7 +2544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/telescope/" class="md-nav__link">
+      <a href="../../dev/telescope/" class="md-nav__link">
         
   
   
@@ -2248,7 +2567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/users/" class="md-nav__link">
+      <a href="../../dev/users/" class="md-nav__link">
         
   
   
@@ -2271,7 +2590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/vagrant/" class="md-nav__link">
+      <a href="../../dev/vagrant/" class="md-nav__link">
         
   
   
@@ -2311,6 +2630,127 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#target-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Target Selection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-smokeping-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating Smokeping Targets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating Smokeping Targets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templates-skinning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Templates / Skinning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-smokeping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up Smokeping
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting Up Smokeping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generating-updating-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating / Updating Targets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-targets-in-smokeping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Targets in Smokeping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apache-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apache Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ixp-manager-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      IXP Manager Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-smokeping-in-ixp-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Smokeping in IXP Manager
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2322,8 +2762,193 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="backend-smokeping">Backend: Smokeping<a class="headerlink" href="#backend-smokeping" title="Permanent link"></a></h1>
+<p>Latency graphs are a tool for monitoring latency / packet loss to the routers of IXP partipants and they can be an invaluable asset when diagnosing many IXP issues.</p>
+<p><strong>While they should never be used as a tool for monitoring IXP latency or packet loss</strong> (as routers de-prioritise ICMP requests and/or may not have a suitably powerful management plane), they can act as an extremely useful tool for identifying and diagnosing customer / member issues. <strong>What we really look for here is recent changes over time.</strong></p>
+<p><strong>IXP Manager</strong> can configure Smokeping to monitor member routers and display those graphs in member statistic pages. Presuming it is installed.</p>
+<h2 id="target-selection">Target Selection<a class="headerlink" href="#target-selection" title="Permanent link"></a></h2>
+<p>This section explains the rules on how a member router (target) is selected to be included in the generated Smokeping configuration.</p>
+<p>When generating a list of targets per VLAN and protocol, the API call to IXP Manager will select all VLAN interfaces (member routers) where:</p>
+<ul>
+<li>that protocol (IPv4/6) is enabled for the member;</li>
+<li><em>Can Ping</em> has been checked for that protocol; and</li>
+<li>the virtual interface pertaining to the VLAN interface has at least on physical interface in the connected state.</li>
+</ul>
+<h2 id="generating-smokeping-targets">Generating Smokeping Targets<a class="headerlink" href="#generating-smokeping-targets" title="Permanent link"></a></h2>
+<p>You can use the <strong>IXP Manager</strong> API to get the Smokeping target configurations for a given VLAN and protocol using the following endpoint format (both GET and POST requests work):</p>
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/grapher/config?backend=smokeping&amp;vlanid=10&amp;protocol=ipv4
+</code></pre></div>
+<p>In the above, the parameters are:</p>
+<ul>
+<li><code>vlanid</code> is the database ID (<em>DB ID</em>) of the VLAN. You can find the DB ID in IXP Manager in the VLAN table (select <em>VLANs</em> from the left hand side menu).</li>
+<li><code>protocol</code> is either <code>ipv4</code> or <code>ipv6</code>.</li>
+</ul>
+<p>If either of these are invalid, the API will return with a HTTP 404 response.</p>
+<p>And example of a Smokeping target in the response is:</p>
+<div class="highlight"><pre><span></span><code># AS112 Reverse DNS / 185.6.36.6
++++ vlanint_86_ipv4
+menu = AS112 Reverse DNS (IPv4)
+title =  Peering VLAN #1 :: AS112 Reverse DNS via 185.6.36.6
+probe = FPing
+host = 185.6.36.6
+</code></pre></div>
+<h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link"></a></h3>
+<p>You can optionally POST any of the above parameters and none, one or both of the following to change elements of the default template:</p>
+<ul>
+<li><code>level</code>: the Smokeping level / hierarchy of the target. Defaults to <code>+++</code>.</li>
+<li><code>probe</code>: the probe to use when measuring latency to the target. Defaults for <code>FPing</code> for IPv4 and <code>FPing6</code> for IPv6.</li>
+</ul>
+<p>An example of changing these parameters is:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--data<span class="w"> </span><span class="s2">&quot;backend=smokeping&amp;protocol=ipv4&amp;vlanid=10&amp;level=%2B%2B&amp;probe=MyPing&quot;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>https://ixpexample.com/api/v4/grapher/config
+</code></pre></div>
+<h3 id="templates-skinning">Templates / Skinning<a class="headerlink" href="#templates-skinning" title="Permanent link"></a></h3>
+<p>You can use <a href="../../features/skinning/">skinning</a> to make changes to the bundled <code>default</code> template or, <strong>preferably</strong>, add your own.</p>
+<p>Let's say you wanted to add your own template called <code>mytemplate1</code> and your skin is named <code>myskin</code>. The best way to proceed is to copy the bundled example:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>resources/skins/myskin/services/grapher/smokeping
+cp<span class="w"> </span>resources/views/services/grapher/smokeping/default.foil.php<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>resources/skins/myskin/services/grapher/smokeping/mytemplate1.foil.php
+</code></pre></div>
+<p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
+<p>The following variables are available in the template:</p>
+<ul>
+<li><code>$t-&gt;vlis</code>: array of the VLAN interfaces/targets - it is generated <a href="https://github.com/inex/IXP-Manager/blob/master/database/Repositories/VlanInterface.php#L18">by the Repositories\VlanInterface::getForProto() function</a>.</li>
+<li><code>$t-&gt;vlan</code>: instance of the <a href="https://github.com/inex/IXP-Manager/blob/master/database/Entities/Vlan.php"><code>Vlan</code> entity object</a>.</li>
+<li><code>$t-&gt;protocol</code>: either <code>4</code> or <code>6</code>.</li>
+<li><code>$t-&gt;probe</code> and <code>$t-&gt;level</code> as defined above / passed via a post request.</li>
+</ul>
+<h2 id="setting-up-smokeping">Setting Up Smokeping<a class="headerlink" href="#setting-up-smokeping" title="Permanent link"></a></h2>
+<p>This section explains how to set up Smokeping with IXP Manager. We assume you already have a base install of Smokeping.</p>
+<h3 id="generating-updating-targets">Generating / Updating Targets<a class="headerlink" href="#generating-updating-targets" title="Permanent link"></a></h3>
+<p>At INEX, we would use a script <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/smokeping">such as this one which is bundled with IXP Manager</a> to (re)generate our targets by cron and update Smokeping if necessary.</p>
+<p>To use this script yourself, you just need to copy it to the appropriate Smokeping server and edit the first few lines:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;my-ixp-manager-api-key&quot;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://ixp.example.com/api/v4/grapher/config?backend=smokeping&quot;</span>
+<span class="nv">ETCPATH</span><span class="o">=</span><span class="s2">&quot;/etc/smokeping&quot;</span>
+<span class="nv">SMOKEPING</span><span class="o">=</span><span class="s2">&quot;/usr/bin/smokeping&quot;</span>
+<span class="nv">SMOKEPING_RELOAD</span><span class="o">=</span><span class="s2">&quot;/etc/rc.d/smokeping reload&quot;</span>
+<span class="nv">VLANS</span><span class="o">=</span><span class="s2">&quot;1 2&quot;</span>
+<span class="nv">PROTOCOLS</span><span class="o">=</span><span class="s2">&quot;ipv4 ipv6&quot;</span>
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li><code>KEY</code> is your IXP Manager <a href="../../features/api/">API key</a>.</li>
+<li><code>URL</code> is the API endpoint as described above.</li>
+<li><code>ETCPATH</code> is where the script puts the target files (named <code>$ETCPATH/targets-vlan${vlanid}-${proto}.cfg</code>)</li>
+<li><code>SMOKEPING</code> is the Smokeping binary command. Just used to validate the config with <code>--check</code> before reloading.</li>
+<li><code>SMOKEPING_RELOAD</code> - the command to reload Smokeping.</li>
+<li><code>VLANS</code> - space separated list of VLAN DB IDs as described above. You probably only have one of these typically.</li>
+<li><code>PROTOCOLS</code> - the protocols to generate the configuration for.</li>
+</ul>
+<p>The script iterates over the VLAN IDs and protocols to create the individual configuration files.</p>
+<h3 id="using-targets-in-smokeping">Using Targets in Smokeping<a class="headerlink" href="#using-targets-in-smokeping" title="Permanent link"></a></h3>
+<p>Once the above target file(s) are created, we can use them in our standard Smokeping configuration file as follows:</p>
+<div class="highlight"><pre><span></span><code>+ infra_1
+menu = IXP Infrastructure 1
+title = IXP Infrastructure 1
+
+
+++ vlan_1
+menu = Peering VLAN 1
+title = IXP Infra 1 :: Peering VLAN 1
+
+
+@include targets-vlan1-ipv4.cfg
+@include targets-vlan1-ipv6.cfg
+</code></pre></div>
+<h2 id="apache-configuration">Apache Configuration<a class="headerlink" href="#apache-configuration" title="Permanent link"></a></h2>
+<p>You need to be able to configure IXP Manager with the base Smokeping URL such as <code>http://www.example.com/smokeping</code>. This should be the URL to the standard entry page to Smokeping.</p>
+<p>IXP Manager will add the trailing slash and assume the directory index is configured for the CGI script. Thus you need an Apache configuration such as:</p>
+<div class="highlight"><pre><span></span><code>ScriptAlias /smokeping/smokeping.cgi /usr/lib/cgi-bin/smokeping.cgi
+Alias /smokeping /usr/share/smokeping/www
+
+&lt;Directory &quot;/usr/share/smokeping/www&quot;&gt;
+    Options FollowSymLinks
+    DirectoryIndex smokeping.cgi
+&lt;/Directory&gt;
+</code></pre></div>
+<h2 id="ixp-manager-configuration">IXP Manager Configuration<a class="headerlink" href="#ixp-manager-configuration" title="Permanent link"></a></h2>
+<p>Once you have configured Smokeping and Apache/web server as above, you really just need to set the following in your IXP Manager <code>.env</code> file:</p>
+<div class="highlight"><pre><span></span><code># Add smokeping to the grapher backends:
+GRAPHER_BACKENDS=&quot;...|smokeping|...&quot;
+
+# Mark it as enabled (this just affects whether certain UI elements are shown):
+GRAPHER_BACKEND_SMOKEPING_ENABLED=true
+
+# And set the default location to fetch the Smokeping graphs from:
+GRAPHER_BACKEND_SMOKEPING_URL=&quot;http://www.example.com/smokeping&quot;
+</code></pre></div>
+<p>where the URL is as you set up in Apache above.</p>
+<p>There may be instances where you have multiple VLANs where it is not possible to have a single Smokeping instance graph latency for all of them. Particularly as the Smokeping daemon for a given VLAN needs to have an interface / IP address on that VLAN.</p>
+<p>INEX has such a situation where we have a regional exchange, <em>INEX Cork</em>, that is located in a different city to the main INEX LANs and IXP Manager. In this situation, you can configure Smokeping URL overrides on a per VLAN basis by creating a file called <code>$IXPROOT/config/grapher_smokeping_overrides.php</code> which returns an array as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">return</span> <span class="p">[</span>
+
+    <span class="s1">&#39;per_vlan_urls&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s1">&#39;http://www.example.com/smokeping&#39;</span><span class="p">,</span>
+        <span class="mi">4</span> <span class="o">=&gt;</span> <span class="s1">&#39;http://www.example2.com/smokeping&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+
+<span class="p">];</span>
+</code></pre></div>
+<p>where the array index (<code>2</code> and <code>4</code> in the above example) is the VLAN DB ID as explained above.</p>
+<p>Any VLANs without a specific override configured in this way will fall back to the <code>GRAPHER_BACKEND_SMOKEPING_URL</code> setting.</p>
+<h2 id="viewing-smokeping-in-ixp-manager">Viewing Smokeping in IXP Manager<a class="headerlink" href="#viewing-smokeping-in-ixp-manager" title="Permanent link"></a></h2>
+<p>When configured correctly, there will be a latency button available (clock icon) in the member graphs in both the member and admin sections.</p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link"></a></h2>
+<p>See <a href="https://github.com/inex/IXP-Manager/issues/122">issue #122</a> for a discussion on Ubuntu installation and diagnosing issues in general (relates to IXP Manager v3 but may still be useful).</p>
+<p>IXP Manager will call something like the following to fetch graphs from Smokeping:</p>
+<div class="highlight"><pre><span></span><code><span class="x">file_get_contents( &#39;https://www.example.com/smokeping/?.....&#39; )</span>
+</code></pre></div>
+<p>You should see these requests to Smokeping in your Smokeping web server log files. Find these and compare them to the URLs that Smokeping itself generates for its own display of the images to ensure you have everything - and especially the Smokeping URL in IXP configuration set up correctly.</p>
+<p>Also, try testing these URLs directly on the IXP Manager server via:</p>
+<div class="highlight"><pre><span></span><code><span class="x">php -r &#39;echo file_get_contents( &quot;https://...&quot; );&#39;</span>
+</code></pre></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2024 12:34:10 UTC">September 21, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -2422,10 +3047,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": ["tabs"], "search": "/assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["tabs"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>

@@ -8,19 +8,25 @@
       
       
       
+        <link rel="canonical" href="https://docs.ixpmanager.org/features/routers/">
       
       
+        <link rel="prev" href="../route-servers/">
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      
+        <link rel="next" href="../rpki/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>IXP Manager Documentation</title>
+        <title>Router Configuration - IXP Manager Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
       
 
@@ -39,9 +45,9 @@
       
     
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -59,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#routers" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -75,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-header__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -95,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Router Configuration
             
           </span>
         </div>
@@ -185,7 +196,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
+    <a href="../.." title="IXP Manager Documentation" class="md-nav__button md-logo" aria-label="IXP Manager Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -215,7 +226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -275,7 +286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/" class="md-nav__link">
+      <a href="../../install/" class="md-nav__link">
         
   
   
@@ -298,7 +309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/automated-script/" class="md-nav__link">
+      <a href="../../install/automated-script/" class="md-nav__link">
         
   
   
@@ -321,7 +332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/maint-mode/" class="md-nav__link">
+      <a href="../../install/maint-mode/" class="md-nav__link">
         
   
   
@@ -344,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/manually/" class="md-nav__link">
+      <a href="../../install/manually/" class="md-nav__link">
         
   
   
@@ -367,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/upgrading/" class="md-nav__link">
+      <a href="../../install/upgrading/" class="md-nav__link">
         
   
   
@@ -390,7 +401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/runtime/" class="md-nav__link">
+      <a href="../../install/runtime/" class="md-nav__link">
         
   
   
@@ -413,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/next-steps/" class="md-nav__link">
+      <a href="../../install/next-steps/" class="md-nav__link">
         
   
   
@@ -436,7 +447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/install/register/" class="md-nav__link">
+      <a href="../../install/register/" class="md-nav__link">
         
   
   
@@ -504,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/authentication/" class="md-nav__link">
+      <a href="../../usage/authentication/" class="md-nav__link">
         
   
   
@@ -527,7 +538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/contacts/" class="md-nav__link">
+      <a href="../../usage/contacts/" class="md-nav__link">
         
   
   
@@ -550,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/cookies/" class="md-nav__link">
+      <a href="../../usage/cookies/" class="md-nav__link">
         
   
   
@@ -573,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customers/" class="md-nav__link">
+      <a href="../../usage/customers/" class="md-nav__link">
         
   
   
@@ -596,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customer-notes/" class="md-nav__link">
+      <a href="../../usage/customer-notes/" class="md-nav__link">
         
   
   
@@ -619,7 +630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/customer-tags/" class="md-nav__link">
+      <a href="../../usage/customer-tags/" class="md-nav__link">
         
   
   
@@ -642,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/interfaces/" class="md-nav__link">
+      <a href="../../usage/interfaces/" class="md-nav__link">
         
   
   
@@ -665,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/dblogs/" class="md-nav__link">
+      <a href="../../usage/dblogs/" class="md-nav__link">
         
   
   
@@ -688,7 +699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/email/" class="md-nav__link">
+      <a href="../../usage/email/" class="md-nav__link">
         
   
   
@@ -711,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/operational-notes/" class="md-nav__link">
+      <a href="../../usage/operational-notes/" class="md-nav__link">
         
   
   
@@ -734,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/switches/" class="md-nav__link">
+      <a href="../../usage/switches/" class="md-nav__link">
         
   
   
@@ -757,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/usage/users/" class="md-nav__link">
+      <a href="../../usage/users/" class="md-nav__link">
         
   
   
@@ -784,18 +795,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -811,7 +824,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Features
@@ -825,7 +838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/api/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   
@@ -848,7 +861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/as112/" class="md-nav__link">
+      <a href="../as112/" class="md-nav__link">
         
   
   
@@ -871,7 +884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/provisioning/" class="md-nav__link">
+      <a href="../provisioning/" class="md-nav__link">
         
   
   
@@ -894,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/console-servers/" class="md-nav__link">
+      <a href="../console-servers/" class="md-nav__link">
         
   
   
@@ -917,7 +930,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/core-bundles/" class="md-nav__link">
+      <a href="../core-bundles/" class="md-nav__link">
         
   
   
@@ -940,7 +953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/cronjobs/" class="md-nav__link">
+      <a href="../cronjobs/" class="md-nav__link">
         
   
   
@@ -963,7 +976,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/patch-panels/" class="md-nav__link">
+      <a href="../patch-panels/" class="md-nav__link">
         
   
   
@@ -986,7 +999,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/dns-arpa/" class="md-nav__link">
+      <a href="../dns-arpa/" class="md-nav__link">
         
   
   
@@ -1009,7 +1022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/docstore/" class="md-nav__link">
+      <a href="../docstore/" class="md-nav__link">
         
   
   
@@ -1032,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/introduction/" class="md-nav__link">
+      <a href="../../grapher/introduction/" class="md-nav__link">
         
   
   
@@ -1055,7 +1068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/helpdesk/" class="md-nav__link">
+      <a href="../helpdesk/" class="md-nav__link">
         
   
   
@@ -1078,7 +1091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/irrdb/" class="md-nav__link">
+      <a href="../irrdb/" class="md-nav__link">
         
   
   
@@ -1101,7 +1114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/ixf-export/" class="md-nav__link">
+      <a href="../ixf-export/" class="md-nav__link">
         
   
   
@@ -1124,7 +1137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/looking-glass/" class="md-nav__link">
+      <a href="../looking-glass/" class="md-nav__link">
         
   
   
@@ -1147,7 +1160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/layer2-addresses/" class="md-nav__link">
+      <a href="../layer2-addresses/" class="md-nav__link">
         
   
   
@@ -1170,7 +1183,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/manrs/" class="md-nav__link">
+      <a href="../manrs/" class="md-nav__link">
         
   
   
@@ -1193,7 +1206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/member-export/" class="md-nav__link">
+      <a href="../member-export/" class="md-nav__link">
         
   
   
@@ -1216,7 +1229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/mailing-lists/" class="md-nav__link">
+      <a href="../mailing-lists/" class="md-nav__link">
         
   
   
@@ -1239,7 +1252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/nagios/" class="md-nav__link">
+      <a href="../nagios/" class="md-nav__link">
         
   
   
@@ -1262,7 +1275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/patch-panels/" class="md-nav__link">
+      <a href="../patch-panels/" class="md-nav__link">
         
   
   
@@ -1285,7 +1298,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peering-manager/" class="md-nav__link">
+      <a href="../peering-manager/" class="md-nav__link">
         
   
   
@@ -1308,7 +1321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peering-matrix/" class="md-nav__link">
+      <a href="../peering-matrix/" class="md-nav__link">
         
   
   
@@ -1331,7 +1344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/peeringdb/" class="md-nav__link">
+      <a href="../peeringdb/" class="md-nav__link">
         
   
   
@@ -1354,7 +1367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/rir-objects/" class="md-nav__link">
+      <a href="../rir-objects/" class="md-nav__link">
         
   
   
@@ -1377,7 +1390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/reseller/" class="md-nav__link">
+      <a href="../reseller/" class="md-nav__link">
         
   
   
@@ -1400,7 +1413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/route-collectors/" class="md-nav__link">
+      <a href="../route-collectors/" class="md-nav__link">
         
   
   
@@ -1423,7 +1436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/route-servers/" class="md-nav__link">
+      <a href="../route-servers/" class="md-nav__link">
         
   
   
@@ -1443,10 +1456,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/features/routers/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Router Configuration
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1457,6 +1492,89 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#managing-routers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Routers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-generation-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Generation Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#router-pairing-and-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Router Pairing and Locking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updated-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updated API
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Live Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering-known-transit-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering Known Transit Networks
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1469,7 +1587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/rpki/" class="md-nav__link">
+      <a href="../rpki/" class="md-nav__link">
         
   
   
@@ -1492,7 +1610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/skinning/" class="md-nav__link">
+      <a href="../skinning/" class="md-nav__link">
         
   
   
@@ -1515,7 +1633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/smokeping/" class="md-nav__link">
+      <a href="../../grapher/smokeping/" class="md-nav__link">
         
   
   
@@ -1538,7 +1656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/static-content/" class="md-nav__link">
+      <a href="../static-content/" class="md-nav__link">
         
   
   
@@ -1561,7 +1679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/tacacs/" class="md-nav__link">
+      <a href="../tacacs/" class="md-nav__link">
         
   
   
@@ -1629,7 +1747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/introduction/" class="md-nav__link">
+      <a href="../../grapher/introduction/" class="md-nav__link">
         
   
   
@@ -1652,7 +1770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/api/" class="md-nav__link">
+      <a href="../../grapher/api/" class="md-nav__link">
         
   
   
@@ -1675,7 +1793,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/mrtg/" class="md-nav__link">
+      <a href="../../grapher/mrtg/" class="md-nav__link">
         
   
   
@@ -1698,7 +1816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/sflow/" class="md-nav__link">
+      <a href="../../grapher/sflow/" class="md-nav__link">
         
   
   
@@ -1721,7 +1839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/grapher/smokeping/" class="md-nav__link">
+      <a href="../../grapher/smokeping/" class="md-nav__link">
         
   
   
@@ -1789,7 +1907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/sflow/" class="md-nav__link">
+      <a href="../sflow/" class="md-nav__link">
         
   
   
@@ -1812,7 +1930,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/features/sflow-p2p/" class="md-nav__link">
+      <a href="../sflow-p2p/" class="md-nav__link">
         
   
   
@@ -1880,7 +1998,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/introduction/" class="md-nav__link">
+      <a href="../../dev/introduction/" class="md-nav__link">
         
   
   
@@ -1903,7 +2021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/policy/" class="md-nav__link">
+      <a href="../../dev/policy/" class="md-nav__link">
         
   
   
@@ -1926,7 +2044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/api/" class="md-nav__link">
+      <a href="../../dev/api/" class="md-nav__link">
         
   
   
@@ -1949,7 +2067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/authentication/" class="md-nav__link">
+      <a href="../../dev/authentication/" class="md-nav__link">
         
   
   
@@ -1972,7 +2090,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/ci/" class="md-nav__link">
+      <a href="../../dev/ci/" class="md-nav__link">
         
   
   
@@ -1995,7 +2113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/cla/" class="md-nav__link">
+      <a href="../../dev/cla/" class="md-nav__link">
         
   
   
@@ -2018,7 +2136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/docker/" class="md-nav__link">
+      <a href="../../dev/docker/" class="md-nav__link">
         
   
   
@@ -2041,7 +2159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/docs/" class="md-nav__link">
+      <a href="../../dev/docs/" class="md-nav__link">
         
   
   
@@ -2064,7 +2182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/foil/" class="md-nav__link">
+      <a href="../../dev/foil/" class="md-nav__link">
         
   
   
@@ -2087,7 +2205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/forms/" class="md-nav__link">
+      <a href="../../dev/forms/" class="md-nav__link">
         
   
   
@@ -2110,7 +2228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/frontend-crud/" class="md-nav__link">
+      <a href="../../dev/frontend-crud/" class="md-nav__link">
         
   
   
@@ -2133,7 +2251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/grapher/" class="md-nav__link">
+      <a href="../../dev/grapher/" class="md-nav__link">
         
   
   
@@ -2156,7 +2274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/helpders/" class="md-nav__link">
+      <a href="../../dev/helpders/" class="md-nav__link">
         
   
   
@@ -2179,7 +2297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/looking-glass/" class="md-nav__link">
+      <a href="../../dev/looking-glass/" class="md-nav__link">
         
   
   
@@ -2202,7 +2320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/release-procedure/" class="md-nav__link">
+      <a href="../../dev/release-procedure/" class="md-nav__link">
         
   
   
@@ -2225,7 +2343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/telescope/" class="md-nav__link">
+      <a href="../../dev/telescope/" class="md-nav__link">
         
   
   
@@ -2248,7 +2366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/users/" class="md-nav__link">
+      <a href="../../dev/users/" class="md-nav__link">
         
   
   
@@ -2271,7 +2389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dev/vagrant/" class="md-nav__link">
+      <a href="../../dev/vagrant/" class="md-nav__link">
         
   
   
@@ -2311,6 +2429,79 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#managing-routers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Routers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-generation-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Generation Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#router-pairing-and-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Router Pairing and Locking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updated-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updated API
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Live Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering-known-transit-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering Known Transit Networks
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2322,8 +2513,243 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="routers">Routers<a class="headerlink" href="#routers" title="Permanent link"></a></h1>
+<p>IXP Manager can generate router configuration for typical IXP services such as:</p>
+<ul>
+<li><a href="../route-collectors/">route collectors</a>;</li>
+<li><a href="../route-servers/">route servers</a> (with <a href="../irrdb/">IRRDB filtering</a>); and</li>
+<li><a href="../as112/">AS112 services</a>.</li>
+</ul>
+<p>See the above pages for specific information on each of those use cases and below for instructions on how to generate configuration.</p>
+<details class="tip" open="open">
+<summary>Tip</summary>
+<p>For larger router configurations - especially when you have members with large prefix lists, you will need to <a href="https://www.php.net/manual/en/ini.core.php#ini.memory-limit">increase PHP's <code>memory_limit</code></a> as the default of 128M will not be sufficient. Start with 512MB and watch the log (<code>storage/logs/...</code>) which reports the memory and time for configuration generation.</p>
+</details>
+<h2 id="managing-routers">Managing Routers<a class="headerlink" href="#managing-routers" title="Permanent link"></a></h2>
+<p>The basic elements of <em>a router</em> are configured in <strong>IXP Manager</strong> under the <em>IXP Admin Actions - Routers</em> option on the left hand menu.</p>
+<p>When you goto add / edit a router, the green help button will provide explanatory details on each field of information required:</p>
+<p><img alt="Routers - Add/Edit" src="../img/routers.png" /></p>
+<p>From the router management page, you can:</p>
+<ul>
+<li>add / edit / delete a router;</li>
+<li>view all the details of a router;</li>
+<li>generate and view a router's configuration.</li>
+</ul>
+<h2 id="configuration-generation-overview">Configuration Generation Overview<a class="headerlink" href="#configuration-generation-overview" title="Permanent link"></a></h2>
+<p>The simplest configuration to generate is the route collector configuration. A route collector is an IXP router which serves only to <em>accept all routes and export no routes</em>. It is used for problem diagnosis, to aid customer monitoring and for looking glasses (see <a href="https://www.inex.ie/ixp/lg/rc1-lan1-ipv4">INEX's here</a>).</p>
+<p>The <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird/standard.foil.php">original Bird v1 configuration</a> simply pulls in a fairly standard header (sets up router ID, listening address and some filters) and creates a session for all customer routers on the given VLAN. The <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/collector/bird2/standard.foil.php">new Bird v2 configuration</a> has more features and replicates the route server filtering mechanism but tags and accepts all routes for diagnosis.</p>
+<p>When adding a router, you give it a <em>handle</em>. For example: <code>rc1-lan1-ipv4</code> which, for INEX, would mean a route collector on peering LAN1 using IPv4. Then - for the given router handle - the configuration can be generated and pulled using the API as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#! /bin/sh</span>
+
+<span class="c1"># The API Key.</span>
+<span class="c1"># This is generated in IXP Manager via the top right menu: *My Account -&gt; API Keys*</span>
+<span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;your-admin-ixp-manager-api-key&quot;</span>
+
+<span class="c1"># The base URL of your IXP Manager install plus: &#39;api/v4/router/gen-config&#39;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://ixp.example.com/api/v4/router/gen-config&quot;</span>
+
+<span class="c1"># The handle is as described above:</span>
+<span class="nv">HANDLE</span><span class="o">=</span><span class="s2">&quot;rc1-lan1-ipv4&quot;</span>
+
+<span class="c1"># Then the configuration can be pulled as follows:</span>
+curl<span class="w"> </span>--fail<span class="w"> </span>-s<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;X-IXP-Manager-API-Key: </span><span class="si">${</span><span class="nv">KEY</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="si">${</span><span class="nv">URL</span><span class="si">}</span>/<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span><span class="w"> </span>&gt;<span class="si">${</span><span class="nv">HANDLE</span><span class="si">}</span>.conf
+</code></pre></div>
+<p>Configurations for the route server and AS112 templates can be configured just as easily.</p>
+<p>The stock templates for both are secure and well tested and can be used by setting the <code>template</code> element of the router to one of the following. <strong>NB:</strong> from May 2019, we recommend you use IXP Manager v5 and Bird2 templates.</p>
+<ul>
+<li>AS112:<ul>
+<li><code>'api/v4/router/as112/bird/standard'</code></li>
+<li><code>'api/v4/router/as112/bird2/standard'</code></li>
+</ul>
+</li>
+<li>Route Collector:<ul>
+<li><code>'api/v4/router/collector/bird/standard'</code></li>
+<li><code>'api/v4/router/collector/bird2/standard'</code></li>
+</ul>
+</li>
+<li>Route Server:<ul>
+<li><code>'api/v4/router/server/bird/standard'</code></li>
+<li><code>'api/v4/router/server/bird2/standard'</code></li>
+</ul>
+</li>
+</ul>
+<p>We also provide sample scripts for automating the re-configuration of these services by cron:</p>
+<ul>
+<li>AS112 scripts <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/as112">can be found here</a>.</li>
+<li>Route collector scripts <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-collectors">can be found here</a>.</li>
+<li>Route server scripts <a href="https://github.com/inex/IXP-Manager/tree/master/tools/runtime/route-servers">in this directory</a>. These are quite robust and have been in production for ~10 years at INEX (as of May 2024).</li>
+</ul>
+<p>All of these scripts have been written defensively such that if there is any issue getting the configuring or validating the configuration then the running router instance should be unaffected. This has worked in practice at INEX when IXP Manager was under maintenance, when there were management connectivity issues and when there were database issues. They also use the <em>updated API</em> (see below) to mark when the router configuration update script ran successfully.</p>
+<h2 id="router-pairing-and-locking">Router Pairing and Locking<a class="headerlink" href="#router-pairing-and-locking" title="Permanent link"></a></h2>
+<details class="info" open="open">
+<summary>Info</summary>
+<p>There is also a tutorial video <a href="https://youtu.be/k12TzsNQwLI">available on YouTube here</a>.</p>
+</details>
+<p>For IXPs, route servers are considered a critical production service and most IXPs deploy them in redundant pairs. This is usually implemented with dedicated hardware (servers with dual PSU, hardware RAID, and out-of-band management access) deployed in different points of presence.</p>
+<p>When it comes to updating the configuration of these, the older scripts provided by IXP Manager suggested that this be done about four times per day with the timing of the cronjob set so that there is an offset so that each server will not update at the same time. The hope was that if there was an issue, only one server of the resilient pair would be affected, and engineers would have time to react and prevent updates on the other working server. Some IXPs added additional logic to the scripts to check if the other server was functional before performing a reconfiguration, but this was often limited to pings and a simple check to see if Bird was running.</p>
+<p>The v6.4.0 release introduced a significant new resilience mechanism by pairing servers. In the IXP Manager router UI, you can now select another router to pair with the one you are editing: </p>
+<p><img alt="Routers - Pairing" src="../img/rs-pairing.png" /></p>
+<p>You would select pairs as follows:</p>
+<ul>
+<li>For route servers deployed in pairs, rs1-ipv4 should be paired with rs2-ipv4 and vice versa - be sure to set the paired server in each individual server.</li>
+<li>For route collectors, quarantine route collectors and AS112 services where you would normally have a single instance, you can pair the ipv4 version with the ipv6 version, ensuring at least one will always be running. For example, pair rc1-ipv4 with rc1-ipv6 and vice versa.</li>
+</ul>
+<p>Once your pairs are set up, you need to deploy the new router update scripts as follows:</p>
+<ul>
+<li>for route servers: <a href="https://github.com/inex/IXP-Manager/blob/release-v6/tools/runtime/route-servers/api-reconfigure-example-birdv2.sh">tools/runtime/route-servers/api-reconfigure-example-birdv2.sh</a></li>
+<li>for route collectors: <a href="https://github.com/inex/IXP-Manager/blob/release-v6/tools/runtime/route-collectors/reconfigure-rc-bird2.sh">tools/runtime/route-collectors/reconfigure-rc-bird2.sh</a></li>
+</ul>
+<p><em>There is no need to use different scripts for route collectors and servers. Traditionally, at INEX, these scripts were developed slightly differently from each other (e.g., the collector script updates both IPv4 and IPv6 versions and provides more informative output, whereas the route server script takes a specific route server handle to update). We may merge these in the future.</em></p>
+<p>You can use these scripts exactly as they are on an Ubuntu server changing only the configuration lines at the top:</p>
+<div class="highlight"><pre><span></span><code>APIKEY=&quot;your-api-key&quot;
+URLROOT=&quot;https://ixp.example.com&quot;
+BIRDBIN=&quot;/usr/sbin/bird&quot;
+</code></pre></div>
+<p>The collector script takes an additional configuration option for the handles of the servers to update - e.g.:</p>
+<div class="highlight"><pre><span></span><code>HANDLES=&quot;rc1-ipv4 rc1-ipv6&quot;
+</code></pre></div>
+<p>These new scripts now work as follows:</p>
+<ol>
+<li><strong>NEW:</strong> Obtain a local script lock preventing more than one update script to execute at a time on the server (e.g., if the update is long-running, cron cannot start additional updates).</li>
+<li><strong>NEW:</strong> Obtain a configuration lock from IXP Manager.<ul>
+<li>This involves making an API call to <code>/api/v4/router/get-update-lock/$handle</code>, which IXP Manager then processes and returns HTTP code 200 if the lock is acquired and the update can proceed.</li>
+<li>A lock is not granted if the router is paused for updates within IXP Manager (new per-router option in the router's dropdown menu on the router list page).</li>
+<li>A lock is not granted if another process has already acquired a configuration lock for this router.</li>
+<li>A lock is also not granted if the router's partner is locked. <strong><em>This major new resiliency addition prevents two paired route servers from being updated in parallel.</em></strong></li>
+<li>The update script will abort if IXP Manager is unavailable or in maintenance mode. <em>It must get a HTTP 200 to proceed.</em></li>
+</ul>
+</li>
+<li>If a lock is acquired, the script will then download the latest configuration from IXP Manager.</li>
+<li>The script will do some basic sanity checks on the downloaded configuration:<ul>
+<li>First, check that the HTTP request to pull the new configuration succeeded.</li>
+<li>Second, check that the downloaded file exists and is non-zero in size.</li>
+<li>Third, ensure at least two BGP protocol definitions are in the configuration file.</li>
+<li>Lastly, the script has Bird parse the downloaded file to ensure validity.</li>
+</ul>
+</li>
+<li><strong>NEW:</strong> The update script will now compare the newly downloaded script to the running configuration.<ul>
+<li>If there are differences, the old configuration is backed up, and the Bird daemon will be reloaded.</li>
+<li>If no differences exist, the Bird daemon will not be reloaded.</li>
+</ul>
+</li>
+<li>A check is performed to ensure the Bird daemon is actually running and, if not, it is started.</li>
+<li><strong>IMPROVED:</strong> A final API call is made to IXP Manager via <code>/api/v4/router/updated/$handle</code> to release the lock and update the <em>last updated</em> timestamp.<ul>
+<li>A significant improvement here is the use of a until api-succeeds, sleep 60, retry construct to ensure the lock is released even when there are transitive network issues / IXP Manager maintenance modes / server maintenance, etc.</li>
+</ul>
+</li>
+</ol>
+<p>Adding step (5) above (only reload on changes) now allows the update script to be safely run as frequently as every few minutes, which is necessary for the UI-based community filtering to be effective.</p>
+<p><em>You should still offset the updates between router pairs, as the script will give up if a lock cannot be obtained. Future improvements could allow for some retries.</em></p>
+<p>For additional information with UI images, see slides 25-30 in <a href="https://www.barryodonovan.com/wp-content/uploads/2024/03/euroix-rs-workshop-2024-03-13.pdf">this presentation PDF</a>.</p>
+<h2 id="updated-api">Updated API<a class="headerlink" href="#updated-api" title="Permanent link"></a></h2>
+<p>It can be useful to know that the scripts for updating the router configuration for AS112, route collector and route server BGP daemons run successfully. At INEX for example, we have three LANs and so 10 individual servers running a total of 30 Bird instances which is unwieldy to check and monitor manually.</p>
+<p>When viewing routers in IXP Manager, you may have noticed the <em>Last Updated</em> column which will initially show <em>(unknown)</em>. All our update scripts (see above) trigger the updated API call when a route configuration run has completed successfully. Note that this does not mean that a configuration has necessarily changed but rather that the update script ran and executed correctly. In other words: <em>the configuration was successfully pulled from IXP Manager, compared to the running configuration and, if changed, successfully applied</em>.</p>
+<p>The API call to update the <em>last updated</em> field to <em>now</em> is a POST as follows:</p>
+<div class="highlight"><pre><span></span><code>curl -s -X POST -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
+    https://ixp.example.com/api/v4/router/updated/{handle}
+</code></pre></div>
+<p>where <code>{handle}</code> should be replaced with the route handle as described above.</p>
+<p>The result is a JSON object with the datetime as set and is equivalent to the result of the following API call which fetches the <em>last updated</em> field without setting it:</p>
+<div class="highlight"><pre><span></span><code>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
+    https://ixp.example.com/api/v4/router/updated/{handle}
+
+{&quot;last_updated&quot;:&quot;2017-05-21T19:14:43+00:00&quot;,&quot;last_updated_unix&quot;:1495394083}
+</code></pre></div>
+<p>There are two useful additional API endpoints. To get the last updated time of <strong>all</strong> routers, use:</p>
+<div class="highlight"><pre><span></span><code>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
+    https://ixp.example.com/api/v4/router/updated
+
+{&quot;handle1&quot;:{&quot;last_updated&quot;:&quot;2017-05-21T19:14:43+00:00&quot;,&quot;last_updated_unix&quot;:1495394083},
+ &quot;handle2&quot;:{&quot;last_updated&quot;:null,&quot;last_updated_unix&quot;:null},
+ ...}
+</code></pre></div>
+<p>The above output shows the format of the reply as well as the fact that routers without a last updated value set will be included as null values.</p>
+<p>Lastly, you can request the last updated time of routers where that time exceeds a given number of seconds. <em>In this call, routers without a last updated time will not be returned.</em> This is useful for monitoring applications such as Nagios where you would want a warning / alert on any routers that have not updated in the last day for example:</p>
+<div class="highlight"><pre><span></span><code>curl -s -X GET -H &quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot; \
+    https://ixp.example.com/api/v4/router/updated-before/86400
+
+[]
+</code></pre></div>
+<p>This example also shows that an empty JSON object is returned for an empty result. Otherwise the format of the reply is the same as for the call above for all routers:</p>
+<div class="highlight"><pre><span></span><code>{&quot;handle1&quot;:{&quot;last_updated&quot;:&quot;2017-05-21T19:14:43+00:00&quot;,&quot;last_updated_unix&quot;:1495394083},...}
+</code></pre></div>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link"></a></h2>
+<p>We use <a href="../../dev/ci/">Travis CI</a> to test IXP Manager before pushing new releases. The primary purpose of this is to ensure that the configuration for routers generated matches known good configurations from the same sample database.</p>
+<p>These known good configurations also serve as useful examples of what the standard IXP Manager configuration generates.</p>
+<p>See <a href="https://github.com/inex/IXP-Manager/tree/master/data/ci/known-good">these known good configurations here</a> and:</p>
+<ul>
+<li><code>as112</code>: AS112 router configurations conforming to <a href="https://tools.ietf.org/html/rfc7534">rfc7534</a> (AS112 Nameserver Operations) and implementing <a href="https://tools.ietf.org/html/rfc7535">rfc7535</a> (AS112 Redirection Using DNAME). There are configs to serve queries over both IPv4 and IPv6. See <a href="../as112/">the AS112 documentation for more details</a>.</li>
+<li><code>rc1</code>: route collector configurations. Peering with the route collector is mandatory at many IXPs including INEX. These are incredibly useful for monitoring, diagnosing issues and providing looking glasses. We also use the quarantine version of these for turning up new member connections.</li>
+<li><code>rs1</code>: route collector configurations. See below for full details of what these implement. See <a href="../route-servers/">the route servers documentation for more details</a>.</li>
+</ul>
+<h2 id="live-status">Live Status<a class="headerlink" href="#live-status" title="Permanent link"></a></h2>
+<p>The live status of any configured routers that have API access can be seen in <strong>IXP Manager</strong> via the <em>Live Status</em> sub-menu option of <em>Routers</em> on the left hand side menu.</p>
+<p>Each router is queried twice via AJAX requests to provide:</p>
+<ul>
+<li>BGP daemon version</li>
+<li>API version</li>
+<li>configured BGP sessions</li>
+<li>established BGP sessions</li>
+<li>last updated time</li>
+<li>last reboot time</li>
+</ul>
+<h2 id="filtering-known-transit-networks">Filtering Known Transit Networks<a class="headerlink" href="#filtering-known-transit-networks" title="Permanent link"></a></h2>
+<p>We filter known transit networks as discussed here: <a href="https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/">https://bgpfilterguide.nlnog.net/guides/no_transit_leaks/</a>.</p>
+<p>There are three configuration options available to allow you to change the default behaviour. These options exist to provide an easier path than skinning the template files directly.</p>
+<p>Exclude one of more AS numbers from the default list (see <a href="https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/server/bird2/filter-transit-networks.foil.php">this file</a> on your own deployment of IXP Manager).</p>
+<p><strong>(1) Exclude Specific ASNs:</strong></p>
+<p>If you just want to exclude one or more ASNs from the default list, then using comma separation, set the following in your <code>.env</code> file:</p>
+<div class="highlight"><pre><span></span><code>IXP_NO_TRANSIT_ASNS_EXCLUDE=65501,65502
+</code></pre></div>
+<p><strong>(2) Disable This Feature Entirely:</strong></p>
+<p>Set an empty configuration option as follows in your <code>.env</code> file:</p>
+<div class="highlight"><pre><span></span><code>IXP_NO_TRANSIT_ASNS_OVERRIDE=
+</code></pre></div>
+<p><strong>(3) Use Your Own Custom List of ASNs:</strong></p>
+<p>Set the following configuration option with a comma separated list as follows in your <code>.env</code> file:</p>
+<div class="highlight"><pre><span></span><code>IXP_NO_TRANSIT_ASNS_OVERRIDE=65501,65502,65503
+</code></pre></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2024 12:34:10 UTC">September 21, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -2422,10 +2848,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": ["tabs"], "search": "/assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["tabs"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>
