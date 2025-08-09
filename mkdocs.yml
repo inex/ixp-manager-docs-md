@@ -97,6 +97,7 @@ nav:
     - 'Peer-to-peer Graphs': 'features/sflow-p2p.md'
 - Development:
     - 'Introduction': 'dev/introduction.md'
+    - 'Development Policy': 'dev/policy.md'
     - 'API': 'dev/api.md'
     - 'Authentication': 'dev/authentication.md'
     - 'Continuous Integration': 'dev/ci.md'
