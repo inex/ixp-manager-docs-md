@@ -95,7 +95,7 @@ php artisan serve
 If you are running Dusk tests, also start the Chromium driver in another console session. For example:
 
 ```sh
-./vendor/laravel/dusk/bin/chromedriver-mac-arm --headless --disable-gpu --remote-debugging-port=9222 --port=9515 http://localhost
+./vendor/laravel/dusk/bin/chromedriver-mac-arm --port=9515
 ```
 
 And then kick off **all the tests** which includes PHPUnit and Laravel Dusk tests, run:
@@ -154,13 +154,20 @@ If you want to exclude the browser based tests, just exclude that directory as f
 
 ```sh
 $ ./vendor/bin/phpunit --filter '/^((?!Tests\\Browser).)*$/'
-PHPUnit 7.2.2 by Sebastian Bergmann and contributors.
+PHPUnit 10.5.41 by Sebastian Bergmann and contributors.
 
-...............................................................  63 / 142 ( 44%)
-............................................................... 126 / 142 ( 88%)
-................                                                142 / 142 (100%)
+Runtime:       PHP 8.3.16
+Configuration: /Users/barryo/dev/ixpm-ibn/phpunit.xml
 
-Time: 1.59 minutes, Memory: 106.41MB
+...............................................................  63 / 292 ( 21%)
+............................................................... 126 / 292 ( 43%)
+............................................................... 189 / 292 ( 64%)
+............................................................... 252 / 292 ( 86%)
+........................................                        292 / 292 (100%)
+
+Time: 00:12.220, Memory: 74.50 MB
+
+OK (292 tests, 946 assertions)
 ```
 
 You can also limit tests to specific test suites:
