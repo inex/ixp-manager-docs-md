@@ -65,6 +65,8 @@ where *n* is the privilege level of the user (see `privs=` [here](users.md)). Fo
 
 If a user without 2fa enabled tries to login from a privilege category that has been configured to enforce 2fa, they will be required to configure 2fa immediately before being granted access to IXP Manager.
 
+From v7.0, 2fa is enforced for all users by default.
+
 ### Lifetime
 
 A user will not be asked to revalidate their 2fa code during the lifetime of a standard browser session or *remember me* session (see above).

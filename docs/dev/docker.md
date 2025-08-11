@@ -1,5 +1,8 @@
 # Docker
 
+???+ warning "**Docker has not been used by the developers in many years and the below is out of date.** It is only kept in the event we wish to revisit docker."
+
+
 For development purposes, we have both Docker and [Vagrant](vagrant.md) build files.
 
 This page on Docker for IXP Manager development should be read in conjunction with the [official IXP Manager Docker repository](https://github.com/inex/ixp-manager-docker). While that repository is not for development purposes, the terminology and container descriptions apply here also.

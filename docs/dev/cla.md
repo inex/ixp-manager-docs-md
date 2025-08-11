@@ -1,6 +1,6 @@
 # Contributor License Agreement
 
-Please see the [contributing instructions](https://github.com/inex/IXP-Manager/blob/master/CONTRIBUTING.md) for full details.
+Please see the [contributing instructions](https://github.com/inex/IXP-Manager?tab=contributing-ov-file#readme) for full details.
 
 Third-party patches are welcomed for adding functionality and  fixing bugs. Before they can be accepted into the project, contributors must sign the below *Contributor License Agreement* (`gpg --clearsign inex-cla.txt`) and email it to `operations (at) inex (dot) ie`.
 

@@ -114,6 +114,28 @@ GRAPHER_BACKEND_SFLOW_ROOT="http://10.0.0.1/grapher-sflow"
 If IXP Manager is configured with more than one component which requires an sflow feed (e.g. [Peering Matrix](Peering-Matrix) support), then it will be necessary to configure `sflowtool` to use [sflow fan-out](sflow-fanout.md).
 -->
 
+
+
+# Peer-to-Peer Graph Sorting
+
+Scrolling tens or even hundreds of graphs that are not sorted or y-axis aligned is not an efficient or useful way of identifying a network's "top ten peers" or traffic anomalies. While the ultimate goal is to use a time-series database, as a stop-gap measure, we are introducing a new feature in v7 to order a member's p2p graphs by volume.
+
+This will be enabled by default if your GRAPHER_BACKEND_SFLOW_ENABLED setting is on. I.e. if you are already using IXP Manager's p2p functionality, then this will "just work" when you upgrade to v7 via the task scheduler:
+
+* at 00:05 every night, any p2p records in the database over 30 days old are pruned.
+* at 00:10 every night, the p2p update script will run for *yesterday's traffic*.
+
+The peer-to-peer graphs will then be ordered by total volume of yesterday's traffic across all possible peering sessions and protocols in both directions. 
+
+If you wish to update or run the script to populate the database, you can do it via artisan:
+
+```
+./artisan grapher:upload-daily-p2p -v YYYY-MM-DD
+```
+
+The date given should be yesterday's. 
+
+
 # RRD Requirements
 
 Each IXP edge port will have 4 separate RRD files for recording traffic to each other participant on the same VLAN on the IXP fabric: ipv4 bytes, ipv6 bytes, ipv4 packets and ipv6 packets.  This means that the number of RRD files grows very quickly as the number of IXP participants increases.  Roughly speaking, for every N participants at the IXP, there will be about 4*N^2 RRD files.  As this number can create extremely high I/O requirements on even medium sized exchanges, IXP Manager requires that `rrdcached` is used.

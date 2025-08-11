@@ -4,6 +4,8 @@ INEX has been ISO 27001:2022 Information Security Management System (ISMS) certi
 
 This document outlines how specific requirements in the *Secure Application Development Policy* apply to the development of IXP Manager.
 
+For information on supported versions, responsible disclosure and security contact information, please see [this policy](https://github.com/inex/IXP-Manager/security/policy).
+
 ## Security in the Application Development Process
 
 Where possible, we will follow security best practices during the application development process, including:
