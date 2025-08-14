@@ -1,18 +1,7 @@
 # Upgrading IXP Manager - v6.x
 
-???+ note "**These upgrade instructions relate to upgrading when you are already using IXP Manager v7.x.**"
+???+ note "**These upgrade instructions relate to upgrading within the v6.x releases when you are already using IXP Manager v6.x.**"
 
-    * For instructions on how to upgrade from v6.2.x to v7.0, please see [the release notes for v7](https://github.com/inex/IXP-Manager/releases/tag/v7.0.0).
-
-    * For instructions on how to upgrade within the v6.x releases, please [see this page](upgrade-v6.md).
-  
-    * For instructions on how to upgrade within the v5.x releases, please [see this page](upgrade-v5.md).
-
-    * For instructions on how to upgrade within the v4.x releases, please [see this page](upgrade-v4.md).
-
-    * For instructions on how to upgrade from v3.x to v4, please [see this page](upgrade-v3.md).
-
-    * For instructions on how to upgrade from v4.9.x to v5.0, please see [the v5.0 release notes](https://github.com/inex/IXP-Manager/releases/tag/v5.0.0).
 
 
 
@@ -27,7 +16,7 @@ We track [releases on GitHub](https://github.com/inex/IXP-Manager/releases).
 
 You will find standard instructions for upgrading IXP Manager below. Note that the release notes for each version may contain specific upgrade instructions including schema changes.
 
-If you have missed some versions, the most sensible approach is to upgrade to each minor release in sequence (7.0.0 -> 7.1.0 -> 7.2.0 -> ...) and then to the latest patch version in the latest minor version.
+If you have missed some versions, the most sensible approach is to upgrade to each minor release in sequence (6.0.0 -> 6.1.0 -> 6.2.0 -> ...) and then to the latest patch version in the latest minor version.
 
 In the below, we assume the following installation directory - alter this to suit your own situation:
 
@@ -61,14 +50,14 @@ The general process is:
     php $IXPROOT/artisan down --message='Please wait, currently upgrading...'
     ```
 
-3. Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v7:
+3. Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v6:
 
     ```sh
     cd $IXPROOT
     # pull the latest code
     git fetch --all
     # check out the version you are upgrading to
-    git checkout v7.x.y
+    git checkout v6.x.y
     ```
 
 
@@ -76,6 +65,7 @@ The general process is:
 
     ```sh
     # This assumes composer is installed globally.
+    # (Typical for IXP Manager on Ubtuntu 20.04):
     sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} \
         && composer install --no-dev --prefer-dist"
 
@@ -123,6 +113,16 @@ The general process is:
 
     ```sh
     php ${IXPROOT}/artisan up
+    ```
+
+12. Recreate SQL views
+
+    Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates.
+
+    ```sh
+    cd ${IXPROOT}
+    source .env
+    mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < $IXPROOT/tools/sql/views.sql
     ```
 
 
