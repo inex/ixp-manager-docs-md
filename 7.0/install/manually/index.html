@@ -2612,10 +2612,11 @@
 
 <h1 id="manual-installation">Manual Installation<a class="headerlink" href="#manual-installation" title="Permanent link"></a></h1>
 <details class="note" open="open">
-<summary><strong>This page was updated in July 2021 for the release of IXP Manager v6.0 and installation on Ubuntu LTS 20.04.</strong></summary>
+<summary><strong>This page was updated in July 2025 for the release of IXP Manager v7.0 and installation on Ubuntu LTS 24.04.</strong></summary>
 </details>
 <h2 id="video-tutorial">Video Tutorial<a class="headerlink" href="#video-tutorial" title="Permanent link"></a></h2>
 <p>We created a video tutorial demonstrating the manual installation process for IXP Manager v6.0.0 (July 2021) on Ubuntu LTS 20.04. You can find the <a href="https://www.ixpmanager.org/download/install">latest installation videos</a>. As always, <a href="https://www.ixpmanager.org/support/tutorials">the full catalog of video tutorials is here</a>.</p>
+<p><strong>NB:</strong> this tutorial is for an earlier version of IXP Manager on an older version of Ubuntu. While the process is not dissimilar to the below, please watch out for differences.</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link"></a></h2>
 <p>IXP Manager tries to stay current in terms of technology. Typically, this means some element of framework refresh(es) every couple of years and other more incremental package upgrades with minor version upgrades. As well as the obvious reasons for this, there is also the requirement to prevent developer apathy - insisting on legacy frameworks and packages that have been EOL'd provides a major stumbling block for bringing on new developers and contributors.</p>
 <p>The current requirements for the web application are:</p>
@@ -2623,25 +2624,34 @@
 <li>a Linux / BSD host - <strong>all documentation and videos relate to Ubuntu LTS</strong>.</li>
 <li>MySQL 8.</li>
 <li>Apache / Nginx / etc.</li>
-<li>PHP &gt;= 8.0. <strong>Note that IXP Manager &gt;= v6.0 will not run on older versions of PHP.</strong></li>
+<li>PHP 8.3. <strong>Note that IXP Manager &gt;= v7.0 will not run on other versions of PHP.</strong></li>
 <li>Memcached - optional but recommended.</li>
 </ul>
 <p>To complete the installation using the included config/scripts, you will also need to have installed git (<code>apt install git</code>) and a number of PHP extensions (see the example <code>apt install</code> below).</p>
-<p>Regrettably the potential combinations of operating systems, versions of same and then versions of PHP are too numerous to provide individual support. As such, we recommend installing IXP Manager on Ubuntu LTS 20.04 and we officially support this platform.</p>
+<p>Regrettably the potential combinations of operating systems, versions of same and then versions of PHP are too numerous to provide individual support. As such, we recommend installing IXP Manager on Ubuntu LTS 24.04 and we officially support this platform.</p>
 <p>In fact, we provide a complete installation script for this - see <a href="../automated-script/">the automated installation page</a> for details. If you have any issues with the manual installation, the automated script should be your first reference to compare what you are doing to what we recommend.</p>
-<p>For completeness, the IXP Manager installation script for Ubuntu 20.04 LTS installs:</p>
-<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>-qy<span class="w"> </span>apache2<span class="w"> </span>php8.0<span class="w"> </span>php8.0-intl<span class="w"> </span>php8.0-rrd<span class="w"> </span>php8.0-cgi<span class="w"> </span>php8.0-cli<span class="w">              </span><span class="se">\</span>
-<span class="w">    </span>php8.0-snmp<span class="w"> </span>php8.0-curl<span class="w">  </span>php8.0-memcached<span class="w"> </span>libapache2-mod-php8.0<span class="w"> </span>mysql-server<span class="w">         </span><span class="se">\</span>
-<span class="w">    </span>mysql-client<span class="w"> </span>php8.0-mysql<span class="w"> </span>memcached<span class="w"> </span>snmp<span class="w"> </span>php8.0-mbstring<span class="w"> </span>php8.0-xml<span class="w"> </span>php8.0-gd<span class="w">        </span><span class="se">\</span>
-<span class="w">    </span>php8.0-bcmath<span class="w"> </span>bgpq3<span class="w"> </span>php8.0-memcache<span class="w"> </span>unzip<span class="w"> </span>php8.0-zip<span class="w"> </span>git<span class="w"> </span>php8.0-yaml<span class="w">                 </span><span class="se">\</span>
-<span class="w">    </span>php8.0-ds<span class="w"> </span>libconfig-general-perl<span class="w"> </span>libnetaddr-ip-perl<span class="w"> </span>mrtg<span class="w">  </span>libconfig-general-perl<span class="w">     </span><span class="se">\</span>
-<span class="w">    </span>libnetaddr-ip-perl<span class="w"> </span>rrdtool<span class="w"> </span>librrds-perl<span class="w"> </span>curl<span class="w"> </span>composer<span class="w">                                </span>
-</code></pre></div>
-<p>Do note that Ubuntu 20.04 LTS comes with PHP 7.4 so you must enable Ondřej Surý's excellent <a href="https://launchpad.net/~ondrej/+archive/ubuntu/php">Ubuntu PHP PPA</a> (and maybe <a href="https://deb.sury.org/#donate">buy him a pint</a>). This can be enabled with:</p>
-<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>-yq<span class="w"> </span>software-properties-common
+<p>For completeness, the IXP Manager installation script for Ubuntu 24.04 LTS installs:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># start with a fresh update of all installed packages</span>
+apt-get<span class="w"> </span>update
+apt-get<span class="w"> </span>dist-upgrade
+
+<span class="c1"># ensure basic tools are installed</span>
+apt-get<span class="w"> </span>install<span class="w"> </span>-yq<span class="w"> </span>ubuntu-minimal<span class="w"> </span>openssl<span class="w"> </span>wget<span class="w"> </span>net-tools
+
+<span class="c1"># We need PHP 8.3 for IXP Manager v7 and we need to get this from</span>
+<span class="c1"># Ondrej&#39;s super PPA:</span>
+apt-get<span class="w"> </span>install<span class="w"> </span>-yq<span class="w"> </span>software-properties-common
 add-apt-repository<span class="w"> </span>-y<span class="w"> </span>ppa:ondrej/php
+
+<span class="c1"># Install the LAMP stack</span>
+apt<span class="w"> </span>install<span class="w"> </span>-qy<span class="w"> </span>apache2<span class="w"> </span>php8.3<span class="w"> </span>php8.3-intl<span class="w"> </span>php8.3-rrd<span class="w"> </span>php8.3-cgi<span class="w"> </span>php8.3-cli<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>php8.3-snmp<span class="w"> </span>php8.3-curl<span class="w">  </span>php8.3-memcached<span class="w"> </span>libapache2-mod-php8.3<span class="w"> </span>mysql-server<span class="w">         </span><span class="se">\</span>
+<span class="w">    </span>mysql-client<span class="w"> </span>php8.3-mysql<span class="w"> </span>memcached<span class="w"> </span>snmp<span class="w"> </span>php8.3-mbstring<span class="w"> </span>php8.3-xml<span class="w"> </span>php8.3-gd<span class="w">        </span><span class="se">\</span>
+<span class="w">    </span>php8.3-bcmath<span class="w"> </span>bgpq3<span class="w"> </span>php8.3-memcache<span class="w"> </span>unzip<span class="w"> </span>php8.3-zip<span class="w"> </span>git<span class="w"> </span>php8.3-yaml<span class="w">                 </span><span class="se">\</span>
+<span class="w">    </span>php8.3-ds<span class="w"> </span>libconfig-general-perl<span class="w"> </span>libnetaddr-ip-perl<span class="w"> </span>mrtg<span class="w">  </span>libconfig-general-perl<span class="w">     </span><span class="se">\</span>
+<span class="w">    </span>libnetaddr-ip-perl<span class="w"> </span>rrdtool<span class="w"> </span>librrds-perl<span class="w"> </span>curl<span class="w">  </span>
 </code></pre></div>
-<p>If you are using a different platform, you will need to replicate the above as appropriate for your chosen platform.</p>
+<p>Do note that Ubuntu 24.04 LTS comes with PHP 8.3 so Ondřej Surý's excellent <a href="https://launchpad.net/~ondrej/+archive/ubuntu/php">Ubuntu PHP PPA</a> is not strictly required. However, his packages are more up to date with the PHP project, and Ubuntu 24.04 has a broken php-ds library which is essentially for IRRDB. And maybe consider <a href="https://deb.sury.org/#donate">buying him a pint</a>). </p>
 <h3 id="get-the-ixp-manager-source">Get the IXP Manager Source<a class="headerlink" href="#get-the-ixp-manager-source" title="Permanent link"></a></h3>
 <p>The code for IXP Manager is maintained on GitHub and the canonical repository is <a href="https://github.com/inex/IXP-Manager">inex/IXP-Manager</a>.</p>
 <p>Log into the server where you wish to install IXP Manager. Move to the directory where you wish to store the source (the automated script, our documentation and our examples use <code>/srv/ixpmanager</code> which we refer to as <code>$IXPROOT</code>). Note that it <strong>should not</strong> be cloned into any web exposed directory (e.g. do not clone to <code>/var/www</code>).</p>
@@ -2649,14 +2659,25 @@ add-apt-repository<span class="w"> </span>-y<span class="w"> </span>ppa:ondrej/p
 <span class="nb">cd</span><span class="w"> </span>/srv
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/inex/IXP-Manager.git<span class="w"> </span>ixpmanager
 <span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span><span class="w">   </span><span class="c1"># /srv/ixpmanager</span>
-git<span class="w"> </span>checkout<span class="w"> </span>release-v6
+git<span class="w"> </span>checkout<span class="w"> </span>release-v7
 chown<span class="w"> </span>-R<span class="w"> </span>www-data:<span class="w"> </span>bootstrap/cache<span class="w"> </span>storage
 </code></pre></div>
 <h2 id="initial-setup-and-dependencies">Initial Setup and Dependencies<a class="headerlink" href="#initial-setup-and-dependencies" title="Permanent link"></a></h2>
 <h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link"></a></h3>
 <p>Install the required PHP libraries:</p>
-<p>First you will need Composer v2 but v1 ships with Ubuntu 20.04. Composer is PHP's package manager and you can download and install it per the <a href="https://getcomposer.org/download/">copy and paste instructions here</a> (always satisfy yourself with the trustworthiness of the source when downloading and executing scripts).</p>
-<p>We assume you downloaded it to <code>$IXPROOT</code> as <code>composer.phar</code> in the following:</p>
+<p>First you will need Composer v2, PHP's package manager. You can install composer on Ubuntu, but it can become dated quite quickly and installs a bunch of other packages. We recommend that you download and install it per the <a href="https://getcomposer.org/download/">copy and paste instructions here</a> (always satisfy yourself with the trustworthiness of the source when downloading and executing scripts).</p>
+<p>We assume you downloaded it to <code>$IXPROOT</code> as <code>composer.phar</code> as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
+php<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&quot;</span>
+php<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;if (hash_file(&#39;sha384&#39;, &#39;composer-setup.php&#39;) === &#39;dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6&#39;) { </span>
+<span class="s2">        echo &#39;Installer verified&#39;.PHP_EOL; </span>
+<span class="s2">    } else { </span>
+<span class="s2">        echo &#39;Installer corrupt&#39;.PHP_EOL; unlink(&#39;composer-setup.php&#39;); exit(1); </span>
+<span class="s2">    }&quot;</span>
+php<span class="w"> </span>composer-setup.php
+php<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;unlink(&#39;composer-setup.php&#39;);&quot;</span>
+</code></pre></div>
+<p>Then you can install the dependencies as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
 php<span class="w"> </span>composer.phar<span class="w"> </span>install<span class="w"> </span>--no-dev<span class="w"> </span>--prefer-dist
 cp<span class="w"> </span>.env.example<span class="w"> </span>.env
@@ -2668,7 +2689,6 @@ php<span class="w"> </span>artisan<span class="w"> </span>key:generate
 <span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n n-Quoted">`ixpmanager`</span><span class="nv">@`localhost`</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&lt;pick a password!&gt;&#39;</span><span class="p">;</span>
 <span class="k">GRANT</span><span class="w"> </span><span class="k">SUPER</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n n-Quoted">`ixpmanager`</span><span class="nv">@`localhost`</span><span class="p">;</span>
 <span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`ixpmanager`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n n-Quoted">`ixpmanager`</span><span class="nv">@`localhost`</span><span class="p">;</span>
-<span class="k">GRANT</span><span class="w"> </span><span class="k">SUPER</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n n-Quoted">`ixpmanager`</span><span class="nv">@`localhost`</span><span class="p">;</span>
 <span class="k">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
 </code></pre></div>
 <p>Then edit <code>$IXPROOT/.env</code> and set the database options:</p>
@@ -2679,17 +2699,15 @@ DB_PASSWORD=&lt;the password you picked above!&gt;
 </code></pre></div>
 <p>Now create the database schema:</p>
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>migrate
-<span class="c1"># Run it twice for completeness</span>
-php<span class="w"> </span>artisan<span class="w"> </span>migrate
 </code></pre></div>
-<p>Some older scripts still rely on MySQL view tables. Create these with:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># We use root here as the views.sql also contain triggers</span>
-mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>ixpmanager<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$IXPROOT</span>/tools/sql/views.sql
+<p>If you have developed your own scripts that use deprecated views, create them via:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>artisan<span class="w"> </span>update:reset-mysql-views
 </code></pre></div>
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h3>
 <p>Edit <code>$IXPROOT/.env</code> and review and set/change all parameters. Hopefully this is mostly documented or clear but please start a discussion on the mailing list if you have difficultly and we'll update this and the example file's documentation as appropriate.</p>
+<p>From IXP Manager v7, there is also a UI for admins to edit these settings. However, you will have to complete various steps below before you can login.</p>
 <h3 id="initial-database-objects">Initial Database Objects<a class="headerlink" href="#initial-database-objects" title="Permanent link"></a></h3>
-<p>Using the settings you edited in <code>.env</code> we'll create some database objects. [Yes, a setup wizard needs to be built!].</p>
+<p>Using the settings you edited in <code>.env</code> we'll create some database objects.</p>
 <p>First let's create the password for the admin user. The following will create a secure random password and hash it with bcrypt:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
 <span class="nb">source</span><span class="w"> </span>.env
@@ -2806,7 +2824,7 @@ service<span class="w"> </span>apache2<span class="w"> </span>restart
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 21, 2024 19:54:53 UTC">August 21, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 14, 2025 17:46:37 UTC">August 14, 2025</span>
   </span>
 
     

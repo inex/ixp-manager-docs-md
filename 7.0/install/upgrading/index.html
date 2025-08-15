@@ -2450,10 +2450,13 @@
 
 <h1 id="upgrading-ixp-manager-v6x">Upgrading IXP Manager - v6.x<a class="headerlink" href="#upgrading-ixp-manager-v6x" title="Permanent link"></a></h1>
 <details class="note" open="open">
-<summary><strong>These upgrade instructions relate to upgrading when you are already using IXP Manager v6.x.</strong></summary>
+<summary><strong>These upgrade instructions relate to upgrading when you are already using IXP Manager v7.x.</strong></summary>
 <ul>
 <li>
-<p>For instructions on how to upgrade from v5.8.0 to v6.0.0, please see <a href="https://github.com/inex/IXP-Manager/releases/tag/v6.0.0">the release notes for v6</a>.</p>
+<p>For instructions on how to upgrade from v6.2.x to v7.0, please see <a href="https://github.com/inex/IXP-Manager/releases/tag/v7.0.0">the release notes for v7</a>.</p>
+</li>
+<li>
+<p>For instructions on how to upgrade within the v6.x releases, please <a href="../upgrade-v6/">see this page</a>.</p>
 </li>
 <li>
 <p>For instructions on how to upgrade within the v5.x releases, please <a href="../upgrade-v5/">see this page</a>.</p>
@@ -2474,7 +2477,7 @@
 <h2 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link"></a></h2>
 <p>We track <a href="https://github.com/inex/IXP-Manager/releases">releases on GitHub</a>.</p>
 <p>You will find standard instructions for upgrading IXP Manager below. Note that the release notes for each version may contain specific upgrade instructions including schema changes.</p>
-<p>If you have missed some versions, the most sensible approach is to upgrade to each minor release in sequence (6.0.0 -&gt; 6.1.0 -&gt; 6.2.0 -&gt; ...) and then to the latest patch version in the latest minor version.</p>
+<p>If you have missed some versions, the most sensible approach is to upgrade to each minor release in sequence (7.0.0 -&gt; 7.1.0 -&gt; 7.2.0 -&gt; ...) and then to the latest patch version in the latest minor version.</p>
 <p>In the below, we assume the following installation directory - alter this to suit your own situation:</p>
 <div class="highlight"><pre><span></span><code>IXPROOT=/srv/ixpmanager
 </code></pre></div>
@@ -2500,18 +2503,17 @@ chmod<span class="w"> </span>-R<span class="w"> </span>ug+rwX<span class="w"> </
 </code></pre></div>
 </li>
 <li>
-<p>Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v6:</p>
+<p>Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v7:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
 <span class="c1"># pull the latest code</span>
 git<span class="w"> </span>fetch<span class="w"> </span>--all
 <span class="c1"># check out the version you are upgrading to</span>
-git<span class="w"> </span>checkout<span class="w"> </span>v6.x.y
+git<span class="w"> </span>checkout<span class="w"> </span>v7.x.y
 </code></pre></div>
 </li>
 <li>
 <p>Install latest required libraries from composer <a href="#updating-composer-dependencies"><strong>(see notes below)</strong></a>. Note that composer may be in different locations.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># This assumes composer is installed globally.</span>
-<span class="c1"># (Typical for IXP Manager on Ubtuntu 20.04):</span>
 sudo<span class="w"> </span>-u<span class="w"> </span><span class="nv">$MY_WWW_USER</span><span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;HOME=</span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2">/storage &amp;&amp; cd </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span><span class="s2"> \</span>
 <span class="s2">    &amp;&amp; composer install --no-dev --prefer-dist&quot;</span>
 </code></pre></div>
@@ -2556,14 +2558,6 @@ php<span class="w"> </span><span class="si">${</span><span class="nv">IXPROOT</s
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>/artisan<span class="w"> </span>up
 </code></pre></div>
 </li>
-<li>
-<p>Recreate SQL views</p>
-<p>Some older scripts, including the sflow modules, rely on MySQL view tables that may be affected by SQL updates.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">IXPROOT</span><span class="si">}</span>
-<span class="nb">source</span><span class="w"> </span>.env
-mysql<span class="w"> </span>-h<span class="w"> </span><span class="nv">$DB_HOST</span><span class="w"> </span>-u<span class="w"> </span><span class="nv">$DB_USERNAME</span><span class="w"> </span>-p<span class="nv">$DB_PASSWORD</span><span class="w"> </span><span class="nv">$DB_DATABASE</span><span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$IXPROOT</span>/tools/sql/views.sql
-</code></pre></div>
-</li>
 </ol>
 <h2 id="updating-composer-dependencies">Updating Composer Dependencies<a class="headerlink" href="#updating-composer-dependencies" title="Permanent link"></a></h2>
 <p>It is not advisable to run composer as root but how you run it will depend on your own installation. The following options would work on Ubuntu (run these as root and the composer commands themselves will be run as <code>$MY_WWW_USER</code>). Note that we assume here what you have installed Composer (see: https://getcomposer.org/ ) in the <code>${IXPROOT}</code> directory as <code>composer.phar</code>.</p>
@@ -2605,7 +2599,7 @@ sudo<span class="w"> </span>-u<span class="w"> </span><span class="nv">$MY_WWW_U
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2024 11:43:41 UTC">September 21, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 14, 2025 17:46:37 UTC">August 14, 2025</span>
   </span>
 
     
