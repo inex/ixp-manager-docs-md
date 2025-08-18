@@ -16,41 +16,18 @@ To find out more about the JSON schema and see examples, you can [read more here
 
 There are a small number of things you should do to ensure your IX-F export is correct.
 
-**Correctly set the PeeringDB ID and IX-F ID**
+**(1) Correctly set the PeeringDB ID and IX-F ID**
 
 The first is to ensure you have correctly set the PeeringDB ID and IX-F ID in your infrastructure (see *Infrastructures* under the left hand side *IXP ADMIN ACTIONS* menu).
 
 The IX-F ID is mandatory. You will find yours by searching [the IX-F providers database here](https://ixpdb.euro-ix.net/en/ixpdb/providers/). If you are a new IXP that is not registered here, please email your IXP's: full name, short name, city / region / country, GPS coordinates and website URL to `ixpdb-admin (at) euro-ix (dot) net` so they can register it in the IXPDB.
 
-**Create Network Info**
+**(2) Create Network Info**
 
 Click *VLANs* on the left-hand-side menu and then chose *Network Information*. Once there, add the network address and network mask length for IPv4 and IPv6 for your peering LAN(s).
 
-The first thing you need is the peering VLAN DB ID. *[clarification note: this is nothing to do with PeeringDB but the VLAN created within IXP Manager].* For this, select *VLANs* under the left hand side *IXP ADMIN ACTIONS* menu in IXP Manager. Locate your peering VLAN *DB ID* and note it.
 
-For our example, we will use the following sample data:
-
-* Peering VLAN *DB ID*: 66
-* IPv4 peering network: `192.0.2.0/25` with route servers on `.8` and `.9`
-* IPv6 peering network: `2001:db8:1000::/64` with route servers on `.8` and `.9`
-
-You need need to add this data to `networkinfo` with the following sample SQL commands:
-
-```mysql
-INSERT INTO `networkinfo`
-    ( `vlanid`, `protocol`, `network`, `masklen`, `rs1address`, `rs2address`),
-VALUES
-    ( 66, 4, '192.0.2.0', '25', '192.0.2.8', '192.0.2.9' );
-
-INSERT INTO `networkinfo`
-    ( `vlanid`, `protocol`, `network`, `masklen`, `rs1address`, `rs2address`),
-VALUES
-    ( 66, 6, '2001:db8:1000::', '64', '2001:db8:1000::8', '2001:db8:1000::9' );
-
-```
-
-
-**Set Your IXP's Name / Country / etc**
+**(3) Set Your IXP's Name / Country / etc**
 
 The third task is to ensure your IXP's details are correct in the IX-F export.
 

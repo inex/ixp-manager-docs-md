@@ -17,7 +17,7 @@ The current requirements for the web application are:
 * a Linux / BSD host - **all documentation and videos relate to Ubuntu LTS**.
 * MySQL 8.
 * Apache / Nginx / etc.
-* PHP 8.3. **Note that IXP Manager >= v7.0 will not run on other versions of PHP.**
+* PHP 8.4. **Note that IXP Manager >= v7.0 will not run on other versions of PHP.**
 * Memcached - optional but recommended.
 
 To complete the installation using the included config/scripts, you will also need to have installed git (`apt install git`) and a number of PHP extensions (see the example `apt install` below).
@@ -36,21 +36,21 @@ apt-get dist-upgrade
 # ensure basic tools are installed
 apt-get install -yq ubuntu-minimal openssl wget net-tools
 
-# We need PHP 8.3 for IXP Manager v7 and we need to get this from
+# We need PHP 8.4 for IXP Manager v7 and we need to get this from
 # Ondrej's super PPA:
 apt-get install -yq software-properties-common
 add-apt-repository -y ppa:ondrej/php
 
 # Install the LAMP stack
-apt install -qy apache2 php8.3 php8.3-intl php8.3-rrd php8.3-cgi php8.3-cli \
-    php8.3-snmp php8.3-curl  php8.3-memcached libapache2-mod-php8.3 mysql-server         \
-    mysql-client php8.3-mysql memcached snmp php8.3-mbstring php8.3-xml php8.3-gd        \
-    php8.3-bcmath bgpq3 php8.3-memcache unzip php8.3-zip git php8.3-yaml                 \
-    php8.3-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl     \
+apt install -qy apache2 php8.4 php8.4-intl php8.4-rrd php8.4-cgi php8.4-cli \
+    php8.4-snmp php8.4-curl  php8.4-memcached libapache2-mod-php8.4 mysql-server         \
+    mysql-client php8.4-mysql memcached snmp php8.4-mbstring php8.4-xml php8.4-gd        \
+    php8.4-bcmath bgpq3 php8.4-memcache unzip php8.4-zip git php8.4-yaml                 \
+    php8.4-ds libconfig-general-perl libnetaddr-ip-perl mrtg  libconfig-general-perl     \
     libnetaddr-ip-perl rrdtool librrds-perl curl  
 ```
 
-Do note that Ubuntu 24.04 LTS comes with PHP 8.3 so Ondřej Surý's excellent [Ubuntu PHP PPA](https://launchpad.net/~ondrej/+archive/ubuntu/php) is not strictly required. However, his packages are more up to date with the PHP project, and Ubuntu 24.04 has a broken php-ds library which is essentially for IRRDB. And maybe consider [buying him a pint](https://deb.sury.org/#donate)). 
+As Ubuntu 24.04 LTS comes with PHP 8.3 installed, we need Ondřej Surý's excellent [Ubuntu PHP PPA](https://launchpad.net/~ondrej/+archive/ubuntu/php). Perhaps consider [buying him a pint](https://deb.sury.org/#donate)). 
 
 
 ### Get the IXP Manager Source
@@ -136,71 +136,41 @@ php artisan update:reset-mysql-views
 
 ### Configuration
 
-Edit `$IXPROOT/.env` and review and set/change all parameters. Hopefully this is mostly documented or clear but please start a discussion on the mailing list if you have difficultly and we'll update this and the example file's documentation as appropriate.
+Edit `$IXPROOT/.env` and review and set/change all parameters. Hopefully this is mostly documented and clear, but please start a discussion on the mailing list if you have difficultly and we'll update this and the example file's documentation as appropriate.
 
 From IXP Manager v7, there is also a UI for admins to edit these settings. However, you will have to complete various steps below before you can login.
 
 ### Initial Database Objects
 
-
 Using the settings you edited in `.env` we'll create some database objects.
 
-First let's create the password for the admin user. The following will create a secure random password and hash it with bcrypt:
+First, create the password for the initial admin user. The following will create a secure random password and set a bash environment variable so it can be used by the set-up wizard:
 
 ```sh
 cd $IXPROOT
 source .env
-USERNAME=admin
-USEREMAIL=your@email.address
 IXPM_ADMIN_PW="$( openssl rand -base64 12 )"
-ADMIN_PW_SALT="$( openssl rand -base64 16 )"
-HASH_PW=$( php -r "echo escapeshellarg( crypt( '${IXPM_ADMIN_PW}', sprintf( '\$2a\$%02d\$%s', 10, substr( '${ADMIN_PW_SALT}', 0, 22 ) ) ) );" )
 echo Your password is: $IXPM_ADMIN_PW
-
-NAME="Joe"
-IXPNAME=SCIX
-IXPSNAME=SCIX
-IXPASN=65500
-IXPPEEREMAIL=peering@example.com
-IXPNOCPHONE=12345678
-IXPNOCEMAIL=noc@example.com
-IXPWWW="http://www.example.com"
+export IXP_SETUP_ADMIN_PASSWORD=$IXPM_ADMIN_PW
 ```
 
-The following is taken from the IXP Manager installation script:
+Then run the following:
 
-
-```mysql
-mysql -h $DB_HOST -u $DB_USERNAME "-p${DB_PASSWORD}" $DB_DATABASE <<END_SQL
-INSERT INTO infrastructure ( name, shortname, isPrimary, created_at, updated_at )
-    VALUES ( 'Infrastructure #1', '#1', 1, NOW(), NOW() );
-SET @infraid = LAST_INSERT_ID();
-
-INSERT INTO company_registration_detail ( registeredName, created_at, updated_at ) VALUES ( '${IXPNAME}', NOW(), NOW() );
-SET @crdid = LAST_INSERT_ID();
-
-INSERT INTO company_billing_detail ( billingContactName, invoiceMethod, billingFrequency, created_at, updated_at )
-    VALUES ( '${NAME}', 'EMAIL', 'NOBILLING', NOW(), NOW() );
-SET @cbdid = LAST_INSERT_ID();
-
-INSERT INTO cust ( name, shortname, type, abbreviatedName, autsys, maxprefixes, peeringemail, nocphone, noc24hphone,
-        nocemail, nochours, nocwww, peeringpolicy, corpwww, datejoin, status, activepeeringmatrix, isReseller,
-        company_registered_detail_id, company_billing_details_id, created_at, updated_at )
-    VALUES ( '${IXPNAME}', '${IXPSNAME}', 3, '${IXPSNAME}', ${IXPASN}, 100, '${IXPPEEREMAIL}', '${IXPNOCPHONE}',
-        '${IXPNOCPHONE}', '${IXPNOCEMAIL}', '24x7', '', 'mandatory', '${IXPWWW}', NOW(), 1, 1, 0, @crdid, @cbdid, NOW(), NOW() );
-SET @custid = LAST_INSERT_ID();
-
-INSERT INTO user ( custid, name, username, password, email, privs, disabled, created_at, updated_at )
-    VALUES ( @custid, '${NAME}', '${USERNAME}', ${HASH_PW}, '${USEREMAIL}', 3, 0, NOW(), NOW() );
-SET @userid = LAST_INSERT_ID();
-
-INSERT INTO customer_to_users ( customer_id, user_id, privs, created_at, updated_at )
-    VALUES ( @custid, @userid, 3, NOW(), NOW() );
-
-INSERT INTO contact ( custid, name, email, created_at, updated_at )
-    VALUES ( @custid, '${NAME}', '${USEREMAIL}', NOW(), NOW() );
-END_SQL
+```sh
+php artisan ixp-manager:setup-wizard --ixp-shortname="<ixp>"   \
+  --admin-name="<Your Name>"                                   \
+  --admin-username="<Your Desired Username>"                   \
+  --admin-email="<Your Email>"                                 \
+  --asn="<your IXP's asn>" 
 ```
+
+where:
+
+* the `--ixp-shortname` is typically some 3-5 letter abbreviation for your IXP.
+* the `--admin-xxx` options are for your first admin user, and, if the script is run in the same cli session as the password generation above, this password will be set.
+* the asn is your IXP's AS number.
+* you can add `--echo-password` to see the password while the script runs.
+
 
 And finally seed the database:
 
