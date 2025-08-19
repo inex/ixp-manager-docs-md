@@ -2615,8 +2615,7 @@
 <summary><strong>This page was updated in July 2025 for the release of IXP Manager v7.0 and installation on Ubuntu LTS 24.04.</strong></summary>
 </details>
 <h2 id="video-tutorial">Video Tutorial<a class="headerlink" href="#video-tutorial" title="Permanent link"></a></h2>
-<p>We created a video tutorial demonstrating the manual installation process for IXP Manager v6.0.0 (July 2021) on Ubuntu LTS 20.04. You can find the <a href="https://www.ixpmanager.org/download/install">latest installation videos</a>. As always, <a href="https://www.ixpmanager.org/support/tutorials">the full catalog of video tutorials is here</a>.</p>
-<p><strong>NB:</strong> this tutorial is for an earlier version of IXP Manager on an older version of Ubuntu. While the process is not dissimilar to the below, please watch out for differences.</p>
+<p>We created a video tutorial demonstrating the manual installation process for IXP Manager v7.0.0 (August 2025) on Ubuntu LTS 24.04. You can find the <a href="https://www.ixpmanager.org/download/install">latest installation videos</a>. As always, <a href="https://www.ixpmanager.org/support/tutorials">the full catalog of video tutorials is here</a>.</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link"></a></h2>
 <p>IXP Manager tries to stay current in terms of technology. Typically, this means some element of framework refresh(es) every couple of years and other more incremental package upgrades with minor version upgrades. As well as the obvious reasons for this, there is also the requirement to prevent developer apathy - insisting on legacy frameworks and packages that have been EOL'd provides a major stumbling block for bringing on new developers and contributors.</p>
 <p>The current requirements for the web application are:</p>
@@ -2666,17 +2665,7 @@ chown<span class="w"> </span>-R<span class="w"> </span>www-data:<span class="w">
 <h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link"></a></h3>
 <p>Install the required PHP libraries:</p>
 <p>First you will need Composer v2, PHP's package manager. You can install composer on Ubuntu, but it can become dated quite quickly and installs a bunch of other packages. We recommend that you download and install it per the <a href="https://getcomposer.org/download/">copy and paste instructions here</a> (always satisfy yourself with the trustworthiness of the source when downloading and executing scripts).</p>
-<p>We assume you downloaded it to <code>$IXPROOT</code> as <code>composer.phar</code> as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
-php<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;copy(&#39;https://getcomposer.org/installer&#39;, &#39;composer-setup.php&#39;);&quot;</span>
-php<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;if (hash_file(&#39;sha384&#39;, &#39;composer-setup.php&#39;) === &#39;dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6&#39;) { </span>
-<span class="s2">        echo &#39;Installer verified&#39;.PHP_EOL; </span>
-<span class="s2">    } else { </span>
-<span class="s2">        echo &#39;Installer corrupt&#39;.PHP_EOL; unlink(&#39;composer-setup.php&#39;); exit(1); </span>
-<span class="s2">    }&quot;</span>
-php<span class="w"> </span>composer-setup.php
-php<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;unlink(&#39;composer-setup.php&#39;);&quot;</span>
-</code></pre></div>
+<p>We assume you downloaded it to <code>$IXPROOT</code> as <code>composer.phar</code>.</p>
 <p>Then you can install the dependencies as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
 php<span class="w"> </span>composer.phar<span class="w"> </span>install<span class="w"> </span>--no-dev<span class="w"> </span>--prefer-dist
@@ -2772,7 +2761,7 @@ service<span class="w"> </span>apache2<span class="w"> </span>restart
 <li>secure your server with an iptables firewall</li>
 <li>install an SSL certificate and redirect HTTP access to HTTPS</li>
 <li>complete the installation of the many features of IXP Manager such as route server generation, member stats, peer to peer graphs, etc.</li>
-<li>PLEASE TELL US! We'd like to add you to the users list at https://www.ixpmanager.org/community/world-map - just complete the form there or drop us an email to <code>operations &lt;at&gt; inex &lt;dot&gt; ie</code>.</li>
+<li>PLEASE TELL US! We'd like to add you to the users list at <a href="https://www.ixpmanager.org/community/world-map">https://www.ixpmanager.org/community/world-map</a> - just complete the form there or drop us an email to <code>operations &lt;at&gt; inex &lt;dot&gt; ie</code>.</li>
 </ul>
 <p><strong>What next? See our <a href="../next-steps/">post-install / next steps document here</a>.</strong></p>
 
