@@ -4,9 +4,8 @@
 
 ## Video Tutorial
 
-We created a video tutorial demonstrating the manual installation process for IXP Manager v6.0.0 (July 2021) on Ubuntu LTS 20.04. You can find the [latest installation videos](https://www.ixpmanager.org/download/install). As always, [the full catalog of video tutorials is here](https://www.ixpmanager.org/support/tutorials).
+We created a video tutorial demonstrating the manual installation process for IXP Manager v7.0.0 (August 2025) on Ubuntu LTS 24.04. You can find the [latest installation videos](https://www.ixpmanager.org/download/install). As always, [the full catalog of video tutorials is here](https://www.ixpmanager.org/support/tutorials).
 
-**NB:** this tutorial is for an earlier version of IXP Manager on an older version of Ubuntu. While the process is not dissimilar to the below, please watch out for differences.
 
 ## Requirements
 
@@ -77,19 +76,7 @@ Install the required PHP libraries:
 
 First you will need Composer v2, PHP's package manager. You can install composer on Ubuntu, but it can become dated quite quickly and installs a bunch of other packages. We recommend that you download and install it per the [copy and paste instructions here](https://getcomposer.org/download/) (always satisfy yourself with the trustworthiness of the source when downloading and executing scripts).
 
-We assume you downloaded it to `$IXPROOT` as `composer.phar` as follows:
-
-```sh
-cd $IXPROOT
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { 
-        echo 'Installer verified'.PHP_EOL; 
-    } else { 
-        echo 'Installer corrupt'.PHP_EOL; unlink('composer-setup.php'); exit(1); 
-    }"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-```
+We assume you downloaded it to `$IXPROOT` as `composer.phar`.
 
 Then you can install the dependencies as follows:
 
@@ -233,7 +220,7 @@ If you plan to use this in production, you should:
 * secure your server with an iptables firewall
 * install an SSL certificate and redirect HTTP access to HTTPS
 * complete the installation of the many features of IXP Manager such as route server generation, member stats, peer to peer graphs, etc.
-* PLEASE TELL US! We'd like to add you to the users list at https://www.ixpmanager.org/community/world-map - just complete the form there or drop us an email to `operations <at> inex <dot> ie`.
+* PLEASE TELL US! We'd like to add you to the users list at [https://www.ixpmanager.org/community/world-map](https://www.ixpmanager.org/community/world-map) - just complete the form there or drop us an email to `operations <at> inex <dot> ie`.
 
 
 **What next? See our [post-install / next steps document here](next-steps.md).**
