@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://docs.ixpmanager.org/7.0/features/console-servers/">
+        <link rel="canonical" href="https://docs.ixpmanager.org/7.0/features/settings/">
       
       
-        <link rel="prev" href="../provisioning/">
-      
-      
-        <link rel="next" href="../core-bundles/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>Console Servers - IXP Manager Documentation</title>
+        <title>Settings UI - IXP Manager Documentation</title>
       
     
     
@@ -66,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#console-servers" class="md-skip">
+        <a href="#settings-ui" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Console Servers
+              Settings UI
             
           </span>
         </div>
@@ -795,20 +791,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -824,7 +818,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Features
@@ -904,19 +898,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../console-servers/" class="md-nav__link">
         
   
   
@@ -927,7 +912,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -2360,6 +2344,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#available-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Settings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotenv-syntax-support-and-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      DotEnv Syntax Support and Limitations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DotEnv Syntax Support and Limitations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disabling-the-ui-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disabling the UI Interface
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2377,10 +2411,53 @@
   
 
 
-<h1 id="console-servers">Console Servers<a class="headerlink" href="#console-servers" title="Permanent link"></a></h1>
-<p>An IXP would typically have out of band access (for emergencies, firmware upgrades, etc) to critical infrastructure devices by means of a console server.</p>
-<p><strong>IXP Manager</strong> has <em>Console Servers</em> and <em>Console Server Connections</em> menu options to allow IXP administrators add / edit / delete / list console server devices and, for any such device, record what console server port is connected to what device (as well as connection characteristics such as baud rate).</p>
-<p>Each of these pages has a notes field which supports markdown to allow you to include sample connection sessions to devices. This is especially useful for rarely used console connections to awkward devices.</p>
+<h1 id="settings-ui">Settings UI<a class="headerlink" href="#settings-ui" title="Permanent link"></a></h1>
+<p>IXP Manager has a UI frontend for the <code>.env</code> configuration file, which should make day to day configuration changes easier.</p>
+<h2 id="available-settings">Available Settings<a class="headerlink" href="#available-settings" title="Permanent link"></a></h2>
+<p>Not all possible <code>.env</code> settings are available in the frontend UI, however all of the common ones are.</p>
+<p>If you need to change a setting that is not available, you can edit the <code>.env</code> as normal, and these settings will be preserved even if you make changes through the UI.</p>
+<h2 id="dotenv-syntax-support-and-limitations">DotEnv Syntax Support and Limitations<a class="headerlink" href="#dotenv-syntax-support-and-limitations" title="Permanent link"></a></h2>
+<p>When using the frontend, some DotEnv features are limited, and others are enforce. </p>
+<p>Please note the following:</p>
+<ul>
+<li>Nested variables are not supported. I.e., you cannot do the following:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>VAR1=&quot;VALUE ONE&quot;
+VAR2=&quot;${VAR1}&quot;
+</code></pre></div>
+<ul>
+<li>Any of the following, in any case, and whether quoted or not, is converted to <code>=true</code>: On, 1, True, Yes.</li>
+<li>Any of the following, in any case, and whether quoted or not, is converted to <code>=false</code>: Off, 0, False, No.</li>
+<li>Any numeric integer value, whether quoted or not, and excluding 0 and 1, is converted to an integer. Negative numbers are supported.</li>
+<li>Blank lines at the beginning or end of the <code>.env</code> are stripped. Blank lines with in the file are maintained.</li>
+<li>Full comment lines are maintained as they are.</li>
+<li>Comments after a variable is set are maintained, but not whitespace.</li>
+<li>Any single word values will have quotes removed.</li>
+<li>Any multi-word values will always be quoted.</li>
+</ul>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link"></a></h3>
+<p>The following would be parsed and saved exactly as is:</p>
+<div class="highlight"><pre><span></span><code>############################################################
+############################################################
+####
+#### test settings
+####
+
+# Test variable and value
+VAR1=value1
+
+VAR2=&quot;a second value&quot;
+VAR2_ENABLED=true # enabled by default
+VAR2_PORT=8080 # port to listen on
+
+####
+############################################################
+</code></pre></div>
+<h2 id="disabling-the-ui-interface">Disabling the UI Interface<a class="headerlink" href="#disabling-the-ui-interface" title="Permanent link"></a></h2>
+<p>You can disable the UI interface through the frontend settings in the interface itself. If you wish to disable it via the <code>.env</code> file, set the following option:</p>
+<div class="highlight"><pre><span></span><code>IXP_FE_FRONTEND_DISABLED_SETTINGS=true
+</code></pre></div>
+<p>Note that if you disable it, you can only re-enable it via editing the <code>.env</code> file directly.</p>
 
 
 
@@ -2401,7 +2478,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2024 12:34:10 UTC">September 21, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 24, 2025 15:19:00 UTC">August 24, 2025</span>
   </span>
 
     
