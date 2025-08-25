@@ -83,7 +83,7 @@ nav:
     - 'Router Configuration': 'features/routers.md'
     - 'RPKI': 'features/rpki.md'
     - 'Skinning': 'features/skinning.md'
-    - 'Settings UI': 'features/settings-ui.md'
+    - 'Settings UI': 'features/settings.md'
     - 'Smokeping': 'grapher/smokeping.md'
     - 'Static Content': 'features/static-content.md'
     - 'TACACS': 'features/tacacs.md'
