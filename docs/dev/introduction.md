@@ -2,6 +2,19 @@
 
 We welcome contributions to IXP Manager from the community. The main requirement is that you sign the [contributor's license agreement](cla.md).
 
+## GitHub Repository
+
+IXP Manager's source code is available from [https://github.com/inex/IXP-Manager](https://github.com/inex/IXP-Manager).
+
+In August 2025, we renamed the default branch from `master` to `main`. If you have a local clone of our repository, you can rename yours via:
+
+```sh
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+```
+
 ## Core vs Packages
 
 If you plan to add a significant / large piece of functionality, then please come and talk to us first via the [mailing lists](https://www.ixpmanager.org/support). There are two ways to get such contributions into IXP Manager:

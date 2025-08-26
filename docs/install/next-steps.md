@@ -82,7 +82,7 @@ The above section lists the essential set-up elements. Beyond those, IXP Manager
 
 * You may want to [skin some of the templates](https://docs.ixpmanager.org/features/skinning/). However, in the main, we would advise keeping this to a minimum or upgrades will become more complicated. Especially if you skin complex / core templates around functionality. There are some templates we do recommend you skin immediately:
 
-   * the [support details page](https://github.com/inex/IXP-Manager/blob/master/resources/views/content/0/support.foil.php).
+   * the [support details page](https://github.com/inex/IXP-Manager/blob/main/resources/views/content/0/support.foil.php).
 
 * Add any [static content](https://docs.ixpmanager.org/features/static-content/) you require.
 

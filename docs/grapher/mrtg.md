@@ -33,7 +33,7 @@ Per-second graphs are generated for bits, packets, errors, discards and broadcas
 
     From IXP Manager v6, this is now handled via Core Bundles. Please see the [graphing section of the core bundles page](../features/core-bundles.md#graphing) for details.
 
-    For older versions of IXP Manager, it can be done manually via the [config/grapher_trunks.php.dist](https://github.com/inex/IXP-Manager/blob/master/config/grapher_trunks.php.dist) file. **This is now deprecated and will be removed during the lifetime of the v6 release.**
+    For older versions of IXP Manager, it can be done manually via the [config/grapher_trunks.php.dist](https://github.com/inex/IXP-Manager/blob/main/config/grapher_trunks.php.dist) file. **This is now deprecated and will be removed during the lifetime of the v6 release.**
 
     In either case, these graphs will be available in the *Statistics* menu. You can see [examples from INEX here](https://www.inex.ie/ixp/statistics/trunk).
 
@@ -180,7 +180,7 @@ On Ubuntu it does not but it comes with a `/etc/cron.d/mrtg` file which kicks it
 
 Marco d'Itri provided Ubuntu / Debian compatible systemd configurations for mrtg which you can find detailed in [this Github issue](https://github.com/inex/IXP-Manager/issues/627).
 
-To start and stop it via the older initd scripts on Ubuntu, use an initd script such as this: [ubuntu-mrtg-initd](https://github.com/inex/IXP-Manager/blob/master/tools/runtime/mrtg/ubuntu-mrtg-initd)  ([source](http://www.iceflatline.com/2009/08/how-to-install-and-configure-mrtg-on-ubuntu-server/)):
+To start and stop it via the older initd scripts on Ubuntu, use an initd script such as this: [ubuntu-mrtg-initd](https://github.com/inex/IXP-Manager/blob/main/tools/runtime/mrtg/ubuntu-mrtg-initd)  ([source](http://www.iceflatline.com/2009/08/how-to-install-and-configure-mrtg-on-ubuntu-server/)):
 
 ```
 cp ${IXPROOT}/tools/runtime/mrtg/ubuntu-mrtg-initd /etc/init.d/mrtg
@@ -261,7 +261,7 @@ This feature was introduced in March 2020 during the Coronavirus outbreak. After
 
 ### Missing Graphs
 
-A common issue raised on the mailing list is missing customer graphs. The code which generates MRTG configuration is [in the MRTG backend file](https://github.com/inex/IXP-Manager/blob/master/app/Services/Grapher/Backend/Mrtg.php) (see the function `getPeeringPorts()`).
+A common issue raised on the mailing list is missing customer graphs. The code which generates MRTG configuration is [in the MRTG backend file](https://github.com/inex/IXP-Manager/blob/main/app/Services/Grapher/Backend/Mrtg.php) (see the function `getPeeringPorts()`).
 
 The conditions for a physical interface allocated to a customer to make the configuration file are:
 

@@ -136,7 +136,7 @@ You can now edit this template as required. The only constraint on the template 
 The following variables are available in the template:
 
 * `$t->arpa`: array of the ARPA entries - see below.
-* `$t->vlan`: instance of the [`Vlan` entity object](https://github.com/inex/IXP-Manager/blob/master/database/Entities/Vlan.php).
+* `$t->vlan`: instance of the [`Vlan` entity object](https://github.com/inex/IXP-Manager/blob/main/database/Entities/Vlan.php).
 * `$t->protocol`: either `4` or `6`.
 
 The following variables are available for each element of the `$t->arpa` array (essentially the same as the JSON object above): `enabled, hostname, address, arpa`. See above for a description.
@@ -177,4 +177,4 @@ The SOA file looks like (as you might expect):
 
 The `reverse-vlan-12-ipv4.include` is the output of the ISC Bind `bind` template above for a given VLAN ID.
 
-We use the sample script `update-dns-from-ixp-manager.sh` which can be found [in this directory](https://github.com/inex/IXP-Manager/blob/master/tools/runtime/dns-arpa) to keep this updated ourselves.
+We use the sample script `update-dns-from-ixp-manager.sh` which can be found [in this directory](https://github.com/inex/IXP-Manager/blob/main/tools/runtime/dns-arpa) to keep this updated ourselves.

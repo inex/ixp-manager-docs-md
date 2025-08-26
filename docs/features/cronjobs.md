@@ -6,7 +6,7 @@ Cron jobs / task scheduling is handled by [Laravel's task scheduler](https://lar
 * * * * *    www-data    cd /path-to-your-ixp-manager && php artisan schedule:run >> /dev/null 2>&1
 ```
 
-You can see the [full schedule in code here](https://github.com/inex/IXP-Manager/blob/master/app/Console/Kernel.php) (look for the function `protected function schedule(Schedule $schedule)`).
+You can see the [full schedule in code here](https://github.com/inex/IXP-Manager/blob/main/app/Console/Kernel.php) (look for the function `protected function schedule(Schedule $schedule)`).
 
 ## Tasks Referenced Elsewhere
 

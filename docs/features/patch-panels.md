@@ -165,7 +165,7 @@ IXP Manager will generate a PDF LoA to download or include in the emails it gene
 
 ![LoA Example](img/ppp-loa.png)
 
-You will need to [skin](skinning.md) this yourself to change the legalese, address and contact details and potentially add a logo. See the version INEX uses [here](https://github.com/inex/IXP-Manager/blob/master/resources/skins/inex/patch-panel-port/loa.foil.php) (which includes and embedded PNG logo).
+You will need to [skin](skinning.md) this yourself to change the legalese, address and contact details and potentially add a logo. See the version INEX uses [here](https://github.com/inex/IXP-Manager/blob/main/resources/skins/inex/patch-panel-port/loa.foil.php) (which includes and embedded PNG logo).
 
 Note that [Dompdf](https://github.com/dompdf/dompdf) is used to turn the HTML template into a PDF and it has some restrictions.
 
@@ -203,7 +203,7 @@ The four email templates available are:
   * public files as attachments.
 * **Email - LoA**: Email a LoA to the customer as attached as a PDF. This is similar to *Email - Connect* but it is more reflective of a typical response to a second request for a LoA.
 
-All email templates can be [skinned](skinning.md) for your own needs. See INEX's example skins [here](https://github.com/inex/IXP-Manager/tree/master/resources/skins/inex/patch-panel-port/emails).
+All email templates can be [skinned](skinning.md) for your own needs. See INEX's example skins [here](https://github.com/inex/IXP-Manager/tree/main/resources/skins/inex/patch-panel-port/emails).
 
 ## Viewing Patch Panel Details and Archives
 

@@ -41,7 +41,7 @@ With Bird v2 support in IXP Manager >= v5, we provide better looking glass integ
 The Bird v2 filtering algorithm is as follows:
 
 1. Filter small prefixes (default is > /24 / /48 for ipv4 / ipv6).
-2. Filter martians / bogons prefixes ([see this template](https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/router/server/bird2/header.foil.php)).
+2. Filter martians / bogons prefixes ([see this template](https://github.com/inex/IXP-Manager/blob/main/resources/views/api/v4/router/server/bird2/header.foil.php)).
 3. Sanity check - filter prefixes with no AS path or > 64 ASNs in AS path.
 4. Sanity check to ensure peer AS is the same as first AS in the prefix’s AS path.
 5. Prevent next-hop hijacking. This occurs when a participant advertises a prefix with a next hop IP other than their own. An exception exists to allow participants with multiple connections advertise their other router (next-hop within the same AS).
@@ -89,7 +89,7 @@ To do this, you must [create skinned files](skinning.md) named after the ASN. Fo
 * `$IXPROOT/resources/skins/example/api/v4/router/server/bird2/f_import_as64511.foil.php`
 * `$IXPROOT/resources/skins/example/api/v4/router/server/bird2/f_export_as64511.foil.php`
 
-You'll see [real examples from INEX here](https://github.com/inex/IXP-Manager/tree/master/resources/skins/inex/api/v4/router/server/bird2). Remember that these are placed at the *beginning of the standard filters* allowing you to explicitly `accept` or `reject` the prefix. However, remember that INEX `accepts` prefixes on import always but tags prefixes for filtering with large community `routerasn:1101:x` - please see the resources referenced above for details on this.
+You'll see [real examples from INEX here](https://github.com/inex/IXP-Manager/tree/main/resources/skins/inex/api/v4/router/server/bird2). Remember that these are placed at the *beginning of the standard filters* allowing you to explicitly `accept` or `reject` the prefix. However, remember that INEX `accepts` prefixes on import always but tags prefixes for filtering with large community `routerasn:1101:x` - please see the resources referenced above for details on this.
 
 
 ## Displaying Filtered Prefixes
@@ -201,7 +201,7 @@ Implemented as a Perl script which accesses the database directly. The script ca
 ### Setting Up
 
 
-* Download [this script](https://github.com/inex/IXP-Manager/blob/master/tools/runtime/route-servers/compare-route-server-prefixes.pl) to your route server;
+* Download [this script](https://github.com/inex/IXP-Manager/blob/main/tools/runtime/route-servers/compare-route-server-prefixes.pl) to your route server;
 * Ensure you install and configure the IXP Manager Perl library on this route server also;
 * Edit the `compare-route-server-prefixes.pl` script and set the Bird configuration file and socket (you can find the position in the file by searching for `XXX-SET-ME`);
 * See also [this diff](https://www.inex.ie/pipermail/ixpmanager/2015-May/000558.html) for further hints;

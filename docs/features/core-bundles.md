@@ -168,7 +168,7 @@ Individually disabled core links (via the core bundle UI) will not trigger an al
 As you can see, it returns a `msgs[]` element for each core bundle indicating the number of core links up.
 
 
-The Nagios script we use at INEX to check the core bundles on a switch can be found here on the GitHub repository here: [tools/runtime/nagios/ixp-manager-check-core-bundles.sh](https://github.com/inex/IXP-Manager/blob/master/tools/runtime/nagios/ixp-manager-check-core-bundles.sh).
+The Nagios script we use at INEX to check the core bundles on a switch can be found here on the GitHub repository here: [tools/runtime/nagios/ixp-manager-check-core-bundles.sh](https://github.com/inex/IXP-Manager/blob/main/tools/runtime/nagios/ixp-manager-check-core-bundles.sh).
 
 The Nagios command and service definition is as follows *(this is an example - please alter to suit your own environment)*:
 

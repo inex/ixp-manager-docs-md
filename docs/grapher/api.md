@@ -181,7 +181,7 @@ For additional options, it's always best to manually or programmatically examine
 
 The grapher API can be accessed using the [standard API access mechanisms](../features/api.md).
 
-Each graph (ixp, infrastructure, etc.) has an `authorise()` method which determines who is allowed view a graph. For example, see [IXP\Services\Grapher\Graph\VlanInterface::authorise()](https://github.com/inex/IXP-Manager/blob/master/app/Services/Grapher/Graph/VlanInterface.php#L131). The general logic is:
+Each graph (ixp, infrastructure, etc.) has an `authorise()` method which determines who is allowed view a graph. For example, see [IXP\Services\Grapher\Graph\VlanInterface::authorise()](https://github.com/inex/IXP-Manager/blob/main/app/Services/Grapher/Graph/VlanInterface.php#L131). The general logic is:
 
 * if the graph is configured to be publicly accessible -> allow
 * if not logged in / no valid API key -> deny

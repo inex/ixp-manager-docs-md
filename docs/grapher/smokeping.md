@@ -79,8 +79,8 @@ You can now edit this template as required. The only constraint on the template 
 
 The following variables are available in the template:
 
-* `$t->vlis`: array of the VLAN interfaces/targets - it is generated [by the Repositories\VlanInterface::getForProto() function](https://github.com/inex/IXP-Manager/blob/master/database/Repositories/VlanInterface.php#L18).
-* `$t->vlan`: instance of the [`Vlan` entity object](https://github.com/inex/IXP-Manager/blob/master/database/Entities/Vlan.php).
+* `$t->vlis`: array of the VLAN interfaces/targets - it is generated [by the Repositories\VlanInterface::getForProto() function](https://github.com/inex/IXP-Manager/blob/main/database/Repositories/VlanInterface.php#L18).
+* `$t->vlan`: instance of the [`Vlan` entity object](https://github.com/inex/IXP-Manager/blob/main/database/Entities/Vlan.php).
 * `$t->protocol`: either `4` or `6`.
 * `$t->probe` and `$t->level` as defined above / passed via a post request.
 
@@ -92,7 +92,7 @@ This section explains how to set up Smokeping with IXP Manager. We assume you al
 
 ### Generating / Updating Targets
 
-At INEX, we would use a script [such as this one which is bundled with IXP Manager](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/smokeping) to (re)generate our targets by cron and update Smokeping if necessary.
+At INEX, we would use a script [such as this one which is bundled with IXP Manager](https://github.com/inex/IXP-Manager/tree/main/tools/runtime/smokeping) to (re)generate our targets by cron and update Smokeping if necessary.
 
 To use this script yourself, you just need to copy it to the appropriate Smokeping server and edit the first few lines:
 

@@ -125,7 +125,7 @@ You can customise this by setting the following option in your `.env`:
 IXP_FE_CUSTOMER_NAME_FORMAT=""%a (AS%i)"
 ```
 
-The above is the default which uses the abbreviated name and the customer's ASN. You can see the available options in the [`config/ixp_fe.php` file](https://github.com/inex/IXP-Manager/blob/master/config/ixp_fe.php).
+The above is the default which uses the abbreviated name and the customer's ASN. You can see the available options in the [`config/ixp_fe.php` file](https://github.com/inex/IXP-Manager/blob/main/config/ixp_fe.php).
 
 You can also find more detail in this [issue thread](https://github.com/inex/IXP-Manager/issues/766). 
 

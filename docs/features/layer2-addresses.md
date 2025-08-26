@@ -90,7 +90,7 @@ This was the original functionality - a read-only table via an admin menu option
 
 At an IXP, it can be extremely useful to have a quick look up table to see what member owns what MAC address - especially when they start injecting illegal packets into the exchange fabric.
 
-We have a script, [update-l2database.pl](https://github.com/inex/IXP-Manager/blob/master/tools/runtime/l2database/update-l2database.pl), for this. To set it up (using Ubuntu as an example), proceed as below. We are in the process of trying to reduce the reliance on the perl library and direct database access. But for now, this script still requires it.
+We have a script, [update-l2database.pl](https://github.com/inex/IXP-Manager/blob/main/tools/runtime/l2database/update-l2database.pl), for this. To set it up (using Ubuntu as an example), proceed as below. We are in the process of trying to reduce the reliance on the perl library and direct database access. But for now, this script still requires it.
 
 ```sh
 # If you haven't already, install the Perl library for IXP Manager:

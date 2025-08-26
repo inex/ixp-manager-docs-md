@@ -22,9 +22,9 @@ The following are basic instructions on how to set up tests and an overview (or 
 
 ## Setting Up PHPUnit Tests
 
-Documentation by real example can be found via the [GitHub Actions workflow files](https://github.com/inex/IXP-Manager/tree/master/.github/workflows) and [the CI data directory](https://github.com/inex/IXP-Manager/tree/master/data/ci) which contains scripts, database dumps and configurations.
+Documentation by real example can be found via the [GitHub Actions workflow files](https://github.com/inex/IXP-Manager/tree/main/.github/workflows) and [the CI data directory](https://github.com/inex/IXP-Manager/tree/main/data/ci) which contains scripts, database dumps and configurations.
 
-Testing assumes *a known good sample database* which contains a small mix of customers with different configuration options. The files generated from this database are tested against [known good](https://github.com/inex/IXP-Manager/tree/master/data/ci/known-good) configuration files. You first need to create a database, add a database user, import this testing database and then configure a `.env` file for testing (see [the one here use here](https://github.com/inex/IXP-Manager/blob/master/.env.ci)).
+Testing assumes *a known good sample database* which contains a small mix of customers with different configuration options. The files generated from this database are tested against [known good](https://github.com/inex/IXP-Manager/tree/main/data/ci/known-good) configuration files. You first need to create a database, add a database user, import this testing database and then configure a `.env` file for testing (see [the one here use here](https://github.com/inex/IXP-Manager/blob/main/.env.ci)).
 
 In MySQL:
 
@@ -49,11 +49,11 @@ DB_USERNAME=ixp_ci
 DB_PASSWORD=somepassword
 ```
 
-Note that the [`phpunit.xml`](https://github.com/inex/IXP-Manager/blob/master/phpunit.xml) file in the root directory has some default settings matching the test database. You should not need to edit these.
+Note that the [`phpunit.xml`](https://github.com/inex/IXP-Manager/blob/main/phpunit.xml) file in the root directory has some default settings matching the test database. You should not need to edit these.
 
 ## Setting Up Laravel Dusk
 
-Please review the [official documentation here](https://laravel.com/docs/master/dusk).
+Please review the [official documentation here](https://laravel.com/docs/main/dusk).
 
 You need to ensure the development packages for IXP Manager are installed via:
 

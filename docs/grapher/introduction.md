@@ -37,7 +37,7 @@ GRAPHER_BACKEND_SMOKEPING_ENABLED=true
 GRAPHER_BACKEND_SMOKEPING_URL="http://smokeping-server.example.com/smokeping"
 ```
 
-For those interested, the complete Grapher configuration file can be seen in [`$IXPROOT/config/grapher.php`](https://github.com/inex/IXP-Manager/blob/master/config/grapher.php). Remember: put your own local changes in `.env` rather than editing this file directly.
+For those interested, the complete Grapher configuration file can be seen in [`$IXPROOT/config/grapher.php`](https://github.com/inex/IXP-Manager/blob/main/config/grapher.php). Remember: put your own local changes in `.env` rather than editing this file directly.
 
 
 The global (non-backend specific) options are:

@@ -22,7 +22,7 @@ https://ixp.example.com/api/v4/user/formatted/{priv}/{template}
 
 where:
 
-* `priv` is an optional user privilege to limit the user selection to. See [the available integer values on the `AUTH_` constants here](https://github.com/inex/IXP-Manager/blob/master/database/Entities/User.php). You typically want `3`.
+* `priv` is an optional user privilege to limit the user selection to. See [the available integer values on the `AUTH_` constants here](https://github.com/inex/IXP-Manager/blob/main/database/Entities/User.php). You typically want `3`.
 * `template` is an optional template (rather than `$IXPROOT/resources/views/api/v4/user/formatted/default`). See below.
 
 And example of a user in the response is:
@@ -68,7 +68,7 @@ cp resources/views/api/v4/user/formatted/default.foil.php resources/skins/myskin
 
 You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes `a-z, 0-9, -`. **NB:** do not use uppercase characters.
 
-All variables available in the template can be [seen in the default template](https://github.com/inex/IXP-Manager/blob/master/resources/views/api/v4/user/formatted/default.foil.php).
+All variables available in the template can be [seen in the default template](https://github.com/inex/IXP-Manager/blob/main/resources/views/api/v4/user/formatted/default.foil.php).
 
 
 ## Setting Up TACACS
@@ -85,4 +85,4 @@ At INEX, we use a script that:
 * compares to current;
 * reloads / restarts tac_plus if required.
 
-You can find that script [in this directory](https://github.com/inex/IXP-Manager/tree/master/tools/runtime/tacacs). Alter it to suit your own purposes.
+You can find that script [in this directory](https://github.com/inex/IXP-Manager/tree/main/tools/runtime/tacacs). Alter it to suit your own purposes.

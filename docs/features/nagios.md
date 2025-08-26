@@ -16,7 +16,7 @@ IXP Manager can generate configuration to monitor the above for you.
 
 You will find sample scripts for pulling Nagios configuration from IXP Manager and reloading Nagios at:
 
-https://github.com/inex/IXP-Manager/tree/master/tools/runtime/nagios
+https://github.com/inex/IXP-Manager/tree/main/tools/runtime/nagios
 
 ## Monitoring Member Reachability
 
@@ -384,7 +384,7 @@ define command{
 }
 ```
 
-The Nagios script we use is bundled with [inex/birdseye](https://github.com/inex/birdseye) and can be found [here](https://github.com/inex/birdseye/tree/master/bin).
+The Nagios script we use is bundled with [inex/birdseye](https://github.com/inex/birdseye) and can be found [here](https://github.com/inex/birdseye/tree/main/bin).
 
 Typical Nagios state output:
 
@@ -426,7 +426,7 @@ where:
 
 * `{vlanid}` is the VLAN id to generate the configuration for.
 * `{protocol}` is either 4 (ipv4) or 6 (ipv6).
-* `{type}` is one of (these are defined in [Entities\Router](https://github.com/inex/IXP-Manager/blob/master/database/Entities/Router.php)):
+* `{type}` is one of (these are defined in [Entities\Router](https://github.com/inex/IXP-Manager/blob/main/database/Entities/Router.php)):
   * `1` for route servers;
   * `2` for route collectors;
   * `3` for AS112
@@ -487,4 +487,4 @@ define command{
 }
 ```
 
-The Nagios script we use is bundled with [inex/birdseye](https://github.com/inex/birdseye) and can be found [here](https://github.com/inex/birdseye/tree/master/bin).
+The Nagios script we use is bundled with [inex/birdseye](https://github.com/inex/birdseye) and can be found [here](https://github.com/inex/birdseye/tree/main/bin).
