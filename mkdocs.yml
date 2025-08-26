@@ -12,6 +12,9 @@ extra_css:
 plugins:
   - git-revision-date-localized
   - search
+  - mike:
+      alias_type: symlink
+      canonical_version: latest
 extra:
   version:
     provider: mike
