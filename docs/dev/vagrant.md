@@ -104,14 +104,14 @@ As you can see, the community selects the source file - i.e., `-c swi1-fac1-1` f
 
 The bootstrapping also configures mrtg to run and includes this in the crontab rather than using dummy graphs. The snmp simulator has some randomised elements for some of the interface counters.
 
-## Route Server / Collector / AS112 Testbed and Looking Glass
+## Route Server / Collector and Looking Glass
 
 When running `vagrant up` for the first time, it will create a full route server / collector /as112 testbed complete with clients:
 
-* Route servers, collectors and AS112 bird daemons are started from hardcoded handles based on the Vagrant test database.
-* Client router bird instances (dual-stack v4/v6) are generated and started based on their vlan interfaces as at the time the scripts are run.
+* Route servers, collectors and AS112 BIRD daemons are started from hardcoded handles based on the Vagrant test database.
+* Client router BIRD instances (dual-stack v4/v6) are generated and started based on their vlan interfaces as at the time the scripts are run.
 
-All Bird instance sockets are located in `/var/run/bird/` allowing you to connect to them using `birdc -s /var/run/bird/xxx.ctl`.
+All BIRD instance sockets are located in `/var/run/bird/` allowing you to connect to them using `birdc -s /var/run/bird/xxx.ctl`.
 
 In additional to this, a second Apache virtual host is set up listening on port 81 locally providing access to Birdseye installed in `/srv/birdseye`. The bundled Vagrant database is already configured for this and should work out of the box. All of Birdseye's env files are generated via: 
 
@@ -121,9 +121,9 @@ Various additional scripts support all of this:
 
 1. The `tools/vagrant/bootstrap.sh` file which sets everything up.
 2. `tools/vagrant/scripts/refresh-router-testbed.sh` will reconfigure all routers.
-3. `tools/vagrant/scripts/as112-reconfigure-bird2.sh` will (re)configure and start, if necessary, the AS112 Bird instances.
-4. `tools/vagrant/scripts/rs-api-reconfigure-all.sh` will (re)configure and start, if necessary, the route server Bird instances.
-5. `tools/vagrant/scripts/rc-reconfigure.sh` will (re)configure and start, if necessary, the route collector Bird instances.
+3. `tools/vagrant/scripts/as112-reconfigure-bird2.sh` will (re)configure and start, if necessary, the AS112 BIRD instances.
+4. `tools/vagrant/scripts/rs-api-reconfigure-all.sh` will (re)configure and start, if necessary, the route server BIRD instances.
+5. `tools/vagrant/scripts/rc-reconfigure.sh` will (re)configure and start, if necessary, the route collector BIRD instances.
 
 For the clients, we run the following:
 
@@ -136,11 +136,59 @@ chmod a+x /srv/clients/start-reload-clients.sh
 ```
 
 
-All router IPs are added to the loopback interface as part of the `tools/vagrant/bootstrap.sh` (or the `startup.sh` script on a reboot). There are also necessary entries in `/etc/hosts` to map router handles to IP addresses. There are two critical Bird BGP configuration options to allow multiple instances to run on the same server and speak with each other:
+All router IPs are added to the loopback interface as part of the `tools/vagrant/bootstrap.sh` (or the `startup.sh` script on a reboot). There are also necessary entries in `/etc/hosts` to map router handles to IP addresses. There are two critical BIRD BGP configuration options to allow multiple instances to run on the same server and speak with each other:
 
 ```
 strict bind yes;
 multihop;
 ```
 
+
+# AS112 Testbed
+
+In addition to the AS112 BIRD service above, we also build a fully working AS112 service using PowerDNS, with the AS112 IP addresses assign to the loopback interface.
+
+We include a PHP test script for testing this also:
+
+```
+# cd /vagrant/tools/runtime/as112/
+
+# php as112-test.php
+  ___   _____ __   __   _____   _____         _
+ / _ \ /  ___/  | /  | / __  \ |_   _|       | |
+/ /_\ \ `--.`| | `| | `' / /'   | | ___  ___| |_ ___ _ __
+|  _  | `--. \| |  | |   / /     | |/ _ \/ __| __/ _ \ '__|
+| | | |/\__/ /| |__| |_./ /___   | |  __/\__ \ ||  __/ |
+\_| |_/\____/\___/\___/\_____/   \_/\___||___/\__\___|_|
+
+(c) 2009 - 2025 Internet Neutral Exchange Association Company Limited By Guarantee.
+
+Part of the IXP Manager project - see https://github.com/inex/IXP-Manager
+
+This script tests AS112 servers as follows:
+
+- hostname.as112.net TXT records
+- hostname.as112.arpa TXT records
+
+And 10 random PTR queries for each of the following:
+
+- 10.in-addr.arpa PTR records
+- 168.192.in-addr.arpa PTR records
+- 172.in-addr.arpa PTR records
+- 254.169.in-addr.arpa PTR records
+
+Starting...
+
+Testing 192.175.48.1:       ....................................................................................
+Testing 192.175.48.6:       ....................................................................................
+Testing 192.175.48.42:      ....................................................................................
+Testing 192.31.196.1:       ....................................................................................
+Testing 2620:4f:8000::1:    ....................................................................................
+Testing 2620:4f:8000::6:    ....................................................................................
+Testing 2620:4f:8000::42:   ....................................................................................
+Testing 2001:4:112::1:      ....................................................................................
+
+
+Done in 0.08 seconds (672 queries in 0.060029983520508 secs).
+```
 

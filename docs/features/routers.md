@@ -31,7 +31,7 @@ From the router management page, you can:
 
 The simplest configuration to generate is the route collector configuration. A route collector is an IXP router which serves only to *accept all routes and export no routes*. It is used for problem diagnosis, to aid customer monitoring and for looking glasses (see [INEX's here](https://www.inex.ie/ixp/lg/rc1-lan1-ipv4)).
 
-The [original Bird v1 configuration](https://github.com/inex/IXP-Manager/blob/main/resources/views/api/v4/router/collector/bird/standard.foil.php) simply pulls in a fairly standard header (sets up router ID, listening address and some filters) and creates a session for all customer routers on the given VLAN. The [new Bird v2 configuration](https://github.com/inex/IXP-Manager/blob/main/resources/views/api/v4/router/collector/bird2/standard.foil.php) has more features and replicates the route server filtering mechanism but tags and accepts all routes for diagnosis.
+Our [BIRD v2 configuration](https://github.com/inex/IXP-Manager/blob/main/resources/views/api/v4/router/collector/bird2/standard.foil.php) implements the same secure-by-design approach as the route server filtering mechanism, **but** tags and accepts all routes for diagnosis.
 
 When adding a router, you give it a *handle*. For example: `rc1-lan1-ipv4` which, for INEX, would mean a route collector on peering LAN1 using IPv4. Then - for the given router handle - the configuration can be generated and pulled using the API as follows:
 
@@ -54,25 +54,34 @@ curl --fail -s -H "X-IXP-Manager-API-Key: ${KEY}" ${URL}/${HANDLE} >${HANDLE}.co
 
 Configurations for the route server and AS112 templates can be configured just as easily.
 
- The stock templates for both are secure and well tested and can be used by setting the `template` element of the router to one of the following. **NB:** from May 2019, we recommend you use IXP Manager v5 and Bird2 templates.
+ The stock templates for both are secure and well tested and can be used by setting the `template` element of the router to one of the following. **NB:** BIRD v1 is now deprecated, please use BIRD >= v2 now.
 
 * AS112:
-    * `'api/v4/router/as112/bird/standard'`
     * `'api/v4/router/as112/bird2/standard'`
+    * [DEPRECATED] `'api/v4/router/as112/bird/standard'`
 * Route Collector:
-    * `'api/v4/router/collector/bird/standard'`
     * `'api/v4/router/collector/bird2/standard'`
+    * [DEPRECATED] `'api/v4/router/collector/bird/standard'`
 * Route Server:
-    * `'api/v4/router/server/bird/standard'`
     * `'api/v4/router/server/bird2/standard'`
+    * [DEPRECATED] `'api/v4/router/server/bird/standard'`
 
-We also provide sample scripts for automating the re-configuration of these services by cron:
+We also provide sample scripts for automating the re-configuration of these services by cron. Historically, we provided individual scripts for as112, route collectors and route servers, but we now recommend using the following generic script:
 
-* AS112 scripts [can be found here](https://github.com/inex/IXP-Manager/tree/main/tools/runtime/as112).
-* Route collector scripts [can be found here](https://github.com/inex/IXP-Manager/tree/main/tools/runtime/route-collectors).
-* Route server scripts [in this directory](https://github.com/inex/IXP-Manager/tree/main/tools/runtime/route-servers). These are quite robust and have been in production for ~10 years at INEX (as of May 2024).
+* [api-reconfigure-example-birdv2.sh](https://github.com/inex/IXP-Manager/tree/main/tools/runtime/router-reconfigure-scripts/)
 
-All of these scripts have been written defensively such that if there is any issue getting the configuring or validating the configuration then the running router instance should be unaffected. This has worked in practice at INEX when IXP Manager was under maintenance, when there were management connectivity issues and when there were database issues. They also use the *updated API* (see below) to mark when the router configuration update script ran successfully.
+This script has been written defensively such that if there is any issue getting the configuring or validating the configuration then the running router instance should be unaffected This has worked in practice at INEX when IXP Manager was under maintenance, when there were management connectivity issues and when there were database issues. They also use the *updated API* (see below) to mark when the router configuration update script ran successfully.
+
+When you download this script, you will need to edit three parameters at the top for each server you deploy it on:
+
+```
+APIKEY="xxx"
+URLROOT="https://portal.example.com"
+
+# prevent errors by limiting this server/script to the following space separated handles
+ALLOWED_HANDLES="as112-vix1-ipv4 as112-vix1-ipv6 as112-vix2-ipv4 as112-vix2-ipv6"
+```
+
 
 ## Router Pairing and Locking 
 
@@ -83,7 +92,7 @@ For IXPs, route servers are considered a critical production service and most IX
 
 When it comes to updating the configuration of these, the older scripts provided by IXP Manager suggested that this be done about four times per day with the timing of the cronjob set so that there is an offset so that each server will not update at the same time. The hope was that if there was an issue, only one server of the resilient pair would be affected, and engineers would have time to react and prevent updates on the other working server. Some IXPs added additional logic to the scripts to check if the other server was functional before performing a reconfiguration, but this was often limited to pings and a simple check to see if Bird was running.
 
-The v6.4.0 release introduced a significant new resilience mechanism by pairing servers. In the IXP Manager router UI, you can now select another router to pair with the one you are editing: 
+Current releases have enhanced resilience mechanisms by pairing servers. In the IXP Manager router UI, you can now select another router to pair with the one you are editing: 
 
 ![Routers - Pairing](img/rs-pairing.png)
 
@@ -94,48 +103,31 @@ You would select pairs as follows:
 * For route servers deployed in pairs, rs1-ipv4 should be paired with rs2-ipv4 and vice versa - be sure to set the paired server in each individual server.
 * For route collectors, quarantine route collectors and AS112 services where you would normally have a single instance, you can pair the ipv4 version with the ipv6 version, ensuring at least one will always be running. For example, pair rc1-ipv4 with rc1-ipv6 and vice versa.
 
-Once your pairs are set up, you need to deploy the new router update scripts as follows:
+Once your pairs are set up, you need to deploy the latest router update script as described above.
 
-* for route servers: [tools/runtime/route-servers/api-reconfigure-example-birdv2.sh](https://github.com/inex/IXP-Manager/blob/release-v6/tools/runtime/route-servers/api-reconfigure-example-birdv2.sh)
-* for route collectors: [tools/runtime/route-collectors/reconfigure-rc-bird2.sh](https://github.com/inex/IXP-Manager/blob/release-v6/tools/runtime/route-collectors/reconfigure-rc-bird2.sh)
+This script works as follows:
 
-*There is no need to use different scripts for route collectors and servers. Traditionally, at INEX, these scripts were developed slightly differently from each other (e.g., the collector script updates both IPv4 and IPv6 versions and provides more informative output, whereas the route server script takes a specific route server handle to update). We may merge these in the future.*
-
-You can use these scripts exactly as they are on an Ubuntu server changing only the configuration lines at the top:
-
-```
-APIKEY="your-api-key"
-URLROOT="https://ixp.example.com"
-BIRDBIN="/usr/sbin/bird"
-```
-
-The collector script takes an additional configuration option for the handles of the servers to update - e.g.:
-
-```
-HANDLES="rc1-ipv4 rc1-ipv6"
-```
-
-These new scripts now work as follows:
-
-1. **NEW:** Obtain a local script lock preventing more than one update script to execute at a time on the server (e.g., if the update is long-running, cron cannot start additional updates).
-2. **NEW:** Obtain a configuration lock from IXP Manager.
+1. Obtain a local script lock preventing more than one update script to execute at a time on the server (e.g., if the update is long-running, cron cannot start additional updates).
+2. Obtain a configuration lock from IXP Manager.
     * This involves making an API call to `/api/v4/router/get-update-lock/$handle`, which IXP Manager then processes and returns HTTP code 200 if the lock is acquired and the update can proceed.
     * A lock is not granted if the router is paused for updates within IXP Manager (new per-router option in the router's dropdown menu on the router list page).
     * A lock is not granted if another process has already acquired a configuration lock for this router.
-    * A lock is also not granted if the router's partner is locked. ***This major new resiliency addition prevents two paired route servers from being updated in parallel.***
+    * A lock is also not granted if the router's partner is locked. ***This significant resiliency mechanism prevents two paired route servers from being updated in parallel.***
     * The update script will abort if IXP Manager is unavailable or in maintenance mode. *It must get a HTTP 200 to proceed.*
 3. If a lock is acquired, the script will then download the latest configuration from IXP Manager.
 4. The script will do some basic sanity checks on the downloaded configuration:
     * First, check that the HTTP request to pull the new configuration succeeded.
     * Second, check that the downloaded file exists and is non-zero in size.
     * Third, ensure at least two BGP protocol definitions are in the configuration file.
-    * Lastly, the script has Bird parse the downloaded file to ensure validity.
-5. **NEW:** The update script will now compare the newly downloaded script to the running configuration.
-    * If there are differences, the old configuration is backed up, and the Bird daemon will be reloaded.
-    * If no differences exist, the Bird daemon will not be reloaded.
-6. A check is performed to ensure the Bird daemon is actually running and, if not, it is started.
-7. **IMPROVED:** A final API call is made to IXP Manager via `/api/v4/router/updated/$handle` to release the lock and update the *last updated* timestamp.
+    * Lastly, the script has BIRD parse the downloaded file to ensure validity.
+5. The update script will now compare the newly downloaded script to the running configuration.
+    * If there are differences, the old configuration is backed up, and the BIRD daemon will be reloaded.
+    * If no differences exist, the BIRD daemon will not be reloaded.
+6. A check is performed to ensure the BIRD daemon is actually running and, if not, it is started.
+7. A final API call is made to IXP Manager via `/api/v4/router/updated/$handle` to release the lock and update the *last updated* timestamp.
     * A significant improvement here is the use of a until api-succeeds, sleep 60, retry construct to ensure the lock is released even when there are transitive network issues / IXP Manager maintenance modes / server maintenance, etc.
+
+For any check in (4) that fails but does not indicate a significant issue, an API call is made to IXP Manager via `/api/v4/router/release-update-lock/$handle` to release the lock, but not mark the router as updated.
 
 Adding step (5) above (only reload on changes) now allows the update script to be safely run as frequently as every few minutes, which is necessary for the UI-based community filtering to be effective.
 
@@ -148,7 +140,7 @@ For additional information with UI images, see slides 25-30 in [this presentatio
 
 It can be useful to know that the scripts for updating the router configuration for AS112, route collector and route server BGP daemons run successfully. At INEX for example, we have three LANs and so 10 individual servers running a total of 30 Bird instances which is unwieldy to check and monitor manually.
 
-When viewing routers in IXP Manager, you may have noticed the *Last Updated* column which will initially show *(unknown)*. All our update scripts (see above) trigger the updated API call when a route configuration run has completed successfully. Note that this does not mean that a configuration has necessarily changed but rather that the update script ran and executed correctly. In other words: *the configuration was successfully pulled from IXP Manager, compared to the running configuration and, if changed, successfully applied*.
+When viewing routers in IXP Manager, you may have noticed the *Last Updated* column which will initially show *(unknown)*. Our update script (see above) trigger the updated API call when a route configuration run has completed successfully. Note that this does not mean that a configuration has necessarily changed but rather that the update script ran and executed correctly. In other words: *the configuration was successfully pulled from IXP Manager, compared to the running configuration and, if changed, successfully applied*.
 
 The API call to update the *last updated* field to *now* is a POST as follows:
 

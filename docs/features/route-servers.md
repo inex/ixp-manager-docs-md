@@ -33,12 +33,12 @@ The features of the route server configurations that IXP Manager generates inclu
 * [rfc1997 passthru / interpretation](#rfc1997-passthru) switch;
 * nearly 15 years of production use and experience.
 
-With Bird v2 support in IXP Manager >= v5, we provide better looking glass integration and other tooling to show members which prefixes are filtered and why. 
+With BIRD v2 support in IXP Manager, we provide better looking glass integration and other tooling to show members which prefixes are filtered and why. 
 
 
 ## Filtering Algorithm 
 
-The Bird v2 filtering algorithm is as follows:
+The BIRD v2 filtering algorithm is as follows:
 
 1. Filter small prefixes (default is > /24 / /48 for ipv4 / ipv6).
 2. Filter martians / bogons prefixes ([see this template](https://github.com/inex/IXP-Manager/blob/main/resources/views/api/v4/router/server/bird2/header.foil.php)).
@@ -62,8 +62,7 @@ You first need to add your route servers to the **IXP Manager** routers database
 Typically an IXP's route server service will have a dedicated ASN that is different to the IXP's own management / route collector ASN. As such, you need to add a new *internal* customer to IXP Manager.
 
 ???+ warning
-    You are strongly advised to use / request a dedicated 16-bit ASN from your RIR for route server use and in our experience, all RIRs understand this and accomodate it. The route server configurations will support an asn32 but to our knowledge, this has never been used in production. Also, withouot an asn16, you will be unable to offer your members standard community based filtering. 
-
+    You are strongly advised to use / request a dedicated 16-bit ASN from your RIR for route server use and in our experience, all RIRs understand this and accommodate it. The route server configurations will support an asn32 but to our knowledge, this has never been used in production. Also, without an asn16, you will be unable to offer your members standard community based filtering. 
 
 
 Here's an example from INEX for our *route server #1*:
@@ -82,7 +81,7 @@ There's a couple things to note in the above:
 
 ## Per ASN Import / Export Filters
 
-There are occasions where you may need to override the default filtering mechanism for some members. IXP Manager allows you to create custom Bird2 checks at the **start** of the standard import / export filters when using **Bird2** (not supported on the older Bird v1 configuration).
+There are occasions where you may need to override the default filtering mechanism for some members. IXP Manager allows you to create custom Bird2 checks at the **start** of the standard import / export filters when using **BIRD v2** (not supported on the older Bird v1 configuration).
 
 To do this, you must [create skinned files](skinning.md) named after the ASN. For example, let's assume your skin name is `example` and the ASN of the member you want to apply custom filtering to is `64511`; then you would an export and/or import filter in files named:
 
@@ -94,9 +93,9 @@ You'll see [real examples from INEX here](https://github.com/inex/IXP-Manager/tr
 
 ## Displaying Filtered Prefixes
 
-Using Bird v2 and internal large communities, we have completely overhauled how we show end users what prefixes are filtered by the route servers.
+Using BIRD v2 and internal large communities, we have completely overhauled how we show end users what prefixes are filtered by the route servers.
 
-If you are running route servers using the Bird v2 configuration and if you have installed [the looking glass](looking-glass.md) then you should set the following in your `.env` file:
+If you are running route servers using the BIRD v2 configuration and if you have installed [the looking glass](looking-glass.md) then you should set the following in your `.env` file:
 
 ```
 IXP_FE_FRONTEND_DISABLED_FILTERED_PREFIXES=false
@@ -104,7 +103,7 @@ IXP_FE_FRONTEND_DISABLED_FILTERED_PREFIXES=false
 
 ![Route Servers Filtered Prefixes](img/rs-filtered-prefixes.png)
 
-This is a live view gathered from each Bird v2 route server with a looking glass.
+This is a live view gathered from each BIRD v2 route server with a looking glass.
 
 Please see [our presentations from 2019](https://www.ixpmanager.org/presentations) for more information on this. Particularly the UKNOF one from September 2019 would be the most up to date.
 
