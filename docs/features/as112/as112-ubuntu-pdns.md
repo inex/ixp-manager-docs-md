@@ -135,7 +135,7 @@ ping 192.31.196.1 # you're looking for a fraction of a ms response time!
 Because we will be generating a secure BGP configuration with RPKI, it is possible that some peers may learn our prefixes, but we will not learn theirs. In that event, responses will go via the default gateway, rather than the peering LAN. We may also have more than a single peering interface, which could provide multiple routes for the same prefix. To ensure responses are not blocked by the automatically-enabled reverse-path-filter, we disable it. We also enable ip routing and, in addition to the netplan file above, also disable various ipv6 autoconf settings by creating a sysctl file as follows:
 
 ```sh
-cat >/etc/sysctl.d/999-as112.conf <<END_SYSCTL
+cat >/etc/sysctl.d/ZZ-as112.conf <<END_SYSCTL
 # AS112 kernel settings
 
 # Disable Source Address Verification in all interfaces 
@@ -167,6 +167,19 @@ END_SYSCTL
 sysctl --system
 ```
 
+Also, we have seen the following messages when processing ipv6 peers with tens of thousands of routes:
+
+```
+<WARN> Kernel dropped some netlink messages, will resync on next scan.
+```
+
+Setting the following high, such as these values, has solved it for us:
+
+```
+net.core.rmem_max=52428800
+net.core.rmem_default=52428800
+```
+
 
 ## PowerDNS
 
@@ -189,9 +202,16 @@ cd /etc
 rm -rf powerdns
 wget -O /tmp/powerdns.tar.bz2 https://raw.githubusercontent.com/inex/IXP-Manager/refs/heads/main/tools/runtime/as112/powerdns.tar.bz2
 tar jxf /tmp/powerdns.tar.bz2
+rm /tmp/powerdns.tar.bz2
 chown -R pdns: powerdns
 systemctl start pdns.service
 ```
+
+**NB:** edit the following two files and set the `TXT` and `LOC` records as appropriate:
+
+* `/etc/powerdns/zones/db.hostname.as112.arpa`
+* `/etc/powerdns/zones/db.hostname.as112.net`
+
 
 You can now test for a NXDOMAIN and TXT responses as follows:
 
@@ -246,9 +266,36 @@ You can now use this script to download a configuration, and start BIRD for our 
 /usr/local/sbin/ixpm-reconfigure-as112-bird2.sh -h as112-ipv6
 ```
 
-If you are not running this with IXP Manager, and would like to see what a sample BIRD2 configuration file looks like, please these samples which we use for continuous integration testing:
+If you are not running this with IXP Manager, and would like to see what a sample BIRD2 configuration file looks like, please see these samples which we use for continuous integration testing:
 
-*
-*
+* [AS112 / BIRD2 / IPv4](https://github.com/inex/IXP-Manager/blob/main/data/ci/known-good/ci-apiv4-b2-as112-lan1-ipv4.conf)
+* [AS112 / BIRD2 / IPv6](https://github.com/inex/IXP-Manager/blob/main/data/ci/known-good/ci-apiv4-b2-as112-lan1-ipv6.conf)
 
+You will note that we run ipv4 and ipv6 as separate daemons. IXP Manager's provisioning system, looking glasses, monitoring tools, etc. are all based on separate daemons per protocol. It also provides v4 vs v6 resiliency should each daemon fail. 
+
+
+
+# Graphing
+
+## Munin
+
+We use [Munin](https://munin-monitoring.org/), an old but reliable networked resource monitoring tool, to monitor our servers. Over the years, various plugins for PowerDNS have been created. I have placed the ones we use, and currently work, [in this GitHub Gist](https://gist.github.com/barryo/78d9f835bdf5c8180d66cb37a07808e5).
+
+To use them, proceed as follows:
+
+1. Download them to `/usr/share/munin/plugins`.
+2. Make them executable, `chmod a+x pdns_*`.
+3. Configure Munin to use them: `munin-node-configure --suggest --shell`
+4. This should output a number of `ln` commands - execute these.
+5. Restart Munin - `systemctl restart munin-node.service`.
+
+
+## LibreNMS
+
+LibreNMS have an SNMP extension - [see their documentation here](https://docs.librenms.org/Extensions/Applications/PowerDNS/).
+
+
+# Birdseye
+
+For IXP Manager, you will probably want to install Birdseye so you have the looking glass and other monitoring features enabled. See complete instructions [in the documentation here](../looking-glass.md). 
 
