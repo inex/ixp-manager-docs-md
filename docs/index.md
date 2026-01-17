@@ -25,7 +25,6 @@ Additional information: [https://www.ixpmanager.org/](https://www.ixpmanager.org
 * [Video Tutorials](https://www.ixpmanager.org/support/tutorials)
 * [Presentations & Talks](https://www.ixpmanager.org/support/talks)
 * [Sponsors and Sponsorship](https://www.ixpmanager.org/sponsors)
-* Follow [@ixpmanager](https://twitter.com/ixpmanager) on Twitter
 
 
 ## People Behind IXP Manager
