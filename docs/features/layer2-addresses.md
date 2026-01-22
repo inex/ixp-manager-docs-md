@@ -107,7 +107,8 @@ joe /usr/local/etc/ixpmanager.conf #and set database settings
 cp $IXPROOT/tools/runtime/l2database/update-l2database.pl /usr/local/bin
 
 # and then add it to your periodic cron job with:
-/usr/local/bin/update-l2database.pl
+# replace X with the id of your vlan from the database:
+/usr/local/bin/update-l2database.pl --vlanid=X
 ```
 
 ## OUI Database
