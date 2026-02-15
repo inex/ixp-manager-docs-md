@@ -13,6 +13,8 @@ There are basic elements you need to add to IXP Manager which describe your IXP 
 
 **Remember:** most of the forms for adding and editing the following entities have context help on each input field via the green *Help* button.
 
+0. Implement [all security recommendations](./security.md), and, in particular, secure access to `/admin`.
+
 1. create your **infrastructures**. Generally, an infrastructure represents a collection of switches which form an IXP's peering LAN. The best way to think of an infrastructure is to think of it as *an IXP*.
 
     For example, INEX runs three infrastructures - INEX LAN1, INEX LAN2 and INEX Cork. Each of these consist of a unique set of switches and these infrastructures are not interconnected. They also have unique PeeringDB entries ([INEX LAN1](https://www.peeringdb.com/api/ix/48), [INEX LAN2](https://www.peeringdb.com/api/ix/387), [INEX Cork](https://www.peeringdb.com/api/ix/1262)) and IX-F entries ([INEX LAN1](https://db.ix-f.net/api/ixp/20), [INEX LAN2](https://db.ix-f.net/api/ixp/645), [INEX Cork](https://db.ix-f.net/api/ixp/646)) for each infrastructure.
