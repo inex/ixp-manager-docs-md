@@ -62,19 +62,7 @@ Since September 2024, we now use [documentation versioning](https://www.barryodo
 
 **Never deploy to historical versions!**
 
-As an example, as the time of writing, 6.4.x is the latest release and 7.0 is in development. We did **our final** push to 6.4 via:
-
-```sh
-PATH=./venv/bin:$PATH ./venv/bin/mike deploy --push --update-aliases 6.4 latest
-```
-
-And all new documentation will be pushed to dev via:
-
-```sh
-PATH=./venv/bin:$PATH ./venv/bin/mike deploy --push --update-aliases 7.0 dev
-```
-
-Once 7.0 is released, we will push a final update to 7.0 updating it to latest:
+As an example, as the time of writing, 7.0.x is the latest release and 7.1 is in development. We did **our final** push to 7.0 via:
 
 ```sh
 PATH=./venv/bin:$PATH ./venv/bin/mike deploy --push --update-aliases 7.0 latest
@@ -84,6 +72,18 @@ And all new documentation will be pushed to dev via:
 
 ```sh
 PATH=./venv/bin:$PATH ./venv/bin/mike deploy --push --update-aliases 7.1 dev
+```
+
+Once 7.2 is released, we will push a final update to 7.1 updating it to latest:
+
+```sh
+PATH=./venv/bin:$PATH ./venv/bin/mike deploy --push --update-aliases 7.1 latest
+```
+
+And all new documentation will be pushed to dev via:
+
+```sh
+PATH=./venv/bin:$PATH ./venv/bin/mike deploy --push --update-aliases 7.2 dev
 ```
 
 > Note that `PATH=./venv/bin:$PATH` is used as `mike` in turn calls `mkdocs` which is in this path.
