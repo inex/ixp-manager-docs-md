@@ -35,6 +35,9 @@ The following uses a very basic Apache virtual host configuration which works wi
 
     # This clause is the new element that restricts access to /admin
     <Location "/admin/">
+        # Use a custom error page so as not to confuse legitimate users
+        ErrorDocument 403 /403-admin.html
+        
         <RequireAny>
             Require ip 127.0.0.1/8
             Require ip 192.0.2.0/28
@@ -98,6 +101,9 @@ server {
         allow 2001:db8:0:101::/64;
         deny all;
 
+        # Use a custom error page so as not to confuse legitimate users
+        error_page 403 /403-admin.html;
+
         try_files $uri $uri/ /index.php?$query_string;
     }
 
@@ -127,21 +133,7 @@ acl adminaccess {
 }
 ```
 
-**2. Define a function to check access against this ACL**
-
-```
-# Note that we pipe here because we do not want to cache IXP Manager.
-# We also assume that https has already been enforced.
-sub border_control {
-    if (req.http.X-Forwarded-Proto == "https" && std.ip(req.http.X-Real-IP,"0.0.0.0") ~ adminaccess) {
-        return(pipe);
-    }
-
-   return(synth(403, "Access denied [border_control]"));
-}
-```
-
-**3. Secure access**
+**2. Secure access**
 
 ```
 sub vcl_recv {
@@ -162,7 +154,18 @@ sub vcl_recv {
 
         # secured URLs
         if (req.url ~ "^/admin/?" ) {
-            call border_control;
+
+            # Allow if from known safe IP addresses
+            if (req.http.X-Forwarded-Proto != "https" && client.ip ~ mgmtaccess) {
+                return(pipe);
+            } else if (req.http.X-Forwarded-Proto == "https" && std.ip(req.http.X-Real-IP,"0.0.0.0") ~ mgmtaccess) {
+                return(pipe);
+            }
+
+            # Otherwise, send our custom 403
+            set req.http.X-Override-Status = "403";
+            set req.url = "/403-admin.html";
+            return (hash);
         }
 
         # otherwise:
@@ -170,6 +173,24 @@ sub vcl_recv {
 }
 ```
 
+**3. Send the 403 in the response**
+
+```
+sub vcl_backend_response {
+
+    ...
+
+    # If we set an override status in recv(), carry it through:
+    if (bereq.http.X-Override-Status) {
+        # Make the delivered status whatever we want, regardless of backend’s status
+        set beresp.status = std.integer(bereq.http.X-Override-Status, 200);
+
+        # Caching policy for this special response
+        set beresp.ttl = 0s;
+        set beresp.uncacheable = true;          // deliver but don't store
+        return (deliver);
+    }
 
 
-
+}
+```
