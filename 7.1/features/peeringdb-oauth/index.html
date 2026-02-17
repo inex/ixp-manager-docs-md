@@ -2967,12 +2967,13 @@
 
 <h1 id="peeringdb-oauth">PeeringDB - OAuth<a class="headerlink" href="#peeringdb-oauth" title="Permanent link"></a></h1>
 <p>IXP Manager can authenticate users via their PeeringDB account and affiliations. This is hugely beneficial for your customers who are members of multiple IXPs which use IXP Manager - it means they only need their PeeringDB account to access their portal at each of those IXs.</p>
-<p><strong>NB:</strong> this feature is not set up by default as it requires some configuration on both PeeringDB and your IXP Manager installation.</p>
+<details class="info" open="open">
+<summary>This feature is not set up by default as it requires some configuration on both PeeringDB and your IXP Manager installation.</summary>
+</details>
 <h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link"></a></h3>
 <p><strong>Is there a security risk?</strong></p>
-<p>Well, we at INEX do not think so and we have developed and enabled this feature for our members.</p>
-<p>By enabling PeeringDB OAuth, you are creating a path that delegates authentication and authorization of users on your platform to PeeringDB. This is not a decision that was rushed into. It is particularly notable that PeeringDB is the industry-standard database for network operators and the PeeringDB team take the job of assessing whether someone should be affiliated with a network seriously.</p>
-<p>We at INEX also discussed this functionality with a wide variety of people in our industry and the opinion was overwhelmingly in favor with no known dissenters.</p>
+<p>By enabling PeeringDB OAuth, you are creating a path that delegates authentication and authorization of users on your platform to PeeringDB. It is particularly notable that PeeringDB is the industry-standard database for network operators and the PeeringDB team take the job of assessing whether someone should be affiliated with a network seriously.</p>
+<p>Secondly, many networking organisations now use PeeringDB OAuth as the authentication method for their own peering management portals. I.e., PeeringDB OAuth has become an industry standard.</p>
 <p>Lastly, we have developed this in a security-conscious way. New users get read-only access by default. All information from PeeringDB is validated and a number of other confirmatory steps are taken. You can read all about this in the <a href="./#oauth-user-creation">OAuth User Creation</a> section below.</p>
 <h2 id="configuring-peeringdb-for-oauth">Configuring PeeringDB for OAuth<a class="headerlink" href="#configuring-peeringdb-for-oauth" title="Permanent link"></a></h2>
 <p>There are two steps to configuring OAuth for PeeringDB - first set it up on PeeringDB and then, using the tokens generated there, configure IXP Manager.</p>
@@ -2982,17 +2983,18 @@
 <li>Log into your PeeringDB account at https://www.peeringdb.com/login</li>
 <li>Access the OAuth applications page by either:<ul>
 <li>browsing directly to: https://www.peeringdb.com/oauth2/applications/ after logging in; or</li>
-<li>access your profile by clicking on your username on the top right and then click on <em>Manage OAuth Applications</em> on the bottom left.</li>
+<li>browse to your organisation profile and click the OAuth tab under <em>Manage</em> at the bottom of the page.</li>
 </ul>
 </li>
 <li>Click <em>[New Application]</em>.</li>
 <li>Complete the form as follows:<ul>
 <li>Set the name (e.g. <em>IXP Manager</em>).</li>
 <li>Record the client ID (needed for IXP Manager's configuration).</li>
-<li>Record the client secret (needed for IXP Manager's configuration).</li>
+<li>Record the client secret (needed for IXP Manager's configuration). **NB: record this before saving the form, as PeeringDB will encrypt it immediately and you require the unencrypted version.</li>
 <li>Set <em>Client type</em> to <em>Public</em>.</li>
 <li>Set <em>Authorization grant type</em> to <em>Authorization code</em>.</li>
 <li>For <em>Redirect urls</em>, you need to provide the fully qualified path to the <code>/auth/login/peeringdb/callback</code> action on your IXP Manager installation. For example, if the base URL of your IXP Manager installation is <code>https://www.example.com</code> then set redirect URL to <code>https://www.example.com/auth/login/peeringdb/callback</code>. <em>Note that for OAuth, it is mandatory to use https:// (encryption).</em></li>
+<li>Select either RSA or HMAC as the algorithm.</li>
 </ul>
 </li>
 <li>Click <em>[Save]</em>.</li>
@@ -3007,7 +3009,7 @@ PEERINGDB_OAUTH_CLIENT_ID=&quot;xxx&quot;
 PEERINGDB_OAUTH_CLIENT_SECRET=&quot;xxx&quot;
 PEERINGDB_OAUTH_REDIRECT=&quot;https://www.example.com/auth/login/peeringdb/callback&quot;
 </code></pre></div>
-<p>while replacing the configuration values for the those from the PeeringDB set-up above.</p>
+<p>while replacing the <code>xxx</code> values for the those from the PeeringDB set-up above. <strong>NB:</strong> remember, you need the unencrypted client secret.</p>
 <p>Once this is complete, you'll find a new option on IXP Manager's login form:</p>
 <p><img alt="IXP Manager with PeeringDB's OAuth Option" src="../img/peeringdb-oauth-pdb-login.png" /></p>
 <p>By default, new users are created on IXP Manager as read-only <em>customer users</em>. You can change this to read-write <em>customer admin</em> users by additionally setting the following option:</p>
