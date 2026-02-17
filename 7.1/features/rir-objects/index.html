@@ -1727,6 +1727,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#ripe-object-type-and-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RIPE Object Type and Key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#available-template-variables" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3000,6 +3011,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#ripe-object-type-and-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RIPE Object Type and Key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#available-template-variables" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3086,7 +3108,7 @@
 
 
 <h1 id="rir-objects">RIR Objects<a class="headerlink" href="#rir-objects" title="Permanent link"></a></h1>
-<p>IXP Manager can generate (and email) your RIR objects - for example your AS-SETs, AS object, etc - to your RIR for automatic updates / maintenance.</p>
+<p>IXP Manager can generate (and email / update RIPE via REST) your RIR objects - for example your AS-SETs, AS object, etc - to your RIR for automatic updates / maintenance.</p>
 <p>As a concrete example of this, see how INEX do this with our RIPE objects as follows:</p>
 <ul>
 <li><a href="https://apps.db.ripe.net/db-web-ui/#/lookup?source=ripe&amp;key=AS2128&amp;type=aut-num">AS2128</a> - INEX's route collector / management ASN</li>
@@ -3094,12 +3116,15 @@
 <li><a href="https://apps.db.ripe.net/db-web-ui/#/lookup?source=ripe&amp;key=AS-SET-INEX-CONNECTED&amp;type=as-set">AS-SET-INEX-CONNECTED</a> - the set of ASNs/AS-SETs connected to INEX</li>
 <li><a href="https://apps.db.ripe.net/db-web-ui/#/lookup?source=ripe&amp;key=AS-SET-INEX-RS&amp;type=as-set">AS-SET-INEX-RS</a> - the set of ASNs/AS-SETs peering with INEX's route servers</li>
 </ul>
-<p>Some RIRs, such as RIPE, has <a href="https://www.ripe.net/manage-ips-and-asns/db/support/documentation/ripe-database-documentation/updating-objects-in-the-ripe-database/6-4-email-updates">a facility to update these objects by email</a>.</p>
+<p>Some RIRs have a facility to update these objects by email, but RIPE phased that out at the end of 2025.</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h2>
-<p>The general form of the Artisan command is:</p>
+<p>The general form of the Artisan command to update via email is:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span>rir:generate-object<span class="w"> </span>--send-email<span class="w">      </span><span class="se">\</span>
 <span class="w">    </span>--to<span class="o">=</span>test-dbm@ripe.net<span class="w">                        </span><span class="se">\</span>
 <span class="w">    </span>--from<span class="w"> </span>me@example.com<span class="w">  </span>autnum
+</code></pre></div>
+<p>And to update RIPE via their REST API:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span>rir:generate-object<span class="w"> </span>--update-ripe-db<span class="w"> </span>autnum
 </code></pre></div>
 <p>You can see the options by using the standard <code>-h</code> help switch with Artisan:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span>rir:generate-object<span class="w"> </span>-h
@@ -3110,21 +3135,26 @@ Arguments:
 <span class="w">  </span>object<span class="w">                </span>The<span class="w"> </span>RIR<span class="w"> </span>object<span class="w"> </span>template<span class="w"> </span>to<span class="w"> </span>use
 
 Options:
-<span class="w">      </span>--send-email<span class="w">      </span>Rather<span class="w"> </span>than<span class="w"> </span>printing<span class="w"> </span>to<span class="w"> </span>screen,<span class="w"> </span>sends<span class="w"> </span>and<span class="w"> </span>email<span class="w"> </span><span class="k">for</span><span class="w"> </span>updating<span class="w"> </span>a<span class="w"> </span>RIR<span class="w"> </span>automatically
-<span class="w">      </span>--force<span class="w">           </span>Send<span class="w"> </span>email<span class="w"> </span>even<span class="w"> </span><span class="k">if</span><span class="w"> </span>it<span class="w"> </span>matches<span class="w"> </span>the<span class="w"> </span>cached<span class="w"> </span>version
-<span class="w">      </span>--to<span class="o">[=</span>TO<span class="o">]</span><span class="w">         </span>The<span class="w"> </span>email<span class="w"> </span>address<span class="w"> </span>to<span class="w"> </span>send<span class="w"> </span>the<span class="w"> </span>object<span class="w"> </span>to<span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>specified<span class="w"> </span><span class="k">then</span><span class="w"> </span>uses<span class="w"> </span>IXP_API_RIR_EMAIL_TO<span class="o">)</span>
-<span class="w">      </span>--from<span class="o">[=</span>FROM<span class="o">]</span><span class="w">     </span>The<span class="w"> </span>email<span class="w"> </span>address<span class="w"> </span>from<span class="w"> </span>which<span class="w"> </span>the<span class="w"> </span>email<span class="w"> </span>is<span class="w"> </span>sent<span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>specified,<span class="w"> </span>tries<span class="w"> </span>IXP_API_RIR_EMAIL_FROM<span class="w"> </span>and<span class="w"> </span><span class="k">then</span><span class="w"> </span>defaults<span class="w"> </span>to<span class="w"> </span>IDENTITY_EMAIL<span class="o">)</span>
-<span class="w">  </span>-h,<span class="w"> </span>--help<span class="w">            </span>Display<span class="w"> </span>this<span class="w"> </span><span class="nb">help</span><span class="w"> </span>message
-<span class="w">  </span>-q,<span class="w"> </span>--quiet<span class="w">           </span>Do<span class="w"> </span>not<span class="w"> </span>output<span class="w"> </span>any<span class="w"> </span>message
+<span class="w">      </span>--send-email<span class="w">        </span>Rather<span class="w"> </span>than<span class="w"> </span>printing<span class="w"> </span>to<span class="w"> </span>screen,<span class="w"> </span>sends<span class="w"> </span>and<span class="w"> </span>email<span class="w"> </span><span class="k">for</span><span class="w"> </span>updating<span class="w"> </span>a<span class="w"> </span>RIR<span class="w"> </span>automatically
+<span class="w">      </span>--update-ripe-db<span class="w">    </span>Update<span class="w"> </span>the<span class="w"> </span>RIPE<span class="w"> </span>database<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>generated<span class="w"> </span>object,<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>RIPE<span class="w"> </span>REST<span class="w"> </span>API
+<span class="w">      </span>--force<span class="w">             </span>Send<span class="w"> </span>email/update<span class="w"> </span>RIPE<span class="w"> </span>even<span class="w"> </span><span class="k">if</span><span class="w"> </span>the<span class="w"> </span>generated<span class="w"> </span>object<span class="w"> </span>matches<span class="w"> </span>the<span class="w"> </span>cached<span class="w"> </span>version
+<span class="w">      </span>--to<span class="o">[=</span>TO<span class="o">]</span><span class="w">           </span>The<span class="w"> </span>email<span class="w"> </span>address<span class="w"> </span>to<span class="w"> </span>send<span class="w"> </span>the<span class="w"> </span>object<span class="w"> </span>to<span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>specified<span class="w"> </span><span class="k">then</span><span class="w"> </span>uses<span class="w"> </span>IXP_API_RIR_EMAIL_TO<span class="o">)</span>
+<span class="w">      </span>--from<span class="o">[=</span>FROM<span class="o">]</span><span class="w">       </span>The<span class="w"> </span>email<span class="w"> </span>address<span class="w"> </span>from<span class="w"> </span>which<span class="w"> </span>the<span class="w"> </span>email<span class="w"> </span>is<span class="w"> </span>sent<span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>specified,<span class="w"> </span>tries<span class="w"> </span>IXP_API_RIR_EMAIL_FROM<span class="w"> </span>and<span class="w"> </span><span class="k">then</span><span class="w"> </span>defaults<span class="w"> </span>to<span class="w"> </span>IDENTITY_EMAIL<span class="o">)</span>
+
+<span class="w">      </span>-h,<span class="w"> </span>--help<span class="w">          </span>Display<span class="w"> </span>this<span class="w"> </span><span class="nb">help</span><span class="w"> </span>message
+<span class="w">      </span>-q,<span class="w"> </span>--quiet<span class="w">         </span>Do<span class="w"> </span>not<span class="w"> </span>output<span class="w"> </span>any<span class="w"> </span>message<span class="w"> </span>on<span class="w"> </span>success
 
 Help:
-<span class="w">  </span>This<span class="w"> </span><span class="nb">command</span><span class="w"> </span>will<span class="w"> </span>generate<span class="w"> </span>and<span class="w"> </span>display<span class="w"> </span>a<span class="w"> </span>RIR<span class="w"> </span>object<span class="w"> </span><span class="o">(</span>and<span class="w"> </span>optionally<span class="w"> </span>send<span class="w"> </span>by<span class="w"> </span>email<span class="o">)</span>
+<span class="w">  </span>This<span class="w"> </span><span class="nb">command</span><span class="w"> </span>will<span class="w"> </span>generate<span class="w"> </span>and<span class="w"> </span>display<span class="w"> </span>a<span class="w"> </span>RIR<span class="w"> </span>object<span class="w"> </span><span class="o">(</span>and<span class="w"> </span>optionally<span class="w"> </span>send<span class="w"> </span>by<span class="w"> </span>email/post<span class="w"> </span>to<span class="w"> </span>RIPE<span class="o">)</span>
 </code></pre></div>
-<p>You will note that without the <code>--send-email</code> switch, the command will print to standard output allowing you to consume the object and use it on another way.</p>
-<p><strong>NB:</strong> the generated object is stored in the cache when it is generated with <code>--send-email</code> for the first time. Future runs with <code>--send-email</code> will only resend the email if the generated object differs from the cached version. You can force an email to be sent with <code>--force</code>. Secondly, the cache used is a file system based cache irrespective of the <code>CACHE_DRIVER</code> <code>.env</code> settings. To wipe it, run: <code>artisan cache:clear file</code>.</p>
+<p>You will note that without the <code>--send-email/--update-ripe-db</code> switch, the command will print to standard output allowing you to consume the object and use it on another way.</p>
+<p><strong>NB:</strong> the generated object is stored in the cache when it is generated for the first time. Future runs will only resend the email/update RIPE if the generated object differs from the cached version. You can force an update with <code>--force</code>. Secondly, the cache used is a file system based cache irrespective of the <code>CACHE_DRIVER</code> <code>.env</code> settings. To wipe it, run: <code>artisan cache:clear file</code>.</p>
 <p>The following options are available for use in the <code>.env</code> file:</p>
 <div class="highlight"><pre><span></span><code>#######################################################################################
 # Options for updating RIR Objects - see https://docs.ixpmanager.org/features/rir-objects/
+
+# Your RIPE API key to update RIR objects via RIPE&#39;s REST API
+IXP_RIPE_API_KEY=&quot;soopersecret&quot;
 
 # Your RIR password to allow the updating of a RIR object by email:
 IXP_API_RIR_PASSWORD=soopersecret
@@ -3143,6 +3173,12 @@ IXP_API_RIR_EMAIL_FROM=ixp@example.com
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span>rir:generate-object<span class="w"> </span>my-as-set
 </code></pre></div>
 <p>The template name must be lowercase, and contain only the characters: <code>0-9 a-z _ -</code>.</p>
+<h3 id="ripe-object-type-and-key">RIPE Object Type and Key<a class="headerlink" href="#ripe-object-type-and-key" title="Permanent link"></a></h3>
+<p>To use RIPE's REST API, you need to explicitly set the RIPE object type and key via IXP Manager-only key/value pairs in the RIPE object template:</p>
+<div class="highlight"><pre><span></span><code>IXPM-OBJECT:    aut-num
+IXPM-KEY:       AS66500
+</code></pre></div>
+<p>This is already in the sample objects, and INEX's production objects in <code>resources/skins/inex/api/v4/rir</code>, so you should be able to follow those examples.</p>
 <h3 id="available-template-variables">Available Template Variables<a class="headerlink" href="#available-template-variables" title="Permanent link"></a></h3>
 <ul>
 <li><code>$customers</code> - complete Doctrine2 objects of all current external trafficking customers / members. You should be able to derive everything from this. Indexed by customer ID.</li>
