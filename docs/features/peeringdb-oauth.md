@@ -2,17 +2,16 @@
 
 IXP Manager can authenticate users via their PeeringDB account and affiliations. This is hugely beneficial for your customers who are members of multiple IXPs which use IXP Manager - it means they only need their PeeringDB account to access their portal at each of those IXs.
 
-**NB:** this feature is not set up by default as it requires some configuration on both PeeringDB and your IXP Manager installation.
+???+ info "This feature is not set up by default as it requires some configuration on both PeeringDB and your IXP Manager installation."
+
 
 ### Security
 
 **Is there a security risk?**
 
-Well, we at INEX do not think so and we have developed and enabled this feature for our members.
+By enabling PeeringDB OAuth, you are creating a path that delegates authentication and authorization of users on your platform to PeeringDB. It is particularly notable that PeeringDB is the industry-standard database for network operators and the PeeringDB team take the job of assessing whether someone should be affiliated with a network seriously.
 
-By enabling PeeringDB OAuth, you are creating a path that delegates authentication and authorization of users on your platform to PeeringDB. This is not a decision that was rushed into. It is particularly notable that PeeringDB is the industry-standard database for network operators and the PeeringDB team take the job of assessing whether someone should be affiliated with a network seriously.
-
-We at INEX also discussed this functionality with a wide variety of people in our industry and the opinion was overwhelmingly in favor with no known dissenters.
+Secondly, many networking organisations now use PeeringDB OAuth as the authentication method for their own peering management portals. I.e., PeeringDB OAuth has become an industry standard.
 
 Lastly, we have developed this in a security-conscious way. New users get read-only access by default. All information from PeeringDB is validated and a number of other confirmatory steps are taken. You can read all about this in the [OAuth User Creation](./peeringdb-oauth.md#oauth-user-creation) section below.
 
@@ -28,15 +27,16 @@ The first step is to create your IXP Manager OAuth *application* through your Pe
 1. Log into your PeeringDB account at https://www.peeringdb.com/login
 2. Access the OAuth applications page by either:
     * browsing directly to: https://www.peeringdb.com/oauth2/applications/ after logging in; or
-    * access your profile by clicking on your username on the top right and then click on *Manage OAuth Applications* on the bottom left.
+    * browse to your organisation profile and click the OAuth tab under *Manage* at the bottom of the page.
 3. Click *[New Application]*.
 4. Complete the form as follows:
     * Set the name (e.g. *IXP Manager*).
     * Record the client ID (needed for IXP Manager's configuration).
-    * Record the client secret (needed for IXP Manager's configuration).
+    * Record the client secret (needed for IXP Manager's configuration). **NB: record this before saving the form, as PeeringDB will encrypt it immediately and you require the unencrypted version.
     * Set *Client type* to *Public*.
     * Set *Authorization grant type* to *Authorization code*.
     * For *Redirect urls*, you need to provide the fully qualified path to the `/auth/login/peeringdb/callback` action on your IXP Manager installation. For example, if the base URL of your IXP Manager installation is `https://www.example.com` then set redirect URL to `https://www.example.com/auth/login/peeringdb/callback`. *Note that for OAuth, it is mandatory to use https:// (encryption).*
+    * Select either RSA or HMAC as the algorithm.
 5. Click *[Save]*.
 
 Here is a sample form on PeeringDB:
@@ -55,7 +55,7 @@ PEERINGDB_OAUTH_CLIENT_SECRET="xxx"
 PEERINGDB_OAUTH_REDIRECT="https://www.example.com/auth/login/peeringdb/callback"
 ```
 
-while replacing the configuration values for the those from the PeeringDB set-up above.
+while replacing the `xxx` values for the those from the PeeringDB set-up above. **NB:** remember, you need the unencrypted client secret.
 
 Once this is complete, you'll find a new option on IXP Manager's login form:
 
