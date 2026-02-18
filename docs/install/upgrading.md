@@ -58,8 +58,10 @@ The general process is:
 2. Enable maintenance mode:
 
     ```sh
-    php $IXPROOT/artisan down --message='Please wait, currently upgrading...'
+    php $IXPROOT/artisan down --render=errors::maintenance
     ```
+
+    There are a number of options for maintenance mode, [see Laravel's documentation here](https://laravel.com/docs/master/configuration#maintenance-mode).
 
 3. Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v7:
 
