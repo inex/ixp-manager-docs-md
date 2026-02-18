@@ -28,9 +28,9 @@ You can further refine this to something like:
    1 127.0.0.1	api/v4/router/gen-config/as112-lan1-ipv4
 ```
 
-???+ note "**The default will be changed to disabled from IXP Manager v7.0.1.**"
+???+ note "**The default will be changed to disabled in the next minor release.**"
 
-Once you transition the clients consuming the APIs from the unsecured endpoints (`/api/v4`) to the secured endpoints (`/admin/api/v4`), you can disable the unsecured endpoints ahead of the v7.0.1 release via the *Authentication / Unsecured API Access Enabled* checkbox on the Settings frontend, or by setting the following in your `.env` file:
+Once you transition the clients consuming the APIs from the unsecured endpoints (`/api/v4`) to the secured endpoints (`/admin/api/v4`), you can disable the unsecured endpoints ahead of the next minor release via the *Authentication / Unsecured API Access Enabled* checkbox on the Settings frontend, or by setting the following in your `.env` file:
 
 ```
 UNSECURED_API_ACCESS=0

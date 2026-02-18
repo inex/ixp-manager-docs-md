@@ -29,13 +29,31 @@ See our installation notes for these:
 4. ~~[RIPE NCC RPKI Validator 3](./rpki/ripe.md)~~ - *this has now been [deprecated](https://www.ripe.net/publications/news/ending-support-for-the-ripe-ncc-rpki-validator/) and should not be used*.
 
 
-## Revalidation
+## BIRD RPKI Settings
 
-As it stands, Bird v2.0.4 does not support revalidation of prefixes following ROA updates (i.e. a prefix that was accepted as ROA valid that subsequently becomes ROA unknown / invalid will remain learnt as ROA valid). The Bird developers are working on fixing this. In the interim, you need to schedule a revalidation via cron using a `/etc/crontab` entry such as:
+BIRD has the following RPKI RTR settings:
 
 ```
-20 11,23 * * *   root    /usr/sbin/birdc -s /var/run/bird/bird-rs1-ipv4.ctl reload in all >/dev/null
+min version num
+
+    Minimal allowed version of the RTR protocol. BIRD will refuse to downgrade a 
+    connection below this version and drop the session instead. Default: 0
+
+max version num
+
+    Maximal allowed version of the RTR protocol. BIRD will start with this version. 
+    Use this option if sending version 2 to your cache causes problems. Default: 2 
 ```
+
+To allow you to set these without skinning the templates, there are new settings UI/.env options as follows:
+
+```
+IXP_RPKI_RTR1_MIN_VERSION=0
+IXP_RPKI_RTR1_MAX_VERSION=2
+IXP_RPKI_RTR2_MIN_VERSION=0
+IXP_RPKI_RTR2_MAX_VERSION=2
+```
+
 
 ## Enabling RPKI
 

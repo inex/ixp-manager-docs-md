@@ -38,19 +38,14 @@ The `Date Joined` is just that and must be set. However, the `Date Left` has rea
 
 The `AS Number` is just the integer value without any `AS` prefix, etc.
 
-`Max Prefixes` is known as the *global max prefixes value*. It is used to work out the appropriate max prefixes value to apply to all router configurations in the stock / default templates (route collector and servers, AS112). The calculated value is also included in emails from the *Peering Manager* from customer to customer.
+`Max Prefixes` is known as the *global max prefixes value*. It is used to work out the appropriate max prefixes value to apply to all router ipv4/ipv6 configurations in the stock / default templates (route collector and servers, AS112). The calculated value is also included in emails from the *Peering Manager* from customer to customer.
 
-There are two issues with max prefixes:
-
-* it is also possible to set a max prefixes value on a per VLAN interface basis. This is not ideal and something we intend to fix.
-* the same value is used for IPv4 and IPv6 which is also something that needs to be fixed.
+It is also possible to set a max prefixes value on a per VLAN interface basis. *This should be avoided unless it is something you need to do.*
 
 The max prefixes value is worked out in the code when generating router configuration is as follows:
 
-1. the greater of the *global* value as above or the VLAN interface value.
-2. if neither is set, a default of 250 is used.
-
-At INEX, we default to 50 for small members, and 250 for medium sized members (who may already have 50 say), and as advised by larger members.
+1. The the VLAN interface value if set, otherwise the *global* value as set on the customer as above.
+2. If neither is set, a default value is used (this can be changed in the Settings UI or the `.env` file).
 
 The `Peering Email` is used in member lists and by the *Peering Manager* for sending emails. We try and encourage an alias of `peering@example.com` but this does not always work out.
 
