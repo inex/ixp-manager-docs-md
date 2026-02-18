@@ -1855,10 +1855,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#revalidation" class="md-nav__link">
+  <a href="#bird-rpki-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Revalidation
+        BIRD RPKI Settings
       
     </span>
   </a>
@@ -2943,10 +2943,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#revalidation" class="md-nav__link">
+  <a href="#bird-rpki-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Revalidation
+        BIRD RPKI Settings
       
     </span>
   </a>
@@ -3015,9 +3015,23 @@ IXP_RPKI_RTR1_PORT=3323
 <li><del><a href="cloudflare/">Cloudflare's RPKI Toolkit</a></del> - <em>this has now been <a href="https://github.com/cloudflare/cfrpki/commit/932c7596bb6f8ce2e0dadd7930e19ddef1beab0e">deprecated</a> and should not be used</em>.</li>
 <li><del><a href="ripe/">RIPE NCC RPKI Validator 3</a></del> - <em>this has now been <a href="https://www.ripe.net/publications/news/ending-support-for-the-ripe-ncc-rpki-validator/">deprecated</a> and should not be used</em>.</li>
 </ol>
-<h2 id="revalidation">Revalidation<a class="headerlink" href="#revalidation" title="Permanent link"></a></h2>
-<p>As it stands, Bird v2.0.4 does not support revalidation of prefixes following ROA updates (i.e. a prefix that was accepted as ROA valid that subsequently becomes ROA unknown / invalid will remain learnt as ROA valid). The Bird developers are working on fixing this. In the interim, you need to schedule a revalidation via cron using a <code>/etc/crontab</code> entry such as:</p>
-<div class="highlight"><pre><span></span><code>20 11,23 * * *   root    /usr/sbin/birdc -s /var/run/bird/bird-rs1-ipv4.ctl reload in all &gt;/dev/null
+<h2 id="bird-rpki-settings">BIRD RPKI Settings<a class="headerlink" href="#bird-rpki-settings" title="Permanent link"></a></h2>
+<p>BIRD has the following RPKI RTR settings:</p>
+<div class="highlight"><pre><span></span><code>min version num
+
+    Minimal allowed version of the RTR protocol. BIRD will refuse to downgrade a 
+    connection below this version and drop the session instead. Default: 0
+
+max version num
+
+    Maximal allowed version of the RTR protocol. BIRD will start with this version. 
+    Use this option if sending version 2 to your cache causes problems. Default: 2 
+</code></pre></div>
+<p>To allow you to set these without skinning the templates, there are new settings UI/.env options as follows:</p>
+<div class="highlight"><pre><span></span><code>IXP_RPKI_RTR1_MIN_VERSION=0
+IXP_RPKI_RTR1_MAX_VERSION=2
+IXP_RPKI_RTR2_MIN_VERSION=0
+IXP_RPKI_RTR2_MAX_VERSION=2
 </code></pre></div>
 <h2 id="enabling-rpki">Enabling RPKI<a class="headerlink" href="#enabling-rpki" title="Permanent link"></a></h2>
 <p>The outline procedure to enable RPKI is below. These notes are written from the perspective that you have existing IXP Manager Bird v1 route servers. If this is a green field site, these notes will work just as well by ignoring the upgrade bits. <strong>In either case, it's vital you already understand <a href="../routers/">how to configure routers in IXP Manager</a>.</strong></p>
@@ -3167,7 +3181,7 @@ Table t_roa:
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2024 12:34:10 UTC">September 21, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 18, 2026 21:26:50 UTC">February 18, 2026</span>
   </span>
 
     

@@ -3218,18 +3218,13 @@
 <p><code>MD5 Support</code>: this is not something that has been fully integrated into all view screens. You should probably default to <code>Yes</code> for now as this will cover 95+% of cases. It is an informational flag only for member to member bilateral peering.</p>
 <h3 id="peering-details">Peering Details<a class="headerlink" href="#peering-details" title="Permanent link"></a></h3>
 <p>The <code>AS Number</code> is just the integer value without any <code>AS</code> prefix, etc.</p>
-<p><code>Max Prefixes</code> is known as the <em>global max prefixes value</em>. It is used to work out the appropriate max prefixes value to apply to all router configurations in the stock / default templates (route collector and servers, AS112). The calculated value is also included in emails from the <em>Peering Manager</em> from customer to customer.</p>
-<p>There are two issues with max prefixes:</p>
-<ul>
-<li>it is also possible to set a max prefixes value on a per VLAN interface basis. This is not ideal and something we intend to fix.</li>
-<li>the same value is used for IPv4 and IPv6 which is also something that needs to be fixed.</li>
-</ul>
+<p><code>Max Prefixes</code> is known as the <em>global max prefixes value</em>. It is used to work out the appropriate max prefixes value to apply to all router ipv4/ipv6 configurations in the stock / default templates (route collector and servers, AS112). The calculated value is also included in emails from the <em>Peering Manager</em> from customer to customer.</p>
+<p>It is also possible to set a max prefixes value on a per VLAN interface basis. <em>This should be avoided unless it is something you need to do.</em></p>
 <p>The max prefixes value is worked out in the code when generating router configuration is as follows:</p>
 <ol>
-<li>the greater of the <em>global</em> value as above or the VLAN interface value.</li>
-<li>if neither is set, a default of 250 is used.</li>
+<li>The the VLAN interface value if set, otherwise the <em>global</em> value as set on the customer as above.</li>
+<li>If neither is set, a default value is used (this can be changed in the Settings UI or the <code>.env</code> file).</li>
 </ol>
-<p>At INEX, we default to 50 for small members, and 250 for medium sized members (who may already have 50 say), and as advised by larger members.</p>
 <p>The <code>Peering Email</code> is used in member lists and by the <em>Peering Manager</em> for sending emails. We try and encourage an alias of <code>peering@example.com</code> but this does not always work out.</p>
 <p>The <code>IPv4 Peering Macro</code> is used instead of the AS number when set to generate inbound prefix filters for the route servers based on the member's published IRR records. <code>AS-BTIRE</code> in the RIPE database is an example for BT Ireland.</p>
 <p>The <code>IPv6 Peering Macro</code> was added for another IX using IXP Manager that had a customer which used a separate macro for v4 and v6. We only know of that single instance of this. In the event that <code>IPv6 Peering Macro</code> is set, this will be used to generate IPv6 inbound prefix filters, otherwise the <code>IPv4 Peering Macro</code> will be used for both. If neither is set, the IRR policy of the AS number will be used. Use <code>AS-NULL</code> to disable one or the other protocol peering macro if only one is required.</p>
@@ -3305,7 +3300,7 @@ cp resources/views/customer/emails/welcome-email.blade.php resources/skins/inex/
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 26, 2025 10:45:03 UTC">August 26, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 18, 2026 21:26:50 UTC">February 18, 2026</span>
   </span>
 
     
