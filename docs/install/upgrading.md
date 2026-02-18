@@ -1,4 +1,4 @@
-# Upgrading IXP Manager - v6.x
+# Upgrading IXP Manager - v7.x
 
 ???+ note "**These upgrade instructions relate to upgrading when you are already using IXP Manager v7.x.**"
 
