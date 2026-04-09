@@ -242,5 +242,5 @@ GRAPHER_ACCESS_P2P=1
 
 Please note the following:
 
-* `GRAPHER_ACCESS_CUSTOMER` applies to customer aggregate graphs, customer LAG graphs (virtualinterface), customer ports (physicalinterface) and customer vlaninterface. T individually limit these makes little sense and drastically increases complexity (from a UI perspectve).
+* `GRAPHER_ACCESS_CUSTOMER` applies to customer aggregate graphs, customer LAG graphs (virtualinterface), customer ports (physicalinterface) and customer vlaninterface. To individually limit these makes little sense and drastically increases complexity (from a UI perspective).
 * It makes limited sense for UI access to enable either `GRAPHER_ACCESS_P2P` or `GRAPHER_ACCESS_LATENCY` without enabling equivalent or less restrictive access to `GRAPHER_ACCESS_CUSTOMER`. This is because most of the user interface (UI) pathways to access these is via `GRAPHER_ACCESS_CUSTOMER` pages.

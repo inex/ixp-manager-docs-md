@@ -32,7 +32,7 @@ In the list view above, you will also notice that there are per row / per switch
 5. Under *Database Actions* you can get information on the switches ports as recorded in the database (usually from the last time the switch was polled):
     * **View / Edit Ports:** Allows you to edit port type, port active status, etc. Please see documentation below for details. Where SNMP is available, the above SNMP version of this has more features and is preferred.
     * **Port MAU Detail:** MAU (Medium Attachment Units) - provides information on the XFP / SFP / etc. optics installed in a switch. If the option is disabled then it means the switch does not support the SNMP MAU MIB.
-    * **Port Report:** a simple report listing who is connected to each port in a switch. E.g. useful as a hardcopy when going to a datacentre.
+    * **Port Report:** a simple report listing who is connected to each port in a switch. E.g. useful as a hard-copy when going to a data centre.
 
 ## Adding and Editing Switches
 

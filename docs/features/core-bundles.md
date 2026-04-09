@@ -1,6 +1,6 @@
 # Core Bundles
 
-A *core bundle* is a link between the IXP's own switches. These are often referred to as *trunks*, *interswitch links (ISLs)*, *core links*, etc. **IXP Manager** has a number of features to support these since v6 was released.
+A *core bundle* is a link between the IXP's own switches. These are often referred to as *trunks*, *inter-switch links (ISLs)*, *core links*, etc. **IXP Manager** has a number of features to support these since v6 was released.
 
 Before continuing with this document, it is critical you have read and understand how IXP Manager represents normal member connections - please read the [Customer Connections](../usage/interfaces.md) page before proceeding as the rest of this document assumes that foundational knowledge.
 
@@ -196,7 +196,7 @@ The `hostgroup_name` and `_HOSTDBID` come from the *[Switch Monitoring](nagios.m
 
 At INEX, we use [Network Weathermap](https://www.network-weathermap.com/) to create the [weathermaps on our website](https://www.inex.ie/technical/network-weathermap/).
 
-This isn't something we can document exhaustively as it varys from IXP to IXP. The general approach to take is:
+This isn't something we can document exhaustively as it varies from IXP to IXP. The general approach to take is:
 
 1. Create a Network Weathermap configuration that works for you.
 2. Use this as a template to automate the configuration using:

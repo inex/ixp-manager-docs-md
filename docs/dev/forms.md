@@ -79,13 +79,13 @@ Former::populate([
 
 
 
-## Mardown Textarea
+## Markdown Textarea
 
-**IXP Manager** uses the library [Mardown](https://github.com/erusev/parsedown) to edit notes input field. [Here are some examples](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) of how to use Markdown.
+**IXP Manager** uses the library [Parsedown](https://github.com/erusev/parsedown) (a Markdown parser and renderer) to format resource notes for display along with previews while editing. [Here are some examples](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) of how to use Markdown.
 
 ### View
 
-You will have to use the following HTML structure to be able to add markdown to your textrea :
+You will have to use the following HTML structure to be able to add markdown to your textarea :
 
 ```html
 <div class="form-group">

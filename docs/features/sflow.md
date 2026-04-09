@@ -30,7 +30,7 @@ Most switches which support sflow will support ingress accounting, because this 
 
 If not all of the IXP edge ports are sflow capable, then sflow traffic data will be lost for these ports.  This means that some point-to-point traffic graphs will show up with zero traffic, and that the sflow aggregate graphs will be wrong.
 
-Sflow uses data sampling.  This means that the results it produces are estimated projections, but on largee data sets, these projections tend to be statistically accurate.
+Sflow uses data sampling.  This means that the results it produces are estimated projections, but on large data sets, these projections tend to be statistically accurate.
 
 Each switch or switch port needs to be configured with an sflow sampling rate. The exact rate chosen will depend on the traffic levels on the switch, how powerful the switch management plane CPU is, and how much bandwidth is available for the switch management.
 

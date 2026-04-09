@@ -113,7 +113,7 @@ layer3interfaces:
 This API is used to set up the basic layer3 interface elements that are required in future stages to create a VXLAN overlay. The data comes from two sources on IXP Manager:
 
 * Loopback interface - the switch settings.
-* Interswitch links - the [core bundles](core-bundles.md) feature.
+* Inter-switch links - the [core bundles](core-bundles.md) feature.
 
 
 

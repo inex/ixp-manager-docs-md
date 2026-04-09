@@ -50,7 +50,7 @@ mv rpki-validator-3/conf/application.properties rpki-validator-3.conf
 ln -s /srv/ripe-rpki-validator/rpki-validator-3.conf \
     /srv/ripe-rpki-validator/rpki-validator-3/conf/application.properties
 
-# And do the same for the datebase:
+# And do the same for the database:
 mv rpki-validator-3/db .
 ln -s /srv/ripe-rpki-validator/db /srv/ripe-rpki-validator/rpki-validator-3/db
 
