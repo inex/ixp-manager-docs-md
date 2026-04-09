@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
@@ -3019,7 +3019,7 @@
 <p>Skins should then be placed in the <code>resources/skins/example</code> directory (<code>example</code> should be substituted for whatever you want to call your own skin). The default templates can be found in <code>resources/views</code> directory. INEX bundles its own skinned templates in <code>resources/skins/inex</code> as an example.</p>
 <p>Once a skin is enabled from <code>.env</code>, then any templates found in the skin directory <em>(using the same directory structure as found under <code>resouces/views</code>)</em> will take precedence over the default template file. This means you do not need to recreate / copy all the default files - just replace the ones you want.</p>
 <p>In previous versions of <strong>IXP Manager</strong>, we used Smarty as the templating engine. This meant that if someone wanted to help improve <strong>IXP Manager</strong> then they would need to become familiar with PHP <em>and</em> Smarty. In v4 we dropped Smarty and, rather than using another compiled templating engine, we have decided to go with native PHP templates.</p>
-<p>For this, we are using <a href="http://www.foilphp.it/">Foil</a> - <em>Foil brings all the flexibility and power of modern template engines to native PHP templates. Write simple, clean and concise templates with nothing more than PHP.</em> Also, simulaneously supported are Lavael's own <a href="https://laravel.com/docs/5.4/blade">Blade templates</a> which we sometimes use for simple pages.</p>
+<p>For this, we are using <a href="http://www.foilphp.it/">Foil</a> - <em>Foil brings all the flexibility and power of modern template engines to native PHP templates. Write simple, clean and concise templates with nothing more than PHP.</em> Also, simultaneously supported are Laravel's own <a href="https://laravel.com/docs/5.4/blade">Blade templates</a> which we sometimes use for simple pages.</p>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link"></a></h3>
 <p>The <a href="../../grapher/introduction/">graphing</a> MRTG configuration generator allows for custom configuration content at the top and bottom of the file. In order to have your custom configuration enabled, you need to skin two files.</p>
 <p>Here's an example:</p>
@@ -3088,7 +3088,9 @@ vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
 </code></pre></div>
 </li>
 <li>
-<p>For </p>
+<p>For &lt;v4 (old codebase):</p>
+<div class="highlight"><pre><span></span><code><span class="cm">&lt;!--  IXP MANAGER - template directory: application/views --&gt;</span>
+</code></pre></div>
 </li>
 </ul>
 
@@ -3111,7 +3113,7 @@ vi resources/skins/example/services/grapher/mrtg/custom-footer.plates.php
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2024 12:34:10 UTC">September 21, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 9, 2026 13:51:02 UTC">April 9, 2026</span>
   </span>
 
     

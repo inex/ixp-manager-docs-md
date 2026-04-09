@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
@@ -3096,7 +3096,7 @@
 
 
 <h1 id="core-bundles">Core Bundles<a class="headerlink" href="#core-bundles" title="Permanent link"></a></h1>
-<p>A <em>core bundle</em> is a link between the IXP's own switches. These are often referred to as <em>trunks</em>, <em>interswitch links (ISLs)</em>, <em>core links</em>, etc. <strong>IXP Manager</strong> has a number of features to support these since v6 was released.</p>
+<p>A <em>core bundle</em> is a link between the IXP's own switches. These are often referred to as <em>trunks</em>, <em>inter-switch links (ISLs)</em>, <em>core links</em>, etc. <strong>IXP Manager</strong> has a number of features to support these since v6 was released.</p>
 <p>Before continuing with this document, it is critical you have read and understand how IXP Manager represents normal member connections - please read the <a href="../../usage/interfaces/">Customer Connections</a> page before proceeding as the rest of this document assumes that foundational knowledge.</p>
 <p>Within IXP Manager, a <em>core bundle</em> represents a link(s) between two switches. This bundle may have one or more links and it may be one of three types:</p>
 <ol>
@@ -3255,7 +3255,7 @@ define service {
 <p><strong>NB:</strong> Nagios monitoring requires that the <em><a href="../../usage/switches/#automated-polling-snmp-updates">Automated Polling / SNMP Updates</a></em> for switches is working and is working for any switch you want monitored. The Nagios script / API check is a database check. This means if you poll switches every <code>$x</code> minutes (5 by default) and your Nagios script runs the service check every <code>$y</code> minutes (also 5 by default), the maximum delay in notification of a core bundle with issues should be approx. <code>$x + $y</code> minutes.</p>
 <h2 id="creating-weathermaps">Creating Weathermaps<a class="headerlink" href="#creating-weathermaps" title="Permanent link"></a></h2>
 <p>At INEX, we use <a href="https://www.network-weathermap.com/">Network Weathermap</a> to create the <a href="https://www.inex.ie/technical/network-weathermap/">weathermaps on our website</a>.</p>
-<p>This isn't something we can document exhaustively as it varys from IXP to IXP. The general approach to take is:</p>
+<p>This isn't something we can document exhaustively as it varies from IXP to IXP. The general approach to take is:</p>
 <ol>
 <li>Create a Network Weathermap configuration that works for you.</li>
 <li>Use this as a template to automate the configuration using:<ul>
@@ -3318,7 +3318,7 @@ render-jinja-template.py<span class="w">                       </span><span clas
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 26, 2025 10:45:03 UTC">August 26, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 9, 2026 13:51:02 UTC">April 9, 2026</span>
   </span>
 
     

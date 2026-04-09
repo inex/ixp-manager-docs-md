@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
@@ -3289,7 +3289,7 @@
 <p>The <code>Virtual Interface Name</code> is again mostly informational unless you are doing automation. It should be the start of the LAG name without the number. On an IOS device this would be <code>Port-channel</code> for example. Matched with this is the <code>Channel Group Number</code> with is tacked onto the end of the <code>Virtual Interface Name</code>. Leave it as 0 and when you check <code>Link aggregation / LAG framing</code> and save the changes, IXP Manager will set this to the next available unused port channel / bundle / LAG number on that switch.</p>
 <p>Both <code>Description</code> and <code>MTU</code> are informational.</p>
 <h3 id="physical-interfaces">Physical Interfaces<a class="headerlink" href="#physical-interfaces" title="Permanent link"></a></h3>
-<p>You can add additional physical interfaces to a connection / virtual interface. This effectivily means you are creating a LAG. The form for adding additional physical interfaces is identical to that in the wizard.</p>
+<p>You can add additional physical interfaces to a connection / virtual interface. This effectively means you are creating a LAG. The form for adding additional physical interfaces is identical to that in the wizard.</p>
 <h3 id="vlan-interfaces">VLAN Interfaces<a class="headerlink" href="#vlan-interfaces" title="Permanent link"></a></h3>
 <p>The most common use case of more than one VLAN Interface is when your customer may also have private VLANs on their connection.</p>
 <p>Other than that, the VLAN interface add / edit form has all the same elements as the wizard with one addition:</p>
@@ -3305,7 +3305,7 @@
 <li>Speed reported on various member screens as the rate limited speed (and sometimes, where space / appropriate) as x / y and also GUI labels to make it clear when a port is rate limited.</li>
 <li>IX-F Member Export now reports rate_limit speed and adds an IXP Manager specific field called if_phys_speed to show the physical port speed.</li>
 <li>The switch configuration viewer (e.g. INEX's one also updated to support this.</li>
-<li>Port utilisation updated to be congnisant of this.</li>
+<li>Port utilisation updated to be cognisant of this.</li>
 <li>Switch provisioner yaml/json output now has rate_limit for peering ports, null means not in use.</li>
 <li>MRTG configuration has not been updated as the MRTG config uses the detected speed from SNMP. We currently do not see any value in swapping this for the rate limited speed as rate limiters can be buggy / misconfigured / etc and we'll want to see that traffic.</li>
 <li>The dashboard statistics also reflect this and include a new section at the end which shows how partial ports were accounted for.</li>
@@ -3331,7 +3331,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2024 12:34:10 UTC">September 21, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 9, 2026 13:51:02 UTC">April 9, 2026</span>
   </span>
 
     
