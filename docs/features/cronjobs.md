@@ -10,6 +10,9 @@ You can see the [full schedule in code here](https://github.com/inex/IXP-Manager
 
 ## Tasks Referenced Elsewhere
 
+???+ note "**We use a jitter function to randomise the minute at which tasks run to avoid stampeding remote services. This jitter is static for each installation.**"
+
+
 The following tasks are run via this mechanism and are referenced elsewhere in the documentation:
 
 * Uploading MRTG traffic data to the database - documented [in the Grapher MRTG backend page](../grapher/mrtg.md#inserting-traffic-data-into-the-database-reporting-emails) - and runs nightly at 02:00. **NB:** there are email reports that can be added to cron that are not part of the scheduler - see the same page for details on this.
