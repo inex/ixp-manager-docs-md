@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -3082,16 +3082,6 @@
 # e.g. IXP_IRRDB_BGPQ3_PATH=/usr/local/bin/bgpq3
 IXP_IRRDB_BGPQ3_PATH=/usr/bin/bgpq3
 </code></pre></div>
-<p><a href="https://github.com/bgp/bgpq4">BGPQ4</a> is an alternative to BGPQ3 and is also supported. It is also easily installed on a modern Ubuntu system:
-<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>bgpq4
-</code></pre></div></p>
-<p>Before IXP-Manager will use BGPQ4, the full path to the binary must be set in the <code>.env</code> file. Also, it will only be used when <code>IXP_IRRDB_UTILITY=bgpq4</code> is configured as follows: 
-<div class="highlight"><pre><span></span><code># Absolute path to run the bgpq4 utility
-IXP_IRRDB_BGPQ4_PATH=/usr/bin/bgpq4
-
-# Specify to IXP-Manager that BGPQ4 should be used:
-IXP_IRRDB_UTILITY=bgpq4
-</code></pre></div></p>
 <p>There are two other possible options which are defaulted as follows:</p>
 <div class="highlight"><pre><span></span><code>IXP_IRRDB_MIN_V4_SUBNET_SIZE=24
 IXP_IRRDB_MIN_V6_SUBNET_SIZE=48

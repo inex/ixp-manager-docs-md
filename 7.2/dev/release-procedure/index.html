@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -2711,6 +2711,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Procedure
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2727,6 +2745,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#branch-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branch Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-procedure_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release Procedure
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2844,6 +2903,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#branch-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branch Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-procedure_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release Procedure
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2863,19 +2952,60 @@
 
 
 <h1 id="release-procedure">Release Procedure<a class="headerlink" href="#release-procedure" title="Permanent link"></a></h1>
-<p><strong>DRAFT:</strong> in advance of the v4.8.0 release, I am gathering some notes here towards writing for formal release procedure for new minor versions of IXP Manager.</p>
+<h2 id="branch-overview">Branch Overview<a class="headerlink" href="#branch-overview" title="Permanent link"></a></h2>
+<p>There are typically three types of branches on <a href="https://github.com/inex/IXP-Manager/branches">IXP Manager's GitHub repository</a>:</p>
 <ol>
-<li>Create a release branch - e.g. <code>release-v5</code>.</li>
-<li>Ensure third party libraries have been updated.</li>
-<li>Ensure the <code>.env.example</code> has been updated with new options and comments.</li>
-<li>Ensure completed release notes on GitHub.</li>
-<li>Update the IXP Manager installation script(s) to reference the new <strong>branch</strong> of IXP Manager.</li>
-<li>Update the Docker files to install the new version of IXP Manager.</li>
-<li>Update any necessary documentation on https://docs.ixpmanager.org/</li>
-<li>Tag the GitHub release.</li>
-<li>Ensure proxies match entities.</li>
-<li>Ensure production npm run.</li>
-<li>Release announcement.</li>
+<li>The <code>main</code> branch is where new features, improvements and bug fixes are staged before release. These will not necessary have gone through our formal pre-release testing (unit tests, static code analysis, etc.), and so should not be considered safe for production.</li>
+<li>The <code>release-vX</code> branches are where we stage code for release that is considered safe to <code>git pull</code> on an installation of IXP Manager already running at the most recent release. While we would not ordinarily include database migrations in these 'between release' commits, the standard upgrade process should be followed.</li>
+<li>All other branches are work in progress.</li>
+</ol>
+<h2 id="release-procedure_1">Release Procedure<a class="headerlink" href="#release-procedure_1" title="Permanent link"></a></h2>
+<ol>
+<li>Update the <code>.env.example</code> file with new options and comments.</li>
+<li>Draft release notes on GitHub.</li>
+<li>Ensure all third-party libraries and dependencies have been updated. 
+   <div class="highlight"><pre><span></span><code>composer<span class="w"> </span>update
+</code></pre></div></li>
+<li>Ensure all asset libraries have been updated, and assets have been built for production,
+   <div class="highlight"><pre><span></span><code>npm<span class="w"> </span>update
+npm<span class="w"> </span>run<span class="w"> </span>prod
+</code></pre></div></li>
+<li>Update the IXP Manager automated installation script if necessary.</li>
+<li>Merge <code>main</code> into <code>release-vX</code>:
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>release-vX
+git<span class="w"> </span>rebase/merge<span class="w"> </span>main
+</code></pre></div></li>
+<li>Update any necessary documentation on https://docs.ixpmanager.org/. Also update the current and development tags so that the versioned documenation will default to the new release major.minor if necessary.</li>
+<li>Run the full suite of PHPUnit tests and Pslam static code analysis:
+   <div class="highlight"><pre><span></span><code><span class="c1"># in one tab:</span>
+php<span class="w"> </span>artisan<span class="w"> </span>serve
+
+<span class="c1"># in another:</span>
+./vendor/laravel/dusk/bin/chromedriver-mac-arm<span class="w"> </span>--port<span class="o">=</span><span class="m">9515</span>
+
+<span class="c1"># and then run the tests:</span>
+cp<span class="w"> </span>.env.ci<span class="w"> </span>.env
+cat<span class="w"> </span>data/ci/ci_test_db.sql<span class="w"> </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>ixp_ci
+./vendor/bin/phpunit
+
+<span class="c1"># static code analysis:</span>
+./vendor/bin/psalm<span class="w"> </span>--clear-cache
+./vendor/bin/psalm<span class="w"> </span>--use-baseline<span class="o">=</span>psalm-baseline.xml
+</code></pre></div>
+   If there are any issues, correct them and rerun. Once they run cleanly, copy the output for the release notes.</li>
+<li>Push the release-vX branch to GitHub, and check for any remaining issues on Dependabot. If there are issues, address them.</li>
+<li>Ensure the GitHub Action's runner completes cleanly (GitHub runs of PHPUnit and psalm). If there are issues, address them.</li>
+<li>Update the version details and tag the GitHub release.
+    <div class="highlight"><pre><span></span><code>joe<span class="w"> </span>version.sh
+git<span class="w"> </span>tag<span class="w"> </span>vx.y.z
+git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s1">&#39;Tagging release vx.y.z&#39;</span>
+git<span class="w"> </span>push
+git<span class="w"> </span>push<span class="w"> </span>--tags
+</code></pre></div></li>
+<li>Update the draft release notes to reference the tag.</li>
+<li>Complete internal INEX change management procedures to approve the new release.</li>
+<li>Publish the new release on GitHub.</li>
+<li>Create two release announcements, one for the ixpmanager-announce mailing list and one for the discussion list.</li>
 </ol>
 
 
@@ -2897,7 +3027,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 11:09:48 UTC">June 27, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 12, 2026 08:44:02 UTC">May 12, 2026</span>
   </span>
 
     

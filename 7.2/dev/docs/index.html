@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -3012,17 +3012,17 @@ python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </
 <h2 id="deploying-to-live-site">Deploying to Live Site<a class="headerlink" href="#deploying-to-live-site" title="Permanent link"></a></h2>
 <p>Since September 2024, we now use <a href="https://www.barryodonovan.com/2024/09/21/adding-versioning-to-an-existing-mkdocs-site">documentation versioning</a> and so you should only be pushing to the latest <em>major.minor</em> release of the dev <em>major.minor</em> version. </p>
 <p><strong>Never deploy to historical versions!</strong></p>
-<p>As an example, as the time of writing, 7.0.x is the latest release and 7.1 is in development. We did <strong>our final</strong> push to 7.0 via:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">PATH</span><span class="o">=</span>./venv/bin:<span class="nv">$PATH</span><span class="w"> </span>./venv/bin/mike<span class="w"> </span>deploy<span class="w"> </span>--push<span class="w"> </span>--update-aliases<span class="w"> </span><span class="m">7</span>.0<span class="w"> </span>latest
-</code></pre></div>
-<p>And all new documentation will be pushed to dev via:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">PATH</span><span class="o">=</span>./venv/bin:<span class="nv">$PATH</span><span class="w"> </span>./venv/bin/mike<span class="w"> </span>deploy<span class="w"> </span>--push<span class="w"> </span>--update-aliases<span class="w"> </span><span class="m">7</span>.1<span class="w"> </span>dev
-</code></pre></div>
-<p>Once 7.2 is released, we will push a final update to 7.1 updating it to latest:</p>
+<p>As an example, as the time of writing, 7.1.x is the latest release and 7.2 is in development. We did <strong>our final</strong> push to 7.1 via:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">PATH</span><span class="o">=</span>./venv/bin:<span class="nv">$PATH</span><span class="w"> </span>./venv/bin/mike<span class="w"> </span>deploy<span class="w"> </span>--push<span class="w"> </span>--update-aliases<span class="w"> </span><span class="m">7</span>.1<span class="w"> </span>latest
 </code></pre></div>
 <p>And all new documentation will be pushed to dev via:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">PATH</span><span class="o">=</span>./venv/bin:<span class="nv">$PATH</span><span class="w"> </span>./venv/bin/mike<span class="w"> </span>deploy<span class="w"> </span>--push<span class="w"> </span>--update-aliases<span class="w"> </span><span class="m">7</span>.2<span class="w"> </span>dev
+</code></pre></div>
+<p>Once 7.2 is released, we will push a final update to 7.2 updating it to latest:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">PATH</span><span class="o">=</span>./venv/bin:<span class="nv">$PATH</span><span class="w"> </span>./venv/bin/mike<span class="w"> </span>deploy<span class="w"> </span>--push<span class="w"> </span>--update-aliases<span class="w"> </span><span class="m">7</span>.2<span class="w"> </span>latest
+</code></pre></div>
+<p>And all new documentation will be pushed to dev via:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">PATH</span><span class="o">=</span>./venv/bin:<span class="nv">$PATH</span><span class="w"> </span>./venv/bin/mike<span class="w"> </span>deploy<span class="w"> </span>--push<span class="w"> </span>--update-aliases<span class="w"> </span><span class="m">7</span>.3<span class="w"> </span>dev
 </code></pre></div>
 <blockquote>
 <p>Note that <code>PATH=./venv/bin:$PATH</code> is used as <code>mike</code> in turn calls <code>mkdocs</code> which is in this path.</p>
