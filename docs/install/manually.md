@@ -204,10 +204,10 @@ Here is a sample virtual hosts file for IXP Manager (replace `{$IXPROOT}` as app
 </VirtualHost>
 ```
 
-You also need to enable rewrite:
+You also need to enable the `rewrite` and `headers` modules:
 
 ```sh
-a2enmod rewrite
+a2enmod rewrite headers
 service apache2 restart
 ```
 
