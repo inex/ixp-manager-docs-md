@@ -188,6 +188,7 @@ Here is a sample virtual hosts file for IXP Manager (replace `{$IXPROOT}` as app
     ServerAdmin webmaster@localhost
     DocumentRoot ${IXPROOT}/public
     <Directory ${IXPROOT}/public>
+        Header Set X-Frame-Options "DENY"
         Options FollowSymLinks
         AllowOverride None
         Require all granted
