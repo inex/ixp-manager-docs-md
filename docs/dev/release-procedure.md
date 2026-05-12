@@ -22,8 +22,12 @@ There are typically three types of branches on [IXP Manager's GitHub repository]
    npm update
    npm run prod
    ```
-5. Push these changes to GitHub, and check for any remaining issues on Dependabot. If there are issues, address them.
-6. Update the IXP Manager automated installation script if necessary.
+5. Update the IXP Manager automated installation script if necessary.
+6. Merge `main` into `release-vX`:
+   ```sh
+   git checkout release-vX
+   git rebase/merge main
+   ```
 7. Update any necessary documentation on https://docs.ixpmanager.org/. Also update the current and development tags so that the versioned documenation will default to the new release major.minor if necessary.
 8. Run the full suite of PHPUnit tests and Pslam static code analysis:
    ```sh
@@ -43,15 +47,17 @@ There are typically three types of branches on [IXP Manager's GitHub repository]
    ./vendor/bin/psalm --use-baseline=psalm-baseline.xml
    ```
    If there are any issues, correct them and rerun. Once they run cleanly, copy the output for the release notes.
-9. Update the version details and tag the GitHub release.
-   ```sh
-   joe version.sh
-   git tag vx.y.z
-   git commit -am 'Tagging release vx.y.z'
-   git push
-   git push --tags
-   ```
-10. Update the draft release notes to reference the tag.
-11. Complete internal INEX change management procedures to approve the new release.
-12. Publish the new release on GitHub.
-13. Create two release announcements, one for the ixpmanager-announce mailing list and one for the discussion list.
+9. Push the release-vX branch to GitHub, and check for any remaining issues on Dependabot. If there are issues, address them.
+10. Ensure the GitHub Action's runner completes cleanly (GitHub runs of PHPUnit and psalm). If there are issues, address them.
+11. Update the version details and tag the GitHub release.
+    ```sh
+    joe version.sh
+    git tag vx.y.z
+    git commit -am 'Tagging release vx.y.z'
+    git push
+    git push --tags
+    ```
+12. Update the draft release notes to reference the tag.
+13. Complete internal INEX change management procedures to approve the new release.
+14. Publish the new release on GitHub.
+15. Create two release announcements, one for the ixpmanager-announce mailing list and one for the discussion list.
