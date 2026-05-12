@@ -1,6 +1,6 @@
 # Documentation
 
-We use [GitHub Pages](http://docs.ixpmanager.org/) with [MkDocs](http://www.mkdocs.org/) to build the documentation and, since v7, the [Pythin utility 'mike'](https://github.com/jimporter/mike) to deploy versioned documentation for each minor release of IXP Manager.
+We use [GitHub Pages](http://docs.ixpmanager.org/) with [MkDocs](http://www.mkdocs.org/) to build the documentation and, since v7, the [Python utility 'mike'](https://github.com/jimporter/mike) to deploy versioned documentation for each minor release of IXP Manager.
 
 Both the site and the content are hosted on [GitHub](https://github.com/inex/ixp-manager-docs-md).
 
@@ -92,7 +92,7 @@ PATH=./venv/bin:$PATH ./venv/bin/mike deploy --push --update-aliases 7.3 dev
 
 You must be an authorised user for this but we **welcome pull requests against the documentation repository!**
 
-**Do not forget to push your changes to GutHub** (if you have push permissions):
+**Do not forget to push your changes to GitHub** (if you have push permissions):
 
 ```sh
 git add .

@@ -65,7 +65,7 @@ The general process is:
 
     ```sh
     # This assumes composer is installed globally.
-    # (Typical for IXP Manager on Ubtuntu 20.04):
+    # (Typical for IXP Manager on Ubuntu 20.04):
     sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} \
         && composer install --no-dev --prefer-dist"
 

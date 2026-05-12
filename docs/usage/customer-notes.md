@@ -28,7 +28,7 @@ The next image shows the dialog for adding a customer note.
 
 ![Customer Notes Add](img/customer-notes-add.png)
 
-By default, notes are private and you are required to check the *Makee note visible to customer* to make it a public note.
+By default, notes are private and you are required to check the *Make note visible to customer* to make it a public note.
 
 The *Preview* table allows you to see what the note will look like when formatted via Markdown:
 

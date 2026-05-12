@@ -131,7 +131,7 @@ Both `Description` and `MTU` are informational.
 
 ### Physical Interfaces
 
-You can add additional physical interfaces to a connection / virtual interface. This effectivily means you are creating a LAG. The form for adding additional physical interfaces is identical to that in the wizard.
+You can add additional physical interfaces to a connection / virtual interface. This effectively means you are creating a LAG. The form for adding additional physical interfaces is identical to that in the wizard.
 
 ### VLAN Interfaces
 
@@ -153,7 +153,7 @@ In cases where the IXP provides subrate connectivity, the declared port speed at
 * Speed reported on various member screens as the rate limited speed (and sometimes, where space / appropriate) as x / y and also GUI labels to make it clear when a port is rate limited.
 * IX-F Member Export now reports rate_limit speed and adds an IXP Manager specific field called if_phys_speed to show the physical port speed.
 * The switch configuration viewer (e.g. INEX's one also updated to support this.
-* Port utilisation updated to be congnisant of this.
+* Port utilisation updated to be cognisant of this.
 * Switch provisioner yaml/json output now has rate_limit for peering ports, null means not in use.
 * MRTG configuration has not been updated as the MRTG config uses the detected speed from SNMP. We currently do not see any value in swapping this for the rate limited speed as rate limiters can be buggy / misconfigured / etc and we'll want to see that traffic.
 * The dashboard statistics also reflect this and include a new section at the end which shows how partial ports were accounted for.

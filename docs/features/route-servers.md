@@ -113,7 +113,7 @@ For a route server to be polled for a customer by this tool, the following condi
 2. only enabled IP protocols are queried for a vlan interface;
 3. the router server must be allocated to the same vlan and have a instance for the IP protocol;
 4. the route server cannot be marked as quarantine;
-5. the route server muct have an API configured;
+5. the route server must have an API configured;
 6. the route server must be *a route server* (remember you can provision collectors and AS112 routers via IXP Manager also);
 7. the route server must have large communities enabled;
 

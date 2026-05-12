@@ -22,7 +22,7 @@ From this, please note the following terminology, relationships and abbreviation
 
 * a single Core Bundle (CB) entity (row in the database) represents the *parent* for all elements for the CB.
 * when we talk about CBs, we talk about *Side A* and *Side B* - these are essentially the switches on each end/side of the CB.
-* each CB is make up of one or more Core Links (CL). A CL is the database glue that ultimatelty connects/pairs the Switch Ports (SP) at each end.
+* each CB is make up of one or more Core Links (CL). A CL is the database glue that ultimately connects/pairs the Switch Ports (SP) at each end.
 * each CL has two Core Interfaces (CI). The CIs are syntactic sugar which allow us to connect into our standard Virtual Interface (VI) / Physical Interface (PI) / Switch Port (SP) schema. In a CL, the CI representing the a-side has a one-to-one relationship with a PI on the a-side and similarly for the CI representing the b-side.
 * the PIs on each side are part of a VI. We thus inherit the same VI characteristics as customer interfaces such as whether LACP is enabled, MTU, LAG name and number, etc.
 * VIs require a customer to *own* them. The customer (which is the same on both sides) is just the internal IXP Manager customer representing the IXP.

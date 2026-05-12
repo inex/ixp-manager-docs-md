@@ -1,6 +1,6 @@
 # Backend: Smokeping
 
-Latency graphs are a tool for monitoring latency / packet loss to the routers of IXP partipants and they can be an invaluable asset when diagnosing many IXP issues.
+Latency graphs are a tool for monitoring latency / packet loss to the routers of IXP participants and they can be an invaluable asset when diagnosing many IXP issues.
 
 **While they should never be used as a tool for monitoring IXP latency or packet loss** (as routers de-prioritise ICMP requests and/or may not have a suitably powerful management plane), they can act as an extremely useful tool for identifying and diagnosing customer / member issues. **What we really look for here is recent changes over time.**
 

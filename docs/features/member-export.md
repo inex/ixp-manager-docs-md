@@ -12,7 +12,7 @@ This *Member Export* feature is modeled after the [static content](static-conten
 
 In IXP Manager, there are four types of users as described [in the users page](../usage/users.md). Member export templates can be added which requires a minimum user privilege to access (e.g. `priv == 0` would be publicly accessible through to `priv == 3` which would require a superadmin).
 
-To create your own member export templte, you should first [set up skinning](skinning.md) for your installation. Let's assume you called your skin `example` in the following.
+To create your own member export template, you should first [set up skinning](skinning.md) for your installation. Let's assume you called your skin `example` in the following.
 
 To create a publicly accessible member export page called `lonap`, you would first create a directory structure in your skin as follows:
 

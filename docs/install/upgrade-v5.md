@@ -62,14 +62,14 @@ The general process is:
 
     ```sh
     # This assumes composer is in the IXP Manager install directory.
-    # (Typical for IXP Manager on Ubtuntu 18.04):
+    # (Typical for IXP Manager on Ubuntu 18.04):
     sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} \
         && php ./composer.phar install --no-dev --prefer-dist"
 
     # OR:
 
     # This assumes composer is installed globally.
-    # (Typical for IXP Manager on Ubtuntu 20.04):
+    # (Typical for IXP Manager on Ubuntu 20.04):
     sudo -u $MY_WWW_USER bash -c "HOME=${IXPROOT}/storage && cd ${IXPROOT} \
         && composer install --no-dev --prefer-dist"
 

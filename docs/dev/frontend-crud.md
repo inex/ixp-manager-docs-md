@@ -1,6 +1,6 @@
 # Frontend CRUD
 
-**IXP Manager**, like many applications, has a lot of tables that need basic CRUD access: **C**eate, **R**ead, **U**pdate and **D**elete (plus list and view). In **IXP Manager** we have created a scaffolding framework in Laravel to allow us to repidly deploy CRUD interfaces.
+**IXP Manager**, like many applications, has a lot of tables that need basic CRUD access: **C**reate, **R**ead, **U**pdate and **D**elete (plus list and view). In **IXP Manager** we have created a scaffolding framework in Laravel to allow us to rapidly deploy CRUD interfaces.
 
 ## Configuration
 
@@ -156,7 +156,7 @@ If you want to completely change the routes, just override the `public static fu
 
 ### View Templates
 
-All the common view templates for thss functionality can be found in `resources/views/frontend` directory. You can override any of these with your own by creating a template of the same name and placing it under `resources/views/xxx` (or `resources/skins/skinname/xxx`) where `xxx` is the `feParams['viewFolderName']`.
+All the common view templates for this functionality can be found in `resources/views/frontend` directory. You can override any of these with your own by creating a template of the same name and placing it under `resources/views/xxx` (or `resources/skins/skinname/xxx`) where `xxx` is the `feParams['viewFolderName']`.
 
 
 ### Read Only
@@ -206,7 +206,7 @@ protected function listGetData( $id = null ) {
 }
 ```
 
-The table rows returned in the above array must be associatative arrays with keys matching the `feParams['listColumns']` definition.
+The table rows returned in the above array must be associative arrays with keys matching the `feParams['listColumns']` definition.
 
 The list view template optionally includes other templates you can define (where `xxx` below is the `feParams['viewFolderName']`):
 
@@ -228,7 +228,7 @@ The view action is for showing a single database row identified by the id passed
 
 The only requirement of the view action is that the abstract function `listGetData( $id = null )` as used by the list action has been correctly implemented to take an optional ID and return an array with a single element matching that ID.
 
-The table rows returned in the above array must be associatative arrays with keys matching the `feParams['viewColumns']` definition.
+The table rows returned in the above array must be associative arrays with keys matching the `feParams['viewColumns']` definition.
 
 The list view template optionally includes other templates you can define (where `xxx` below is the `feParams['viewFolderName']`):
 
