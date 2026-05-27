@@ -135,7 +135,7 @@ TMPCONF=/etc/mrtg.cfg.$$
 # Download the configuration via the API. Be sure to replace 'your_api_key'
 # with your actual API key (see API documentation).
 curl --fail -s -H "X-IXP-Manager-API-Key: your_api_key" \
-    https://ixp.example.com/api/v4/grapher/mrtg-config >${TMPCONF}
+    https://ixp.example.com/admin/api/v4/grapher/mrtg-config >${TMPCONF}
 
 if [[ $? -ne 0 ]]; then
     echo "WARNING: COULD NOT FETCH UP TO DATE MRTG CONFIGURATION!"

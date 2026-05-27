@@ -22,7 +22,7 @@ Note that the API endpoints below can be tested in your browser by directly acce
 You can use the **IXP Manager** API to get all ARPA entries for a given VLAN and protocol as a JSON object using the following endpoint format:
 
 ```
-https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}
+https://ixp.example.com/admin/api/v4/dns/arpa/{vlanid}/{protocol}
 ```
 
 where:
@@ -61,7 +61,7 @@ When scripting, we would normally pull the JSON object using something like:
 #! /usr/bin/env bash
 
 KEY="your-ixp-manager-api-key"
-URL="https://ixp.example.com/api/v4/dns/arpa"
+URL="https://ixp.example.com/admin/api/v4/dns/arpa"
 VLANIDS="1 2"
 PROTOCOLS="4 6"
 
@@ -94,7 +94,7 @@ Rather than writing your own scripts to consume the JSON object as above, it may
 You can use the **IXP Manager** API to get all ARPA entries for a given VLAN and protocol as plain text based on a template by using the following API endpoint:
 
 ```
-https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}/{template}
+https://ixp.example.com/admin/api/v4/dns/arpa/{vlanid}/{protocol}/{template}
 ```
 
 where:

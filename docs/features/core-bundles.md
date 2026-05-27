@@ -132,7 +132,7 @@ You'll note:
 There is an [API endpoint](api.md) for superadmins to get the status of core bundles:
 
 ```
-/api/v4/switch/{switchid}/core-bundles-status
+/admin/api/v4/switch/{switchid}/core-bundles-status
 ```
 
 where `{switchid}` is the database ID of the switch.
@@ -214,7 +214,7 @@ PATH=/opt/local/bin:${PATH}
 etcdir=/opt/local/etc
 
 APIKEY=xxxx
-APIURL=https://ixpmanager.example.com/api/v4
+APIURL=https://ixpmanager.example.com/admin/api/v4
 
 curl -s -X GET -H "X-IXP-Manager-API-Key: ${APIKEY}" \
     ${APIURL}/provisioner/corebundle/list.yaml > ${etcdir}/ixp-corebundles.yaml

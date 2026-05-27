@@ -15,9 +15,9 @@ TACACS is used in most IXPs to manage access to switching and routing devices:
 You can use the **IXP Manager** API to get the user section of a TACACS file using the following endpoint formats (both GET and POST requests work):
 
 ```
-https://ixp.example.com/api/v4/user/formatted
-https://ixp.example.com/api/v4/user/formatted/{priv}
-https://ixp.example.com/api/v4/user/formatted/{priv}/{template}
+https://ixp.example.com/admin/api/v4/user/formatted
+https://ixp.example.com/admin/api/v4/user/formatted/{priv}
+https://ixp.example.com/admin/api/v4/user/formatted/{priv}/{template}
 ```
 
 where:
@@ -50,7 +50,7 @@ An example of changing these parameters is:
 curl --data "users=bob,alice&group=god&bcrypt=2a" -X POST \
     -H "Content-Type: application/x-www-form-urlencoded" \
     -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
-    https://ixpexample.com/api/v4/user/formatted
+    https://ixpexample.com/admin/api/v4/user/formatted
 ```
 
 

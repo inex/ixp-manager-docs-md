@@ -45,7 +45,7 @@ The INEX sample templates we reference below will get their dynamic information 
 ### Base Switch Configuration
 
 * **Sample Arista template:** [configure_ixp_specific_base_config.j2](https://github.com/inex/ixp-manager-provisioning/blob/master/napalm/templates/arista-eos/configure_ixp_specific_base_config.j2.dist).
-* **API endpoint:** `/api/v4/provisioner/switch/switch-name/{$switchname}.yaml`
+* **API endpoint:** `/admin/api/v4/provisioner/switch/switch-name/{$switchname}.yaml`
 
 **Sample output:**
 
@@ -83,7 +83,7 @@ As well as the base configuration shown the the template about, this information
 
 
 * **Sample Arista template:** [configure_core_interfaces.j2](https://github.com/inex/ixp-manager-provisioning/blob/master/napalm/templates/arista-eos/configure_core_interfaces.j2).
-* **API endpoint:** `/api/v4/provisioner/layer3interfaces/switch-name/{$switchname}.yaml`
+* **API endpoint:** `/admin/api/v4/provisioner/layer3interfaces/switch-name/{$switchname}.yaml`
 
 **Sample output:**
 
@@ -124,7 +124,7 @@ This API is used to set up the basic layer3 interface elements that are required
 
 
 * **Sample Arista template:** [configure_vxlan.j2](https://github.com/inex/ixp-manager-provisioning/blob/master/napalm/templates/arista-eos/configure_vxlan.j2).
-* **API endpoint:** `/api/v4/provisioner/vlans/switch-name/{$switchname}.yaml`
+* **API endpoint:** `/admin/api/v4/provisioner/vlans/switch-name/{$switchname}.yaml`
 
 **Sample output:**
 
@@ -158,7 +158,7 @@ This information comes from the VLAN configuration on IXP Manager. The INEX samp
 
 
 * **Sample Arista template:** [configure_cust_interfaces.j2](https://github.com/inex/ixp-manager-provisioning/blob/master/napalm/templates/arista-eos/configure_cust_interfaces.j2).
-* **API endpoint:** `/api/v4/provisioner/layer2interfaces/switch-name/{$switchname}.yaml`
+* **API endpoint:** `/admin/api/v4/provisioner/layer2interfaces/switch-name/{$switchname}.yaml`
 
 **Sample output:**
 
@@ -304,7 +304,7 @@ The data comes from two sources on IXP Manager:
 
 
 * **Sample Arista template:** [configure_bgp.j2](https://github.com/inex/ixp-manager-provisioning/blob/master/napalm/templates/arista-eos/configure_bgp.j2).
-* **API endpoint:** `/api/v4/provisioner/routing/switch-name/{$switchname}.yaml`
+* **API endpoint:** `/admin/api/v4/provisioner/routing/switch-name/{$switchname}.yaml`
 
 **Sample output:**
 

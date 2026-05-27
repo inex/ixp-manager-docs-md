@@ -24,7 +24,7 @@ When generating a list of targets per VLAN and protocol, the API call to IXP Man
 You can use the **IXP Manager** API to get the Smokeping target configurations for a given VLAN and protocol using the following endpoint format (both GET and POST requests work):
 
 ```
-https://ixp.example.com/api/v4/grapher/config?backend=smokeping&vlanid=10&protocol=ipv4
+https://ixp.example.com/admin/api/v4/grapher/config?backend=smokeping&vlanid=10&protocol=ipv4
 ```
 
 In the above, the parameters are:
@@ -58,7 +58,7 @@ An example of changing these parameters is:
 curl --data "backend=smokeping&protocol=ipv4&vlanid=10&level=%2B%2B&probe=MyPing" -X POST \
     -H "Content-Type: application/x-www-form-urlencoded" \
     -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
-    https://ixpexample.com/api/v4/grapher/config
+    https://ixpexample.com/admin/api/v4/grapher/config
 ```
 
 
@@ -98,7 +98,7 @@ To use this script yourself, you just need to copy it to the appropriate Smokepi
 
 ```bash
 KEY="my-ixp-manager-api-key"
-URL="https://ixp.example.com/api/v4/grapher/config?backend=smokeping"
+URL="https://ixp.example.com/admin/api/v4/grapher/config?backend=smokeping"
 ETCPATH="/etc/smokeping"
 SMOKEPING="/usr/bin/smokeping"
 SMOKEPING_RELOAD="/etc/rc.d/smokeping reload"

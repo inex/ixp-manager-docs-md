@@ -99,7 +99,7 @@ Use the initialisation function for new IXP Manager users (or initial set up of 
 /path/to/mailman/bin/list_members members >/tmp/ml-members.txt
 curl -f --data-urlencode addresses@/tmp/ml-members.txt \
     -H "X-IXP-Manager-API-Key: $KEY" -X POST
-    "https://ixp.example.co/api/v4/mailing-list/init/members"
+    "https://ixp.example.com/admin/api/v4/mailing-list/init/members"
 rm /tmp/ml-members.txt
 ```
 
@@ -107,7 +107,7 @@ Pipe all subscribed users to the `add_members` Mailman script:
 
 ```sh
 curl -f -H "X-IXP-Manager-API-Key: $KEY" -X GET \
-    "https://ixp.example.co/api/v4/mailing-list/subscribers/members" | \
+    "https://ixp.example.com/admin/api/v4/mailing-list/subscribers/members" | \
     /path/to/mailman/bin/add_members -r - -w n -a n members >/dev/null
 ```
 
@@ -115,7 +115,7 @@ Pipe all users who are unsubscribed to the `remove_members` Mailman script:
 
 ```sh
 curl -f -H "X-IXP-Manager-API-Key: $KEY" -X GET \
-    "https://ixp.example.co/api/v4/mailing-list/unsubscribed/members" | \
+    "https://ixp.example.com/admin/api/v4/mailing-list/unsubscribed/members" | \
     /path/to/mailman/bin/remove_members -f - -n -N members >/dev/null
 ```
 

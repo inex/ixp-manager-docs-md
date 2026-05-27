@@ -38,7 +38,7 @@ These hostgroups are very useful to single out issues and for post-maintenance c
 You can use the **IXP Manager** API to get the Nagios configuration for a given VLAN and protocol using the following endpoint format (both GET and POST requests work):
 
 ```
-https://ixp.example.com/api/v4/nagios/customers/{vlanid}/{protocol}
+https://ixp.example.com/admin/api/v4/nagios/customers/{vlanid}/{protocol}
 ```
 
 where:
@@ -94,7 +94,7 @@ An example of changing two of these parameters is:
 curl --data "host_definition=my-host-def&service_definition=my-service-def" -X POST \
     -H "Content-Type: application/x-www-form-urlencoded" \
     -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
-    https://ixpexample.com/api/v4/nagios/customers/2/4
+    https://ixpexample.com/admin/api/v4/nagios/customers/2/4
 ```
 
 An example of the three objects that INEX use for this are:
@@ -159,7 +159,7 @@ You can now edit this template as required. The only constraint on the template 
 You can then elect to use this template by tacking the name onto the API request:
 
 ```
-https://ixp.example.com/api/v4/nagios/customers/{vlanid}/{protocol}/{template}
+https://ixp.example.com/admin/api/v4/nagios/customers/{vlanid}/{protocol}/{template}
 ```
 
 where, in this example, `{template}` would be: `mytemplate1`.
@@ -199,7 +199,7 @@ These hostgroups are very useful when defining service checks.
 You can use the **IXP Manager** API to get the Nagios configuration for a given infrastructure using the following endpoint format (both GET and POST requests work):
 
 ```
-https://ixp.example.com/api/v4/nagios/switches/{infraid}
+https://ixp.example.com/admin/api/v4/nagios/switches/{infraid}
 ```
 
 where:
@@ -219,7 +219,7 @@ cp resources/views/api/v4/nagios/switches/default.foil.php resources/skins/myski
 You can then elect to use this template by tacking the name onto the API request:
 
 ```
-https://ixp.example.com/api/v4/nagios/switches/{infraid}/{template}
+https://ixp.example.com/admin/api/v4/nagios/switches/{infraid}/{template}
 ```
 
 where, in this example, `{template}` would be: `myswtemplate1`.
@@ -230,7 +230,7 @@ You can pass one optional parameter to Nagios via GET/POST which is the host def
 curl --data "host_definition=my-sw-host-def" -X POST \
     -H "Content-Type: application/x-www-form-urlencoded" \
     -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
-    https://ixpexample.com/api/v4/nagios/switches/2
+    https://ixpexample.com/admin/api/v4/nagios/switches/2
 ```
 
 ### Service Checking
@@ -304,10 +304,10 @@ define service     {
 You can use the **IXP Manager** API to get the Nagios configuration for all or a given VLAN using the following endpoint format (both GET and POST requests work):
 
 ```
-https://ixp.example.com/api/v4/nagios/birdseye-daemons
-https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}
-https://ixp.example.com/api/v4/nagios/birdseye-daemons/default/{vlanid}
-https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}/{vlanid}
+https://ixp.example.com/admin/api/v4/nagios/birdseye-daemons
+https://ixp.example.com/admin/api/v4/nagios/birdseye-daemons/{template}
+https://ixp.example.com/admin/api/v4/nagios/birdseye-daemons/default/{vlanid}
+https://ixp.example.com/admin/api/v4/nagios/birdseye-daemons/{template}/{vlanid}
 ```
 
 where:
@@ -329,7 +329,7 @@ cp resources/views/api/v4/nagios/birdseye-daemons/default.foil.php resources/ski
 You can then elect to use this template by tacking the name onto the API request:
 
 ```
-https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}
+https://ixp.example.com/admin/api/v4/nagios/birdseye-daemons/{template}
 ```
 
 where, in this example, `{template}` would be: `mybetemplate1`.
@@ -340,7 +340,7 @@ You can pass two optional parameter to Nagios via GET/POST which is the host and
 curl --data "host_definition=my-be-host-def&service_definition=my-be-srv-def" -X POST \
     -H "Content-Type: application/x-www-form-urlencoded" \
     -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
-    https://ixpexample.com/api/v4/nagios/birdseye-daemons
+    https://ixpexample.com/admin/api/v4/nagios/birdseye-daemons
 ```
 
 The default values for the host and service definitions are `ixp-manager-host-birdseye-daemon` and `ixp-manager-service-birdseye-daemon` respectively.
@@ -418,8 +418,8 @@ The configuration also includes hostgroups for the given VLAN, protocol and type
 You can use the **IXP Manager** API to get the Nagios configuration for a given protocol, VLAN and router type using the following templates:
 
 ```
-https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}
-https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
+https://ixp.example.com/admin/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}
+https://ixp.example.com/admin/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
 ```
 
 where:
@@ -444,7 +444,7 @@ cp resources/views/api/v4/nagios/birdseye-bgp-sessions/default.foil.php resource
 You can then elect to use this template by tacking the name onto the API request:
 
 ```
-https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
+https://ixp.example.com/admin/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
 ```
 
 where, in this example, `{template}` would be: `myrstemplate1`.
@@ -455,7 +455,7 @@ You can pass one optional parameter to Nagios via GET/POST which is the service 
 curl --data "service_definition=my-rs-srv-def" -X POST \
     -H "Content-Type: application/x-www-form-urlencoded" \
     -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
-    https://ixpexample.com/api/v4/nagios/birdseye-bgpsessions/2/4/1
+    https://ixpexample.com/admin/api/v4/nagios/birdseye-bgpsessions/2/4/1
 ```
 
 The default values for the service definition is `ixp-manager-member-bgp-session-service` respectively.

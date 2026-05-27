@@ -42,8 +42,8 @@ When adding a router, you give it a *handle*. For example: `rc1-lan1-ipv4` which
 # This is generated in IXP Manager via the top right menu: *My Account -> API Keys*
 KEY="your-admin-ixp-manager-api-key"
 
-# The base URL of your IXP Manager install plus: 'api/v4/router/gen-config'
-URL="https://ixp.example.com/api/v4/router/gen-config"
+# The base URL of your IXP Manager install plus: 'admin/api/v4/router/gen-config'
+URL="https://ixp.example.com/admin/api/v4/router/gen-config"
 
 # The handle is as described above:
 HANDLE="rc1-lan1-ipv4"
@@ -70,7 +70,7 @@ We also provide sample scripts for automating the re-configuration of these serv
 
 * [api-reconfigure-example-birdv2.sh](https://github.com/inex/IXP-Manager/tree/main/tools/runtime/router-reconfigure-scripts/)
 
-This script has been written defensively such that if there is any issue getting the configuring or validating the configuration then the running router instance should be unaffected This has worked in practice at INEX when IXP Manager was under maintenance, when there were management connectivity issues and when there were database issues. They also use the *updated API* (see below) to mark when the router configuration update script ran successfully.
+This script has been written defensively such that if there is any issue getting the configuring or validating the configuration then the running router instance should be unaffected. This has worked in practice at INEX when IXP Manager was under maintenance, when there were management connectivity issues and when there were database issues. They also use the *updated API* (see below) to mark when the router configuration update script ran successfully.
 
 When you download this script, you will need to edit three parameters at the top for each server you deploy it on:
 
@@ -109,7 +109,7 @@ This script works as follows:
 
 1. Obtain a local script lock preventing more than one update script to execute at a time on the server (e.g., if the update is long-running, cron cannot start additional updates).
 2. Obtain a configuration lock from IXP Manager.
-    * This involves making an API call to `/api/v4/router/get-update-lock/$handle`, which IXP Manager then processes and returns HTTP code 200 if the lock is acquired and the update can proceed.
+    * This involves making an API call to `/admin/api/v4/router/get-update-lock/$handle`, which IXP Manager then processes and returns HTTP code 200 if the lock is acquired and the update can proceed.
     * A lock is not granted if the router is paused for updates within IXP Manager (new per-router option in the router's dropdown menu on the router list page).
     * A lock is not granted if another process has already acquired a configuration lock for this router.
     * A lock is also not granted if the router's partner is locked. ***This significant resiliency mechanism prevents two paired route servers from being updated in parallel.***
@@ -124,10 +124,10 @@ This script works as follows:
     * If there are differences, the old configuration is backed up, and the BIRD daemon will be reloaded.
     * If no differences exist, the BIRD daemon will not be reloaded.
 6. A check is performed to ensure the BIRD daemon is actually running and, if not, it is started.
-7. A final API call is made to IXP Manager via `/api/v4/router/updated/$handle` to release the lock and update the *last updated* timestamp.
+7. A final API call is made to IXP Manager via `/admin/api/v4/router/updated/$handle` to release the lock and update the *last updated* timestamp.
     * A significant improvement here is the use of a until api-succeeds, sleep 60, retry construct to ensure the lock is released even when there are transitive network issues / IXP Manager maintenance modes / server maintenance, etc.
 
-For any check in (4) that fails but does not indicate a significant issue, an API call is made to IXP Manager via `/api/v4/router/release-update-lock/$handle` to release the lock, but not mark the router as updated.
+For any check in (4) that fails but does not indicate a significant issue, an API call is made to IXP Manager via `/admin/api/v4/router/release-update-lock/$handle` to release the lock, but not mark the router as updated.
 
 Adding step (5) above (only reload on changes) now allows the update script to be safely run as frequently as every few minutes, which is necessary for the UI-based community filtering to be effective.
 
@@ -146,7 +146,7 @@ The API call to update the *last updated* field to *now* is a POST as follows:
 
 ```
 curl -s -X POST -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
-    https://ixp.example.com/api/v4/router/updated/{handle}
+    https://ixp.example.com/admin/api/v4/router/updated/{handle}
 ```
 
 where `{handle}` should be replaced with the route handle as described above.
@@ -155,7 +155,7 @@ The result is a JSON object with the datetime as set and is equivalent to the re
 
 ```
 curl -s -X GET -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
-    https://ixp.example.com/api/v4/router/updated/{handle}
+    https://ixp.example.com/admin/api/v4/router/updated/{handle}
 
 {"last_updated":"2017-05-21T19:14:43+00:00","last_updated_unix":1495394083}
 ```
@@ -164,7 +164,7 @@ There are two useful additional API endpoints. To get the last updated time of *
 
 ```
 curl -s -X GET -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
-    https://ixp.example.com/api/v4/router/updated
+    https://ixp.example.com/admin/api/v4/router/updated
 
 {"handle1":{"last_updated":"2017-05-21T19:14:43+00:00","last_updated_unix":1495394083},
  "handle2":{"last_updated":null,"last_updated_unix":null},
@@ -177,7 +177,7 @@ Lastly, you can request the last updated time of routers where that time exceeds
 
 ```
 curl -s -X GET -H "X-IXP-Manager-API-Key: my-ixp-manager-api-key" \
-    https://ixp.example.com/api/v4/router/updated-before/86400
+    https://ixp.example.com/admin/api/v4/router/updated-before/86400
 
 []
 ```
