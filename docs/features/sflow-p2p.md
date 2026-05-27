@@ -46,7 +46,7 @@ The following sflow parameters must be set in the `<ixp>` section:
 * `sflowtool_opts`: command-line options to pass to sflowtool
 * `sflow_rrddir`: the directory where all the sflow .rrd files will be stored.
 * `apikey`: a valid API key.  Instructions for configuring this can be found in the [API configuration](api.md) documentation.
-* `apibaseurl`: the base URL of the IXP Manager API.  E.g. if you log into IXP Manager using `https://ixp.example.com/`, then `apibaseurl` will be `https://ixp.example.com/api/v4`.
+* `apibaseurl`: the base URL of the IXP Manager API.  E.g. if you log into IXP Manager using `https://ixp.example.com/`, then `apibaseurl` will be `https://ixp.example.com/admin/api/v4`.
 * `macdbtype`: `configured|discovered` - specifies whether the sflow p2p graphing system should pull MAC address information from the Configured MAC address database or the Discovered MAC address database.  By default, it uses the Discovered MAC address database.  If you wish to use the Configured MAC address database, then this should be set to `configured`.
 
 Note that the `<sql>` section of `ixpmanager.conf` will need to be configured either if you are running `update-l2database.pl` or the sflow BGP peering matrix system.  The `sflow-to-rrd-handler` script uses API calls and does not need SQL access.
@@ -69,7 +69,7 @@ An example ixpmanager.conf might look like this:
         sflow_rrddir = /data/ixpmatrix
 
         apikey = APIKeyFromIXPManager
-        apibaseurl = http://www.example.com/ixp/api/v4
+        apibaseurl = http://www.example.com/ixp/admin/api/v4
         macdbtype = configured
 </ixp>
 ```
@@ -165,8 +165,8 @@ The `tools/runtime/sflow/sflow-to-rrd-handler` script from **IXP Manager** refer
 
 As IXP Manager [supports layer2 / MAC addresses](layer2-addresses.md) in two ways (learned versus configured), there are two endpoints (using `https://ixp.example.com` as your IXP Manager installation):
 
-1. Learned: `https://ixp.example.com/api/v4/sflow-db-mapper/learned-macs`
-2. Configured: `https://ixp.example.com/api/v4/sflow-db-mapper/configured-macs`
+1. Learned: `https://ixp.example.com/admin/api/v4/sflow-db-mapper/learned-macs`
+2. Configured: `https://ixp.example.com/admin/api/v4/sflow-db-mapper/configured-macs`
 
 The JSON output is structured as per the following example:
 
