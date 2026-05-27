@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
@@ -3201,7 +3201,7 @@
 </ul>
 <p>These hostgroups are very useful to single out issues and for post-maintenance checks.</p>
 <p>You can use the <strong>IXP Manager</strong> API to get the Nagios configuration for a given VLAN and protocol using the following endpoint format (both GET and POST requests work):</p>
-<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/customers/{vlanid}/{protocol}
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/admin/api/v4/nagios/customers/{vlanid}/{protocol}
 </code></pre></div>
 <p>where:</p>
 <ul>
@@ -3247,7 +3247,7 @@ define service {
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--data<span class="w"> </span><span class="s2">&quot;host_definition=my-host-def&amp;service_definition=my-service-def&quot;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>https://ixpexample.com/api/v4/nagios/customers/2/4
+<span class="w">    </span>https://ixpexample.com/admin/api/v4/nagios/customers/2/4
 </code></pre></div>
 <p>An example of the three objects that INEX use for this are:</p>
 <div class="highlight"><pre><span></span><code>define host {
@@ -3300,7 +3300,7 @@ cp<span class="w"> </span>resources/views/api/v4/nagios/customers/default.foil.p
 </code></pre></div>
 <p>You can now edit this template as required. The only constraint on the template name is it can only contain characters from the classes <code>a-z, 0-9, -</code>. <strong>NB:</strong> do not use uppercase characters.</p>
 <p>You can then elect to use this template by tacking the name onto the API request:</p>
-<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/customers/{vlanid}/{protocol}/{template}
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/admin/api/v4/nagios/customers/{vlanid}/{protocol}/{template}
 </code></pre></div>
 <p>where, in this example, <code>{template}</code> would be: <code>mytemplate1</code>.</p>
 <p><em>As a policy, INEX tends to use the bundled templates and as such they should be fit for general purpose.</em></p>
@@ -3328,7 +3328,7 @@ define host {
 </ul>
 <p>These hostgroups are very useful when defining service checks.</p>
 <p>You can use the <strong>IXP Manager</strong> API to get the Nagios configuration for a given infrastructure using the following endpoint format (both GET and POST requests work):</p>
-<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/switches/{infraid}
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/admin/api/v4/nagios/switches/{infraid}
 </code></pre></div>
 <p>where:</p>
 <ul>
@@ -3341,14 +3341,14 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>resources/skins/myskin/ap
 cp<span class="w"> </span>resources/views/api/v4/nagios/switches/default.foil.php<span class="w"> </span>resources/skins/myskin/api/v4/nagios/switches/myswtemplate1.foil.php
 </code></pre></div>
 <p>You can then elect to use this template by tacking the name onto the API request:</p>
-<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/switches/{infraid}/{template}
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/admin/api/v4/nagios/switches/{infraid}/{template}
 </code></pre></div>
 <p>where, in this example, <code>{template}</code> would be: <code>myswtemplate1</code>.</p>
 <p>You can pass one optional parameter to Nagios via GET/POST which is the host definition to inherit from (see customer reachability testing about for full details and examples):</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--data<span class="w"> </span><span class="s2">&quot;host_definition=my-sw-host-def&quot;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>https://ixpexample.com/api/v4/nagios/switches/2
+<span class="w">    </span>https://ixpexample.com/admin/api/v4/nagios/switches/2
 </code></pre></div>
 <h3 id="service-checking">Service Checking<a class="headerlink" href="#service-checking" title="Permanent link"></a></h3>
 <p>The recommended way to check various services on your production switches is to use the host groups created by the above switch API call. An example of the hostgroups produced include:</p>
@@ -3404,10 +3404,10 @@ define service     {
 }
 </code></pre></div>
 <p>You can use the <strong>IXP Manager</strong> API to get the Nagios configuration for all or a given VLAN using the following endpoint format (both GET and POST requests work):</p>
-<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/birdseye-daemons
-https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}
-https://ixp.example.com/api/v4/nagios/birdseye-daemons/default/{vlanid}
-https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}/{vlanid}
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/admin/api/v4/nagios/birdseye-daemons
+https://ixp.example.com/admin/api/v4/nagios/birdseye-daemons/{template}
+https://ixp.example.com/admin/api/v4/nagios/birdseye-daemons/default/{vlanid}
+https://ixp.example.com/admin/api/v4/nagios/birdseye-daemons/{template}/{vlanid}
 </code></pre></div>
 <p>where:</p>
 <ul>
@@ -3421,14 +3421,14 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>resources/skins/myskin/ap
 cp<span class="w"> </span>resources/views/api/v4/nagios/birdseye-daemons/default.foil.php<span class="w"> </span>resources/skins/myskin/api/v4/nagios/birdseye-daemons/mybetemplate1.foil.php
 </code></pre></div>
 <p>You can then elect to use this template by tacking the name onto the API request:</p>
-<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/birdseye-daemons/{template}
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/admin/api/v4/nagios/birdseye-daemons/{template}
 </code></pre></div>
 <p>where, in this example, <code>{template}</code> would be: <code>mybetemplate1</code>.</p>
 <p>You can pass two optional parameter to Nagios via GET/POST which is the host and service definition to inherit from (see customer reachability testing about for full details and examples):</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--data<span class="w"> </span><span class="s2">&quot;host_definition=my-be-host-def&amp;service_definition=my-be-srv-def&quot;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>https://ixpexample.com/api/v4/nagios/birdseye-daemons
+<span class="w">    </span>https://ixpexample.com/admin/api/v4/nagios/birdseye-daemons
 </code></pre></div>
 <p>The default values for the host and service definitions are <code>ixp-manager-host-birdseye-daemon</code> and <code>ixp-manager-service-birdseye-daemon</code> respectively.</p>
 <h3 id="service-checking_1">Service Checking<a class="headerlink" href="#service-checking_1" title="Permanent link"></a></h3>
@@ -3489,8 +3489,8 @@ define service     {
 <li>all sessions.</li>
 </ul>
 <p>You can use the <strong>IXP Manager</strong> API to get the Nagios configuration for a given protocol, VLAN and router type using the following templates:</p>
-<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}
-https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/admin/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}
+https://ixp.example.com/admin/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
 </code></pre></div>
 <p>where:</p>
 <ul>
@@ -3508,14 +3508,14 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>resources/skins/myskin/ap
 cp<span class="w"> </span>resources/views/api/v4/nagios/birdseye-bgp-sessions/default.foil.php<span class="w"> </span>resources/skins/myskin/api/v4/nagios/birdseye-bgp-sessions/myrstemplate1.foil.php
 </code></pre></div>
 <p>You can then elect to use this template by tacking the name onto the API request:</p>
-<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/admin/api/v4/nagios/birdseye-bgp-sessions/{vlanid}/{protocol}/{type}/{template}
 </code></pre></div>
 <p>where, in this example, <code>{template}</code> would be: <code>myrstemplate1</code>.</p>
 <p>You can pass one optional parameter to Nagios via GET/POST which is the service definition to inherit from (see customer reachability testing about for full details and examples):</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--data<span class="w"> </span><span class="s2">&quot;service_definition=my-rs-srv-def&quot;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-H<span class="w"> </span><span class="s2">&quot;X-IXP-Manager-API-Key: my-ixp-manager-api-key&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>https://ixpexample.com/api/v4/nagios/birdseye-bgpsessions/2/4/1
+<span class="w">    </span>https://ixpexample.com/admin/api/v4/nagios/birdseye-bgpsessions/2/4/1
 </code></pre></div>
 <p>The default values for the service definition is <code>ixp-manager-member-bgp-session-service</code> respectively.</p>
 <h3 id="service-checking_2">Service Checking<a class="headerlink" href="#service-checking_2" title="Permanent link"></a></h3>
@@ -3561,7 +3561,7 @@ define command{
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 26, 2025 10:45:03 UTC">August 26, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 27, 2026 10:14:53 UTC">May 27, 2026</span>
   </span>
 
     

@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
@@ -3023,7 +3023,7 @@
 <p>Note that the API endpoints below can be tested in your browser by directly accessing the URLs <strong>when logged in</strong>. Otherwise, you need an <a href="../../dev/api/">API key</a> when using them in scripts.</p>
 <h2 id="as-json">As JSON<a class="headerlink" href="#as-json" title="Permanent link"></a></h2>
 <p>You can use the <strong>IXP Manager</strong> API to get all ARPA entries for a given VLAN and protocol as a JSON object using the following endpoint format:</p>
-<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/admin/api/v4/dns/arpa/{vlanid}/{protocol}
 </code></pre></div>
 <p>where:</p>
 <ul>
@@ -3054,7 +3054,7 @@
 <div class="highlight"><pre><span></span><code><span class="ch">#! /usr/bin/env bash</span>
 
 <span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;your-ixp-manager-api-key&quot;</span>
-<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://ixp.example.com/api/v4/dns/arpa&quot;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://ixp.example.com/admin/api/v4/dns/arpa&quot;</span>
 <span class="nv">VLANIDS</span><span class="o">=</span><span class="s2">&quot;1 2&quot;</span>
 <span class="nv">PROTOCOLS</span><span class="o">=</span><span class="s2">&quot;4 6&quot;</span>
 
@@ -3081,7 +3081,7 @@
 <h2 id="from-templates">From Templates<a class="headerlink" href="#from-templates" title="Permanent link"></a></h2>
 <p>Rather than writing your own scripts to consume the JSON object as above, it may be easier to use the bundled ISC Bind templates or to write your own template for IXP Manager.</p>
 <p>You can use the <strong>IXP Manager</strong> API to get all ARPA entries for a given VLAN and protocol as plain text based on a template by using the following API endpoint:</p>
-<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/dns/arpa/{vlanid}/{protocol}/{template}
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/admin/api/v4/dns/arpa/{vlanid}/{protocol}/{template}
 </code></pre></div>
 <p>where:</p>
 <ul>
@@ -3162,7 +3162,7 @@ $INCLUDE zones/reverse-vlan-12-ipv4.include
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 26, 2025 10:45:03 UTC">August 26, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 27, 2026 10:14:53 UTC">May 27, 2026</span>
   </span>
 
     
