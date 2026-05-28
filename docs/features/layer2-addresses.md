@@ -47,10 +47,12 @@ As automation features are still a work in progress, not all methods are listed 
 Currently implemented (see [the API page for access details](api.md)):
 
 1. An API to be used by the sflow / peer to peer graphing tool:
-    * Virtual Interface ID to MAC address - GET request to: https://ixp.example.com/api/v4/vlan-interface/sflow-mac-table
-    * Virtual Interface ID, VLAN interface ID, customer name and VLAN tag - GET request to: https://ixp.example.com/api/v4/vlan-interface/sflow-matrix
+    * Configured: GET request to: https://ixp.example.com/api/v4/sflow-db-mapper/configured-macs
+    * Discovered: GET request to: https://ixp.example.com/api/v4/sflow-db-mapper/learned-macs
 2. YAML export for automated provisioning. As yet undocumented and not suitable for general use.
 3. Querying the database directly. *Not usually recommended as the schema may change.*
+
+
 
 ### Migrating Discovered MACs to Configured MACs
 
