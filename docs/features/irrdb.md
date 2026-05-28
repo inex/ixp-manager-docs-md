@@ -15,19 +15,46 @@ cd $IXPROOT
 ./artisan db:seed --class=IRRDBs
 ```
 
-[BGPQ3](https://github.com/snar/bgpq3) is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On a modern Ubuntu system this is as easy as:
+IXP Manager supports [bgpq3](https://github.com/snar/bgpq3) and [bgpq4](https://github.com/bgp/bgpq4) as very easy and fast ways of querying IRRDBs. You first need to install one of these on your system. On a modern Ubuntu system this is as easy as:
 
 ```sh
 apt install bgpq3
 ```
 
-Then configure the path to it in your `.env` file or via the *Settings* page in IXP Manager.
+or 
+
+```sh
+apt install bgpq4
+```
+
+IXP Manager will use bgpq3 by default for legacy reasons, but bgpq4 is now the recommended tool. These are interchangeable also.
+
+## Configuration 
+
+The default configuration is to use `bgpq3` via the system path. You can edit the config via the UI or the `.env` file:
 
 ```
-# Absolute path to run the bgpq3 utility
-# e.g. IXP_IRRDB_BGPQ3_PATH=/usr/local/bin/bgpq3
-IXP_IRRDB_BGPQ3_PATH=/usr/bin/bgpq3
+#######################################################################################
+# IRRDB querier utility paths
+#
+# See: https://docs.ixpmanager.org/latest/features/irrdb/
+
+# Which IRRDB utility should we use for querying?
+# In release v7.2, we maintain the legacy default of bgpq3.
+# Accept values: bgpq3, bgpq4
+
+# IXP_IRRDB_UTILITY=bgpq3
+
+# Path to bgpq3 utility - uses $PATH by default:
+# IXP_IRRDB_BGPQ3_PATH=bgpq3
+#
+# You can also specify a specific path:
+# IXP_IRRDB_BGPQ3_PATH=/usr/bin/bgpq3
+
+# For bgpq4:
+# IXP_IRRDB_BGPQ4_PATH=bgpq4
 ```
+
 
 There are two other possible options which are defaulted as follows:
 
@@ -49,7 +76,7 @@ php artisan irrdb:update-prefix-db
 php artisan irrdb:update-asn-db
 ```
 
-So long as your bgpq3 path is set as above and is executable, the [task scheduler](cronjobs.md) will take care of updating your local IRRDB a number of times a day. If any member's IRRDB entries fails to update, an alert email will be sent to the configured `IDENTITY_ALERTS_EMAIL` address.
+So long as your bgpq3/4 tool is configured correctly and executable, the [task scheduler](cronjobs.md) will take care of updating your local IRRDB a number of times a day. If any member's IRRDB entries fails to update, an alert email will be sent to the configured `IDENTITY_ALERTS_EMAIL` address.
 
 When running the commands manually, there are four levels of verbosity:
 
@@ -113,7 +140,7 @@ The IRRDB update commands will:
 
 ### Internal Workings
 
-Based on a customers AS number / IPv4/6 Peering Macro, IXP Manager [uses bgpq3](https://github.com/snar/bgpq3) to query IRRDBs as follows:
+Based on a customers AS number / IPv4/6 Peering Macro, IXP Manager uses the bgpq3/4 tool to query IRRDBs as follows:
 
 ```bash
 bgpq3 -S $sources -l pl -j -m $min_subnet_size [-6] $asn/macro
