@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -1372,6 +1372,17 @@
     <span class="md-ellipsis">
       
         Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
       
     </span>
   </a>
@@ -2977,6 +2988,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3074,13 +3096,34 @@
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nv">$IXPROOT</span>
 ./artisan<span class="w"> </span>db:seed<span class="w"> </span>--class<span class="o">=</span>IRRDBs
 </code></pre></div>
-<p><a href="https://github.com/snar/bgpq3">BGPQ3</a> is a very easy and fast way of querying IRRDBs. You first need to install this on your system. On a modern Ubuntu system this is as easy as:</p>
+<p>IXP Manager supports <a href="https://github.com/snar/bgpq3">bgpq3</a> and <a href="https://github.com/bgp/bgpq4">bgpq4</a> as very easy and fast ways of querying IRRDBs. You first need to install one of these on your system. On a modern Ubuntu system this is as easy as:</p>
 <div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>bgpq3
 </code></pre></div>
-<p>Then configure the path to it in your <code>.env</code> file or via the <em>Settings</em> page in IXP Manager.</p>
-<div class="highlight"><pre><span></span><code># Absolute path to run the bgpq3 utility
-# e.g. IXP_IRRDB_BGPQ3_PATH=/usr/local/bin/bgpq3
-IXP_IRRDB_BGPQ3_PATH=/usr/bin/bgpq3
+<p>or </p>
+<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>bgpq4
+</code></pre></div>
+<p>IXP Manager will use bgpq3 by default for legacy reasons, but bgpq4 is now the recommended tool. These are interchangeable also.</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h2>
+<p>The default configuration is to use <code>bgpq3</code> via the system path. You can edit the config via the UI or the <code>.env</code> file:</p>
+<div class="highlight"><pre><span></span><code>#######################################################################################
+# IRRDB querier utility paths
+#
+# See: https://docs.ixpmanager.org/latest/features/irrdb/
+
+# Which IRRDB utility should we use for querying?
+# In release v7.2, we maintain the legacy default of bgpq3.
+# Accept values: bgpq3, bgpq4
+
+# IXP_IRRDB_UTILITY=bgpq3
+
+# Path to bgpq3 utility - uses $PATH by default:
+# IXP_IRRDB_BGPQ3_PATH=bgpq3
+#
+# You can also specify a specific path:
+# IXP_IRRDB_BGPQ3_PATH=/usr/bin/bgpq3
+
+# For bgpq4:
+# IXP_IRRDB_BGPQ4_PATH=bgpq4
 </code></pre></div>
 <p>There are two other possible options which are defaulted as follows:</p>
 <div class="highlight"><pre><span></span><code>IXP_IRRDB_MIN_V4_SUBNET_SIZE=24
@@ -3093,7 +3136,7 @@ IXP_IRRDB_MIN_V6_SUBNET_SIZE=48
 php artisan irrdb:update-prefix-db
 php artisan irrdb:update-asn-db
 </code></pre></div>
-<p>So long as your bgpq3 path is set as above and is executable, the <a href="../cronjobs/">task scheduler</a> will take care of updating your local IRRDB a number of times a day. If any member's IRRDB entries fails to update, an alert email will be sent to the configured <code>IDENTITY_ALERTS_EMAIL</code> address.</p>
+<p>So long as your bgpq3/4 tool is configured correctly and executable, the <a href="../cronjobs/">task scheduler</a> will take care of updating your local IRRDB a number of times a day. If any member's IRRDB entries fails to update, an alert email will be sent to the configured <code>IDENTITY_ALERTS_EMAIL</code> address.</p>
 <p>When running the commands manually, there are four levels of verbosity:</p>
 <ol>
 <li>default: no output unless there's an error / issue (used by the task scheduler).</li>
@@ -3137,7 +3180,7 @@ php<span class="w"> </span>artisan<span class="w"> </span>irrdb:update-prefix-db
 <p><strong>We use database transactions to update the database so, even in the middle of a refresh, a full set of prefixes for all customers will still be available.</strong> It also means the update process can be safely interrupted.</p>
 <p><strong>Note that our current implementation only queries RADB as BGPQ3 does not support the RIPE whois protocol.</strong> Our version will however set the RADB source database according to the member's stated IRRDB database as set on the customer add / edit page - so, for customer's registered with the RIPE IRRDB, the RIPE database of RADB is queried.</p>
 <h3 id="internal-workings">Internal Workings<a class="headerlink" href="#internal-workings" title="Permanent link"></a></h3>
-<p>Based on a customers AS number / IPv4/6 Peering Macro, IXP Manager <a href="https://github.com/snar/bgpq3">uses bgpq3</a> to query IRRDBs as follows:</p>
+<p>Based on a customers AS number / IPv4/6 Peering Macro, IXP Manager uses the bgpq3/4 tool to query IRRDBs as follows:</p>
 <div class="highlight"><pre><span></span><code>bgpq3<span class="w"> </span>-S<span class="w"> </span><span class="nv">$sources</span><span class="w"> </span>-l<span class="w"> </span>pl<span class="w"> </span>-j<span class="w"> </span>-m<span class="w"> </span><span class="nv">$min_subnet_size</span><span class="w"> </span><span class="o">[</span>-6<span class="o">]</span><span class="w"> </span><span class="nv">$asn</span>/macro
 </code></pre></div>
 <p>where <code>$sources</code> come from the IRRDB sources entries and <code>$min_subnet_size</code> is explained above.</p>
@@ -3165,7 +3208,7 @@ bgpq3<span class="w"> </span>-S<span class="w"> </span>RIPE<span class="w"> </sp
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 27, 2025 21:31:40 UTC">January 27, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 28, 2026 15:41:44 UTC">May 28, 2026</span>
   </span>
 
     
