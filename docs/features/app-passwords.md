@@ -23,9 +23,7 @@ IXP Manager implements an application-specific password manager for the convenie
 
 ## How This Satisfies ISO 27001 (or other ISMS policies)
 
-Using App Passwords is treated as a **compensating control**.
-
-Because the system in question, e.g. a mail server, cannot natively prompt an iPhone or a laptop for a 2FA code every time it checks for mail, we shift the 2FA requirement to the issuance of the credential. This is acceptable as a compensating control as:
+Because the system in question, e.g. a mail server, cannot natively prompt an iPhone or a laptop for a 2FA code every time it checks for mail, we shift the 2FA requirement to the issuance of the credential. This is acceptable as a control as:
 
 1. There is an **MFA choke point**: A threat actor cannot generate a password to compromise a device without first bypassing the 2FA-protected web portal.
 
@@ -47,12 +45,12 @@ Because the system in question, e.g. a mail server, cannot natively prompt an iP
   <dd>If set to <code>true</code> then the user case chose from the above hashing mechanisms on a per password basis. Defaults to <code>false</code>.</dd>
 
   <dt><code>IXP_FE_APP_PASSWORDS_HISTORY_RETENTION_DAYS</code></dt>
-  <dd>How many days login history (when and from what IP address) is retained. Defaults to 90 (days).</dd>
+  <dd>How many days login history (when and from what IP address) is retained. Defaults to 90 (days). <i>Note that expired passwords will be automatically deleted 28 dates after expiration.</i>></dd>
 
   <dt><code>IXP_FE_APP_PASSWORDS_MAX_EXPIRES_DURATION</code></dt>
   <dd>Maximum duration for password expiry (e.g. '30 days', '12 months'). Defaults to '1 year'.</dd>
 
-  <dt>IXP_FE_FRONTEND_DISABLED_APP_PASSWORD</dt>
+  <dt><code>IXP_FE_FRONTEND_DISABLED_APP_PASSWORD</code></dt>
   <dd>Set to <code>true</code> to disable this feature.
 </dl>
 
