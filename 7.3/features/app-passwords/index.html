@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://docs.ixpmanager.org/latest/features/rir-objects/">
+        <link rel="canonical" href="https://docs.ixpmanager.org/latest/features/app-passwords/">
       
       
-        <link rel="prev" href="../peeringdb/">
+        <link rel="prev" href="../api/">
       
       
-        <link rel="next" href="../reseller/">
+        <link rel="next" href="../as112/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>RIR Objects - IXP Manager Documentation</title>
+        <title>App Passwords - IXP Manager Documentation</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rir-objects" class="md-skip">
+        <a href="#application-specific-passwords" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              RIR Objects
+              App Passwords
             
           </span>
         </div>
@@ -1025,10 +1025,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../app-passwords/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App Passwords
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1044,6 +1071,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-an-application-specific-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is an Application-Specific Password?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-this-satisfies-iso-27001-or-other-isms-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How This Satisfies ISO 27001 (or other ISMS policies)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-dovecot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example - Dovecot
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1669,37 +1760,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    RIR Objects
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../rir-objects/" class="md-nav__link">
         
   
   
@@ -1715,126 +1779,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuration
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#objects-and-templates" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Objects and Templates
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Objects and Templates">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ripe-object-type-and-key" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        RIPE Object Type and Key
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#available-template-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Available Template Variables
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#predefined-templates-objects" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Predefined Templates / Objects
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Predefined Templates / Objects">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#autnum" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        autnum:
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#as-set-connected-asns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        as-set: - Connected ASNs
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#as-set-route-server-asns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        as-set: - Route Server ASNs
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3016,10 +2960,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
+  <a href="#what-is-an-application-specific-password" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuration
+        What is an Application-Specific Password?
       
     </span>
   </a>
@@ -3027,88 +2971,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#objects-and-templates" class="md-nav__link">
+  <a href="#how-this-satisfies-iso-27001-or-other-isms-policies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Objects and Templates
+        How This Satisfies ISO 27001 (or other ISMS policies)
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Objects and Templates">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ripe-object-type-and-key" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        RIPE Object Type and Key
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#available-template-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Available Template Variables
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#predefined-templates-objects" class="md-nav__link">
+  <a href="#configuration-options" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Predefined Templates / Objects
+        Configuration Options
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Predefined Templates / Objects">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#autnum" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        autnum:
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#as-set-connected-asns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        as-set: - Connected ASNs
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#as-set-route-server-asns" class="md-nav__link">
+  <a href="#example-dovecot" class="md-nav__link">
     <span class="md-ellipsis">
       
-        as-set: - Route Server ASNs
+        Example - Dovecot
       
     </span>
   </a>
@@ -3135,95 +3023,64 @@
   
 
 
-<h1 id="rir-objects">RIR Objects<a class="headerlink" href="#rir-objects" title="Permanent link"></a></h1>
-<p>IXP Manager can generate (and email / update RIPE via REST) your RIR objects - for example your AS-SETs, AS object, etc - to your RIR for automatic updates / maintenance.</p>
-<p>As a concrete example of this, see how INEX do this with our RIPE objects as follows:</p>
+<h1 id="application-specific-passwords">Application-Specific Passwords<a class="headerlink" href="#application-specific-passwords" title="Permanent link"></a></h1>
+<p>Application-Specific Passwords are often just called App Passwords or Device-Specific Passwords.</p>
+<p>In some developer or modern API contexts, they are also referred to as Personal Access Tokens (PATs), but for mail servers and end-user devices, <em>App Passwords</em> is the standard terminology used by major providers like Microsoft, Google, and Apple.</p>
+<p>App Passwords can be used, where necessary, to bridge the gap to modern security standards where a necessary system creates a classic compliance headache, such as no direct support for Two-Factor Authentication (2FA). </p>
+<p>One such example is Dovecot, the world's leading email backend platform for IMAP and POP3 access. </p>
+<h2 id="what-is-an-application-specific-password">What is an Application-Specific Password?<a class="headerlink" href="#what-is-an-application-specific-password" title="Permanent link"></a></h2>
+<p>An App Password is a long, randomly generated password (usually 16 characters) that allows a specific legacy application or device—which doesn't natively support Two-Factor Authentication (2FA) or modern authentication protocols (like OAuth 2.0) - to securely access your account.</p>
+<p>IXP Manager implements an application-specific password manager for the convenience of IXPs who need it and who do not have an alternative system. At a high-level, IXP Manager's implementation has the following features and restrictions:</p>
 <ul>
-<li><a href="https://apps.db.ripe.net/db-web-ui/#/lookup?source=ripe&amp;key=AS2128&amp;type=aut-num">AS2128</a> - INEX's route collector / management ASN</li>
-<li><a href="https://apps.db.ripe.net/db-web-ui/#/lookup?source=ripe&amp;key=AS43760&amp;type=aut-num">AS43760</a> - INEX's route server ASN</li>
-<li><a href="https://apps.db.ripe.net/db-web-ui/#/lookup?source=ripe&amp;key=AS-SET-INEX-CONNECTED&amp;type=as-set">AS-SET-INEX-CONNECTED</a> - the set of ASNs/AS-SETs connected to INEX</li>
-<li><a href="https://apps.db.ripe.net/db-web-ui/#/lookup?source=ripe&amp;key=AS-SET-INEX-RS&amp;type=as-set">AS-SET-INEX-RS</a> - the set of ASNs/AS-SETs peering with INEX's route servers</li>
+<li>Passwords must be hashed when stored in the database - there is no plaintext option and no way to retrieve a password after initially creating it.</li>
+<li>It is only available for administrative users.</li>
+<li>The hashing options available are: bcrypt, argon, and argon2id.</li>
+<li>There is an option to keep a record of when passwords were used and from what IP address, but that is dependent on support from the downstream application. These are expunged after 90 days by default.</li>
+<li>Passwords must have an expiry date, with the default being 12 months from creation.</li>
 </ul>
-<p>Some RIRs have a facility to update these objects by email, but RIPE phased that out at the end of 2025.</p>
-<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h2>
-<p>The general form of the Artisan command to update via email is:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span>rir:generate-object<span class="w"> </span>--send-email<span class="w">      </span><span class="se">\</span>
-<span class="w">    </span>--to<span class="o">=</span>test-dbm@ripe.net<span class="w">                        </span><span class="se">\</span>
-<span class="w">    </span>--from<span class="w"> </span>me@example.com<span class="w">  </span>autnum
-</code></pre></div>
-<p>And to update RIPE via their REST API:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span>rir:generate-object<span class="w"> </span>--update-ripe-db<span class="w"> </span>autnum
-</code></pre></div>
-<p>You can see the options by using the standard <code>-h</code> help switch with Artisan:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span>rir:generate-object<span class="w"> </span>-h
-Usage:
-<span class="w">  </span>rir:generate-object<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span><span class="o">[</span>--<span class="o">]</span><span class="w"> </span>&lt;object&gt;
+<h2 id="how-this-satisfies-iso-27001-or-other-isms-policies">How This Satisfies ISO 27001 (or other ISMS policies)<a class="headerlink" href="#how-this-satisfies-iso-27001-or-other-isms-policies" title="Permanent link"></a></h2>
+<p>Using App Passwords is treated as a <strong>compensating control</strong>.</p>
+<p>Because the system in question, e.g. a mail server, cannot natively prompt an iPhone or a laptop for a 2FA code every time it checks for mail, we shift the 2FA requirement to the issuance of the credential. This is acceptable as a compensating control as:</p>
+<ol>
+<li>
+<p>There is an <strong>MFA choke point</strong>: A threat actor cannot generate a password to compromise a device without first bypassing the 2FA-protected web portal.</p>
+</li>
+<li>
+<p><strong>Isolation / Reduced Blast Radius</strong>: If a user's laptop is compromised, the attacker only gets the App Password for that specific laptop. They do not get the user's master password, and they cannot log into the web portal or other devices. The use of enforced expiration also time-bounds exposure.</p>
+</li>
+<li>
+<p><strong>Audit Trail &amp; Revocation</strong>: You have central administrative control to log, monitor, and revoke access on a per-device basis.</p>
+</li>
+</ol>
+<h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Permanent link"></a></h2>
+<dl>
 
-Arguments:
-<span class="w">  </span>object<span class="w">                </span>The<span class="w"> </span>RIR<span class="w"> </span>object<span class="w"> </span>template<span class="w"> </span>to<span class="w"> </span>use
+  <dt><code>IXP_FE_APP_PASSWORDS_MAX</code></dt>
+  <dd>Maximum number of app passwords per used. Defaults to 50.</dd>
 
-Options:
-<span class="w">      </span>--send-email<span class="w">        </span>Rather<span class="w"> </span>than<span class="w"> </span>printing<span class="w"> </span>to<span class="w"> </span>screen,<span class="w"> </span>sends<span class="w"> </span>and<span class="w"> </span>email<span class="w"> </span><span class="k">for</span><span class="w"> </span>updating<span class="w"> </span>a<span class="w"> </span>RIR<span class="w"> </span>automatically
-<span class="w">      </span>--update-ripe-db<span class="w">    </span>Update<span class="w"> </span>the<span class="w"> </span>RIPE<span class="w"> </span>database<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>generated<span class="w"> </span>object,<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>RIPE<span class="w"> </span>REST<span class="w"> </span>API
-<span class="w">      </span>--force<span class="w">             </span>Send<span class="w"> </span>email/update<span class="w"> </span>RIPE<span class="w"> </span>even<span class="w"> </span><span class="k">if</span><span class="w"> </span>the<span class="w"> </span>generated<span class="w"> </span>object<span class="w"> </span>matches<span class="w"> </span>the<span class="w"> </span>cached<span class="w"> </span>version
-<span class="w">      </span>--to<span class="o">[=</span>TO<span class="o">]</span><span class="w">           </span>The<span class="w"> </span>email<span class="w"> </span>address<span class="w"> </span>to<span class="w"> </span>send<span class="w"> </span>the<span class="w"> </span>object<span class="w"> </span>to<span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>specified<span class="w"> </span><span class="k">then</span><span class="w"> </span>uses<span class="w"> </span>IXP_API_RIR_EMAIL_TO<span class="o">)</span>
-<span class="w">      </span>--from<span class="o">[=</span>FROM<span class="o">]</span><span class="w">       </span>The<span class="w"> </span>email<span class="w"> </span>address<span class="w"> </span>from<span class="w"> </span>which<span class="w"> </span>the<span class="w"> </span>email<span class="w"> </span>is<span class="w"> </span>sent<span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>specified,<span class="w"> </span>tries<span class="w"> </span>IXP_API_RIR_EMAIL_FROM<span class="w"> </span>and<span class="w"> </span><span class="k">then</span><span class="w"> </span>defaults<span class="w"> </span>to<span class="w"> </span>IDENTITY_EMAIL<span class="o">)</span>
+  <dt><code>IXP_FE_APP_PASSWORDS_DEFAULT_ALGO</code></dt>
+  <dd>The default hashing algorithm to use when storing passwords. Defaults to <code>bcrypt</code>. Other options are <code>argon</code> and <code>argon2id</code></dd>.
 
-<span class="w">      </span>-h,<span class="w"> </span>--help<span class="w">          </span>Display<span class="w"> </span>this<span class="w"> </span><span class="nb">help</span><span class="w"> </span>message
-<span class="w">      </span>-q,<span class="w"> </span>--quiet<span class="w">         </span>Do<span class="w"> </span>not<span class="w"> </span>output<span class="w"> </span>any<span class="w"> </span>message<span class="w"> </span>on<span class="w"> </span>success
+  <dt><code>IXP_FE_APP_PASSWORDS_USER_CAN_CHANGE</code></dt>
+  <dd>If set to <code>true</code> then the user case chose from the above hashing mechanisms on a per password basis. Defaults to <code>false</code>.</dd>
 
-Help:
-<span class="w">  </span>This<span class="w"> </span><span class="nb">command</span><span class="w"> </span>will<span class="w"> </span>generate<span class="w"> </span>and<span class="w"> </span>display<span class="w"> </span>a<span class="w"> </span>RIR<span class="w"> </span>object<span class="w"> </span><span class="o">(</span>and<span class="w"> </span>optionally<span class="w"> </span>send<span class="w"> </span>by<span class="w"> </span>email/post<span class="w"> </span>to<span class="w"> </span>RIPE<span class="o">)</span>
-</code></pre></div>
-<p>You will note that without the <code>--send-email/--update-ripe-db</code> switch, the command will print to standard output allowing you to consume the object and use it on another way.</p>
-<p><strong>NB:</strong> the generated object is stored in the cache when it is generated for the first time. Future runs will only resend the email/update RIPE if the generated object differs from the cached version. You can force an update with <code>--force</code>. Secondly, the cache used is a file system based cache irrespective of the <code>CACHE_DRIVER</code> <code>.env</code> settings. To wipe it, run: <code>artisan cache:clear file</code>.</p>
-<p>The following options are available for use in the <code>.env</code> file:</p>
-<div class="highlight"><pre><span></span><code>#######################################################################################
-# Options for updating RIR Objects - see https://docs.ixpmanager.org/features/rir-objects/
+  <dt><code>IXP_FE_APP_PASSWORDS_HISTORY_RETENTION_DAYS</code></dt>
+  <dd>How many days login history (when and from what IP address) is retained. Defaults to 90 (days).</dd>
 
-# Your RIPE API key to update RIR objects via RIPE&#39;s REST API
-IXP_RIPE_API_KEY=&quot;soopersecret&quot;
+  <dt><code>IXP_FE_APP_PASSWORDS_MAX_EXPIRES_DURATION</code></dt>
+  <dd>Maximum duration for password expiry (e.g. '30 days', '12 months'). Defaults to '1 year'.</dd>
 
-# Your RIR password to allow the updating of a RIR object by email:
-IXP_API_RIR_PASSWORD=soopersecret
+  <dt>IXP_FE_FRONTEND_DISABLED_APP_PASSWORD</dt>
+  <dd>Set to <code>true</code> to disable this feature.
+</dl>
 
-# Rather than specifying the destination address on the command line, you can set it here
-# (useful for cronjobs and required for use with artisan schedule:run)
-IXP_API_RIR_EMAIL_TO=test-dbm@ripe.net
-
-# Rather than specifying the from address on the command line, you can set it here
-# (useful for cronjobs and required for use with artisan schedule:run)
-IXP_API_RIR_EMAIL_FROM=ixp@example.com
-</code></pre></div>
-<h2 id="objects-and-templates">Objects and Templates<a class="headerlink" href="#objects-and-templates" title="Permanent link"></a></h2>
-<p>There are a number of predefined objects available under <code>resources/views/api/v4/rir</code> and <a href="../skinning/">skinning</a> is the recommended way to add / edit these objects.</p>
-<p>You can copy an existing template or create a new one. For example, if you wanted a template called <code>my-as-set</code>, you would create it under <code>resources/skins/example/api/v4/rir/my-as-set.foil.php</code> and then specify it to the Artisan command as:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span>rir:generate-object<span class="w"> </span>my-as-set
-</code></pre></div>
-<p>The template name must be lowercase, and contain only the characters: <code>0-9 a-z _ -</code>.</p>
-<h3 id="ripe-object-type-and-key">RIPE Object Type and Key<a class="headerlink" href="#ripe-object-type-and-key" title="Permanent link"></a></h3>
-<p>To use RIPE's REST API, you need to explicitly set the RIPE object type and key via IXP Manager-only key/value pairs in the RIPE object template:</p>
-<div class="highlight"><pre><span></span><code>IXPM-OBJECT:    aut-num
-IXPM-KEY:       AS66500
-</code></pre></div>
-<p>This is already in the sample objects, and INEX's production objects in <code>resources/skins/inex/api/v4/rir</code>, so you should be able to follow those examples.</p>
-<h3 id="available-template-variables">Available Template Variables<a class="headerlink" href="#available-template-variables" title="Permanent link"></a></h3>
+<h2 id="example-dovecot">Example - Dovecot<a class="headerlink" href="#example-dovecot" title="Permanent link"></a></h2>
+<p>Detailed example to follow with:</p>
 <ul>
-<li><code>$customers</code> - complete Doctrine2 objects of all current external trafficking customers / members. You should be able to derive everything from this. Indexed by customer ID.</li>
-<li><code>$asns</code> - an associative array for the generation of an IXP AS object indexed by ASN containing elements:</li>
-<li><code>['asmacro']</code> - the member's AS macro (or the ASN if no macro);</li>
-<li><code>['name']</code> - the member's name</li>
-<li><code>$rsclients</code> - an associative array for the generation of an IXP's route server AS object. See the function definition for <code>generateRouteServerClientDetails()</code> in <code>app/Tasks/Rir/Generator.php</code> for details on the array structure.</li>
+<li>advice on limiting database access</li>
+<li>how to authenticate (noting some users will have multiple username/password couples)</li>
+<li>how to log</li>
 </ul>
-<h2 id="predefined-templates-objects">Predefined Templates / Objects<a class="headerlink" href="#predefined-templates-objects" title="Permanent link"></a></h2>
-<h3 id="autnum">autnum:<a class="headerlink" href="#autnum" title="Permanent link"></a></h3>
-<p>You'll find a standard template for an <code>autnum:</code> object at <code>resources/views/api/v4/rir/autnum.foil.php</code>; as well as INEX's own versions under resources/skins/inex/api/v4/rir/autnum-as2128.foil.php<code>and</code>autnum-as43760.foil.php` for the IXP route collector and and route servers respectively.</p>
-<p>Just copy one of these to your own skin directory and edit as appropriate.</p>
-<h3 id="as-set-connected-asns">as-set: - Connected ASNs<a class="headerlink" href="#as-set-connected-asns" title="Permanent link"></a></h3>
-<p>You can create an AS-SET of connected ASNs / AS macros (see INEX's <a href="https://apps.db.ripe.net/db-web-ui/#/lookup?source=ripe&amp;key=AS-SET-INEX-CONNECTED&amp;type=as-set">AS-SET-INEX-CONNECTED</a> as an example) via the example template <code>as-set-ixp-connected</code>.</p>
-<h2 id="as-set-route-server-asns">as-set: - Route Server ASNs<a class="headerlink" href="#as-set-route-server-asns" title="Permanent link"></a></h2>
-<p>You can create an AS-SET of ASNs / AS macros connected to the route servers (see <a href="https://apps.db.ripe.net/db-web-ui/#/lookup?source=ripe&amp;key=AS-SET-INEX-RS&amp;type=as-set">AS-SET-INEX-RS</a> as an example) via the example template <code>as-set-ixp-rs</code>.</p>
-<p>There's also templates for v4 and v6 only versions: <code>as-set-ixp-rs-v4</code> and <code>as-set-ixp-rs-v6</code>.</p>
 
 
 
@@ -3244,7 +3101,7 @@ IXPM-KEY:       AS66500
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 17, 2026 23:33:00 UTC">February 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 12, 2026 09:16:31 UTC">June 12, 2026</span>
   </span>
 
     
