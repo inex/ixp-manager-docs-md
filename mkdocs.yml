@@ -58,6 +58,7 @@ nav:
     - 'Users': 'usage/users.md'
 - Features:
     - 'API': 'features/api.md'
+    - 'App Passwords': 'features/app-passwords.md'
     - 'AS112': 'features/as112.md'
     - 'Automated Provisioning': 'features/provisioning.md'
     - 'Console Servers': 'features/console-servers.md'
