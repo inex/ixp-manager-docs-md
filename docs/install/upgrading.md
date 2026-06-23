@@ -61,7 +61,7 @@ The general process is:
     php $IXPROOT/artisan down --render=errors::maintenance
     ```
 
-    There are a number of options for maintenance mode, [see Laravel's documentation here](https://laravel.com/docs/master/configuration#maintenance-mode).
+    There are a number of options for maintenance mode, [see Laravel's documentation here](https://laravel.com/docs/12.x/configuration#maintenance-mode).
 
 3. Using Git, checkout the next minor / latest patch version up from yours. For IXP Manager v7:
 

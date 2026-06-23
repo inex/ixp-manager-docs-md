@@ -1,6 +1,6 @@
 # Configuring Email
 
-**IXP Manager** uses Laravel's [mail system](https://laravel.com/docs/master/mail) to send email. This system allows for many possible email sending drivers (such as Mailgun, Postmark, Amazon SES, etc.). If you wish to use one of these services than please [refer to the official documentation](https://laravel.com/docs/master/mail). You can also read the `config/mail.php` configuration file in your **IXP Manager** installation for further details. *NB: we link to the 'master' version of Laravel's documentation above - see IXP Manager's `composer.json` file and use the appropriate version of Laravel's documentation to match.*
+**IXP Manager** uses Laravel's [mail system](https://laravel.com/docs/12.x/mail) to send email. This system allows for many possible email sending drivers (such as Mailgun, Postmark, Amazon SES, etc.). If you wish to use one of these services than please [refer to the official documentation](https://laravel.com/docs/12.x/mail). You can also read the `config/mail.php` configuration file in your **IXP Manager** installation for further details. *NB: we link to the 'master' version of Laravel's documentation above - see IXP Manager's `composer.json` file and use the appropriate version of Laravel's documentation to match.*
 
 This guide will explain how to configure and test **IXP Manager** to send email using a standard SMTP service.
 
