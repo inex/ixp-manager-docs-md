@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
@@ -2892,13 +2892,13 @@
 
 <h1 id="maintenance-mode">Maintenance Mode<a class="headerlink" href="#maintenance-mode" title="Permanent link"></a></h1>
 <p>While most updates of <strong>IXP Manager</strong> are quick, some may be more involved with schema updates or complicated migration steps. In these cases it's useful and advisable to put <strong>IXP Manager</strong> in maintenance mode.</p>
-<p>Maintenance mode is now handled by Laravel's built in tool for this. You can review <a href="https://laravel.com/docs/5.3/configuration#maintenance-mode">their own documentation for this</a> which us copied here.</p>
-<p>When your application is in maintenance mode, a custom view will be displayed for all requests into your application. This makes it easy to "disable" your application while it is updating or when you are performing maintenance. A maintenance mode check is included in the default middleware stack for your application. If the application is in maintenance mode, a <code>MaintenanceModeException</code> will be thrown with a status code of 503.</p>
+<p>Maintenance mode is now handled by Laravel's built in tool for this. You can review <a href="https://laravel.com/docs/12.x/configuration#maintenance-mode">their own documentation for this</a> for a complete description of the feature.</p>
+<p>A maintenance mode check is included in the default middleware stack for your application. If the application is in maintenance mode, a <code>MaintenanceModeException</code> will be thrown with a status code of 503. This message simply states <code>Service Unavailable</code>.</p>
 <p>To enable maintenance mode, simply execute the down Artisan command:</p>
 <div class="highlight"><pre><span></span><code>php artisan down
 </code></pre></div>
-<p>You may also provide message and retry options to the down command. The message value may be used to display or log a custom message, while the retry value will be set as the Retry-After HTTP header's value::</p>
-<div class="highlight"><pre><span></span><code>php artisan down --message=&#39;Upgrading Database&#39; --retry=60
+<p>You may instead choose to display a more complete maintenance mode page. You can use <a href="../../features/skinning/">skinning</a> to customize or completely replace the included page. If set, the retry value will be set as the Retry-After HTTP header's value::</p>
+<div class="highlight"><pre><span></span><code>php artisan down --render=errors::maintenance --retry=60
 </code></pre></div>
 <p>To disable maintenance mode, use the up command::</p>
 <div class="highlight"><pre><span></span><code>php artisan up
@@ -2923,7 +2923,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 25, 2017 16:26:07 UTC">March 25, 2017</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 23, 2026 14:17:19 UTC">June 23, 2026</span>
   </span>
 
     
