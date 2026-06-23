@@ -18,7 +18,7 @@ Once a skin is enabled from `.env`, then any templates found in the skin directo
 
 In previous versions of **IXP Manager**, we used Smarty as the templating engine. This meant that if someone wanted to help improve **IXP Manager** then they would need to become familiar with PHP *and* Smarty. In v4 we dropped Smarty and, rather than using another compiled templating engine, we have decided to go with native PHP templates.
 
-For this, we are using [Foil](http://www.foilphp.it/) - *Foil brings all the flexibility and power of modern template engines to native PHP templates. Write simple, clean and concise templates with nothing more than PHP.* Also, simultaneously supported are Laravel's own [Blade templates](https://laravel.com/docs/5.4/blade) which we sometimes use for simple pages.
+For this, we are using [Foil](http://www.foilphp.it/) - *Foil brings all the flexibility and power of modern template engines to native PHP templates. Write simple, clean and concise templates with nothing more than PHP.* Also, simultaneously supported are Laravel's own [Blade templates](https://laravel.com/docs/12.x/blade) which we sometimes use for simple pages.
 
 
 ### Example
@@ -63,7 +63,7 @@ When you are skinning your own templates, you may find you need to create custom
 cp config/custom.php.dist config/custom.php
 ```
 
-This is [Laravel's standard configuration file format](https://laravel.com/docs/5.3/configuration) (which is an associative PHP array). You can also use Laravel's dotenv variables here too.
+This is [Laravel's standard configuration file format](https://laravel.com/docs/12.x/configuration) (which is an associative PHP array). You can also use Laravel's dotenv variables here too.
 
 As an example, if you were to create a configuration option:
 

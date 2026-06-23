@@ -42,7 +42,7 @@ The following is a reply to someone looking to contribute something that didn't 
 >
 > One of the advantages of switching from Zend Framework to Laravel has been the ability to have add on functionality by way of packages:
 >
-> https://laravel.com/docs/5.6/packages
+> https://laravel.com/docs/12.x/packages
 >
 > I think this is a perfect way to add XXX support and we can help ensuring UI hooks by detecting the packet and adding menu options.
 >

@@ -1,6 +1,6 @@
 # Cron Jobs - Task Scheduling
 
-Cron jobs / task scheduling is handled by [Laravel's task scheduler](https://laravel.com/docs/11.x/scheduling). As such, you just need a single cron job entry such as:
+Cron jobs / task scheduling is handled by [Laravel's task scheduler](https://laravel.com/docs/12.x/scheduling). As such, you just need a single cron job entry such as:
 
 ```
 * * * * *    www-data    cd /path-to-your-ixp-manager && php artisan schedule:run >> /dev/null 2>&1

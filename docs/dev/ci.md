@@ -11,7 +11,7 @@ The CI system runs the full suite of tests every time a commit is pushed to GitH
 We use two types of unit tests:
 
 1. [PHP Unit](http://phpunit.de/) for standard unit tests;
-2. [Laravel Dusk](https://laravel.com/docs/5.6/dusk) for browser based tests.
+2. [Laravel Dusk](https://laravel.com/docs/12.x/dusk) for browser based tests.
 
 We also use [Psalm](https://psalm.dev/) for static code analysis.
 
@@ -53,7 +53,7 @@ Note that the [`phpunit.xml`](https://github.com/inex/IXP-Manager/blob/main/phpu
 
 ## Setting Up Laravel Dusk
 
-Please review the [official documentation here](https://laravel.com/docs/main/dusk).
+Please review the [official documentation here](https://laravel.com/docs/12.x/dusk).
 
 You need to ensure the development packages for IXP Manager are installed via:
 
