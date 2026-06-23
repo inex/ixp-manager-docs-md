@@ -12,7 +12,7 @@ To enable maintenance mode, simply execute the down Artisan command:
 php artisan down
 ```
 
-You may instead choose to display a more complete maintenance mode page. You can use [skinning](skinning.md) to customize or completely replace the included page. If set, the retry value will be set as the Retry-After HTTP header's value::
+You may instead choose to display a more complete maintenance mode page. You can use [skinning](../features/skinning.md) to customize or completely replace the included page. If set, the retry value will be set as the Retry-After HTTP header's value::
 
 ```
 php artisan down --render=errors::maintenance --retry=60
