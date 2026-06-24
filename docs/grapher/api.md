@@ -152,6 +152,8 @@ Let's first look at supported graphs:
 
 * `p2p`: peer to peer traffic between two member VLAN interfaces. The source (`svli`) and destination (`dvli`) VLAN interface IDs are required. `svli` and `dvli`, which are mandatory, are primary keys of the VLAN interfaces from the `vlaninterface` database table. [Currently only supported via sflow for `protocol=ipv4|ipv6`]
 
+* `multip2p`: peer to peer traffic over all VLAN interfaces between two members. The source (`scid`) and destination (`dcid`) Customer IDs are required, and refer to primary keys from the `customer` database table. [Currently only supported via sflow for `protocol=ipv4|ipv6|all`]
+
 
 For additional options, it's always best to manually or programmatically examine the output for `type=json` to see what is supported. The following is a general list.
 
@@ -206,6 +208,7 @@ Graph               |  Default Access Control
 `customer`          | superuser or user of the owning customer but respects `GRAPHER_ACCESS_CUSTOMER` (see *Access to Member Graphs* below)
 `latency`           | superuser or user of the owning customer but respects `GRAPHER_ACCESS_LATENCY` (see *Access to Member Graphs* below)
 `p2p`               | superuser or user of the source (`svli`) owning customer but respects `GRAPHER_ACCESS_P2P` (see *Access to Member Graphs* below)
+`multip2p`          | superuser or user of the source (`scid`) customer but respects `GRAPHER_ACCESS_P2P` (see *Access to Member Graphs* below)
 
 
 
