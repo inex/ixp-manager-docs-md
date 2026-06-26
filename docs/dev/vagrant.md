@@ -58,7 +58,7 @@ If you want to get IXP Manager with Vagrant and VirtualBox up and running quickl
 
 2. Log in with one of the following username / passwords:
 
-   - Admin user: `vagrant / Vagrant1` (api key: `r8sFfkGamCjrbbLC12yIoCJooIRXzY9CYPaLVz92GFQyGqLq`)
+   - Admin user: `vagrant / Vagrant1` (api key: `ixpm_7fwTNH5XMKcR_2v4Na6muGvvoIonPtL2pllqdSxdmzzos44Prjv`)
    - Customer Admin: `as112 / AS112as112`
    - Customer User: `as112user / AS112as112`
 
