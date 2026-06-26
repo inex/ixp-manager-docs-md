@@ -75,10 +75,10 @@ You need to set the `APP_URL` environment variable in your `.env file`. This val
 
 | Username | Privilege | Password | API Key |
 |:--|:--|:--|:--|
-| `travis` | *SUPERADMIN* | `travisci` | `Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC9` |
-| `imcustadmin` | *CUSTADMIN* | `travisci` |  `Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC8` |
+| `travis` | *SUPERADMIN* | `travisci` | `ixpm_iqLw1OF50aPU_XX3U8cGvlRiaf7YLX8a41uSJVqBbRAAl0LfKVo` |
+| `imcustadmin` | *CUSTADMIN* | `travisci` |  `ixpm_GcMPPjWig7w2_G6yoQYvkQSLhfkOuhwEYoULcsM512Vjt2sQ532` |
 | `hecustadmin` | *CUSTADMIN* | `travisci` | |
-| `imcustuser` | *CUSTUSER* | `travisci` | `Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC7` |
+| `imcustuser` | *CUSTUSER* | `travisci` | `ixpm_v7zO4TmaX3Ft_bo4NB55lMRFPSqoNDCv34xDkwg8d2WK01bMzif` |
 | `hecustuser` | *CUSTUSER* | `travisci` | |
 
 
