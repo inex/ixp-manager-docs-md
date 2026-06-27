@@ -16,9 +16,10 @@ IXP Manager implements an application-specific password manager for the convenie
 
 * Passwords must be hashed when stored in the database - there is no plaintext option and no way to retrieve a password after initially creating it.
 * It is only available for administrative users.
-* The hashing options available are: bcrypt, argon, and argon2id.
+* The hashing options available are: sha256 (salted), bcrypt, argon, and argon2id.
 * There is an option to keep a record of when passwords were used and from what IP address, but that is dependent on support from the downstream application. These are expunged after 90 days by default.
 * Passwords must have an expiry date, with the default being 12 months from creation.
+* A notification of expiring passwords will be sent to the user 14-days from expiry.
 
 
 ## How This Satisfies ISO 27001 (or other ISMS policies)
@@ -27,19 +28,21 @@ Because the system in question, e.g. a mail server, cannot natively prompt an iP
 
 1. There is an **MFA choke point**: A threat actor cannot generate a password to compromise a device without first bypassing the 2FA-protected web portal.
 
-2. **Isolation / Reduced Blast Radius**: If a user's laptop is compromised, the attacker only gets the App Password for that specific laptop. They do not get the user's master password, and they cannot log into the web portal or other devices. The use of enforced expiration also time-bounds exposure.
+2. **Isolation / Reduced Blast Radius**: If a user's laptop is compromised, the attacker only gets the App Password for that specific laptop. They do not get the user's master password, and they cannot log into the web portal or other devices. The use of enforced expiration also time-bounds exposure in the event of non-detection.
 
 3. **Audit Trail & Revocation**: You have central administrative control to log, monitor, and revoke access on a per-device basis.
+
+
 
 ## Configuration Options
 
 <dl>
 
   <dt><code>IXP_FE_APP_PASSWORDS_MAX</code></dt>
-  <dd>Maximum number of app passwords per used. Defaults to 50.</dd>
+  <dd>Maximum number of app passwords per user. Defaults to 50.</dd>
 
   <dt><code>IXP_FE_APP_PASSWORDS_DEFAULT_ALGO</code></dt>
-  <dd>The default hashing algorithm to use when storing passwords. Defaults to <code>bcrypt</code>. Other options are <code>argon</code> and <code>argon2id</code></dd>.
+  <dd>The default hashing algorithm to use when storing passwords. Defaults to <code>bcrypt</code>. Other options are <code>sha256</code>, <code>argon</code> and <code>argon2id</code></dd>.
 
   <dt><code>IXP_FE_APP_PASSWORDS_USER_CAN_CHANGE</code></dt>
   <dd>If set to <code>true</code> then the user case chose from the above hashing mechanisms on a per password basis. Defaults to <code>false</code>.</dd>
@@ -55,6 +58,20 @@ Because the system in question, e.g. a mail server, cannot natively prompt an iP
 </dl>
 
 
+## Offloading Verification to the Database
+
+In some scenarios you may need to offload password verification to the database. Dovecot is one example here where Dovecot cannot evaluate multiple passwords returned for a username, which negates per-device verification.
+
+As MySQL does not support bcrypt natively inside standard SQL functions, we need to use the salted SHA2-256 hashing method.
+
+When using the database verification method, consider the following additional security measures:
+
+1. Avoid plaintext leaks via log exposure (i.e., the General Query Log or Slow Query Log). If these need to be enabled, even temporarily for debugging, strictly restrict read access to /var/log/mysql/ or wherever your database system stores logs.
+2. Bcrypt is intentionally designed to be slow and resource-heavy to prevent attackers from guessing passwords quickly. SHA-2 (SHA-256 or SHA-512), on the other hand, is built for speed. As such, ensure you use rate-limiting at the application level and/or tools like Fail2ban.
+3. IXP Manager enforces mandatory per-password salting in its implementation, and this cannot be disabled. This avoids rainbow table vulnerabilities.
+4. Consider packet sniffing between the database and the application and use TLS encryption. 
+
+
 ## Example - Dovecot
 
 Detailed example to follow with:
@@ -63,6 +80,55 @@ Detailed example to follow with:
 - how to authenticate (noting some users will have multiple username/password couples)
 - how to log
 
+Dovecot automatically escapes variables like %{password} and %w before executing SQL queries to prevent SQL injection. However, ensure you never disable Dovecot's automatic escaping or attempt to manually concatenate unverified data in complex stored procedures.
 
+# For Dovecot 2.3+ / 3.x (uses %{user} and %{password})
+password_query = SELECT NULL AS password, 'Y' AS nopassword, username AS user \
+                 FROM user_passwords \
+                 WHERE username = '%{user}' \
+                   AND password_hash = CRYPT('%{password}', password_hash)
 
+# For older Dovecot 2.2 systems, use %u and %w:
+# password_query = SELECT NULL AS password, 'Y' AS nopassword, username AS user FROM user_passwords WHERE username = '%u' AND password_hash = CRYPT('%w', password_hash)
 
+If you just want to track login timestamps and IP addresses, Dovecot has a lightweight, built-in plugin specifically for that. If you need to perform complex or custom database logic, you can use Dovecot's external post-login hook system.  
+Method 1: The Native last-login Plugin (Recommended for Tracking)
+
+If your database insert is primarily meant to track when a user last logged in, what protocol they used (IMAP/POP3), and their IP address, you should use the native last-login plugin. It hooks directly into Dovecot's dictionary system, making it incredibly fast and safe.
+1. Enable the plugin in your Dovecot configuration:
+Ini, TOML
+
+protocol imap {
+  mail_plugins = $mail_plugins last_login
+}
+protocol pop3 {
+  mail_plugins = $mail_plugins last_login
+}
+
+plugin {
+  last_login_dict = proxy::sql
+  last_login_key = last-login/%{service}/%{user}/%{remote_ip}
+}
+
+dict {
+  sql = mysql:/etc/dovecot/dovecot-dict-sql.conf.ext
+}
+
+2. Map it to your database in dovecot-dict-sql.conf.ext:
+Ini, TOML
+
+connect = host=localhost dbname=mail_db user=dovecot password=password
+
+map {
+  pattern = shared/last-login/$service/$user/$remote_ip
+  table = user_logins
+  value_field = last_access
+  value_type = uint
+  fields {
+    username = $user
+    protocol = $service
+    ip_address = $remote_ip
+  }
+}
+
+Whenever a user logs in, Dovecot will automatically handle the INSERT ... ON DUPLICATE KEY UPDATE or equivalent SQL behavior under the hood.
