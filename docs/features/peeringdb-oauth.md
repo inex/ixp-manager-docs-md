@@ -111,10 +111,10 @@ PeeringDB OAuth with IXP Manager as an idea dates from early 2017 when Job Snijd
 
 PeeringDB's [OAuth documentation can be found here](https://docs.peeringdb.com/oauth/).
 
-As part of the development process, we wrote a provider for the [Laravel Socialite](https://laravel.com/docs/6.0/socialite) package which was merged into that package via the [SocialiteProviders/Providers#310](https://github.com/SocialiteProviders/Providers/pull/310) pull request.
+As part of the development process, we wrote a provider for the [Laravel Socialite](https://laravel.com/docs/12.x/socialite) package which was merged into that package via the [SocialiteProviders/Providers#310](https://github.com/SocialiteProviders/Providers/pull/310) pull request.
 
 ## Development Notes
 
 Testing in development needs to be setup following the instructions above. While PeeringDB has a [beta site](https://beta.peeringdb.com/), the actual OAuth URL is hard coded into Socialite. You can test against production or edit the two URLs in this file: `data/SocialiteProviders/src/PeeringDB/Provider.php`.
 
-For local testing, you'll need both SSL and a way for PeeringDB to redirect back to you. `valet share` from [Laravel Valet](https://laravel.com/docs/6.0/valet) is perfect for this.
+For local testing, you'll need both SSL and a way for PeeringDB to redirect back to you. `valet share` from [Laravel Valet](https://laravel.com/docs/12.x/valet) is perfect for this.

@@ -11,7 +11,7 @@ The CI system runs the full suite of tests every time a commit is pushed to GitH
 We use two types of unit tests:
 
 1. [PHP Unit](http://phpunit.de/) for standard unit tests;
-2. [Laravel Dusk](https://laravel.com/docs/5.6/dusk) for browser based tests.
+2. [Laravel Dusk](https://laravel.com/docs/12.x/dusk) for browser based tests.
 
 We also use [Psalm](https://psalm.dev/) for static code analysis.
 
@@ -53,7 +53,7 @@ Note that the [`phpunit.xml`](https://github.com/inex/IXP-Manager/blob/main/phpu
 
 ## Setting Up Laravel Dusk
 
-Please review the [official documentation here](https://laravel.com/docs/main/dusk).
+Please review the [official documentation here](https://laravel.com/docs/12.x/dusk).
 
 You need to ensure the development packages for IXP Manager are installed via:
 
@@ -75,10 +75,10 @@ You need to set the `APP_URL` environment variable in your `.env file`. This val
 
 | Username | Privilege | Password | API Key |
 |:--|:--|:--|:--|
-| `travis` | *SUPERADMIN* | `travisci` | `Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC9` |
-| `imcustadmin` | *CUSTADMIN* | `travisci` |  `Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC8` |
+| `travis` | *SUPERADMIN* | `travisci` | `ixpm_iqLw1OF50aPU_XX3U8cGvlRiaf7YLX8a41uSJVqBbRAAl0LfKVo` |
+| `imcustadmin` | *CUSTADMIN* | `travisci` |  `ixpm_GcMPPjWig7w2_G6yoQYvkQSLhfkOuhwEYoULcsM512Vjt2sQ532` |
 | `hecustadmin` | *CUSTADMIN* | `travisci` | |
-| `imcustuser` | *CUSTUSER* | `travisci` | `Syy4R8uXTquJNkSav4mmbk5eZWOgoc6FKUJPqOoGHhBjhsC7` |
+| `imcustuser` | *CUSTUSER* | `travisci` | `ixpm_v7zO4TmaX3Ft_bo4NB55lMRFPSqoNDCv34xDkwg8d2WK01bMzif` |
 | `hecustuser` | *CUSTUSER* | `travisci` | |
 
 
