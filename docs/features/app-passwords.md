@@ -10,7 +10,7 @@ One such example is Dovecot, the world's leading email backend platform for IMAP
 
 ## What is an Application-Specific Password?
 
-An App Password is a long, randomly generated password (usually 16 characters) that allows a specific legacy application or device—which doesn't natively support Two-Factor Authentication (2FA) or modern authentication protocols (like OAuth 2.0) - to securely access your account.
+An App Password is a long, randomly generated password (usually 16 characters) that allows a specific legacy application or device - which doesn't natively support Two-Factor Authentication (2FA) or modern authentication protocols (like OAuth 2.0) - to securely access your account.
 
 IXP Manager implements an application-specific password manager for the convenience of IXPs who need it and who do not have an alternative system. At a high-level, IXP Manager's implementation has the following features and restrictions:
 
@@ -74,13 +74,58 @@ When using the database verification method, consider the following additional s
 
 ## Example - Dovecot
 
+Some IXPs have historically used their IXP Manager user database as a single sign-on resource for other systems. As explained above, this is not compatible with modern ISMS security standards. 
+
+An example of how this used to work would be the following Dovecot SQL definition:
+
+```mysql
+password_query = SELECT u.username AS user, \
+    CONCAT( REPLACE( SUBSTRING( u.password, 1, 4 ), '$2y$', '$2a$' ), SUBSTRING( u.password, 5 ) ) as password \
+    FROM user AS u INNER JOIN customer_to_users as cu ON cu.user_id = u.id \
+    WHERE u.username = '%n' AND u.disabled = 0 AND cu.customer_id = XXX AND cu.privs = 3
+```
+
+When reviewing this query, and also below, note the following:
+
+* Dovecot's MySQL credentials should be limited to SELECT on that table.
+* IXP Manager's passwords are stored as Bcrypt hashes. PHP uses `$2y$` to identify these hashes where as BSD/Linux systems use `$2a$`.
+* We are limited authentication to administrative users (`cu.privs = 3`) of the the IXP's own internal customer on IXP Manager (`cu.customer_id = XXX`).
+* Password verification is done by Dovecot against the returned Bcrypt hash.
+* Dovecot automatically escapes variables like %{password} and %n before executing SQL queries to prevent SQL injection. Ensure you never disable Dovecot's automatic escaping or attempt to manually concatenate unverified data in complex stored procedures.
+
+As mentioned above, MySQL does not support bcrypt natively inside standard SQL functions, and so we need to use the salted SHA2-256 hashing method.
+
+You may wish to allow the "old way", using the password in the users table, and the new way, application-specific passwords, in tandem during a transition period. This can be achieved with:
+
+```mysql
+password_query = SELECT user, password, nopassword FROM ( \
+    SELECT u.username AS user, NULL AS password, 'Y' AS nopassword, 1 AS priority \
+    FROM app_passwords a \
+        INNER JOIN user u ON a.user_id = u.id \
+        INNER JOIN customer_to_users as cu ON cu.user_id = a.user_id \
+    WHERE u.username = '%n' \
+      AND u.disabled = 0 \
+      AND cu.custid = XXX \
+      AND cu.privs = 3 \
+      AND a.password = SHA2(CONCAT('%{password}', a.salt), 256) \
+    UNION ALL \
+    SELECT username AS user, CONCAT(REPLACE(SUBSTRING(password,1,4),'$2y$','$2a$'), SUBSTRING(password,5)) AS password, NULL AS nopassword, 2 AS priority \
+    FROM user \
+    WHERE username = '%n' \
+      AND disabled = 0 \
+      AND custid = XXX \
+) AS auth_bridge \
+ORDER BY priority ASC LIMIT 1
+```
+
+
 Detailed example to follow with:
 
 - advice on limiting database access
 - how to authenticate (noting some users will have multiple username/password couples)
 - how to log
 
-Dovecot automatically escapes variables like %{password} and %w before executing SQL queries to prevent SQL injection. However, ensure you never disable Dovecot's automatic escaping or attempt to manually concatenate unverified data in complex stored procedures.
+
 
 # For Dovecot 2.3+ / 3.x (uses %{user} and %{password})
 password_query = SELECT NULL AS password, 'Y' AS nopassword, username AS user \
