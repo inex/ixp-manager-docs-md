@@ -95,11 +95,24 @@ When reviewing this query, and also below, note the following:
 
 As mentioned above, MySQL does not support bcrypt natively inside standard SQL functions, and so we need to use the salted SHA2-256 hashing method.
 
+### MySQL Permissions
+
+Create a specific MySQL user for this purpose, and limit its access:
+
+```mysql
+CREATE USER `dovecot`@`192.0.2.10` IDENTIFIED BY 'random-password';
+GRANT SELECT ON `ixpmanager`.`customer_to_users` TO 'dovecot'@'192.168.0.10';
+GRANT SELECT ON `ixpmanager`.`user`              TO 'dovecot'@'192.168.0.10';
+GRANT SELECT ON `ixpmanager`.`app_passwords`     TO 'dovecot'@'192.168.0.10';
+```
+
+### Transitioning from User Passwords to Application-Specific Keys
+
 You may wish to allow the "old way", using the password in the users table, and the new way, application-specific passwords, in tandem during a transition period. This can be achieved with:
 
 ```mysql
-password_query = SELECT user, password, nopassword FROM ( \
-    SELECT u.username AS user, NULL AS password, 'Y' AS nopassword, 1 AS priority \
+password_query = SELECT user, password, nopassword, userdb_app_password_id FROM ( \
+    SELECT u.username AS user, NULL AS password, 'Y' AS nopassword, 1 AS priority, a.id AS userdb_app_password_id \
     FROM app_passwords a \
         INNER JOIN user u ON a.user_id = u.id \
         INNER JOIN customer_to_users as cu ON cu.user_id = a.user_id \
@@ -109,71 +122,110 @@ password_query = SELECT user, password, nopassword FROM ( \
       AND cu.privs = 3 \
       AND a.password = SHA2(CONCAT('%{password}', a.salt), 256) \
     UNION ALL \
-    SELECT username AS user, CONCAT(REPLACE(SUBSTRING(password,1,4),'$2y$','$2a$'), SUBSTRING(password,5)) AS password, NULL AS nopassword, 2 AS priority \
-    FROM user \
-    WHERE username = '%n' \
-      AND disabled = 0 \
-      AND custid = XXX \
+    SELECT username AS user, CONCAT(REPLACE(SUBSTRING(password,1,4),'$2y$','$2a$'), SUBSTRING(password,5)) AS password, \
+        NULL AS nopassword, 2 AS priority, NULL AS userdb_app_password_id \
+    FROM user AS u INNER JOIN customer_to_users as cu ON cu.user_id = u.id \
+    WHERE u.username = '%n' AND u.disabled = 0 AND cu.customer_id = XXX AND cu.privs = 3 \
 ) AS auth_bridge \
 ORDER BY priority ASC LIMIT 1
 ```
 
-
-Detailed example to follow with:
-
-- advice on limiting database access
-- how to authenticate (noting some users will have multiple username/password couples)
-- how to log
+This query will return a single result (which Dovecot only supports), prioritising application-specific passwords.
 
 
+### Switching to Application-Specific Keys Only
 
-# For Dovecot 2.3+ / 3.x (uses %{user} and %{password})
-password_query = SELECT NULL AS password, 'Y' AS nopassword, username AS user \
-                 FROM user_passwords \
-                 WHERE username = '%{user}' \
-                   AND password_hash = CRYPT('%{password}', password_hash)
+Following a transition period, you can simplify the MySQL definition to something like:
 
-# For older Dovecot 2.2 systems, use %u and %w:
-# password_query = SELECT NULL AS password, 'Y' AS nopassword, username AS user FROM user_passwords WHERE username = '%u' AND password_hash = CRYPT('%w', password_hash)
+```mysql
+password_query = SELECT u.username AS user, NULL AS password, 'Y' AS nopassword, a.id AS userdb_app_password_id \
+    FROM app_passwords a \
+        INNER JOIN user u ON a.user_id = u.id \
+        INNER JOIN customer_to_users as cu ON cu.user_id = a.user_id \
+    WHERE u.username = '%n' \
+      AND u.disabled = 0 \
+      AND cu.custid = XXX \
+      AND cu.privs = 3 \
+      AND a.password = SHA2(CONCAT('%{password}', a.salt), 256) \
+  LIMIT 1
+```
 
-If you just want to track login timestamps and IP addresses, Dovecot has a lightweight, built-in plugin specifically for that. If you need to perform complex or custom database logic, you can use Dovecot's external post-login hook system.  
-Method 1: The Native last-login Plugin (Recommended for Tracking)
+### Logging Authentication
 
-If your database insert is primarily meant to track when a user last logged in, what protocol they used (IMAP/POP3), and their IP address, you should use the native last-login plugin. It hooks directly into Dovecot's dictionary system, making it incredibly fast and safe.
-1. Enable the plugin in your Dovecot configuration:
-Ini, TOML
+You will need to increase your database grants for this to work:
 
-protocol imap {
-  mail_plugins = $mail_plugins last_login
+```mysql
+GRANT INSERT ON `ixpmanager`.`app_passwords_last_logins` TO 'dovecot'@'192.0.2.10';
+```
+
+There is a trigger on `app_passwords_last_logins` to update the `last_seen_at` and `last_seen_from` fields of `app_passwords`, and this way the Dovecot user does not need to be given write access to the primary `app_passwords` table.
+
+
+Dovecot has [post-login scripting documentation here](https://doc.dovecot.org/2.3/admin_manual/post_login_scripting/). 
+
+Essentially, you want the IMAP and POP3 elements of your `etc/dovecot/conf.d/10-master.conf` to look like:
+
+```
+service imap {
+  executable = imap imap-postlogin
 }
-protocol pop3 {
-  mail_plugins = $mail_plugins last_login
+
+service pop3 {
+  executable = pop3 pop3-postlogin
 }
 
-plugin {
-  last_login_dict = proxy::sql
-  last_login_key = last-login/%{service}/%{user}/%{remote_ip}
-}
-
-dict {
-  sql = mysql:/etc/dovecot/dovecot-dict-sql.conf.ext
-}
-
-2. Map it to your database in dovecot-dict-sql.conf.ext:
-Ini, TOML
-
-connect = host=localhost dbname=mail_db user=dovecot password=password
-
-map {
-  pattern = shared/last-login/$service/$user/$remote_ip
-  table = user_logins
-  value_field = last_access
-  value_type = uint
-  fields {
-    username = $user
-    protocol = $service
-    ip_address = $remote_ip
+service imap-postlogin {
+  executable = script-login /usr/local/sbin/dovecot-postlogin.sh
+  user = root
+  unix_listener imap-postlogin {
   }
 }
 
-Whenever a user logs in, Dovecot will automatically handle the INSERT ... ON DUPLICATE KEY UPDATE or equivalent SQL behavior under the hood.
+service pop3-postlogin {
+  executable = script-login /usr/local/sbin/dovecot-postlogin.sh
+  user = root
+  unix_listener pop3-postlogin {
+  }
+}
+```
+
+You want to create a database options file for running the `mysql` command:
+
+```bash
+cat >etc/dovecot/db-postauth.cnf <<END_CNF
+[client]
+user="dovecot"
+password="random-password"
+END_CNF
+
+chown root: etc/dovecot/db-postauth.cnf
+chmod a-rwx etc/dovecot/db-postauth.cnf
+```
+
+And then create the post-auth script:
+
+```bash 
+cat >/usr/local/sbin/dovecot-postlogin.sh <<END_SH
+#!/bin/sh
+
+# Capture the app password ID field passed from Dovecot
+APP_PASS_ID="${APP_PASSWORD_ID}"
+
+if [ -n "$APP_PASS_ID" ] && [ "$APP_PASS_ID" -gt 0 ]; then
+
+    mysql --defaults-file=etc/dovecot/db-postauth.cnf -h dbhost.example.com ixpmanager  <<END_SQL
+INSERT INTO app_passwords_last_logins (app_password_id, last_seen_at, last_seen_from) VALUES ('$APP_PASS_ID', NOW(), '$IP');
+END_SQL
+
+fi
+
+# CRITICAL: Resume standard IMAP/POP3 engine execution
+exec "$@"
+END_SH
+
+chown root: /usr/local/sbin/dovecot-postlogin.sh
+chmod o-rwx /usr/local/sbin/dovecot-postlogin.sh
+chmod ug+x /usr/local/sbin/dovecot-postlogin.sh
+```
+
+
