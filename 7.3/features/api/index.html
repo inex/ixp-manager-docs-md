@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -1071,6 +1071,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#format-of-api-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Format of API Keys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#api-authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1106,17 +1117,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-key-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Key Management
-      
-    </span>
-  </a>
   
 </li>
       
@@ -2988,6 +2988,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#format-of-api-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Format of API Keys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#api-authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3026,17 +3037,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#api-key-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Key Management
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3068,6 +3068,27 @@
 <li>Click the plus / addition icon on the top right of the resultant <em>API Keys</em> page.</li>
 </ol>
 <p><strong>Treat your API key as a password and do not copy the below URLs into public websites and other public forums.</strong></p>
+<p>Note also that:</p>
+<ol>
+<li>When you create an API key, it will be displayed on screen. This is the last time you will be able to view it in IXP Manager in plaintext as it is hashed via SHA-256 in the database.</li>
+<li>API keys must have an expiry data, with the maximum being 12 months.</li>
+<li>Reminder emails are sent at 14-days from expiry to the user. Having a descriptive description on where the API key is in use would be helpful to you.</li>
+<li>Expired API keys are deleted from the database after 28-days.</li>
+</ol>
+<h2 id="format-of-api-keys">Format of API Keys<a class="headerlink" href="#format-of-api-keys" title="Permanent link"></a></h2>
+<p>From v7.3.0 onwards, API keys have the following format:</p>
+<div class="highlight"><pre><span></span><code>   ixpm_ident1234567_sec87654321098765432109876543210crc321
+   └──┘ └──────────┘ └──────────────────────────────┘└────┘
+ Prefix  Identifier               Secret            Checksum
+ (4 ch)   (12 ch)                 (32 ch)            (6 ch)
+</code></pre></div>
+<ol>
+<li>The prefix for IXP Manager's keys will always be <code>ixpm_</code> to help identify them as such.</li>
+<li>The 12-character identifier is the only part of the key that is retained in IXP Manager's database and displayed to the user. This will allow you to match your keys in use to their entry in IXP Manager. This is also used to look up the key in the database (O(1)) when presented.</li>
+<li>The secret is a cryptographically secure random string that ensures authenticity.</li>
+<li>A small block of characters appended to the end, calculated from the rest of the key, and verified before database lookup.</li>
+</ol>
+<p>By default, a user can create no more than 10 keys. If you wish to change this, set <code>IXP_FE_API_KEYS_MAX=n</code> in <code>.env</code> where <code>n</code> is an integer value &gt; 0.</p>
 <h2 id="api-authentication">API Authentication<a class="headerlink" href="#api-authentication" title="Permanent link"></a></h2>
 <p>There are two ways to use your API key to authenticate to IXP Manager.</p>
 <p>You can test these using the API test endpoint at <code>api/v4/test</code>. For example:</p>
@@ -3076,20 +3097,12 @@
 <p>The plaintext response will also indicate if you are authenticated or not (which can be via existing session or API key).</p>
 <h3 id="1-http-header-parameter">1. HTTP Header Parameter<a class="headerlink" href="#1-http-header-parameter" title="Permanent link"></a></h3>
 <p>You can pass your API key in the HTTP request as a request header parameter called <code>X-IXP-Manager-API-Key</code>. For example:</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;X-IXP-Manager-API-Key: my-api-key&quot;</span><span class="w"> </span>https://ixp.example.com/api/v4/test
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;X-IXP-Manager-API-Key: ixpm_ident1234567_sec87654321098765432109876543210crc321&quot;</span><span class="w"> </span>https://ixp.example.com/api/v4/test
 </code></pre></div>
 <h3 id="2-as-a-url-parameter">2. As a URL Parameter<a class="headerlink" href="#2-as-a-url-parameter" title="Permanent link"></a></h3>
 <p>This is a legacy method that is still supported. You can tack your key on as follows:</p>
-<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/test?apikey=my-api-key
+<div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/test?apikey=ixpm_ident1234567_sec87654321098765432109876543210crc321
 </code></pre></div>
-<h2 id="api-key-management">API Key Management<a class="headerlink" href="#api-key-management" title="Permanent link"></a></h2>
-<ul>
-<li>You can now add an optional description to an API key. This allows you to record where the key is used for example.</li>
-<li>You can set an optional expiry date for the key. The key may be used <em>up to</em> that date but not on the date. The expiry date can be added / edited  /removed when editing an API key.</li>
-<li>Expired API keys are automatically deleted after one week (<a href="../cronjobs/">via the scheduler</a>).</li>
-</ul>
-<p>API keys are not shown by default but require a password to be entered to show them. If you wish to show the keys <strong>(inadvisable)</strong>, you can set <code>IXP_FE_API_KEYS_SHOW=true</code> in <code>.env</code>. This is only available to mimic historic functionality and will be removed in the future.</p>
-<p>By default, a user can create no more than 10 keys. If you wish to change this, set <code>IXP_FE_API_KEYS_MAX=n</code> in <code>.env</code> where <code>n</code> is an integer value &gt; 0.</p>
 
 
 
@@ -3110,7 +3123,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 21, 2024 12:34:10 UTC">September 21, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 29, 2026 07:11:19 UTC">June 29, 2026</span>
   </span>
 
     
