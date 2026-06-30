@@ -3127,7 +3127,7 @@
 <p>This is a legacy method that is now being deprecated. You may tack your key on as follows:</p>
 <div class="highlight"><pre><span></span><code>https://ixp.example.com/api/v4/test?apikey=ixpm_ident1234567_sec87654321098765432109876543210crc321
 </code></pre></div>
-<p>As of 7.3, this feature is remain enabled by default, but will generate a notice in the application logs to inform you of the deprecated usage. It can be disabled by setting <code>IXP_ALLOW_DEPRECATED_APIKEYS_VIA_GET=false</code> in <code>.env</code>.</p>
+<p>As of 7.3, this feature is still enabled, but IXP Manager will write notices to the log file informing you of the deprecated usage. You can be disable support for API Keys in URLs by  setting <code>IXP_ALLOW_DEPRECATED_APIKEYS_VIA_GET=false</code> in <code>.env</code>.</p>
 <p>The log message will contain the API Key ID for legacy API Keys, or the API Token Identifier for new API keys.</p>
 <p>A future release will turn the setting off by default and software using this authorization method will be denied. It can be enabled by setting <code>IXP_ALLOW_DEPRECATED_APIKEYS_VIA_GET=true</code> in <code>.env</code>.  A subsequent release will remove support for this feature entirely.</p>
 <h2 id="api-key-management">API Key Management<a class="headerlink" href="#api-key-management" title="Permanent link"></a></h2>
@@ -3160,7 +3160,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 30, 2026 13:05:07 UTC">June 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 30, 2026 14:52:32 UTC">June 30, 2026</span>
   </span>
 
     
