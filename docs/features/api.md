@@ -65,11 +65,15 @@ curl -X GET -H "X-IXP-Manager-API-Key: ixpm_ident1234567_sec87654321098765432109
 
 ### 2. As a URL Parameter
 
-This is a legacy method that is still supported. You can tack your key on as follows:
+This is a legacy method that is now being deprecated. You may tack your key on as follows:
 
 ```
 https://ixp.example.com/api/v4/test?apikey=ixpm_ident1234567_sec87654321098765432109876543210crc321
 ```
+
+As of 7.3, this feature is remain enabled by default, but will generate a notice in the application logs to inform you of the deprecated usage. It can be disabled by setting `IXP_ALLOW_DEPRECATED_APIKEYS_VIA_GET=false` in `.env`.
+
+A future release will turn the setting off by default and software using this authorization method will be denied. It can be enabled by setting `IXP_ALLOW_DEPRECATED_APIKEYS_VIA_GET=true` in `.env`.  A subsequent release will remove support for this feature entirely.
 
 ## API Key Management
 
