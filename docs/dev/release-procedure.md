@@ -51,7 +51,7 @@ There are typically three types of branches on [IXP Manager's GitHub repository]
 10. Ensure the GitHub Action's runner completes cleanly (GitHub runs of PHPUnit and psalm). If there are issues, address them.
 11. Update the version details and tag the GitHub release.
     ```sh
-    joe version.sh
+    joe version.php
     git tag vx.y.z
     git commit -am 'Tagging release vx.y.z'
     git push
