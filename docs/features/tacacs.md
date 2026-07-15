@@ -22,7 +22,7 @@ https://ixp.example.com/admin/api/v4/user/formatted/{priv}/{template}
 
 where:
 
-* `priv` is an optional user privilege to limit the user selection to. See [the available integer values on the `AUTH_` constants here](https://github.com/inex/IXP-Manager/blob/main/database/Entities/User.php). You typically want `3`.
+* `priv` is an optional user privilege to limit the user selection to. See [the available integer values on the `AUTH_` constants here](https://github.com/inex/IXP-Manager/blob/main/app/Models/User.php). You typically want `3`.
 * `template` is an optional template (rather than `$IXPROOT/resources/views/api/v4/user/formatted/default`). See below.
 
 And example of a user in the response is:

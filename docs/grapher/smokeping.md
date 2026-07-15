@@ -79,8 +79,8 @@ You can now edit this template as required. The only constraint on the template 
 
 The following variables are available in the template:
 
-* `$t->vlis`: array of the VLAN interfaces/targets - it is generated [by the Repositories\VlanInterface::getForProto() function](https://github.com/inex/IXP-Manager/blob/main/database/Repositories/VlanInterface.php#L18).
-* `$t->vlan`: instance of the [`Vlan` entity object](https://github.com/inex/IXP-Manager/blob/main/database/Entities/Vlan.php).
+* `$t->vlis`: array of the VLAN interfaces/targets - it is generated [by the VlanInterfaceAggregator::forProto() function](https://github.com/inex/IXP-Manager/blob/main/app/Models/Aggregators/VlanInterfaceAggregator.php#L184).
+* `$t->vlan`: instance of the [`Vlan` entity object](https://github.com/inex/IXP-Manager/blob/main/app/Models/Vlan.php).
 * `$t->protocol`: either `4` or `6`.
 * `$t->probe` and `$t->level` as defined above / passed via a post request.
 

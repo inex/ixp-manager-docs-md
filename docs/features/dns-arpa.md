@@ -136,7 +136,7 @@ You can now edit this template as required. The only constraint on the template 
 The following variables are available in the template:
 
 * `$t->arpa`: array of the ARPA entries - see below.
-* `$t->vlan`: instance of the [`Vlan` entity object](https://github.com/inex/IXP-Manager/blob/main/database/Entities/Vlan.php).
+* `$t->vlan`: instance of the [`Vlan` entity object](https://github.com/inex/IXP-Manager/blob/main/app/Models/Vlan.php).
 * `$t->protocol`: either `4` or `6`.
 
 The following variables are available for each element of the `$t->arpa` array (essentially the same as the JSON object above): `enabled, hostname, address, arpa`. See above for a description.

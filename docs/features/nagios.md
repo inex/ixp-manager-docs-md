@@ -426,7 +426,7 @@ where:
 
 * `{vlanid}` is the VLAN id to generate the configuration for.
 * `{protocol}` is either 4 (ipv4) or 6 (ipv6).
-* `{type}` is one of (these are defined in [Entities\Router](https://github.com/inex/IXP-Manager/blob/main/database/Entities/Router.php)):
+* `{type}` is one of (these are defined in [Models\Router](https://github.com/inex/IXP-Manager/blob/main/app/Models/Router.php)):
   * `1` for route servers;
   * `2` for route collectors;
   * `3` for AS112
