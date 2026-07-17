@@ -98,6 +98,12 @@ If you are running Dusk tests, also start the Chromium driver in another console
 ./vendor/laravel/dusk/bin/chromedriver-mac-arm --port=9515
 ```
 
+The tests require a fresh CI database. If you stop / abort your tests, or if they fail, you should also reset the database.
+
+```sh
+cat data/ci/ci_test_db.sql  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci
+```
+
 And then kick off **all the tests** which includes PHPUnit and Laravel Dusk tests, run:
 
 ```sh
