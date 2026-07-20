@@ -40,15 +40,6 @@ Secondly, and unfortunately, each individual network must opt in to having their
 
 ![PeeringDB IX-F Export Network Entry](img/peeringdb-ixf-update.png)
 
-## ASN Detail
-
-In most places in IXP Manager, you can click on an ASN number. This uses PeeringDB's whois service to provide a quick view of that network's PeeringDB record.
-
-Here's a squashed screen shot just to illustrate the feature:
-
-![PeeringDB Whois](img/peeringdb-whois.png)
-
-
 ## Existence of PeeringDB Records
 
 On the customer overview page, we provide an indication (yes/no) as to whether a customer has a PeeringDB record. Generally it is important for IXPs to encourage their members to create PeeringDB entries to ensure your IXP is properly represented on their database.
