@@ -36,5 +36,33 @@ Once you transition the clients consuming the APIs from the unsecured endpoints 
 UNSECURED_API_ACCESS=0
 ```
 
+## API Key as GET Parameter
 
+As of v7.3.0 IXP Manager has started generating warnings in log files about use of API Keys via GET parameters. This practice is discouraged as
+GET parameters are included in webserver logs by default. As such, support for this feature will be turned off by default in v7.4.0.
 
+You can search for ongoing usage of this authentication method:
+
+```sh
+/srv/ixpmanager $ cat storage/logs/laravel.log | grep 'API KEY in GET'
+[2026-07-20 17:19:20] vagrant.NOTICE: DEPRECATED usage of API Key in GET parameter (API Key ID: 2): api/v4/test from ::1
+[2026-07-20 17:19:20] vagrant.NOTICE: DEPRECATED usage of API Key in GET parameter (API Token Identifier: iqLw1OF50aPU): api/v4/test from ::1
+```
+
+And analyse usage of API keys in this way using the following command which outputs 1) the number of occurrences, 2) the api key ID for legacy keys, or the token identifier for new API keys, 3) the URI fragment, and 4) the IP address which originated the request.
+
+```sh
+/srv/ixpmanager $ grep 'API Key in GET' storage/logs/laravel.log  | sed -E 's/.*\(([^:]*:\s*)?([^)]*)\):\s*([^ ]+)\s+from\s+(.*)/\2\t\3\t\4/' | sort | uniq -c
+      1 14	api/v4/test	127.0.0.1
+      4 2	api/v4/test	::1
+     24 6	api/v4/test	127.0.0.1
+      1 7	api/v4/test	127.0.0.1
+     26 	api/v4/test	127.0.0.1
+     52 iqLw1OF50aPU	api/v4/test	127.0.0.1
+```
+
+Once you have updated any integrations, you can disable the practice entirely ahead of the next minor release via the *Authentication / Allow API authentication via GET parameter* checkbox on the Settings frontend, or by setting the following in your `.env` file:
+
+```
+IXP_ALLOW_DEPRECATED_APIKEYS_VIA_GET=0
+```
