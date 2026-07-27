@@ -74,8 +74,6 @@ Speed and duplex are self explanatory. These settings in the *physical interface
 
 These settings apply to the VLAN interface.
 
-The *Max BGP Prefixes* is a setting used to determine max prefixes on router BGP peers - please [see the global version of this as explained in the customer section for details](customers.md#peering-details).
-
 If `Apply IRRDB Filtering` is **not** set, then the route servers will accept any prefixes advertised by the customer (note that the default templates will filter martians and apply a max prefix limit). Generally speaking this is a **very bad idea** and should only be used in exceptional cases. *INEX never uses this setting - but demand from other IX's had it added.*
 
 `Multicast Enabled` is informational only. INEX used to support multicast on the peering LAN but removed support in 2015 due to lack of interest and added complexity / cost when purchasing new switches.
@@ -98,6 +96,7 @@ The same details apply to IPv4 and IPv6 options so we will document them togethe
   * The *circle refresh* icon in the IPv4 section will generate a cryptographically secure secret in modern browsers.
   * The *square refresh* icon in the IPv6 section will copy the value from the IPv4 section.
   * Note that setting a MD5 here does not mean that all router configurations have to include it. MD5 can be disabled entirely by a [routers configuration](../features/routers.md) or by templating.
+* `Max BGP Prefixes`: This setting is used to determine max prefixes on router BGP peers. It takes precedence over the [customers global max prefixes setting](customers.md#peering-details), and the platform default max prefixes setting, and applies to the current VLAN only.
 * `Can Ping`: IXP Manager generates configuration for a number of other tools such as [Smokeping](../grapher/smokeping.md) and Nagios which ping customer routers. These are invaluable tools for problem solving, monitoring and graphing long term trends. We enable this by default unless a customer specifically asks us not to.
 * `Can Monitor RC BGP`: this is more of a legacy option for configuration builders that used to check for established route collector BGP sessions and warn if not present. This is deprecated and will be removed.
 
@@ -106,6 +105,18 @@ If you wish to make `Hostname` above optional, set the following `.env` configur
 ```
 IXP_FE_VLANINTERFACES_HOSTNAME_REQUIRED=false
 ```
+
+While `Max BGP Prefixes` is optional, there are circumstances where the feature is not particularly useful -
+such as when you only operate a single peering VLAN or infrastructure in one geographic location. To remove the
+option from VLAN interfaces, set the following `.env` configuration option:
+
+```
+IXP_FE_VLANINTERFACES_MAX_PREFIX_ENABLED=false
+```
+
+In this case, the option to provide an override on the VLAN will be be removed from the IPv4 and IPv6 form fields
+**once the field is empty**. If there is a `Max BGP Prefixes` override set on IPv4 or IPv6, the field will remain
+on the form so it can be changed or removed.
 
 
 ## Viewing / Editing an Interface

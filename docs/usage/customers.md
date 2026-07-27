@@ -38,9 +38,7 @@ The `Date Joined` is just that and must be set. However, the `Date Left` has rea
 
 The `AS Number` is just the integer value without any `AS` prefix, etc.
 
-`IPv4 IPv6 Max Prefixes`/`IPv6 IPv6 Max Prefixes` is known as the *global max prefixes value*. It is used to work out the appropriate max prefixes value to apply to all router ipv4/ipv6 configurations in the stock / default templates (route collector and servers, AS112). The calculated value is also included in emails from the *Peering Manager* from customer to customer.
-
-Note that it is also possible to set a max prefixes value on a per VLAN interface basis. If you do so, the more specific value on the VLAN interface will be used. 
+`IPv4 Max Prefixes`/`IPv6 Max Prefixes` is known as the *global max prefixes value*. It is used to work out the appropriate max prefixes value to apply to all router ipv4/ipv6 configurations in the stock / default templates (route collector and servers, AS112). The calculated value is also included in emails from the *Peering Manager* from customer to customer.
 
 If no max prefix value is set (or it is set to zero), a configurable default value will be used. To change the default, add the following to your `.env` file, changing the default numbers shown:
 
@@ -48,6 +46,8 @@ If no max prefix value is set (or it is set to zero), a configurable default val
 IXP_DEFAULT_MAXPREFIXES_V4=250
 IXP_DEFAULT_MAXPREFIXES_V6=50
 ```
+
+Note that it is also possible to set a max prefixes value on a per VLAN interface basis.  If you do so, the more specific value on the VLAN interface will be used.  This feature is described in more detail on the [Customer Connections page](../usage/interfaces.md#ipv4ipv6-details)
 
 
 The `Peering Email` is used in member lists and by the *Peering Manager* for sending emails. We try and encourage an alias of `peering@example.com` but this does not always work out.
