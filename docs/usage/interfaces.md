@@ -118,6 +118,10 @@ In this case, the option to provide an override on the VLAN will be be removed f
 **once the field is empty**. If there is a `Max BGP Prefixes` override set on IPv4 or IPv6, the field will remain
 on the form so it can be changed or removed.
 
+Before disabling, ensure all existing per-VLAN max prefixes have been checked and the global max prefix updated
+if needed before clearing all per-VLAN-interface max prefix settings. A command line tool is provided to carry
+this out: `php ./artisan customer:update-global-max-prefixes`
+
 
 ## Viewing / Editing an Interface
 
