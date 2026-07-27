@@ -3280,7 +3280,6 @@
 <p>Speed and duplex are self explanatory. These settings in the <em>physical interface</em> entity are informational unless you are doing automation. They also have knock on effects to (for example) graphing - where the MRTG max value on an interface is set to this to prevent weird excessive spikes on counter rollovers.</p>
 <h3 id="general-vlan-settings">General VLAN Settings<a class="headerlink" href="#general-vlan-settings" title="Permanent link"></a></h3>
 <p>These settings apply to the VLAN interface.</p>
-<p>The <em>Max BGP Prefixes</em> is a setting used to determine max prefixes on router BGP peers - please <a href="../customers/#peering-details">see the global version of this as explained in the customer section for details</a>.</p>
 <p>If <code>Apply IRRDB Filtering</code> is <strong>not</strong> set, then the route servers will accept any prefixes advertised by the customer (note that the default templates will filter martians and apply a max prefix limit). Generally speaking this is a <strong>very bad idea</strong> and should only be used in exceptional cases. <em>INEX never uses this setting - but demand from other IX's had it added.</em></p>
 <p><code>Multicast Enabled</code> is informational only. INEX used to support multicast on the peering LAN but removed support in 2015 due to lack of interest and added complexity / cost when purchasing new switches.</p>
 <p>If <code>Route Server Client</code> is checked, then IXP Manager will configure a BGP peer for this connection when generating <a href="../../features/route-servers/">route server configurations</a>. It is also used in other areas to show if a member uses the route servers or not, by the <em>Peering Manager</em> to calculate missing BGP sessions, etc.</p>
@@ -3297,12 +3296,21 @@
 <li>The <em>circle refresh</em> icon in the IPv4 section will generate a cryptographically secure secret in modern browsers.</li>
 <li>The <em>square refresh</em> icon in the IPv6 section will copy the value from the IPv4 section.</li>
 <li>Note that setting a MD5 here does not mean that all router configurations have to include it. MD5 can be disabled entirely by a <a href="../../features/routers/">routers configuration</a> or by templating.</li>
+<li><code>Max BGP Prefixes</code>: This setting is used to determine max prefixes on router BGP peers. It takes precedence over the <a href="../customers/#peering-details">customers global max prefixes setting</a>, and the platform default max prefixes setting, and applies to the current VLAN only.</li>
 <li><code>Can Ping</code>: IXP Manager generates configuration for a number of other tools such as <a href="../../grapher/smokeping/">Smokeping</a> and Nagios which ping customer routers. These are invaluable tools for problem solving, monitoring and graphing long term trends. We enable this by default unless a customer specifically asks us not to.</li>
 <li><code>Can Monitor RC BGP</code>: this is more of a legacy option for configuration builders that used to check for established route collector BGP sessions and warn if not present. This is deprecated and will be removed.</li>
 </ul>
 <p>If you wish to make <code>Hostname</code> above optional, set the following <code>.env</code> configuration option:</p>
 <div class="highlight"><pre><span></span><code>IXP_FE_VLANINTERFACES_HOSTNAME_REQUIRED=false
 </code></pre></div>
+<p>While <code>Max BGP Prefixes</code> is optional, there are circumstances where the feature is not particularly useful -
+such as when you only operate a single peering VLAN or infrastructure in one geographic location. To remove the
+option from VLAN interfaces, set the following <code>.env</code> configuration option:</p>
+<div class="highlight"><pre><span></span><code>IXP_FE_VLANINTERFACES_MAX_PREFIX_ENABLED=false
+</code></pre></div>
+<p>In this case, the option to provide an override on the VLAN will be be removed from the IPv4 and IPv6 form fields
+<strong>once the field is empty</strong>. If there is a <code>Max BGP Prefixes</code> override set on IPv4 or IPv6, the field will remain
+on the form so it can be changed or removed.</p>
 <h2 id="viewing-editing-an-interface">Viewing / Editing an Interface<a class="headerlink" href="#viewing-editing-an-interface" title="Permanent link"></a></h2>
 <p>Once an interface has been added as per the above wizard instructions, you can view and edit the interface by selecting the edit icon against the connection you are interested in from the <em>Ports</em> tab on the customer overview page. When you do that, you will see a screen such as the following:</p>
 <p><img alt="Interface Edit/View" src="../img/interfaces-vi-edit.png" /></p>
@@ -3359,7 +3367,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 9, 2026 13:51:02 UTC">April 9, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 27, 2026 09:09:52 UTC">July 27, 2026</span>
   </span>
 
     
