@@ -1,5 +1,39 @@
 # IXP Manager Security
 
+## HTTP Headers
+
+Configuring HTTP headers is a simple measure to improve the security of your installation and it's users.
+
+### Strict Transport Security
+
+Strict Transport Security is a mechanism which informs the users browser to only use HTTPS for connections
+to a web server -- preventing credentials or cookies from being sent over plaintext HTTP -- and prevents
+users from bypassing secure connection errors such as an expired or self-signed certificate.
+
+You can configure HSTS for just the primary IXP Manager host, or add the `includeSubDomains` directive to
+enforce HTTPS across every subdomain under that domain.
+
+For instance, INEX's policy is retained by browsers for 1 year and also applies to subdomains: `Strict-Transport-Security: max-age=31536000; includeSubDomains`
+
+It is also recommended to setup a HTTP to HTTPS redirect on your webserver as browsers will not trust HSTS
+policies sent over HTTP.
+
+### X-Frame-Options
+
+When a web application like IXP Manager is allowed to be embedded in an `iframe` by other websites, it may be
+subject to clickjacking attacks.
+
+The `X-Frame-Options` header is used to inform a users browser about a websites policy for being included in an
+`iframe`. When set, browsers will determine whether the website is allowed to be embedded, and deny the request
+if not. It is not set by default by your webserver, so you will have to do that yourself.
+
+Unless you have a need for embedding IXP Manager in an `iframe`, you can simply set `X-Frame-Options: DENY`
+which will prevent your application from being embedded into other websites.
+
+[Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options)
+has an overview of the header and the supported options, some examples of configuring the header on apache2
+and nginx, as well as a browser compatability chart.
+
 ## Securing Administrative Functions
 
 IXP Manager has always been both an administrative portal for organisations that run IXPs and a member/customer portal for the participants at an IXP. This creates a security paradox in that IXP Manager's administrative frontend must be publicly available if IXPs wish to provide the customer portal element. 
