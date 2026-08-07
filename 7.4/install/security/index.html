@@ -560,6 +560,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#securing-administrative-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Securing Administrative Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Securing Administrative Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transition-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transition Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-key-as-get-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Key as GET Parameter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#http-headers" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -612,45 +651,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#securing-administrative-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Securing Administrative Functions
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Securing Administrative Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#transition-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Transition Settings
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-key-as-get-parameter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Key as GET Parameter
-      
-    </span>
-  </a>
   
 </li>
       
@@ -3011,6 +3011,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#securing-administrative-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Securing Administrative Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Securing Administrative Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transition-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transition Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-key-as-get-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Key as GET Parameter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#http-headers" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3066,45 +3105,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#securing-administrative-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Securing Administrative Functions
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Securing Administrative Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#transition-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Transition Settings
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-key-as-get-parameter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Key as GET Parameter
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3126,39 +3126,6 @@
 
 
 <h1 id="ixp-manager-security">IXP Manager Security<a class="headerlink" href="#ixp-manager-security" title="Permanent link"></a></h1>
-<h2 id="http-headers">HTTP Headers<a class="headerlink" href="#http-headers" title="Permanent link"></a></h2>
-<p>Configuring HTTP headers is a simple measure to improve the security of your installation and it's users.</p>
-<h3 id="strict-transport-security">Strict Transport Security<a class="headerlink" href="#strict-transport-security" title="Permanent link"></a></h3>
-<p>Strict Transport Security forces browsers to only use HTTPS for connections to a web server, preventing
-credentials or cookies from being sent over plaintext HTTP, and users from bypassing HTTPS connection.</p>
-<p>It is recommended to setup a HTTP to HTTPS redirect on your webserver as browsers will not trust HSTS
-policies sent over HTTP.</p>
-<blockquote>
-<p><strong>Note on <code>includeSubDomains</code>:</strong> Only include <code>includeSubDomains</code> if <strong>all</strong> subdomains on your domain
-serve HTTPS. Setting a long <code>max-age</code> (e.g., 31536000 = 1 year) is standard practice once confirmed working.</p>
-</blockquote>
-<h4 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link"></a></h4>
-<div class="highlight"><pre><span></span><code># For apache2. Run `a2enmod headers` first. Add this inside your VirtualHost block.
-Header always set Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot;
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># For nginx. Add this inside your server { ... } block
-add_header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot; always;
-</code></pre></div>
-<h3 id="x-frame-options-and-content-security-policy-frame-ancestors">X-Frame-Options and Content Security Policy frame-ancestors<a class="headerlink" href="#x-frame-options-and-content-security-policy-frame-ancestors" title="Permanent link"></a></h3>
-<p>When a web application like IXP Manager is allowed to be embedded in an <code>iframe</code> by other websites, it may be
-subject to clickjacking attacks.</p>
-<p>Both <code>X-Frame-Options</code> and <code>Content-Security Policy 'frame ancestors'</code> instruct browsers about a websites policy
-for being included in an <code>iframe</code>, with CSP being a more modern way of doing so.  When set, browsers will determine
-whether the website is allowed to be embedded, and refuse to display the website if not.</p>
-<p>Unless you have a need for embedding IXP Manager in an <code>iframe</code>, you should disable support for it completely.</p>
-<div class="highlight"><pre><span></span><code># For apache2. Run `a2enmod headers` first. Add this inside your VirtualHost block.
-Header always set Content-Security-Policy &quot;frame-ancestors &#39;none&#39;;&quot;
-Header always set X-Frame-Options &quot;DENY&quot;
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># For nginx. Add this inside your server { ... } block
-add_header Content-Security-Policy &quot;frame-ancestors &#39;none&#39;;&quot; always;
-add_header X-Frame-Options &quot;DENY&quot; always;
-</code></pre></div>
 <h2 id="securing-administrative-functions">Securing Administrative Functions<a class="headerlink" href="#securing-administrative-functions" title="Permanent link"></a></h2>
 <p>IXP Manager has always been both an administrative portal for organisations that run IXPs and a member/customer portal for the participants at an IXP. This creates a security paradox in that IXP Manager's administrative frontend must be publicly available if IXPs wish to provide the customer portal element. </p>
 <p>To address this, v7.1.0 has prepended all administrative-only URLs, both web and api, with <code>admin/</code>. This will allow IXP administrators to restrict access to these prepended URLs to known-safe IP addresses via web server access lists, for which <a href="securing-admin/">we provide examples for Varnish, Apache and Nginx here</a>.</p>
@@ -3202,6 +3169,40 @@ GET parameters are included in webserver logs by default. As such, support for t
 <p>Once you have updated any integrations, you can disable the practice entirely ahead of the next minor release via the <em>Authentication / Allow API authentication via GET parameter</em> checkbox on the Settings frontend, or by setting the following in your <code>.env</code> file:</p>
 <div class="highlight"><pre><span></span><code>IXP_ALLOW_DEPRECATED_APIKEYS_VIA_GET=0
 </code></pre></div>
+<h2 id="http-headers">HTTP Headers<a class="headerlink" href="#http-headers" title="Permanent link"></a></h2>
+<p>Configuring security-focused HTTP headers on your web server is a simple, low-effort step to harden your
+IXP Manager installation and protect user sessions.</p>
+<h3 id="strict-transport-security">Strict Transport Security<a class="headerlink" href="#strict-transport-security" title="Permanent link"></a></h3>
+<p>Strict Transport Security forces browsers to only use HTTPS for connections to a web server, preventing
+credentials or cookies from being sent over plaintext HTTP, and users from bypassing HTTPS connection.</p>
+<p>It is recommended to setup a HTTP to HTTPS redirect on your webserver as browsers will not trust HSTS
+policies sent over HTTP.</p>
+<blockquote>
+<p><strong>Note on <code>includeSubDomains</code>:</strong> Only include <code>includeSubDomains</code> if <strong>all</strong> subdomains on your domain
+serve HTTPS. Setting a long <code>max-age</code> (e.g., 31536000 = 1 year) is standard practice once confirmed working.</p>
+</blockquote>
+<h4 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link"></a></h4>
+<div class="highlight"><pre><span></span><code># For apache2. Run `a2enmod headers` first. Add this inside your VirtualHost block.
+Header always set Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># For nginx. Add this inside your server { ... } block
+add_header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot; always;
+</code></pre></div>
+<h3 id="x-frame-options-and-content-security-policy-frame-ancestors">X-Frame-Options and Content Security Policy frame-ancestors<a class="headerlink" href="#x-frame-options-and-content-security-policy-frame-ancestors" title="Permanent link"></a></h3>
+<p>When a web application like IXP Manager is allowed to be embedded in an <code>iframe</code> by other websites, it may be
+subject to clickjacking attacks.</p>
+<p>Both <code>X-Frame-Options</code> and <code>Content-Security Policy 'frame ancestors'</code> instruct browsers about a websites policy
+for being included in an <code>iframe</code>, with CSP being a more modern way of doing so.  When set, browsers will determine
+whether the website is allowed to be embedded, and refuse to display the website if not.</p>
+<p>Unless you have a need for embedding IXP Manager in an <code>iframe</code>, you should disable support for it completely.</p>
+<div class="highlight"><pre><span></span><code># For apache2. Run `a2enmod headers` first. Add this inside your VirtualHost block.
+Header always set Content-Security-Policy &quot;frame-ancestors &#39;none&#39;;&quot;
+Header always set X-Frame-Options &quot;DENY&quot;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># For nginx. Add this inside your server { ... } block
+add_header Content-Security-Policy &quot;frame-ancestors &#39;none&#39;;&quot; always;
+add_header X-Frame-Options &quot;DENY&quot; always;
+</code></pre></div>
 
 
 
@@ -3222,7 +3223,7 @@ GET parameters are included in webserver logs by default. As such, support for t
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 7, 2026 08:08:28 UTC">August 7, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 7, 2026 08:10:05 UTC">August 7, 2026</span>
   </span>
 
     
