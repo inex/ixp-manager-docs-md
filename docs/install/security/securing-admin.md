@@ -19,6 +19,8 @@ The following uses a very basic Apache virtual host configuration which works wi
     DocumentRoot /srv/ixpmanager/public
 
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set Content-Security-Policy "frame-ancestors 'none';"
+    Header always set X-Frame-Options "DENY"
 
     <Directory /srv/ixpmanager/public>
         Options FollowSymLinks
@@ -82,6 +84,9 @@ server {
     listen [::]:443 ssl http2;
     server_name portal.example.net;
 
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+    add_header Content-Security-Policy "frame-ancestors 'none';" always;
+    add_header X-Frame-Options "DENY" always;
 
     ssl_certificate                 /etc/letsencrypt/live/portal.example.net/fullchain.pem;
     ssl_certificate_key             /etc/letsencrypt/live/portal.example.net/privkey.pem;
@@ -111,6 +116,10 @@ server {
         include snippets/fastcgi-php.conf;
         # With php7.0-fpm:
         fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+        add_header Content-Security-Policy "frame-ancestors 'none';" always;
+        add_header X-Frame-Options "DENY" always;
     }
 }
 ```

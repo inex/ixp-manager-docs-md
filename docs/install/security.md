@@ -106,6 +106,8 @@ whether the website is allowed to be embedded, and refuse to display the website
 
 Unless you have a need for embedding IXP Manager in an `iframe`, you should disable support for it completely.
 
+#### Examples
+
 ```
 # For apache2. Run `a2enmod headers` first. Add this inside your VirtualHost block.
 Header always set Content-Security-Policy "frame-ancestors 'none';"
