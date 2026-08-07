@@ -1,55 +1,5 @@
 # IXP Manager Security
 
-## HTTP Headers
-
-Configuring HTTP headers is a simple measure to improve the security of your installation and it's users.
-
-### Strict Transport Security
-
-Strict Transport Security forces browsers to only use HTTPS for connections to a web server, preventing
-credentials or cookies from being sent over plaintext HTTP, and users from bypassing HTTPS connection.
-
-It is recommended to setup a HTTP to HTTPS redirect on your webserver as browsers will not trust HSTS
-policies sent over HTTP.
-
-> **Note on `includeSubDomains`:** Only include `includeSubDomains` if **all** subdomains on your domain
-> serve HTTPS. Setting a long `max-age` (e.g., 31536000 = 1 year) is standard practice once confirmed working.
-
-#### Examples
-
-```
-# For apache2. Run `a2enmod headers` first. Add this inside your VirtualHost block.
-Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-```
-
-```
-# For nginx. Add this inside your server { ... } block
-add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-```
-
-### X-Frame-Options and Content Security Policy frame-ancestors
-
-When a web application like IXP Manager is allowed to be embedded in an `iframe` by other websites, it may be
-subject to clickjacking attacks.
-
-Both `X-Frame-Options` and `Content-Security Policy 'frame ancestors'` instruct browsers about a websites policy
-for being included in an `iframe`, with CSP being a more modern way of doing so.  When set, browsers will determine
-whether the website is allowed to be embedded, and refuse to display the website if not.
-
-Unless you have a need for embedding IXP Manager in an `iframe`, you should disable support for it completely.
-
-```
-# For apache2. Run `a2enmod headers` first. Add this inside your VirtualHost block.
-Header always set Content-Security-Policy "frame-ancestors 'none';"
-Header always set X-Frame-Options "DENY"
-```
-
-```
-# For nginx. Add this inside your server { ... } block
-add_header Content-Security-Policy "frame-ancestors 'none';" always;
-add_header X-Frame-Options "DENY" always;
-```
-
 ## Securing Administrative Functions
 
 IXP Manager has always been both an administrative portal for organisations that run IXPs and a member/customer portal for the participants at an IXP. This creates a security paradox in that IXP Manager's administrative frontend must be publicly available if IXPs wish to provide the customer portal element. 
@@ -115,4 +65,55 @@ Once you have updated any integrations, you can disable the practice entirely ah
 
 ```
 IXP_ALLOW_DEPRECATED_APIKEYS_VIA_GET=0
+```
+
+## HTTP Headers
+
+Configuring security-focused HTTP headers on your web server is a simple, low-effort step to harden your
+IXP Manager installation and protect user sessions.
+
+### Strict Transport Security
+
+Strict Transport Security forces browsers to only use HTTPS for connections to a web server, preventing
+credentials or cookies from being sent over plaintext HTTP, and users from bypassing HTTPS connection.
+
+It is recommended to setup a HTTP to HTTPS redirect on your webserver as browsers will not trust HSTS
+policies sent over HTTP.
+
+> **Note on `includeSubDomains`:** Only include `includeSubDomains` if **all** subdomains on your domain
+> serve HTTPS. Setting a long `max-age` (e.g., 31536000 = 1 year) is standard practice once confirmed working.
+
+#### Examples
+
+```
+# For apache2. Run `a2enmod headers` first. Add this inside your VirtualHost block.
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+```
+
+```
+# For nginx. Add this inside your server { ... } block
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+```
+
+### X-Frame-Options and Content Security Policy frame-ancestors
+
+When a web application like IXP Manager is allowed to be embedded in an `iframe` by other websites, it may be
+subject to clickjacking attacks.
+
+Both `X-Frame-Options` and `Content-Security Policy 'frame ancestors'` instruct browsers about a websites policy
+for being included in an `iframe`, with CSP being a more modern way of doing so.  When set, browsers will determine
+whether the website is allowed to be embedded, and refuse to display the website if not.
+
+Unless you have a need for embedding IXP Manager in an `iframe`, you should disable support for it completely.
+
+```
+# For apache2. Run `a2enmod headers` first. Add this inside your VirtualHost block.
+Header always set Content-Security-Policy "frame-ancestors 'none';"
+Header always set X-Frame-Options "DENY"
+```
+
+```
+# For nginx. Add this inside your server { ... } block
+add_header Content-Security-Policy "frame-ancestors 'none';" always;
+add_header X-Frame-Options "DENY" always;
 ```
