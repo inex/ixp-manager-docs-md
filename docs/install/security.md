@@ -77,8 +77,8 @@ IXP Manager installation and protect user sessions.
 Strict Transport Security forces browsers to only use HTTPS for connections to a web server, preventing
 credentials or cookies from being sent over plaintext HTTP, and users from bypassing HTTPS connection.
 
-It is recommended to setup a HTTP to HTTPS redirect on your webserver as browsers will not trust HSTS
-policies sent over HTTP.
+Ensure your webserver also redirects users from HTTP to HTTPS, as browsers will not trust HSTS headers
+sent over HTTP.
 
 > **Note on `includeSubDomains`:** Only include `includeSubDomains` if **all** subdomains on your domain
 > serve HTTPS. Setting a long `max-age` (e.g., 31536000 = 1 year) is standard practice once confirmed working.
