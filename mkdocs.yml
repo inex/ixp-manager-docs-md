@@ -91,6 +91,7 @@ nav:
     - 'Settings UI': 'features/settings.md'
     - 'Smokeping': 'grapher/smokeping.md'
     - 'Static Content': 'features/static-content.md'
+    - 'System Validation': 'features/system-validation.md'
     - 'TACACS': 'features/tacacs.md'
 - Grapher:
     - 'Introduction': 'grapher/introduction.md'
