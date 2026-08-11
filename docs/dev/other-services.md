@@ -46,3 +46,9 @@ The base url can be overridden in your `.env` file by setting `IXP_FE_DOCUMENTAT
 IXP_FE_DOCUMENTATION_BASE_URL=https://localhost:8000
 ```
 
+A helper function is provided in IXP Manager for generating URL's to documentation:
+
+```
+echo documentation_url("install/upgrading/#instructions")
+// outputs: https://www.ixpmanager.org/7.3/install/upgrading/#instructions
+```
