@@ -152,7 +152,7 @@ a validator to run for longer than this! If this arises, the task is terminated,
 In the web interface, an orange icon will indicate a timed out test, and a timed out test will never by omitted
 due to the chosen severity level.
 
-## Github Issue Template
+## GitHub Issue Support Tool
 
 As part of the validation CLI tool, we also provide a way to quickly generate a GitHub Issue template
 with the information about your system, configuration, and IXP Manager version already completed.
