@@ -164,3 +164,20 @@ are happy that nothing sensitive has been included when copying its output.
 
 Before opening an issue, please read this page about [Support for IXP Manager](https://www.ixpmanager.org)
 to see if a GitHub issue is actually a suitable place to ask for help.
+
+## Recurring task checks
+
+There are several validations in IXP Manager which check to see if a normally recurring task has run recently.
+For instance, the nagios configuration generation endpoints store what type of configuration was generated.
+
+If you have used this feature in the past and no longer do so, you will receive errors/warnings that it hasn't
+been run recently.
+
+If you want to reset this state, you can do so with the following command:
+
+```
+cd $IXPROOT
+php ./artisan utils:clear-task-history
+```
+
+This will remove **all** information about recent runs, giving you a clean state to start from.
