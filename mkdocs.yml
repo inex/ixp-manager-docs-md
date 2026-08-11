@@ -117,6 +117,7 @@ nav:
     - 'Grapher': 'dev/grapher.md'
     - 'Helpers': 'dev/helpders.md'
     - 'Looking Glass': 'dev/looking-glass.md'
+    - 'Other Services': 'dev/other-services.md'
     - 'Release Procedure': 'dev/release-procedure.md'
     - 'Telescope': 'dev/telescope.md'
     - 'Users': 'dev/users.md'
