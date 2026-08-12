@@ -188,27 +188,3 @@ When creating a route server in IXP Manager, there is a checkbox option to contr
 
 It is recommended that this be **enabled** on route servers.
 
-
-## Legacy Prefix Analysis Tool
-
-The older but deprecated means of viewing filtered prefixes was the *Route Server Prefix Analysis tool* which allows your members to examine what routes they are advertising to the route servers, which are being accepted and which are being rejected.
-
-### Limitations and Caveats
-
-Implemented as a Perl script which accesses the database directly. The script can also only be used on one LAN and one route server. Thus, pick you most popular LAN and route server.
-
-### Setting Up
-
-
-* Download [this script](https://github.com/inex/IXP-Manager/blob/main/tools/runtime/route-servers/compare-route-server-prefixes.pl) to your route server;
-* Ensure you install and configure the IXP Manager Perl library on this route server also;
-* Edit the `compare-route-server-prefixes.pl` script and set the Bird configuration file and socket (you can find the position in the file by searching for `XXX-SET-ME`);
-* See also [this diff](https://www.inex.ie/pipermail/ixpmanager/2015-May/000558.html) for further hints;
-* Execute the `compare-route-server-prefixes.pl` script a few times a day as you think appropriate;
-* In your `.env` file, ensure the following is set:
-
-```ini
-IXP_FE_FRONTEND_DISABLED_RS_PREFIXES=false
-```
-
-Once you make the last change above, the prefix analysis tool will be available to administrators and members on IXP Manager.
