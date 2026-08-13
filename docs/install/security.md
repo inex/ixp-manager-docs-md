@@ -64,7 +64,10 @@ And analyse usage of API keys in this way using the following command which outp
 Once you have updated any integrations, you can disable the practice entirely ahead of the next minor release via the *Authentication / Allow API authentication via GET parameter* checkbox on the Settings frontend, or by setting the following in your `.env` file:
 
 ```
-IXP_ALLOW_DEPRECATED_APIKEYS_VIA_GET=0
+## To disable support:
+IXP_ALLOW_DEPRECATED_APIKEYS_VIA_GET=false
+## To enable support:
+IXP_ALLOW_DEPRECATED_APIKEYS_VIA_GET=true
 ```
 
 ## HTTP Headers
