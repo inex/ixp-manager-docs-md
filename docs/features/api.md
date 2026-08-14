@@ -71,11 +71,11 @@ This is a legacy method that is now being deprecated. You may tack your key on a
 https://ixp.example.com/api/v4/test?apikey=ixpm_ident1234567_sec87654321098765432109876543210crc321
 ```
 
-As of 7.3, this feature is still enabled, but IXP Manager will write notices to the log file informing you of the deprecated usage. You can be disable support for API Keys in URLs by  setting `IXP_ALLOW_DEPRECATED_APIKEYS_VIA_GET=false` in `.env`.
+This feature is disabled by default as of v7.4.0, and will be removed in a future release. If you are writing new
+integrations with IXP-Manager, skip support for this and use HTTP Headers instead.
 
-The log message will contain the API Key ID for legacy API Keys, or the API Token Identifier for new API keys.
-
-A future release will turn the setting off by default and software using this authorization method will be denied. It can be enabled by setting `IXP_ALLOW_DEPRECATED_APIKEYS_VIA_GET=true` in `.env`.  A subsequent release will remove support for this feature entirely.
+Any request attempting to authenticate via API Keys will be logged, allowing you to find and migrate any integrations still
+using the practice. [More information on this can be found here](../install/security.md#api-key-as-get-parameter)/
 
 ## API Key Management
 
