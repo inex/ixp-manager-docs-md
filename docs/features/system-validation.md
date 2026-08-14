@@ -165,15 +165,16 @@ are happy that nothing sensitive has been included when copying its output.
 Before opening an issue, please read this page about [Support for IXP Manager](https://www.ixpmanager.org)
 to see if a GitHub issue is actually a suitable place to ask for help.
 
-## Recurring task checks
+## Recurring task tracking
 
 There are several validations in IXP Manager which check to see if a normally recurring task has run recently.
-For instance, the nagios configuration generation endpoints store what type of configuration was generated.
 
-If you have used this feature in the past and no longer do so, you will receive errors/warnings that it hasn't
-been run recently.
+An example of such a feature is the [Nagios](nagios.md) configuration generation endpoints. These record the last
+time configuration was generated, and the parameters used for generation. The system validator tool will include
+an error if the last time was over 24 hours ago.
 
-If you want to reset this state, you can do so with the following command:
+If you had been using Nagios configuration generation, but no longer do so, you will need to reset task tracking
+history to make these errors go away. To reset this task history, you can do so with the following command:
 
 ```
 cd $IXPROOT
