@@ -75,7 +75,7 @@ This feature is disabled by default as of v7.4.0, and will be removed in a futur
 integrations with IXP-Manager, skip support for this and use HTTP Headers instead.
 
 Any request attempting to authenticate via API Keys will be logged, allowing you to find and migrate any integrations still
-using the practice. [More information on this can be found here](../install/security.md#api-key-as-get-parameter)/
+using the practice. Information on this, and how to re-enable the support for this authentication method [can be found here](../install/security.md#api-key-as-get-parameter).
 
 ## API Key Management
 
