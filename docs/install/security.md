@@ -61,7 +61,7 @@ And analyse usage of API keys in this way using the following command which outp
      52 iqLw1OF50aPU	api/v4/test	127.0.0.1
 ```
 
-Once you have updated any integrations, you can disable the practice entirely ahead of the next minor release via the *Authentication / Allow API authentication via GET parameter* checkbox on the Settings frontend, or by setting the following in your `.env` file:
+Once you have updated any integrations, you can disable the practice entirely ahead of the next minor release via the *Authentication / Allow API authentication via GET parameter* checkbox on the [Settings frontend](../features/settings.md), or by setting the following in your `.env` file:
 
 ```
 ## To disable support:
