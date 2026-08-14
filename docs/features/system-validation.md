@@ -147,7 +147,7 @@ are displayed after the validation results table. A validator which encounters a
 results before the failure arose. In the web interface, a red failure icon will appear, and a failed test will never
 be omitted due to the severity level.
 
-Validators are also monitored for their run time. By default, this is 30 seconds and it would be unusual for
+Validators are also monitored for their run time. By default, this is 20 seconds and it would be unusual for
 a validator to run for longer than this! If this arises, the task is terminated, and no results will be reported.
 In the web interface, an orange icon will indicate a timed out test, and a timed out test will never by omitted
 due to the chosen severity level.
