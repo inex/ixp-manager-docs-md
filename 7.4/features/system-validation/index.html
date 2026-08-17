@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3215,9 +3215,9 @@ sudo -u $MY_WWW_USER php ./validate.php
 <p>The basic systems check can produce warnings or errors. If an error is encountered, the suite of regular validations
 will not be run - these errors should be fixed first. Anything reported in this phase will likely render your
 IXP Manager web application inaccessible.</p>
-<p>By default, only results with severity level <code>suggest</code> or higher are displayed. This minimum severity level can be
-controlled by setting the <code>--log-level=</code> flag. For example, to see more verbose output:</p>
-<div class="highlight"><pre><span></span><code>sudo -u $MY_WWW_USER php ./validate.php --log-level=info
+<p>By default, only results with severity level <code>suggestion</code> or higher are displayed. This minimum severity level can be
+controlled by setting the <code>--severity=</code> flag. For example, to see more verbose output:</p>
+<div class="highlight"><pre><span></span><code>sudo -u $MY_WWW_USER php ./validate.php --severity=info
 </code></pre></div>
 <h4 id="example-output-system-checks-failed">Example Output: system checks failed<a class="headerlink" href="#example-output-system-checks-failed" title="Permanent link"></a></h4>
 <div class="highlight"><pre><span></span><code>root@vagrant:/srv/ixpmanager# sudo -u $MY_WWW_USER php ./validate.php
@@ -3256,7 +3256,7 @@ No errors detected during basic validations
 |                     | Warning    | APP_DEBUG is enabled                                                             |
 |                     | Warning    | APP_ENV is not set to production                                                 |
 |---------------------------------------------------------------------------------------------------------------------|
-| IXP Manager version |            | No results reached the log-level threshold                                       |
+| IXP Manager version |            | No results reached the minimum severity                                          |
 | check               |            |                                                                                  |
 |---------------------------------------------------------------------------------------------------------------------|
 | Security settings   | Error      | Passing API Keys as a GET parameter is enabled - this is strongly discouraged,   |
@@ -3272,8 +3272,8 @@ No errors detected during basic validations
 | AS112 validator     |            | The validator did not report any results                                         |
 +---------------------+------------+----------------------------------------------------------------------------------+
 
-Log level: suggest
-Validations summary: info: 20, suggest: 7, warning: 4, error: 4.
+Severity level: suggestion
+Validations summary: info: 20, suggestion: 7, warning: 4, error: 4.
 </code></pre></div>
 <h3 id="web-interface">Web interface<a class="headerlink" href="#web-interface" title="Permanent link"></a></h3>
 <p>Within IXP Manager, a link to the System Validation is shown in the administrator left menu.</p>
@@ -3298,9 +3298,9 @@ severity level.</p>
 <p>When the validation suite is run, each validation task is started in it's own thread in the background. They
 perform their checks and report their findings back to you.</p>
 <p>Validation results consist of a message, and a severity level. In ascending order of severity these are <code>debug</code>, <code>info</code>,
-<code>suggest</code>, <code>warning</code>, and <code>error</code>. Both the CLI and Web interface support filtering of results based on this severity
-level. When your log level is such that all messages are filtered, the CLI will report <code>No results reached the log-level
-threshold</code>, whereas the web interface will hide the validator entirely.</p>
+<code>suggestion</code>, <code>warning</code>, and <code>error</code>. Both the CLI and Web interface support filtering of results based on this severity
+level. When your severity level is such that all messages are filtered, the CLI will report <code>No results reached the
+minimum severity</code>, whereas the web interface will hide the validator entirely.</p>
 <p>A validator may not find anything worth reporting. This depends on the results of the tests performed. If it happens,
 the command line or web interface will report that no results were reported.</p>
 <p>If an unhandled exception occurs, this will be highlighted and shown to you. In the command line, all failures
@@ -3350,7 +3350,7 @@ php ./artisan utils:clear-task-history
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 17, 2026 10:56:58 UTC">August 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 17, 2026 11:17:06 UTC">August 17, 2026</span>
   </span>
 
     
@@ -3467,7 +3467,7 @@ php ./artisan utils:clear-task-history
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
