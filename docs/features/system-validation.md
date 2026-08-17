@@ -106,8 +106,7 @@ Validations summary: info: 20, suggest: 7, warning: 4, error: 4.
 
 ### Web interface
 
-Within IXP Manager, the Validation UI is controlled by the `IXP_FE_FRONTEND_DISABLED_VALIDATION` setting which is
-active by default. When this is enabled, a link to the System Validation is shown in the administrator left menu.
+Within IXP Manager, a link to the System Validation is shown in the administrator left menu.
 
 When you click this link, you'll see a `Run Validations` button, which when clicked will redirect you to a results
 page which will auto-update as validation results are reported.
