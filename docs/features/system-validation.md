@@ -35,11 +35,11 @@ The basic systems check can produce warnings or errors. If an error is encounter
 will not be run - these errors should be fixed first. Anything reported in this phase will likely render your
 IXP Manager web application inaccessible.
 
-By default, only results with severity level `suggest` or higher are displayed. This minimum severity level can be
-controlled by setting the `--log-level=` flag. For example, to see more verbose output:
+By default, only results with severity level `suggestion` or higher are displayed. This minimum severity level can be
+controlled by setting the `--severity=` flag. For example, to see more verbose output:
 
 ```
-sudo -u $MY_WWW_USER php ./validate.php --log-level=info
+sudo -u $MY_WWW_USER php ./validate.php --severity=info
 ```
 
 #### Example Output: system checks failed
@@ -84,7 +84,7 @@ No errors detected during basic validations
 |                     | Warning    | APP_DEBUG is enabled                                                             |
 |                     | Warning    | APP_ENV is not set to production                                                 |
 |---------------------------------------------------------------------------------------------------------------------|
-| IXP Manager version |            | No results reached the log-level threshold                                       |
+| IXP Manager version |            | No results reached the minimum severity                                          |
 | check               |            |                                                                                  |
 |---------------------------------------------------------------------------------------------------------------------|
 | Security settings   | Error      | Passing API Keys as a GET parameter is enabled - this is strongly discouraged,   |
@@ -100,8 +100,8 @@ No errors detected during basic validations
 | AS112 validator     |            | The validator did not report any results                                         |
 +---------------------+------------+----------------------------------------------------------------------------------+
 
-Log level: suggest
-Validations summary: info: 20, suggest: 7, warning: 4, error: 4.
+Severity level: suggestion
+Validations summary: info: 20, suggestion: 7, warning: 4, error: 4.
 ```
 
 ### Web interface
@@ -134,9 +134,9 @@ When the validation suite is run, each validation task is started in it's own th
 perform their checks and report their findings back to you.
 
 Validation results consist of a message, and a severity level. In ascending order of severity these are `debug`, `info`,
-`suggest`, `warning`, and `error`. Both the CLI and Web interface support filtering of results based on this severity
-level. When your log level is such that all messages are filtered, the CLI will report `No results reached the log-level
-threshold`, whereas the web interface will hide the validator entirely.
+`suggestion`, `warning`, and `error`. Both the CLI and Web interface support filtering of results based on this severity
+level. When your severity level is such that all messages are filtered, the CLI will report `No results reached the
+minimum severity`, whereas the web interface will hide the validator entirely.
 
 A validator may not find anything worth reporting. This depends on the results of the tests performed. If it happens,
 the command line or web interface will report that no results were reported.
