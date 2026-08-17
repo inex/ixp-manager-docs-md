@@ -38,10 +38,11 @@ UNSECURED_API_ACCESS=0
 
 ## API Key as GET Parameter
 
-As of v7.3.0 IXP Manager has started generating warnings in log files about use of API Keys via GET parameters. This practice is discouraged as
-GET parameters are included in webserver logs by default. As such, support for this feature will be turned off by default in v7.4.0.
+In v7.3.0 IXP Manager started generating warnings in log files about use of API Keys via GET parameters, and a setting was added to allow enabling/disabling the feature. The practice is discouraged as GET parameters are included in webserver logs by default.
 
-You can search for ongoing usage of this authentication method:
+In v7.4.0 the setting allowing the feature **is disabled by default**
+
+You can search for ongoing usage of this authentication method.
 
 ```sh
 /srv/ixpmanager $ cat storage/logs/laravel.log | grep 'API KEY in GET'
