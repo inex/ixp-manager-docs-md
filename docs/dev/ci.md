@@ -24,7 +24,7 @@ The following are basic instructions on how to set up tests and an overview (or 
 
 Documentation by real example can be found via the [GitHub Actions workflow files](https://github.com/inex/IXP-Manager/tree/main/.github/workflows) and [the CI data directory](https://github.com/inex/IXP-Manager/tree/main/data/ci) which contains scripts, database dumps and configurations.
 
-Testing assumes *a known good sample database* which contains a small mix of customers with different configuration options. The files generated from this database are tested against [known good](https://github.com/inex/IXP-Manager/tree/main/data/ci/known-good) configuration files. You first need to create a database, add a database user, import this testing database and then configure a `.env` file for testing (see [the one here use here](https://github.com/inex/IXP-Manager/blob/main/.env.ci)).
+Testing assumes *known good sample data* which contains a small mix of customers with different configuration options. The files generated from this database are tested against [known good](https://github.com/inex/IXP-Manager/tree/main/data/ci/known-good) configuration files. You first need to create a database, add a database user, import this testing database and then configure a `.env` file for testing (see [the one used here](https://github.com/inex/IXP-Manager/blob/main/.env.ci)).
 
 In MySQL:
 
@@ -34,13 +34,7 @@ GRANT ALL ON `ixp_ci`.* TO `ixp_ci`@`localhost` IDENTIFIED BY 'somepassword';
 FLUSH PRIVILEGES;
 ```
 
-Then import the sample database:
-
-```sh
-cat data/ci/ci_test_db.sql  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci
-```
-
-Now, create your `.env` for testing, such as:
+Create your `.env` for testing, such as:
 
 ```ini
 DB_HOST=localhost
@@ -48,6 +42,18 @@ DB_DATABASE=ixp_ci
 DB_USERNAME=ixp_ci
 DB_PASSWORD=somepassword
 ```
+
+Run migrations to initialize the database tables:
+```
+php ./artisan migrate
+```
+
+Then import the sample data:
+
+```sh
+cat data/ci/ci_test_db_data.sql  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci
+```
+
 
 Note that the [`phpunit.xml`](https://github.com/inex/IXP-Manager/blob/main/phpunit.xml) file in the root directory has some default settings matching the test database. You should not need to edit these.
 
@@ -101,7 +107,9 @@ If you are running Dusk tests, also start the Chromium driver in another console
 The tests require a fresh CI database. If you stop / abort your tests, or if they fail, you should also reset the database.
 
 ```sh
-cat data/ci/ci_test_db.sql  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci
+mysql -h localhost -u ixp_ci -psomepassword ixp_ci -e "DROP DATABASE ixp_ci; CREATE DATABASE ixp_ci CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci';"
+./artisan migrate
+cat data/ci/ci_test_db_data.sql  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci
 ```
 
 And then kick off **all the tests** which includes PHPUnit and Laravel Dusk tests, run:
@@ -222,3 +230,32 @@ Analyzing files...
 ------------------------------
 ```
 
+## Updating sample data
+
+As the IXP Manager database schema changes over time, it will periodically be necessary to update the CI database sample data to keep it's structure in sync.
+
+The general workflow for this is as follows:
+
+ - Drop and recreate the database:
+```sql
+    DROP DATABASE ixp_ci
+    CREATE DATABASE ixp_ci CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci';
+```
+ - Run the old migrations
+```shell
+php ./artisan migrate
+```
+ - Import old sample data:
+```shell
+cat data/ci/ci_test_db_data.sql  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci
+```
+ - Ensure the migrations to be included are put in place. This may involve writing them, moving the file, or changing git commit.
+ - Apply the new migrations:
+```shell
+php ./artisan migrate
+```
+ - Take the updated CI data dump:
+```shell
+mysqldump --ignore-table=ixp_ci.migrations --no-create-info --complete-insert --no-create-db --skip-triggers -h localhost -u ixp_ci -psomepassword ixp_ci > data/ci/ci_test_db_data.sql
+```
+ - And finally, commit the changes to the repository.
