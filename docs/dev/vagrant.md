@@ -85,8 +85,13 @@ Please see Vagrant's own documentation for a full description of how to use it f
 
 ## Database Details
 
-Spinning up Vagrant in the above manner loads a sample database from `tools/vagrant/vagrant-base.sql`. If you have a preferred development database, place a bzip'd copy of it in the `ixpmanager` directory called `ixpmanager-preferred.sql.bz2` before step 5 above.
+Spinning up Vagrant in the above manner will build a fresh database from migrations, and seed the database with data using `tools/vagrant/vagrant-base-data.sql`.
 
+If you have a preferred development database it may be used instead. These must be full database dumps, that is, including both schema and data. Two formats are accepted:
+ - a bzip'd copy can be placed in the `ixpmanager` directory with the name `ixpmanager-preferred.sql.bz2`.
+ - an uncompressed copy can be placed in `ixpmanager` directory with the name `ixpmanager-preferred.sql`.
+
+If you wish to use an alternative development database, the file should be put in place before step 5 above. The files are checked in the same order as above. Migrations will still be applied on top of it, however, data-only dump will not be used.
 
 ## SNMP Simulator and MRTG
 
@@ -192,3 +197,33 @@ Testing 2001:4:112::1:      ....................................................
 Done in 0.08 seconds (672 queries in 0.060029983520508 secs).
 ```
 
+
+## Updating vagrant sample data
+
+As the IXP Manager database schema changes over time, it will periodically be necessary to update the vagrant sample data.
+
+The general workflow for this is as follows. The first three steps are normally performed while the Vagrant VM is booted, but are mentioned here for completeness.
+
+- Drop and recreate the database:
+```sql
+    DROP DATABASE ixp
+    CREATE DATABASE ixp CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci';
+```
+- Run the old migrations
+```shell
+php ./artisan migrate
+```
+- Import previous sample data:
+```shell
+cat tools/vagrant/vagrant-base-data.sql  | mysql -h localhost -u ixp -psomepassword ixp
+```
+- Ensure the migrations to be included are put in place. This may involve writing them, moving the file, or changing git commit.
+- Apply the new migrations:
+```shell
+php ./artisan migrate
+```
+- Take the updated data dump from the database
+```shell
+mysqldump --ignore-table=ixp.migrations --no-create-info --complete-insert --no-create-db --skip-triggers -h localhost -u ixp -psomepassword ixp > tools/vagrant/vagrant-base-data.sql
+```
+- And finally, commit the changes to the repository.
