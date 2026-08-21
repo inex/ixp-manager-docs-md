@@ -124,8 +124,7 @@ X-Frame-Options "DENY"
 If you need to embed IXP Manager on another page on the same origin (ie, the same domain, protocol, and port), you can
 configure these headers to allow this usage while still denying other websites from embedding IXP Manager.
 
-???+ note "**The `phpinfo` feature on IXP Manager utilizes iframes. If you use it and are setting these headers, you'll
-need this version of the configuration.**"
+???+ note "**The `phpinfo` feature on IXP Manager utilizes iframes. If you use it and are setting these headers, you'll need this version of the configuration.**"
 
 ```
 Header always set Content-Security-Policy "frame-ancestors 'self';"
