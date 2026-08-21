@@ -87,7 +87,7 @@ sent over HTTP.
 > **Note on `includeSubDomains`:** Only include `includeSubDomains` if **all** subdomains on your domain
 > serve HTTPS. Setting a long `max-age` (e.g., 31536000 = 1 year) is standard practice once confirmed working.
 
-#### Examples
+#### HSTS Examples
 
 ```
 # For apache2. Run `a2enmod headers` first. Add this inside your VirtualHost block.
@@ -108,7 +108,7 @@ Both `X-Frame-Options` and `Content-Security Policy 'frame ancestors'` instruct 
 for being included in an `iframe`, with CSP being a more modern way of doing so.  When set, browsers will determine
 whether the website is allowed to be embedded, and refuse to display the website if not.
 
-#### Examples:
+#### Example iframe policies:
 
 ##### iframe embedding disabled
 
