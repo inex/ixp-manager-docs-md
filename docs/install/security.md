@@ -108,23 +108,10 @@ Both `X-Frame-Options` and `Content-Security Policy 'frame ancestors'` instruct 
 for being included in an `iframe`, with CSP being a more modern way of doing so.  When set, browsers will determine
 whether the website is allowed to be embedded, and refuse to display the website if not.
 
-#### Example iframe policies:
+#### Example
 
-##### iframe embedding disabled
-
-Unless you have a need for embedding IXP Manager in an `iframe`, you should disable support for it completely.
-
-```
-Content-Security-Policy "frame-ancestors 'none';"
-X-Frame-Options "DENY"
-```
-
-##### iframe embedding allowed by same origin
-
-If you need to embed IXP Manager on another page on the same origin (ie, the same domain, protocol, and port), you can
-configure these headers to allow this usage while still denying other websites from embedding IXP Manager.
-
-???+ note "**The `phpinfo` feature on IXP Manager utilizes iframes. If you use it and are setting these headers, you'll need this version of the configuration.**"
+This configuration example for Apache permits IXP Manager to only be embedded by other pages on the same origin, that is, the
+same domain, protocol, and port.
 
 ```
 Header always set Content-Security-Policy "frame-ancestors 'self';"
