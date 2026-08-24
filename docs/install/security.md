@@ -110,7 +110,7 @@ whether the website is allowed to be embedded, and refuse to display the website
 
 #### Example
 
-This configuration example for Apache permits IXP Manager to only be embedded by other pages on the same origin, that is, the
+This example configuration for Apache permits IXP Manager to only be embedded by other pages on the same origin, that is, the
 same domain, protocol, and port.
 
 ```
