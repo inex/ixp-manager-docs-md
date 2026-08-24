@@ -651,41 +651,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example-iframe-policies" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example iframe policies:
+        Example
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Example iframe policies:">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#iframe-embedding-disabled" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        iframe embedding disabled
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#iframe-embedding-allowed-by-same-origin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        iframe embedding allowed by same origin
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -3203,41 +3175,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example-iframe-policies" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example iframe policies:
+        Example
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Example iframe policies:">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#iframe-embedding-disabled" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        iframe embedding disabled
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#iframe-embedding-allowed-by-same-origin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        iframe embedding allowed by same origin
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -3343,18 +3287,9 @@ subject to clickjacking attacks.</p>
 <p>Both <code>X-Frame-Options</code> and <code>Content-Security Policy 'frame ancestors'</code> instruct browsers about a websites policy
 for being included in an <code>iframe</code>, with CSP being a more modern way of doing so.  When set, browsers will determine
 whether the website is allowed to be embedded, and refuse to display the website if not.</p>
-<h4 id="example-iframe-policies">Example iframe policies:<a class="headerlink" href="#example-iframe-policies" title="Permanent link"></a></h4>
-<h5 id="iframe-embedding-disabled">iframe embedding disabled<a class="headerlink" href="#iframe-embedding-disabled" title="Permanent link"></a></h5>
-<p>Unless you have a need for embedding IXP Manager in an <code>iframe</code>, you should disable support for it completely.</p>
-<div class="highlight"><pre><span></span><code>Content-Security-Policy &quot;frame-ancestors &#39;none&#39;;&quot;
-X-Frame-Options &quot;DENY&quot;
-</code></pre></div>
-<h5 id="iframe-embedding-allowed-by-same-origin">iframe embedding allowed by same origin<a class="headerlink" href="#iframe-embedding-allowed-by-same-origin" title="Permanent link"></a></h5>
-<p>If you need to embed IXP Manager on another page on the same origin (ie, the same domain, protocol, and port), you can
-configure these headers to allow this usage while still denying other websites from embedding IXP Manager.</p>
-<details class="note" open="open">
-<summary><strong>The <code>phpinfo</code> feature on IXP Manager utilizes iframes. If you use it and are setting these headers, you'll need this version of the configuration.</strong></summary>
-</details>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link"></a></h4>
+<p>This configuration example for Apache permits IXP Manager to only be embedded by other pages on the same origin, that is, the
+same domain, protocol, and port.</p>
 <div class="highlight"><pre><span></span><code>Header always set Content-Security-Policy &quot;frame-ancestors &#39;self&#39;;&quot;
 Header always set X-Frame-Options SAMEORIGIN
 </code></pre></div>
@@ -3378,7 +3313,7 @@ Header always set X-Frame-Options SAMEORIGIN
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 21, 2026 16:02:55 UTC">August 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 24, 2026 08:25:50 UTC">August 24, 2026</span>
   </span>
 
     
