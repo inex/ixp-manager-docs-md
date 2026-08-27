@@ -20,8 +20,9 @@ There are typically three types of branches on [IXP Manager's GitHub repository]
 4. Ensure all asset libraries have been updated, and assets have been built for production,
    ```sh
    npm update
-   npm run prod
+   npm vite build
    ```
+   And then ensure the `public/build` directory, if there are changes, is pushed.
 5. Update the IXP Manager automated installation script if necessary.
 6. Merge `main` into `release-vX`:
    ```sh
