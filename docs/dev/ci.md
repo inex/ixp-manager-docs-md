@@ -24,7 +24,9 @@ The following are basic instructions on how to set up tests and an overview (or 
 
 Documentation by real example can be found via the [GitHub Actions workflow files](https://github.com/inex/IXP-Manager/tree/main/.github/workflows) and [the CI data directory](https://github.com/inex/IXP-Manager/tree/main/data/ci) which contains scripts, database dumps and configurations.
 
-Testing assumes *known good sample data* which contains a small mix of customers with different configuration options. The files generated from this database are tested against [known good](https://github.com/inex/IXP-Manager/tree/main/data/ci/known-good) configuration files. You first need to create a database, add a database user, import this testing database and then configure a `.env` file for testing (see [the one used here](https://github.com/inex/IXP-Manager/blob/main/.env.ci)).
+Testing assumes [*known good sample data*](https://github.com/inex/IXP-Manager/blob/main/data/ci/ci_test_db_data.sql) which contains a small mix of customers with different configuration options. The files generated from this database are tested against [known good](https://github.com/inex/IXP-Manager/tree/main/data/ci/known-good) configuration files. You first need to create a database, add a database user, and then configure a `.env` file for testing (see [the one used here](https://github.com/inex/IXP-Manager/blob/main/.env.ci)).
+
+The PHPUnit tests will automatically migrate the database schema and seed it with the [known good sample data](https://github.com/inex/IXP-Manager/blob/main/data/ci/ci_test_db_data.sql). Once the database is created and configured in the .env file, no further action is required.
 
 In MySQL:
 
@@ -42,18 +44,6 @@ DB_DATABASE=ixp_ci
 DB_USERNAME=ixp_ci
 DB_PASSWORD=somepassword
 ```
-
-Run migrations to initialize the database tables:
-```
-php ./artisan migrate
-```
-
-Then import the sample data:
-
-```sh
-cat data/ci/ci_test_db_data.sql  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci
-```
-
 
 Note that the [`phpunit.xml`](https://github.com/inex/IXP-Manager/blob/main/phpunit.xml) file in the root directory has some default settings matching the test database. You should not need to edit these.
 
@@ -102,14 +92,6 @@ If you are running Dusk tests, also start the Chromium driver in another console
 
 ```sh
 ./vendor/laravel/dusk/bin/chromedriver-mac-arm --port=9515
-```
-
-The tests require a fresh CI database. If you stop / abort your tests, or if they fail, you should also reset the database.
-
-```sh
-mysql -h localhost -u ixp_ci -psomepassword ixp_ci -e "DROP DATABASE ixp_ci; CREATE DATABASE ixp_ci CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_unicode_ci';"
-./artisan migrate
-cat data/ci/ci_test_db_data.sql  | mysql -h localhost -u ixp_ci -psomepassword ixp_ci
 ```
 
 And then kick off **all the tests** which includes PHPUnit and Laravel Dusk tests, run:
@@ -198,6 +180,18 @@ Or specific test directories:
 ```
 $ ./vendor/bin/phpunit tests/API
 $ ./vendor/bin/phpunit tests/Utils
+```
+
+Or a specific class:
+
+```
+$ ./vendor/bin/phpunit --filter 'ApiKeyControllerTest'
+```
+
+Or a specific test method:
+
+```
+$ ./vendor/bin/phpunit --filter 'MrtgTest::testMrtgConfigurationGeneration'
 ```
 
 
