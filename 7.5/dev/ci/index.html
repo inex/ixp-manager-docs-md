@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -2592,6 +2592,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#updating-sample-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating sample data
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3081,6 +3092,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#updating-sample-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating sample data
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3116,16 +3138,14 @@
 <p><strong>DISCLAIMER:</strong> This is not a tutorial on unit testing, phpunit, Laravel Dusk, Psalm or anything else. If you have no experience with these tools, please read up on them elsewhere first.</p>
 <h2 id="setting-up-phpunit-tests">Setting Up PHPUnit Tests<a class="headerlink" href="#setting-up-phpunit-tests" title="Permanent link"></a></h2>
 <p>Documentation by real example can be found via the <a href="https://github.com/inex/IXP-Manager/tree/main/.github/workflows">GitHub Actions workflow files</a> and <a href="https://github.com/inex/IXP-Manager/tree/main/data/ci">the CI data directory</a> which contains scripts, database dumps and configurations.</p>
-<p>Testing assumes <em>a known good sample database</em> which contains a small mix of customers with different configuration options. The files generated from this database are tested against <a href="https://github.com/inex/IXP-Manager/tree/main/data/ci/known-good">known good</a> configuration files. You first need to create a database, add a database user, import this testing database and then configure a <code>.env</code> file for testing (see <a href="https://github.com/inex/IXP-Manager/blob/main/.env.ci">the one here use here</a>).</p>
+<p>Testing assumes <a href="https://github.com/inex/IXP-Manager/blob/main/data/ci/ci_test_db_data.sql"><em>known good sample data</em></a> which contains a small mix of customers with different configuration options. The files generated from this database are tested against <a href="https://github.com/inex/IXP-Manager/tree/main/data/ci/known-good">known good</a> configuration files. You first need to create a database, add a database user, and then configure a <code>.env</code> file for testing (see <a href="https://github.com/inex/IXP-Manager/blob/main/.env.ci">the one used here</a>).</p>
+<p>The PHPUnit tests will automatically migrate the database schema and seed it with the <a href="https://github.com/inex/IXP-Manager/blob/main/data/ci/ci_test_db_data.sql">known good sample data</a>. Once the database is created and configured in the .env file, no further action is required.</p>
 <p>In MySQL:</p>
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">ixp_ci</span><span class="w"> </span><span class="k">CHARACTER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;utf8mb4&#39;</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
 <span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`ixp_ci`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n n-Quoted">`ixp_ci`</span><span class="nv">@`localhost`</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;somepassword&#39;</span><span class="p">;</span>
 <span class="k">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
 </code></pre></div>
-<p>Then import the sample database:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>data/ci/ci_test_db.sql<span class="w">  </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-u<span class="w"> </span>ixp_ci<span class="w"> </span>-psomepassword<span class="w"> </span>ixp_ci
-</code></pre></div>
-<p>Now, create your <code>.env</code> for testing, such as:</p>
+<p>Create your <code>.env</code> for testing, such as:</p>
 <div class="highlight"><pre><span></span><code><span class="na">DB_HOST</span><span class="o">=</span><span class="s">localhost</span>
 <span class="na">DB_DATABASE</span><span class="o">=</span><span class="s">ixp_ci</span>
 <span class="na">DB_USERNAME</span><span class="o">=</span><span class="s">ixp_ci</span>
@@ -3198,9 +3218,6 @@ php<span class="w"> </span>artisan<span class="w"> </span>serve
 <p>If you are running Dusk tests, also start the Chromium driver in another console session. For example:</p>
 <div class="highlight"><pre><span></span><code>./vendor/laravel/dusk/bin/chromedriver-mac-arm<span class="w"> </span>--port<span class="o">=</span><span class="m">9515</span>
 </code></pre></div>
-<p>The tests require a fresh CI database. If you stop / abort your tests, or if they fail, you should also reset the database.</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>data/ci/ci_test_db.sql<span class="w">  </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-u<span class="w"> </span>ixp_ci<span class="w"> </span>-psomepassword<span class="w"> </span>ixp_ci
-</code></pre></div>
 <p>And then kick off <strong>all the tests</strong> which includes PHPUnit and Laravel Dusk tests, run:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>artisan<span class="w"> </span><span class="nb">test</span>
 
@@ -3271,6 +3288,12 @@ $ ./vendor/bin/phpunit --testsuite &#39;IXP Manager Test Suite&#39;
 <div class="highlight"><pre><span></span><code>$ ./vendor/bin/phpunit tests/API
 $ ./vendor/bin/phpunit tests/Utils
 </code></pre></div>
+<p>Or a specific class:</p>
+<div class="highlight"><pre><span></span><code>$ ./vendor/bin/phpunit --filter &#39;ApiKeyControllerTest&#39;
+</code></pre></div>
+<p>Or a specific test method:</p>
+<div class="highlight"><pre><span></span><code>$ ./vendor/bin/phpunit --filter &#39;MrtgTest::testMrtgConfigurationGeneration&#39;
+</code></pre></div>
 <h2 id="running-psalm-static-code-analysis">Running Psalm Static Code Analysis<a class="headerlink" href="#running-psalm-static-code-analysis" title="Permanent link"></a></h2>
 <p>This is very easy if you've following the above <code>composer install --dev</code> step:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>./vendor/bin/psalm
@@ -3296,6 +3319,29 @@ Analyzing<span class="w"> </span>files...
 
 ------------------------------
 </code></pre></div>
+<h2 id="updating-sample-data">Updating sample data<a class="headerlink" href="#updating-sample-data" title="Permanent link"></a></h2>
+<p>As the IXP Manager database schema changes over time, it will periodically be necessary to update the CI database sample data to keep it's structure in sync.</p>
+<p>The general workflow for this is as follows:</p>
+<ul>
+<li>Drop and recreate the database:
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">ixp_ci</span>
+<span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">ixp_ci</span><span class="w"> </span><span class="nb">CHARACTER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;utf8mb4&#39;</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">;</span>
+</code></pre></div></li>
+<li>Run the old migrations
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>./artisan<span class="w"> </span>migrate
+</code></pre></div></li>
+<li>Import old sample data:
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>data/ci/ci_test_db_data.sql<span class="w">  </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-u<span class="w"> </span>ixp_ci<span class="w"> </span>-psomepassword<span class="w"> </span>ixp_ci
+</code></pre></div></li>
+<li>Ensure the migrations to be included are put in place. This may involve writing them, moving the file, or changing git commit.</li>
+<li>Apply the new migrations:
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>./artisan<span class="w"> </span>migrate
+</code></pre></div></li>
+<li>Take the updated CI data dump:
+<div class="highlight"><pre><span></span><code>mysqldump<span class="w"> </span>--ignore-table<span class="o">=</span>ixp_ci.migrations<span class="w"> </span>--no-create-info<span class="w"> </span>--complete-insert<span class="w"> </span>--no-create-db<span class="w"> </span>--skip-triggers<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-u<span class="w"> </span>ixp_ci<span class="w"> </span>-psomepassword<span class="w"> </span>ixp_ci<span class="w"> </span>&gt;<span class="w"> </span>data/ci/ci_test_db_data.sql
+</code></pre></div></li>
+<li>And finally, commit the changes to the repository.</li>
+</ul>
 
 
 
@@ -3316,7 +3362,7 @@ Analyzing<span class="w"> </span>files...
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 17, 2026 11:11:33 UTC">July 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2026 12:32:38 UTC">September 8, 2026</span>
   </span>
 
     
@@ -3433,7 +3479,7 @@ Analyzing<span class="w"> </span>files...
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
