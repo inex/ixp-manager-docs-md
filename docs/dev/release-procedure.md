@@ -40,8 +40,6 @@ There are typically three types of branches on [IXP Manager's GitHub repository]
 
    # and then run the tests:
    cp .env.ci .env
-   ./artisan migrate
-   cat data/ci/ci_test_db_data.sql | mysql -u root ixp_ci
    ./vendor/bin/phpunit
 
    # static code analysis:
