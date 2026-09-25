@@ -560,6 +560,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#cache-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#securing-administrative-functions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3084,6 +3095,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#cache-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#securing-administrative-functions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3216,6 +3238,23 @@
 
 
 <h1 id="ixp-manager-security">IXP Manager Security<a class="headerlink" href="#ixp-manager-security" title="Permanent link"></a></h1>
+<p>This document provides security guidance on various parts of IXP Manager installations.</p>
+<ul>
+<li>
+<p><a href="./#cache-configuration">Cache configuration</a></p>
+</li>
+<li>
+<p><a href="./#securing-administrative-functions">Securing Administrative Functions</a></p>
+</li>
+<li>
+<p><a href="./#api-key-as-get-parameter">Accepting API Keys though GET Parameters</a></p>
+</li>
+</ul>
+<h2 id="cache-configuration">Cache Configuration<a class="headerlink" href="#cache-configuration" title="Permanent link"></a></h2>
+<p>IXP Manager relies on a cache to improve the performance of some operations, and to provide a reliable backend for carrying out throttling and rate limiting.</p>
+<p>The cache is configured via the .env file. A driver setting is required, and some driver specific settings may also be required.</p>
+<p>At minimum, a CACHE_DRIVER of <code>file</code> should be used. However several major caveats come with this. If you run multiple application servers, the cache will be inconsistent from server to server. And features like atomic read and increment will not work, so rate limiting will not operate as it should during a burst of requests.</p>
+<p>We recommend installing a fast data store such as memcached or redis, which are performant, and support the atomic read and increment operations relied on for rate limiting.</p>
 <h2 id="securing-administrative-functions">Securing Administrative Functions<a class="headerlink" href="#securing-administrative-functions" title="Permanent link"></a></h2>
 <p>IXP Manager has always been both an administrative portal for organisations that run IXPs and a member/customer portal for the participants at an IXP. This creates a security paradox in that IXP Manager's administrative frontend must be publicly available if IXPs wish to provide the customer portal element. </p>
 <p>To address this, v7.1.0 has prepended all administrative-only URLs, both web and api, with <code>admin/</code>. This will allow IXP administrators to restrict access to these prepended URLs to known-safe IP addresses via web server access lists, for which <a href="securing-admin/">we provide examples for Varnish, Apache and Nginx here</a>.</p>
@@ -3313,7 +3352,7 @@ Header always set X-Frame-Options SAMEORIGIN
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 24, 2026 08:31:41 UTC">August 24, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 25, 2026 14:41:00 UTC">September 25, 2026</span>
   </span>
 
     
