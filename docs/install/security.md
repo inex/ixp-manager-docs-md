@@ -1,5 +1,23 @@
 # IXP Manager Security
 
+This document provides security guidance on various parts of IXP Manager installations.
+
+ - [Cache configuration](./security.md#cache-configuration)
+
+ - [Securing Administrative Functions](./security.md#securing-administrative-functions)
+
+ - [Accepting API Keys though GET Parameters](./security.md#api-key-as-get-parameter)
+
+## Cache Configuration
+
+IXP Manager relies on a cache to improve the performance of some operations, and to provide a reliable backend for carrying out throttling and rate limiting.
+
+The cache is configured via the .env file. A driver setting is required, and some driver specific settings may also be required.
+
+At minimum, a CACHE_DRIVER of `file` should be used. However several major caveats come with this. If you run multiple application servers, the cache will be inconsistent from server to server. And features like atomic read and increment will not work, so rate limiting will not operate as it should during a burst of requests.
+
+We recommend installing a fast data store such as memcached or redis, which are performant, and support the atomic read and increment operations relied on for rate limiting.
+
 ## Securing Administrative Functions
 
 IXP Manager has always been both an administrative portal for organisations that run IXPs and a member/customer portal for the participants at an IXP. This creates a security paradox in that IXP Manager's administrative frontend must be publicly available if IXPs wish to provide the customer portal element. 
