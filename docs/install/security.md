@@ -4,6 +4,8 @@ This document provides security guidance on various parts of IXP Manager install
 
  - [Cache configuration](./security.md#cache-configuration)
 
+ - [HTTP Headers](./security.md#http-headers)
+
  - [Securing Administrative Functions](./security.md#securing-administrative-functions)
 
  - [Accepting API Keys though GET Parameters](./security.md#api-key-as-get-parameter)
