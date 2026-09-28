@@ -20,6 +20,14 @@ At minimum, a CACHE_DRIVER of `file` should be used. However several major cavea
 
 We recommend installing a fast data store such as memcached or redis, which are performant, and support the atomic read and increment operations relied on for rate limiting.
 
+For example:
+```
+CACHE_DRIVER=memcached
+
+MEMCACHED_HOST=127.0.0.1
+MEMCACHED_PORT=11211
+```
+
 ## Securing Administrative Functions
 
 IXP Manager has always been both an administrative portal for organisations that run IXPs and a member/customer portal for the participants at an IXP. This creates a security paradox in that IXP Manager's administrative frontend must be publicly available if IXPs wish to provide the customer portal element. 
