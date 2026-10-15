@@ -22,7 +22,7 @@ Where possible, we will follow security best practices during the application de
 
 ## Security of the Development Environment
 
-As an open-source project, the protection of intellectual property, the secrecy of source code, etc., do not apply. However, the integrity of the source code is a critical concern. 
+As an open-source project, the protection of intellectual property via the secrecy of source code, etc., do not apply. However, the integrity of the source code is a critical concern. 
 
 INEX uses GitHub for our secure version controlled repository. INEX has vendor-assessed GitHub and deems it suitable for this purpose. GitHub is SOC 3 and SO/IEC 27001:2022 certified and provides [CSA CAIQ](https://cloudsecurityalliance.org/star/registry/github-inc) details.
 
@@ -37,19 +37,22 @@ For internal and third-party developers, we provide [a development database and 
 
 ## Security in Application Change Control and Secure Coding Practices
 
-IXP Manager development utilises formal change control procedures for any contributions to the code base via GitHub's Pull Request and Review toolchain. Only named core developers can approve pull requests and commit changes to the protected branches. These are currently only Barry O'Donovan and Nick Hilliard.
+IXP Manager development utilises formal change control procedures for any contributions to the code base via GitHub's Pull Request and Review tool chain. Only named core developers can approve pull requests and commit changes to the protected branches. These are currently only Barry O'Donovan and Nick Hilliard.
 
 Anyone may subscribe to be notified of accepted pull requests and/or changes to the protected branches. All core developers receive these notifications. All pull requests, code changes and commit history can be seen on the inex/IXP-Manager GitHub repository by anyone.
 
 On any commit or pull request, [IXP Manager's continuous integration system](https://docs.ixpmanager.org/latest/dev/ci/) runs, which includes:
 
-* Unit testing of the application using the modified code. At the time of writing, this includes 292 tests with 946 assertions. 
-* Browser-based unit testing, which performs a thorough and complete test of all CRUD (Create, Read, Update, Delete) actions on the user interface.
+* Unit testing of the application using the modified code. 
 * Static code analysis which examines the source code to find potential bugs, security vulnerabilities, and code quality issues.
-  
-**A new version of IXP Manager requires these continuous integration tests to pass before it can be released.**
 
-Within the team, we employ secure coding practices with specific consideration given to the language, PHP, and the framework, Laravel. Integrated development environments such as PHPStorm or VS Code with PHP extensions are also used which also identify bugs and errors. 
+Before any release, and on an as-appropriate basis, we additionally run browser-based unit testing, which performs a thorough and complete test of all CRUD (Create, Read, Update, Delete) actions on the user interface.
+
+At the time of writing, this includes 776 tests with 5,721 assertions. 
+  
+**A new version of IXP Manager requires all three of these continuous integration tests to pass before it can be released.**
+
+Within the team, we employ secure coding practices with specific consideration given to the language, PHP, and the framework, Laravel. Integrated development environments such as PHPStorm or Visual Studio Code with PHP extensions are also used which also identify bugs and errors. 
 
 Code reviews include checks for useful and appropriate documentation, as well as the removal of programming defects and legacy code, which can allow information security vulnerabilities to be exploited.
 
@@ -62,9 +65,29 @@ All third-party contributions follow the same methodology outlined above. In add
 
 IXP Manager, like any modern web application, includes third-party libraries for both frontend and backend components. 
 
-We utilise GitHub's [Dependabot](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide) service to notify us about vulnerabilities in the dependencies used in our IXP Manager repository. We also subscribe to appropriate mailing lists and information sources regarding the core languages and frameworks we use.
+1. We utilise GitHub's [Dependabot](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide) service to notify us about vulnerabilities in the dependencies used in our IXP Manager repository. 
+2. We subscribe to appropriate mailing lists and information sources regarding the core languages and frameworks we use.
+3. We include composer and npm audits in our release procedure.
 
 ## Vulnerability Reporting and Responsible Disclosure
 
 We maintain a [security policy](https://github.com/inex/IXP-Manager/security/policy) for vulnerability reporting, utilising GitHub's standard publishing location, where anyone seeking to report an issue would expect to find it. 
+
+## Approved Tools
+
+Internally, we use the following approved development tools:
+
+1. [PHPStorm](https://www.jetbrains.com/phpstorm/) as the primary integrated development environment (IDE), including [Laravel Idea](https://plugins.jetbrains.com/plugin/13441-laravel-idea).
+2. [Visual Studio Code](https://code.visualstudio.com/) as a secondary IDE.
+3. Command line editors (joe, nano, vi).
+4. [Laravel Herd](https://herd.laravel.com/), a native Laravel and PHP development environment for macOS. It includes PHP, nginx, redis, MySQL, SMTP catchers, etc.
+5. [TablePlus](https://tableplus.com/), a modern and native GUI tool for relational databases.
+6. [GitHub Desktop](https://desktop.github.com/download/), and command-line git.
+7. [Vagrant](https://docs.ixpmanager.org/latest/dev/vagrant/) for creating virtualised development environments, with Parallels and VirtualBox.
+8. The development requirements as published in the project's [composer.json](https://github.com/inex/IXP-Manager/blob/main/composer.json) and [package.json](https://github.com/inex/IXP-Manager/blob/main/package.json).
+9. The approved tools for our CI/CD pipeline [are documented here](ci.md) and also [in our GitHub Actions workflows](https://github.com/inex/IXP-Manager/tree/main/.github/workflows).
+10. The tooling for our documentation system [are detailed here](docs.md).
+
+
+
 
