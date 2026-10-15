@@ -25,7 +25,7 @@ extra:
       link: https://www.youtube.com/channel/UCeW2fmMTBtE4fnlmg-2-evA
     - icon: fontawesome/solid/globe
       link: https://www.ixpmanager.org/
-repo_name: GitHub
+repo_name: inex/ixp-manager-docs-md
 copyright: '&copy; 2017-2026, Internet Neutral Exchange Association Company Limited by Guarantee (INEX).<br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-sa/4.0/80x15.png" /></a>&nbsp;This work is licensed under the <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.'
 nav:
 - Home: 'index.md'
