@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -2519,6 +2519,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#approved-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approved Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3103,6 +3114,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#approved-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approved Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3141,7 +3163,7 @@
 <li>Avoidance of security by obscurity.</li>
 </ul>
 <h2 id="security-of-the-development-environment">Security of the Development Environment<a class="headerlink" href="#security-of-the-development-environment" title="Permanent link"></a></h2>
-<p>As an open-source project, the protection of intellectual property, the secrecy of source code, etc., do not apply. However, the integrity of the source code is a critical concern. </p>
+<p>As an open-source project, the protection of intellectual property via the secrecy of source code, etc., do not apply. However, the integrity of the source code is a critical concern. </p>
 <p>INEX uses GitHub for our secure version controlled repository. INEX has vendor-assessed GitHub and deems it suitable for this purpose. GitHub is SOC 3 and SO/IEC 27001:2022 certified and provides <a href="https://cloudsecurityalliance.org/star/registry/github-inc">CSA CAIQ</a> details.</p>
 <p>We employ GitHub's best current practices for the inex/IXP-Manager repository and the inex organisation, including:</p>
 <ul>
@@ -3152,24 +3174,43 @@
 </ul>
 <p>For internal and third-party developers, we provide <a href="https://docs.ixpmanager.org/latest/dev/vagrant/">a development database and a Vagrant development environment</a> that contains fake but production-like data. </p>
 <h2 id="security-in-application-change-control-and-secure-coding-practices">Security in Application Change Control and Secure Coding Practices<a class="headerlink" href="#security-in-application-change-control-and-secure-coding-practices" title="Permanent link"></a></h2>
-<p>IXP Manager development utilises formal change control procedures for any contributions to the code base via GitHub's Pull Request and Review toolchain. Only named core developers can approve pull requests and commit changes to the protected branches. These are currently only Barry O'Donovan and Nick Hilliard.</p>
+<p>IXP Manager development utilises formal change control procedures for any contributions to the code base via GitHub's Pull Request and Review tool chain. Only named core developers can approve pull requests and commit changes to the protected branches. These are currently only Barry O'Donovan and Nick Hilliard.</p>
 <p>Anyone may subscribe to be notified of accepted pull requests and/or changes to the protected branches. All core developers receive these notifications. All pull requests, code changes and commit history can be seen on the inex/IXP-Manager GitHub repository by anyone.</p>
 <p>On any commit or pull request, <a href="https://docs.ixpmanager.org/latest/dev/ci/">IXP Manager's continuous integration system</a> runs, which includes:</p>
 <ul>
-<li>Unit testing of the application using the modified code. At the time of writing, this includes 292 tests with 946 assertions. </li>
-<li>Browser-based unit testing, which performs a thorough and complete test of all CRUD (Create, Read, Update, Delete) actions on the user interface.</li>
+<li>Unit testing of the application using the modified code. </li>
 <li>Static code analysis which examines the source code to find potential bugs, security vulnerabilities, and code quality issues.</li>
 </ul>
-<p><strong>A new version of IXP Manager requires these continuous integration tests to pass before it can be released.</strong></p>
-<p>Within the team, we employ secure coding practices with specific consideration given to the language, PHP, and the framework, Laravel. Integrated development environments such as PHPStorm or VS Code with PHP extensions are also used which also identify bugs and errors. </p>
+<p>Before any release, and on an as-appropriate basis, we additionally run browser-based unit testing, which performs a thorough and complete test of all CRUD (Create, Read, Update, Delete) actions on the user interface.</p>
+<p>At the time of writing, this includes 776 tests with 5,721 assertions. </p>
+<p><strong>A new version of IXP Manager requires all three of these continuous integration tests to pass before it can be released.</strong></p>
+<p>Within the team, we employ secure coding practices with specific consideration given to the language, PHP, and the framework, Laravel. Integrated development environments such as PHPStorm or Visual Studio Code with PHP extensions are also used which also identify bugs and errors. </p>
 <p>Code reviews include checks for useful and appropriate documentation, as well as the removal of programming defects and legacy code, which can allow information security vulnerabilities to be exploited.</p>
 <h2 id="outsourced-development-control-third-party-contributions">Outsourced Development Control / Third-Party Contributions<a class="headerlink" href="#outsourced-development-control-third-party-contributions" title="Permanent link"></a></h2>
 <p>All third-party contributions follow the same methodology outlined above. In addition, third-party contributions are only accepted by individuals or organisations who have <a href="https://docs.ixpmanager.org/latest/dev/cla/">agreed to the contributor license agreement</a>.</p>
 <h2 id="supply-chain-security">Supply-Chain Security<a class="headerlink" href="#supply-chain-security" title="Permanent link"></a></h2>
 <p>IXP Manager, like any modern web application, includes third-party libraries for both frontend and backend components. </p>
-<p>We utilise GitHub's <a href="https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide">Dependabot</a> service to notify us about vulnerabilities in the dependencies used in our IXP Manager repository. We also subscribe to appropriate mailing lists and information sources regarding the core languages and frameworks we use.</p>
+<ol>
+<li>We utilise GitHub's <a href="https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide">Dependabot</a> service to notify us about vulnerabilities in the dependencies used in our IXP Manager repository. </li>
+<li>We subscribe to appropriate mailing lists and information sources regarding the core languages and frameworks we use.</li>
+<li>We include composer and npm audits in our release procedure.</li>
+</ol>
 <h2 id="vulnerability-reporting-and-responsible-disclosure">Vulnerability Reporting and Responsible Disclosure<a class="headerlink" href="#vulnerability-reporting-and-responsible-disclosure" title="Permanent link"></a></h2>
 <p>We maintain a <a href="https://github.com/inex/IXP-Manager/security/policy">security policy</a> for vulnerability reporting, utilising GitHub's standard publishing location, where anyone seeking to report an issue would expect to find it. </p>
+<h2 id="approved-tools">Approved Tools<a class="headerlink" href="#approved-tools" title="Permanent link"></a></h2>
+<p>Internally, we use the following approved development tools:</p>
+<ol>
+<li><a href="https://www.jetbrains.com/phpstorm/">PHPStorm</a> as the primary integrated development environment (IDE), including <a href="https://plugins.jetbrains.com/plugin/13441-laravel-idea">Laravel Idea</a>.</li>
+<li><a href="https://code.visualstudio.com/">Visual Studio Code</a> as a secondary IDE.</li>
+<li>Command line editors (joe, nano, vi).</li>
+<li><a href="https://herd.laravel.com/">Laravel Herd</a>, a native Laravel and PHP development environment for macOS. It includes PHP, nginx, redis, MySQL, SMTP catchers, etc.</li>
+<li><a href="https://tableplus.com/">TablePlus</a>, a modern and native GUI tool for relational databases.</li>
+<li><a href="https://desktop.github.com/download/">GitHub Desktop</a>, and command-line git.</li>
+<li><a href="https://docs.ixpmanager.org/latest/dev/vagrant/">Vagrant</a> for creating virtualised development environments, with Parallels and VirtualBox.</li>
+<li>The development requirements as published in the project's <a href="https://github.com/inex/IXP-Manager/blob/main/composer.json">composer.json</a> and <a href="https://github.com/inex/IXP-Manager/blob/main/package.json">package.json</a>.</li>
+<li>The approved tools for our CI/CD pipeline <a href="../ci/">are documented here</a> and also <a href="https://github.com/inex/IXP-Manager/tree/main/.github/workflows">in our GitHub Actions workflows</a>.</li>
+<li>The tooling for our documentation system <a href="../docs/">are detailed here</a>.</li>
+</ol>
 
 
 
@@ -3307,7 +3348,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
