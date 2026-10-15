@@ -61,6 +61,8 @@ Code reviews include checks for useful and appropriate documentation, as well as
 
 All third-party contributions follow the same methodology outlined above. In addition, third-party contributions are only accepted by individuals or organisations who have [agreed to the contributor license agreement](https://docs.ixpmanager.org/latest/dev/cla/).
 
+The use of AI development tools and IDE features is permitted. However, contributors must ensure such code is compatible with the CLA they have signed, and they must review the code and ensure it conforms to our standards before opening a pull-request. All AI-generated code will undergo standard testing and pull-request peer review.
+
 ## Supply-Chain Security
 
 IXP Manager, like any modern web application, includes third-party libraries for both frontend and backend components. 
@@ -79,15 +81,12 @@ Internally, we use the following approved development tools:
 
 1. [PHPStorm](https://www.jetbrains.com/phpstorm/) as the primary integrated development environment (IDE), including [Laravel Idea](https://plugins.jetbrains.com/plugin/13441-laravel-idea).
 2. [Visual Studio Code](https://code.visualstudio.com/) as a secondary IDE.
-3. Command line editors (joe, nano, vi).
-4. [Laravel Herd](https://herd.laravel.com/), a native Laravel and PHP development environment for macOS. It includes PHP, nginx, redis, MySQL, SMTP catchers, etc.
-5. [TablePlus](https://tableplus.com/), a modern and native GUI tool for relational databases.
-6. [GitHub Desktop](https://desktop.github.com/download/), and command-line git.
-7. [Vagrant](https://docs.ixpmanager.org/latest/dev/vagrant/) for creating virtualised development environments, with Parallels and VirtualBox.
-8. The development requirements as published in the project's [composer.json](https://github.com/inex/IXP-Manager/blob/main/composer.json) and [package.json](https://github.com/inex/IXP-Manager/blob/main/package.json).
-9. The approved tools for our CI/CD pipeline [are documented here](ci.md) and also [in our GitHub Actions workflows](https://github.com/inex/IXP-Manager/tree/main/.github/workflows).
-10. The tooling for our documentation system [are detailed here](docs.md).
-
-
-
-
+3. AI-assisted development tools and IDE features within the JetBrains/PHPStorm ecosystem (Junie, Air, AI Assistant), and any local models.  
+4. Command line editors (joe, nano, vi).
+5. [Laravel Herd](https://herd.laravel.com/), a native Laravel and PHP development environment for macOS. It includes PHP, Composer, NPM, Nginx, Redis, MySQL, SMTP catchers, etc.
+6. [TablePlus](https://tableplus.com/), a modern and native GUI tool for relational databases.
+7. [GitHub Desktop](https://desktop.github.com/download/), and command-line git.
+8. [Vagrant](https://docs.ixpmanager.org/latest/dev/vagrant/) for creating virtualised development environments, with Parallels and VirtualBox.
+9. The development requirements as published in the project's [composer.json](https://github.com/inex/IXP-Manager/blob/main/composer.json) and [package.json](https://github.com/inex/IXP-Manager/blob/main/package.json).
+10. The approved tools for our CI/CD pipeline [are documented here](ci.md) and also [in our GitHub Actions workflows](https://github.com/inex/IXP-Manager/tree/main/.github/workflows).
+11. The tooling for our documentation system [are detailed here](docs.md).
