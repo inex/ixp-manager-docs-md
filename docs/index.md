@@ -4,8 +4,7 @@
 
 **IXP Manager is the most trusted IXP platform worldwide.**
 
-
-It is a full stack management system for Internet eXchange Points (IXPs) which includes an administration and customer portal; provides end to end provisioning; and both teaches and implements best practice. It allows IXPs to manage new customers, provision new connections / services and monitor traffic usage. It has a number of provisioning templates including its ability to generate secure proven route server configuration and provides a built in looking glass for these.
+IXP Manager is a full stack management system for Internet eXchange Points (IXPs) which includes an administration and customer portal; provides end to end provisioning; and both teaches and implements best practice. It allows IXPs to manage new customers, provision new connections / services and monitor traffic usage. IXP Manager has a number of provisioning templates including its ability to generate secure proven route server configuration and provides a built-in looking glass for these.
 
 **[INEX](https://www.inex.ie/)** are pleased to release **[IXP Manager](http://www.ixpmanager.org/)** under an open source license (the GNU Public License V2) which we hope will benefit the wider IXP community, and especially new and small IXPs looking to expand.
 
@@ -35,9 +34,9 @@ Additional information: [https://www.ixpmanager.org/](https://www.ixpmanager.org
 
 * [Barry O'Donovan](https://www.barryodonovan.com/contact) [@barryo](https://github.com/barryo)
 * Nick Hilliard [@nickhilliard](https://github.com/nickhilliard/)
-* Lászlá Kiss [@griphons](https://github.com/griphons) (since 2024 and supported by [the sponsorship program](https://www.ixpmanager.org/sponsors))
+* Thomas Kerin [@afk11](https://github.com/afk11) (since 2026 and supported by [the sponsorship program](https://www.ixpmanager.org/sponsors))
 
-The team at INEX deserves special mention - its CEO, Eileen Gallagher for her steadfast support and promotion of the project; the INEX Board of Directors - past and present - for their approval to open source the project and their on-going support of the project; and all team members who contribute real-world feedback, suggestions and all-round support!
+The team at INEX deserves special mention - its CEO, Eileen Gallagher for her steadfast support and promotion of the project; the INEX Board of Directors - past and present - for their approval to open source the project and their ongoing support of the project; and all team members who contribute real-world feedback, suggestions and all-round support!
 
 See the [team page on the IXP Manager website for more details](https://www.ixpmanager.org/about/team).
 
